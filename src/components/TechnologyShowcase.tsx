@@ -21,12 +21,24 @@ const TechnologyShowcase = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
             Powered by <span className="text-green-500">Leading Technologies</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+          >
             We master the tools that drive modern business automation
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -39,21 +51,44 @@ const TechnologyShowcase = () => {
           {technologies.map((tech, index) => (
             <motion.div
               key={tech.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              initial={{ opacity: 0, y: 50, rotateY: -30 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+              transition={{ 
+                delay: index * 0.15, 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -5 }}
+              whileHover={{ 
+                scale: 1.08, 
+                y: -10,
+                rotateY: 5,
+                transition: { duration: 0.3 }
+              }}
               className="text-center group cursor-pointer"
             >
-              <div className="w-20 h-20 bg-[#1a1a1a] border border-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:border-green-500/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-green-500/20">
-                <span className="text-2xl font-bold text-green-500 group-hover:scale-110 transition-transform duration-300">
+              <motion.div 
+                whileHover={{ 
+                  borderColor: "rgba(16, 185, 129, 0.5)",
+                  boxShadow: "0 20px 25px -5px rgba(16, 185, 129, 0.2), 0 10px 10px -5px rgba(16, 185, 129, 0.1)"
+                }}
+                className="w-20 h-20 bg-[#1a1a1a] border border-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-300"
+              >
+                <motion.span 
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-2xl font-bold text-green-500"
+                >
                   {tech.name.slice(0, 2).toUpperCase()}
-                </span>
-              </div>
-              <h3 className="font-semibold text-white mb-1 group-hover:text-green-500 transition-colors duration-300">
+                </motion.span>
+              </motion.div>
+              <motion.h3 
+                whileHover={{ color: "#10B981" }}
+                className="font-semibold text-white mb-1 transition-colors duration-300"
+              >
                 {tech.name}
-              </h3>
+              </motion.h3>
               <p className="text-sm text-gray-400">
                 {tech.description}
               </p>

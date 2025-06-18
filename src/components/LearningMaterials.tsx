@@ -46,54 +46,121 @@ const LearningMaterials = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
             Featured <span className="text-green-500">Learning Materials</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+          >
             Expert-crafted courses designed to accelerate your AI and automation journey
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {courses.map((course, index) => (
             <motion.div
               key={course.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              initial={{ opacity: 0, y: 50, rotateX: 20 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ 
+                delay: index * 0.15, 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
+              whileHover={{ 
+                y: -15, 
+                scale: 1.03,
+                rotateY: 2,
+                transition: { duration: 0.3 }
+              }}
               className="group cursor-pointer"
             >
               <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl group-hover:shadow-green-500/10 h-full">
                 <div className="relative overflow-hidden">
-                  <img 
+                  <motion.img 
                     src={course.image} 
                     alt={course.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    whileHover={{ scale: 1.15, rotate: 1 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-full h-48 object-cover"
                   />
-                  <div className="absolute top-4 right-4">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ delay: index * 0.15 + 0.3, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="absolute top-4 right-4"
+                  >
                     <Badge variant="secondary" className="bg-green-500 text-white font-semibold">
                       {course.duration}
                     </Badge>
-                  </div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    className="absolute inset-0 bg-green-500/10 flex items-center justify-center"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileHover={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+                    >
+                      <span className="text-white text-xl">▶</span>
+                    </motion.div>
+                  </motion.div>
                 </div>
                 
                 <CardHeader className="pb-4">
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {course.tags.map((tag) => (
-                      <Badge 
-                        key={tag} 
-                        variant="outline" 
-                        className="border-gray-600 text-gray-300 hover:border-green-500 hover:text-green-500 transition-colors duration-300"
+                  <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.15 + 0.4, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="flex flex-wrap gap-2 mb-3"
+                  >
+                    {course.tags.map((tag, tagIndex) => (
+                      <motion.div
+                        key={tag}
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ 
+                          delay: index * 0.15 + 0.5 + tagIndex * 0.1, 
+                          duration: 0.4,
+                          type: "spring"
+                        }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.1 }}
                       >
-                        {tag}
-                      </Badge>
+                        <Badge 
+                          variant="outline" 
+                          className="border-gray-600 text-gray-300 hover:border-green-500 hover:text-green-500 transition-colors duration-300"
+                        >
+                          {tag}
+                        </Badge>
+                      </motion.div>
                     ))}
-                  </div>
-                  <CardTitle className="text-white group-hover:text-green-500 transition-colors duration-300">
-                    {course.title}
-                  </CardTitle>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ color: "#10B981" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <CardTitle className="text-white transition-colors duration-300">
+                      {course.title}
+                    </CardTitle>
+                  </motion.div>
                 </CardHeader>
                 
                 <CardContent className="pt-0">
@@ -101,12 +168,17 @@ const LearningMaterials = () => {
                     {course.description}
                   </CardDescription>
                   
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition-all duration-300"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Start Learning
-                  </Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition-all duration-300"
+                    >
+                      Start Learning
+                    </Button>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>

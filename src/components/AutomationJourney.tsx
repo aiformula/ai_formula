@@ -36,41 +36,108 @@ const AutomationJourney = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
             Your <span className="text-green-500">Automation Journey</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+          >
             Our proven 4-step process ensures successful automation implementation
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
+              initial={{ opacity: 0, y: 50, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                delay: index * 0.2, 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -5 }}
+              whileHover={{ 
+                scale: 1.05, 
+                y: -10,
+                transition: { duration: 0.3 }
+              }}
               className="text-center group cursor-pointer"
             >
               <div className="relative mb-8">
-                <div className="w-20 h-20 bg-green-500/10 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto group-hover:bg-green-500/20 transition-all duration-300 group-hover:scale-110">
-                  <step.icon className="w-10 h-10 text-green-500" />
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                <motion.div 
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  transition={{ 
+                    delay: index * 0.2 + 0.3, 
+                    duration: 0.8,
+                    type: "spring"
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    scale: 1.15, 
+                    rotate: 5,
+                    backgroundColor: "rgba(16, 185, 129, 0.3)"
+                  }}
+                  className="w-20 h-20 bg-green-500/10 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto transition-all duration-300"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.2, rotate: -5 }}
+                  >
+                    <step.icon className="w-10 h-10 text-green-500" />
+                  </motion.div>
+                </motion.div>
+                <motion.div 
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ 
+                    delay: index * 0.2 + 0.5, 
+                    duration: 0.6,
+                    type: "spring"
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    backgroundColor: "#10B981"
+                  }}
+                  className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm transition-all duration-300"
+                >
                   {index + 1}
-                </div>
+                </motion.div>
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-green-500 transition-colors duration-300">
+              <motion.h3 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: index * 0.2 + 0.6, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ color: "#10B981" }}
+                className="text-xl font-bold text-white mb-4 transition-colors duration-300"
+              >
                 {step.title}
-              </h3>
+              </motion.h3>
               
-              <p className="text-gray-300 leading-relaxed">
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 + 0.8, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-gray-300 leading-relaxed"
+              >
                 {step.description}
-              </p>
+              </motion.p>
             </motion.div>
           ))}
         </div>

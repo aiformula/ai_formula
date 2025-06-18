@@ -6,18 +6,46 @@ import { Brain, Cog, CheckCircle } from "lucide-react";
 
 const ServicesSection = () => {
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        duration: 0.8,
+        staggerChildren: 0.3
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { 
+        duration: 0.8,
+        type: "spring",
+        stiffness: 100
+      } 
+    }
   };
+
+  const services = [
+    {
+      icon: Brain,
+      title: "Expert-Led AI Training",
+      description: "Comprehensive learning materials designed by industry experts",
+      benefits: ["Actionable Courses", "Practical Frameworks", "Team Upskilling"],
+      buttonText: "View Courses"
+    },
+    {
+      icon: Cog,
+      title: "Bespoke Automation Solutions",
+      description: "Custom-built automation systems tailored to your business needs",
+      benefits: ["Increase Efficiency", "Reduce Errors", "Scale Operations"],
+      buttonText: "Get Free Consultation"
+    }
+  ];
 
   return (
     <section className="py-24 px-6 bg-[#0f0f0f]">
@@ -29,12 +57,24 @@ const ServicesSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
             Our <span className="text-green-500">Services</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+          >
             Choose your path to AI mastery and business automation excellence
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -44,63 +84,77 @@ const ServicesSection = () => {
           viewport={{ once: true }}
           className="grid md:grid-cols-2 gap-8"
         >
-          <motion.div variants={itemVariants}>
-            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10 h-full">
-              <CardHeader className="text-center pb-6">
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Brain className="w-8 h-8 text-green-500" />
-                </div>
-                <CardTitle className="text-2xl md:text-3xl font-bold text-white">
-                  Expert-Led AI Training
-                </CardTitle>
-                <CardDescription className="text-gray-300 text-lg">
-                  Comprehensive learning materials designed by industry experts
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-4">
-                  {["Actionable Courses", "Practical Frameworks", "Team Upskilling"].map((benefit) => (
-                    <div key={benefit} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="text-gray-300">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold transition-all duration-300">
-                  View Courses
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10 h-full">
-              <CardHeader className="text-center pb-6">
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Cog className="w-8 h-8 text-green-500" />
-                </div>
-                <CardTitle className="text-2xl md:text-3xl font-bold text-white">
-                  Bespoke Automation Solutions
-                </CardTitle>
-                <CardDescription className="text-gray-300 text-lg">
-                  Custom-built automation systems tailored to your business needs
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-4">
-                  {["Increase Efficiency", "Reduce Errors", "Scale Operations"].map((benefit) => (
-                    <div key={benefit} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="text-gray-300">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold transition-all duration-300">
-                  Get Free Consultation
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
+          {services.map((service, index) => (
+            <motion.div 
+              key={service.title}
+              variants={itemVariants}
+              whileHover={{ 
+                y: -10, 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10 h-full">
+                <CardHeader className="text-center pb-6">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.4, type: "spring" }}
+                    viewport={{ once: true }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
+                    className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4"
+                  >
+                    <service.icon className="w-8 h-8 text-green-500" />
+                  </motion.div>
+                  <CardTitle className="text-2xl md:text-3xl font-bold text-white">
+                    {service.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-300 text-lg">
+                    {service.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: index * 0.2 + 0.6 }}
+                    viewport={{ once: true }}
+                    className="space-y-4"
+                  >
+                    {service.benefits.map((benefit, benefitIndex) => (
+                      <motion.div
+                        key={benefit}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          duration: 0.6, 
+                          delay: index * 0.2 + 0.8 + benefitIndex * 0.1 
+                        }}
+                        viewport={{ once: true }}
+                        whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                        className="flex items-center space-x-3"
+                      >
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span className="text-gray-300">{benefit}</span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold transition-all duration-300">
+                      {service.buttonText}
+                    </Button>
+                  </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
