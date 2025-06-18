@@ -47,7 +47,7 @@ const LearningMaterials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Featured <span className="text-[#FFC700]">Learning Materials</span>
+            Featured <span className="text-green-500">Learning Materials</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Expert-crafted courses designed to accelerate your AI and automation journey
@@ -65,7 +65,7 @@ const LearningMaterials = () => {
               whileHover={{ y: -10 }}
               className="group cursor-pointer"
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-[#FFC700]/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl group-hover:shadow-[#FFC700]/10 h-full">
+              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl group-hover:shadow-green-500/10 h-full">
                 <div className="relative overflow-hidden">
                   <img 
                     src={course.image} 
@@ -73,7 +73,7 @@ const LearningMaterials = () => {
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-4 right-4">
-                    <Badge variant="secondary" className="bg-[#FFC700] text-black font-semibold">
+                    <Badge variant="secondary" className="bg-green-500 text-white font-semibold">
                       {course.duration}
                     </Badge>
                   </div>
@@ -85,13 +85,13 @@ const LearningMaterials = () => {
                       <Badge 
                         key={tag} 
                         variant="outline" 
-                        className="border-gray-600 text-gray-300 hover:border-[#FFC700] hover:text-[#FFC700] transition-colors duration-300"
+                        className="border-gray-600 text-gray-300 hover:border-green-500 hover:text-green-500 transition-colors duration-300"
                       >
                         {tag}
                       </Badge>
                     ))}
                   </div>
-                  <CardTitle className="text-white group-hover:text-[#FFC700] transition-colors duration-300">
+                  <CardTitle className="text-white group-hover:text-green-500 transition-colors duration-300">
                     {course.title}
                   </CardTitle>
                 </CardHeader>
@@ -103,7 +103,7 @@ const LearningMaterials = () => {
                   
                   <Button 
                     variant="outline" 
-                    className="w-full border-[#FFC700] text-[#FFC700] hover:bg-[#FFC700] hover:text-black transition-all duration-300"
+                    className="w-full border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition-all duration-300"
                   >
                     Start Learning
                   </Button>

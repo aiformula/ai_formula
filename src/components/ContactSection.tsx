@@ -44,7 +44,7 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to <span className="text-[#FFC700]">Transform</span> Your Business?
+            Ready to <span className="text-green-500">Transform</span> Your Business?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Let's discuss how AI Formula can help you master AI and automate your business processes
@@ -58,7 +58,7 @@ const ContactSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-[#FFC700]/50 transition-all duration-300">
+            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-2xl text-white mb-4">Get In Touch</CardTitle>
               </CardHeader>
@@ -73,7 +73,7 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-[#111111] border-gray-700 text-white focus:border-[#FFC700] focus:ring-[#FFC700]/20 mt-2"
+                      className="bg-[#111111] border-gray-700 text-white focus:border-green-500 focus:ring-green-500/20 mt-2"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -87,7 +87,7 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-[#111111] border-gray-700 text-white focus:border-[#FFC700] focus:ring-[#FFC700]/20 mt-2"
+                      className="bg-[#111111] border-gray-700 text-white focus:border-green-500 focus:ring-green-500/20 mt-2"
                       placeholder="Enter your email address"
                     />
                   </div>
@@ -101,14 +101,14 @@ const ContactSection = () => {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="bg-[#111111] border-gray-700 text-white focus:border-[#FFC700] focus:ring-[#FFC700]/20 mt-2 resize-none"
+                      className="bg-[#111111] border-gray-700 text-white focus:border-green-500 focus:ring-green-500/20 mt-2 resize-none"
                       placeholder="Tell us about your automation needs or learning goals..."
                     />
                   </div>
 
                   <Button 
                     type="submit"
-                    className="w-full bg-[#FFC700] text-black hover:bg-[#FFD700] font-semibold py-3 transition-all duration-300 hover:scale-105"
+                    className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold py-3 transition-all duration-300 hover:scale-105"
                   >
                     Send Message
                   </Button>
@@ -128,8 +128,8 @@ const ContactSection = () => {
               <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-[#FFC700]/10 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-[#FFC700]" />
+                  <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-green-500" />
                   </div>
                   <div>
                     <div className="text-gray-300 text-sm">Email</div>
@@ -138,8 +138,8 @@ const ContactSection = () => {
                 </div>
                 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-[#FFC700]/10 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-[#FFC700]" />
+                  <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-green-500" />
                   </div>
                   <div>
                     <div className="text-gray-300 text-sm">Phone</div>
@@ -148,8 +148,8 @@ const ContactSection = () => {
                 </div>
                 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-[#FFC700]/10 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-[#FFC700]" />
+                  <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-green-500" />
                   </div>
                   <div>
                     <div className="text-gray-300 text-sm">Location</div>
@@ -163,19 +163,19 @@ const ContactSection = () => {
               <h4 className="text-xl font-bold text-white mb-4">Why Choose AI Formula?</h4>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-[#FFC700] rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span>Expert-led training with proven methodologies</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-[#FFC700] rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span>Custom automation solutions tailored to your needs</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-[#FFC700] rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span>Ongoing support and optimization</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-[#FFC700] rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span>ROI-focused approach with measurable results</span>
                 </li>
               </ul>

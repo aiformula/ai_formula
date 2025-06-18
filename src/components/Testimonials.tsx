@@ -39,7 +39,7 @@ const Testimonials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            What Our <span className="text-[#FFC700]">Clients Say</span>
+            What Our <span className="text-green-500">Clients Say</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Join hundreds of businesses that have transformed their operations with AI Formula
@@ -57,11 +57,11 @@ const Testimonials = () => {
               whileHover={{ y: -5, scale: 1.02 }}
               className="group cursor-pointer"
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-[#FFC700]/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[#FFC700]/10 h-full">
+              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-green-500/10 h-full">
                 <CardContent className="p-8">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-[#FFC700] fill-current" />
+                      <Star key={i} className="w-5 h-5 text-green-500 fill-current" />
                     ))}
                   </div>
                   
@@ -73,7 +73,7 @@ const Testimonials = () => {
                     <div className="font-semibold text-white text-lg mb-1">
                       {testimonial.author}
                     </div>
-                    <div className="text-[#FFC700] font-medium mb-1">
+                    <div className="text-green-500 font-medium mb-1">
                       {testimonial.title}
                     </div>
                     <div className="text-gray-400">

@@ -37,7 +37,7 @@ const AutomationJourney = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Your <span className="text-[#FFC700]">Automation Journey</span>
+            Your <span className="text-green-500">Automation Journey</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Our proven 4-step process ensures successful automation implementation
@@ -56,15 +56,15 @@ const AutomationJourney = () => {
               className="text-center group cursor-pointer"
             >
               <div className="relative mb-8">
-                <div className="w-20 h-20 bg-[#FFC700]/10 border-2 border-[#FFC700] rounded-full flex items-center justify-center mx-auto group-hover:bg-[#FFC700]/20 transition-all duration-300 group-hover:scale-110">
-                  <step.icon className="w-10 h-10 text-[#FFC700]" />
+                <div className="w-20 h-20 bg-green-500/10 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto group-hover:bg-green-500/20 transition-all duration-300 group-hover:scale-110">
+                  <step.icon className="w-10 h-10 text-green-500" />
                 </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#FFC700] rounded-full flex items-center justify-center text-black font-bold text-sm">
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                   {index + 1}
                 </div>
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#FFC700] transition-colors duration-300">
+              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-green-500 transition-colors duration-300">
                 {step.title}
               </h3>
               

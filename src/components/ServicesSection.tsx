@@ -30,7 +30,7 @@ const ServicesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Our <span className="text-[#FFC700]">Services</span>
+            Our <span className="text-green-500">Services</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Choose your path to AI mastery and business automation excellence
@@ -45,10 +45,10 @@ const ServicesSection = () => {
           className="grid md:grid-cols-2 gap-8"
         >
           <motion.div variants={itemVariants}>
-            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-[#FFC700]/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#FFC700]/10 h-full">
+            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10 h-full">
               <CardHeader className="text-center pb-6">
-                <div className="w-16 h-16 bg-[#FFC700]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Brain className="w-8 h-8 text-[#FFC700]" />
+                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Brain className="w-8 h-8 text-green-500" />
                 </div>
                 <CardTitle className="text-2xl md:text-3xl font-bold text-white">
                   Expert-Led AI Training
@@ -61,12 +61,12 @@ const ServicesSection = () => {
                 <div className="space-y-4">
                   {["Actionable Courses", "Practical Frameworks", "Team Upskilling"].map((benefit) => (
                     <div key={benefit} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-[#FFC700]" />
+                      <CheckCircle className="w-5 h-5 text-green-500" />
                       <span className="text-gray-300">{benefit}</span>
                     </div>
                   ))}
                 </div>
-                <Button className="w-full bg-[#FFC700] text-black hover:bg-[#FFD700] font-semibold transition-all duration-300">
+                <Button className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold transition-all duration-300">
                   View Courses
                 </Button>
               </CardContent>
@@ -74,10 +74,10 @@ const ServicesSection = () => {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-[#FFC700]/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#FFC700]/10 h-full">
+            <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/10 h-full">
               <CardHeader className="text-center pb-6">
-                <div className="w-16 h-16 bg-[#FFC700]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Cog className="w-8 h-8 text-[#FFC700]" />
+                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Cog className="w-8 h-8 text-green-500" />
                 </div>
                 <CardTitle className="text-2xl md:text-3xl font-bold text-white">
                   Bespoke Automation Solutions
@@ -90,12 +90,12 @@ const ServicesSection = () => {
                 <div className="space-y-4">
                   {["Increase Efficiency", "Reduce Errors", "Scale Operations"].map((benefit) => (
                     <div key={benefit} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-[#FFC700]" />
+                      <CheckCircle className="w-5 h-5 text-green-500" />
                       <span className="text-gray-300">{benefit}</span>
                     </div>
                   ))}
                 </div>
-                <Button className="w-full bg-[#FFC700] text-black hover:bg-[#FFD700] font-semibold transition-all duration-300">
+                <Button className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold transition-all duration-300">
                   Get Free Consultation
                 </Button>
               </CardContent>

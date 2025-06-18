@@ -22,7 +22,7 @@ const TechnologyShowcase = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Powered by <span className="text-[#FFC700]">Leading Technologies</span>
+            Powered by <span className="text-green-500">Leading Technologies</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             We master the tools that drive modern business automation
@@ -46,12 +46,12 @@ const TechnologyShowcase = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               className="text-center group cursor-pointer"
             >
-              <div className="w-20 h-20 bg-[#1a1a1a] border border-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:border-[#FFC700]/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFC700]/20">
-                <span className="text-2xl font-bold text-[#FFC700] group-hover:scale-110 transition-transform duration-300">
+              <div className="w-20 h-20 bg-[#1a1a1a] border border-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:border-green-500/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-green-500/20">
+                <span className="text-2xl font-bold text-green-500 group-hover:scale-110 transition-transform duration-300">
                   {tech.name.slice(0, 2).toUpperCase()}
                 </span>
               </div>
-              <h3 className="font-semibold text-white mb-1 group-hover:text-[#FFC700] transition-colors duration-300">
+              <h3 className="font-semibold text-white mb-1 group-hover:text-green-500 transition-colors duration-300">
                 {tech.name}
               </h3>
               <p className="text-sm text-gray-400">
