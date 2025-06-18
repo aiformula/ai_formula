@@ -3,8 +3,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, Cog, CheckCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ServicesSection = () => {
+  const { t } = useLanguage();
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -24,7 +27,7 @@ const ServicesSection = () => {
       scale: 1,
       transition: { 
         duration: 0.8,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100
       } 
     }
@@ -33,17 +36,17 @@ const ServicesSection = () => {
   const services = [
     {
       icon: Brain,
-      title: "Expert-Led AI Training",
-      description: "Comprehensive learning materials designed by industry experts",
-      benefits: ["Actionable Courses", "Practical Frameworks", "Team Upskilling"],
-      buttonText: "View Courses"
+      title: t('services.training.title'),
+      description: t('services.training.description'),
+      benefits: [t('services.training.benefit1'), t('services.training.benefit2'), t('services.training.benefit3')],
+      buttonText: t('services.training.button')
     },
     {
       icon: Cog,
-      title: "Bespoke Automation Solutions",
-      description: "Custom-built automation systems tailored to your business needs",
-      benefits: ["Increase Efficiency", "Reduce Errors", "Scale Operations"],
-      buttonText: "Get Free Consultation"
+      title: t('services.automation.title'),
+      description: t('services.automation.description'),
+      benefits: [t('services.automation.benefit1'), t('services.automation.benefit2'), t('services.automation.benefit3')],
+      buttonText: t('services.automation.button')
     }
   ];
 
@@ -64,7 +67,7 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Our <span className="text-green-500">Services</span>
+            {t('services.title.split')} <span className="text-green-500">{t('services.title').split(' ').slice(1).join(' ')}</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +76,7 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Choose your path to AI mastery and business automation excellence
+            {t('services.subtitle')}
           </motion.p>
         </motion.div>
 

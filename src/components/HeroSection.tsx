@@ -2,8 +2,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="relative min-h-screen flex flex-col">
       {/* Navigation Header */}
@@ -28,7 +32,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.4, staggerChildren: 0.1 }}
           className="hidden md:flex items-center space-x-8"
         >
-          {['Home', 'About', 'Courses', 'Blog'].map((item, index) => (
+          {[t('nav.home'), t('nav.about'), t('nav.courses'), t('nav.blog')].map((item, index) => (
             <motion.a 
               key={item}
               href="#" 
@@ -47,9 +51,11 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex items-center space-x-4"
         >
+          <LanguageSwitcher />
           <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
-            Sign up
+            {t('nav.signup')}
           </Button>
         </motion.div>
       </motion.nav>
@@ -69,7 +75,7 @@ const HeroSection = () => {
               transition={{ duration: 2, repeat: Infinity }}
               className="w-2 h-2 bg-green-500 rounded-full"
             />
-            <span className="text-gray-300 text-sm">AI in Business</span>
+            <span className="text-gray-300 text-sm">{t('hero.badge')}</span>
           </motion.div>
 
           <motion.div
@@ -83,17 +89,7 @@ const HeroSection = () => {
               transition={{ duration: 1, delay: 1.2 }}
               className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
             >
-              AI: The{" "}
-              <motion.span 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
-                className="text-green-500"
-              >
-                Future
-              </motion.span>{" "}
-              of <br />
-              Learning
+              {t('hero.title')}
             </motion.h1>
             
             <motion.p 
@@ -102,7 +98,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 1.8 }}
               className="text-xl text-gray-400 mb-12 max-w-2xl leading-relaxed"
             >
-              How artificial intelligence is personalizing and transforming business automation.
+              {t('hero.subtitle')}
             </motion.p>
             
             <motion.div 
@@ -116,7 +112,7 @@ const HeroSection = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-8 py-3">
-                  Choose program
+                  {t('hero.chooseProgram')}
                 </Button>
               </motion.div>
               <motion.div
@@ -178,9 +174,9 @@ const HeroSection = () => {
             className="grid grid-cols-3 gap-12"
           >
             {[
-              { number: "20+", label: "Partners" },
-              { number: "100k+", label: "Students" },
-              { number: "258+", label: "Instructors" }
+              { number: "20+", label: t('hero.partners') },
+              { number: "100k+", label: t('hero.students') },
+              { number: "258+", label: t('hero.instructors') }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
