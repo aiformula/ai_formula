@@ -2,28 +2,31 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Testimonials = () => {
+  const { t } = useLanguage();
+  
   const testimonials = [
     {
-      quote: "AI Formula transformed our business operations. Their automation solutions saved us 15 hours per week and eliminated human errors completely.",
-      author: "Sarah Chen",
-      title: "Operations Director",
-      company: "TechFlow Solutions",
+      quote: t('testimonials.testimonial1.quote'),
+      author: t('testimonials.testimonial1.author'),
+      title: t('testimonials.testimonial1.title'),
+      company: t('testimonials.testimonial1.company'),
       rating: 5
     },
     {
-      quote: "The learning materials are exceptional. Our team went from automation novices to power users in just 2 months. Highly recommended!",
-      author: "Marcus Rodriguez",
-      title: "CTO",
-      company: "InnovateLab",
+      quote: t('testimonials.testimonial2.quote'),
+      author: t('testimonials.testimonial2.author'),
+      title: t('testimonials.testimonial2.title'),
+      company: t('testimonials.testimonial2.company'),
       rating: 5
     },
     {
-      quote: "Professional, knowledgeable, and results-driven. AI Formula delivered exactly what we needed and provided ongoing support that exceeded expectations.",
-      author: "Lisa Thompson",
-      title: "VP of Marketing",
-      company: "GrowthCorp",
+      quote: t('testimonials.testimonial3.quote'),
+      author: t('testimonials.testimonial3.author'),
+      title: t('testimonials.testimonial3.title'),
+      company: t('testimonials.testimonial3.company'),
       rating: 5
     }
   ];
@@ -45,7 +48,7 @@ const Testimonials = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            What Our <span className="text-green-500">Clients Say</span>
+            {t('testimonials.title').split(' ').slice(0, 2).join(' ')} <span className="text-yellow-500">{t('testimonials.title').split(' ').slice(2).join(' ')}</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +57,7 @@ const Testimonials = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Join hundreds of businesses that have transformed their operations with AI Formula
+            {t('testimonials.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -79,7 +82,7 @@ const Testimonials = () => {
               }}
               className="group cursor-pointer"
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-green-500/10 h-full">
+              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-yellow-500/50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-yellow-500/10 h-full">
                 <CardContent className="p-8">
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -109,7 +112,7 @@ const Testimonials = () => {
                           transition: { duration: 0.2 }
                         }}
                       >
-                        <Star className="w-5 h-5 text-green-500 fill-current" />
+                        <Star className="w-5 h-5 text-yellow-500 fill-current" />
                       </motion.div>
                     ))}
                   </motion.div>
@@ -132,12 +135,12 @@ const Testimonials = () => {
                     className="border-t border-gray-700 pt-4"
                   >
                     <motion.div 
-                      whileHover={{ color: "#10B981" }}
+                      whileHover={{ color: "#EAB308" }}
                       className="font-semibold text-white text-lg mb-1 transition-colors duration-300"
                     >
                       {testimonial.author}
                     </motion.div>
-                    <div className="text-green-500 font-medium mb-1">
+                    <div className="text-yellow-500 font-medium mb-1">
                       {testimonial.title}
                     </div>
                     <div className="text-gray-400">

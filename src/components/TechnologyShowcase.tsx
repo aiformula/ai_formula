@@ -1,14 +1,17 @@
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const TechnologyShowcase = () => {
+  const { t } = useLanguage();
+  
   const technologies = [
-    { name: "n8n", description: "Workflow Automation" },
-    { name: "Make", description: "Integration Platform" },
-    { name: "Zapier", description: "App Connections" },
-    { name: "Python", description: "Data Processing" },
-    { name: "JavaScript", description: "Web Development" },
-    { name: "OpenAI", description: "AI Integration" }
+    { name: "n8n", description: t('tech.n8n') },
+    { name: "Make", description: t('tech.make') },
+    { name: "Zapier", description: t('tech.zapier') },
+    { name: "Python", description: t('tech.python') },
+    { name: "JavaScript", description: t('tech.javascript') },
+    { name: "OpenAI", description: t('tech.openai') }
   ];
 
   return (
@@ -28,7 +31,7 @@ const TechnologyShowcase = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Powered by <span className="text-green-500">Leading Technologies</span>
+            {t('tech.title').split(' ').slice(0, 2).join(' ')} <span className="text-yellow-500">{t('tech.title').split(' ').slice(2).join(' ')}</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -37,7 +40,7 @@ const TechnologyShowcase = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            We master the tools that drive modern business automation
+            {t('tech.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -70,21 +73,21 @@ const TechnologyShowcase = () => {
             >
               <motion.div 
                 whileHover={{ 
-                  borderColor: "rgba(16, 185, 129, 0.5)",
-                  boxShadow: "0 20px 25px -5px rgba(16, 185, 129, 0.2), 0 10px 10px -5px rgba(16, 185, 129, 0.1)"
+                  borderColor: "rgba(234, 179, 8, 0.5)",
+                  boxShadow: "0 20px 25px -5px rgba(234, 179, 8, 0.2), 0 10px 10px -5px rgba(234, 179, 8, 0.1)"
                 }}
                 className="w-20 h-20 bg-[#1a1a1a] border border-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-300"
               >
                 <motion.span 
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   transition={{ duration: 0.3 }}
-                  className="text-2xl font-bold text-green-500"
+                  className="text-2xl font-bold text-yellow-500"
                 >
                   {tech.name.slice(0, 2).toUpperCase()}
                 </motion.span>
               </motion.div>
               <motion.h3 
-                whileHover={{ color: "#10B981" }}
+                whileHover={{ color: "#EAB308" }}
                 className="font-semibold text-white mb-1 transition-colors duration-300"
               >
                 {tech.name}

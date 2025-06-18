@@ -1,28 +1,31 @@
 
 import { motion } from "framer-motion";
 import { Calendar, Code, Cog, Rocket } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AutomationJourney = () => {
+  const { t } = useLanguage();
+  
   const steps = [
     {
       icon: Calendar,
-      title: "Discovery Call",
-      description: "We understand your needs and identify automation opportunities"
+      title: t('journey.step1.title'),
+      description: t('journey.step1.description')
     },
     {
       icon: Code,
-      title: "Strategy & Design",
-      description: "Create a detailed blueprint tailored to your business processes"
+      title: t('journey.step2.title'),
+      description: t('journey.step2.description')
     },
     {
       icon: Cog,
-      title: "Build & Integrate",
-      description: "Develop and seamlessly integrate your custom automation solution"
+      title: t('journey.step3.title'),
+      description: t('journey.step3.description')
     },
     {
       icon: Rocket,
-      title: "Launch & Support",
-      description: "Deploy your solution and provide ongoing support and optimization"
+      title: t('journey.step4.title'),
+      description: t('journey.step4.description')
     }
   ];
 
@@ -43,7 +46,7 @@ const AutomationJourney = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Your <span className="text-green-500">Automation Journey</span>
+            {t('journey.title').split(' ').slice(0, 1).join(' ')} <span className="text-yellow-500">{t('journey.title').split(' ').slice(1).join(' ')}</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -52,7 +55,7 @@ const AutomationJourney = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Our proven 4-step process ensures successful automation implementation
+            {t('journey.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -89,14 +92,14 @@ const AutomationJourney = () => {
                   whileHover={{ 
                     scale: 1.15, 
                     rotate: 5,
-                    backgroundColor: "rgba(16, 185, 129, 0.3)"
+                    backgroundColor: "rgba(234, 179, 8, 0.3)"
                   }}
-                  className="w-20 h-20 bg-green-500/10 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto transition-all duration-300"
+                  className="w-20 h-20 bg-yellow-500/10 border-2 border-yellow-500 rounded-full flex items-center justify-center mx-auto transition-all duration-300"
                 >
                   <motion.div
                     whileHover={{ scale: 1.2, rotate: -5 }}
                   >
-                    <step.icon className="w-10 h-10 text-green-500" />
+                    <step.icon className="w-10 h-10 text-yellow-500" />
                   </motion.div>
                 </motion.div>
                 <motion.div 
@@ -110,9 +113,9 @@ const AutomationJourney = () => {
                   viewport={{ once: true }}
                   whileHover={{ 
                     scale: 1.1,
-                    backgroundColor: "#10B981"
+                    backgroundColor: "#EAB308"
                   }}
-                  className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm transition-all duration-300"
+                  className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-sm transition-all duration-300"
                 >
                   {index + 1}
                 </motion.div>
@@ -123,7 +126,7 @@ const AutomationJourney = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: index * 0.2 + 0.6, duration: 0.6 }}
                 viewport={{ once: true }}
-                whileHover={{ color: "#10B981" }}
+                whileHover={{ color: "#EAB308" }}
                 className="text-xl font-bold text-white mb-4 transition-colors duration-300"
               >
                 {step.title}

@@ -35,6 +35,7 @@ const ServicesSection = () => {
 
   const services = [
     {
+      id: 'training',
       icon: Brain,
       title: t('services.training.title'),
       description: t('services.training.description'),
@@ -42,6 +43,7 @@ const ServicesSection = () => {
       buttonText: t('services.training.button')
     },
     {
+      id: 'automation',
       icon: Cog,
       title: t('services.automation.title'),
       description: t('services.automation.description'),
@@ -67,7 +69,14 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            {t('services.title.split')} <span className="text-green-500">{t('services.title').split(' ').slice(1).join(' ')}</span>
+            {t('services.title').includes(' ') 
+              ? <>
+                  {t('services.title').split(' ').slice(0, 1).join(' ')} <span className="text-yellow-500">{t('services.title').split(' ').slice(1).join(' ')}</span>
+                </>
+              : <>
+                  {t('services.title').slice(0, 3)} <span className="text-yellow-500">{t('services.title').slice(3)}</span>
+                </>
+            }
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -89,7 +98,7 @@ const ServicesSection = () => {
         >
           {services.map((service, index) => (
             <motion.div 
-              key={service.title}
+              key={service.id}
               variants={itemVariants}
               whileHover={{ 
                 y: -10, 
@@ -97,7 +106,7 @@ const ServicesSection = () => {
                 transition: { duration: 0.3 }
               }}
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10 h-full">
+              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/10 h-full">
                 <CardHeader className="text-center pb-6">
                   <motion.div 
                     initial={{ scale: 0 }}
@@ -109,9 +118,9 @@ const ServicesSection = () => {
                       rotate: 5,
                       transition: { duration: 0.3 }
                     }}
-                    className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4"
+                                          className="w-16 h-16 bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-4"
                   >
-                    <service.icon className="w-8 h-8 text-green-500" />
+                                          <service.icon className="w-8 h-8 text-yellow-500" />
                   </motion.div>
                   <CardTitle className="text-2xl md:text-3xl font-bold text-white">
                     {service.title}
@@ -130,7 +139,7 @@ const ServicesSection = () => {
                   >
                     {service.benefits.map((benefit, benefitIndex) => (
                       <motion.div
-                        key={benefit}
+                        key={`${service.id}-benefit-${benefitIndex}`}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ 
@@ -141,7 +150,7 @@ const ServicesSection = () => {
                         whileHover={{ x: 5, transition: { duration: 0.2 } }}
                         className="flex items-center space-x-3"
                       >
-                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <CheckCircle className="w-5 h-5 text-yellow-500" />
                         <span className="text-gray-300">{benefit}</span>
                       </motion.div>
                     ))}
@@ -150,7 +159,7 @@ const ServicesSection = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Button className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold transition-all duration-300">
+                    <Button className="w-full bg-yellow-500 text-white hover:bg-yellow-600 font-semibold transition-all duration-300">
                       {service.buttonText}
                     </Button>
                   </motion.div>

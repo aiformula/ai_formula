@@ -1,12 +1,16 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { Play, Instagram, Facebook, MessageCircle, LogOut, User } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  const { user, signOut, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
   
   return (
     <section className="relative min-h-screen flex flex-col">
@@ -39,7 +43,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-              whileHover={{ scale: 1.05, color: '#10B981' }}
+              whileHover={{ scale: 1.05, color: '#EAB308' }}
               className="text-gray-300 hover:text-white transition-colors"
             >
               {item}
@@ -54,9 +58,42 @@ const HeroSection = () => {
           className="flex items-center space-x-4"
         >
           <LanguageSwitcher />
-          <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
-            {t('nav.signup')}
-          </Button>
+          {user ? (
+            <div className="flex items-center space-x-4">
+              <Button 
+                onClick={() => navigate('/dashboard')}
+                variant="outline"
+                className="border-white bg-white text-black hover:bg-yellow-500 hover:text-black hover:border-yellow-500 rounded-full px-6 font-medium transition-all duration-300"
+              >
+                <User className="w-4 h-4 mr-2" />
+                Dashboard
+              </Button>
+              <Button 
+                onClick={signOut}
+                variant="outline"
+                className="border-white bg-white text-black hover:bg-yellow-500 hover:text-black hover:border-yellow-500 rounded-full px-6 font-medium transition-all duration-300"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
+              </Button>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-2">
+              <Button 
+                onClick={() => navigate('/auth')}
+                variant="outline"
+                className="border-white bg-white text-black hover:bg-yellow-500 hover:text-black hover:border-yellow-500 rounded-full px-6 font-medium transition-all duration-300"
+              >
+                Sign In
+              </Button>
+              <Button 
+                onClick={() => navigate('/auth')}
+                className="bg-white text-black hover:bg-yellow-500 hover:text-black rounded-full px-6 font-medium transition-all duration-300"
+              >
+                {t('nav.signup')}
+              </Button>
+            </div>
+          )}
         </motion.div>
       </motion.nav>
 
@@ -73,7 +110,7 @@ const HeroSection = () => {
             <motion.div 
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-2 h-2 bg-green-500 rounded-full"
+              className="w-2 h-2 bg-yellow-500 rounded-full"
             />
             <span className="text-gray-300 text-sm">{t('hero.badge')}</span>
           </motion.div>
@@ -105,7 +142,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-4 mb-8"
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -121,11 +158,45 @@ const HeroSection = () => {
               >
                 <Button 
                   size="icon"
-                  className="bg-green-500 hover:bg-green-600 rounded-full w-12 h-12"
+                  className="bg-yellow-500 hover:bg-yellow-600 rounded-full w-12 h-12"
                 >
                   <Play className="w-5 h-5" fill="currentColor" />
                 </Button>
               </motion.div>
+            </motion.div>
+
+            {/* Social Media Links */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.2 }}
+              className="flex items-center space-x-6"
+            >
+              {[
+                { name: 'INSTAGRAM', icon: Instagram, color: 'hover:text-pink-500' },
+                { name: 'WHATSAPP', icon: MessageCircle, color: 'hover:text-yellow-500' },
+                { name: 'FACEBOOK', icon: Facebook, color: 'hover:text-blue-500' }
+              ].map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href="#"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 2.4 + index * 0.1 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className={`flex items-center space-x-2 text-gray-400 ${social.color} transition-all duration-300 cursor-pointer group`}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    className="transition-transform duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </motion.div>
+                  <span className="text-sm font-medium group-hover:font-semibold transition-all duration-300">
+                    {social.name}
+                  </span>
+                </motion.a>
+              ))}
             </motion.div>
           </motion.div>
         </div>
@@ -141,7 +212,7 @@ const HeroSection = () => {
             <motion.div 
               whileHover={{ scale: 1.05, rotate: 1 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="w-80 h-48 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center"
+              className="w-80 h-48 bg-gradient-to-br from-blue-500 to-yellow-500 rounded-2xl flex items-center justify-center"
             >
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -193,35 +264,14 @@ const HeroSection = () => {
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-green-500 text-sm">{stat.label}</div>
+                <div className="text-yellow-500 text-sm">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Side text */}
-      <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 3 }}
-        className="absolute right-8 top-1/2 transform -translate-y-1/2 rotate-90 hidden xl:block"
-      >
-        <div className="flex items-center space-x-8 text-sm text-gray-500">
-          {['INSTAGRAM', 'WHATSAPP', 'FACEBOOK'].map((social, index) => (
-            <motion.span
-              key={social}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 3.2 + index * 0.1 }}
-              whileHover={{ color: '#10B981', scale: 1.1 }}
-              className="cursor-pointer"
-            >
-              {social}
-            </motion.span>
-          ))}
-        </div>
-      </motion.div>
+
     </section>
   );
 };

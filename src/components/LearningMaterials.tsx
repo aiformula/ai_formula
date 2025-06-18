@@ -3,36 +3,39 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const LearningMaterials = () => {
+  const { t } = useLanguage();
+  
   const courses = [
     {
-      title: "Introduction to n8n for Marketers",
-      description: "Learn how to automate your marketing workflows with n8n's powerful visual interface",
+      title: t('learning.course1.title'),
+      description: t('learning.course1.description'),
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
-      tags: ["Beginner", "Marketing"],
-      duration: "4 hours"
+      tags: [t('learning.beginner'), t('learning.marketing')],
+      duration: `4 ${t('learning.duration.hours')}`
     },
     {
-      title: "Advanced Python Automation",
-      description: "Master Python scripting for complex business process automation",
+      title: t('learning.course2.title'),
+      description: t('learning.course2.description'),
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop",
-      tags: ["Advanced", "Development"],
-      duration: "8 hours"
+      tags: [t('learning.advanced'), t('learning.development')],
+      duration: `8 ${t('learning.duration.hours')}`
     },
     {
-      title: "AI Integration Masterclass",
-      description: "Integrate AI capabilities into your existing business workflows",
+      title: t('learning.course3.title'),
+      description: t('learning.course3.description'),
       image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=250&fit=crop",
-      tags: ["Intermediate", "AI"],
-      duration: "6 hours"
+      tags: [t('learning.intermediate'), t('learning.ai')],
+      duration: `6 ${t('learning.duration.hours')}`
     },
     {
-      title: "Zapier to Make Migration",
-      description: "Seamlessly transition from Zapier to Make for enhanced automation capabilities",
+      title: t('learning.course4.title'),
+      description: t('learning.course4.description'),
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=250&fit=crop",
-      tags: ["Intermediate", "Migration"],
-      duration: "3 hours"
+      tags: [t('learning.intermediate'), t('learning.migration')],
+      duration: `3 ${t('learning.duration.hours')}`
     }
   ];
 
@@ -53,7 +56,7 @@ const LearningMaterials = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Featured <span className="text-green-500">Learning Materials</span>
+            {t('learning.title').split(' ').slice(0, 1).join(' ')} <span className="text-yellow-500">{t('learning.title').split(' ').slice(1).join(' ')}</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -62,7 +65,7 @@ const LearningMaterials = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Expert-crafted courses designed to accelerate your AI and automation journey
+            {t('learning.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -87,7 +90,7 @@ const LearningMaterials = () => {
               }}
               className="group cursor-pointer"
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl group-hover:shadow-green-500/10 h-full">
+              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-yellow-500/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl group-hover:shadow-yellow-500/10 h-full">
                 <div className="relative overflow-hidden">
                   <motion.img 
                     src={course.image} 
@@ -103,20 +106,20 @@ const LearningMaterials = () => {
                     viewport={{ once: true }}
                     className="absolute top-4 right-4"
                   >
-                    <Badge variant="secondary" className="bg-green-500 text-white font-semibold">
+                    <Badge variant="secondary" className="bg-yellow-500 text-white font-semibold">
                       {course.duration}
                     </Badge>
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-green-500/10 flex items-center justify-center"
+                    className="absolute inset-0 bg-yellow-500/10 flex items-center justify-center"
                   >
                     <motion.div
                       initial={{ scale: 0 }}
                       whileHover={{ scale: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+                                              className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center"
                     >
                       <span className="text-white text-xl">▶</span>
                     </motion.div>
@@ -146,7 +149,7 @@ const LearningMaterials = () => {
                       >
                         <Badge 
                           variant="outline" 
-                          className="border-gray-600 text-gray-300 hover:border-green-500 hover:text-green-500 transition-colors duration-300"
+                          className="border-gray-600 text-gray-300 hover:border-yellow-500 hover:text-yellow-500 transition-colors duration-300"
                         >
                           {tag}
                         </Badge>
@@ -154,7 +157,7 @@ const LearningMaterials = () => {
                     ))}
                   </motion.div>
                   <motion.div
-                    whileHover={{ color: "#10B981" }}
+                    whileHover={{ color: "#EAB308" }}
                     transition={{ duration: 0.3 }}
                   >
                     <CardTitle className="text-white transition-colors duration-300">
@@ -174,9 +177,9 @@ const LearningMaterials = () => {
                   >
                     <Button 
                       variant="outline" 
-                      className="w-full border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition-all duration-300"
+                      className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-300"
                     >
-                      Start Learning
+                      {t('learning.startLearning')}
                     </Button>
                   </motion.div>
                 </CardContent>

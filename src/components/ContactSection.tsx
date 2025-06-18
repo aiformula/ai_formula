@@ -8,8 +8,10 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactSection = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,8 +22,8 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message Sent!",
-      description: "Thank you for your interest. We'll get back to you within 24 hours.",
+      title: t('toast.messageSent'),
+      description: t('toast.messageDescription'),
     });
     setFormData({ name: "", email: "", message: "" });
   };
@@ -34,16 +36,16 @@ const ContactSection = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "hello@aiformula.com" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
-    { icon: MapPin, label: "Location", value: "San Francisco, CA" }
+    { icon: Mail, label: t('contact.info.email'), value: "hello@aiformula.com" },
+    { icon: Phone, label: t('contact.info.phone'), value: "+1 (555) 123-4567" },
+    { icon: MapPin, label: t('contact.info.location'), value: "San Francisco, CA" }
   ];
 
   const benefits = [
-    "Expert-led training with proven methodologies",
-    "Custom automation solutions tailored to your needs",
-    "Ongoing support and optimization",
-    "ROI-focused approach with measurable results"
+    t('contact.why.benefit1'),
+    t('contact.why.benefit2'),
+    t('contact.why.benefit3'),
+    t('contact.why.benefit4')
   ];
 
   return (
@@ -63,7 +65,7 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Ready to <span className="text-green-500">Transform</span> Your Business?
+            {t('contact.title').split(' ').slice(0, 2).join(' ')} <span className="text-yellow-500">{t('contact.title').split(' ').slice(2, 3).join(' ')}</span> {t('contact.title').split(' ').slice(3).join(' ')}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -72,7 +74,7 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Let's discuss how AI Formula can help you master AI and automate your business processes
+            {t('contact.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -89,9 +91,9 @@ const ContactSection = () => {
                 transition: { duration: 0.3 }
               }}
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-green-500/50 transition-all duration-300">
+              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-yellow-500/50 transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-white mb-4">Get In Touch</CardTitle>
+                  <CardTitle className="text-2xl text-white mb-4">{t('contact.form.title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -101,7 +103,7 @@ const ContactSection = () => {
                       transition={{ delay: 0.2, duration: 0.6 }}
                       viewport={{ once: true }}
                     >
-                      <Label htmlFor="name" className="text-gray-300">Full Name</Label>
+                      <Label htmlFor="name" className="text-gray-300">{t('contact.form.name')}</Label>
                       <motion.div
                         whileFocus={{ scale: 1.02 }}
                       >
@@ -112,8 +114,8 @@ const ContactSection = () => {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="bg-[#111111] border-gray-700 text-white focus:border-green-500 focus:ring-green-500/20 mt-2"
-                          placeholder="Enter your full name"
+                          className="bg-[#111111] border-gray-700 text-white focus:border-yellow-500 focus:ring-yellow-500/20 mt-2"
+                          placeholder={t('contact.form.name')}
                         />
                       </motion.div>
                     </motion.div>
@@ -124,7 +126,7 @@ const ContactSection = () => {
                       transition={{ delay: 0.4, duration: 0.6 }}
                       viewport={{ once: true }}
                     >
-                      <Label htmlFor="email" className="text-gray-300">Email Address</Label>
+                      <Label htmlFor="email" className="text-gray-300">{t('contact.form.email')}</Label>
                       <motion.div
                         whileFocus={{ scale: 1.02 }}
                       >
@@ -135,8 +137,8 @@ const ContactSection = () => {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="bg-[#111111] border-gray-700 text-white focus:border-green-500 focus:ring-green-500/20 mt-2"
-                          placeholder="Enter your email address"
+                          className="bg-[#111111] border-gray-700 text-white focus:border-yellow-500 focus:ring-yellow-500/20 mt-2"
+                          placeholder={t('contact.form.email')}
                         />
                       </motion.div>
                     </motion.div>
@@ -147,7 +149,7 @@ const ContactSection = () => {
                       transition={{ delay: 0.6, duration: 0.6 }}
                       viewport={{ once: true }}
                     >
-                      <Label htmlFor="message" className="text-gray-300">How can we help?</Label>
+                      <Label htmlFor="message" className="text-gray-300">{t('contact.form.message')}</Label>
                       <motion.div
                         whileFocus={{ scale: 1.02 }}
                       >
@@ -158,8 +160,8 @@ const ContactSection = () => {
                           onChange={handleChange}
                           required
                           rows={4}
-                          className="bg-[#111111] border-gray-700 text-white focus:border-green-500 focus:ring-green-500/20 mt-2 resize-none"
-                          placeholder="Tell us about your automation needs or learning goals..."
+                          className="bg-[#111111] border-gray-700 text-white focus:border-yellow-500 focus:ring-yellow-500/20 mt-2 resize-none"
+                          placeholder={t('contact.form.messagePlaceholder')}
                         />
                       </motion.div>
                     </motion.div>
@@ -170,9 +172,9 @@ const ContactSection = () => {
                     >
                       <Button 
                         type="submit"
-                        className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold py-3 transition-all duration-300"
+                        className="w-full bg-yellow-500 text-white hover:bg-yellow-600 font-semibold py-3 transition-all duration-300"
                       >
-                        Send Message
+                        {t('contact.form.send')}
                       </Button>
                     </motion.div>
                   </form>
@@ -196,7 +198,7 @@ const ContactSection = () => {
                 viewport={{ once: true }}
                 className="text-2xl font-bold text-white mb-6"
               >
-                Contact Information
+                {t('contact.info.title')}
               </motion.h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -212,12 +214,12 @@ const ContactSection = () => {
                     <motion.div 
                       whileHover={{ 
                         scale: 1.1, 
-                        backgroundColor: "rgba(16, 185, 129, 0.2)",
+                        backgroundColor: "rgba(234, 179, 8, 0.2)",
                         rotate: 5
                       }}
-                      className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center transition-all duration-300"
+                      className="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center transition-all duration-300"
                     >
-                      <info.icon className="w-6 h-6 text-green-500" />
+                      <info.icon className="w-6 h-6 text-yellow-500" />
                     </motion.div>
                     <div>
                       <div className="text-gray-300 text-sm">{info.label}</div>
@@ -246,7 +248,7 @@ const ContactSection = () => {
                 viewport={{ once: true }}
                 className="text-xl font-bold text-white mb-4"
               >
-                Why Choose AI Formula?
+                {t('contact.why.title')}
               </motion.h4>
               <ul className="space-y-3 text-gray-300">
                 {benefits.map((benefit, index) => (
@@ -266,7 +268,7 @@ const ContactSection = () => {
                         repeat: Infinity, 
                         delay: index * 0.3 
                       }}
-                      className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"
+                      className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"
                     />
                     <span>{benefit}</span>
                   </motion.li>

@@ -22,7 +22,7 @@ const LanguageSwitcher = () => {
           onClick={() => setLanguage('en')}
           className={`px-3 py-1 text-sm rounded-full transition-all duration-300 ${
             language === 'en' 
-              ? 'bg-green-500 text-white' 
+              ? 'bg-yellow-500 text-white' 
               : 'text-gray-300 hover:text-white'
           }`}
         >
@@ -34,7 +34,7 @@ const LanguageSwitcher = () => {
           onClick={() => setLanguage('zh-TW')}
           className={`px-3 py-1 text-sm rounded-full transition-all duration-300 ${
             language === 'zh-TW' 
-              ? 'bg-green-500 text-white' 
+              ? 'bg-yellow-500 text-white' 
               : 'text-gray-300 hover:text-white'
           }`}
         >
