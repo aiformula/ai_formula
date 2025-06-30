@@ -1,16 +1,23 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Play, Instagram, Facebook, MessageCircle, LogOut, User } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const HeroSection = () => {
+const HomePageHero = () => {
   const { t } = useLanguage();
   const { user, signOut, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  const navigationItems = [
+    { label: t('nav.home'), path: '/' },
+    { label: t('nav.about'), path: '/about' },
+    { label: t('nav.courses'), path: '/course' },
+    { label: t('nav.blog'), path: '/blog' }
+  ];
   
   return (
     <section className="relative min-h-screen flex flex-col">
@@ -25,7 +32,8 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-white font-bold text-xl"
+          className="text-white font-bold text-xl cursor-pointer"
+          onClick={() => navigate('/')}
         >
           AI FORMULA.
         </motion.div>
@@ -36,18 +44,23 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.4, staggerChildren: 0.1 }}
           className="hidden md:flex items-center space-x-8"
         >
-          {[t('nav.home'), t('nav.about'), t('nav.courses'), t('nav.blog')].map((item, index) => (
-            <motion.a 
-              key={item}
-              href="#" 
+          {navigationItems.map((item, index) => (
+            <motion.div
+              key={item.path}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-              whileHover={{ scale: 1.05, color: '#EAB308' }}
-              className="text-gray-300 hover:text-white transition-colors"
+              whileHover={{ scale: 1.05 }}
             >
-              {item}
-            </motion.a>
+              <Link
+                to={item.path}
+                className={`text-gray-300 hover:text-white transition-colors ${
+                  location.pathname === item.path ? 'text-yellow-500 font-semibold' : ''
+                }`}
+              >
+                {item.label}
+              </Link>
+            </motion.div>
           ))}
         </motion.div>
         
@@ -276,4 +289,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HomePageHero;

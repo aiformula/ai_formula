@@ -1,11 +1,10 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, Bot, Zap, Building, MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -35,10 +34,23 @@ const ContactSection = () => {
     }));
   };
 
+  const handleBrainstormClick = (suggestion: string) => {
+    setFormData(prev => ({
+      ...prev,
+      message: suggestion
+    }));
+  };
+
   const contactInfo = [
     { icon: Mail, label: t('contact.info.email'), value: "hello@aiformula.com" },
-    { icon: Phone, label: t('contact.info.phone'), value: "+1 (555) 123-4567" },
-    { icon: MapPin, label: t('contact.info.location'), value: "San Francisco, CA" }
+    { icon: Phone, label: t('contact.info.phone'), value: "+1 (555) 123-4567" }
+  ];
+
+  const brainstormOptions = [
+    { icon: Bot, text: t('contact.brainstorm.option1'), suggestion: t('contact.brainstorm.suggestion1') },
+    { icon: Zap, text: t('contact.brainstorm.option2'), suggestion: t('contact.brainstorm.suggestion2') },
+    { icon: Building, text: t('contact.brainstorm.option3'), suggestion: t('contact.brainstorm.suggestion3') },
+    { icon: MessageSquare, text: t('contact.brainstorm.option4'), suggestion: t('contact.brainstorm.suggestion4') }
   ];
 
   const benefits = [
@@ -150,6 +162,31 @@ const ContactSection = () => {
                       viewport={{ once: true }}
                     >
                       <Label htmlFor="message" className="text-gray-300">{t('contact.form.message')}</Label>
+                      
+                      {/* Brainstorming buttons */}
+                      <div className="mt-2 mb-4">
+                        <p className="text-sm text-gray-400 mb-3">{t('contact.brainstorm.title')}</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          {brainstormOptions.map((option, index) => (
+                            <motion.button
+                              key={index}
+                              type="button"
+                              onClick={() => handleBrainstormClick(option.suggestion)}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
+                              viewport={{ once: true }}
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="flex items-center gap-2 p-3 bg-[#111111] border border-gray-700 rounded-lg text-gray-300 hover:border-yellow-500/50 hover:text-yellow-400 transition-all duration-300 text-sm"
+                            >
+                              <option.icon className="w-4 h-4" />
+                              {option.text}
+                            </motion.button>
+                          ))}
+                        </div>
+                      </div>
+
                       <motion.div
                         whileFocus={{ scale: 1.02 }}
                       >
@@ -160,7 +197,7 @@ const ContactSection = () => {
                           onChange={handleChange}
                           required
                           rows={4}
-                          className="bg-[#111111] border-gray-700 text-white focus:border-yellow-500 focus:ring-yellow-500/20 mt-2 resize-none"
+                          className="bg-[#111111] border-gray-700 text-white focus:border-yellow-500 focus:ring-yellow-500/20 resize-none"
                           placeholder={t('contact.form.messagePlaceholder')}
                         />
                       </motion.div>

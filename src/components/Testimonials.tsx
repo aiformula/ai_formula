@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
@@ -11,21 +10,21 @@ const Testimonials = () => {
     {
       quote: t('testimonials.testimonial1.quote'),
       author: t('testimonials.testimonial1.author'),
-      title: t('testimonials.testimonial1.title'),
+      service: t('testimonials.testimonial1.service'),
       company: t('testimonials.testimonial1.company'),
       rating: 5
     },
     {
       quote: t('testimonials.testimonial2.quote'),
       author: t('testimonials.testimonial2.author'),
-      title: t('testimonials.testimonial2.title'),
+      service: t('testimonials.testimonial2.service'),
       company: t('testimonials.testimonial2.company'),
       rating: 5
     },
     {
       quote: t('testimonials.testimonial3.quote'),
       author: t('testimonials.testimonial3.author'),
-      title: t('testimonials.testimonial3.title'),
+      service: t('testimonials.testimonial3.service'),
       company: t('testimonials.testimonial3.company'),
       rating: 5
     }
@@ -141,7 +140,7 @@ const Testimonials = () => {
                       {testimonial.author}
                     </motion.div>
                     <div className="text-yellow-500 font-medium mb-1">
-                      {testimonial.title}
+                      {testimonial.service}
                     </div>
                     <div className="text-gray-400">
                       {testimonial.company}

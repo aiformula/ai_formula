@@ -1,12 +1,25 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Globe } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
   
+  const handleLanguageChange = (newLang: 'en' | 'zh-TW') => {
+    setLanguage(newLang);
+    
+    // Handle About page redirection
+    if (location.pathname === '/about' && newLang === 'zh-TW') {
+      navigate('/about-cht');
+    } else if (location.pathname === '/about-cht' && newLang === 'en') {
+      navigate('/about');
+    }
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.9 }}
@@ -19,7 +32,7 @@ const LanguageSwitcher = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setLanguage('en')}
+          onClick={() => handleLanguageChange('en')}
           className={`px-3 py-1 text-sm rounded-full transition-all duration-300 ${
             language === 'en' 
               ? 'bg-yellow-500 text-white' 
@@ -31,7 +44,7 @@ const LanguageSwitcher = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setLanguage('zh-TW')}
+          onClick={() => handleLanguageChange('zh-TW')}
           className={`px-3 py-1 text-sm rounded-full transition-all duration-300 ${
             language === 'zh-TW' 
               ? 'bg-yellow-500 text-white' 

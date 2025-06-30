@@ -1,9 +1,10 @@
-
 import { motion } from "framer-motion";
-import HeroSection from "@/components/HeroSection";
+import Navigation from "@/components/Navigation";
+import MainHero from "@/components/MainHero";
 import ServicesSection from "@/components/ServicesSection";
 import TechnologyShowcase from "@/components/TechnologyShowcase";
 import AutomationJourney from "@/components/AutomationJourney";
+import InstructorSection from "@/components/InstructorSection";
 import LearningMaterials from "@/components/LearningMaterials";
 import Testimonials from "@/components/Testimonials";
 import ContactSection from "@/components/ContactSection";
@@ -18,10 +19,12 @@ const Index = () => {
         }} />
       </div>
       
-      <HeroSection />
+      <Navigation />
+      <MainHero />
       <ServicesSection />
       <TechnologyShowcase />
       <AutomationJourney />
+      <InstructorSection />
       <LearningMaterials />
       <Testimonials />
       <ContactSection />
