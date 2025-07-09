@@ -1,195 +1,186 @@
 
-import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Clock, Users, Star, Play } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const LearningMaterials = () => {
-  const { t } = useLanguage();
-  
-  const courses = [
+  const { t, language } = useLanguage();
+
+  const materials = [
     {
-      title: t('learning.course1.title'),
-      description: t('learning.course1.description'),
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
-      tags: [t('learning.beginner'), t('learning.marketing')],
-      duration: `4 ${t('learning.duration.hours')}`
+      title: language === 'zh-TW' ? t('learning.course1.title') : 'Introduction to n8n for Marketers',
+      description: language === 'zh-TW' ? t('learning.course1.description') : 'Learn how to automate your marketing workflows with n8n\'s powerful visual interface',
+      duration: language === 'zh-TW' ? `8 ${t('learning.duration.hours')}` : '8 hours',
+      students: 1250,
+      rating: 4.8,
+      level: language === 'zh-TW' ? t('learning.beginner') : 'Beginner',
+      category: language === 'zh-TW' ? t('learning.marketing') : 'Marketing',
+      gradient: 'from-yellow-500 to-orange-600',
+      progress: 65
     },
     {
-      title: t('learning.course2.title'),
-      description: t('learning.course2.description'),
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop",
-      tags: [t('learning.advanced'), t('learning.development')],
-      duration: `8 ${t('learning.duration.hours')}`
+      title: language === 'zh-TW' ? t('learning.course2.title') : 'Advanced Python Automation',
+      description: language === 'zh-TW' ? t('learning.course2.description') : 'Master Python scripting for complex business process automation',
+      duration: language === 'zh-TW' ? `12 ${t('learning.duration.hours')}` : '12 hours',
+      students: 890,
+      rating: 4.9,
+      level: language === 'zh-TW' ? t('learning.advanced') : 'Advanced',
+      category: language === 'zh-TW' ? t('learning.development') : 'Development',
+      gradient: 'from-blue-500 to-purple-600',
+      progress: 45
     },
     {
-      title: t('learning.course3.title'),
-      description: t('learning.course3.description'),
-      image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=250&fit=crop",
-      tags: [t('learning.intermediate'), t('learning.ai')],
-      duration: `6 ${t('learning.duration.hours')}`
+      title: language === 'zh-TW' ? t('learning.course3.title') : 'AI Integration Masterclass',
+      description: language === 'zh-TW' ? t('learning.course3.description') : 'Integrate AI capabilities into your existing business workflows',
+      duration: language === 'zh-TW' ? `10 ${t('learning.duration.hours')}` : '10 hours',
+      students: 1450,
+      rating: 4.7,
+      level: language === 'zh-TW' ? t('learning.intermediate') : 'Intermediate',
+      category: language === 'zh-TW' ? t('learning.ai') : 'AI',
+      gradient: 'from-green-500 to-teal-600',
+      progress: 80
     },
     {
-      title: t('learning.course4.title'),
-      description: t('learning.course4.description'),
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=250&fit=crop",
-      tags: [t('learning.intermediate'), t('learning.migration')],
-      duration: `3 ${t('learning.duration.hours')}`
+      title: language === 'zh-TW' ? t('learning.course4.title') : 'Zapier to Make Migration',
+      description: language === 'zh-TW' ? t('learning.course4.description') : 'Seamlessly transition from Zapier to Make for enhanced automation capabilities',
+      duration: language === 'zh-TW' ? `6 ${t('learning.duration.hours')}` : '6 hours',
+      students: 750,
+      rating: 4.6,
+      level: language === 'zh-TW' ? t('learning.intermediate') : 'Intermediate',
+      category: language === 'zh-TW' ? t('learning.migration') : 'Migration',
+      gradient: 'from-purple-500 to-pink-600',
+      progress: 30
     }
   ];
 
   return (
-    <section className="py-24 px-6 bg-[#111111]">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 bg-gray-800">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
-          >
-            {t('learning.title').split(' ').slice(0, 1).join(' ')} <span className="text-yellow-500">{t('learning.title').split(' ').slice(1).join(' ')}</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            {t('learning.subtitle')}
-          </motion.p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            {language === 'zh-TW' ? t('learning.title') : 'Featured Learning Materials'}
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            {language === 'zh-TW' ? t('learning.subtitle') : 'Expert-crafted courses designed to accelerate your AI and automation journey'}
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {courses.map((course, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {materials.map((material, index) => (
             <motion.div
-              key={course.title}
-              initial={{ opacity: 0, y: 50, rotateX: 20 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ 
-                delay: index * 0.15, 
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
+              key={material.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ 
-                y: -15, 
-                scale: 1.03,
-                rotateY: 2,
-                transition: { duration: 0.3 }
-              }}
-              className="group cursor-pointer"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-2xl hover:bg-gray-700 transition-all duration-300"
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-yellow-500/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl group-hover:shadow-yellow-500/10 h-full">
-                <div className="relative overflow-hidden">
-                  <motion.img 
-                    src={course.image} 
-                    alt={course.title}
-                    whileHover={{ scale: 1.15, rotate: 1 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-full h-48 object-cover"
-                  />
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.8, y: -20 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ delay: index * 0.15 + 0.3, duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="absolute top-4 right-4"
-                  >
-                    <Badge variant="secondary" className="bg-yellow-500 text-white font-semibold">
-                      {course.duration}
-                    </Badge>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-yellow-500/10 flex items-center justify-center"
-                  >
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileHover={{ scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                                              className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center"
-                    >
-                      <span className="text-white text-xl">▶</span>
-                    </motion.div>
-                  </motion.div>
+              <div className={`h-48 bg-gradient-to-br ${material.gradient} relative flex items-center justify-center`}>
+                <div className="absolute inset-0 bg-black/30"></div>
+                <div className="relative z-10 text-center">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Play className="w-8 h-8 text-white" />
+                  </div>
+                  <Badge className="bg-white/20 text-white border-white/30">
+                    {material.level}
+                  </Badge>
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <Badge variant="outline" className="border-yellow-500 text-yellow-500">
+                    {material.category}
+                  </Badge>
+                  <div className="flex items-center space-x-1">
+                    <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                    <span className="text-sm text-gray-300">{material.rating}</span>
+                  </div>
                 </div>
                 
-                <CardHeader className="pb-4">
-                  <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.15 + 0.4, duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="flex flex-wrap gap-2 mb-3"
-                  >
-                    {course.tags.map((tag, tagIndex) => (
-                      <motion.div
-                        key={tag}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ 
-                          delay: index * 0.15 + 0.5 + tagIndex * 0.1, 
-                          duration: 0.4,
-                          type: "spring"
-                        }}
-                        viewport={{ once: true }}
-                        whileHover={{ scale: 1.1 }}
-                      >
-                        <Badge 
-                          variant="outline" 
-                          className="border-gray-600 text-gray-300 hover:border-yellow-500 hover:text-yellow-500 transition-colors duration-300"
-                        >
-                          {tag}
-                        </Badge>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ color: "#EAB308" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <CardTitle className="text-white transition-colors duration-300">
-                      {course.title}
-                    </CardTitle>
-                  </motion.div>
-                </CardHeader>
+                <h3 className="text-xl font-bold mb-3 text-white">{material.title}</h3>
+                <p className="text-gray-300 mb-4">{material.description}</p>
                 
-                <CardContent className="pt-0">
-                  <CardDescription className="text-gray-300 mb-4 line-clamp-2">
-                    {course.description}
-                  </CardDescription>
-                  
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-300"
-                    >
-                      {t('learning.startLearning')}
-                    </Button>
-                  </motion.div>
-                </CardContent>
-              </Card>
+                <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
+                  <div className="flex items-center space-x-1">
+                    <Clock className="w-4 h-4" />
+                    <span>{material.duration}</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <Users className="w-4 h-4" />
+                    <span>{material.students.toLocaleString()}</span>
+                  </div>
+                </div>
+                
+                <div className="mb-4">
+                  <div className="flex items-center justify-between text-sm mb-1">
+                    <span className="text-gray-400">Progress</span>
+                    <span className="text-yellow-500">{material.progress}%</span>
+                  </div>
+                  <div className="w-full bg-gray-600 rounded-full h-2">
+                    <div 
+                      className="bg-yellow-500 h-2 rounded-full transition-all duration-500"
+                      style={{ width: `${material.progress}%` }}
+                    ></div>
+                  </div>
+                </div>
+                
+                <Button 
+                  className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-2 transition-all duration-300"
+                >
+                  {language === 'zh-TW' ? t('learning.startLearning') : 'Start Learning'}
+                </Button>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Featured Program */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-gradient-to-r from-yellow-500 to-orange-600 rounded-2xl p-8 text-center"
+        >
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              {language === 'zh-TW' ? t('learning.program.title') : 'Complete AI Mastery Program'}
+            </h3>
+            <p className="text-lg text-white/90 mb-6">
+              {language === 'zh-TW' ? t('learning.program.description') : 'Master all aspects of AI and automation with our comprehensive program designed for professionals'}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              <Badge className="bg-white/20 text-white border-white/30">
+                {language === 'zh-TW' ? t('learning.program.hours') : '50+ Hours'}
+              </Badge>
+              <Badge className="bg-white/20 text-white border-white/30">
+                {language === 'zh-TW' ? t('learning.program.certificate') : 'Certificate'}
+              </Badge>
+              <Badge className="bg-white/20 text-white border-white/30">
+                {language === 'zh-TW' ? t('learning.program.access') : 'Lifetime Access'}
+              </Badge>
+            </div>
+            <Button 
+              size="lg"
+              className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-8 py-4 text-lg transition-all duration-300"
+            >
+              {language === 'zh-TW' ? t('learning.program.button') : 'Explore Full Program'}
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-export default React.memo(LearningMaterials);
+export default LearningMaterials;

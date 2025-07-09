@@ -1,18 +1,17 @@
 
 import { motion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import React from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const TechnologyShowcase = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   
   const technologies = [
-    { name: "n8n", description: t('tech.n8n') },
-    { name: "Make", description: t('tech.make') },
-    { name: "Zapier", description: t('tech.zapier') },
-    { name: "Python", description: t('tech.python') },
-    { name: "JavaScript", description: t('tech.javascript') },
-    { name: "OpenAI", description: t('tech.openai') }
+    { name: "n8n", description: language === 'zh-TW' ? t('tech.n8n') : "Workflow Automation" },
+    { name: "Make", description: language === 'zh-TW' ? t('tech.make') : "Integration Platform" },
+    { name: "Zapier", description: language === 'zh-TW' ? t('tech.zapier') : "App Connections" },
+    { name: "Python", description: language === 'zh-TW' ? t('tech.python') : "Data Processing" },
+    { name: "JavaScript", description: language === 'zh-TW' ? t('tech.javascript') : "Web Development" },
+    { name: "OpenAI", description: language === 'zh-TW' ? t('tech.openai') : "AI Integration" }
   ];
 
   return (
@@ -25,24 +24,21 @@ const TechnologyShowcase = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
-          >
-            {t('tech.title').split(' ').slice(0, 2).join(' ')} <span className="text-yellow-500">{t('tech.title').split(' ').slice(2).join(' ')}</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            {t('tech.subtitle')}
-          </motion.p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            {language === 'zh-TW' ? (
+              <>
+                {t('tech.title').split(' ')[0]}{' '}
+                <span className="text-[#FFC700]">{t('tech.title').split(' ').slice(1).join(' ')}</span>
+              </>
+            ) : (
+              <>
+                Powered by <span className="text-[#FFC700]">Leading Technologies</span>
+              </>
+            )}
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            {language === 'zh-TW' ? t('tech.subtitle') : 'We master the tools that drive modern business automation'}
+          </p>
         </motion.div>
 
         <motion.div
@@ -55,44 +51,21 @@ const TechnologyShowcase = () => {
           {technologies.map((tech, index) => (
             <motion.div
               key={tech.name}
-              initial={{ opacity: 0, y: 50, rotateY: -30 }}
-              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-              transition={{ 
-                delay: index * 0.15, 
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.08, 
-                y: -10,
-                rotateY: 5,
-                transition: { duration: 0.3 }
-              }}
+              whileHover={{ scale: 1.05, y: -5 }}
               className="text-center group cursor-pointer"
             >
-              <motion.div 
-                whileHover={{ 
-                  borderColor: "rgba(234, 179, 8, 0.5)",
-                  boxShadow: "0 20px 25px -5px rgba(234, 179, 8, 0.2), 0 10px 10px -5px rgba(234, 179, 8, 0.1)"
-                }}
-                className="w-20 h-20 bg-[#1a1a1a] border border-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-300"
-              >
-                <motion.span 
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-2xl font-bold text-yellow-500"
-                >
+              <div className="w-20 h-20 bg-[#1a1a1a] border border-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:border-[#FFC700]/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#FFC700]/20">
+                <span className="text-2xl font-bold text-[#FFC700] group-hover:scale-110 transition-transform duration-300">
                   {tech.name.slice(0, 2).toUpperCase()}
-                </motion.span>
-              </motion.div>
-              <motion.h3 
-                whileHover={{ color: "#EAB308" }}
-                className="font-semibold text-white mb-1 transition-colors duration-300"
-              >
+                </span>
+              </div>
+              <h3 className="font-semibold text-white mb-1 group-hover:text-[#FFC700] transition-colors duration-300">
                 {tech.name}
-              </motion.h3>
+              </h3>
               <p className="text-sm text-gray-400">
                 {tech.description}
               </p>
@@ -104,4 +77,4 @@ const TechnologyShowcase = () => {
   );
 };
 
-export default React.memo(TechnologyShowcase);
+export default TechnologyShowcase;

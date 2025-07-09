@@ -284,7 +284,7 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
         <div className="bg-gray-800 rounded-xl p-6 shadow-xl animate-fade-in">
           <div className="font-bold mb-2 flex items-center gap-2">
             {quizProgress.passed ? (
-              <Trophy className="inline-block w-6 h-6 text-[color:var(--brand-yellow,#FFD600)] mr-1" />
+              <Trophy className="inline-block w-6 h-6 ai-text-primary mr-1" />
             ) : (
               <Award className="inline-block w-6 h-6 text-gray-400 mr-1" />
             )}
@@ -295,7 +295,7 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
           </div>
           <div className="text-3xl font-extrabold flex items-center justify-center gap-2 mb-2">
             {quizProgress.percent !== null ? (
-              <span className="text-[color:var(--brand-yellow,#FFD600)]">{quizProgress.percent}%</span>
+              <span className="ai-text-primary">{quizProgress.percent}%</span>
             ) : '--'}
           </div>
           <hr className="my-3 border-gray-700" />

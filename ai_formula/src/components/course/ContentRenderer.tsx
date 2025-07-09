@@ -13,19 +13,19 @@ const sanitizeContent = (content: string): string => {
 const parseMarkdownToHTML = (content: string): string => {
   return content
     // Headers
-    .replace(/^#### (.+)$/gm, '<h4 class="text-lg font-semibold text-green-400 mt-6 mb-3">$1</h4>')
-    .replace(/^### (.+)$/gm, '<h3 class="text-xl font-bold text-blue-400 mt-8 mb-4">$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold text-yellow-400 mt-10 mb-5 border-b-2 border-yellow-400 pb-2">$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1 class="text-3xl font-bold text-yellow-400 mt-12 mb-6 text-center border-b-3 border-yellow-400 pb-3">$1</h1>')
+    .replace(/^#### (.+)$/gm, '<h4 class="text-lg font-semibold ai-text-success mt-6 mb-3">$1</h4>')
+    .replace(/^### (.+)$/gm, '<h3 class="text-xl font-bold ai-text-info mt-8 mb-4">$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold ai-text-primary mt-10 mb-5 border-b-2 ai-border-primary pb-2">$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1 class="text-3xl font-bold ai-text-primary mt-12 mb-6 text-center border-b-3 ai-border-primary pb-3">$1</h1>')
     
     // Bold text
-    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-pink-400">$1</strong>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold ai-text-accent">$1</strong>')
     
     // Code blocks
-    .replace(/```([\s\S]*?)```/g, '<pre class="bg-gray-900 border border-gray-600 rounded-lg p-4 my-4 overflow-x-auto"><code class="text-green-400 text-sm font-mono whitespace-pre-wrap">$1</code></pre>')
+    .replace(/```([\s\S]*?)```/g, '<pre class="ai-bg-dark border border-gray-600 rounded-lg p-4 my-4 overflow-x-auto"><code class="ai-text-success text-sm font-mono whitespace-pre-wrap">$1</code></pre>')
     
     // Inline code
-    .replace(/`([^`]+)`/g, '<code class="bg-gray-700 text-yellow-400 px-2 py-1 rounded text-sm font-mono">$1</code>')
+    .replace(/`([^`]+)`/g, '<code class="ai-bg-dark-medium ai-text-primary px-2 py-1 rounded text-sm font-mono">$1</code>')
     
     // List items
     .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2 text-gray-200">• $1</li>')
@@ -72,38 +72,38 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({
           __html: `
             .midjourney-enhanced-content h1 {
               font-size: 2.5rem !important;
-              color: #fbbf24 !important;
+              color: var(--ai-formula-primary) !important;
               margin-top: 2rem !important;
               margin-bottom: 1.5rem !important;
-              border-bottom: 3px solid #fbbf24 !important;
+              border-bottom: 3px solid var(--ai-formula-primary) !important;
               padding-bottom: 0.75rem !important;
               text-align: center !important;
             }
             .midjourney-enhanced-content h2 {
               font-size: 2.25rem !important;
-              color: #fbbf24 !important;
+              color: var(--ai-formula-primary) !important;
               margin-top: 2.5rem !important;
               margin-bottom: 1.25rem !important;
-              border-bottom: 2px solid #fbbf24 !important;
+              border-bottom: 2px solid var(--ai-formula-primary) !important;
               padding-bottom: 0.5rem !important;
             }
             .midjourney-enhanced-content h3 {
               font-size: 1.75rem !important;
-              color: #60a5fa !important;
+              color: var(--ai-formula-info) !important;
               margin-top: 2rem !important;
               margin-bottom: 1rem !important;
               font-weight: 700 !important;
             }
             .midjourney-enhanced-content h4 {
               font-size: 1.35rem !important;
-              color: #34d399 !important;
+              color: var(--ai-formula-success) !important;
               margin-top: 1.5rem !important;
               margin-bottom: 0.75rem !important;
               font-weight: 600 !important;
             }
             .midjourney-enhanced-content pre {
-              background-color: #111827 !important;
-              border: 2px solid #374151 !important;
+              background-color: var(--ai-formula-dark) !important;
+              border: 2px solid var(--ai-formula-dark-medium) !important;
               border-radius: 0.75rem !important;
               padding: 1.5rem !important;
               margin: 1.5rem 0 !important;
@@ -115,7 +115,7 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({
             .midjourney-enhanced-content pre code {
               background-color: transparent !important;
               padding: 0 !important;
-              color: #34d399 !important;
+              color: var(--ai-formula-success) !important;
               border: none !important;
               white-space: pre-wrap !important;
               word-wrap: break-word !important;

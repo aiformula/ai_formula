@@ -14,7 +14,9 @@ import {
   AlertTriangle,
   Navigation,
   Clock,
-  HelpCircle
+  HelpCircle,
+  FileText,
+  Users
 } from 'lucide-react'
 
 // 類型定義 / Type Definitions
@@ -35,6 +37,25 @@ interface ErrorReport {
   timestamp: string
   userAgent: string
   referrer: string
+}
+
+interface QuickLink {
+  href: string
+  icon: React.ComponentType<{ className?: string }>
+  name: { en: string; 'zh-TW': string }
+  badge?: { text: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }
+  description: { en: string; 'zh-TW': string }
+}
+
+interface NotFoundTexts {
+  title: string
+  subtitle: string
+  description: string
+  quickLinks: string
+  backToHome: string
+  contactSupport: string
+  error404: string
+  pageNotFound: string
 }
 
 // 建議路由 / Suggested Routes
@@ -83,6 +104,38 @@ const reportError = (errorData: ErrorReport): void => {
   }
 }
 
+// 快速連結配置 / Quick Links Configuration
+const quickLinks: QuickLink[] = [
+  {
+    href: '/',
+    icon: Home,
+    name: { en: 'Home', 'zh-TW': '首頁' },
+    badge: { text: 'Popular', variant: 'default' },
+    description: { en: 'Return to homepage', 'zh-TW': '返回首頁' }
+  },
+  {
+    href: '/courses',
+    icon: BookOpen,
+    name: { en: 'Courses', 'zh-TW': '課程' },
+    badge: { text: 'New', variant: 'secondary' },
+    description: { en: 'Browse our courses', 'zh-TW': '瀏覽我們的課程' }
+  },
+  {
+    href: '/blog',
+    icon: FileText,
+    name: { en: 'Blog', 'zh-TW': '網誌' },
+    badge: { text: 'Updated', variant: 'outline' },
+    description: { en: 'Read our articles', 'zh-TW': '閱讀我們的文章' }
+  },
+  {
+    href: '/about',
+    icon: Users,
+    name: { en: 'About', 'zh-TW': '關於我們' },
+    badge: { text: 'Team', variant: 'secondary' },
+    description: { en: 'Learn about us', 'zh-TW': '了解我們' }
+  }
+]
+
 // 主要 NotFound 組件 / Main NotFound Component
 const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) => {
   const location = useLocation()
@@ -94,53 +147,30 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
   const [isSearching, setIsSearching] = useState(false)
   const [showSuggestions, setShowSuggestions] = useState(true)
 
-  // 多語言文字 / Multilingual Text
-  const text = {
+  const notFoundTexts: Record<string, NotFoundTexts> = {
     en: {
-      title: 'Page Not Found',
-      subtitle: 'The page you are looking for does not exist',
-      description: 'The page you requested could not be found. It may have been moved, deleted, or you may have entered an incorrect URL.',
-      errorCode: 'Error Code',
-      searchPlaceholder: 'Search for pages...',
-      searchButton: 'Search',
-      suggestions: 'Suggested Pages',
-      suggestionsDesc: 'You might be looking for one of these pages',
-      goBack: 'Go Back',
-      goHome: 'Go to Homepage',
-      reportIssue: 'Report Issue',
+      title: 'Oops! Page Not Found',
+      subtitle: 'The page you\'re looking for doesn\'t exist.',
+      description: 'Don\'t worry, it happens to the best of us. The page might have been moved, deleted, or you might have mistyped the URL.',
+      quickLinks: 'Quick Links',
+      backToHome: 'Back to Home',
       contactSupport: 'Contact Support',
-      lastVisited: 'Last Visited',
-      helpText: 'Need help? Contact our support team',
-      notFoundAt: 'Not found at',
-      timestamp: 'Timestamp',
-      tryAgain: 'Try Again',
-      noResults: 'No search results found',
-      searching: 'Searching...'
+      error404: '404',
+      pageNotFound: 'Page Not Found'
     },
-    zh: {
-      title: '頁面未找到',
-      subtitle: '您正在尋找的頁面不存在',
-      description: '無法找到您請求的頁面。它可能已被移動、刪除，或您可能輸入了不正確的網址。',
-      errorCode: '錯誤代碼',
-      searchPlaceholder: '搜索頁面...',
-      searchButton: '搜索',
-      suggestions: '建議頁面',
-      suggestionsDesc: '您可能正在尋找以下頁面之一',
-      goBack: '返回',
-      goHome: '返回首頁',
-      reportIssue: '報告問題',
+    'zh-TW': {
+      title: '糟糕！找不到頁面',
+      subtitle: '您要找的頁面不存在。',
+      description: '別擔心，這種情況時有發生。頁面可能已移動、刪除，或您可能輸入錯誤的網址。',
+      quickLinks: '快速連結',
+      backToHome: '返回首頁',
       contactSupport: '聯繫支援',
-      lastVisited: '最後訪問',
-      helpText: '需要幫助？聯繫我們的支援團隊',
-      notFoundAt: '未找到於',
-      timestamp: '時間戳',
-      tryAgain: '重試',
-      noResults: '未找到搜索結果',
-      searching: '搜索中...'
+      error404: '404',
+      pageNotFound: '找不到頁面'
     }
   }
 
-  const t = text[language]
+  const t = notFoundTexts[language] || notFoundTexts.en
 
   // 設置頁面標題和狀態碼 / Set page title and status code
   useEffect(() => {
@@ -272,13 +302,13 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
               <div className="bg-gray-800 rounded-lg p-4 mb-6 text-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <span className="text-gray-400">{t.notFoundAt}:</span>
+                    <span className="text-gray-400">未找到於:</span>
                     <code className="ml-2 text-red-300 bg-gray-700 px-2 py-1 rounded">
                       {location.pathname}
                     </code>
                   </div>
                   <div>
-                    <span className="text-gray-400">{t.timestamp}:</span>
+                    <span className="text-gray-400">時間戳:</span>
                     <span className="ml-2 text-gray-300">
                       {new Date().toLocaleString()}
                     </span>
@@ -291,7 +321,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 <div className="flex gap-2">
                   <Input
                     type="text"
-                    placeholder={t.searchPlaceholder}
+                    placeholder="搜索頁面..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={handleKeyPress}
@@ -306,12 +336,12 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                     {isSearching ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                        {t.searching}
+                        搜索中...
                       </>
                     ) : (
                       <>
                         <Search className="h-4 w-4 mr-2" />
-                        {t.searchButton}
+                        搜索
                       </>
                     )}
                   </Button>
@@ -326,7 +356,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                   className="border-gray-600 text-gray-300 hover:bg-gray-800"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  {t.goBack}
+                  返回
                 </Button>
                 <Button
                   asChild
@@ -334,7 +364,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 >
                   <Link to="/">
                     <Home className="h-4 w-4 mr-2" />
-                    {t.goHome}
+                    返回首頁
                   </Link>
                 </Button>
               </div>
@@ -355,10 +385,10 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 <CardHeader>
                   <CardTitle className="flex items-center text-white">
                     <Navigation className="h-5 w-5 mr-2 text-blue-400" />
-                    {t.suggestions}
+                    建議頁面
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    {t.suggestionsDesc}
+                    您可能正在尋找以下頁面之一
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -408,7 +438,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 <Mail className="h-8 w-8 text-green-400" />
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">
-                {t.helpText}
+                需要幫助？
               </h3>
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button
@@ -417,11 +447,11 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                   onClick={() => {
                     // 在實際應用中，這會開啟報告表單
                     // In real application, this would open a report form
-                    alert('Report functionality would be implemented here')
+                    alert('報告功能將在此實現')
                   }}
                 >
                   <AlertTriangle className="h-4 w-4 mr-2" />
-                  {t.reportIssue}
+                  報告問題
                 </Button>
                 <Button
                   variant="outline"
@@ -433,7 +463,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                   }}
                 >
                   <Mail className="h-4 w-4 mr-2" />
-                  {t.contactSupport}
+                  聯繫支援
                 </Button>
               </div>
             </CardContent>

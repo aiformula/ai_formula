@@ -1,146 +1,76 @@
 
-import { motion } from "framer-motion";
-import { Calendar, Code, Cog, Rocket } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const AutomationJourney = () => {
-  const { t } = useLanguage();
-  
-  const steps = [
+  const { t, language } = useLanguage();
+
+  const journeySteps = [
     {
-      icon: Calendar,
-      title: t('journey.step1.title'),
-      description: t('journey.step1.description')
+      number: '01',
+      title: language === 'zh-TW' ? t('journey.step1.title') : 'Discovery Call',
+      description: language === 'zh-TW' ? t('journey.step1.description') : 'We understand your needs and identify automation opportunities',
+      icon: '🎯'
     },
     {
-      icon: Code,
-      title: t('journey.step2.title'),
-      description: t('journey.step2.description')
+      number: '02',
+      title: language === 'zh-TW' ? t('journey.step2.title') : 'Strategy & Design',
+      description: language === 'zh-TW' ? t('journey.step2.description') : 'Create a detailed blueprint tailored to your business processes',
+      icon: '📋'
     },
     {
-      icon: Cog,
-      title: t('journey.step3.title'),
-      description: t('journey.step3.description')
+      number: '03',
+      title: language === 'zh-TW' ? t('journey.step3.title') : 'Build & Integrate',
+      description: language === 'zh-TW' ? t('journey.step3.description') : 'Develop and seamlessly integrate your custom automation solution',
+      icon: '🔧'
     },
     {
-      icon: Rocket,
-      title: t('journey.step4.title'),
-      description: t('journey.step4.description')
+      number: '04',
+      title: language === 'zh-TW' ? t('journey.step4.title') : 'Launch & Support',
+      description: language === 'zh-TW' ? t('journey.step4.description') : 'Deploy your solution and provide ongoing support and optimization',
+      icon: '🚀'
     }
   ];
 
   return (
-    <section className="py-24 px-6 bg-[#0f0f0f]">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 bg-gray-900">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
-          >
-            {t('journey.title').split(' ').slice(0, 1).join(' ')} <span className="text-yellow-500">{t('journey.title').split(' ').slice(1).join(' ')}</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            {t('journey.subtitle')}
-          </motion.p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            {language === 'zh-TW' ? t('journey.title') : 'Your Automation Journey'}
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            {language === 'zh-TW' ? t('journey.subtitle') : 'Our proven 4-step process ensures successful automation implementation'}
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {journeySteps.map((step, index) => (
             <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 50, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                delay: index * 0.2, 
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
+              key={step.number}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -10,
-                transition: { duration: 0.3 }
-              }}
-              className="text-center group cursor-pointer"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="text-center bg-gray-800 rounded-xl p-6 hover:shadow-2xl hover:bg-gray-700 transition-all duration-300"
             >
-              <div className="relative mb-8">
-                <motion.div 
-                  initial={{ scale: 0, rotate: -180 }}
-                  whileInView={{ scale: 1, rotate: 0 }}
-                  transition={{ 
-                    delay: index * 0.2 + 0.3, 
-                    duration: 0.8,
-                    type: "spring"
-                  }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.15, 
-                    rotate: 5,
-                    backgroundColor: "rgba(234, 179, 8, 0.3)"
-                  }}
-                  className="w-20 h-20 bg-yellow-500/10 border-2 border-yellow-500 rounded-full flex items-center justify-center mx-auto transition-all duration-300"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: -5 }}
-                  >
-                    <step.icon className="w-10 h-10 text-yellow-500" />
-                  </motion.div>
-                </motion.div>
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ 
-                    delay: index * 0.2 + 0.5, 
-                    duration: 0.6,
-                    type: "spring"
-                  }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    backgroundColor: "#EAB308"
-                  }}
-                  className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-sm transition-all duration-300"
-                >
-                  {index + 1}
-                </motion.div>
+              <div className="relative mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">{step.icon}</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                  <span className="text-sm font-bold text-white">{step.number}</span>
+                </div>
               </div>
-              
-              <motion.h3 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: index * 0.2 + 0.6, duration: 0.6 }}
-                viewport={{ once: true }}
-                whileHover={{ color: "#EAB308" }}
-                className="text-xl font-bold text-white mb-4 transition-colors duration-300"
-              >
-                {step.title}
-              </motion.h3>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 + 0.8, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-gray-300 leading-relaxed"
-              >
-                {step.description}
-              </motion.p>
+              <h3 className="text-xl font-bold mb-4 text-white">{step.title}</h3>
+              <p className="text-gray-300">{step.description}</p>
             </motion.div>
           ))}
         </div>
@@ -149,4 +79,4 @@ const AutomationJourney = () => {
   );
 };
 
-export default React.memo(AutomationJourney);
+export default AutomationJourney;

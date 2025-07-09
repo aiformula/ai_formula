@@ -14,8 +14,10 @@ const AboutCht = () => {
       icon: (
         <span className="relative inline-block w-6 h-6">
           {/* Static clock face */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="absolute top-0 left-0 w-6 h-6">
-            <circle cx="12" cy="12" r="9" stroke="#FACC15" strokeWidth="2" fill="none" />
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9" stroke="var(--ai-formula-primary)" strokeWidth="2" fill="none" />
+            <circle cx="12" cy="7" r="1.5" fill="var(--ai-formula-primary)" />
+            <rect x="11.25" y="6" width="1.5" height="7" rx="0.75" fill="var(--ai-formula-primary)" />
           </svg>
           {/* Rotating clock hand */}
           <motion.svg
@@ -25,7 +27,7 @@ const AboutCht = () => {
             animate={{ rotate: 360 }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
           >
-            <rect x="11.25" y="6" width="1.5" height="7" rx="0.75" fill="#FACC15" />
+            <rect x="11.25" y="6" width="1.5" height="7" rx="0.75" fill="var(--ai-formula-primary)" />
           </motion.svg>
         </span>
       ),

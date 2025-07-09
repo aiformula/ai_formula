@@ -58,7 +58,6 @@ const App = () => (
                   <Route path="/prompt-engineering/learning" element={<PromptEngineeringLearning />} />
                   <Route path="/prompt-engineering/lesson/1" element={<PromptEngineeringLesson1 />} />
                   <Route path="/prompt-engineering/lesson/2" element={<PromptEngineeringLesson2 />} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>

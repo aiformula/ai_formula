@@ -120,7 +120,7 @@ const zhQuizQuestions: QuizQuestion[] = [
 
 
 
-const lesson2Sections: { en: LessonSection[], zh: LessonSection[] } = {
+const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
   en: [
     {
       group: 'Lesson 2: Prompt Structure',
@@ -259,7 +259,7 @@ const lesson2Sections: { en: LessonSection[], zh: LessonSection[] } = {
       ]
     },
   ],
-  zh: [
+  'zh-TW': [
     {
       group: '課堂 2：優質提示結構',
       groupIcon: '🧩',
@@ -405,13 +405,13 @@ const PromptEngineeringLesson2: React.FC = memo(() => {
   const { language } = useLanguage();
   const isZhTW = language === 'zh-TW';
   const [selectedKey, setSelectedKey] = useState(() => {
-    const sections = isZhTW ? lesson2Sections.zh : lesson2Sections.en;
+    const sections = isZhTW ? lesson2Sections['zh-TW'] : lesson2Sections.en;
     return sections[0]?.items?.[0]?.key || '';
   });
   
   // 記憶化 sections 避免不必要重新計算
   const sections = useMemo(() => 
-    isZhTW ? lesson2Sections.zh : lesson2Sections.en, 
+    isZhTW ? lesson2Sections['zh-TW'] : lesson2Sections.en, 
     [isZhTW]
   );
 

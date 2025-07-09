@@ -67,11 +67,53 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				'brand-yellow': '#FFD600',
+				// AI Formula 顏色系統
+				'ai-primary': 'var(--ai-formula-primary)',
+				'ai-primary-hover': 'var(--ai-formula-primary-hover)',
+				'ai-dark': 'var(--ai-formula-dark)',
+				'ai-dark-light': 'var(--ai-formula-dark-light)',
+				'ai-dark-medium': 'var(--ai-formula-dark-medium)',
+				'ai-dark-card': 'var(--ai-formula-dark-card)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			// 統一的間距系統
+			spacing: {
+				'ai-xs': '0.25rem',    // 4px
+				'ai-sm': '0.5rem',     // 8px
+				'ai-md': '1rem',       // 16px
+				'ai-lg': '1.5rem',     // 24px
+				'ai-xl': '2rem',       // 32px
+				'ai-2xl': '3rem',      // 48px
+				'ai-3xl': '4rem',      // 64px
+				'ai-4xl': '6rem',      // 96px
+			},
+			// 統一的字體大小系統
+			fontSize: {
+				'ai-xs': ['0.75rem', { lineHeight: '1rem' }],      // 12px
+				'ai-sm': ['0.875rem', { lineHeight: '1.25rem' }],  // 14px
+				'ai-base': ['1rem', { lineHeight: '1.5rem' }],     // 16px
+				'ai-lg': ['1.125rem', { lineHeight: '1.75rem' }],  // 18px
+				'ai-xl': ['1.25rem', { lineHeight: '1.75rem' }],   // 20px
+				'ai-2xl': ['1.5rem', { lineHeight: '2rem' }],      // 24px
+				'ai-3xl': ['1.875rem', { lineHeight: '2.25rem' }], // 30px
+				'ai-4xl': ['2.25rem', { lineHeight: '2.5rem' }],   // 36px
+				'ai-5xl': ['3rem', { lineHeight: '1' }],           // 48px
+				'ai-6xl': ['3.75rem', { lineHeight: '1' }],        // 60px
+				'ai-hero': ['4.5rem', { lineHeight: '1' }],        // 72px
+			},
+			// 統一的陰影系統
+			boxShadow: {
+				'ai-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+				'ai-md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+				'ai-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+				'ai-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+				'ai-2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+				'ai-primary': '0 0 24px 2px var(--ai-formula-primary-strong)',
+				'ai-primary-hover': '0 20px 25px -5px var(--ai-formula-primary-medium), 0 10px 10px -5px var(--ai-formula-primary-light)',
 			},
 			keyframes: {
 				'accordion-down': {

@@ -79,8 +79,8 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
     <>
       {/* 菜單icon+主目錄黃字 */}
       <div className="flex items-center gap-3 mb-6 px-2">
-        <Menu className="w-7 h-7 text-[color:var(--brand-yellow,#FFD600)]" />
-        <span className="text-lg font-bold text-[color:var(--brand-yellow,#FFD600)] tracking-wide">
+        <Menu className="w-7 h-7 ai-text-primary" />
+        <span className="text-lg font-bold ai-text-primary tracking-wide">
           {isZhTW ? '主目錄' : 'Main'}
         </span>
       </div>
@@ -97,7 +97,7 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
                 key={item.key}
                 className={`group flex flex-col items-start w-full px-3 py-2 rounded-lg text-left font-medium transition-all duration-200 relative overflow-hidden
                   ${selectedKey === item.key
-                    ? 'bg-gray-800 text-blue-300 border-l-8 border-blue-500 shadow-[0_0_12px_2px_rgba(56,189,248,0.4)] ring-2 ring-blue-400 ring-opacity-60 z-10'
+                    ? 'ai-bg-dark-medium ai-text-info border-l-8 border-blue-500 shadow-[0_0_12px_2px_var(--ai-formula-info)] ring-2 ring-blue-400 ring-opacity-60 z-10'
                     : 'bg-gray-900 text-gray-200 hover:bg-gray-800 hover:text-blue-200 border-l-4 border-transparent'}
                 `}
                 onClick={() => handleItemClick(item.key)}

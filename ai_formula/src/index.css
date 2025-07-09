@@ -37,20 +37,48 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* AI Formula 專用顏色系統 */
+    --ai-formula-primary: #FFD600;
+    --ai-formula-primary-hover: #EAB308;
+    --ai-formula-secondary: #FFA500;
+    --ai-formula-primary-light: rgba(255, 214, 0, 0.1);
+    --ai-formula-primary-medium: rgba(255, 214, 0, 0.2);
+    --ai-formula-primary-strong: rgba(255, 214, 0, 0.35);
+    
+    --ai-formula-dark: #0f0f0f;
+    --ai-formula-dark-light: #111111;
+    --ai-formula-dark-medium: #1a1a1a;
+    --ai-formula-dark-card: #1e1e1e;
+    
+    --ai-formula-accent-blue: #3B82F6;
+    --ai-formula-accent-purple: #8B5CF6;
+    --ai-formula-accent-pink: #EC4899;
+    --ai-formula-accent-cyan: #06B6D4;
+    
+    --ai-formula-success: #10B981;
+    --ai-formula-warning: #F59E0B;
+    --ai-formula-error: #EF4444;
+    --ai-formula-info: #60A5FA;
+    --ai-formula-accent: #EC4899;
+    
+    --ai-formula-gray-50: #F9FAFB;
+    --ai-formula-gray-100: #F3F4F6;
+    --ai-formula-gray-200: #E5E7EB;
+    --ai-formula-gray-300: #D1D5DB;
+    --ai-formula-gray-400: #9CA3AF;
+    --ai-formula-gray-500: #6B7280;
+    --ai-formula-gray-600: #4B5563;
+    --ai-formula-gray-700: #374151;
+    --ai-formula-gray-800: #1F2937;
+    --ai-formula-gray-900: #111827;
   }
 
   .dark {
@@ -99,5 +127,282 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* AI Formula 設計系統工具類 */
+@layer utilities {
+  .ai-bg-primary {
+    background-color: var(--ai-formula-primary);
+  }
+  
+  .ai-bg-primary-hover {
+    background-color: var(--ai-formula-primary-hover);
+  }
+  
+  .ai-bg-secondary {
+    background-color: var(--ai-formula-secondary);
+  }
+  
+  .ai-bg-accent {
+    background-color: var(--ai-formula-accent);
+  }
+  
+  .ai-bg-success {
+    background-color: var(--ai-formula-success);
+  }
+  
+  .ai-bg-info {
+    background-color: var(--ai-formula-info);
+  }
+  
+  .ai-bg-warning {
+    background-color: var(--ai-formula-warning);
+  }
+  
+  .ai-bg-error {
+    background-color: var(--ai-formula-error);
+  }
+  
+  .ai-bg-dark {
+    background-color: var(--ai-formula-dark);
+  }
+  
+  .ai-bg-dark-light {
+    background-color: var(--ai-formula-dark-light);
+  }
+  
+  .ai-bg-dark-medium {
+    background-color: var(--ai-formula-dark-medium);
+  }
+  
+  .ai-bg-dark-card {
+    background-color: var(--ai-formula-dark-card);
+  }
+  
+  .ai-text-primary {
+    color: var(--ai-formula-primary);
+  }
+  
+  .ai-text-secondary {
+    color: var(--ai-formula-secondary);
+  }
+  
+  .ai-text-accent {
+    color: var(--ai-formula-accent);
+  }
+  
+  .ai-text-success {
+    color: var(--ai-formula-success);
+  }
+  
+  .ai-text-info {
+    color: var(--ai-formula-info);
+  }
+  
+  .ai-text-warning {
+    color: var(--ai-formula-warning);
+  }
+  
+  .ai-text-error {
+    color: var(--ai-formula-error);
+  }
+  
+  .ai-border-primary {
+    border-color: var(--ai-formula-primary);
+  }
+  
+  .ai-border-secondary {
+    border-color: var(--ai-formula-secondary);
+  }
+  
+  .ai-border-accent {
+    border-color: var(--ai-formula-accent);
+  }
+  
+  .ai-border-gray {
+    border-color: var(--ai-formula-gray-600);
+  }
+  
+  .ai-shadow-primary {
+    box-shadow: 0 0 20px 5px var(--ai-formula-primary-light);
+  }
+  
+  .ai-shadow-primary-hover {
+    box-shadow: 0 20px 25px -5px var(--ai-formula-primary-medium), 
+                0 10px 10px -5px var(--ai-formula-primary-light);
+  }
+  .ai-bg-gradient-dark { background: linear-gradient(to bottom right, var(--ai-formula-dark), var(--ai-formula-dark-medium), var(--ai-formula-dark)); }
+}
+
+/* AI Formula 課程內容專用樣式 */
+@layer utilities {
+  /* Midjourney 增強內容樣式 */
+  .midjourney-enhanced-content h1 {
+    font-size: 2.5rem !important;
+    color: var(--ai-formula-primary) !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    border-bottom: 3px solid var(--ai-formula-primary) !important;
+    padding-bottom: 0.75rem !important;
+    text-align: center !important;
+  }
+  
+  .midjourney-enhanced-content h2 {
+    font-size: 2.25rem !important;
+    color: var(--ai-formula-primary) !important;
+    margin-top: 2.5rem !important;
+    margin-bottom: 1.25rem !important;
+    border-bottom: 2px solid var(--ai-formula-primary) !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  .midjourney-enhanced-content h3 {
+    font-size: 1.75rem !important;
+    color: var(--ai-formula-info) !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    font-weight: 700 !important;
+  }
+  
+  .midjourney-enhanced-content h4 {
+    font-size: 1.35rem !important;
+    color: var(--ai-formula-success) !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+    font-weight: 600 !important;
+  }
+  
+  .midjourney-enhanced-content strong {
+    color: var(--ai-formula-accent) !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+  }
+  
+  .midjourney-enhanced-content code {
+    background-color: var(--ai-formula-dark-medium) !important;
+    padding: 0.4rem 0.7rem !important;
+    border-radius: 0.5rem !important;
+    color: var(--ai-formula-primary) !important;
+    font-size: 0.95rem !important;
+    border: 1px solid var(--ai-formula-gray-600) !important;
+  }
+  
+  .midjourney-enhanced-content pre {
+    background-color: var(--ai-formula-dark) !important;
+    border: 2px solid var(--ai-formula-gray-600) !important;
+    border-radius: 0.75rem !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+    overflow-x: auto !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+  
+  .midjourney-enhanced-content pre code {
+    background-color: transparent !important;
+    padding: 0 !important;
+    color: var(--ai-formula-success) !important;
+    border: none !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* 課程內容標題樣式 */
+  .course-section-title {
+    font-size: 1.75rem;
+    color: var(--ai-formula-info);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .course-subsection-title {
+    color: var(--ai-formula-accent);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  /* 代碼塊樣式 */
+  .course-code-block {
+    background-color: var(--ai-formula-dark-medium);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    color: var(--ai-formula-success);
+    border: 1px solid var(--ai-formula-gray-600);
+  }
+  
+  /* 圖片容器樣式 */
+  .course-image-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  
+  .course-image {
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    border: 2px solid var(--ai-formula-gray-600);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .course-image:hover {
+    transform: scale(1.05);
+    border-color: var(--ai-formula-info);
+  }
+  
+  .course-image-caption {
+    color: var(--ai-formula-info);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  /* 視頻容器樣式 */
+  .course-video-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  
+  .course-video {
+    width: 100%;
+    max-width: 31.25rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--ai-formula-gray-600);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* 響應式設計 */
+  @media (max-width: 768px) {
+    .midjourney-enhanced-content pre {
+      padding: 1rem !important;
+      font-size: 0.85rem !important;
+    }
+    
+    .midjourney-enhanced-content pre code {
+      font-size: 0.8rem !important;
+    }
+    
+    .course-section-title {
+      font-size: 1.5rem;
+    }
+    
+    .course-subsection-title {
+      font-size: 1.1rem;
+    }
   }
 }

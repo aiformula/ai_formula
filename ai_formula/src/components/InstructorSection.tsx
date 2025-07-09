@@ -1,351 +1,192 @@
-import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, BookOpen, Users, Code2, TrendingUp, Brain, Zap } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { ChevronRight, Star, Award, BookOpen } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const InstructorSection = () => {
-  const { t } = useLanguage();
-  
-  // Add futuristic styles
-  const futuristicStyles = `
-    @keyframes pulse-bg {
-      0% { opacity: 0.7; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-      100% { opacity: 0.7; transform: scale(1); }
-    }
-
-    @keyframes rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .card-header-glow:before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(transparent, rgba(0, 255, 255, 0.5), transparent 30%);
-      animation: rotate 6s linear infinite;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1;
-    }
-    
-    .card-header-glow.pink-glow:before {
-      background: conic-gradient(transparent, rgba(236, 72, 153, 0.6), transparent 30%);
-    }
-    
-    .card-header-glow.blue-glow:before {
-      background: conic-gradient(transparent, rgba(59, 130, 246, 0.6), transparent 30%);
-    }
-    
-    .card-header-glow.yellow-glow:before {
-      background: conic-gradient(transparent, rgba(234, 179, 8, 0.6), transparent 30%);
-    }
-    
-    .card-header-glow.purple-glow:before {
-      background: conic-gradient(transparent, rgba(147, 51, 234, 0.6), transparent 30%);
-    }
-    
-    .teacher-card:hover .card-header-glow:before {
-      opacity: 1;
-    }
-
-    .glow-text {
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.6), 0 0 16px rgba(0, 255, 255, 0.4);
-    }
-
-    .section-header {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  `;
+  const { t, language } = useLanguage();
 
   const instructors = [
     {
-      id: 1,
-      nameKey: "instructors.sarah.name",
-      titleKey: "instructors.sarah.title",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b68b8c3b?w=300&h=300&fit=crop&crop=face",
-      biographyKey: "instructors.sarah.biography",
-      philosophyKey: "instructors.sarah.philosophy",
-      qualificationKeys: [
-        "instructors.sarah.qual1",
-        "instructors.sarah.qual2",
-        "instructors.sarah.qual3",
-        "instructors.sarah.qual4"
+      name: language === 'zh-TW' ? t('instructors.sarah.name') : 'Kenneth',
+      title: language === 'zh-TW' ? t('instructors.sarah.title') : 'AI Marketing Developer & Automation Specialist',
+      specialty: language === 'zh-TW' ? t('instructors.sarah.specialty') : 'AI Tools & Marketing Automation',
+      experience: language === 'zh-TW' ? t('instructors.sarah.experience') : '4+ years',
+      biography: language === 'zh-TW' ? t('instructors.sarah.biography') : 'Kenneth is a pioneering AI marketing developer who specializes in cutting-edge AI tools, automation systems, and strategic implementation. Over 4 years of intensive AI learning, he has mastered the art of transforming traditional marketing approaches through artificial intelligence and automation technologies.',
+      philosophy: language === 'zh-TW' ? t('instructors.sarah.philosophy') : 'AI is fundamentally transforming how we live and work. The future belongs to those who embrace AI today. I help individuals and businesses get ahead of the curve by mastering AI tools and automation before the masses catch up. Now is the perfect time to gain that competitive advantage.',
+      qualifications: [
+        language === 'zh-TW' ? t('instructors.sarah.qual1') : 'AI Marketing Automation Expert',
+        language === 'zh-TW' ? t('instructors.sarah.qual2') : 'Advanced AI Tools Implementation',
+        language === 'zh-TW' ? t('instructors.sarah.qual3') : 'Strategic AI Business Integration',
+        language === 'zh-TW' ? t('instructors.sarah.qual4') : 'Future-Ready Marketing Systems'
       ],
-      experienceKey: "instructors.sarah.experience",
-      specialtyKey: "instructors.sarah.specialty",
-      color: "from-pink-500 to-rose-600",
-      borderColor: "border-pink-500/50",
-      icon: <TrendingUp className="h-6 w-6" />
+      avatar: '👨‍💼',
+      gradient: 'from-blue-500 to-purple-600'
     },
     {
-      id: 2,
-      nameKey: "instructors.david.name",
-      titleKey: "instructors.david.title",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-      biographyKey: "instructors.david.biography",
-      philosophyKey: "instructors.david.philosophy",
-      qualificationKeys: [
-        "instructors.david.qual1",
-        "instructors.david.qual2",
-        "instructors.david.qual3",
-        "instructors.david.qual4"
+      name: language === 'zh-TW' ? t('instructors.david.name') : 'David',
+      title: language === 'zh-TW' ? t('instructors.david.title') : 'Business Automation & AI Integration Specialist',
+      specialty: language === 'zh-TW' ? t('instructors.david.specialty') : 'Automation & AI Solutions',
+      experience: language === 'zh-TW' ? t('instructors.david.experience') : '7+ years',
+      biography: language === 'zh-TW' ? t('instructors.david.biography') : 'David is a business automation expert who has spent 7+ years helping companies eliminate overwork and streamline operations. He specializes in creating powerful automation workflows using Make.com, n8n, and AI tools to handle posts, content management, and complex business processes.',
+      philosophy: language === 'zh-TW' ? t('instructors.david.philosophy') : 'Automation should solve real business problems and reduce overwork. I help businesses implement all-in-one AI and automation solutions that transform how they operate, allowing teams to focus on what truly matters while technology handles the repetitive tasks.',
+      qualifications: [
+        language === 'zh-TW' ? t('instructors.david.qual1') : 'Make.com & n8n Automation Expert',
+        language === 'zh-TW' ? t('instructors.david.qual2') : 'Business Process Optimization',
+        language === 'zh-TW' ? t('instructors.david.qual3') : 'AI-Powered Content Management',
+        language === 'zh-TW' ? t('instructors.david.qual4') : 'All-in-One Business Solutions'
       ],
-      experienceKey: "instructors.david.experience",
-      specialtyKey: "instructors.david.specialty",
-      color: "from-blue-500 to-cyan-600",
-      borderColor: "border-blue-500/50",
-      icon: <Code2 className="h-6 w-6" />
+      avatar: '👨‍💻',
+      gradient: 'from-green-500 to-teal-600'
     },
     {
-      id: 3,
-      nameKey: "instructors.emily.name",
-      titleKey: "instructors.emily.title",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-      biographyKey: "instructors.emily.biography",
-      philosophyKey: "instructors.emily.philosophy",
-      qualificationKeys: [
-        "instructors.emily.qual1",
-        "instructors.emily.qual2",
-        "instructors.emily.qual3",
-        "instructors.emily.qual4"
+      name: language === 'zh-TW' ? t('instructors.emily.name') : 'Ken',
+      title: language === 'zh-TW' ? t('instructors.emily.title') : 'Custom Business Developer & AI Automation Specialist',
+      specialty: language === 'zh-TW' ? t('instructors.emily.specialty') : 'Custom Coding & AI Automation',
+      experience: language === 'zh-TW' ? t('instructors.emily.experience') : '5+ years',
+      biography: language === 'zh-TW' ? t('instructors.emily.biography') : 'Ken is a skilled custom business developer with 5+ years of coding experience, specializing in creating tailored business solutions and AI automation systems. He builds custom applications that help businesses work faster and run more efficiently through intelligent automation.',
+      philosophy: language === 'zh-TW' ? t('instructors.emily.philosophy') : 'Code should make work faster and businesses run smoother. I create custom solutions that integrate AI automation to eliminate bottlenecks and accelerate business processes. Every line of code should serve a purpose: making work faster and more efficient.',
+      qualifications: [
+        language === 'zh-TW' ? t('instructors.emily.qual1') : 'Custom Business Application Development',
+        language === 'zh-TW' ? t('instructors.emily.qual2') : 'AI Automation Integration Expert',
+        language === 'zh-TW' ? t('instructors.emily.qual3') : 'Performance Optimization Specialist',
+        language === 'zh-TW' ? t('instructors.emily.qual4') : 'Rapid Development Solutions'
       ],
-      experienceKey: "instructors.emily.experience",
-      specialtyKey: "instructors.emily.specialty",
-      color: "from-yellow-500 to-orange-600",
-      borderColor: "border-yellow-500/50",
-      icon: <Code2 className="h-6 w-6" />
+      avatar: '👨‍🔬',
+      gradient: 'from-orange-500 to-red-600'
     },
     {
-      id: 4,
-      nameKey: "instructors.michael.name",
-      titleKey: "instructors.michael.title",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-      biographyKey: "instructors.michael.biography",
-      philosophyKey: "instructors.michael.philosophy",
-      qualificationKeys: [
-        "instructors.michael.qual1",
-        "instructors.michael.qual2",
-        "instructors.michael.qual3",
-        "instructors.michael.qual4"
+      name: language === 'zh-TW' ? t('instructors.michael.name') : 'Jason',
+      title: language === 'zh-TW' ? t('instructors.michael.title') : 'Professional Developer & Custom Automation Specialist',
+      specialty: language === 'zh-TW' ? t('instructors.michael.specialty') : 'Coding & Custom Automation',
+      experience: language === 'zh-TW' ? t('instructors.michael.experience') : '8+ years',
+      biography: language === 'zh-TW' ? t('instructors.michael.biography') : 'Jason is a professional developer with 8+ years of coding experience, specializing in LLM chatbox development, MCP integration, and web applications. For the past 2 years, he has been intensively learning AI to uplevel his coding skills and help companies integrate cutting-edge AI solutions.',
+      philosophy: language === 'zh-TW' ? t('instructors.michael.philosophy') : 'No AI, no life! AI can change more than you think. I believe that integrating AI into development work transforms not just how we code, but what we can achieve. Every developer needs to embrace AI to stay relevant and create extraordinary solutions.',
+      qualifications: [
+        language === 'zh-TW' ? t('instructors.michael.qual1') : 'LLM Chatbox Development Expert',
+        language === 'zh-TW' ? t('instructors.michael.qual2') : 'MCP Integration Specialist',
+        language === 'zh-TW' ? t('instructors.michael.qual3') : 'Full-Stack Web Development',
+        language === 'zh-TW' ? t('instructors.michael.qual4') : 'AI-Enhanced Coding Solutions'
       ],
-      experienceKey: "instructors.michael.experience",
-      specialtyKey: "instructors.michael.specialty",
-      color: "from-purple-500 to-indigo-600",
-      borderColor: "border-purple-500/50",
-      icon: <Brain className="h-6 w-6" />
+      avatar: '👨‍🎓',
+      gradient: 'from-purple-500 to-pink-600'
     }
   ];
 
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: futuristicStyles }} />
-      <section className="py-24 px-6 bg-black relative overflow-hidden">
-      {/* Futuristic Background */}
-      <div className="absolute inset-0 opacity-40">
-        <div 
-          className="absolute top-0 left-0 w-full h-full"
-          style={{
-            background: `
-              radial-gradient(ellipse at 50% 50%, rgba(13, 110, 253, 0.15), transparent 60%),
-              radial-gradient(ellipse at 20% 30%, rgba(214, 40, 255, 0.15), transparent 70%),
-              radial-gradient(ellipse at 80% 40%, rgba(0, 255, 255, 0.15), transparent 70%)
-            `,
-            animation: 'pulse-bg 15s infinite ease-in-out'
-          }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section className="py-20 bg-gray-900">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16 section-header"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
-            style={{
-              textShadow: '0 0 8px rgba(0, 255, 255, 0.6), 0 0 16px rgba(0, 255, 255, 0.4)'
-            }}
-          >
-            {t('instructors.title')} <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent glow-text">{t('instructors.titleHighlight')}</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-300 max-w-4xl mx-auto"
-          >
-            {t('instructors.subtitle')}
-          </motion.p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            {language === 'zh-TW' ? t('instructors.title') : 'About the'} <span className="text-yellow-500">{language === 'zh-TW' ? t('instructors.titleHighlight') : 'Instructors'}</span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+            {language === 'zh-TW' ? t('instructors.subtitle') : 'Meet our world-class instructors who combine deep technical expertise with real-world business experience. Learn from industry leaders who have built and scaled AI solutions across marketing and development.'}
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {instructors.map((instructor, index) => (
             <motion.div
-              key={instructor.id}
-              initial={{ opacity: 0, y: 50, rotateX: 20 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ 
-                delay: index * 0.15, 
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
+              key={instructor.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ 
-                y: -10, 
-                scale: 1.03,
-                transition: { duration: 0.4 }
-              }}
-              className="group cursor-pointer h-full"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card 
-                className={`teacher-card bg-gray-900/20 border-2 hover:border-opacity-100 transition-all duration-400 overflow-hidden h-full flex flex-col relative`}
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  border: `1px solid ${instructor.color.includes('pink') ? 'rgba(236, 72, 153, 0.3)' : 
-                                     instructor.color.includes('blue') ? 'rgba(59, 130, 246, 0.3)' : 
-                                     instructor.color.includes('yellow') ? 'rgba(234, 179, 8, 0.3)' : 
-                                     'rgba(147, 51, 234, 0.3)'}`
-                }}
-              >
-                {/* Header with gradient background and rotating border effect */}
-                <div className={`bg-gradient-to-r ${instructor.color} p-6 text-white relative overflow-hidden card-header-glow ${instructor.color.includes('pink') ? 'pink-glow' : 
-                                          instructor.color.includes('blue') ? 'blue-glow' : 
-                                          instructor.color.includes('yellow') ? 'yellow-glow' : 
-                                          'purple-glow'}`}>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative z-10">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white/30"
-                    >
-                      <img 
-                        src={instructor.image} 
-                        alt={t(instructor.nameKey)}
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-center mb-1">{t(instructor.nameKey)}</h3>
-                    <p className="text-center text-white/90 text-sm font-medium">{t(instructor.titleKey)}</p>
-                    <div className="flex items-center justify-center mt-3 gap-2">
-                      {instructor.icon}
-                      <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                        {t(instructor.specialtyKey)}
-                      </Badge>
+              <Card className="bg-gray-800 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex items-start space-x-4 mb-6">
+                    <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${instructor.gradient} flex items-center justify-center text-2xl`}>
+                      {instructor.avatar}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white mb-1">{instructor.name}</h3>
+                      <p className="text-yellow-500 text-sm mb-2">{instructor.title}</p>
+                      <div className="flex items-center space-x-4 text-sm text-gray-400">
+                        <div className="flex items-center space-x-1">
+                          <BookOpen className="w-4 h-4" />
+                          <span>{instructor.specialty}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Award className="w-4 h-4" />
+                          <span>{instructor.experience} {language === 'zh-TW' ? t('instructors.experience') : 'Experience'}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <CardContent className="p-6 flex-1 flex flex-col">
-                  {/* Biography */}
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-gray-300 mb-2 flex items-center gap-2">
-                      <BookOpen className="h-4 w-4" />
-                      {t('instructors.professionalJourney')}
-                    </h4>
-                    <p className="text-sm text-gray-400 leading-relaxed line-clamp-3">
-                      {t(instructor.biographyKey)}
-                    </p>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-TW' ? t('instructors.professionalJourney') : 'Professional Journey'}</h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">{instructor.biography}</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-TW' ? t('instructors.teachingPhilosophy') : 'Teaching Philosophy'}</h4>
+                      <p className="text-gray-300 text-sm leading-relaxed italic">"{instructor.philosophy}"</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-yellow-500 mb-3">{language === 'zh-TW' ? t('instructors.keyQualifications') : 'AI Transformation Impact:'}</h4>
+                      <div className="grid grid-cols-1 gap-2">
+                        {instructor.qualifications.map((qual, qualIndex) => (
+                          <div key={qualIndex} className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></div>
+                            <span className="text-gray-300 text-sm">{qual}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Teaching Philosophy */}
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-gray-300 mb-2 flex items-center gap-2">
-                      <Users className="h-4 w-4" />
-                      {t('instructors.teachingPhilosophy')}
-                    </h4>
-                    <p className="text-sm text-gray-400 leading-relaxed line-clamp-2">
-                      {t(instructor.philosophyKey)}
-                    </p>
-                  </div>
-
-                  {/* Experience Badge */}
-                  <div className="mb-4">
-                    <Badge variant="outline" className="border-gray-600 text-gray-300">
-                      <Award className="h-3 w-3 mr-1" />
-                      {t(instructor.experienceKey)} {t('instructors.experience')}
-                    </Badge>
-                  </div>
-
-                  {/* Qualifications */}
-                  <div className="mb-6 flex-1">
-                    <h4 className="text-sm font-semibold text-gray-300 mb-2">{t('instructors.keyQualifications')}</h4>
-                    <ul className="text-xs text-gray-400 space-y-1">
-                      {instructor.qualificationKeys.slice(0, 2).map((qualKey, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <div className="w-1 h-1 bg-gray-500 rounded-full mt-2 flex-shrink-0"></div>
-                          {t(qualKey)}
-                        </li>
-                      ))}
-                      <li className="text-gray-500 text-xs">+{instructor.qualificationKeys.length - 2} {t('instructors.more')}</li>
-                    </ul>
-                  </div>
-
-                  {/* CTA Button */}
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-auto"
-                  >
+                  <div className="mt-6 pt-6 border-t border-gray-700">
                     <Button 
                       variant="outline" 
                       size="sm"
-                      className={`w-full ${instructor.borderColor} hover:bg-gradient-to-r hover:${instructor.color} hover:text-white transition-all duration-300`}
+                      className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-300"
                     >
-                      {t('instructors.viewProfile')}
-                      <ArrowRight className="ml-2 h-3 w-3" />
+                      {language === 'zh-TW' ? t('instructors.viewProfile') : 'View Full Profile'}
+                      <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
-                  </motion.div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          transition={{ duration: 0.6 }}
+          className="text-center bg-gradient-to-r from-yellow-500 to-orange-600 rounded-2xl p-8"
         >
-          <p className="text-gray-300 mb-6">
-            {t('instructors.cta')}
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 glow-text"
-            style={{
-              boxShadow: '0 0 25px rgba(0, 255, 255, 0.4)',
-              textShadow: '0 0 8px rgba(0, 255, 255, 0.6)'
-            }}
-          >
-            {t('instructors.ctaButton')}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              {language === 'zh-TW' ? t('instructors.cta') : 'Ready to learn from industry experts who\'ve built real AI solutions?'}
+            </h3>
+            <Button 
+              size="lg"
+              className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-8 py-4 text-lg transition-all duration-300"
+            >
+              {language === 'zh-TW' ? t('instructors.ctaButton') : 'Meet Our Full Teaching Team'}
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>
-    </>
   );
 };
 

@@ -1,176 +1,102 @@
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Cog, CheckCircle } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, BookOpen, Cog } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ServicesSection = () => {
-  const { t } = useLanguage();
-  
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      transition: { 
-        duration: 0.8,
-        type: "spring" as const,
-        stiffness: 100
-      } 
-    }
-  };
+  const { t, language } = useLanguage();
 
   const services = [
     {
-      id: 'training',
-      icon: Brain,
-      title: t('services.training.title'),
-      description: t('services.training.description'),
-      benefits: [t('services.training.benefit1'), t('services.training.benefit2'), t('services.training.benefit3')],
-      buttonText: t('services.training.button')
+      title: language === 'zh-TW' ? t('services.training.title') : 'Expert-Led AI Training',
+      description: language === 'zh-TW' ? t('services.training.description') : 'Comprehensive learning materials designed by industry experts',
+      icon: BookOpen,
+      benefits: [
+        language === 'zh-TW' ? t('services.training.benefit1') : 'Actionable Courses',
+        language === 'zh-TW' ? t('services.training.benefit2') : 'Practical Frameworks',
+        language === 'zh-TW' ? t('services.training.benefit3') : 'Team Upskilling'
+      ],
+      buttonText: language === 'zh-TW' ? t('services.training.button') : 'View Courses',
+      gradient: 'from-blue-500 to-purple-600'
     },
     {
-      id: 'automation',
+      title: language === 'zh-TW' ? t('services.automation.title') : 'Bespoke Automation Solutions',
+      description: language === 'zh-TW' ? t('services.automation.description') : 'Custom-built automation systems tailored to your business needs',
       icon: Cog,
-      title: t('services.automation.title'),
-      description: t('services.automation.description'),
-      benefits: [t('services.automation.benefit1'), t('services.automation.benefit2'), t('services.automation.benefit3')],
-      buttonText: t('services.automation.button')
+      benefits: [
+        language === 'zh-TW' ? t('services.automation.benefit1') : 'Increase Efficiency',
+        language === 'zh-TW' ? t('services.automation.benefit2') : 'Reduce Errors',
+        language === 'zh-TW' ? t('services.automation.benefit3') : 'Scale Operations'
+      ],
+      buttonText: language === 'zh-TW' ? t('services.automation.button') : 'Get Free Consultation',
+      gradient: 'from-green-500 to-teal-600'
     }
   ];
 
   return (
-    <section className="py-24 px-6 bg-[#0f0f0f]">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 bg-gray-900">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
-          >
-            {t('services.title').includes(' ') 
-              ? <>
-                  {t('services.title').split(' ').slice(0, 1).join(' ')} <span className="text-yellow-500">{t('services.title').split(' ').slice(1).join(' ')}</span>
-                </>
-              : <>
-                  {t('services.title').slice(0, 3)} <span className="text-yellow-500">{t('services.title').slice(3)}</span>
-                </>
-            }
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            {t('services.subtitle')}
-          </motion.p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            {language === 'zh-TW' ? t('services.title') : 'Our Services'}
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            {language === 'zh-TW' ? t('services.subtitle') : 'Choose your path to AI mastery and business automation excellence'}
+          </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-8"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <motion.div 
-              key={service.id}
-              variants={itemVariants}
-              whileHover={{ 
-                y: -10, 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="bg-gray-800 rounded-xl p-8 hover:shadow-2xl hover:bg-gray-700 transition-all duration-300"
             >
-              <Card className="bg-[#1a1a1a] border-gray-800 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/10 h-full">
-                <CardHeader className="text-center pb-6">
-                  <motion.div 
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ duration: 0.6, delay: index * 0.2 + 0.4, type: "spring" }}
-                    viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotate: 5,
-                      transition: { duration: 0.3 }
-                    }}
-                                          className="w-16 h-16 bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-4"
-                  >
-                                          <service.icon className="w-8 h-8 text-yellow-500" />
-                  </motion.div>
-                  <CardTitle className="text-2xl md:text-3xl font-bold text-white">
-                    {service.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-300 text-lg">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: index * 0.2 + 0.6 }}
-                    viewport={{ once: true }}
-                    className="space-y-4"
-                  >
-                    {service.benefits.map((benefit, benefitIndex) => (
-                      <motion.div
-                        key={`${service.id}-benefit-${benefitIndex}`}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ 
-                          duration: 0.6, 
-                          delay: index * 0.2 + 0.8 + benefitIndex * 0.1 
-                        }}
-                        viewport={{ once: true }}
-                        whileHover={{ x: 5, transition: { duration: 0.2 } }}
-                        className="flex items-center space-x-3"
-                      >
-                        <CheckCircle className="w-5 h-5 text-yellow-500" />
-                        <span className="text-gray-300">{benefit}</span>
-                      </motion.div>
-                    ))}
-                  </motion.div>
+              <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${service.gradient} mb-6`}>
+                <service.icon className="w-8 h-8 text-white" />
+              </div>
+              
+              <h3 className="text-2xl font-bold mb-4 text-white">{service.title}</h3>
+              <p className="text-gray-300 mb-6">{service.description}</p>
+              
+              <div className="space-y-3 mb-8">
+                {service.benefits.map((benefit, benefitIndex) => (
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    key={benefitIndex}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.2 + benefitIndex * 0.1 }}
+                    className="flex items-center space-x-3"
                   >
-                    <Button className="w-full bg-yellow-500 text-white hover:bg-yellow-600 font-semibold transition-all duration-300">
-                      {service.buttonText}
-                    </Button>
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                    <span className="text-gray-200">{benefit}</span>
                   </motion.div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
+              
+              <Button 
+                className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-3 text-lg transition-all duration-300"
+              >
+                {service.buttonText}
+              </Button>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default React.memo(ServicesSection);
+export default ServicesSection;
