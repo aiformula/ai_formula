@@ -1506,31 +1506,31 @@ const ProPlanLearning: React.FC = () => {
                         __html: `
                           .midjourney-enhanced-content h1 {
                             font-size: 2.5rem !important;
-                            color: #fbbf24 !important;
+                            color: var(--ai-formula-primary) !important;
                             margin-top: 2rem !important;
                             margin-bottom: 1.5rem !important;
-                            border-bottom: 3px solid #fbbf24 !important;
+                            border-bottom: 3px solid var(--ai-formula-primary) !important;
                             padding-bottom: 0.75rem !important;
                             text-align: center !important;
                           }
                           .midjourney-enhanced-content h2 {
                             font-size: 2.25rem !important;
-                            color: #fbbf24 !important;
+                            color: var(--ai-formula-primary) !important;
                             margin-top: 2.5rem !important;
                             margin-bottom: 1.25rem !important;
-                            border-bottom: 2px solid #fbbf24 !important;
+                            border-bottom: 2px solid var(--ai-formula-primary) !important;
                             padding-bottom: 0.5rem !important;
                           }
                           .midjourney-enhanced-content h3 {
                             font-size: 1.75rem !important;
-                            color: #60a5fa !important;
+                            color: var(--ai-formula-info) !important;
                             margin-top: 2rem !important;
                             margin-bottom: 1rem !important;
                             font-weight: 700 !important;
                           }
                           .midjourney-enhanced-content h4 {
                             font-size: 1.35rem !important;
-                            color: #34d399 !important;
+                            color: var(--ai-formula-success) !important;
                             margin-top: 1.5rem !important;
                             margin-bottom: 0.75rem !important;
                             font-weight: 600 !important;
@@ -1541,21 +1541,21 @@ const ProPlanLearning: React.FC = () => {
                             font-size: 1.05rem !important;
                           }
                           .midjourney-enhanced-content strong {
-                            color: #f472b6 !important;
+                            color: var(--ai-formula-accent) !important;
                             font-weight: 700 !important;
                             font-size: 1.1rem !important;
                           }
                           .midjourney-enhanced-content code {
-                            background-color: #1f2937 !important;
+                            background-color: var(--ai-formula-dark-medium) !important;
                             padding: 0.4rem 0.7rem !important;
                             border-radius: 0.5rem !important;
-                            color: #fbbf24 !important;
+                            color: var(--ai-formula-primary) !important;
                             font-size: 0.95rem !important;
-                            border: 1px solid #374151 !important;
+                            border: 1px solid var(--ai-formula-gray-600) !important;
                           }
                           .midjourney-enhanced-content pre {
-                            background-color: #111827 !important;
-                            border: 2px solid #374151 !important;
+                            background-color: var(--ai-formula-dark) !important;
+                            border: 2px solid var(--ai-formula-gray-600) !important;
                             border-radius: 0.75rem !important;
                             padding: 1.5rem !important;
                             margin: 1.5rem 0 !important;
@@ -1567,7 +1567,7 @@ const ProPlanLearning: React.FC = () => {
                           .midjourney-enhanced-content pre code {
                             background-color: transparent !important;
                             padding: 0 !important;
-                            color: #34d399 !important;
+                            color: var(--ai-formula-success) !important;
                             border: none !important;
                             white-space: pre-wrap !important;
                             word-wrap: break-word !important;
@@ -1676,7 +1676,7 @@ const ProPlanLearning: React.FC = () => {
                                   }} />
                                   
                                   {/* Portrait template section with images */}
-                                  <h3 style={{fontSize: '1.75rem', color: '#60a5fa', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
+                                  <h3 style={{fontSize: '1.75rem', color: 'var(--ai-formula-info)', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
                                     肖像攝影模板
                                   </h3>
                                   
@@ -1719,7 +1719,7 @@ const ProPlanLearning: React.FC = () => {
                                   }} />
                                   
                                   {/* Product template section with images */}
-                                  <h3 style={{fontSize: '1.75rem', color: '#60a5fa', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
+                                  <h3 style={{fontSize: '1.75rem', color: 'var(--ai-formula-info)', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
                                     {language === 'en' ? 'Product Photography Template' : '產品攝影模板'}
                                   </h3>
                                   
@@ -1762,7 +1762,7 @@ const ProPlanLearning: React.FC = () => {
                                   }} />
                                   
                                   {/* Artistic Creation template section with image */}
-                                  <h3 style={{fontSize: '1.75rem', color: '#60a5fa', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
+                                  <h3 style={{fontSize: '1.75rem', color: 'var(--ai-formula-info)', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
                                     {language === 'en' ? 'Artistic Creation Template' : '藝術創作模板'}
                                   </h3>
                                   
@@ -1794,7 +1794,7 @@ const ProPlanLearning: React.FC = () => {
                                   }} />
                                   
                                   {/* Landscape Photography template section with image */}
-                                  <h3 style={{fontSize: '1.75rem', color: '#60a5fa', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
+                                  <h3 style={{fontSize: '1.75rem', color: 'var(--ai-formula-info)', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
                                     {language === 'en' ? 'Landscape Photography Template' : '風景攝影模板'}
                                   </h3>
                                   
@@ -2097,7 +2097,7 @@ const ProPlanLearning: React.FC = () => {
                                   }} />
                                   
                                   {/* Portrait template section with images */}
-                                  <h3 style={{fontSize: '1.75rem', color: '#60a5fa', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
+                                  <h3 style={{fontSize: '1.75rem', color: 'var(--ai-formula-info)', marginTop: '2rem', marginBottom: '1rem', fontWeight: '700'}}>
                                     肖像攝影模板
                                   </h3>
                                   
