@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ProductGridProps } from '@/types/courseTypes';
+import { ProductGridProps } from '@/data/courseData';
 import ProductCard from './ProductCard';
 import CategoryFilters from './CategoryFilters';
 
@@ -37,7 +37,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               { key: 'ai', label: 'AI Applications', labelCht: 'AI應用', emoji: '🤖', color: 'bg-blue-500 hover:bg-blue-600' },
               { key: 'automation', label: 'Automation', labelCht: '自動化', emoji: '⚡', color: 'bg-green-500 hover:bg-green-600' },
               { key: 'analytics', label: 'Data Analytics', labelCht: '數據分析', emoji: '📊', color: 'bg-yellow-500 hover:bg-yellow-600' },
-              { key: 'prompt-engineering', label: 'Prompt Engineering', labelCht: '提示工程', emoji: '💬', color: 'bg-pink-500 hover:bg-pink-600' }
+              { key: 'prompt-engineering', label: 'Prompt Engineering', labelCht: '提示工程', emoji: '💬', color: 'bg-pink-500 hover:bg-pink-600' },
+              { key: 'programming', label: 'Programming', labelCht: '程式設計', emoji: '💻', color: 'bg-indigo-500 hover:bg-indigo-600' }
             ]}
             selectedCategory={selectedCategory}
             onCategoryChange={onCategoryChange}

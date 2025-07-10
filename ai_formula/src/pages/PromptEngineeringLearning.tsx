@@ -925,7 +925,7 @@ const PromptEngineeringLearning: React.FC = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Navigation />
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 pt-24 pb-8">
           <CardLoadingSpinner />
         </div>
       </div>
@@ -936,7 +936,7 @@ const PromptEngineeringLearning: React.FC = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Navigation />
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 pt-24 pb-8">
           <ErrorMessage message={error} onRetry={() => window.location.reload()} />
         </div>
       </div>
@@ -947,7 +947,7 @@ const PromptEngineeringLearning: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 pt-24 pb-8">
         {/* 標題和進度概覽 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

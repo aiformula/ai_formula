@@ -233,7 +233,7 @@ const PromptEngineeringCourse: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 pt-24 pb-8">
         {/* 課程標題和總覽 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

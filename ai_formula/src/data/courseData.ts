@@ -1,4 +1,74 @@
-import { DigitalProduct, LearningPlan, CategoryFilter, CategoryType } from '@/types/courseTypes';
+// Digital Product Types
+export interface DigitalProduct {
+  id: number;
+  title: string;
+  titleCht: string;
+  description: string;
+  descriptionCht: string;
+  duration: string;
+  durationCht: string;
+  downloads: number;
+  rating: number;
+  level: string;
+  levelCht: string;
+  price: string;
+  originalPrice: string;
+  image: string;
+  type: string;
+  typeCht: string;
+  category: string;
+  newProduct?: boolean;
+  bestseller?: boolean;
+  featured?: boolean;
+  hotSelling?: boolean;
+  includes: string[];
+  includesCht: string[];
+}
+
+export interface LearningPlan {
+  id: string;
+  title: string;
+  titleCht: string;
+  description: string;
+  descriptionCht: string;
+  freeIncludes: string[];
+  freeIncludesCht: string[];
+  proIncludes: string[];
+  proIncludesCht: string[];
+  freePrice: string;
+  freePriceEn: string;
+  proPrice: string;
+  originalPrice: string;
+  savings: string;
+  icon: string;
+  gradient: string;
+}
+
+export interface CategoryFilter {
+  key: string;
+  label: string;
+  labelCht: string;
+  emoji: string;
+  color: string;
+}
+
+export type CategoryType = 'all' | 'design' | 'ai' | 'automation' | 'analytics' | 'prompt-engineering' | 'programming';
+
+// Component Props Types
+export interface ProductGridProps {
+  products: DigitalProduct[];
+  isZhTW: boolean;
+  selectedCategory: CategoryType;
+  onCategoryChange: (category: CategoryType) => void;
+  onProductClick: (product: DigitalProduct) => void;
+}
+
+export interface ProductCardProps {
+  product: DigitalProduct;
+  isZhTW: boolean;
+  onProductClick: (product: DigitalProduct) => void;
+  index: number;
+}
 
 // Digital Products Data
 export const digitalProducts: DigitalProduct[] = [
@@ -307,6 +377,120 @@ export const digitalProducts: DigitalProduct[] = [
       "提示模板庫",
       "完成證書"
     ]
+  },
+  // Programming Category
+  {
+    id: 10,
+    title: "Coding Basics - Introduction to Programming",
+    titleCht: "編程基礎 - 程式設計入門",
+    description: "Learn programming fundamentals with hands-on examples and interactive coding exercises.",
+    descriptionCht: "透過實踐例子和互動編程練習學習程式設計基礎。",
+    duration: "4 lessons + code examples",
+    durationCht: "4個課程 + 程式碼範例",
+    downloads: 234,
+    rating: 4.8,
+    level: "Beginner",
+    levelCht: "新手",
+    price: "HK$199",
+    originalPrice: "HK$299",
+    image: "💻",
+    type: "Programming",
+    typeCht: "程式設計",
+    category: "programming",
+    newProduct: true,
+    featured: true,
+    includes: [
+      "4 Interactive Lessons",
+      "Code Examples & Exercises",
+      "JavaScript Fundamentals",
+      "HTML & CSS Basics",
+      "Simple Calculator Project",
+      "Progress Tracking"
+    ],
+    includesCht: [
+      "4個互動課程",
+      "程式碼範例和練習",
+      "JavaScript基礎",
+      "HTML和CSS基礎",
+      "簡單計算器項目",
+      "進度追蹤"
+    ]
+  },
+  // AI Tools Category - ChatGPT Mastery
+  {
+    id: 11,
+    title: "ChatGPT Prompt Mastery",
+    titleCht: "ChatGPT 提示精通",
+    description: "Master the art of AI conversation and prompt engineering with ChatGPT",
+    descriptionCht: "掌握 AI 對話藝術與 ChatGPT 提示工程技巧",
+    duration: "8 modules + interactive practice",
+    durationCht: "8個模組 + 互動練習",
+    downloads: 1892,
+    rating: 4.9,
+    level: "Intermediate",
+    levelCht: "中級",
+    price: "HK$299",
+    originalPrice: "HK$399",
+    image: "🎯",
+    type: "AI Tools",
+    typeCht: "AI工具",
+    category: "ai",
+    newProduct: true,
+    featured: true,
+    includes: [
+      "8 Comprehensive Modules",
+      "Interactive Card-based Learning",
+      "Real-world Practice Exercises",
+      "Creative Prompt Templates",
+      "Advanced Conversation Techniques",
+      "Progress Tracking Dashboard"
+    ],
+    includesCht: [
+      "8個全面模組",
+      "互動卡片式學習",
+      "真實練習題",
+      "創意提示模板",
+      "進階對話技巧",
+      "進度追蹤儀表板"
+    ]
+  },
+  // AI Tools Category - Perplexity Tools
+  {
+    id: 12,
+    title: "Perplexity Tools Mastery",
+    titleCht: "Perplexity 工具精通",
+    description: "Professional research and analysis with Perplexity AI tools",
+    descriptionCht: "使用 Perplexity AI 工具進行專業研究與分析",
+    duration: "5 modules + practice dashboard",
+    durationCht: "5個模組 + 練習儀表板",
+    downloads: 1456,
+    rating: 4.7,
+    level: "Intermediate",
+    levelCht: "中級",
+    price: "HK$249",
+    originalPrice: "HK$349",
+    image: "📊",
+    type: "AI Tools",
+    typeCht: "AI工具",
+    category: "ai",
+    newProduct: true,
+    featured: true,
+    includes: [
+      "5 Professional Modules",
+      "Dashboard-style Learning Interface",
+      "Advanced Search Techniques",
+      "Research Methodology Training",
+      "Real-time Practice Environment",
+      "Learning Analytics & Stats"
+    ],
+    includesCht: [
+      "5個專業模組",
+      "儀表板式學習介面",
+      "高級搜索技巧",
+      "研究方法論培訓",
+      "實時練習環境",
+      "學習分析和統計"
+    ]
   }
 ];
 
@@ -411,6 +595,13 @@ export const categoryFilters: CategoryFilter[] = [
     labelCht: '提示工程',
     emoji: '💬',
     color: 'bg-pink-500 hover:bg-pink-600'
+  },
+  {
+    key: 'programming',
+    label: 'Programming',
+    labelCht: '程式設計',
+    emoji: '💻',
+    color: 'bg-indigo-500 hover:bg-indigo-600'
   }
 ];
 

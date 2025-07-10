@@ -24,6 +24,9 @@ const NotFound = React.lazy(() => import('./pages/NotFound'));
 const PromptEngineeringLearning = React.lazy(() => import('./pages/PromptEngineeringLearning'));
 const PromptEngineeringLesson1 = React.lazy(() => import('./pages/PromptEngineeringLesson1'));
 const PromptEngineeringLesson2 = React.lazy(() => import('./pages/PromptEngineeringLesson2'));
+const CodingBasicsLesson = React.lazy(() => import('./pages/CodingBasicsLesson'));
+const ChatGPTMasteryLesson = React.lazy(() => import('./pages/ChatGPTMasteryLesson'));
+const PerplexityToolsLesson = React.lazy(() => import('./pages/PerplexityToolsLesson'));
 
 // 統一課程系統
 const PromptEngineeringCourse = React.lazy(() => import('./pages/PromptEngineeringCourse'));
@@ -70,6 +73,9 @@ function App() {
                     <Route path="/prompt-engineering/learning" element={<PromptEngineeringLearning />} />
                     <Route path="/prompt-engineering/lesson/1" element={<PromptEngineeringLesson1 />} />
                     <Route path="/prompt-engineering/lesson/2" element={<PromptEngineeringLesson2 />} />
+                    <Route path="/coding-basics/lesson/1" element={<CodingBasicsLesson />} />
+                    <Route path="/chatgpt-mastery/lesson/1" element={<ChatGPTMasteryLesson />} />
+                    <Route path="/perplexity-tools/lesson/1" element={<PerplexityToolsLesson />} />
                     
                     {/* 統一課程系統 */}
                     <Route path="/prompt-engineering/course" element={<PromptEngineeringCourse />} />

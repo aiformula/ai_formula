@@ -3,11 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { 
   DigitalProduct, 
   LearningPlan, 
-  CategoryType, 
-  NavigationHandler, 
-  ProductClickHandler,
-  CourseStats 
-} from '@/types/courseTypes';
+  CategoryType
+} from '@/data/courseData';
+
+// Type definitions for navigation handlers
+export type NavigationHandler = (planId: string, planType: 'free' | 'pro') => void;
+export type ProductClickHandler = (product: DigitalProduct) => void;
+
+export interface CourseStats {
+  totalProducts: number;
+  totalDownloads: number;
+  averageRating: number;
+  categories: number;
+}
 import { 
   digitalProducts, 
   learningPlans, 
@@ -76,6 +84,12 @@ export const useCourseData = (isZhTW: boolean) => {
       
       if (product.category === 'prompt-engineering') {
         navigate('/prompt-engineering/learning');
+      } else if (product.category === 'programming') {
+        navigate('/coding-basics/lesson/1');
+      } else if (product.id === 11) { // ChatGPT Mastery
+        navigate('/chatgpt-mastery/lesson/1');
+      } else if (product.id === 12) { // Perplexity Tools
+        navigate('/perplexity-tools/lesson/1');
       } else {
         navigate(`/course/${product.category}`);
       }

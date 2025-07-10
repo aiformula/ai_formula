@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Clock, Users, Star, Play, Award, TrendingUp } from 'lucide-react';
 import Atropos from 'atropos/react';
-import { ProductCardProps } from '@/types/courseTypes';
+import { ProductCardProps } from '@/data/courseData';
 import { calculateSavingsPercentage } from '@/data/courseData';
 
 const ProductCard: React.FC<ProductCardProps> = ({ 
