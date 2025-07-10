@@ -157,7 +157,7 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
             <div>
               <h3 className="text-xl font-bold mb-2">Context</h3>
               <p>Context provides important situational information that helps the AI understand requirements and scenarios, making the generated content more relevant and in-depth. Without context, the generated content may lose focus.</p>
-              <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">Example:<br/>"The student has experience in Python and machine learning, and wants to work in a startup."</blockquote>
+              <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">Example:<br/>"The student has experience in Python and machine learning, and wants to work in a startup."</blockquote>
               <p className="mt-2 font-semibold">Analysis:</p>
               <ul className="list-disc ml-6 space-y-1">
                 <li><b>Background Information:</b> Provides the AI with information about the student's Python and machine learning experience, and indicates they want to work in a startup.</li>
@@ -177,11 +177,16 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
             <div>
               <h3 className="text-xl font-bold mb-2">Input Data</h3>
               <p>This part refers to the specific information or data you provide to the AI, which can be a dataset, a piece of text, or other supplementary materials that help the model generate more specific and precise content.</p>
-              <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">Example:<br/>"You have access to a dataset with Pacific Ocean temperature records and sea level measurements."</blockquote>
+              <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
+                <strong>Professional Example:</strong><br/>
+                "You have access to a comprehensive dataset containing Pacific Ocean temperature records from 2010-2023 and corresponding sea level measurements. The student's portfolio includes three machine learning projects: a predictive model for stock prices (Python/TensorFlow), a recommendation system for e-commerce (Python/Scikit-learn), and a sentiment analysis tool for social media (Python/NLTK). Additionally, they have completed internships at two tech startups and contributed to open-source projects on GitHub."
+              </blockquote>
               <p className="mt-2 font-semibold">Analysis:</p>
               <ul className="list-disc ml-6 space-y-1">
-                <li><b>Data:</b> This part provides specific datasets (Pacific Ocean temperature records and sea level measurements). Although this example is unrelated to the career context, it can be understood that when the AI is writing resumes or articles, it may need background data to support its analysis or recommendations.</li>
-                <li><b>Purpose:</b> Data is used to support arguments, examples, or specific analysis, providing precise references.</li>
+                <li><b>Comprehensive Data:</b> Provides specific datasets with timeframes and multiple data types, giving the AI rich context to work with.</li>
+                <li><b>Detailed Portfolio:</b> Includes specific projects with technologies used, demonstrating depth of experience.</li>
+                <li><b>Contextual Relevance:</b> All data points are relevant to the career guidance scenario, helping the AI generate more targeted recommendations.</li>
+                <li><b>Professional Depth:</b> The expanded information allows the AI to create more nuanced and professional responses.</li>
               </ul>
             </div>
           )
@@ -197,11 +202,19 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
             <div>
               <h3 className="text-xl font-bold mb-2">Output Indicator</h3>
               <p>Output indicators specify the format, style, length, or other requirements for the generated content, allowing the AI to know what kind of content it should generate.</p>
-              <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">Example:<br/>"Make sure the response is in a formal tone and includes at least two case studies."</blockquote>
+              <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
+                <strong>Comprehensive Example:</strong><br/>
+                "Structure your response as a professional LinkedIn summary with the following specifications: Use a confident yet approachable tone, keep it between 150-200 words, include at least two specific case studies with quantifiable results, highlight technical skills prominently, incorporate industry-relevant keywords for remote work and startups, format with short paragraphs for readability, and conclude with a clear call-to-action for potential employers."
+              </blockquote>
               <p className="mt-2 font-semibold">Analysis:</p>
               <ul className="list-disc ml-6 space-y-1">
-                <li><b>Style Requirement:</b> Emphasizes that the generated content should have a "formal tone," which helps the AI ensure the produced content is suitable for professional purposes, such as resumes or job applications.</li>
-                <li><b>Specific Requirements:</b> Includes at least two specific "case studies," which clearly tells the AI to include practical examples, increasing persuasiveness.</li>
+                <li><b>Format Specification:</b> Clearly defines the document type (LinkedIn summary) and structural requirements.</li>
+                <li><b>Tone Requirements:</b> Specifies both confident and approachable characteristics, providing clear emotional direction.</li>
+                <li><b>Length Parameters:</b> Gives specific word count (150-200 words) for precise output control.</li>
+                <li><b>Content Requirements:</b> Demands two case studies with quantifiable results, ensuring substance and credibility.</li>
+                <li><b>SEO Optimization:</b> Includes keyword strategy for remote work and startup industries.</li>
+                <li><b>Readability Focus:</b> Specifies formatting for better user experience.</li>
+                <li><b>Action-Oriented:</b> Requires a call-to-action to drive engagement.</li>
               </ul>
             </div>
           )
@@ -236,13 +249,16 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
             <div>
               <h3 className="text-xl font-bold mb-2">👩‍💻 Practice Exercise</h3>
               <p>Now, try breaking down the following prompt into the four elements, and think about how you could improve it:</p>
-              <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">"You are a customer service representative. Write a response to a customer complaint about a delayed order. Apologize for the delay, explain the reason, and offer a solution."</blockquote>
-              <p className="mt-2 font-semibold">✅ Example Solution</p>
+              <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
+                <strong>Practice Prompt:</strong><br/>
+                "You are a customer service representative at a premium e-commerce company. Write a professional response to a customer complaint about a delayed order. The customer has been waiting for 10 days beyond the promised delivery date for their anniversary gift. Apologize sincerely for the delay, explain the reason (shipping partner issues), offer a meaningful solution (expedited delivery + discount), and maintain the company's reputation for excellent customer service."
+              </blockquote>
+              <p className="mt-2 font-semibold">✅ Enhanced Analysis Solution</p>
               <ul className="list-disc ml-6 space-y-1">
-                <li><b>Instruction:</b> You are a customer service representative. Write a response to a customer complaint about a delayed order.</li>
-                <li><b>Context:</b> Apologize for the delay, explain the reason, and offer a solution.</li>
-                <li><b>Input Data:</b> N/A (If there were order details, shipping information, or customer history, it could be provided here).</li>
-                <li><b>Output Indicator:</b> Make sure the tone is polite and empathetic.</li>
+                <li><b>Instruction:</b> You are a customer service representative at a premium e-commerce company. Write a professional response to a customer complaint about a delayed order.</li>
+                <li><b>Context:</b> The customer has been waiting for 10 days beyond the promised delivery date for their anniversary gift.</li>
+                <li><b>Input Data:</b> Specific delay timeframe (10 days), occasion (anniversary gift), reason (shipping partner issues), and company positioning (premium e-commerce).</li>
+                <li><b>Output Indicator:</b> Apologize sincerely, explain the reason, offer a meaningful solution (expedited delivery + discount), and maintain the company's reputation for excellent customer service.</li>
               </ul>
             </div>
           )
@@ -275,11 +291,16 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
             <div>
               <h3 className="text-xl font-bold mb-2">指令</h3>
               <p>這一部分是告訴模型要做什麼，是最基本的部分。指令能夠確保模型能夠理解你的需求，並且朝著正確的方向去生成內容。</p>
-              <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">Example:<br/>"You are a career advisor. Write a persuasive LinkedIn summary for a student majoring in data science who is seeking a remote internship."</blockquote>
+              <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
+                <strong>專業範例：</strong><br/>
+                "您是一位資深的職業顧問和LinkedIn專家。請為一位主修數據科學的大學生撰寫一份具有說服力的LinkedIn個人摘要，該學生正在尋求一個遠程實習機會。請確保摘要能夠突出其技術能力、學習熱忱和對初創公司文化的適應性。"
+              </blockquote>
               <p className="mt-2 font-semibold">分析：</p>
               <ul className="list-disc ml-6 space-y-1">
-                <li>行動要求：指定角色（Career Advisor），然後告訴AI要寫一個說服力強的LinkedIn Summary。</li>
-                <li>目標：目的是讓學生（主修數據科學）尋求一份遠程實習，這樣的指令給予了明確的行動框架。</li>
+                <li><b>角色明確：</b>指定了「資深職業顧問」和「LinkedIn專家」兩重身份，提供專業權威感。</li>
+                <li><b>行動要求：</b>明確指示要撰寫「具有說服力的LinkedIn個人摘要」，目標清晰。</li>
+                <li><b>目標受眾：</b>指定了「主修數據科學的大學生」，幫助AI理解內容方向。</li>
+                <li><b>具體目標：</b>「尋求遠程實習機會」給予了明確的職業目標框架。</li>
               </ul>
             </div>
           )
@@ -295,11 +316,16 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
             <div>
               <h3 className="text-xl font-bold mb-2">背景</h3>
               <p>背景提供了重要的情境，幫助AI理解需求和情境，並且讓生成的內容更加相關和有深度。沒有背景的話，生成的內容可能會失去焦點。</p>
-              <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">Example:<br/>"The student has experience in Python and machine learning, and wants to work in a startup."</blockquote>
+              <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
+                <strong>詳細背景範例：</strong><br/>
+                "該學生在過去兩年中累積了豐富的Python和機器學習經驗，包括完成了三個主要項目和兩次實習。他特別希望在充滿創新精神的初創公司環境中工作，渴望參與產品開發的早期階段，並且願意接受快節奏的工作挑戰。此外，他對遠程工作模式非常適應，具備良好的自我管理和溝通能力。"
+              </blockquote>
               <p className="mt-2 font-semibold">分析：</p>
               <ul className="list-disc ml-6 space-y-1">
-                <li>背景資料：給予AI學生有Python和機器學習的經驗，並且表明他們想要在初創公司工作。</li>
-                <li>作用：提供了學生的技能和目標背景，有助於AI生成適合初創公司和相關領域的LinkedIn Summary。</li>
+                <li><b>時間框架：</b>「過去兩年」提供了經驗的時間深度，增加可信度。</li>
+                <li><b>具體經驗：</b>「三個主要項目和兩次實習」給予了量化的成就背景。</li>
+                <li><b>工作偏好：</b>明確表達對初創公司環境的偏好和原因。</li>
+                <li><b>適應能力：</b>突出了遠程工作和自我管理的能力，符合現代職場需求。</li>
               </ul>
             </div>
           )
@@ -374,13 +400,16 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
             <div>
               <h3 className="text-xl font-bold mb-2">👩‍💻 練習：拆解與理解</h3>
               <p>現在，你可以練習將下面的 Prompt 拆解成四個元素，並思考如何優化：</p>
-              <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">「你是客戶服務代表。請回應一位客戶對訂單延遲的投訴。請為延遲道歉，解釋原因，並提出解決方案。」</blockquote>
-              <p className="mt-2 font-semibold">✅ 答案拆解範例</p>
+              <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
+                <strong>進階練習題：</strong><br/>
+                「你是一位高級電商客戶服務代表。請專業回應一位客戶對於超過承諾交付日期10天的訂單延遲投訴。客戶正在等待重要的週年紀念禮物。請真誠地為延遲道歉，解釋原因（物流合作夥伴問題），提供有意義的解決方案（加急配送+折扣補償），並維護公司在優質客戶服務方面的聲譽。」
+              </blockquote>
+              <p className="mt-2 font-semibold">✅ 增強版答案拆解範例</p>
               <ul className="list-disc ml-6 space-y-1">
-                <li><b>指令：</b>你是客戶服務代表。請回應一位客戶對訂單延遲的投訴。</li>
-                <li><b>背景：</b>為延遲道歉，解釋原因，並提出解決方案。</li>
-                <li><b>輸入數據：</b>不適用（如果有訂單詳情、運送資料或客戶紀錄，可以提供給AI）。</li>
-                <li><b>輸出指標：</b>語氣要有禮貌和具同理心。</li>
+                <li><b>指令：</b>你是一位高級電商客戶服務代表。請專業回應一位客戶對於訂單延遲的投訴。</li>
+                <li><b>背景：</b>客戶等待超過承諾交付日期10天的重要週年紀念禮物。</li>
+                <li><b>輸入數據：</b>具體延遲時間框架（10天）、場合（週年紀念禮物）、原因（物流合作夥伴問題）、公司定位（高級電商）。</li>
+                <li><b>輸出指標：</b>真誠道歉，解釋原因，提供有意義的解決方案（加急配送+折扣補償），並維護公司優質客戶服務聲譽。</li>
               </ul>
             </div>
           )

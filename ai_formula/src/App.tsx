@@ -1,72 +1,96 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LanguageProvider } from "@/contexts/LanguageContext";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { ViewCountProvider } from "@/contexts/ViewCountContext";
-import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
-import ErrorBoundary from "@/components/ErrorBoundary";
-import Index from "./pages/Index";
-import Auth from "./pages/Auth";
-import Dashboard from "./pages/Dashboard";
-import NotFound from "./pages/NotFound";
-import About from "./pages/About";
-import AboutCht from "./pages/AboutCht";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Course from "./pages/Course";
-import CourseDetail from "./pages/CourseDetail";
-import FreePlanLearning from "./pages/FreePlanLearning";
-import ProPlanLearning from "./pages/ProPlanLearning";
-import PromptEngineeringLearning from "./pages/PromptEngineeringLearning";
-import PromptEngineeringLesson1 from "./pages/PromptEngineeringLesson1";
-import PromptEngineeringLesson2 from "@/pages/PromptEngineeringLesson2";
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { ViewCountProvider } from './contexts/ViewCountContext';
+import { Toaster } from './components/ui/toaster';
+import ErrorBoundary from './components/ErrorBoundary';
 
-const queryClient = new QueryClient();
+// Page imports
+const Index = React.lazy(() => import('./pages/Index'));
+const About = React.lazy(() => import('./pages/About'));
+const AboutCht = React.lazy(() => import('./pages/AboutCht'));
+const Blog = React.lazy(() => import('./pages/Blog'));
+const BlogPost = React.lazy(() => import('./pages/BlogPost'));
+const Course = React.lazy(() => import('./pages/Course'));
+const CourseDetail = React.lazy(() => import('./pages/CourseDetail'));
+const FreePlanLearning = React.lazy(() => import('./pages/FreePlanLearning'));
+const ProPlanLearning = React.lazy(() => import('./pages/ProPlanLearning'));
+const Dashboard = React.lazy(() => import('./pages/Dashboard'));
+const Auth = React.lazy(() => import('./pages/Auth'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
 
-const App = () => (
-  <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <LanguageProvider>
-          <ViewCountProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/auth" element={<Auth />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/about-cht" element={<AboutCht />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:id" element={<BlogPost />} />
-                  <Route path="/course" element={<Course />} />
-                  <Route path="/course/:courseId" element={<CourseDetail />} />
-                  <Route path="/course/:courseId/free" element={<FreePlanLearning />} />
-                  <Route path="/course/:courseId/pro" element={<ProPlanLearning />} />
-                  <Route 
-                    path="/dashboard" 
-                    element={
-                      <ProtectedRoute>
-                        <Dashboard />
-                      </ProtectedRoute>
-                    } 
-                  />
-                  <Route path="/prompt-engineering/learning" element={<PromptEngineeringLearning />} />
-                  <Route path="/prompt-engineering/lesson/1" element={<PromptEngineeringLesson1 />} />
-                  <Route path="/prompt-engineering/lesson/2" element={<PromptEngineeringLesson2 />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
-            </TooltipProvider>
-          </ViewCountProvider>
-        </LanguageProvider>
-      </AuthProvider>
-    </QueryClientProvider>
-  </ErrorBoundary>
+// 原本的獨立課程頁面
+const PromptEngineeringLearning = React.lazy(() => import('./pages/PromptEngineeringLearning'));
+const PromptEngineeringLesson1 = React.lazy(() => import('./pages/PromptEngineeringLesson1'));
+const PromptEngineeringLesson2 = React.lazy(() => import('./pages/PromptEngineeringLesson2'));
+
+// 統一課程系統
+const PromptEngineeringCourse = React.lazy(() => import('./pages/PromptEngineeringCourse'));
+
+// 額外組件
+const ProgressTracker = React.lazy(() => import('./components/course/ProgressTracker'));
+const LearningNotes = React.lazy(() => import('./components/course/LearningNotes'));
+const LearningRecommendations = React.lazy(() => import('./components/course/LearningRecommendations'));
+
+// Loading component
+const LoadingSpinner = () => (
+  <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto mb-4"></div>
+      <p className="text-gray-300">Loading...</p>
+    </div>
+  </div>
 );
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <LanguageProvider>
+        <AuthProvider>
+          <ViewCountProvider>
+            <Router>
+              <div className="App">
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Routes>
+                    {/* 主要頁面 */}
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/about-cht" element={<AboutCht />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:id" element={<BlogPost />} />
+                    <Route path="/course" element={<Course />} />
+                    <Route path="/course/:courseId" element={<CourseDetail />} />
+                    <Route path="/free-plan-learning" element={<FreePlanLearning />} />
+                    <Route path="/pro-plan-learning" element={<ProPlanLearning />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/auth" element={<Auth />} />
+                    
+                    {/* 原本的獨立課程系統 */}
+                    <Route path="/prompt-engineering/learning" element={<PromptEngineeringLearning />} />
+                    <Route path="/prompt-engineering/lesson/1" element={<PromptEngineeringLesson1 />} />
+                    <Route path="/prompt-engineering/lesson/2" element={<PromptEngineeringLesson2 />} />
+                    
+                    {/* 統一課程系統 */}
+                    <Route path="/prompt-engineering/course" element={<PromptEngineeringCourse />} />
+                    
+                    {/* 學習工具頁面 */}
+                    <Route path="/learning/progress" element={<ProgressTracker />} />
+                    <Route path="/learning/notes" element={<LearningNotes />} />
+                    <Route path="/learning/recommendations" element={<LearningRecommendations />} />
+                    
+                    {/* 404 頁面 */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+                <Toaster />
+              </div>
+            </Router>
+          </ViewCountProvider>
+        </AuthProvider>
+      </LanguageProvider>
+    </ErrorBoundary>
+  );
+}
 
 export default App;

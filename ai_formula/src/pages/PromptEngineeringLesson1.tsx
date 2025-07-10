@@ -1,855 +1,678 @@
-import React, { useState, useEffect, useCallback, useMemo, memo, Suspense } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
-import { useLanguage } from '@/contexts/LanguageContext'
-import ErrorBoundary from '@/components/ErrorBoundary'
-import Navigation from '@/components/Navigation'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { CardLoadingSpinner } from '@/components/ui/LoadingSpinner'
-import { 
-  ArrowLeft, 
-  CheckCircle, 
-  ThumbsUp, 
-  ThumbsDown, 
-  Flag, 
-  BookOpen,
-  Play,
-  Award,
-  Clock,
-  ArrowRight,
-  Loader2,
-  AlertCircle,
-  Home
-} from 'lucide-react'
+import React, { useState, useMemo, memo, useCallback } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import Navigation from '@/components/Navigation';
+import QuizCard from '@/components/course/QuizCard';
+import LessonSidebar from '@/components/course/LessonSidebar';
+import LessonContent, { useLessonCompletion } from '@/components/course/LessonContent';
+import type { LessonItem, LessonSection } from '@/components/course/LessonSidebar';
+import type { QuizQuestion } from '@/components/course/QuizCard';
 
-// 類型定義 / Type Definitions
-interface LessonContent {
-  title: string
-  titleZh: string
-  content: React.ReactNode
-  contentZh: React.ReactNode
-}
+// Quiz 問題定義
 
-interface LessonItem {
-  key: string
-  title: string
-  titleZh: string
-  type: 'reading' | 'practice' | 'quiz' | 'video' | 'summary'
-  icon: string
-  duration: string
-  durationZh: string
-  description: string
-  descriptionZh: string
-  content: LessonContent['content']
-  contentZh: LessonContent['contentZh']
-  estimatedMinutes: number
-  difficulty: 'beginner' | 'intermediate' | 'advanced'
-  prerequisites?: string[]
-  learningObjectives: string[]
-  learningObjectivesZh: string[]
-}
+// Define English quiz questions
+const enQuizQuestions = [
+  {
+    q: '1. What is the primary purpose of Prompt Engineering?',
+    options: [
+      'To design and optimize input instructions to guide AI models in generating accurate and relevant outputs',
+      'To write code for AI models',
+      'To create datasets for machine learning',
+      'To test AI model performance only',
+    ],
+    answer: 0,
+  },
+  {
+    q: '2. Which component is NOT typically part of a well-structured prompt?',
+    options: [
+      'Clear instructions',
+      'Context information',
+      'Random irrelevant text',
+      'Expected output format',
+    ],
+    answer: 2,
+  },
+  {
+    q: '3. What makes a prompt more effective?',
+    options: [
+      'Being as vague as possible',
+      'Providing specific, clear instructions with adequate context',
+      'Using only simple words',
+      'Making it extremely long',
+    ],
+    answer: 1,
+  },
+  {
+    q: '4. Why is context important in prompts?',
+    options: [
+      'It makes the prompt longer',
+      'It provides background information that helps AI understand the situation better',
+      'It confuses the AI model',
+      'It is not important at all',
+    ],
+    answer: 1,
+  },
+  {
+    q: '5. What is the best approach when a prompt doesn\'t give the desired result?',
+    options: [
+      'Give up and try a different AI model',
+      'Make the prompt shorter',
+      'Iteratively refine the prompt based on the output',
+      'Add more random words',
+    ],
+    answer: 2,
+  },
+];
 
-interface LessonSection {
-  group: string
-  groupZh: string
-  groupIcon: string
-  items: LessonItem[]
-  estimatedTotalMinutes: number
-  description: string
-  descriptionZh: string
-}
+// Define Cantonese quiz questions
+const zhQuizQuestions: QuizQuestion[] = [
+  {
+    q: '1. 提示工程的主要目的是什麼？',
+    options: [
+      '設計和優化輸入指令，引導AI模型生成準確且相關的輸出',
+      '為AI模型編寫代碼',
+      '創建機器學習數據集',
+      '僅測試AI模型性能',
+    ],
+    answer: 0,
+  },
+  {
+    q: '2. 以下哪個組件通常不是結構良好的提示的一部分？',
+    options: [
+      '清晰的指令',
+      '上下文信息',
+      '隨機無關的文本',
+      '期望的輸出格式',
+    ],
+    answer: 2,
+  },
+  {
+    q: '3. 什麼讓提示更有效？',
+    options: [
+      '盡可能模糊',
+      '提供具體、清晰的指令和充分的上下文',
+      '只使用簡單的詞語',
+      '讓它極其冗長',
+    ],
+    answer: 1,
+  },
+  {
+    q: '4. 為什麼上下文在提示中很重要？',
+    options: [
+      '它讓提示更長',
+      '它提供背景信息，幫助AI更好地理解情況',
+      '它會讓AI模型困惑',
+      '它一點也不重要',
+    ],
+    answer: 1,
+  },
+  {
+    q: '5. 當提示沒有給出期望結果時，最佳方法是什麼？',
+    options: [
+      '放棄並嘗試不同的AI模型',
+      '縮短提示',
+      '根據輸出迭代地改進提示',
+      '添加更多隨機詞語',
+    ],
+    answer: 2,
+  },
+];
 
-interface LessonProgress {
-  completedItems: string[]
-  currentItem: string
-  timeSpent: number // in minutes
-  lastAccessed: string
-  ratings: Record<string, 'like' | 'dislike'>
-  notes: Record<string, string>
-}
-
-interface NavigationState {
-  canGoPrevious: boolean
-  canGoNext: boolean
-  previousItem?: LessonItem
-  nextItem?: LessonItem
-  currentIndex: number
-  totalItems: number
-}
-
-interface LessonFeedback {
-  type: 'like' | 'dislike' | 'report'
-  itemKey: string
-  message?: string
-  timestamp: string
-}
-
-// 常量定義 / Constants
-const STORAGE_KEY = 'prompt_engineering_lesson1_progress'
-const FEEDBACK_STORAGE_KEY = 'prompt_engineering_lesson1_feedback'
-
-// 課程內容數據 / Course Content Data
-const createLessonContent = (language: 'en' | 'zh'): LessonSection[] => {
-  const isZhTW = language === 'zh'
-  
-  return [
+const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
+  en: [
     {
-      group: isZhTW ? '課堂 1：提示基礎' : 'Lesson 1: Prompt Fundamentals',
-      groupZh: '課堂 1：提示基礎',
-      groupIcon: '📚',
-      estimatedTotalMinutes: 18,
-      description: isZhTW ? '學習 AI 提示的基本概念和結構' : 'Learn fundamental concepts and structure of AI prompts',
-      descriptionZh: '學習 AI 提示的基本概念和結構',
+      group: 'Lesson 1: Foundations of Prompt Engineering',
+      groupIcon: '🚀',
       items: [
         {
-          key: 'intro',
-          title: isZhTW ? '什麼是提示？' : 'What is a Prompt?',
-          titleZh: '什麼是提示？',
+          key: 'what-is-prompt-engineering',
+          title: 'What is Prompt Engineering?',
+          icon: '🎯',
+          duration: '4 min',
+          description: 'Introduction to the concept and importance of prompt engineering.',
           type: 'reading',
-          icon: '📖',
-          duration: isZhTW ? '5分鐘' : '5 min',
-          durationZh: '5分鐘',
-          estimatedMinutes: 5,
-          difficulty: 'beginner',
-          description: isZhTW ? '生成式AI中，提示的定義、重要性和例子。' : 'Definition, importance, and examples of prompts in generative AI.',
-          descriptionZh: '生成式AI中，提示的定義、重要性和例子。',
-          learningObjectives: [
-            'Understand what a prompt is',
-            'Learn why prompts are important',
-            'See examples of different prompt types'
-          ],
-          learningObjectivesZh: [
-            '理解什麼是提示',
-            '了解為什麼提示很重要',
-            '看到不同類型提示的例子'
-          ],
           content: (
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold mb-4 text-blue-400">Welcome to AI Formula's Prompt Engineering Series</h2>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  In this first lesson, we'll dive into a foundational question: <strong className="text-white">What is a prompt, and why does it matter in the world of generative AI?</strong>
-                </p>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  Understanding prompts — and learning how to write them effectively — is one of the most important skills when working with generative AI models like ChatGPT, Gemini, Claude, or Mistral.
-                </p>
-                <div className="bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                  <p className="text-blue-200">
-                    <strong>Key Insight:</strong> A well-crafted prompt can guide a model to generate clear, accurate, and useful output. A vague or poorly written prompt may result in irrelevant or confusing responses.
-                  </p>
-                </div>
-              </div>
+            <div>
+              <h3 className="text-xl font-bold mb-2">What is Prompt Engineering?</h3>
+              <p className="mb-4">Prompt Engineering is the art and science of designing and optimizing input instructions (prompts) to guide AI models in generating accurate, relevant, and useful outputs. It's about communicating effectively with AI systems to get the best possible results.</p>
               
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-green-400 flex items-center">
-                  <span className="mr-2">🧠</span>
-                  What is a Prompt?
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  A <strong className="text-white">prompt</strong> is any input — typically in natural language — that you give to a generative AI model to guide its response. Think of it as an instruction, a task description, or a question that tells the AI what to do.
-                </p>
-                
-                <div className="bg-gray-800 rounded-lg p-4 mb-4">
-                  <h4 className="font-semibold text-white mb-2">Prompts can take many forms:</h4>
-                  <ul className="list-disc ml-6 space-y-2 text-gray-300">
-                    <li>A simple instruction: <em className="text-blue-300">"Translate this sentence into French."</em></li>
-                    <li>A question: <em className="text-blue-300">"What are the benefits of renewable energy?"</em></li>
-                    <li>A role assignment: <em className="text-blue-300">"Act as a career advisor and write a resume summary."</em></li>
-                    <li>A set of constraints: <em className="text-blue-300">"Write a formal letter in 100 words."</em></li>
-                  </ul>
-                </div>
-                
-                <div className="bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg">
-                  <p className="text-yellow-200">
-                    <strong>Remember:</strong> These inputs are what drive the model's output. If your prompt is unclear or lacks context, the AI may struggle to generate helpful results.
-                  </p>
-                </div>
+              <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30 mb-4">
+                <h4 className="font-semibold text-blue-400 mb-2">Key Definition:</h4>
+                <p className="text-gray-300">A prompt is a text input that you provide to an AI model to guide its response. Think of it as giving clear, specific instructions to get the output you want.</p>
               </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-purple-400 flex items-center">
-                  <span className="mr-2">🌟</span>
-                  Why Prompts Matter
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  Unlike traditional software, generative AI doesn't follow fixed logic trees. Instead, it uses patterns learned from massive amounts of data to predict the most likely output based on your input.
-                </p>
-                
-                <div className="my-6 p-6 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-xl text-center">
-                  <p className="text-xl font-bold text-white">
-                    The quality of the prompt = The quality of the response
-                  </p>
-                </div>
-                
-                <div className="bg-gray-800 rounded-lg p-4">
-                  <h4 className="font-semibold text-white mb-2">A well-designed prompt:</h4>
-                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
-                    <li>Clearly communicates your task</li>
-                    <li>Provides necessary context</li>
-                    <li>Defines the output format (length, tone, structure)</li>
-                    <li>May include role-based instructions to shape the AI's "persona"</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-orange-400 flex items-center">
-                  <span className="mr-2">🎯</span>
-                  Prompt Examples: Basic vs. Enhanced
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4">Let's examine the difference between a basic and an enhanced prompt:</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-red-900/20 border border-red-500 rounded-lg p-4">
-                    <h4 className="font-semibold text-red-300 mb-2 flex items-center">
-                      <span className="mr-2">❌</span>
-                      Basic Prompt
-                    </h4>
-                    <p className="text-gray-300 font-mono text-sm bg-gray-900 p-2 rounded">
-                      "Write about climate change"
-                    </p>
-                    <p className="text-red-200 text-sm mt-2">
-                      Too vague, no context or format specified
-                    </p>
-                  </div>
-                  
-                  <div className="bg-green-900/20 border border-green-500 rounded-lg p-4">
-                    <h4 className="font-semibold text-green-300 mb-2 flex items-center">
-                      <span className="mr-2">✅</span>
-                      Enhanced Prompt
-                    </h4>
-                    <p className="text-gray-300 font-mono text-sm bg-gray-900 p-2 rounded">
-                      "As an environmental scientist, write a 200-word summary explaining the main causes and effects of climate change for high school students, using simple language and bullet points."
-                    </p>
-                    <p className="text-green-200 text-sm mt-2">
-                      Clear role, specific task, defined audience and format
-                    </p>
-                  </div>
-                </div>
-              </div>
+
+              <p className="mb-4">Just as you would give clear instructions to a colleague for a task, prompt engineering involves crafting instructions that AI models can understand and act upon effectively.</p>
+
+              <h4 className="font-semibold text-white mb-2">Why is it Important?</h4>
+              <ul className="list-disc ml-6 space-y-2 text-gray-300">
+                <li><strong>Precision:</strong> Well-crafted prompts lead to more accurate and relevant responses</li>
+                <li><strong>Efficiency:</strong> Reduces the need for multiple attempts to get desired results</li>
+                <li><strong>Consistency:</strong> Helps maintain consistent quality in AI outputs</li>
+                <li><strong>Control:</strong> Gives you better control over the AI's behavior and output style</li>
+              </ul>
             </div>
-          ),
-          contentZh: (
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold mb-4 text-blue-400">歡迎來到 AI Formula 提示工程系列</h2>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  在第一課，我們會深入探討一個基礎問題：<strong className="text-white">什麼是提示？為什麼在生成式AI世界這麼重要？</strong>
-                </p>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  學會如何寫好提示，是使用ChatGPT、Gemini、Claude、Mistral等生成式AI模型時最重要的技能之一。
-                </p>
-                <div className="bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                  <p className="text-blue-200">
-                    <strong>關鍵洞察：</strong> 一個寫得好的提示可以讓AI產生清晰、準確、有用的輸出；相反，模糊或不清楚的提示只會讓AI給你無關或隨意的答案。
-                  </p>
-                </div>
-              </div>
+          )
+        },
+        {
+          key: 'core-principles',
+          title: 'Core Principles',
+          icon: '⚡',
+          duration: '5 min',
+          description: 'Essential principles that make prompts effective.',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">Core Principles of Effective Prompts</h3>
               
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-green-400 flex items-center">
-                  <span className="mr-2">🧠</span>
-                  什麼是提示？
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  <strong className="text-white">提示</strong>是你給生成式AI模型的任何輸入（通常是自然語言），用來指導它產生回應。你可以把它當作一個指令、一個任務描述，或者一個問題，告訴AI要做什麼。
-                </p>
-                
-                <div className="bg-gray-800 rounded-lg p-4 mb-4">
-                  <h4 className="font-semibold text-white mb-2">提示可以有很多種形式：</h4>
-                  <ul className="list-disc ml-6 space-y-2 text-gray-300">
-                    <li>簡單指令：<em className="text-blue-300">「將這句話翻譯成法文。」</em></li>
-                    <li>問題：<em className="text-blue-300">「可再生能源有什麼好處？」</em></li>
-                    <li>角色分配：<em className="text-blue-300">「扮演職業顧問，寫一段履歷簡介。」</em></li>
-                    <li>加限制：<em className="text-blue-300">「用100字寫一封正式信件。」</em></li>
-                  </ul>
-                </div>
-                
-                <div className="bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg">
-                  <p className="text-yellow-200">
-                    <strong>記住：</strong> 這些輸入就是驅動AI產生輸出的關鍵。如果你的提示不清楚或者沒有上下文，AI就很難給到你有用的答案。
-                  </p>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-purple-400 flex items-center">
-                  <span className="mr-2">🌟</span>
-                  為什麼提示這麼重要
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  與傳統軟件不同，生成式AI不是按照固定規則運作。它是靠大量數據學習出來的模式，根據你的輸入預測最有可能的輸出。
-                </p>
-                
-                <div className="my-6 p-6 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-xl text-center">
-                  <p className="text-xl font-bold text-white">
-                    提示品質 = 輸出品質
-                  </p>
-                </div>
-                
-                <div className="bg-gray-800 rounded-lg p-4">
-                  <h4 className="font-semibold text-white mb-2">一個設計得好的提示：</h4>
-                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
-                    <li>清楚說明你要AI做什麼</li>
-                    <li>提供必要的背景或上下文</li>
-                    <li>定義輸出格式（長度、語氣、結構）</li>
-                    <li>可以加角色指令，讓AI「扮演」某個身份</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-orange-400 flex items-center">
-                  <span className="mr-2">🎯</span>
-                  提示例子：基本 vs 優化
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4">一起看看基本提示和優化提示的分別：</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-red-900/20 border border-red-500 rounded-lg p-4">
-                    <h4 className="font-semibold text-red-300 mb-2 flex items-center">
-                      <span className="mr-2">❌</span>
-                      基本提示
-                    </h4>
-                    <p className="text-gray-300 font-mono text-sm bg-gray-900 p-2 rounded">
-                      "寫一篇關於氣候變化的文章"
-                    </p>
-                    <p className="text-red-200 text-sm mt-2">
-                      太模糊，沒有指定背景或格式
-                    </p>
+              <div className="space-y-6">
+                <div className="bg-green-900/20 p-4 rounded-lg border border-green-500/30">
+                  <h4 className="font-semibold text-green-400 mb-2">1. Clarity and Specificity</h4>
+                  <p className="text-gray-300 mb-2">Be clear about what you want the AI to do. Vague prompts lead to vague results.</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-red-400 text-sm">❌ Bad: "Write something about dogs"</p>
+                    <p className="text-green-400 text-sm">✅ Good: "Write a 200-word informative article about the benefits of daily exercise for senior dogs"</p>
                   </div>
-                  
-                  <div className="bg-green-900/20 border border-green-500 rounded-lg p-4">
-                    <h4 className="font-semibold text-green-300 mb-2 flex items-center">
-                      <span className="mr-2">✅</span>
-                      優化提示
-                    </h4>
-                    <p className="text-gray-300 font-mono text-sm bg-gray-900 p-2 rounded">
-                      "你是一位環境科學家，請用200字、簡單易懂的語言和項目符號，為中學生解釋氣候變化的主要成因和影響。"
-                    </p>
-                    <p className="text-green-200 text-sm mt-2">
-                      清楚的角色、具體任務、定義受眾和格式
-                    </p>
+                </div>
+
+                <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
+                  <h4 className="font-semibold text-blue-400 mb-2">2. Provide Context</h4>
+                  <p className="text-gray-300 mb-2">Context helps the AI understand the situation and respond appropriately.</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-red-400 text-sm">❌ Bad: "Explain this concept"</p>
+                    <p className="text-green-400 text-sm">✅ Good: "Explain machine learning to a high school student who has basic understanding of mathematics"</p>
+                  </div>
+                </div>
+
+                <div className="bg-purple-900/20 p-4 rounded-lg border border-purple-500/30">
+                  <h4 className="font-semibold text-purple-400 mb-2">3. Define Output Format</h4>
+                  <p className="text-gray-300 mb-2">Specify how you want the response formatted - length, style, structure, etc.</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-red-400 text-sm">❌ Bad: "List some benefits"</p>
+                    <p className="text-green-400 text-sm">✅ Good: "List 5 benefits in bullet points, each with a brief explanation"</p>
+                  </div>
+                </div>
+
+                <div className="bg-orange-900/20 p-4 rounded-lg border border-orange-500/30">
+                  <h4 className="font-semibold text-orange-400 mb-2">4. Use Examples</h4>
+                  <p className="text-gray-300 mb-2">Examples help the AI understand the style and format you're looking for.</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-green-400 text-sm">✅ Good: "Write a product description like this example: [sample description]"</p>
                   </div>
                 </div>
               </div>
             </div>
           )
+        },
+        {
+          key: 'types-of-prompts',
+          title: 'Types of Prompts',
+          icon: '🎨',
+          duration: '4 min',
+          description: 'Different categories of prompts and their applications.',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">Types of Prompts</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-blue-400 mb-2">1. Instructional Prompts</h4>
+                  <p className="text-gray-300 mb-2">Direct commands telling the AI what to do.</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">"Summarize this article in 3 key points"</p>
+                    <p className="text-gray-300">"Translate this text to Spanish"</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-green-400 mb-2">2. Role-Playing Prompts</h4>
+                  <p className="text-gray-300 mb-2">Ask the AI to adopt a specific role or persona.</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">"Act as a professional marketing consultant and..."</p>
+                    <p className="text-gray-300">"You are a helpful teacher explaining..."</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-purple-400 mb-2">3. Question-Based Prompts</h4>
+                  <p className="text-gray-300 mb-2">Ask specific questions to get targeted information.</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">"What are the main advantages of renewable energy?"</p>
+                    <p className="text-gray-300">"How can I improve my writing skills?"</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-yellow-400 mb-2">4. Creative Prompts</h4>
+                  <p className="text-gray-300 mb-2">Encourage creative or imaginative responses.</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">"Write a short story about a robot who discovers emotions"</p>
+                    <p className="text-gray-300">"Brainstorm 10 innovative solutions for reducing plastic waste"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          key: 'best-practices',
+          title: 'Best Practices',
+          icon: '🏆',
+          duration: '5 min',
+          description: 'Proven strategies for crafting effective prompts.',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">Best Practices for Prompt Engineering</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-green-900/20 p-4 rounded-lg border border-green-500/30">
+                  <h4 className="font-semibold text-green-400 mb-2">✅ Do's</h4>
+                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
+                    <li>Start with clear, specific instructions</li>
+                    <li>Provide relevant context and background</li>
+                    <li>Specify the desired output format</li>
+                    <li>Use examples when possible</li>
+                    <li>Test and iterate your prompts</li>
+                    <li>Be consistent with your language</li>
+                    <li>Break complex tasks into smaller steps</li>
+                  </ul>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">❌ Don'ts</h4>
+                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
+                    <li>Don't be vague or ambiguous</li>
+                    <li>Don't assume the AI knows unstated context</li>
+                    <li>Don't use overly complex language unnecessarily</li>
+                    <li>Don't ignore the importance of formatting</li>
+                    <li>Don't expect perfect results on the first try</li>
+                    <li>Don't make prompts unnecessarily long</li>
+                  </ul>
+                </div>
+
+                <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
+                  <h4 className="font-semibold text-blue-400 mb-2">💡 Pro Tips</h4>
+                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
+                    <li><strong>Iterate:</strong> Refine your prompts based on the AI's responses</li>
+                    <li><strong>Test variations:</strong> Try different phrasings to see what works best</li>
+                    <li><strong>Use constraints:</strong> Set boundaries (word count, tone, style)</li>
+                    <li><strong>Chain prompts:</strong> Break complex tasks into a series of simpler prompts</li>
+                    <li><strong>Save good prompts:</strong> Keep a collection of effective prompts for reuse</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          key: 'common-mistakes',
+          title: 'Common Mistakes',
+          icon: '⚠️',
+          duration: '3 min',
+          description: 'Typical pitfalls in prompt engineering and how to avoid them.',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">Common Mistakes to Avoid</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">1. Being Too Vague</h4>
+                  <p className="text-gray-300 mb-2">Problem: "Write something interesting"</p>
+                  <p className="text-green-400 text-sm">Solution: "Write a 150-word article about the impact of AI on healthcare, focusing on diagnostic improvements"</p>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">2. Overcomplicating the Prompt</h4>
+                  <p className="text-gray-300 mb-2">Problem: Adding too many conditions and constraints in one prompt</p>
+                  <p className="text-green-400 text-sm">Solution: Break complex requests into multiple, simpler prompts</p>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">3. Not Providing Context</h4>
+                  <p className="text-gray-300 mb-2">Problem: "Explain this concept" (without saying what concept)</p>
+                  <p className="text-green-400 text-sm">Solution: "Explain machine learning to a beginner with no technical background"</p>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">4. Ignoring Output Format</h4>
+                  <p className="text-gray-300 mb-2">Problem: Not specifying how you want the response structured</p>
+                  <p className="text-green-400 text-sm">Solution: "Provide your answer in bullet points with brief explanations"</p>
+                </div>
+
+                <div className="bg-yellow-900/20 p-4 rounded-lg border border-yellow-500/30">
+                  <h4 className="font-semibold text-yellow-400 mb-2">💡 Remember</h4>
+                  <p className="text-gray-300">Prompt engineering is iterative. Don't expect perfect results immediately. Refine your prompts based on the AI's responses to get better results.</p>
+                </div>
+              </div>
+            </div>
+          )
         }
-        // ... 其他課程項目會在下一個編輯中添加
+      ]
+    }
+  ],
+  'zh-TW': [
+    {
+      group: '第一課：提示工程基礎',
+      groupIcon: '🚀',
+      items: [
+        {
+          key: 'what-is-prompt-engineering',
+          title: '什麼是提示工程？',
+          icon: '🎯',
+          duration: '4 分鐘',
+          description: '提示工程概念及重要性介紹。',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">什麼是提示工程？</h3>
+              <p className="mb-4">提示工程是設計和優化輸入指令（提示）的藝術和科學，目的是引導AI模型生成準確、相關且有用的輸出。它是關於如何與AI系統有效溝通以獲得最佳結果。</p>
+              
+              <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30 mb-4">
+                <h4 className="font-semibold text-blue-400 mb-2">關鍵定義：</h4>
+                <p className="text-gray-300">提示是您提供給AI模型的文本輸入，用於引導其回應。可以把它想像成給出清晰、具體的指令來獲得您想要的輸出。</p>
+              </div>
+
+              <p className="mb-4">就像您會給同事一個任務的明確指令一樣，提示工程涉及制作AI模型能夠理解並有效執行的指令。</p>
+
+              <h4 className="font-semibold text-white mb-2">為什麼重要？</h4>
+              <ul className="list-disc ml-6 space-y-2 text-gray-300">
+                <li><strong>精確性：</strong>精心製作的提示能產生更準確和相關的回應</li>
+                <li><strong>效率：</strong>減少獲得理想結果所需的多次嘗試</li>
+                <li><strong>一致性：</strong>有助於維持AI輸出的一致質量</li>
+                <li><strong>控制：</strong>讓您更好地控制AI的行為和輸出風格</li>
+              </ul>
+            </div>
+          )
+        },
+        {
+          key: 'core-principles',
+          title: '核心原則',
+          icon: '⚡',
+          duration: '5 分鐘',
+          description: '讓提示有效的基本原則。',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">有效提示的核心原則</h3>
+              
+              <div className="space-y-6">
+                <div className="bg-green-900/20 p-4 rounded-lg border border-green-500/30">
+                  <h4 className="font-semibold text-green-400 mb-2">1. 清晰和具體</h4>
+                  <p className="text-gray-300 mb-2">明確說明您希望AI做什麼。模糊的提示導致模糊的結果。</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-red-400 text-sm">❌ 不好：「寫一些關於狗的東西」</p>
+                    <p className="text-green-400 text-sm">✅ 好：「寫一篇200字的資訊文章，介紹老年犬每日運動的好處」</p>
+                  </div>
+                </div>
+
+                <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
+                  <h4 className="font-semibold text-blue-400 mb-2">2. 提供背景</h4>
+                  <p className="text-gray-300 mb-2">背景有助於AI理解情況並適當回應。</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-red-400 text-sm">❌ 不好：「解釋這個概念」</p>
+                    <p className="text-green-400 text-sm">✅ 好：「向有基礎數學理解的高中生解釋機器學習」</p>
+                  </div>
+                </div>
+
+                <div className="bg-purple-900/20 p-4 rounded-lg border border-purple-500/30">
+                  <h4 className="font-semibold text-purple-400 mb-2">3. 定義輸出格式</h4>
+                  <p className="text-gray-300 mb-2">指定您希望回應的格式 - 長度、風格、結構等。</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-red-400 text-sm">❌ 不好：「列出一些好處」</p>
+                    <p className="text-green-400 text-sm">✅ 好：「用項目符號列出5個好處，每個都有簡短解釋」</p>
+                  </div>
+                </div>
+
+                <div className="bg-orange-900/20 p-4 rounded-lg border border-orange-500/30">
+                  <h4 className="font-semibold text-orange-400 mb-2">4. 使用範例</h4>
+                  <p className="text-gray-300 mb-2">範例幫助AI理解您要找的風格和格式。</p>
+                  <div className="bg-gray-800/50 p-3 rounded">
+                    <p className="text-green-400 text-sm">✅ 好：「寫一個像這個範例的產品描述：[樣本描述]」</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          key: 'types-of-prompts',
+          title: '提示類型',
+          icon: '🎨',
+          duration: '4 分鐘',
+          description: '不同類別的提示及其應用。',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">提示類型</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-blue-400 mb-2">1. 指令式提示</h4>
+                  <p className="text-gray-300 mb-2">直接命令告訴AI要做什麼。</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">「將這篇文章總結成3個要點」</p>
+                    <p className="text-gray-300">「將這段文字翻譯成西班牙語」</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-green-400 mb-2">2. 角色扮演提示</h4>
+                  <p className="text-gray-300 mb-2">要求AI採用特定角色或人格。</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">「作為專業市場顧問，並且...」</p>
+                    <p className="text-gray-300">「你是一位樂於助人的老師，正在解釋...」</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-purple-400 mb-2">3. 問題式提示</h4>
+                  <p className="text-gray-300 mb-2">提出特定問題以獲得針對性資訊。</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">「再生能源的主要優點是什麼？」</p>
+                    <p className="text-gray-300">「我如何提高寫作技巧？」</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                  <h4 className="font-semibold text-yellow-400 mb-2">4. 創意提示</h4>
+                  <p className="text-gray-300 mb-2">鼓勵創意或想像性回應。</p>
+                  <div className="bg-gray-700/50 p-3 rounded text-sm">
+                    <p className="text-gray-300">「寫一個關於發現情感的機器人的短故事」</p>
+                    <p className="text-gray-300">「為減少塑膠廢物腦力激盪10個創新解決方案」</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          key: 'best-practices',
+          title: '最佳實踐',
+          icon: '🏆',
+          duration: '5 分鐘',
+          description: '制作有效提示的經驗證策略。',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">提示工程的最佳實踐</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-green-900/20 p-4 rounded-lg border border-green-500/30">
+                  <h4 className="font-semibold text-green-400 mb-2">✅ 該做的</h4>
+                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
+                    <li>從清晰、具體的指令開始</li>
+                    <li>提供相關背景和上下文</li>
+                    <li>指定所需的輸出格式</li>
+                    <li>盡可能使用範例</li>
+                    <li>測試和迭代您的提示</li>
+                    <li>保持語言的一致性</li>
+                    <li>將複雜任務分解成較小的步驟</li>
+                  </ul>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">❌ 不該做的</h4>
+                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
+                    <li>不要模糊或含糊不清</li>
+                    <li>不要假設AI知道未說明的背景</li>
+                    <li>不要不必要地使用過於複雜的語言</li>
+                    <li>不要忽視格式的重要性</li>
+                    <li>不要期望第一次就有完美結果</li>
+                    <li>不要讓提示不必要地冗長</li>
+                  </ul>
+                </div>
+
+                <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
+                  <h4 className="font-semibold text-blue-400 mb-2">💡 專業技巧</h4>
+                  <ul className="list-disc ml-6 space-y-1 text-gray-300">
+                    <li><strong>迭代：</strong>根據AI的回應改進您的提示</li>
+                    <li><strong>測試變化：</strong>嘗試不同的措辭，看看什麼最有效</li>
+                    <li><strong>使用約束：</strong>設定界限（字數、語調、風格）</li>
+                    <li><strong>鏈接提示：</strong>將複雜任務分解成一系列簡單提示</li>
+                    <li><strong>保存好提示：</strong>保留有效提示的集合以便重複使用</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          key: 'common-mistakes',
+          title: '常見錯誤',
+          icon: '⚠️',
+          duration: '3 分鐘',
+          description: '提示工程中的典型陷阱及如何避免。',
+          type: 'reading',
+          content: (
+            <div>
+              <h3 className="text-xl font-bold mb-2">需要避免的常見錯誤</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">1. 太過模糊</h4>
+                  <p className="text-gray-300 mb-2">問題：「寫一些有趣的東西」</p>
+                  <p className="text-green-400 text-sm">解決方案：「寫一篇150字的文章，介紹AI對醫療保健的影響，重點關注診斷改進」</p>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">2. 過度複雜化提示</h4>
+                  <p className="text-gray-300 mb-2">問題：在一個提示中添加太多條件和約束</p>
+                  <p className="text-green-400 text-sm">解決方案：將複雜請求分解成多個簡單的提示</p>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">3. 不提供背景</h4>
+                  <p className="text-gray-300 mb-2">問題：「解釋這個概念」（不說明是什麼概念）</p>
+                  <p className="text-green-400 text-sm">解決方案：「向沒有技術背景的初學者解釋機器學習」</p>
+                </div>
+
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
+                  <h4 className="font-semibold text-red-400 mb-2">4. 忽視輸出格式</h4>
+                  <p className="text-gray-300 mb-2">問題：不指定您希望回應的結構</p>
+                  <p className="text-green-400 text-sm">解決方案：「用項目符號提供您的答案，並附上簡短解釋」</p>
+                </div>
+
+                <div className="bg-yellow-900/20 p-4 rounded-lg border border-yellow-500/30">
+                  <h4 className="font-semibold text-yellow-400 mb-2">💡 記住</h4>
+                  <p className="text-gray-300">提示工程是迭代的。不要期望立即獲得完美結果。根據AI的回應改進您的提示以獲得更好的結果。</p>
+                </div>
+              </div>
+            </div>
+          )
+        }
       ]
     }
   ]
-}
+};
 
-// Custom Hooks
-const useProgressTracking = () => {
-  const [progress, setProgress] = useState<LessonProgress>({
-    completedItems: [],
-    currentItem: '',
-    timeSpent: 0,
-    lastAccessed: new Date().toISOString(),
-    ratings: {},
-    notes: {}
-  })
-
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  const loadProgress = useCallback(async () => {
-    try {
-      setLoading(true)
-      const stored = localStorage.getItem(STORAGE_KEY)
-      
-      if (stored) {
-        const parsed = JSON.parse(stored)
-        setProgress(parsed)
-      }
-    } catch (err) {
-      console.error('Failed to load progress:', err)
-      setError('Failed to load learning progress')
-    } finally {
-      setLoading(false)
-    }
-  }, [])
-
-  const updateProgress = useCallback((updates: Partial<LessonProgress>) => {
-    try {
-      setProgress(prev => {
-        const updated = { 
-          ...prev, 
-          ...updates, 
-          lastAccessed: new Date().toISOString() 
-        }
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
-        return updated
-      })
-    } catch (err) {
-      console.error('Failed to save progress:', err)
-      setError('Failed to save progress')
-    }
-  }, [])
-
-  const markAsCompleted = useCallback((itemKey: string) => {
-    updateProgress({
-      completedItems: [...progress.completedItems.filter(key => key !== itemKey), itemKey],
-      currentItem: itemKey
-    })
-  }, [progress.completedItems, updateProgress])
-
-  const submitFeedback = useCallback((feedback: Omit<LessonFeedback, 'timestamp'>) => {
-    try {
-      const fullFeedback: LessonFeedback = {
-        ...feedback,
-        timestamp: new Date().toISOString()
-      }
-      
-      const existing = JSON.parse(localStorage.getItem(FEEDBACK_STORAGE_KEY) || '[]')
-      existing.push(fullFeedback)
-      localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(existing))
-      
-      // Update ratings in progress
-      if (feedback.type === 'like' || feedback.type === 'dislike') {
-        updateProgress({
-          ratings: {
-            ...progress.ratings,
-            [feedback.itemKey]: feedback.type
-          }
-        })
-      }
-    } catch (err) {
-      console.error('Failed to submit feedback:', err)
-      setError('Failed to submit feedback')
-    }
-  }, [progress.ratings, updateProgress])
-
-  useEffect(() => {
-    loadProgress()
-  }, [loadProgress])
-
-  return {
-    progress,
-    updateProgress,
-    markAsCompleted,
-    submitFeedback,
-    loading,
-    error
-  }
-}
-
-const useNavigation = (sections: LessonSection[], currentItemKey: string) => {
-  return useMemo((): NavigationState => {
-    const allItems = sections.flatMap(section => section.items)
-    const currentIndex = allItems.findIndex(item => item.key === currentItemKey)
-    
-    return {
-      canGoPrevious: currentIndex > 0,
-      canGoNext: currentIndex < allItems.length - 1,
-      previousItem: currentIndex > 0 ? allItems[currentIndex - 1] : undefined,
-      nextItem: currentIndex < allItems.length - 1 ? allItems[currentIndex + 1] : undefined,
-      currentIndex,
-      totalItems: allItems.length
-    }
-  }, [sections, currentItemKey])
-}
-
-// 組件定義 / Component Definitions
-const ErrorMessage: React.FC<{ message: string; onRetry?: () => void }> = memo(({ message, onRetry }) => {
-  const { language } = useLanguage()
+// 測驗部分
+const Quiz = memo(() => {
+  const { language } = useLanguage();
+  const questions = language === 'zh-TW' ? zhQuizQuestions : enQuizQuestions;
+  const isZhTW = language === 'zh-TW';
   
   return (
-    <div className="flex flex-col items-center justify-center py-12 px-4">
-      <AlertCircle className="h-12 w-12 text-red-400 mb-4" />
-      <p className="text-gray-300 text-center mb-4">{message}</p>
-      {onRetry && (
-        <Button onClick={onRetry} variant="outline">
-          {language === 'zh-TW' ? '重試' : 'Retry'}
-        </Button>
-      )}
+    <div className="max-w-4xl mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-6 text-white">
+        {isZhTW ? '第一課測驗' : 'Lesson 1 Quiz'}
+      </h2>
+      <QuizCard
+        questions={questions}
+        isZhTW={isZhTW}
+      />
     </div>
-  )
-})
+  );
+});
 
-ErrorMessage.displayName = 'ErrorMessage'
-
-const LessonSidebar: React.FC<{
-  sections: LessonSection[]
-  selectedKey: string
-  onSelect: (key: string) => void
-  completedItems: string[]
-}> = memo(({ sections, selectedKey, onSelect, completedItems }) => {
-  const { language } = useLanguage()
-  
-  return (
-    <motion.aside
-      initial={{ x: -40, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="w-80 bg-gray-950 border-r border-gray-800 flex flex-col py-8 px-4 gap-2 min-h-screen"
-    >
-      {sections.map(section => (
-        <div key={section.group} className="mb-6">
-          <div className="flex items-center gap-2 mb-3 text-gray-300 text-lg font-bold tracking-wide">
-            <span className="text-2xl">{section.groupIcon}</span>
-            <span>{language === 'zh-TW' ? section.groupZh : section.group}</span>
-          </div>
-          <div className="text-xs text-gray-400 mb-3">
-            {language === 'zh-TW' ? section.descriptionZh : section.description}
-          </div>
-          <div className="flex flex-col gap-1">
-            {section.items.map(item => (
-              <button
-                key={item.key}
-                className={`group flex flex-col items-start w-full px-4 py-3 rounded-lg text-left font-medium transition-all relative overflow-hidden
-                  ${selectedKey === item.key 
-                    ? 'bg-blue-700 text-white border-l-4 border-blue-400 shadow-lg' 
-                    : 'bg-gray-900 text-gray-200 hover:bg-gray-800 hover:text-blue-200'
-                  }`}
-                onClick={() => onSelect(item.key)}
-              >
-                <div className="flex items-center w-full">
-                  <span className="mr-3 text-xl">
-                    {completedItems.includes(item.key) ? (
-                      <CheckCircle className="w-6 h-6 text-green-400" />
-                    ) : (
-                      <span className="text-2xl">{item.icon}</span>
-                    )}
-                  </span>
-                  <span className="flex-1 text-sm">
-                    {language === 'zh-TW' ? item.titleZh : item.title}
-                  </span>
-                  <Badge 
-                    variant={item.type === 'summary' ? 'default' : 'secondary'}
-                    className="ml-2 text-xs"
-                  >
-                    {language === 'zh-TW' ? item.durationZh : item.duration}
-                  </Badge>
-                </div>
-                {item.description && (
-                  <span className="mt-1 ml-9 text-xs text-gray-400 group-hover:text-blue-200 line-clamp-2">
-                    {language === 'zh-TW' ? item.descriptionZh : item.description}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-      ))}
-    </motion.aside>
-  )
-})
-
-LessonSidebar.displayName = 'LessonSidebar'
-
-const LessonNavigation: React.FC<{
-  navigation: NavigationState
-  onNavigate: (direction: 'previous' | 'next') => void
-  onBackToLearning: () => void
-}> = memo(({ navigation, onNavigate, onBackToLearning }) => {
-  const { language } = useLanguage()
-  
-  return (
-    <nav className="flex items-center justify-between mb-6 px-4">
-      <div className="flex items-center text-sm text-blue-400 space-x-2">
-        <button 
-          onClick={onBackToLearning}
-          className="hover:underline flex items-center gap-1"
-        >
-          <Home className="h-4 w-4" />
-          {language === 'zh-TW' ? '提示工程精通' : 'Prompt Engineering Mastery'}
-        </button>
-        <span>&gt;</span>
-        <span className="font-semibold text-blue-300">
-          {language === 'zh-TW' ? '課堂 1' : 'Lesson 1'}
-        </span>
-      </div>
-      
-      <div className="flex items-center space-x-4">
-        <span className="text-sm text-gray-400">
-          {navigation.currentIndex + 1} / {navigation.totalItems}
-        </span>
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onNavigate('previous')}
-            disabled={!navigation.canGoPrevious}
-            className="flex items-center gap-1"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {language === 'zh-TW' ? '上一個' : 'Previous'}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onNavigate('next')}
-            disabled={!navigation.canGoNext}
-            className="flex items-center gap-1"
-          >
-            {language === 'zh-TW' ? '下一個' : 'Next'}
-            <ArrowRight className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
-    </nav>
-  )
-})
-
-LessonNavigation.displayName = 'LessonNavigation'
-
-const LessonContent: React.FC<{
-  item: LessonItem
-  isCompleted: boolean
-  onComplete: () => void
-  onFeedback: (type: 'like' | 'dislike' | 'report') => void
-  userRating?: 'like' | 'dislike'
-}> = memo(({ item, isCompleted, onComplete, onFeedback, userRating }) => {
-  const { language } = useLanguage()
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full max-w-5xl mx-auto bg-gray-900 rounded-2xl p-8 shadow-xl flex flex-col min-h-[500px]"
-    >
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
-            {language === 'zh-TW' ? item.titleZh : item.title}
-          </h1>
-          <div className="flex items-center gap-4 text-sm text-gray-400">
-            <span className="flex items-center gap-1">
-              <Clock className="h-4 w-4" />
-              {language === 'zh-TW' ? item.durationZh : item.duration}
-            </span>
-            <Badge variant="outline">
-              {language === 'zh-TW' 
-                ? item.difficulty === 'beginner' ? '初級' : item.difficulty === 'intermediate' ? '中級' : '高級'
-                : item.difficulty
-              }
-            </Badge>
-          </div>
-        </div>
-        <div className="text-2xl">{item.icon}</div>
-      </div>
-      
-      <div className="flex-1 text-lg leading-relaxed mb-10">
-        {language === 'zh-TW' ? item.contentZh : item.content}
-      </div>
-      
-      <div className="mt-auto space-y-6">
-        <div className="flex justify-center">
-          <Button
-            size="lg"
-            onClick={onComplete}
-            disabled={isCompleted}
-            className={`px-8 py-4 text-lg font-bold rounded-xl transition-all ${
-              isCompleted 
-                ? 'bg-green-600 hover:bg-green-700' 
-                : 'bg-blue-600 hover:bg-blue-700'
-            }`}
-          >
-            {isCompleted ? (
-              <>
-                <CheckCircle className="mr-2 h-5 w-5" />
-                {language === 'zh-TW' ? '已完成' : 'Completed'}
-              </>
-            ) : (
-              <>
-                <Award className="mr-2 h-5 w-5" />
-                {language === 'zh-TW' ? '標記為已完成' : 'Mark as Completed'}
-              </>
-            )}
-          </Button>
-        </div>
-        
-        <div className="flex items-center justify-center gap-8 border-t border-gray-700 pt-6">
-          <button
-            onClick={() => onFeedback('like')}
-            className={`flex items-center gap-2 font-medium transition-colors ${
-              userRating === 'like' 
-                ? 'text-green-400' 
-                : 'text-blue-400 hover:text-blue-300'
-            }`}
-          >
-            <ThumbsUp className="h-5 w-5" />
-            {language === 'zh-TW' ? '讚好' : 'Like'}
-          </button>
-          
-          <button
-            onClick={() => onFeedback('dislike')}
-            className={`flex items-center gap-2 font-medium transition-colors ${
-              userRating === 'dislike' 
-                ? 'text-red-400' 
-                : 'text-blue-400 hover:text-blue-300'
-            }`}
-          >
-            <ThumbsDown className="h-5 w-5" />
-            {language === 'zh-TW' ? '不喜歡' : 'Dislike'}
-          </button>
-          
-          <button
-            onClick={() => onFeedback('report')}
-            className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
-          >
-            <Flag className="h-5 w-5" />
-            {language === 'zh-TW' ? '報告問題' : 'Report Issue'}
-          </button>
-        </div>
-      </div>
-    </motion.div>
-  )
-})
-
-LessonContent.displayName = 'LessonContent'
-
-// 主組件 / Main Component
 const PromptEngineeringLesson1: React.FC = () => {
-  const { language } = useLanguage()
-  const navigate = useNavigate()
-  const { progress, markAsCompleted, submitFeedback, loading, error } = useProgressTracking()
+  const { language } = useLanguage();
+  const [currentSection, setCurrentSection] = useState('what-is-prompt-engineering');
+  const [showQuiz, setShowQuiz] = useState(false);
   
-  // 生成課程內容 / Generate course content
-  const sections = useMemo(() => createLessonContent(language === 'zh-TW' ? 'zh' : 'en'), [language])
+  const sections = useMemo(() => lesson1Sections[language], [language]);
+  const { progress, markAsCompleted, isCompleted } = useLessonCompletion('lesson1', sections);
   
-  // 狀態管理 / State Management
-  const [selectedKey, setSelectedKey] = useState(() => {
-    const allItems = sections.flatMap(s => s.items)
-    return progress.currentItem || allItems[0]?.key || 'intro'
-  })
+  const currentContent = useMemo(() => {
+    if (showQuiz) return null;
+    
+    for (const section of sections) {
+      const item = section.items.find(item => item.key === currentSection);
+      if (item) return item.content;
+    }
+    return null;
+  }, [currentSection, sections, showQuiz]);
   
-  // 導航狀態 / Navigation State
-  const navigation = useNavigation(sections, selectedKey)
+  const isZhTW = language === 'zh-TW';
   
-  // 當前項目 / Current Item
-  const currentItem = useMemo(() => {
-    const allItems = sections.flatMap(s => s.items)
-    return allItems.find(item => item.key === selectedKey)
-  }, [sections, selectedKey])
+  // 處理測驗切換
+  const handleQuizToggle = useCallback(() => {
+    setShowQuiz(!showQuiz);
+    if (!showQuiz) {
+      setCurrentSection('quiz');
+    }
+  }, [showQuiz]);
   
-  // 設置頁面標題 / Set page title
-  useEffect(() => {
-    const title = language === 'zh-TW' 
-      ? `課堂 1：提示基礎 | AI Formula`
-      : `Lesson 1: Prompt Fundamentals | AI Formula`
-    document.title = title
-  }, [language])
-  
-  // 事件處理器 / Event Handlers
+  // 處理項目選擇
   const handleItemSelect = useCallback((key: string) => {
-    setSelectedKey(key)
-  }, [])
-  
-  const handleNavigation = useCallback((direction: 'previous' | 'next') => {
-    if (direction === 'previous' && navigation.previousItem) {
-      setSelectedKey(navigation.previousItem.key)
-    } else if (direction === 'next' && navigation.nextItem) {
-      setSelectedKey(navigation.nextItem.key)
+    if (key === 'quiz') {
+      setShowQuiz(true);
+    } else {
+      setShowQuiz(false);
     }
-  }, [navigation])
-  
-  const handleComplete = useCallback(() => {
-    if (currentItem) {
-      markAsCompleted(currentItem.key)
-    }
-  }, [currentItem, markAsCompleted])
-  
-  const handleFeedback = useCallback((type: 'like' | 'dislike' | 'report') => {
-    if (currentItem) {
-      submitFeedback({
-        type,
-        itemKey: currentItem.key,
-        message: type === 'report' ? 'User reported an issue' : undefined
-      })
-    }
-  }, [currentItem, submitFeedback])
-  
-  const handleBackToLearning = useCallback(() => {
-    navigate('/prompt-engineering/learning')
-  }, [navigate])
-  
-  // 載入狀態 / Loading State
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black text-white">
-        <Navigation />
-        <div className="pt-20">
-          <CardLoadingSpinner />
-        </div>
-      </div>
-    )
-  }
-  
-  // 錯誤狀態 / Error State
-  if (error) {
-    return (
-      <div className="min-h-screen bg-black text-white">
-        <Navigation />
-        <div className="pt-20">
-          <ErrorMessage message={error} />
-        </div>
-      </div>
-    )
-  }
-  
-  // 如果沒有當前項目 / If no current item
-  if (!currentItem) {
-    return (
-      <div className="min-h-screen bg-black text-white">
-        <Navigation />
-        <div className="pt-20">
-          <ErrorMessage message="Lesson content not found" />
-        </div>
-      </div>
-    )
-  }
+    setCurrentSection(key);
+  }, []);
   
   return (
-    <ErrorBoundary>
-      <div className="min-h-screen bg-black text-white">
-        <Navigation />
-        
-        <div className="flex pt-20">
-          {/* 左側課程導航 / Left Lesson Navigation */}
-          <LessonSidebar
-            sections={sections}
-            selectedKey={selectedKey}
-            onSelect={handleItemSelect}
-            completedItems={progress.completedItems}
-          />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <Navigation />
+      
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex gap-8">
+          {/* 側邊欄 */}
+          <div className="w-80 flex-shrink-0">
+            <LessonSidebar
+              sections={sections}
+              selectedKey={currentSection}
+              onSelectItem={handleItemSelect}
+              isZhTW={isZhTW}
+              isCompleted={isCompleted}
+            />
+          </div>
           
-          {/* 主要內容區域 / Main Content Area */}
-          <div className="flex-1 px-0 py-10 flex flex-col items-center">
-            {/* 頂部導航 / Top Navigation */}
-            <div className="w-full max-w-5xl mx-auto mb-6">
-              <LessonNavigation
-                navigation={navigation}
-                onNavigate={handleNavigation}
-                onBackToLearning={handleBackToLearning}
-              />
-            </div>
-            
-            {/* 課程內容 / Lesson Content */}
-            <Suspense fallback={<CardLoadingSpinner />}>
-              <LessonContent
-                item={currentItem}
-                isCompleted={progress.completedItems.includes(currentItem.key)}
-                onComplete={handleComplete}
-                onFeedback={handleFeedback}
-                userRating={progress.ratings[currentItem.key]}
-              />
-            </Suspense>
+          {/* 主要內容 */}
+          <div className="flex-1">
+            <LessonContent
+              currentContent={currentContent}
+              showQuiz={showQuiz}
+              quizComponent={<Quiz />}
+              onComplete={() => markAsCompleted(currentSection)}
+            />
           </div>
         </div>
       </div>
-    </ErrorBoundary>
-  )
-}
+    </div>
+  );
+};
 
-// 記憶化主組件 / Memoized Main Component
 export default PromptEngineeringLesson1; 

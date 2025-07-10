@@ -1,424 +1,509 @@
-import React, { useState, useCallback } from 'react'
-import { useAuth } from '@/contexts/AuthContext'
-import { useLanguage } from '@/contexts/LanguageContext'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { 
-  AlertDialog, 
-  AlertDialogAction, 
-  AlertDialogCancel, 
-  AlertDialogContent, 
-  AlertDialogDescription, 
-  AlertDialogFooter, 
-  AlertDialogHeader, 
-  AlertDialogTitle, 
-  AlertDialogTrigger 
-} from '@/components/ui/alert-dialog'
-import { LogOut, User, Settings, BookOpen, AlertCircle, CheckCircle } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-
-// 類型定義 / Type Definitions
-interface DashboardError {
-  message: string
-  type: 'error' | 'warning' | 'info'
-}
+import { useNavigate } from 'react-router-dom'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useAuth } from '@/contexts/AuthContext'
+import Navigation from '@/components/Navigation'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
+import { LearningButton } from '@/components/ui/learning-button'
+import { 
+  BookOpen, 
+  Clock, 
+  Target, 
+  TrendingUp, 
+  Calendar,
+  Star,
+  Award,
+  PlayCircle,
+  CheckCircle,
+  ArrowRight,
+  BarChart3,
+  User,
+  Settings,
+  LogOut
+} from 'lucide-react'
 
 const Dashboard: React.FC = () => {
-  const { user, signOut } = useAuth()
+  const navigate = useNavigate()
   const { language } = useLanguage()
+  const { user, signOut } = useAuth()
   
-  // 狀態管理 / State Management
-  const [isSigningOut, setIsSigningOut] = useState(false)
-  const [error, setError] = useState<DashboardError | null>(null)
-  const [isAlertOpen, setIsAlertOpen] = useState(false)
-
-  // 多語言文字 / Multilingual Text
+  // 多語言文字
   const text = {
     en: {
-      title: 'Dashboard',
-      subtitle: 'Welcome to AI Formula',
-      description: 'Your personalized learning experience starts here',
-      continueAbbr: 'Continue',
-      startLearning: 'Start Learning',
-      viewCourses: 'View All Courses',
-      greeting: 'Hello',
-      progress: 'Progress',
-      assignments: 'Assignments',
-      achievements: 'Achievements',
+      welcome: 'Welcome back',
+      learningProgress: 'Learning Progress',
+      coursesCompleted: 'Courses Completed',
+      totalStudyTime: 'Total Study Time',
+      averageScore: 'Average Score',
+      currentCourses: 'Current Courses',
+      recommendedCourses: 'Recommended Courses',
       recentActivity: 'Recent Activity',
-      upcomingDeadlines: 'Upcoming Deadlines',
-      quickActions: 'Quick Actions',
-      enrolledCourses: 'Enrolled Courses',
-      completedCourses: 'Completed Courses',
-      totalHours: 'Total Hours',
-      certificatesEarned: 'Certificates Earned',
-      skillsLearned: 'Skills Learned',
-      studyStreak: 'Study Streak',
-      days: 'days',
+      viewAll: 'View All',
+      continueLearning: 'Continue Learning',
+      startCourse: 'Start Course',
+      viewCourse: 'View Course',
+      profile: 'Profile',
+      settings: 'Settings',
+      signOut: 'Sign Out',
       hours: 'hours',
       minutes: 'minutes',
       completed: 'Completed',
       inProgress: 'In Progress',
       notStarted: 'Not Started',
-      dueDate: 'Due Date',
-      priority: 'Priority',
-      high: 'High',
-      medium: 'Medium',
-      low: 'Low',
-      viewAll: 'View All',
-      noData: 'No data available',
-      loading: 'Loading...',
-      error: 'Error loading data',
-      retry: 'Retry',
-      logout: 'Logout',
-      profile: 'Profile',
-      settings: 'Settings',
-      notifications: 'Notifications',
-      help: 'Help',
-      feedback: 'Feedback',
-      support: 'Support'
+      beginner: 'Beginner',
+      intermediate: 'Intermediate',
+      advanced: 'Advanced'
     },
-    'zh-TW': {
-      title: '儀表板',
-      subtitle: '歡迎來到 AI Formula',
-      description: '您的個人化學習體驗從這裡開始',
-      continueAbbr: '繼續',
-      startLearning: '開始學習',
-      viewCourses: '查看所有課程',
-      greeting: '你好',
-      progress: '進度',
-      assignments: '作業',
-      achievements: '成就',
+    zh: {
+      welcome: '歡迎回來',
+      learningProgress: '學習進度',
+      coursesCompleted: '已完成課程',
+      totalStudyTime: '總學習時間',
+      averageScore: '平均分數',
+      currentCourses: '當前課程',
+      recommendedCourses: '推薦課程',
       recentActivity: '最近活動',
-      upcomingDeadlines: '即將到期',
-      quickActions: '快速操作',
-      enrolledCourses: '已註冊課程',
-      completedCourses: '已完成課程',
-      totalHours: '總小時數',
-      certificatesEarned: '獲得證書',
-      skillsLearned: '學習技能',
-      studyStreak: '學習連續天數',
-      days: '天',
+      viewAll: '查看全部',
+      continueLearning: '繼續學習',
+      startCourse: '開始課程',
+      viewCourse: '查看課程',
+      profile: '個人資料',
+      settings: '設定',
+      signOut: '登出',
       hours: '小時',
       minutes: '分鐘',
       completed: '已完成',
       inProgress: '進行中',
       notStarted: '未開始',
-      dueDate: '截止日期',
-      priority: '優先級',
-      high: '高',
-      medium: '中',
-      low: '低',
-      viewAll: '查看全部',
-      noData: '沒有資料',
-      loading: '載入中...',
-      error: '載入資料時發生錯誤',
-      retry: '重試',
-      logout: '登出',
-      profile: '個人資料',
-      settings: '設定',
-      notifications: '通知',
-      help: '說明',
-      feedback: '反饋',
-      support: '支援'
+      beginner: '初級',
+      intermediate: '中級',
+      advanced: '高級'
     }
   }
 
-  const t = text[language] || text.en
+  const t = text[language === 'zh-TW' ? 'zh' : 'en']
 
-  // 記憶化事件處理函數 / Memoized Event Handlers
-  const handleSignOut = useCallback(async () => {
-    setIsSigningOut(true)
-    setError(null)
-    
+  // 用戶學習數據
+  const [learningStats, setLearningStats] = useState({
+    coursesCompleted: 3,
+    totalStudyTime: 24.5,
+    averageScore: 87,
+    currentStreak: 7,
+    totalCourses: 12
+  })
+
+  // 當前課程數據
+  const currentCourses = [
+    {
+      id: 'prompt-engineering',
+      title: 'Prompt Engineering Mastery',
+      titleZh: '提示工程精通課程',
+      progress: 65,
+      status: 'inProgress',
+      nextLesson: 'Advanced Techniques',
+      nextLessonZh: '高級技巧',
+      estimatedTime: '2h 15m',
+      difficulty: 'intermediate'
+    },
+    {
+      id: 'ai-ethics',
+      title: 'AI Ethics and Responsibility',
+      titleZh: 'AI倫理與責任',
+      progress: 30,
+      status: 'inProgress',
+      nextLesson: 'Bias in AI Systems',
+      nextLessonZh: 'AI系統中的偏見',
+      estimatedTime: '1h 45m',
+      difficulty: 'beginner'
+    }
+  ]
+
+  // 推薦課程
+  const recommendedCourses = [
+    {
+      id: 'machine-learning-basics',
+      title: 'Machine Learning Fundamentals',
+      titleZh: '機器學習基礎',
+      description: 'Learn the core concepts of machine learning',
+      descriptionZh: '學習機器學習的核心概念',
+      duration: '8 hours',
+      durationZh: '8小時',
+      difficulty: 'beginner',
+      rating: 4.8,
+      students: 15420
+    },
+    {
+      id: 'neural-networks',
+      title: 'Neural Networks Deep Dive',
+      titleZh: '神經網絡深度探索',
+      description: 'Advanced neural network architectures and applications',
+      descriptionZh: '高級神經網絡架構和應用',
+      duration: '12 hours',
+      durationZh: '12小時',
+      difficulty: 'advanced',
+      rating: 4.9,
+      students: 8750
+    }
+  ]
+
+  // 最近活動
+  const recentActivity = [
+    {
+      id: 1,
+      type: 'completed',
+      title: 'Introduction to Prompt Engineering',
+      titleZh: '提示工程介紹',
+      time: '2 hours ago',
+      timeZh: '2小時前'
+    },
+    {
+      id: 2,
+      type: 'started',
+      title: 'Advanced Prompt Techniques',
+      titleZh: '高級提示技巧',
+      time: '1 day ago',
+      timeZh: '1天前'
+    },
+    {
+      id: 3,
+      type: 'quiz',
+      title: 'Quiz: Prompt Structure',
+      titleZh: '測驗：提示結構',
+      time: '2 days ago',
+      timeZh: '2天前',
+      score: 92
+    }
+  ]
+
+  const handleSignOut = async () => {
     try {
       await signOut()
-      // 成功登出後會自動重定向，無需額外處理
-    } catch (err) {
-      console.error('Sign out error:', err)
-      setError({
-        message: t.signOutError,
-        type: 'error'
-      })
-    } finally {
-      setIsSigningOut(false)
-      setIsAlertOpen(false)
+      navigate('/auth')
+    } catch (error) {
+      console.error('Sign out error:', error)
     }
-  }, [signOut, t.signOutError])
-
-  const handleCloseError = useCallback(() => {
-    setError(null)
-  }, [])
-
-  // 如果用戶資料無效，顯示錯誤 / Show error if user data is invalid
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Card className="w-full max-w-md bg-gray-900 border-gray-700">
-            <CardHeader className="text-center">
-              <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-              <CardTitle className="text-white">{t.errorOccurred}</CardTitle>
-              <CardDescription className="text-gray-300">
-                {t.userNotFound}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-gray-400 text-sm mb-4">{t.loadingError}</p>
-              <Button 
-                onClick={() => window.location.reload()}
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-              >
-                重新載入 / Reload
-              </Button>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </div>
-    )
   }
 
-  return (
-    <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* 頁面標題和登出按鈕 / Page Header and Sign Out Button */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-between items-center mb-8"
-        >
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            {t.dashboard}
-          </h1>
-          
-          <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
-            <AlertDialogTrigger asChild>
-              <Button 
-                variant="outline" 
-                disabled={isSigningOut}
-                className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
-                aria-label={`${t.signOut} - ${user.email}`}
-              >
-                <LogOut className="mr-2 h-4 w-4" />
-                {isSigningOut ? t.signingOut : t.signOut}
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent className="bg-gray-900 border-gray-700">
-              <AlertDialogHeader>
-                <AlertDialogTitle className="text-white">{t.signOutConfirm}</AlertDialogTitle>
-                <AlertDialogDescription className="text-gray-300">
-                  {t.signOutMessage}
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel 
-                  className="border-gray-600 text-gray-300 hover:bg-gray-800"
-                  disabled={isSigningOut}
-                >
-                  {t.cancel}
-                </AlertDialogCancel>
-                <AlertDialogAction 
-                  onClick={handleSignOut}
-                  disabled={isSigningOut}
-                  className="bg-red-600 hover:bg-red-700 text-white"
-                >
-                  {isSigningOut ? t.signingOut : t.confirm}
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </motion.div>
+  const progressPercentage = Math.round((learningStats.coursesCompleted / learningStats.totalCourses) * 100)
 
-        {/* 錯誤提示 / Error Alert */}
-        {error && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="mb-6"
-          >
-            <Alert className="border-red-500 bg-red-900/20">
-              <AlertCircle className="h-4 w-4 text-red-400" />
-              <AlertDescription className="text-red-300">
-                {error.message}
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={handleCloseError}
-                  className="ml-2 text-red-300 hover:text-red-100"
-                >
-                  ×
-                </Button>
-              </AlertDescription>
-            </Alert>
-          </motion.div>
-        )}
-        
-        {/* 儀表板卡片 / Dashboard Cards */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* 用戶資料卡片 / User Profile Card */}
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <Navigation />
+      
+      <div className="container mx-auto px-4 py-8">
+        {/* 用戶歡迎區域 */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h1 className="text-3xl font-bold text-white">
+                {t.welcome}, {user?.email?.split('@')[0] || 'Student'}!
+              </h1>
+              <p className="text-gray-400 mt-1">
+                {language === 'zh-TW' ? '繼續你的學習之旅' : 'Continue your learning journey'}
+              </p>
+            </motion.div>
+            
+            <div className="flex items-center space-x-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => navigate('/profile')}
+                className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <User className="h-5 w-5 text-gray-400" />
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => navigate('/settings')}
+                className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <Settings className="h-5 w-5 text-gray-400" />
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleSignOut}
+                className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <LogOut className="h-5 w-5 text-gray-400" />
+              </motion.button>
+            </div>
+          </div>
+        </div>
+
+        {/* 學習統計卡片 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card className="bg-gray-900 border-gray-700 hover:border-gray-600 transition-colors duration-200">
-              <CardHeader>
-                <CardTitle className="flex items-center text-white">
-                  <User className="mr-2 h-5 w-5 text-purple-400" />
-                  {t.profile}
-                </CardTitle>
-                <CardDescription className="text-gray-400">
-                  {t.profileDesc}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
+            <Card className="bg-gray-800/50 border-gray-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-300 mb-1">{t.email}:</p>
-                    <p className="text-sm text-white bg-gray-800 px-2 py-1 rounded break-all">
-                      {user.email}
-                    </p>
+                    <p className="text-gray-400 text-sm">{t.learningProgress}</p>
+                    <p className="text-2xl font-bold text-white">{progressPercentage}%</p>
                   </div>
+                  <div className="p-3 bg-blue-500/20 rounded-full">
+                    <TrendingUp className="h-6 w-6 text-blue-400" />
+                  </div>
+                </div>
+                <Progress value={progressPercentage} className="mt-4" />
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Card className="bg-gray-800/50 border-gray-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-300 mb-1">{t.userId}:</p>
-                    <p className="text-xs text-gray-400 bg-gray-800 px-2 py-1 rounded break-all font-mono">
-                      {user.id}
-                    </p>
+                    <p className="text-gray-400 text-sm">{t.coursesCompleted}</p>
+                    <p className="text-2xl font-bold text-white">{learningStats.coursesCompleted}</p>
+                  </div>
+                  <div className="p-3 bg-green-500/20 rounded-full">
+                    <CheckCircle className="h-6 w-6 text-green-400" />
                   </div>
                 </div>
               </CardContent>
             </Card>
           </motion.div>
 
-          {/* 歡迎卡片 / Welcome Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Card className="bg-gray-900 border-gray-700 hover:border-gray-600 transition-colors duration-200">
-              <CardHeader>
-                <CardTitle className="flex items-center text-white">
-                  <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
-                  {t.welcome}
-                </CardTitle>
-                <CardDescription className="text-gray-400">
-                  {t.welcomeDesc}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  {t.welcomeMessage}
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* 下一步卡片 / Next Steps Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Card className="bg-gray-900 border-gray-700 hover:border-gray-600 transition-colors duration-200">
-              <CardHeader>
-                <CardTitle className="flex items-center text-white">
-                  <Settings className="mr-2 h-5 w-5 text-blue-400" />
-                  {t.nextSteps}
-                </CardTitle>
-                <CardDescription className="text-gray-400">
-                  {t.nextStepsDesc}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-gray-300 space-y-2">
-                  <li className="flex items-center">
-                    <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>
-                    {t.exploreFeatures}
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2"></span>
-                    {t.updateProfile}
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span>
-                    {t.accessCourses}
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2"></span>
-                    {t.viewProgress}
-                  </li>
-                </ul>
+            <Card className="bg-gray-800/50 border-gray-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-400 text-sm">{t.totalStudyTime}</p>
+                    <p className="text-2xl font-bold text-white">{learningStats.totalStudyTime}h</p>
+                  </div>
+                  <div className="p-3 bg-purple-500/20 rounded-full">
+                    <Clock className="h-6 w-6 text-purple-400" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <Card className="bg-gray-800/50 border-gray-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-400 text-sm">{t.averageScore}</p>
+                    <p className="text-2xl font-bold text-white">{learningStats.averageScore}%</p>
+                  </div>
+                  <div className="p-3 bg-yellow-500/20 rounded-full">
+                    <Star className="h-6 w-6 text-yellow-400" />
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
         </div>
 
-        {/* 快速動作區域 / Quick Actions Area */}
+        {/* 當前課程 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8"
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mb-8"
         >
-          <Card className="bg-gray-900 border-gray-700">
+          <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
-              <CardTitle className="flex items-center text-white">
-                <BookOpen className="mr-2 h-5 w-5 text-yellow-400" />
-                {language === 'en' ? 'Quick Actions' : '快速動作'}
+              <CardTitle className="text-white flex items-center justify-between">
+                <span>{t.currentCourses}</span>
+                <button className="text-blue-400 hover:text-blue-300 text-sm">
+                  {t.viewAll}
+                </button>
               </CardTitle>
-              <CardDescription className="text-gray-400">
-                {language === 'en' ? 'Access key features quickly' : '快速存取主要功能'}
-              </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                <Button 
-                  variant="outline" 
-                  className="border-gray-600 text-gray-300 hover:bg-purple-900/20 hover:border-purple-400 hover:text-purple-300"
-                  onClick={() => window.location.href = '/course'}
-                >
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  {language === 'en' ? 'Browse Courses' : '瀏覽課程'}
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-gray-600 text-gray-300 hover:bg-pink-900/20 hover:border-pink-400 hover:text-pink-300"
-                  onClick={() => window.location.href = '/blog'}
-                >
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  {language === 'en' ? 'Read Blog' : '閱讀網誌'}
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-gray-600 text-gray-300 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300"
-                  onClick={() => window.location.href = '/about'}
-                >
-                  <User className="mr-2 h-4 w-4" />
-                  {language === 'en' ? 'About Us' : '關於我們'}
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-gray-600 text-gray-300 hover:bg-green-900/20 hover:border-green-400 hover:text-green-300"
-                  onClick={() => window.location.href = '/'}
-                >
-                  <Settings className="mr-2 h-4 w-4" />
-                  {language === 'en' ? 'Home' : '首頁'}
-                </Button>
+              <div className="grid gap-4">
+                {currentCourses.map((course) => (
+                  <motion.div
+                    key={course.id}
+                    className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg border border-gray-700"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="p-2 bg-blue-500/20 rounded-full">
+                        <BookOpen className="h-5 w-5 text-blue-400" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-white">
+                          {language === 'zh-TW' ? course.titleZh : course.title}
+                        </h3>
+                        <p className="text-sm text-gray-400">
+                          {language === 'zh-TW' ? '下一課：' : 'Next: '}
+                          {language === 'zh-TW' ? course.nextLessonZh : course.nextLesson}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center space-x-4">
+                      <div className="text-right">
+                        <div className="text-sm text-gray-400">{course.progress}% {t.completed}</div>
+                        <Progress value={course.progress} className="w-24 mt-1" />
+                      </div>
+                      
+                      <LearningButton
+                        intent="primary"
+                        size="sm"
+                        onClick={() => navigate(`/course/${course.id}`)}
+                      >
+                        {t.continueLearning}
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                      </LearningButton>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </CardContent>
           </Card>
         </motion.div>
+
+        {/* 推薦課程和最近活動 */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* 推薦課程 */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <Card className="bg-gray-800/50 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">{t.recommendedCourses}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {recommendedCourses.map((course) => (
+                    <motion.div
+                      key={course.id}
+                      className="p-4 bg-gray-900/50 rounded-lg border border-gray-700"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-semibold text-white">
+                          {language === 'zh-TW' ? course.titleZh : course.title}
+                        </h3>
+                        <Badge variant="outline" className="text-xs">
+                          {t[course.difficulty]}
+                        </Badge>
+                      </div>
+                      
+                      <p className="text-sm text-gray-400 mb-3">
+                        {language === 'zh-TW' ? course.descriptionZh : course.description}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4 text-sm text-gray-400">
+                          <span className="flex items-center">
+                            <Clock className="h-4 w-4 mr-1" />
+                            {language === 'zh-TW' ? course.durationZh : course.duration}
+                          </span>
+                          <span className="flex items-center">
+                            <Star className="h-4 w-4 mr-1" />
+                            {course.rating}
+                          </span>
+                        </div>
+                        
+                        <LearningButton
+                          intent="secondary"
+                          size="sm"
+                          onClick={() => navigate(`/course/${course.id}`)}
+                        >
+                          {t.startCourse}
+                        </LearningButton>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* 最近活動 */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          >
+            <Card className="bg-gray-800/50 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">{t.recentActivity}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {recentActivity.map((activity) => (
+                    <motion.div
+                      key={activity.id}
+                      className="flex items-center space-x-3 p-3 bg-gray-900/50 rounded-lg"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className={`p-2 rounded-full ${
+                        activity.type === 'completed' ? 'bg-green-500/20' :
+                        activity.type === 'started' ? 'bg-blue-500/20' :
+                        'bg-yellow-500/20'
+                      }`}>
+                        {activity.type === 'completed' ? (
+                          <CheckCircle className="h-4 w-4 text-green-400" />
+                        ) : activity.type === 'started' ? (
+                          <PlayCircle className="h-4 w-4 text-blue-400" />
+                        ) : (
+                          <Award className="h-4 w-4 text-yellow-400" />
+                        )}
+                      </div>
+                      
+                      <div className="flex-1">
+                        <h4 className="text-sm font-medium text-white">
+                          {language === 'zh-TW' ? activity.titleZh : activity.title}
+                        </h4>
+                        <p className="text-xs text-gray-400">
+                          {language === 'zh-TW' ? activity.timeZh : activity.time}
+                          {activity.score && (
+                            <span className="ml-2 text-green-400">
+                              {activity.score}%
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
       </div>
     </div>
   )
 }
 
-export default Dashboard; 
+export default Dashboard 

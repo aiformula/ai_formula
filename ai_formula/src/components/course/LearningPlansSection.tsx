@@ -2,9 +2,33 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { LearningButton } from '@/components/ui/learning-button';
 import { ArrowRight } from 'lucide-react';
-import { LearningPlansProps } from '@/types/courseTypes';
+
+interface LearningPlan {
+  id: string;
+  title: string;
+  titleCht: string;
+  description: string;
+  descriptionCht: string;
+  icon: React.ReactNode;
+  gradient: string;
+  freePrice: string;
+  freePriceEn: string;
+  freeIncludes: string[];
+  freeIncludesCht: string[];
+  proPrice: string;
+  originalPrice: string;
+  savings: string;
+  proIncludes: string[];
+  proIncludesCht: string[];
+}
+
+interface LearningPlansProps {
+  plans: LearningPlan[];
+  isZhTW: boolean;
+  onPlanClick: (planId: string, planType: 'free' | 'pro') => void;
+}
 
 const LearningPlansSection: React.FC<LearningPlansProps> = ({ 
   plans, 
@@ -12,7 +36,7 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
   onPlanClick 
 }) => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="learning-plans-title">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +44,7 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+          <h2 id="learning-plans-title" className="text-3xl md:text-4xl font-bold mb-4 text-white">
             {isZhTW ? '學習計劃' : 'Learning Plans'}
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -40,13 +64,17 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
               transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
               className="group"
             >
-              <Card className="bg-gray-900/50 border-gray-800 h-full hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1">
+              <Card 
+                className="bg-gray-900/50 border-gray-800 h-full hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
+                role="article"
+                aria-labelledby={`plan-title-${plan.id}`}
+              >
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`bg-gradient-to-br ${plan.gradient} p-3 rounded-xl text-2xl shadow-lg`}>
                       {plan.icon}
                     </div>
-                    <CardTitle className="text-white">
+                    <CardTitle id={`plan-title-${plan.id}`} className="text-white">
                       {isZhTW ? plan.titleCht : plan.title}
                     </CardTitle>
                   </div>
@@ -66,22 +94,24 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                           {isZhTW ? plan.freePrice : plan.freePriceEn}
                         </Badge>
                       </div>
-                      <ul className="text-sm text-gray-300 space-y-1">
+                      <ul className="text-sm text-gray-300 space-y-1" role="list">
                         {(isZhTW ? plan.freeIncludesCht : plan.freeIncludes).map((item, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                          <li key={idx} className="flex items-center gap-2" role="listitem">
+                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full" aria-hidden="true"></div>
                             {item}
                           </li>
                         ))}
                       </ul>
-                      <Button 
-                        variant="outline" 
-                        className="w-full mt-3 text-black bg-white border-gray-300 hover:bg-gray-100"
+                      <LearningButton 
+                        intent="outline"
+                        size="md"
+                        fullWidth
+                        className="mt-3 text-black bg-white border-gray-300 hover:bg-gray-100"
                         onClick={() => onPlanClick(plan.id, 'free')}
                         aria-label={`Start ${isZhTW ? plan.titleCht : plan.title} free plan`}
                       >
                         {isZhTW ? '免費開始' : 'Start Free'}
-                      </Button>
+                      </LearningButton>
                     </div>
 
                     {/* Pro Plan */}
@@ -94,10 +124,10 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                           {isZhTW ? '推薦' : 'Recommended'}
                         </Badge>
                       </div>
-                      <ul className="text-sm text-gray-300 space-y-1 mb-4">
+                      <ul className="text-sm text-gray-300 space-y-1 mb-4" role="list">
                         {(isZhTW ? plan.proIncludesCht : plan.proIncludes).map((item, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                          <li key={idx} className="flex items-center gap-2" role="listitem">
+                            <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" aria-hidden="true"></div>
                             {item}
                           </li>
                         ))}
@@ -109,14 +139,17 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                           {isZhTW ? `節省${plan.savings}` : `Save ${plan.savings}`}
                         </Badge>
                       </div>
-                      <Button 
-                        className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-semibold"
+                      <LearningButton 
+                        intent="accent"
+                        size="md"
+                        fullWidth
+                        className="font-semibold"
                         onClick={() => onPlanClick(plan.id, 'pro')}
                         aria-label={`Upgrade to ${isZhTW ? plan.titleCht : plan.title} pro plan`}
                       >
                         {isZhTW ? '升級至專業版' : 'Upgrade to Pro'}
                         <ArrowRight className="ml-2 h-3 w-3" />
-                      </Button>
+                      </LearningButton>
                     </div>
                   </div>
                 </CardContent>

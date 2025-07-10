@@ -75,7 +75,7 @@ const FEATURES: Feature[] = [
         </motion.svg>
       </span>
     ),
-    title: "Save Valuable Time",
+    title: "Save Valuable Time & Energy",
     description: "Say goodbye to repetitive tasks and focus your energy on more creative work."
   },
   {

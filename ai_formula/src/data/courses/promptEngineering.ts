@@ -84,8 +84,8 @@ export const promptEngineeringCourse: CourseDetail = courseManager.createCourse(
             zhHK: '提示工程介紹'
           },
           duration: {
-            en: '20 min',
-            zhHK: '20分鐘'
+            en: '25 min',
+            zhHK: '25分鐘'
           },
           description: {
             en: 'Understanding what prompt engineering is and why it matters',
@@ -93,8 +93,9 @@ export const promptEngineeringCourse: CourseDetail = courseManager.createCourse(
           },
           videoUrl: '/videos/prompt-intro.mp4',
           isLocked: true,
-          estimatedMinutes: 20,
-          tags: ['introduction', 'fundamentals']
+          estimatedMinutes: 25,
+          tags: ['introduction', 'fundamentals'],
+          hasQuiz: false  // 第一課沒有測驗
         }),
         courseManager.createLesson({
           id: 2,
@@ -103,8 +104,8 @@ export const promptEngineeringCourse: CourseDetail = courseManager.createCourse(
             zhHK: '優秀提示嘅結構'
           },
           duration: {
-            en: '25 min',
-            zhHK: '25分鐘'
+            en: '18 min',
+            zhHK: '18分鐘'
           },
           description: {
             en: 'Breaking down the components of effective prompts',
@@ -112,8 +113,9 @@ export const promptEngineeringCourse: CourseDetail = courseManager.createCourse(
           },
           videoUrl: '/videos/prompt-anatomy.mp4',
           isLocked: true,
-          estimatedMinutes: 25,
-          tags: ['structure', 'components']
+          estimatedMinutes: 18,
+          tags: ['structure', 'components'],
+          hasQuiz: true  // 只有第二課有測驗
         })
       ],
       order: 1
