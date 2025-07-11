@@ -83,13 +83,13 @@ export const useCourseData = (isZhTW: boolean) => {
       setIsLoading(true);
       
       if (product.category === 'prompt-engineering') {
-        navigate('/prompt-engineering/learning');
+        navigate('/prompt-engineering/overview');
       } else if (product.category === 'programming') {
-        navigate('/coding-basics/lesson/1');
+        navigate('/coding-basics/overview');
       } else if (product.id === 11) { // ChatGPT Mastery
-        navigate('/chatgpt-mastery/lesson/1');
+        navigate('/chatgpt-mastery/overview');
       } else if (product.id === 12) { // Perplexity Tools
-        navigate('/perplexity-tools/lesson/1');
+        navigate('/perplexity-tools/overview');
       } else {
         navigate(`/course/${product.category}`);
       }

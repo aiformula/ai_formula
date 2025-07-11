@@ -56,7 +56,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section className="py-24 px-6 bg-gray-900 relative overflow-hidden">
+    <section className="py-12 px-6 bg-slate-900 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -174,8 +174,61 @@ const ContactSection = () => {
                 
                 <div>
                   <Label htmlFor="message" className="text-white mb-2 block">
-                    {language === 'zh-TW' ? t('contact.form.message') : 'Message'}
+                    {language === 'zh-TW' ? t('contact.form.message') : 'How can we help you?'}
                   </Label>
+                  
+                  {/* 建議按鈕 */}
+                  <div className="mb-4">
+                    <p className="text-sm text-gray-400 mb-3">
+                      {language === 'zh-TW' ? '快速選擇常見問題：' : 'Quick select common questions:'}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        {
+                          label: language === 'zh-TW' ? '我想查詢課程內容' : 'Course Content Inquiry',
+                          text: language === 'zh-TW' 
+                            ? '你好，我想了解更多關於 [請填寫課程名稱] 嘅內容，例如上堂時間、教學大綱等。'
+                            : 'Hello, I would like to know more about [please specify course name] content, such as class schedule, curriculum, etc.'
+                        },
+                        {
+                          label: language === 'zh-TW' ? '我唔知揀邊個課程好' : 'Course Selection Help',
+                          text: language === 'zh-TW'
+                            ? '你好，我嘅背景係 [請填寫你嘅職業或背景]，學習目標係想做到 [請填寫你嘅目標]，請問有邊個課程比較適合我？'
+                            : 'Hello, my background is [please fill in your profession or background], and my learning goal is [please fill in your goal]. Which course would be most suitable for me?'
+                        },
+                        {
+                          label: language === 'zh-TW' ? '我想了解企業培訓方案' : 'Corporate Training',
+                          text: language === 'zh-TW'
+                            ? '你好，我哋公司有興趣為員工提供AI培訓，想了解一下你哋嘅企業方案同報價。'
+                            : 'Hello, our company is interested in providing AI training for employees. We would like to know more about your corporate packages and pricing.'
+                        },
+                        {
+                          label: language === 'zh-TW' ? '我遇到付款/技術問題' : 'Payment/Technical Issues',
+                          text: language === 'zh-TW'
+                            ? '你好，我喺 [付款/登入/睇片] 時遇到問題，可唔可以幫我睇睇？'
+                            : 'Hello, I encountered issues with [payment/login/video viewing]. Could you please help me with this?'
+                        },
+                        {
+                          label: language === 'zh-TW' ? '我想查詢合作機會' : 'Partnership Opportunities',
+                          text: language === 'zh-TW'
+                            ? '你好，我哋想同你哋傾下合作，請問應該聯絡邊個部門？'
+                            : 'Hello, we would like to discuss partnership opportunities. Which department should we contact?'
+                        }
+                      ].map((suggestion, index) => (
+                        <motion.button
+                          key={index}
+                          type="button"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setFormData({ ...formData, message: suggestion.text })}
+                          className="px-3 py-2 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white rounded-lg border border-gray-600 hover:border-yellow-500/50 transition-all duration-200"
+                        >
+                          {suggestion.label}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+
                   <Textarea
                     id="message"
                     name="message"
@@ -183,7 +236,10 @@ const ContactSection = () => {
                     onChange={handleChange}
                     rows={6}
                     className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-yellow-500 focus:ring-yellow-500 resize-none"
-                    placeholder={language === 'zh-TW' ? t('contact.form.messagePlaceholder') : 'Tell us about your project or question...'}
+                    placeholder={language === 'zh-TW' 
+                      ? '可以詳細話我哋知你嘅背景同學習目標，等我哋幫你揀最啱嘅課程。例如：我係一個平面設計師，想學AI繪圖，應該由邊個課程開始？'
+                      : 'Please tell us about your background and learning goals so we can help you choose the most suitable course. For example: I am a graphic designer wanting to learn AI drawing, which course should I start with?'
+                    }
                     required
                   />
                 </div>

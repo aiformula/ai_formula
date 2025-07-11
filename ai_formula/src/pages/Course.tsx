@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCourseData } from "@/hooks/useCourseData";
 import CourseErrorBoundary from "@/components/course/ErrorBoundary";
-import CourseHero from "@/components/course/CourseHero";
 import LearningPlansSection from "@/components/course/LearningPlansSection";
 import ProductGrid from "@/components/course/ProductGrid";
 import CTASection from "@/components/course/CTASection";
@@ -85,9 +85,6 @@ const Course: React.FC = () => {
         {/* Main Content with Suspense */}
         <Suspense fallback={<PageLoadingSpinner message={isZhTW ? '載入組件中...' : 'Loading components...'} />}>
           <main role="main" aria-label={isZhTW ? "課程頁面主要內容" : "Course page main content"}>
-            {/* Hero Section */}
-            <CourseHero isZhTW={isZhTW} />
-
             {/* Learning Plans Section */}
             <LearningPlansSection 
               plans={learningPlans}
@@ -108,6 +105,8 @@ const Course: React.FC = () => {
             <CTASection isZhTW={isZhTW} />
           </main>
         </Suspense>
+        
+        <Footer />
       </div>
     </CourseErrorBoundary>
   );

@@ -10,7 +10,7 @@ const MainHero = () => {
   const { t, language } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
       {/* Animated background dots */}
       <div className="absolute inset-0">
         {[...Array(30)].map((_, i) => (
@@ -37,150 +37,37 @@ const MainHero = () => {
         ))}
       </div>
 
-      {/* Enhanced Right side decorative elements */}
-      <div className="absolute right-5 top-1/2 transform -translate-y-1/2 hidden lg:block">
-        <motion.div
-          initial={{ opacity: 0, scale: 0, rotate: -180 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.5, delay: 1 }}
-          className="relative"
-        >
-          {/* Main large circle with gradient */}
-          <motion.div
-            className="w-48 h-48 rounded-full relative"
-            style={{
-              background: 'linear-gradient(45deg, #3B82F6, #8B5CF6, #EC4899)'
-            }}
-            animate={{ 
-              rotate: 360,
-              scale: [1, 1.05, 1] 
-            }}
-            transition={{ 
-              rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-              scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-          >
-            {/* Inner circle */}
-            <motion.div 
-              className="absolute inset-8 rounded-full"
-              style={{
-                background: 'linear-gradient(135deg, #EC4899, #F59E0B)'
-              }}
-              animate={{ 
-                rotate: -360,
-                scale: [1, 0.95, 1]
-              }}
-              transition={{ 
-                rotate: { duration: 15, repeat: Infinity, ease: "linear" },
-                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-              }}
-            >
-              {/* Core */}
-              <div className="absolute inset-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-            </motion.div>
-          </motion.div>
-          
-          {/* Large decorative elements around */}
-          <motion.div
-            className="absolute -top-12 -left-12 w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          >
-            <span className="text-white text-2xl">🎯</span>
-          </motion.div>
-          
-          <motion.div
-            className="absolute -bottom-8 -right-8 w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            whileHover={{ scale: 1.2, rotate: -5 }}
-          >
-            <span className="text-white text-xl">⚡</span>
-          </motion.div>
-          
-          <motion.div
-            className="absolute top-8 -right-16 w-14 h-14 bg-gradient-to-br from-green-500 to-blue-500 rounded-xl flex items-center justify-center shadow-2xl"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-            whileHover={{ scale: 1.15, rotate: 10 }}
-          >
-            <span className="text-white text-lg">🔗</span>
-          </motion.div>
-          
-          <motion.div
-            className="absolute bottom-16 -left-16 w-18 h-18 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
-            whileHover={{ scale: 1.1, rotate: -10 }}
-          >
-            <span className="text-white text-xl">💬</span>
-          </motion.div>
-          
-          {/* Additional floating elements */}
-          <motion.div
-            className="absolute top-20 left-20 w-6 h-6 bg-yellow-400 rounded-full"
-            animate={{ 
-              y: [0, -10, 0],
-              opacity: [0.7, 1, 0.7]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          ></motion.div>
-          
-          <motion.div
-            className="absolute bottom-20 right-20 w-4 h-4 bg-blue-400 rounded-full"
-            animate={{ 
-              y: [0, 10, 0],
-              opacity: [0.5, 1, 0.5]
-            }}
-            transition={{ 
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          ></motion.div>
-        </motion.div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center text-center">
+          {/* Content - Centered */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-left"
+            className="max-w-4xl"
           >
             {/* AI in Business Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-blue-900/30 text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-8"
+              className="inline-flex items-center space-x-2 bg-blue-900/30 text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6 md:mb-8"
             >
               <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
               <span>{language === 'zh-TW' ? t('hero.badge') : 'AI in Business'}</span>
             </motion.div>
             
-            {/* Main Title */}
+            {/* Main Title - Mobile First */}
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               {language === 'zh-TW' ? (
                 <>
-                  {t('hero.title1')}: {t('hero.title2')}<br />
-                  <span className="text-yellow-500">{t('hero.titleHighlight')}</span>
+                  AI Formula：香港最實戰<br />
+                  <span className="text-yellow-500">AI 應用課程</span>
                 </>
               ) : (
                 <>
@@ -190,37 +77,47 @@ const MainHero = () => {
               )}
             </motion.h1>
             
-            {/* Subtitle */}
+            {/* Secondary Title */}
+            <motion.h2
+              className="text-xl md:text-2xl font-semibold mb-4 text-gray-200"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              {language === 'zh-TW' ? '即學即用，專為香港職場而設' : 'Practical AI training designed for Hong Kong professionals'}
+            </motion.h2>
+            
+            {/* Subtitle - Mobile Friendly */}
             <motion.p
-              className="text-xl text-gray-300 mb-8 max-w-lg leading-relaxed"
+              className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {language === 'zh-TW' ? t('hero.subtitle') : 'How artificial intelligence is personalizing and transforming business automation.'}
+              {language === 'zh-TW' ? '學完即刻幫到你慳時間、提昇效率嘅 AI 課程' : 'Learn AI skills that immediately help you save time and boost efficiency'}
             </motion.p>
             
-            {/* Buttons */}
+            {/* Improved CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex items-center space-x-4 mb-16"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 md:mb-16"
             >
               <Button 
-                className="bg-white text-black hover:bg-gray-100 font-semibold px-6 py-3 text-lg rounded-full transition-all duration-300"
+                className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
                 onClick={() => navigate('/course')}
               >
-                {language === 'zh-TW' ? t('hero.chooseProgram') : 'Choose program'}
+                {language === 'zh-TW' ? '免費試學' : 'Start Free Trial'}
               </Button>
               
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center hover:bg-yellow-400 transition-colors duration-300"
+              <Button 
+                variant="outline"
+                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300"
+                onClick={() => navigate('/course')}
               >
-                <Play className="w-6 h-6 text-black ml-1" fill="currentColor" />
-              </motion.button>
+                {language === 'zh-TW' ? '了解更多' : 'Learn More'}
+              </Button>
             </motion.div>
 
             {/* Social Media Links */}
@@ -228,7 +125,7 @@ const MainHero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.0 }}
-              className="flex items-center space-x-8"
+              className="flex flex-wrap items-center justify-center gap-6 md:gap-8"
             >
               {[
                 { name: 'INSTAGRAM', icon: Instagram },
@@ -250,9 +147,6 @@ const MainHero = () => {
               ))}
             </motion.div>
           </motion.div>
-
-          {/* Right side - Visual space for decorative elements */}
-          <div className="hidden lg:block"></div>
         </div>
       </div>
     </section>

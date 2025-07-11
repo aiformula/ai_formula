@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, User, Eye, Share2, Bookmark } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useViewCount } from "@/contexts/ViewCountContext";
 import { Link, useParams } from "react-router-dom";
@@ -341,6 +342,7 @@ const BlogPost: React.FC = () => {
       <ArticleHeader post={post} isZhTW={isZhTW} />
       <ArticleContent post={post} isZhTW={isZhTW} />
       <RelatedArticles currentPost={post} isZhTW={isZhTW} />
+      <Footer />
     </div>
   );
 };

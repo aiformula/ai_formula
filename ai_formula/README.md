@@ -353,6 +353,177 @@ const { language, setLanguage } = useLanguage();
 
 ## 最新課程頁面更新詳情 / Latest Course Page Update Details
 
+### 🎯 最新UI/UX重大改進 / Latest Major UI/UX Improvements
+
+#### 📱 移動端響應式設計優化 / Mobile Responsive Design Optimization
+
+**三大核心問題解決 / Three Core Issues Resolved:**
+- **❌ 千祈唔好設計雜亂無章 (No Cluttered Design)** - 簡化頁面結構，精簡內容
+- **❌ 千祈唔好收埋重要資訊 (No Hidden Information)** - 確保所有重要資訊可見
+- **❌ 千祈唔好忽略移動端體驗 (No Poor Mobile Experience)** - 完善移動端優化
+
+**具體改進措施 / Specific Improvements:**
+- **新增漢堡菜單：** 完整的移動端導航解決方案
+- **Added Hamburger Menu:** Complete mobile navigation solution
+- **頁面結構簡化：** 從12個區塊減少到10個區塊
+- **Page Structure Simplified:** Reduced from 12 sections to 10 sections
+- **觸控優化：** 改善按鈕大小和間距
+- **Touch Optimization:** Improved button sizes and spacing
+
+#### 🎨 文字可讀性與色彩系統改進 / Text Readability & Color System Improvements
+
+**色彩對比度修正 / Color Contrast Corrections:**
+- **修復低對比度問題：** 所有標籤和徽章改為實心背景
+- **Fixed Low Contrast Issues:** All badges and tags changed to solid backgrounds
+- **分類色彩系統：** 每個類別配置專屬顏色
+- **Category Color System:** Each category assigned dedicated colors
+  - 🟠 公司介紹 (Company Intro) - Orange
+  - 🟡 優勢特色 (Advantages) - Yellow
+  - 🔵 工具應用 (Tools) - Blue
+  - 🟢 基礎知識 (Fundamentals) - Green
+  - 🟣 技術創新 (Tech Innovation) - Purple
+
+**雙語一致性改進 / Bilingual Consistency Improvements:**
+- **語言切換修復：** 確保英文顯示英文，中文顯示中文
+- **Language Switching Fixed:** Ensure English displays in English, Chinese in Chinese
+- **內容同步：** 所有組件的雙語內容完全對應
+- **Content Synchronization:** All bilingual content perfectly aligned
+
+#### 📰 BlogSection 佈局重新設計 / BlogSection Layout Redesign
+
+**新佈局架構 / New Layout Architecture:**
+- **左側區域 (1/3)：** "最新 AI 資訊" - 4篇隨機文章垂直排列
+- **Left Section (1/3):** "Latest AI News" - 4 random articles vertically arranged
+- **右側區域 (2/3)：** 精選文章大圖顯示
+- **Right Section (2/3):** Featured article with large image display
+- **水平佈局：** 從垂直堆疊改為左右分佈
+- **Horizontal Layout:** Changed from vertical stacking to left-right distribution
+
+**互動性增強 / Enhanced Interactivity:**
+- **隨機文章：** 每次載入顯示不同的4篇文章
+- **Random Articles:** Different 4 articles shown on each load
+- **響應式設計：** 移動端自動調整為垂直佈局
+- **Responsive Design:** Auto-adjusts to vertical layout on mobile
+
+#### 🎓 LearningMaterials 組件重大重構 / LearningMaterials Component Major Restructure
+
+**輪播系統實現 / Carousel System Implementation:**
+- **3課程顯示：** 一次只顯示3個課程，支持左右導航
+- **3-Course Display:** Show only 3 courses at once with left/right navigation
+- **無縫輪播：** 流暢的課程切換動畫
+- **Seamless Carousel:** Smooth course switching animations
+- **導航指示器：** 圓點顯示當前位置
+- **Navigation Indicators:** Dots showing current position
+
+**教師團隊更新 / Teaching Team Updates:**
+- **Kenneth** - AI 營銷專家 (AI Marketing Expert)
+- **David** - 業務自動化專家 (Business Automation Expert)
+- **Ken** - 高級機器學習專家 (Advanced ML Expert)
+- **Jason** - AI 整合專家 (AI Integration Expert)
+
+**課程特色系統 / Course Features System:**
+- **Emoji 分類：** 🎯 新手友好, 💬 提示工程, 🤖 AI應用
+- **Emoji Categories:** 🎯 Beginner-friendly, 💬 Prompt Engineering, 🤖 AI Applications
+- **免費策略：** 所有課程標示為免費，綠色"免費"徽章
+- **Free Strategy:** All courses marked as free with green "免費" badges
+- **價格顯示：** 劃線原價展示價值感
+- **Price Display:** Crossed-out original prices to show value
+
+#### 🏠 MainHero 組件簡化優化 / MainHero Component Simplification
+
+**標題系統更新 / Title System Updates:**
+- **主標題：** AI Formula：香港最實戰嘅 AI 應用課程
+- **Main Title:** AI Formula: Hong Kong's Most Practical AI Application Course
+- **副標題：** 即學即用，專為香港職場而設
+- **Subtitle:** Learn and Apply Immediately, Designed for Hong Kong Workplace
+- **說明文字：** 學完即刻幫到你慳時間、提昇效率嘅 AI 課程
+- **Description:** AI courses that immediately help you save time and boost efficiency
+
+**設計簡化 / Design Simplification:**
+- **移動端優先：** 文字尺寸採用移動端優先策略
+- **Mobile-First:** Text sizes using mobile-first approach
+- **居中佈局：** 移除多餘的空白區域，內容完全居中
+- **Centered Layout:** Remove excessive white space, content fully centered
+- **CTA 按鈕優化：** 綠色"免費試學"主按鈕，白色邊框"了解更多"副按鈕
+- **CTA Button Optimization:** Green "免費試學" primary, white outline "了解更多" secondary
+
+#### 📞 聯絡表單增強 / Contact Form Enhancement
+
+**智能建議按鈕 / Smart Suggestion Buttons:**
+- **"我想查詢課程內容"** - 課程內容查詢
+- **"Course Content Inquiry"** - Course content questions
+- **"我唔知揀邊個課程好"** - 課程選擇協助
+- **"Course Selection Help"** - Course selection assistance
+- **"我想了解企業培訓方案"** - 企業培訓方案
+- **"Corporate Training"** - Corporate training solutions
+- **"我遇到付款/技術問題"** - 付款技術支援
+- **"Payment/Technical Issues"** - Payment and technical support
+- **"我想查詢合作機會"** - 合作機會查詢
+- **"Partnership Opportunities"** - Partnership inquiries
+
+**自動填寫功能 / Auto-Fill Functionality:**
+- **智能內容：** 點擊建議按鈕自動填寫相應的查詢內容
+- **Smart Content:** Click suggestion buttons to auto-fill relevant inquiry content
+- **雙語支援：** 建議按鈕和內容完全雙語化
+- **Bilingual Support:** Suggestion buttons and content fully bilingual
+- **佔位符優化：** 包含完整範例文字的佔位符
+- **Placeholder Optimization:** Placeholders with complete example text
+
+#### 🎨 裝飾元素優化 / Decorative Elements Optimization
+
+**視覺溢出修復 / Visual Overflow Fixes:**
+- **第一次修復：** 調整定位和尺寸
+- **First Fix:** Adjusted positioning and sizes
+- **第二次修復：** 移動元素遠離邊緣，改變顯示條件
+- **Second Fix:** Moved elements away from edges, changed display conditions
+- **最終解決：** 完全移除所有裝飾元素（根據用戶要求）
+- **Final Solution:** Complete removal of all decorative elements (per user request)
+
+**清潔設計理念 / Clean Design Philosophy:**
+- **專注內容：** 移除干擾元素，專注核心內容
+- **Focus on Content:** Remove distracting elements, focus on core content
+- **性能優化：** 減少不必要的動畫和裝飾
+- **Performance Optimization:** Reduce unnecessary animations and decorations
+- **用戶體驗：** 確保所有元素都在螢幕邊界內
+- **User Experience:** Ensure all elements stay within screen boundaries
+
+#### 💡 技術實現亮點 / Technical Implementation Highlights
+
+**Framer Motion 動畫系統 / Framer Motion Animation System:**
+```typescript
+// 輪播動畫實現 / Carousel Animation Implementation
+const [currentIndex, setCurrentIndex] = useState(0);
+
+const nextSlide = () => {
+  setCurrentIndex((prev) => (prev + 1) % Math.ceil(courses.length / 3));
+};
+
+// 顏色系統管理 / Color System Management
+const getCategoryColor = (category: string) => {
+  const colors = {
+    'company-intro': 'bg-orange-500',
+    'advantages': 'bg-yellow-500',
+    'tools': 'bg-blue-500',
+    'fundamentals': 'bg-green-500',
+    'tech-innovation': 'bg-purple-500'
+  };
+  return colors[category] || 'bg-gray-500';
+};
+```
+
+**響應式設計實現 / Responsive Design Implementation:**
+```typescript
+// 移動端檢測 / Mobile Detection
+const isMobile = window.innerWidth < 768;
+
+// 適應性佈局 / Adaptive Layout
+className={`
+  ${isMobile ? 'flex-col' : 'flex-row'}
+  ${isMobile ? 'text-center' : 'text-left'}
+  gap-4 md:gap-8
+`}
+```
+
 ### 🎯 課程頁面重構摘要 / Course Page Restructure Summary
 
 #### 核心變更 / Core Changes

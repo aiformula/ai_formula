@@ -31,6 +31,12 @@ const PerplexityToolsLesson = React.lazy(() => import('./pages/PerplexityToolsLe
 // 統一課程系統
 const PromptEngineeringCourse = React.lazy(() => import('./pages/PromptEngineeringCourse'));
 
+// Outline pages (now serving as Overview pages)
+const PromptEngineeringOutline = React.lazy(() => import('./pages/PromptEngineeringOutline'));
+const CodingBasicsOutline = React.lazy(() => import('./pages/CodingBasicsOutline'));
+const ChatGPTMasteryOutline = React.lazy(() => import('./pages/ChatGPTMasteryOutline'));
+const PerplexityToolsOutline = React.lazy(() => import('./pages/PerplexityToolsOutline'));
+
 // 額外組件
 const ProgressTracker = React.lazy(() => import('./components/course/ProgressTracker'));
 const LearningNotes = React.lazy(() => import('./components/course/LearningNotes'));
@@ -68,6 +74,12 @@ function App() {
                     <Route path="/pro-plan-learning" element={<ProPlanLearning />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/auth" element={<Auth />} />
+                    
+                    {/* Course Overview pages (formerly Outline pages) */}
+                    <Route path="/prompt-engineering/overview" element={<PromptEngineeringOutline />} />
+                    <Route path="/coding-basics/overview" element={<CodingBasicsOutline />} />
+                    <Route path="/chatgpt-mastery/overview" element={<ChatGPTMasteryOutline />} />
+                    <Route path="/perplexity-tools/overview" element={<PerplexityToolsOutline />} />
                     
                     {/* 原本的獨立課程系統 */}
                     <Route path="/prompt-engineering/learning" element={<PromptEngineeringLearning />} />

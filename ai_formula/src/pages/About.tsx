@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight, Brain, Clock, Trophy, Users2, Zap } from "lucide-react";
 import { useMemo } from "react";
@@ -375,6 +376,7 @@ const About: React.FC = () => {
           </motion.div>
         </motion.section>
       </motion.div>
+      <Footer />
     </div>
   );
 };

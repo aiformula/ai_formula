@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Calendar, Clock, User, Search, Tag, TrendingUp, Eye, Rocket, Star, Settings, Package, RotateCcw, Zap } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useViewCount } from "@/contexts/ViewCountContext";
 import { useState, useEffect, useMemo, useCallback } from "react";
@@ -501,6 +502,8 @@ const Blog: React.FC = () => {
         onSubscribe={handleSubscribe}
         isZhTW={isZhTW}
       />
+      
+      <Footer />
     </div>
   );
 };
