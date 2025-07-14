@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'en' | 'zh-TW';
+type Language = 'en' | 'zh-HK';
 
 interface LanguageContextType {
   language: Language;
@@ -209,7 +209,7 @@ const translations = {
     'toast.messageSent': 'Message Sent!',
     'toast.messageDescription': "Thank you for your interest. We'll get back to you within 24 hours.",
   },
-  'zh-TW': {
+  'zh-HK': {
     // Navigation
     'nav.home': '首頁',
     'nav.about': '關於我們',
@@ -405,7 +405,7 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('zh-HK');
   
   const t = (key: string): string => {
     return translations[language][key] || key;

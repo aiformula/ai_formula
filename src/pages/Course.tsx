@@ -14,7 +14,7 @@ import 'atropos/css';
 const Course = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   const [selectedCategory, setSelectedCategory] = useState('all');
   
   // Handle learning plan navigation

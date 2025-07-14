@@ -72,7 +72,7 @@ export const BlogTemplate: React.FC<BlogTemplateProps> = ({ post, children }) =>
           <div className="blog-meta">
             <span className="blog-author">作者：{post.author}</span>
             <time className="blog-date" dateTime={post.publishedAt}>
-              {new Date(post.publishedAt).toLocaleDateString('zh-TW')}
+              {new Date(post.publishedAt).toLocaleDateString('zh-HK')}
             </time>
             <span className="blog-reading-time">{post.readingTime} 分鐘閱讀</span>
           </div>

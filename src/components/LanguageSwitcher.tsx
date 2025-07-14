@@ -9,11 +9,11 @@ const LanguageSwitcher = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const handleLanguageChange = (newLang: 'en' | 'zh-TW') => {
+  const handleLanguageChange = (newLang: 'en' | 'zh-HK') => {
     setLanguage(newLang);
     
     // Handle About page redirection
-    if (location.pathname === '/about' && newLang === 'zh-TW') {
+    if (location.pathname === '/about' && newLang === 'zh-HK') {
       navigate('/about-cht');
     } else if (location.pathname === '/about-cht' && newLang === 'en') {
       navigate('/about');
@@ -44,9 +44,9 @@ const LanguageSwitcher = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => handleLanguageChange('zh-TW')}
+          onClick={() => handleLanguageChange('zh-HK')}
           className={`px-3 py-1 text-sm rounded-full transition-all duration-300 ${
-            language === 'zh-TW' 
+            language === 'zh-HK' 
               ? 'bg-yellow-500 text-white' 
               : 'text-gray-300 hover:text-white'
           }`}

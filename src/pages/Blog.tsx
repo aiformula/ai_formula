@@ -98,7 +98,7 @@ const Blog = () => {
   ];
 
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">

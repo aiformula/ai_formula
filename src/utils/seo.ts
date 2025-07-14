@@ -36,7 +36,7 @@ export const generateStructuredData = (type: 'course' | 'article' | 'organizatio
         },
         courseCode: data.id,
         educationalLevel: data.level,
-        inLanguage: data.language || 'zh-TW'
+        inLanguage: data.language || 'zh-HK'
       };
 
     case 'article':

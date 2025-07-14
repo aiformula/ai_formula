@@ -1,0 +1,1 @@
+export { default } from '../../ai_formula/src/pages/general/HomePage'; 

@@ -1,14 +1,14 @@
-# 🔗 SEO 模板整合指南 / SEO Template Integration Guide
+# ?? SEO 模板?��??��? / SEO Template Integration Guide
 
 ## 概述 / Overview
 
-本指南展示如何將 SEO 系統與現有的 CourseTemplate 和 BlogTemplate 整合，實現完整的 SEO 優化。
+?��??��?示�?何�? SEO 系統?�現?��? CourseTemplate ??BlogTemplate ?��?，實?��??��? SEO ?��???
 
 This guide shows how to integrate the SEO system with existing CourseTemplate and BlogTemplate for complete SEO optimization.
 
-## 🎯 整合 CourseTemplate 與 SEO / Integrating CourseTemplate with SEO
+## ?�� ?��? CourseTemplate ??SEO / Integrating CourseTemplate with SEO
 
-### 1. 增強的 CourseTemplate
+### 1. 增強??CourseTemplate
 
 ```typescript
 // src/components/templates/CourseTemplate.tsx
@@ -31,7 +31,7 @@ interface EnhancedCourseTemplateProps {
   showQuiz?: boolean;
   currentLesson?: number;
   highlightModule?: number;
-  // SEO 相關屬性
+  // SEO ?��?屬�?
   seoData?: {
     customTitle?: string;
     customDescription?: string;
@@ -39,7 +39,7 @@ interface EnhancedCourseTemplateProps {
     customImage?: string;
     faqs?: Array<{ question: string; answer: string }>;
   };
-  // 分析追蹤
+  // ?��?追蹤
   trackingEvents?: {
     onView?: string;
     onEnroll?: string;
@@ -63,15 +63,15 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
   const { language } = useLanguage();
   const { trackEvent, trackPageView } = useAnalytics();
 
-  // 生成 SEO 數據
+  // ?��? SEO ?��?
   const generateSEOData = () => {
-    const baseTitle = language === 'zh-TW' ? course.title.zh : course.title.en;
-    const baseDescription = language === 'zh-TW' ? course.description.zh : course.description.en;
+    const baseTitle = language === 'zh-HK' ? course.title.zh : course.title.en;
+    const baseDescription = language === 'zh-HK' ? course.description.zh : course.description.en;
     
     return {
       title: seoData?.customTitle || `${baseTitle} | AI Formula`,
       description: seoData?.customDescription || baseDescription,
-      keywords: seoData?.customKeywords || `${course.category}, AI課程, ${course.level}`,
+      keywords: seoData?.customKeywords || `${course.category}, AI課�?, ${course.level}`,
       image: seoData?.customImage || course.thumbnail,
       url: `/courses/${course.id}`,
       type: 'course' as const,
@@ -90,11 +90,11 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     };
   };
 
-  // 生成麵包屑
+  // ?��?麵�?�?
   const generateBreadcrumbs = () => {
-    const homeLabel = language === 'zh-TW' ? '首頁' : 'Home';
-    const coursesLabel = language === 'zh-TW' ? '課程' : 'Courses';
-    const courseTitle = language === 'zh-TW' ? course.title.zh : course.title.en;
+    const homeLabel = language === 'zh-HK' ? '首�?' : 'Home';
+    const coursesLabel = language === 'zh-HK' ? '課�?' : 'Courses';
+    const courseTitle = language === 'zh-HK' ? course.title.zh : course.title.en;
     
     return [
       { name: homeLabel, url: 'https://ai-formula.com' },
@@ -103,23 +103,23 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     ];
   };
 
-  // 生成 FAQ 數據
+  // ?��? FAQ ?��?
   const generateFAQs = () => {
     if (seoData?.faqs) return seoData.faqs;
     
-    // 預設 FAQ（根據語言）
-    return language === 'zh-TW' ? [
+    // ?�設 FAQ（根?��?言�?
+    return language === 'zh-HK' ? [
       {
-        question: '這個課程適合初學者嗎？',
-        answer: '是的，我們的課程從基礎開始教學，適合各種水平的學習者。'
+        question: '?�個課程適?��?學者�?�?,
+        answer: '?��?，�??��?課�?從基礎�?始�?學�??��??�種水平?�學習者�?
       },
       {
-        question: '完成課程後會獲得證書嗎？',
-        answer: '完成所有課程內容和評估後，您將獲得 AI Formula 的完成證書。'
+        question: '完�?課�?後�??��?證書?��?',
+        answer: '完�??�?�課程內容�?評估後�??��??��? AI Formula ?��??��??��?
       },
       {
-        question: '課程內容會定期更新嗎？',
-        answer: '是的，我們會根據最新的AI技術發展定期更新課程內容。'
+        question: '課�??�容?��??�更?��?�?,
+        answer: '?��?，�??��??��??�?��?AI?�術發展�??�更?�課程內容�?
       }
     ] : [
       {
@@ -137,12 +137,12 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     ];
   };
 
-  // 追蹤頁面瀏覽
+  // 追蹤?�面?�覽
   useEffect(() => {
-    const title = language === 'zh-TW' ? course.title.zh : course.title.en;
+    const title = language === 'zh-HK' ? course.title.zh : course.title.en;
     trackPageView(`/courses/${course.id}`, title);
     
-    // 追蹤課程瀏覽事件
+    // 追蹤課�??�覽事件
     if (trackingEvents?.onView) {
       trackEvent(trackingEvents.onView, {
         course_id: course.id,
@@ -153,29 +153,29 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     }
   }, [course.id, displayMode, language]);
 
-  // 處理註冊事件
+  // ?��?註�?事件
   const handleEnrollClick = () => {
     if (trackingEvents?.onEnroll) {
       trackEvent(trackingEvents.onEnroll, {
         course_id: course.id,
-        course_name: language === 'zh-TW' ? course.title.zh : course.title.en,
+        course_name: language === 'zh-HK' ? course.title.zh : course.title.en,
         price: course.price?.current,
         user_language: language
       });
     }
     
-    // 執行註冊邏輯
+    // ?��?註�??�輯
     if (props.onEnroll) {
       props.onEnroll(course.id);
     }
   };
 
-  // 處理完成事件
+  // ?��?完�?事件
   const handleCourseComplete = () => {
     if (trackingEvents?.onComplete) {
       trackEvent(trackingEvents.onComplete, {
         course_id: course.id,
-        course_name: language === 'zh-TW' ? course.title.zh : course.title.en,
+        course_name: language === 'zh-HK' ? course.title.zh : course.title.en,
         completion_time: Date.now(),
         user_language: language
       });
@@ -192,53 +192,53 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
 
   return (
     <>
-      {/* SEO 頭部標籤 */}
+      {/* SEO ?�部標籤 */}
       <SEOHead {...seoData} />
       
-      {/* 結構化數據 */}
+      {/* 結�??�數??*/}
       <CourseSchema data={seoData.course} />
       <BreadcrumbSchema breadcrumbs={breadcrumbs} />
       <FAQSchema faqs={faqs} />
       
-      {/* 課程內容 */}
+      {/* 課�??�容 */}
       <div className="course-template">
-        {/* 原有的課程模板內容 */}
+        {/* ?��??�課程模?�內�?*/}
         <div className="course-header">
-          <h1>{language === 'zh-TW' ? course.title.zh : course.title.en}</h1>
-          <p>{language === 'zh-TW' ? course.description.zh : course.description.en}</p>
+          <h1>{language === 'zh-HK' ? course.title.zh : course.title.en}</h1>
+          <p>{language === 'zh-HK' ? course.description.zh : course.description.en}</p>
           
           {showEnrollment && (
             <button 
               onClick={handleEnrollClick}
               className="enroll-button"
             >
-              {language === 'zh-TW' ? '立即報名' : 'Enroll Now'}
+              {language === 'zh-HK' ? '立即?��?' : 'Enroll Now'}
             </button>
           )}
         </div>
         
-        {/* 課程內容根據 displayMode 渲染 */}
+        {/* 課�??�容?��? displayMode 渲�? */}
         {displayMode === 'course' && (
           <div className="course-overview">
-            {/* 課程概覽內容 */}
+            {/* 課�?概覽?�容 */}
           </div>
         )}
         
         {displayMode === 'outline' && (
           <div className="course-outline">
-            {/* 課程大綱內容 */}
+            {/* 課�?大綱?�容 */}
           </div>
         )}
         
         {displayMode === 'learning' && (
           <div className="course-learning">
-            {/* 學習界面內容 */}
+            {/* 學�??�面?�容 */}
           </div>
         )}
         
-        {/* FAQ 部分 */}
+        {/* FAQ ?��? */}
         <div className="faq-section">
-          <h2>{language === 'zh-TW' ? '常見問題' : 'FAQ'}</h2>
+          <h2>{language === 'zh-HK' ? '常�??��?' : 'FAQ'}</h2>
           {faqs.map((faq, index) => (
             <div key={index} className="faq-item">
               <h3>{faq.question}</h3>
@@ -252,7 +252,7 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
 };
 ```
 
-### 2. 使用範例 / Usage Example
+### 2. 使用範�? / Usage Example
 
 ```typescript
 // src/pages/courses/AIWritingAssistantCourse.tsx
@@ -268,24 +268,24 @@ export default function AIWritingAssistantCourse() {
       showProgress={true}
       showEnrollment={true}
       showNotes={true}
-      // SEO 自定義設置
+      // SEO ?��?義設�?
       seoData={{
-        customTitle: 'AI寫作助手精通課程 - 學習ChatGPT寫作技巧',
-        customDescription: '掌握AI寫作工具的使用技巧，提升寫作效率和質量。包含ChatGPT、Claude等工具的實戰應用。',
-        customKeywords: 'AI寫作, ChatGPT寫作, 人工智能寫作, 寫作效率, 內容創作',
+        customTitle: 'AI寫�??��?精通課�?- 學�?ChatGPT寫�??��?,
+        customDescription: '?�握AI寫�?工具?�使?��?巧�??��?寫�??��??�質?�。�??�ChatGPT?�Claude等工?��?實戰?�用??,
+        customKeywords: 'AI寫�?, ChatGPT寫�?, 人工?�能寫�?, 寫�??��?, ?�容?��?',
         customImage: '/assets/images/courses/ai-writing-assistant-seo.jpg',
         faqs: [
           {
-            question: '學習AI寫作需要編程背景嗎？',
-            answer: '不需要，本課程專注於工具使用和寫作技巧，無需編程基礎。'
+            question: '學�?AI寫�??�要編程�??��?�?,
+            answer: '不�?要�??�課程�?注於工具使用?�寫作�?巧�??��?編�??��???
           },
           {
-            question: '課程包含哪些AI寫作工具？',
-            answer: '包含ChatGPT、Claude、Jasper、Copy.ai等主流AI寫作工具的使用方法。'
+            question: '課�??�含?��?AI寫�?工具�?,
+            answer: '?�含ChatGPT?�Claude?�Jasper?�Copy.ai等主流AI寫�?工具?�使?�方法�?
           }
         ]
       }}
-      // 分析追蹤設置
+      // ?��?追蹤設置
       trackingEvents={{
         onView: 'course_view',
         onEnroll: 'course_enrollment',
@@ -293,20 +293,20 @@ export default function AIWritingAssistantCourse() {
       }}
       onEnroll={(courseId) => {
         console.log('Enrolled in course:', courseId);
-        // 處理註冊邏輯
+        // ?��?註�??�輯
       }}
       onComplete={(courseId) => {
         console.log('Course completed:', courseId);
-        // 處理完成邏輯
+        // ?��?完�??�輯
       }}
     />
   );
 }
 ```
 
-## 🎯 整合 BlogTemplate 與 SEO / Integrating BlogTemplate with SEO
+## ?�� ?��? BlogTemplate ??SEO / Integrating BlogTemplate with SEO
 
-### 1. 增強的 BlogTemplate
+### 1. 增強??BlogTemplate
 
 ```typescript
 // src/components/templates/BlogTemplate.tsx
@@ -326,14 +326,14 @@ interface EnhancedBlogTemplateProps {
   showTags?: boolean;
   showSharing?: boolean;
   showRelated?: boolean;
-  // SEO 相關屬性
+  // SEO ?��?屬�?
   seoData?: {
     customTitle?: string;
     customDescription?: string;
     customKeywords?: string;
     customImage?: string;
   };
-  // 分析追蹤
+  // ?��?追蹤
   trackingEvents?: {
     onView?: string;
     onShare?: string;
@@ -355,10 +355,10 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
   const { language } = useLanguage();
   const { trackEvent, trackPageView } = useAnalytics();
 
-  // 生成 SEO 數據
+  // ?��? SEO ?��?
   const generateSEOData = () => {
-    const baseTitle = language === 'zh-TW' ? post.title.zh : post.title.en;
-    const baseDescription = language === 'zh-TW' ? post.description.zh : post.description.en;
+    const baseTitle = language === 'zh-HK' ? post.title.zh : post.title.en;
+    const baseDescription = language === 'zh-HK' ? post.description.zh : post.description.en;
     
     return {
       title: seoData?.customTitle || `${baseTitle} | AI Formula Blog`,
@@ -387,11 +387,11 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
     };
   };
 
-  // 生成麵包屑
+  // ?��?麵�?�?
   const generateBreadcrumbs = () => {
-    const homeLabel = language === 'zh-TW' ? '首頁' : 'Home';
-    const blogLabel = language === 'zh-TW' ? '博客' : 'Blog';
-    const postTitle = language === 'zh-TW' ? post.title.zh : post.title.en;
+    const homeLabel = language === 'zh-HK' ? '首�?' : 'Home';
+    const blogLabel = language === 'zh-HK' ? '?�客' : 'Blog';
+    const postTitle = language === 'zh-HK' ? post.title.zh : post.title.en;
     
     return [
       { name: homeLabel, url: 'https://ai-formula.com' },
@@ -400,13 +400,13 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
     ];
   };
 
-  // 追蹤頁面瀏覽
+  // 追蹤?�面?�覽
   useEffect(() => {
     if (displayMode === 'detail') {
-      const title = language === 'zh-TW' ? post.title.zh : post.title.en;
+      const title = language === 'zh-HK' ? post.title.zh : post.title.en;
       trackPageView(`/blog/${post.id}`, title);
       
-      // 追蹤文章瀏覽事件
+      // 追蹤?��??�覽事件
       if (trackingEvents?.onView) {
         trackEvent(trackingEvents.onView, {
           post_id: post.id,
@@ -419,24 +419,24 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
     }
   }, [post.id, displayMode, language]);
 
-  // 處理分享事件
+  // ?��??�享事件
   const handleShare = (platform: string) => {
     if (trackingEvents?.onShare) {
       trackEvent(trackingEvents.onShare, {
         post_id: post.id,
-        post_title: language === 'zh-TW' ? post.title.zh : post.title.en,
+        post_title: language === 'zh-HK' ? post.title.zh : post.title.en,
         platform: platform,
         user_language: language
       });
     }
   };
 
-  // 處理收藏事件
+  // ?��??��?事件
   const handleBookmark = () => {
     if (trackingEvents?.onBookmark) {
       trackEvent(trackingEvents.onBookmark, {
         post_id: post.id,
-        post_title: language === 'zh-TW' ? post.title.zh : post.title.en,
+        post_title: language === 'zh-HK' ? post.title.zh : post.title.en,
         user_language: language
       });
     }
@@ -447,7 +447,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
 
   return (
     <>
-      {/* 只在詳情頁面顯示 SEO 標籤 */}
+      {/* ?�在詳�??�面顯示 SEO 標籤 */}
       {displayMode === 'detail' && (
         <>
           <SEOHead {...seoData} />
@@ -456,35 +456,35 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
         </>
       )}
       
-      {/* 博客內容 */}
+      {/* ?�客?�容 */}
       <div className="blog-template">
         {displayMode === 'list' && (
           <div className="blog-list-item">
-            {/* 列表項目內容 */}
+            {/* ?�表?�目?�容 */}
           </div>
         )}
         
         {displayMode === 'detail' && (
           <article className="blog-detail">
             <header className="blog-header">
-              <h1>{language === 'zh-TW' ? post.title.zh : post.title.en}</h1>
+              <h1>{language === 'zh-HK' ? post.title.zh : post.title.en}</h1>
               
               {showAuthor && (
                 <div className="blog-meta">
-                  <span>{language === 'zh-TW' ? '作者：' : 'By '}{post.author}</span>
-                  <span>{language === 'zh-TW' ? '發布時間：' : 'Published: '}{post.publishedTime}</span>
-                  <span>{language === 'zh-TW' ? '分類：' : 'Category: '}{post.category}</span>
+                  <span>{language === 'zh-HK' ? '作者�?' : 'By '}{post.author}</span>
+                  <span>{language === 'zh-HK' ? '?��??��?�? : 'Published: '}{post.publishedTime}</span>
+                  <span>{language === 'zh-HK' ? '?��?�? : 'Category: '}{post.category}</span>
                 </div>
               )}
             </header>
             
             <div className="blog-content">
-              {language === 'zh-TW' ? post.content.zh : post.content.en}
+              {language === 'zh-HK' ? post.content.zh : post.content.en}
             </div>
             
             {showTags && (
               <div className="blog-tags">
-                <h3>{language === 'zh-TW' ? '標籤：' : 'Tags:'}</h3>
+                <h3>{language === 'zh-HK' ? '標籤�? : 'Tags:'}</h3>
                 {post.tags.map(tag => (
                   <span key={tag} className="tag">{tag}</span>
                 ))}
@@ -493,12 +493,12 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
             
             {showSharing && (
               <div className="blog-sharing">
-                <h3>{language === 'zh-TW' ? '分享文章：' : 'Share:'}</h3>
+                <h3>{language === 'zh-HK' ? '?�享?��?�? : 'Share:'}</h3>
                 <button onClick={() => handleShare('facebook')}>Facebook</button>
                 <button onClick={() => handleShare('twitter')}>Twitter</button>
                 <button onClick={() => handleShare('linkedin')}>LinkedIn</button>
                 <button onClick={handleBookmark}>
-                  {language === 'zh-TW' ? '收藏' : 'Bookmark'}
+                  {language === 'zh-HK' ? '?��?' : 'Bookmark'}
                 </button>
               </div>
             )}
@@ -510,7 +510,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
 };
 ```
 
-### 2. 使用範例 / Usage Example
+### 2. 使用範�? / Usage Example
 
 ```typescript
 // src/pages/blog/BlogPost.tsx
@@ -524,7 +524,7 @@ export default function BlogPost() {
   const post = blogPosts.find(p => p.id === id);
 
   if (!post) {
-    return <div>文章不存在</div>;
+    return <div>?��?不�???/div>;
   }
 
   return (
@@ -535,14 +535,14 @@ export default function BlogPost() {
       showTags={true}
       showSharing={true}
       showRelated={true}
-      // SEO 自定義設置
+      // SEO ?��?義設�?
       seoData={{
-        customTitle: `${post.title.zh} - AI Formula 專業AI技術博客`,
-        customDescription: `${post.description.zh} 了解更多AI技術應用和最新趨勢。`,
-        customKeywords: `${post.tags.join(', ')}, AI技術, 人工智能, 技術博客`,
+        customTitle: `${post.title.zh} - AI Formula 專業AI?�術�?客`,
+        customDescription: `${post.description.zh} 了解?��?AI?�術�??��??�?�趨?�。`,
+        customKeywords: `${post.tags.join(', ')}, AI?��? 人工?�能, ?�術�?客`,
         customImage: `/assets/images/blog/${post.id}-seo.jpg`
       }}
-      // 分析追蹤設置
+      // ?��?追蹤設置
       trackingEvents={{
         onView: 'blog_post_view',
         onShare: 'blog_post_share',
@@ -553,9 +553,9 @@ export default function BlogPost() {
 }
 ```
 
-## 🎯 全域 SEO 設置 / Global SEO Setup
+## ?�� ?��? SEO 設置 / Global SEO Setup
 
-### 1. 更新 App.tsx
+### 1. ?�新 App.tsx
 
 ```typescript
 // src/App.tsx
@@ -566,7 +566,7 @@ import { AnalyticsProvider, PerformanceOptimizer } from '@/components/SEO';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 
-// 頁面組件
+// ?�面組件
 import HomePage from '@/pages/general/HomePage';
 import CourseDetail from '@/pages/courses/CourseDetail';
 import BlogPost from '@/pages/blog/BlogPost';
@@ -596,7 +596,7 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/courses/:id" element={<CourseDetail />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
-                  {/* 其他路由 */}
+                  {/* ?��?路由 */}
                 </Routes>
               </Router>
             </AuthProvider>
@@ -610,7 +610,7 @@ function App() {
 export default App;
 ```
 
-### 2. 創建 SEO 管理頁面
+### 2. ?�建 SEO 管�??�面
 
 ```typescript
 // src/pages/admin/SEOManager.tsx
@@ -623,7 +623,7 @@ export default function SEOManager() {
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
-    // 生成所有頁面的 sitemap 數據
+    // ?��??�?��??��? sitemap ?��?
     const generatePages = () => {
       const staticPages = [
         { url: '/', priority: 1.0, changefreq: 'weekly', lastmod: new Date().toISOString() },
@@ -654,7 +654,7 @@ export default function SEOManager() {
 
   return (
     <div className="seo-manager">
-      <h1>SEO 管理面板</h1>
+      <h1>SEO 管�??�板</h1>
       
       <SitemapGenerator
         baseUrl="https://ai-formula.com"
@@ -663,18 +663,18 @@ export default function SEOManager() {
       />
       
       <div className="seo-metrics">
-        <h2>SEO 指標</h2>
+        <h2>SEO ?��?</h2>
         <div className="metrics-grid">
           <div className="metric-card">
-            <h3>總頁面數</h3>
+            <h3>總�??�數</h3>
             <p>{pages.length}</p>
           </div>
           <div className="metric-card">
-            <h3>課程頁面</h3>
+            <h3>課�??�面</h3>
             <p>{courseData.length}</p>
           </div>
           <div className="metric-card">
-            <h3>博客文章</h3>
+            <h3>?�客?��?</h3>
             <p>{blogPosts.length}</p>
           </div>
         </div>
@@ -684,12 +684,12 @@ export default function SEOManager() {
 }
 ```
 
-## 🎯 環境變數設置 / Environment Variables Setup
+## ?�� ?��?變數設置 / Environment Variables Setup
 
-### .env 文件設置
+### .env ?�件設置
 
 ```env
-# 網站基本設置
+# 網�??�本設置
 VITE_SITE_URL=https://ai-formula.com
 VITE_SITE_NAME=AI Formula
 
@@ -705,41 +705,41 @@ VITE_FACEBOOK_PIXEL_ID=123456789
 # Hotjar
 VITE_HOTJAR_ID=1234567
 
-# 開發模式設置
+# ?�發模�?設置
 VITE_ENABLE_SEO_DEBUG=true
 VITE_ENABLE_PERFORMANCE_METRICS=true
 ```
 
-## 🎯 最佳實踐總結 / Best Practices Summary
+## ?�� ?�佳實踐總�?/ Best Practices Summary
 
-### 1. 模板使用最佳實踐
+### 1. 模板使用?�佳實�?
 
-- **統一 SEO 設置：** 所有模板都包含基本的 SEO 組件
-- **自定義靈活性：** 允許每個頁面自定義 SEO 數據
-- **分析追蹤：** 內建分析事件追蹤功能
-- **多語言支持：** 根據語言自動生成對應的 SEO 內容
+- **統�? SEO 設置�?* ?�?�模?�都?�含?�本??SEO 組件
+- **?��?義�?活性�?** ?�許每個�??�自定義 SEO ?��?
+- **?��?追蹤�?* ?�建?��?事件追蹤?�能
+- **多�?言?��?�?* ?��?語�??��??��?對�???SEO ?�容
 
-### 2. 性能優化最佳實踐
+### 2. ?�能?��??�佳實�?
 
-- **延遲加載：** 圖片和非關鍵資源延遲加載
-- **預加載：** 關鍵資源提前加載
-- **代碼分割：** 按需加載組件
-- **快取策略：** 適當的快取設置
+- **延遲?��?�?* ?��??��??�鍵資�?延遲?��?
+- **?��?載�?** ?�鍵資�??��??��?
+- **�?��?�割�?* ?��??��?組件
+- **快�?策略�?* ?�當?�快?�設�?
 
-### 3. 分析追蹤最佳實踐
+### 3. ?��?追蹤?�佳實�?
 
-- **事件命名：** 使用統一的事件命名規範
-- **用戶隱私：** 實現 GDPR 相容的同意管理
-- **多平台追蹤：** 支援多個分析平台
-- **轉換追蹤：** 追蹤重要的業務指標
+- **事件?��?�?* 使用統�??��?件命?��?�?
+- **?�戶?��?�?* 實現 GDPR ?�容?��??�管??
+- **多平?�追蹤�?** ?�援多個�??�平??
+- **轉�?追蹤�?* 追蹤?��??�業?��?�?
 
-### 4. SEO 內容最佳實踐
+### 4. SEO ?�容?�佳實�?
 
-- **獨特性：** 每個頁面都有獨特的標題和描述
-- **關鍵詞：** 合理使用關鍵詞，避免過度優化
-- **結構化數據：** 使用適當的 Schema.org 標記
-- **內部連結：** 良好的內部連結結構
+- **?�特?��?** 每個�??�都?�獨?��?標�??��?�?
+- **?�鍵詞�?** ?��?使用?�鍵詞�??��??�度?��?
+- **結�??�數?��?** 使用?�當??Schema.org 標�?
+- **?�部???�?* ?�好?�內?��??結�?
 
-透過這個整合指南，您可以將 SEO 系統無縫集成到現有的模板中，實現全面的搜索引擎優化。
+?��??�個整?��??��??�可以�? SEO 系統?�縫?��??�現?��?模板中�?實現?�面?��?索�??�優?��?
 
 Through this integration guide, you can seamlessly integrate the SEO system into existing templates for comprehensive search engine optimization. 
