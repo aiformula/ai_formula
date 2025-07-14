@@ -249,11 +249,11 @@ const NewsletterSection: React.FC<{
         transition={{ duration: 0.8, delay: 1.2 }}
       >
         <h3 className="text-3xl font-bold mb-4 text-white">
-          {isZhTW ? '訂閱AI Formula?��??? : 'Subscribe to AI Formula Newsletter'}
+          {isZhTW ? '訂閱AI Formula電子報' : 'Subscribe to AI Formula Newsletter'}
         </h3>
         <p className="text-gray-200 mb-8">
           {isZhTW 
-            ? '?��?AI Formula?�?��?專業見解?�實?��?學�?香港?�業案�??��?，助?�您?�AI轉�?之路??
+            ? '獲得AI Formula的最新專業見解、實用教學和香港商業案例研究，助您踏上AI轉型之路。'
             : 'Get AI Formula\'s latest professional insights, practical tutorials and Hong Kong business case studies to accelerate your AI transformation journey.'
           }
         </p>
