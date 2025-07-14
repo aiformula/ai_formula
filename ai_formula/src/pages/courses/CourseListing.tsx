@@ -36,7 +36,7 @@ const ErrorDisplay: React.FC<{ error: string; onRetry: () => void; isZhTW: boole
 // Main Course component with full optimization
 const Course: React.FC = () => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   
   const {
     learningPlans,

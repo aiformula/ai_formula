@@ -201,7 +201,7 @@ const PromptEngineeringCourse: React.FC = () => {
   const { language } = useLanguage()
   const { progress, updateProgress, completeLesson, getProgressPercentage } = usePromptEngineeringProgress()
   
-  const isZhTW = language === 'zh-TW'
+  const isZhTW = language === 'zh-HK'
   const progressPercentage = getProgressPercentage()
 
   const handleStartLesson = (lesson: LessonItem) => {

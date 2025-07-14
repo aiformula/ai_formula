@@ -438,9 +438,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 // 語言提供者組件
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>(() => {
-    // 從 localStorage 讀取語言設定
+    // 從 localStorage 讀取語言設定，預設為中文
     const savedLanguage = localStorage.getItem('language')
-    return (savedLanguage as Language) || 'en'
+    return (savedLanguage as Language) || 'zh-HK'
   })
 
   // 保存語言設定到 localStorage
@@ -450,7 +450,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   // 獲取翻譯文本
   const getTranslations = (lang: Language): Translations => {
-    return lang === 'zh-TW' ? zhTranslations : enTranslations
+    return lang === 'zh-HK' ? zhTranslations : enTranslations
   }
 
   // 翻譯函數

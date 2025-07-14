@@ -160,7 +160,7 @@ export const languageUtils = {
   getHreflangCode: (language: string): string => {
     const langMap: Record<string, string> = {
       'en': 'en-US',
-      'zh-TW': 'zh-HK',
+      'zh-HK': 'zh-HK',
       'zh-CN': 'zh-CN',
       'ja': 'ja-JP',
       'ko': 'ko-KR'
@@ -172,7 +172,7 @@ export const languageUtils = {
   getOGLocale: (language: string): string => {
     const localeMap: Record<string, string> = {
       'en': 'en_US',
-      'zh-TW': 'zh_HK',
+      'zh-HK': 'zh_HK',
       'zh-CN': 'zh_CN',
       'ja': 'ja_JP',
       'ko': 'ko_KR'

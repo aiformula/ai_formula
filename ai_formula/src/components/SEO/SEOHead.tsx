@@ -55,15 +55,15 @@ export const SEOHead: React.FC<SEOProps> = ({
   const { language } = useLanguage();
   
   // Default values based on language
-  const defaultTitle = language === 'zh-TW' 
+  const defaultTitle = language === 'zh-HK' 
     ? 'AI Formula - 香港AI自動化解決方案平台'
     : 'AI Formula - Hong Kong AI Automation Solutions Platform';
   
-  const defaultDescription = language === 'zh-TW'
+  const defaultDescription = language === 'zh-HK'
     ? '香港領先的AI自動化解決方案平台，提供專業的AI技術服務、教學課程和商業應用指南。專注於ChatGPT、Midjourney、自動化工具等AI技術培訓。'
     : 'Leading AI automation solutions platform in Hong Kong, providing professional AI technology services, educational courses, and business application guides. Specializing in ChatGPT, Midjourney, automation tools and AI technology training.';
 
-  const defaultKeywords = language === 'zh-TW'
+  const defaultKeywords = language === 'zh-HK'
     ? 'AI自動化,香港AI培訓,ChatGPT課程,Midjourney教學,AI工具,人工智能,自動化解決方案,AI Formula'
     : 'AI automation,Hong Kong AI training,ChatGPT courses,Midjourney tutorials,AI tools,artificial intelligence,automation solutions,AI Formula';
 
@@ -115,7 +115,7 @@ export const SEOHead: React.FC<SEOProps> = ({
           }
         }),
                  category: course.category,
-         inLanguage: language === 'zh-TW' ? 'zh-HK' : 'en-US'
+         inLanguage: language === 'zh-HK' ? 'zh-HK' : 'en-US'
       };
     }
 
@@ -143,7 +143,7 @@ export const SEOHead: React.FC<SEOProps> = ({
         keywords: article.tags.join(', '),
                  image: seoImage,
          url: currentUrl,
-         inLanguage: language === 'zh-TW' ? 'zh-HK' : 'en-US'
+         inLanguage: language === 'zh-HK' ? 'zh-HK' : 'en-US'
       };
     }
 
@@ -160,7 +160,7 @@ export const SEOHead: React.FC<SEOProps> = ({
       <meta name="keywords" content={seoKeywords} />
       <meta name="author" content={author} />
       <meta name="robots" content={robotsContent} />
-      <meta name="language" content={language === 'zh-TW' ? 'zh-HK' : 'en-US'} />
+      <meta name="language" content={language === 'zh-HK' ? 'zh-HK' : 'en-US'} />
       <meta name="revisit-after" content="7 days" />
       <meta name="distribution" content="global" />
       <meta name="rating" content="general" />
@@ -175,7 +175,7 @@ export const SEOHead: React.FC<SEOProps> = ({
       <meta property="og:url" content={currentUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="AI Formula" />
-      <meta property="og:locale" content={language === 'zh-TW' ? 'zh_HK' : 'en_US'} />
+      <meta property="og:locale" content={language === 'zh-HK' ? 'zh_HK' : 'en_US'} />
       
       {/* Article specific Open Graph */}
       {type === 'article' && publishedTime && (

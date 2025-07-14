@@ -93,7 +93,7 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
       <span className={`transition-all duration-500 ${
         isAnimating ? 'text-blue-300 font-semibold' : ''
       }`}>
-        {currentViews} {language === 'zh-TW' ? '次瀏覽' : 'views'}
+        {currentViews} {language === 'zh-HK' ? '次瀏覽' : 'views'}
       </span>
     </div>
   );
@@ -304,7 +304,7 @@ const RelatedArticles: React.FC<{ currentPost: BlogPost; isZhTW: boolean }> = ({
 const BlogPost: React.FC = () => {
   const { language } = useLanguage();
   const { id } = useParams<{ id: string }>();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
 
   const post = useMemo(() => {
     const allPosts = getSortedPostsNewest();

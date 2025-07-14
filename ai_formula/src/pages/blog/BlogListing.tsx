@@ -286,7 +286,7 @@ const NewsletterSection: React.FC<{
 
 const Blog: React.FC = () => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   
   // States
   const [searchState, setSearchState] = useState<SearchState>({

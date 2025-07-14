@@ -13,15 +13,26 @@ import 'atropos/css';
 const Course = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   const [selectedCategory, setSelectedCategory] = useState('all');
   
+  const categories = [
+    { id: 'all', name: 'All', nameCht: '全部', label: '全部' },
+    { id: 'ai', name: 'AI', nameCht: 'AI應用', label: 'AI應用' },
+    { id: 'automation', name: 'Automation', nameCht: '自動化', label: '自動化' },
+  ];
+
   // Handle course navigation to outline pages
   const handleCourseClick = (courseId: string) => {
     const routeMap = {
       'ai-app-development': '/courses/free-plan',  // 指向免費計劃頁面
-      'dotai-advertising': '/courses/free-plan',   // 指向免費計劃頁面
-      'shopify-automation': '/courses/free-plan'   // 指向免費計劃頁面
+      'ai-formula-advertising': '/courses/free-plan',   // 指向免費計劃頁面
+      'shopify-automation': '/courses/free-plan',   // 指向免費計劃頁面
+      'prompt-engineering': '/courses/prompt-engineering-outline',
+      'chatgpt-mastery': '/courses/chatgpt-mastery-outline',
+      'perplexity-tools': '/courses/perplexity-tools-outline',
+      'coding-basics': '/courses/coding-basics-outline',
+      'midjourney-ai': '/courses/free-plan'
     };
     
     const route = routeMap[courseId];
@@ -33,7 +44,25 @@ const Course = () => {
     }
   };
 
-  // 只保留真正存在嘅課程
+  // Handle real course navigation
+  const handleRealCourseClick = (courseId: string) => {
+    const routeMap = {
+      'prompt-engineering': '/courses/prompt-engineering-outline',
+      'chatgpt-mastery': '/courses/chatgpt-mastery-outline',
+      'perplexity-tools': '/courses/perplexity-tools-outline',
+      'coding-basics': '/courses/coding-basics-outline',
+      'midjourney-ai': '/courses/free-plan'
+    };
+    
+    const route = routeMap[courseId];
+    if (route) {
+      navigate(route);
+    } else {
+      navigate('/courses/free-plan');
+    }
+  };
+
+  // 3個特色課程（圖片2的內容）
   const availableCourses = [
     {
       id: 'ai-app-development',
@@ -63,15 +92,15 @@ const Course = () => {
         "3小時完整課程",
         "2個手機App專案",
         "專業講師指導",
-        "實作開發"
+        "實際開發練習"
       ]
     },
     {
-      id: 'dotai-advertising',
-      title: "DotAI Advertising Masterclass Vol.1",
-      titleCht: "【AI廣告製作班Vol.1】拆解DotAI廣告片全流程：「Cup Noodle級」AI片",
-      description: "Master AI advertising creation with DotAI platform and create professional video ads.",
-      descriptionCht: "掌握AI廣告製作，DotAI團隊手把手教你創造專業級廣告片。",
+      id: 'ai-formula-advertising',
+      title: "AI Formula Advertising Masterclass Vol.1",
+      titleCht: "【AI廣告製作班Vol.1】拆解AI Formula廣告片全流程：「Cup Noodle級」AI片",
+      description: "Master AI advertising creation with AI Formula platform and create professional video ads.",
+      descriptionCht: "掌握AI廣告製作，AI Formula團隊手把手教你創造專業級廣告片。",
       duration: "4 hours",
       durationCht: "4小時",
       students: 923,
@@ -82,18 +111,19 @@ const Course = () => {
       type: "AI Advertising",
       typeCht: "AI廣告",
       category: "ai",
+      featured: true,
       badge: "即將開班！",
       includes: [
-        "DotAI Platform Training",
-        "Video Ad Creation",
-        "Brand Strategy",
-        "Professional Techniques"
+        "AI Formula Platform Training",
+        "Professional Video Creation",
+        "Brand Integration",
+        "Advanced Techniques"
       ],
       includesCht: [
-        "DotAI平台培訓",
-        "影片廣告創作",
-        "品牌策略",
-        "專業技巧"
+        "AI Formula平台訓練",
+        "專業影片製作",
+        "品牌整合應用",
+        "進階製作技巧"
       ]
     },
     {
@@ -106,12 +136,13 @@ const Course = () => {
       durationCht: "9小時",
       students: 1234,
       rating: 4.7,
-      level: "Advanced",
-      levelCht: "高級",
+      level: "Beginner",
+      levelCht: "初級",
       image: "🛒",
       type: "E-commerce Automation",
       typeCht: "電商自動化",
       category: "automation",
+      featured: true,
       badge: "了解更多",
       includes: [
         "Shopify Store Setup",
@@ -123,18 +154,177 @@ const Course = () => {
         "Shopify商店建置",
         "Make.com自動化",
         "AI整合應用",
-        "盈利優化"
+        "盈利優化策略"
       ]
     }
   ];
 
-  const categories = [
-    { id: 'all', label: isZhTW ? '全部' : 'All Courses' },
-    { id: 'ai', label: isZhTW ? 'AI應用' : 'AI Applications' },
-    { id: 'automation', label: isZhTW ? '自動化' : 'Automation' }
+  // 5個真正存在的課程
+  const realCourses = [
+    {
+      id: 'prompt-engineering',
+      title: "Prompt Engineering Mastery",
+      titleCht: "提示工程精通課程",
+      description: "Master the art of AI prompt engineering for better results.",
+      descriptionCht: "掌握AI提示工程技巧，獲得更好的結果。",
+      duration: "6 hours",
+      durationCht: "6小時",
+      students: 2341,
+      rating: 4.9,
+      level: "All Levels",
+      levelCht: "所有級別",
+      image: "🧠",
+      type: "AI Fundamentals",
+      typeCht: "AI基礎",
+      category: "ai",
+      featured: true,
+      badge: "免費",
+      includes: [
+        "Complete Prompt Guide",
+        "Practical Examples",
+        "Advanced Techniques",
+        "Real-world Applications"
+      ],
+      includesCht: [
+        "完整提示指南",
+        "實用範例",
+        "進階技巧",
+        "實際應用"
+      ]
+    },
+    {
+      id: 'chatgpt-mastery',
+      title: "ChatGPT Mastery Course",
+      titleCht: "ChatGPT精通課程",
+      description: "Complete guide to mastering ChatGPT for productivity and creativity.",
+      descriptionCht: "完整的ChatGPT精通指南，提升生產力和創造力。",
+      duration: "4 hours",
+      durationCht: "4小時",
+      students: 1876,
+      rating: 4.8,
+      level: "Beginner",
+      levelCht: "初級",
+      image: "💬",
+      type: "AI Tools",
+      typeCht: "AI工具",
+      category: "ai",
+      featured: true,
+      badge: "免費",
+      includes: [
+        "ChatGPT Fundamentals",
+        "Advanced Prompting",
+        "Use Cases",
+        "Productivity Tips"
+      ],
+      includesCht: [
+        "ChatGPT基礎",
+        "進階提示技巧",
+        "使用案例",
+        "生產力技巧"
+      ]
+    },
+    {
+      id: 'perplexity-tools',
+      title: "Perplexity Tools Mastery",
+      titleCht: "Perplexity工具精通",
+      description: "Master Perplexity AI for research and information gathering.",
+      descriptionCht: "掌握Perplexity AI進行研究和資訊收集。",
+      duration: "3 hours",
+      durationCht: "3小時",
+      students: 1234,
+      rating: 4.7,
+      level: "Intermediate",
+      levelCht: "中級",
+      image: "🔍",
+      type: "AI Research",
+      typeCht: "AI研究",
+      category: "ai",
+      featured: true,
+      badge: "免費",
+      includes: [
+        "Perplexity Basics",
+        "Research Techniques",
+        "Information Validation",
+        "Advanced Queries"
+      ],
+      includesCht: [
+        "Perplexity基礎",
+        "研究技巧",
+        "資訊驗證",
+        "進階查詢"
+      ]
+    },
+    {
+      id: 'coding-basics',
+      title: "Coding Basics with AI",
+      titleCht: "AI輔助編程基礎",
+      description: "Learn programming fundamentals with AI assistance.",
+      descriptionCht: "使用AI輔助學習編程基礎。",
+      duration: "8 hours",
+      durationCht: "8小時",
+      students: 987,
+      rating: 4.6,
+      level: "Beginner",
+      levelCht: "初級",
+      image: "💻",
+      type: "Programming",
+      typeCht: "編程",
+      category: "ai",
+      featured: true,
+      badge: "免費",
+      includes: [
+        "Programming Fundamentals",
+        "AI-Assisted Coding",
+        "Project Building",
+        "Best Practices"
+      ],
+      includesCht: [
+        "編程基礎",
+        "AI輔助編碼",
+        "專案建構",
+        "最佳實踐"
+      ]
+    },
+    {
+      id: 'midjourney-ai',
+      title: "Midjourney AI Image Creation",
+      titleCht: "Midjourney AI圖像創作",
+      description: "Create stunning AI-generated images with Midjourney.",
+      descriptionCht: "使用Midjourney創造令人驚嘆的AI生成圖像。",
+      duration: "5 hours",
+      durationCht: "5小時",
+      students: 2156,
+      rating: 4.8,
+      level: "All Levels",
+      levelCht: "所有級別",
+      image: "🎨",
+      type: "AI Art",
+      typeCht: "AI藝術",
+      category: "ai",
+      featured: true,
+      badge: "免費",
+      includes: [
+        "Midjourney Basics",
+        "Advanced Prompting",
+        "Style Techniques",
+        "Commercial Usage"
+      ],
+      includesCht: [
+        "Midjourney基礎",
+        "進階提示技巧",
+        "風格技法",
+        "商業應用"
+      ]
+    }
   ];
 
+  // Filter courses based on selected category
   const filteredCourses = selectedCategory === 'all' 
+    ? realCourses 
+    : realCourses.filter(course => course.category === selectedCategory);
+
+  // Filter available courses based on selected category
+  const filteredAvailableCourses = selectedCategory === 'all' 
     ? availableCourses 
     : availableCourses.filter(course => course.category === selectedCategory);
 
@@ -150,7 +340,7 @@ const Course = () => {
         />
       </div>
 
-      {/* Hero Section */}
+      {/* Part 1: Main Title - 免費學習課程 */}
       <section className="relative py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -172,287 +362,209 @@ const Course = () => {
         </div>
       </section>
 
-      {/* Course Categories */}
+      {/* Part 2: Featured Courses (3個特色課程) */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {availableCourses.map((course, index) => (
+              <motion.div
+                key={course.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
+              >
+                <Card className="h-[520px] flex flex-col overflow-hidden bg-slate-800/50 backdrop-blur-sm border-slate-600/50 hover:border-blue-500/50 transition-all duration-300">
+                  <CardHeader className="pb-4 flex-shrink-0">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="text-4xl flex-shrink-0">{course.image}</div>
+                      <div className="flex-1 min-w-0">
+                        <Badge variant="secondary" className="mb-2 bg-blue-500/20 text-blue-300 border-blue-500/30">
+                          {course.badge}
+                        </Badge>
+                        <CardTitle className="text-lg leading-tight text-white line-clamp-3 h-[4.5rem]">
+                          {isZhTW ? course.titleCht : course.title}
+                        </CardTitle>
+                      </div>
+                    </div>
+                    <CardDescription className="text-gray-300 text-sm line-clamp-2 h-[2.5rem]">
+                      {isZhTW ? course.descriptionCht : course.description}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4 text-sm text-gray-300">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4 text-blue-400" />
+                          <span className="text-gray-200">{isZhTW ? course.durationCht : course.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Users className="w-4 h-4 text-blue-400" />
+                          <span className="text-gray-200">{course.students.toLocaleString()}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                          <span className="text-gray-200">{course.rating}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm text-white">{isZhTW ? '包含內容：' : 'Includes:'}</h4>
+                        <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
+                          {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
+                            <li key={idx} className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
+                              <span className="truncate">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-col gap-3 pt-4 mt-auto">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl font-bold text-blue-400">
+                            {course.badge || (isZhTW ? '免費' : 'FREE')}
+                          </span>
+                        </div>
+                        <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
+                          {isZhTW ? course.typeCht : course.type}
+                        </Badge>
+                      </div>
+                      
+                      <Button 
+                        size="sm"
+                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
+                        onClick={() => handleCourseClick(course.id)}
+                      >
+                        {course.id === 'ai-app-development' ? (isZhTW ? '即將開班' : 'Coming Soon') : 
+                         course.id === 'ai-formula-advertising' ? (isZhTW ? '即將開班' : 'Coming Soon') : 
+                         (isZhTW ? '了解更多' : 'Learn More')}
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Part 3: 精選免費課程 Title and Description */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                {isZhTW ? '精選免費課程' : 'Featured Free Courses'}
-              </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {isZhTW ? '精選免費課程' : 'Featured Free Courses'}
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               {isZhTW ? '精心製作嘅數位課程，幫助你快速提升技能並實現商業目標' : 'Carefully crafted digital courses to help you quickly improve skills and achieve business goals'}
             </p>
           </div>
 
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                variant={selectedCategory === category.id ? "default" : "outline"}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
-                    : 'border-gray-700 text-gray-300 hover:border-purple-500 hover:text-purple-400'
-                }`}
-              >
-                {category.label}
-              </Button>
-            ))}
-          </div>
-
-          {/* 免費學習課程 Section */}
-          <div className="mb-16">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                免費學習課程
-              </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                精心製作嘅免費課程，幫助你快速提升AI技能並實現商業目標
-              </p>
-            </div>
-
-            {/* Available Courses Table */}
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-6">
-                <h3 className="text-xl font-semibold mb-4 text-center">現在可用嘅課程</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-white/20">
-                        <th className="text-left py-3 px-4 font-medium">課程</th>
-                        <th className="text-left py-3 px-4 font-medium">導航路徑</th>
-                        <th className="text-left py-3 px-4 font-medium">狀態</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
-                        <td className="py-3 px-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl">🧠</span>
-                            <button
-                              onClick={() => navigate('/courses/prompt-engineering-outline')}
-                              className="font-medium hover:text-blue-400 transition-colors text-left"
-                            >
-                              Prompt Engineering
-                            </button>
-                          </div>
-                        </td>
-                        <td className="py-3 px-4">
-                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/prompt-engineering-outline</code>
-                        </td>
-                        <td className="py-3 px-4">
-                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                            ✅ 可用
-                          </Badge>
-                        </td>
-                      </tr>
-                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
-                        <td className="py-3 px-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl">💬</span>
-                            <button
-                              onClick={() => navigate('/courses/chatgpt-mastery-outline')}
-                              className="font-medium hover:text-blue-400 transition-colors text-left"
-                            >
-                              ChatGPT Mastery
-                            </button>
-                          </div>
-                        </td>
-                        <td className="py-3 px-4">
-                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/chatgpt-mastery-outline</code>
-                        </td>
-                        <td className="py-3 px-4">
-                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                            ✅ 可用
-                          </Badge>
-                        </td>
-                      </tr>
-                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
-                        <td className="py-3 px-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl">🔍</span>
-                            <button
-                              onClick={() => navigate('/courses/perplexity-tools-outline')}
-                              className="font-medium hover:text-blue-400 transition-colors text-left"
-                            >
-                              Perplexity Tools
-                            </button>
-                          </div>
-                        </td>
-                        <td className="py-3 px-4">
-                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/perplexity-tools-outline</code>
-                        </td>
-                        <td className="py-3 px-4">
-                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                            ✅ 可用
-                          </Badge>
-                        </td>
-                      </tr>
-                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
-                        <td className="py-3 px-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl">💻</span>
-                            <button
-                              onClick={() => navigate('/courses/coding-basics-outline')}
-                              className="font-medium hover:text-blue-400 transition-colors text-left"
-                            >
-                              Coding Basics
-                            </button>
-                          </div>
-                        </td>
-                        <td className="py-3 px-4">
-                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/coding-basics-outline</code>
-                        </td>
-                        <td className="py-3 px-4">
-                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                            ✅ 可用
-                          </Badge>
-                        </td>
-                      </tr>
-                      <tr className="hover:bg-white/5 transition-colors">
-                        <td className="py-3 px-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl">🎨</span>
-                            <button
-                              onClick={() => navigate('/courses/free-plan')}
-                              className="font-medium hover:text-blue-400 transition-colors text-left"
-                            >
-                              Midjourney AI Image
-                            </button>
-                          </div>
-                        </td>
-                        <td className="py-3 px-4">
-                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/free-plan</code>
-                        </td>
-                        <td className="py-3 px-4">
-                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                            ✅ 可用
-                          </Badge>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 精選免費課程 Section */}
-          <div className="mb-16">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                精選免費課程
-              </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                精心製作嘅數位課程，幫助你快速提升技能並實現商業目標
-              </p>
-            </div>
-
-            {/* Courses Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {filteredCourses.map((course, index) => (
-                <motion.div
-                  key={course.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
+          {/* Course Categories */}
+          <div className="mb-12">
+            <div className="flex flex-wrap gap-2 justify-center">
+              {categories.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category.id)}
+                  className="rounded-full"
                 >
-                  <Atropos
-                    className="atropos-banner"
-                    shadowScale={1.05}
-                    rotateXMax={10}
-                    rotateYMax={10}
-                  >
-                    <Card className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-300 h-full">
-                      <CardHeader className="pb-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-4xl">{course.image}</span>
-                          <div className="flex gap-2">
-                            {course.featured && (
-                              <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-400">
-                                {isZhTW ? '精選' : 'Featured'}
-                              </Badge>
-                            )}
-                            {course.badge && (
-                              <Badge className="bg-blue-500/20 text-blue-400 border-blue-400">
-                                {course.badge}
-                              </Badge>
-                            )}
-                          </div>
-                        </div>
-                        
-                        <CardTitle className="text-xl font-bold text-white mb-2">
-                          {isZhTW ? course.titleCht : course.title}
-                        </CardTitle>
-                        
-                        <CardDescription className="text-gray-400 text-sm leading-relaxed">
-                          {isZhTW ? course.descriptionCht : course.description}
-                        </CardDescription>
-                      </CardHeader>
-                      
-                      <CardContent className="pt-0">
-                        <div className="space-y-4">
-                          <div className="flex items-center gap-4 text-sm text-gray-500">
-                            <div className="flex items-center gap-1">
-                              <Clock className="w-4 h-4" />
-                              {isZhTW ? course.durationCht : course.duration}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Users className="w-4 h-4" />
-                              {course.students.toLocaleString()} {isZhTW ? '學生' : 'students'}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Star className="w-4 h-4 text-yellow-400" />
-                              {course.rating}
-                            </div>
-                          </div>
-
-                          <div className="space-y-2">
-                            <div className="text-sm text-gray-500">
-                              {isZhTW ? '包含內容：' : 'Includes:'}
-                            </div>
-                            <div className="space-y-1">
-                              {(isZhTW ? course.includesCht : course.includes).slice(0, 3).map((include, idx) => (
-                                <div key={idx} className="text-xs text-gray-400 flex items-center gap-2">
-                                  <div className="w-1 h-1 bg-blue-400 rounded-full flex-shrink-0"></div>
-                                  {include}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="flex flex-col gap-3 pt-4">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-2">
-                                <span className="text-xl font-bold text-blue-400">
-                                  {course.badge || (isZhTW ? '免費' : 'FREE')}
-                                </span>
-                              </div>
-                              <Badge variant="secondary" className="text-xs">
-                                {isZhTW ? course.typeCht : course.type}
-                              </Badge>
-                            </div>
-                            
-                            <Button 
-                              size="sm"
-                              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
-                              onClick={() => handleCourseClick(course.id)}
-                            >
-                              {course.badge === '了解更多' ? (isZhTW ? '了解更多' : 'Learn More') : (isZhTW ? '即將開班' : 'Opening Soon')}
-                              <ArrowRight className="w-4 h-4 ml-2" />
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Atropos>
-                </motion.div>
+                  {isZhTW ? category.nameCht : category.name}
+                </Button>
               ))}
             </div>
+          </div>
+
+          {/* Part 4: Real Courses (5個真實課程) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredCourses.map((course, index) => (
+              <motion.div
+                key={course.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
+              >
+                <Card className="h-[520px] flex flex-col overflow-hidden bg-slate-800/50 backdrop-blur-sm border-slate-600/50 hover:border-blue-500/50 transition-all duration-300">
+                  <CardHeader className="pb-4 flex-shrink-0">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="text-4xl flex-shrink-0">{course.image}</div>
+                      <div className="flex-1 min-w-0">
+                        <Badge variant="secondary" className="mb-2 bg-green-500/20 text-green-300 border-green-500/30">
+                          {course.badge}
+                        </Badge>
+                        <CardTitle className="text-lg leading-tight text-white line-clamp-3 h-[4.5rem]">
+                          {isZhTW ? course.titleCht : course.title}
+                        </CardTitle>
+                      </div>
+                    </div>
+                    <CardDescription className="text-gray-300 text-sm line-clamp-2 h-[2.5rem]">
+                      {isZhTW ? course.descriptionCht : course.description}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4 text-sm text-gray-300">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4 text-blue-400" />
+                          <span className="text-gray-200">{isZhTW ? course.durationCht : course.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Users className="w-4 h-4 text-blue-400" />
+                          <span className="text-gray-200">{course.students.toLocaleString()}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                          <span className="text-gray-200">{course.rating}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm text-white">{isZhTW ? '包含內容：' : 'Includes:'}</h4>
+                        <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
+                          {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
+                            <li key={idx} className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
+                              <span className="truncate">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-col gap-3 pt-4 mt-auto">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl font-bold text-green-400">
+                            {course.badge || (isZhTW ? '免費' : 'FREE')}
+                          </span>
+                        </div>
+                        <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
+                          {isZhTW ? course.typeCht : course.type}
+                        </Badge>
+                      </div>
+                      
+                      <Button 
+                        size="sm"
+                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
+                        onClick={() => handleRealCourseClick(course.id)}
+                      >
+                        {isZhTW ? '查看課程大綱' : 'View Course Outline'}
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

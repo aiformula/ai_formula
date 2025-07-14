@@ -1,68 +1,44 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navigation from '@/components/Navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { CourseOutlineTemplate } from '@/components/templates';
 import { 
+  Clock, 
   Search, 
-  Users, 
+  Repeat, 
+  Brain, 
   Target, 
-  TrendingUp,
-  Clock,
-  Award,
-  CheckCircle,
-  PlayCircle,
-  Star,
-  Calendar,
-  BookOpen,
-  Zap,
-  ArrowRight,
-  MessageCircle,
-  Shield,
-  Globe,
-  Rocket,
-  ChevronDown,
-  ChevronUp,
-  Download,
-  Monitor,
-  Smartphone,
   Lightbulb,
-  Gift,
-  AlertCircle,
-  ExternalLink,
-  Repeat,
-  CreditCard,
+  Code,
   Database,
   FileText,
+  Heart,
+  Shield,
+  Star,
+  TrendingUp,
+  BookOpen,
+  Users,
   BarChart3,
-  TrendingUp as TrendingUpIcon,
   Eye,
-  Brain,
   Filter,
-  ScanLine,
-  Code,
-  Tag,
-  Heart
+  ScanLine
 } from 'lucide-react';
 
 const PerplexityToolsOutline: React.FC = () => {
-  const { language } = useLanguage();
   const navigate = useNavigate();
-  const isZhTW = language === 'zh-TW';
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const { language } = useLanguage();
+  const isZhTW = language === 'zh-HK';
 
+  // 課程基本信息
   const courseInfo = {
     badge: isZhTW ? "Perplexity 工具班" : "Perplexity Tools Class",
     title: isZhTW ? "『Perplexity 工具班』3小時 成為AI搜尋研究『超級專家』！" : "'Perplexity Tools Class' 3 Hours Become AI Search Research 'Super Expert'!",
     subtitle: isZhTW ? "3小時精通Perplexity AI搜尋引擎，從搜尋小白到研究達人！掌握高級搜尋技巧、資料分析、學術研究、商業調查，讓你的搜尋效率提升1000%。" : "Master Perplexity AI search engine in 3 hours, from search novice to research expert! Master advanced search techniques, data analysis, academic research, business investigation.",
-    instructor: "Dr. Michael Liu | 資訊研究專家",
+    instructor: "Jason | 專業開發與自動化專家",
     instructorTitle: isZhTW ? "專業導師" : "Professional Instructor"
   };
 
+  // 課程統計
   const courseStats = [
     {
       icon: <Clock className="w-6 h-6 text-orange-400" />,
@@ -81,459 +57,166 @@ const PerplexityToolsOutline: React.FC = () => {
     }
   ];
 
-  const industryTags = [
-    { 
-      name: isZhTW ? "日常生活" : "Daily Life", 
-      icon: <Lightbulb className="w-4 h-4" />,
-      available: true 
-    },
-    { 
-      name: isZhTW ? "保險業" : "Insurance", 
-      icon: <Shield className="w-4 h-4" />,
-      available: false 
-    },
-    { 
-      name: isZhTW ? "零售業" : "Retail", 
-      icon: <Star className="w-4 h-4" />,
-      available: false 
-    },
-    { 
-      name: isZhTW ? "金融業" : "Finance", 
-      icon: <TrendingUp className="w-4 h-4" />,
-      available: false 
-    },
-    { 
-      name: isZhTW ? "教育業" : "Education", 
-      icon: <BookOpen className="w-4 h-4" />,
-      available: false 
-    },
-    { 
-      name: isZhTW ? "醫療業" : "Healthcare", 
-      icon: <Heart className="w-4 h-4" />,
-      available: false 
-    }
+  // 課程資訊標籤
+  const courseInfoTags = [
+    { name: isZhTW ? "搜尋新手可學" : "Search Beginner OK", icon: <Star className="w-4 h-4 text-green-400" />, status: 'available' as const },
+    { name: isZhTW ? "免費試用" : "Free Trial", icon: <Search className="w-4 h-4 text-blue-400" />, status: 'featured' as const },
+    { name: isZhTW ? "學術研究" : "Academic Research", icon: <BookOpen className="w-4 h-4 text-purple-400" />, status: 'available' as const },
+    { name: isZhTW ? "商業分析" : "Business Analysis", icon: <BarChart3 className="w-4 h-4 text-yellow-400" />, status: 'available' as const },
+    { name: isZhTW ? "搜尋模板" : "Search Templates", icon: <FileText className="w-4 h-4 text-orange-400" />, status: 'available' as const },
+    { name: isZhTW ? "專家群組" : "Expert Group", icon: <Users className="w-4 h-4 text-cyan-400" />, status: 'available' as const },
+    { name: isZhTW ? "高級功能" : "Advanced Features", icon: <Filter className="w-4 h-4 text-indigo-400" />, status: 'available' as const },
+    { name: isZhTW ? "實時更新" : "Real-time Updates", icon: <TrendingUp className="w-4 h-4 text-pink-400" />, status: 'available' as const },
+    { name: isZhTW ? "AI洞察" : "AI Insights", icon: <Brain className="w-4 h-4 text-red-400" />, status: 'coming-soon' as const }
   ];
 
+  // 可選課程
   const availableCourses = [
     {
-      title: isZhTW ? "『編程基礎班』4小時 零基礎學會『真正實用』的程式設計！" : "'Coding Basics Class' 4 Hours Learn 'Truly Practical' Programming from Zero!",
-      description: isZhTW ? "零基礎學會程式設計的完整課程" : "Complete course for learning programming from zero",
-      color: "green",
+      title: isZhTW ? "『ChatGPT 精通班』5小時 掌握AI對話藝術成為『真正專家』！" : "'ChatGPT Mastery Class' 5 Hours Master AI Conversation Art to Become a 'True Expert'!",
+      description: isZhTW ? "深度掌握ChatGPT對話技巧和商業應用" : "Deep mastery of ChatGPT conversation skills and business applications",
+      color: "green" as const,
       available: true
     },
     {
-      title: isZhTW ? "『Perplexity 工具班』3小時 成為AI搜尋研究『超級專家』！" : "'Perplexity Tools Class' 3 Hours Become AI Search Research 'Super Expert'!",
-      description: isZhTW ? "掌握AI搜尋工具的專業技能" : "Master professional skills of AI search tools",
-      color: "orange",
+      title: isZhTW ? "『AI 主題班』3小時 手把手教你一步步做出『真正用得』手機 AI App！" : "'AI Master Class' 3 Hours Step-by-Step Guide to Building a 'Truly Useful' Mobile AI App!",
+      description: isZhTW ? "學習建構實用的AI手機應用程式" : "Learn to build practical AI mobile applications",
+      color: "orange" as const,
       available: true
     }
   ];
 
+  // 最新消息
   const latestNews = {
-    date: "2025年8月15日",
-    title: isZhTW ? "9月5日AI搜尋工作坊，專業研究技巧" : "September 5th AI Search Workshop, Professional Research Skills",
+    date: "2025年7月20日",
+    title: isZhTW ? "8月15日Perplexity工具班開課，搜尋專家養成計畫" : "August 15th Perplexity Tools Class, Search Expert Development Program",
     details: [
-      { icon: "📅", text: isZhTW ? "日期：2025年9月5日 (星期四)" : "Date: September 5, 2025 (Thursday)" },
-      { icon: "🕐", text: isZhTW ? "時間：晚上 7:30 - 10:30 (3小時)" : "Time: 7:30 PM - 10:30 PM (3 hours)" },
-      { icon: "🎯", text: isZhTW ? "線上工作坊+實時互動 (Zoom連線)" : "Online Workshop + Real-time Interaction (Zoom)" },
-      { icon: "👥", text: isZhTW ? "搜尋專家訓練｜限額 8 位" : "Search Expert Training | Limited to 8 seats" },
-      { icon: "✅", text: isZhTW ? "每位學員獲得個人化搜尋策略指導" : "Each student receives personalized search strategy guidance" },
-      { icon: "🎁", text: isZhTW ? "搜尋專家價：$1,980 (原價 $2,800)" : "Search Expert Price: $1,980 (Original $2,800)" }
+      { icon: "📅", text: isZhTW ? "日期：2025年8月15日 (星期五)" : "Date: August 15, 2025 (Friday)" },
+      { icon: "🕔", text: isZhTW ? "時間：下午 1:00 - 4:00 (3小時)" : "Time: 1:00 PM - 4:00 PM (3 hours)" },
+      { icon: "🎯", text: isZhTW ? "線上直播＋實戰練習" : "Live streaming + practical exercises" },
+      { icon: "👥", text: isZhTW ? "小班教學｜僅限 25 位" : "Small Class Teaching | Limited to 25 seats" },
+      { icon: "✅", text: isZhTW ? "免費Perplexity Pro試用1個月" : "Free Perplexity Pro trial for 1 month" },
+      { icon: "🎁", text: isZhTW ? "早鳥價：$2,800 (原價 $3,500)" : "Early Bird Price: $2,800 (Original $3,500)" }
     ],
-    note: isZhTW ? "專業搜尋技能，限量開班" : "Professional search skills, limited class"
+    note: isZhTW ? "搜尋達人速成班，機會難得" : "Search expert crash course, rare opportunity"
   };
 
+  // 價格信息
   const pricingInfo = {
-    series: isZhTW ? "全系列優惠價" : "Full Series Special Price",
-    price: "$1,980",
-    originalPrice: "$2,800",
+    series: isZhTW ? "搜尋工具專精價" : "Search Tools Specialty Price",
+    price: "$2,800",
+    originalPrice: "$3,500",
     aiInOne: isZhTW ? "AI in one 學員價" : "AI in one Student Price",
-    studentPrice: "$1,480",
-    enterprise: isZhTW ? "我們亦提供企業培訓服務" : "We also provide enterprise training services"
+    studentPrice: "$2,200",
+    enterprise: isZhTW ? "企業資料搜尋培訓方案" : "Corporate data search training program"
   };
 
+  // 課程特色
   const courseFeatures = [
     {
-      icon: <Search className="w-8 h-8 text-orange-400" />,
-      title: isZhTW ? "高級搜尋" : "Advanced Search",
-      description: isZhTW ? "掌握專業搜尋技巧與策略" : "Master professional search techniques and strategies",
-      highlight: isZhTW ? "搜尋引擎" : "Search Engine"
+      icon: <Search className="w-12 h-12 text-orange-400 mx-auto" />,
+      title: isZhTW ? "高級搜尋技巧" : "Advanced Search Techniques",
+      description: isZhTW ? "掌握Perplexity的所有搜尋功能和技巧" : "Master all Perplexity search functions and techniques",
+      highlight: isZhTW ? "搜尋專精" : "Search Specialization"
     },
     {
-      icon: <FileText className="w-8 h-8 text-blue-400" />,
-      title: isZhTW ? "資料分析" : "Data Analysis",
-      description: isZhTW ? "學會從海量資訊中提取關鍵洞察" : "Learn to extract key insights from massive information",
-      highlight: isZhTW ? "分析工具" : "Analysis Tools"
+      icon: <BarChart3 className="w-12 h-12 text-blue-400 mx-auto" />,
+      title: isZhTW ? "資料分析能力" : "Data Analysis Skills",
+      description: isZhTW ? "學會從搜尋結果中提取有價值的資訊" : "Learn to extract valuable information from search results",
+      highlight: isZhTW ? "數據洞察" : "Data Insights"
     },
     {
-      icon: <Brain className="w-8 h-8 text-purple-400" />,
-      title: isZhTW ? "學術研究" : "Academic Research",
-      description: isZhTW ? "提升論文寫作與學術調查能力" : "Enhance paper writing and academic investigation skills",
-      highlight: isZhTW ? "研究方法" : "Research Methods"
+      icon: <FileText className="w-12 h-12 text-green-400 mx-auto" />,
+      title: isZhTW ? "學術研究應用" : "Academic Research Application",
+      description: isZhTW ? "應用AI搜尋工具進行專業學術研究" : "Apply AI search tools for professional academic research",
+      highlight: isZhTW ? "學術專業" : "Academic Professional"
     },
     {
-      icon: <BarChart3 className="w-8 h-8 text-green-400" />,
-      title: isZhTW ? "商業調查" : "Business Investigation",
-      description: isZhTW ? "掌握市場調查與競爭分析技巧" : "Master market research and competitive analysis skills",
-      highlight: isZhTW ? "市場分析" : "Market Analysis"
+      icon: <Eye className="w-12 h-12 text-purple-400 mx-auto" />,
+      title: isZhTW ? "商業情報收集" : "Business Intelligence Gathering",
+      description: isZhTW ? "利用AI搜尋進行市場研究和競爭分析" : "Use AI search for market research and competitive analysis",
+      highlight: isZhTW ? "商業洞察" : "Business Insights"
     }
   ];
 
-  const faqData = [
-    {
-      question: isZhTW ? "我需要有Perplexity Pro帳戶嗎？" : "Do I need a Perplexity Pro account?",
-      answer: isZhTW ? "不需要！我們會提供課程期間的Pro帳戶試用，讓你體驗所有進階功能。課程結束後，你可以根據需要決定是否訂閱。" : "No need! We'll provide Pro account trial during the course to experience all advanced features. After the course, you can decide whether to subscribe based on your needs."
-    },
-    {
-      question: isZhTW ? "這個課程適合什麼背景的人？" : "What background is this course suitable for?",
-      answer: isZhTW ? "適合所有需要進行資料搜尋的人：學生、研究人員、記者、分析師、創業者、顧問等。無論你是寫論文、做市場調查還是日常研究，都能大幅提升效率。" : "Suitable for anyone who needs to conduct data searches: students, researchers, journalists, analysts, entrepreneurs, consultants, etc."
-    },
-    {
-      question: isZhTW ? "和Google搜尋有什麼不同？" : "What's the difference from Google search?",
-      answer: isZhTW ? "Perplexity是AI驅動的搜尋引擎，能夠理解複雜問題、提供摘要答案、引用可靠來源。我們會教你如何充分利用這些AI功能，進行更深入的研究。" : "Perplexity is an AI-driven search engine that can understand complex questions, provide summary answers, and cite reliable sources. We'll teach you how to fully utilize these AI features for deeper research."
-    }
-  ];
-
-  const handleStartLearning = () => {
-    navigate('/perplexity-tools/lesson/1');
+  // 目標學員
+  const targetAudience = {
+    title: isZhTW ? "哪些人適合學習Perplexity工具課程？" : "Who Should Take This Perplexity Tools Course?",
+    description: isZhTW ? "無論你是學術研究者、商業分析師還是內容創作者，這門課程都能幫助你掌握AI搜尋的核心技能，大幅提升資訊搜集和分析效率。" : "Whether you're an academic researcher, business analyst, or content creator, this course helps you master core AI search skills and dramatically improve information gathering and analysis efficiency.",
+    audiences: [
+      {
+        icon: <BookOpen className="w-8 h-8 text-orange-400" />,
+        title: isZhTW ? "學術研究者" : "Academic Researchers",
+        description: isZhTW ? "學生、教授、研究員等需要進行文獻搜尋和學術研究的人員" : "Students, professors, researchers who need to conduct literature searches and academic research"
+      },
+      {
+        icon: <BarChart3 className="w-8 h-8 text-blue-400" />,
+        title: isZhTW ? "商業分析師" : "Business Analysts",
+        description: isZhTW ? "市場研究員、商業顧問、投資分析師等需要深度市場洞察的專業人士" : "Market researchers, business consultants, investment analysts who need deep market insights"
+      },
+      {
+        icon: <FileText className="w-8 h-8 text-green-400" />,
+        title: isZhTW ? "內容創作者" : "Content Creators",
+        description: isZhTW ? "記者、作家、部落客等需要快速收集準確資訊的內容工作者" : "Journalists, writers, bloggers who need to quickly gather accurate information for content work"
+      },
+      {
+        icon: <Users className="w-8 h-8 text-purple-400" />,
+        title: isZhTW ? "專業工作者" : "Professional Workers",
+        description: isZhTW ? "律師、醫生、顧問等需要高效資訊搜尋能力的專業人士" : "Lawyers, doctors, consultants who need efficient information search capabilities"
+      }
+    ]
   };
 
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
+  // FAQ數據
+  const faqData = [
+    {
+      question: isZhTW ? "是否需要有Perplexity Pro帳戶？" : "Do I need a Perplexity Pro account?",
+      answer: isZhTW ? "不需要！課程包含1個月免費Pro試用，讓你體驗所有高級功能。課程會教你如何最大化免費版本的使用效果。" : "No! The course includes a 1-month free Pro trial for you to experience all premium features. We'll teach you how to maximize the free version's effectiveness."
+    },
+    {
+      question: isZhTW ? "這個課程適合研究新手嗎？" : "Is this course suitable for research beginners?",
+      answer: isZhTW ? "絕對適合！課程從基礎搜尋開始，逐步教授高級技巧。無論你是學生、研究員還是商業人士，都能快速上手。" : "Absolutely! The course starts from basic search and gradually teaches advanced techniques. Whether you're a student, researcher, or business professional, you can quickly get started."
+    },
+    {
+      question: isZhTW ? "課程結束後還能獲得什麼支援？" : "What support will I receive after the course?",
+      answer: isZhTW ? "你將獲得搜尋模板庫、最佳實踐指南，並加入我們的搜尋專家交流群組，持續學習最新的搜尋技巧。" : "You'll receive a search template library, best practices guide, and join our search expert community group for continuous learning of the latest search techniques."
+    },
+    {
+      question: isZhTW ? "Perplexity與Google搜尋有什麼不同？" : "What's the difference between Perplexity and Google search?",
+      answer: isZhTW ? "Perplexity是AI驅動的搜尋引擎，能提供更精準的答案和來源引用。我們會教你如何結合兩者的優勢，進行更有效的資訊搜尋。" : "Perplexity is an AI-powered search engine that provides more precise answers and source citations. We'll teach you how to combine the advantages of both for more effective information search."
+    }
+  ];
+
+  // 回調函數
+  const handleStartLearning = () => {
+    navigate('/courses/free-plan');
+  };
+
+  const handleRegister = () => {
+    // 導航到課程學習頁面
+    navigate('/courses/free-plan');
+  };
+
+  const handleWhatsApp = () => {
+    // 打開WhatsApp聯絡
+    window.open('https://wa.me/85298765432?text=我想了解Perplexity工具班課程', '_blank');
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <Navigation />
-      
-      <div className="container mx-auto px-4 py-8 pt-24">
-        {/* Hero Section */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          {/* Left Content */}
-          <div className="lg:col-span-2">
-            <div className="mb-6">
-              <Badge className="bg-orange-900 text-orange-300 hover:bg-orange-800 mb-4">
-                {courseInfo.badge}
-              </Badge>
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {courseInfo.title}
-              </h1>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                {courseInfo.subtitle}
-              </p>
-            </div>
-
-            {/* Course Overview */}
-            <Card className="mb-8 bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <Search className="w-5 h-5 text-orange-400" />
-                  {isZhTW ? "課程總覽" : "Course Overview"}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {courseStats.map((stat, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="flex-shrink-0">
-                        {stat.icon}
-                      </div>
-                      <div>
-                        <div className="font-semibold text-white">{stat.label}</div>
-                        <div className="text-sm text-gray-300 mt-1">{stat.value}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Industry Tags */}
-            <Card className="mb-8 bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <Tag className="w-5 h-5 text-orange-400" />
-                  {isZhTW ? "行業應用" : "Industry Applications"}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {industryTags.map((tag, index) => (
-                    <div key={index} className="flex items-center gap-2 p-3 bg-gray-700 rounded-lg">
-                      {tag.icon}
-                      <span className="text-gray-300">{tag.name}</span>
-                      {!tag.available && (
-                        <Badge variant="outline" className="ml-auto text-xs text-gray-500 border-gray-600">
-                          Coming Soon
-                        </Badge>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Available Courses */}
-            <Card className="mb-8 bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <BookOpen className="w-5 h-5 text-orange-400" />
-                  {isZhTW ? "可選課程" : "Available Courses"}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {availableCourses.map((course, index) => (
-                    <div key={index} className="p-4 bg-gray-700 rounded-lg">
-                      <div className="flex items-start gap-3">
-                        {course.color === 'green' ? (
-                          <Code className="w-6 h-6 text-green-400 mt-1" />
-                        ) : (
-                          <Search className="w-6 h-6 text-orange-400 mt-1" />
-                        )}
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-white mb-1">{course.title}</h3>
-                          <p className="text-sm text-gray-300">{course.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Latest News */}
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader>
-                <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
-                  <AlertCircle className="w-4 h-4" />
-                  <span>{isZhTW ? "最新消息" : "Latest News"}</span>
-                  <span>{latestNews.date}</span>
-                </div>
-                <CardTitle className="text-xl text-white">{latestNews.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {latestNews.details.map((detail, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <span>{detail.icon}</span>
-                      <span className="text-gray-300">{detail.text}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 text-sm text-gray-400">
-                  {latestNews.note}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Right Sidebar */}
-          <div className="lg:col-span-1">
-            {/* Promotional Banner */}
-            <Card className="bg-gradient-to-br from-orange-600 to-orange-800 text-white mb-6">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                    <Search className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="text-sm opacity-90">{courseInfo.instructorTitle}</div>
-                    <div className="font-semibold">{courseInfo.instructor}</div>
-                  </div>
-                </div>
-                
-                <h3 className="text-lg font-bold mb-3">
-                  {isZhTW ? "成為AI搜尋研究『超級專家』" : "Become AI Search Research 'Super Expert'"}
-                </h3>
-                
-                <div className="text-sm opacity-90 mb-4">
-                  {isZhTW ? "3小時精通：高級搜尋+資料分析+學術研究+商業調查" : "3 Hours Master: Advanced Search + Data Analysis + Academic Research + Business Investigation"}
-                </div>
-
-                <div className="space-y-2 text-sm mb-4">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>{isZhTW ? "掌握AI搜尋引擎的所有進階功能" : "Master all advanced features of AI search engines"}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>{isZhTW ? "學會專業資料分析與洞察提取" : "Learn professional data analysis and insight extraction"}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>{isZhTW ? "提升搜尋效率1000%，成為資訊專家" : "Increase search efficiency by 1000%"}</span>
-                  </div>
-                </div>
-
-                <div className="bg-white/10 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold">Search Expert</div>
-                  <div className="text-sm opacity-90">{isZhTW ? "AI搜尋專家認證" : "AI Search Expert Certification"}</div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Pricing Card */}
-            <Card className="mb-6 bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <div className="text-sm text-gray-400 mb-1">{isZhTW ? "距離最新一期開班還有" : "Next Class Starts In"}</div>
-                  <div className="text-2xl font-bold text-orange-400">26 {isZhTW ? "日" : "Days"}</div>
-                  <div className="text-sm text-gray-400">{isZhTW ? "3小時" : "3 Hours"}</div>
-                </div>
-
-                <Button 
-                  className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 mb-4"
-                  onClick={handleStartLearning}
-                >
-                  <Calendar className="w-4 h-4 mr-2" />
-                  {isZhTW ? "立即報讀" : "Register Now"}
-                </Button>
-
-                <div className="text-center mb-4">
-                  <div className="text-lg font-bold text-white">{courseInfo.title}</div>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-400">{pricingInfo.series}</span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-orange-400">{pricingInfo.price}</span>
-                      <span className="text-sm text-gray-500 line-through">{pricingInfo.originalPrice}</span>
-                    </div>
-                  </div>
-
-                  <Button variant="outline" className="w-full border-gray-600 text-gray-300 hover:bg-gray-700">
-                    <CreditCard className="w-4 h-4 mr-2" />
-                    {isZhTW ? "立即線上報名" : "Online Registration"}
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-
-                  <Button variant="ghost" className="w-full text-orange-400 hover:bg-gray-700">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    {isZhTW ? "透過 WhatsApp 查詢/報名" : "WhatsApp Inquiry"}
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-
-                  <div className="text-center py-2">
-                    <div className="text-sm text-gray-400">{pricingInfo.aiInOne}</div>
-                    <div className="text-xl font-bold text-orange-400">{pricingInfo.studentPrice}</div>
-                    <div className="text-xs text-orange-400 cursor-pointer">{isZhTW ? "如何成為學員？" : "How to become a student?"} →</div>
-                  </div>
-
-                  <div className="text-center pt-4 border-t border-gray-600">
-                    <div className="text-sm text-gray-400">{pricingInfo.enterprise}</div>
-                    <div className="text-xs text-orange-400 cursor-pointer">{isZhTW ? "了解更多" : "Learn More"} →</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Course Features */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-12"
-        >
-          <h2 className="text-3xl font-bold text-center mb-8 text-white">
-            {isZhTW ? "🔍 你會掌握什麼？" : "🔍 What You'll Master"}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {courseFeatures.map((feature, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 text-center">
-                  <div className="mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-white">{feature.title}</h3>
-                  <p className="text-gray-300 mb-3">{feature.description}</p>
-                  <Badge variant="outline" className="text-orange-400 border-orange-400">
-                    {feature.highlight}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* FAQ Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-12"
-        >
-          <h2 className="text-3xl font-bold text-center mb-8 text-white">
-            {isZhTW ? "❓ 常見問題" : "❓ FAQ"}
-          </h2>
-          <div className="max-w-4xl mx-auto space-y-4">
-            {faqData.map((faq, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700">
-                <CardContent className="p-0">
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
-                      {openFAQ === index ? (
-                        <ChevronUp className="w-5 h-5 text-gray-400" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-gray-400" />
-                      )}
-                    </div>
-                  </button>
-                  {openFAQ === index && (
-                    <div className="px-6 pb-6">
-                      <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Footer */}
-        <div className="bg-gray-800 text-white py-16 px-8 rounded-lg">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">AI Formula</h2>
-            <p className="text-xl text-gray-300">{isZhTW ? "致力推動香港 AI 發展" : "Dedicated to promoting Hong Kong AI development"}</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-white">{isZhTW ? "實用課程" : "Practical Courses"}</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-300 hover:text-white cursor-pointer">{isZhTW ? "社群活動" : "Community Activities"}</li>
-                <li className="text-gray-300 hover:text-white cursor-pointer">{isZhTW ? "部落格" : "Blog"}</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-white">{isZhTW ? "企業培訓" : "Enterprise Training"}</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-300 hover:text-white cursor-pointer">{isZhTW ? "專業服務" : "Professional Services"}</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-white">{isZhTW ? "關於我們" : "About Us"}</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-300 hover:text-white cursor-pointer">{isZhTW ? "聯絡我們" : "Contact Us"}</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="text-center mt-8 pt-8 border-t border-gray-600">
-            <p className="text-gray-300">© ai-formula.com 2025. All Rights Reserved</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <CourseOutlineTemplate
+      courseInfo={courseInfo}
+      courseStats={courseStats}
+      courseInfoTags={courseInfoTags}
+      availableCourses={availableCourses}
+      latestNews={latestNews}
+      pricingInfo={pricingInfo}
+      courseFeatures={courseFeatures}
+      faqData={faqData}
+      targetAudience={targetAudience}
+      onStartLearning={handleStartLearning}
+      onRegister={handleRegister}
+      onWhatsApp={handleWhatsApp}
+    />
   );
 };
 

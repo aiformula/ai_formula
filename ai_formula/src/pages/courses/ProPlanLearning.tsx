@@ -44,7 +44,7 @@ import {
 const ProPlanLearning: React.FC = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
 
   const courseInfo = {
     title: isZhTW ? "專業培訓方案 - 冠軍聯賽" : "Professional Training - Champion League",
