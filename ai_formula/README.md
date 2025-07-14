@@ -2,29 +2,79 @@
 
 ## 📋 項目概述 / Project Overview
 
-**繁體中文：** AI Formula 是一個專為香港企業設計的AI自動化解決方案平台，提供專業的AI技術服務、教學課程和商業應用指南。本項目已完成重大重構，採用模組化架構，並實施了完整的Phase 4內容優化策略。
+**繁體中文：** AI Formula 是一個專為香港企業設計的AI自動化解決方案平台，提供專業的AI技術服務、教學課程和商業應用指南。本項目已完成重大重構，採用模組化架構，並實施了完整的品牌視覺系統和交互式學習平台。
 
-**English:** AI Formula is an AI automation solution platform designed specifically for Hong Kong businesses, providing professional AI technology services, educational courses, and business application guides. This project has undergone major refactoring with a modular architecture and implemented a complete Phase 4 content optimization strategy.
+**English:** AI Formula is an AI automation solution platform designed specifically for Hong Kong businesses, providing professional AI technology services, educational courses, and business application guides. This project has undergone major refactoring with a modular architecture and implemented a complete brand visual system and interactive learning platform.
 
-## 🎯 最新更新 / Latest Updates
+## 🎯 最新重大更新 / Latest Major Updates
 
-### ✅ Phase 4 內容優化完成 / Phase 4 Content Optimization Complete
+### ✅ 全新課程學習儀表板 / New Course Learning Dashboard
 
-- **📊 內容審核工具**：實現了完整的內容審核和SEO評分系統
-- **🌐 多語言優化**：完善了中英文內容對照和本地化
-- **🔍 SEO增強**：動態元標籤、結構化數據和網站地圖生成
-- **📈 性能優化**：圖片優化、懶加載和內容壓縮
-- **📚 課程擴展**：增加了詳細的課程內容和學習路徑
-- **📝 博客策略**：制定了完整的內容日程和主題規劃
-- **🎨 用戶體驗**：改善了內容可讀性和導航體驗
-- **📊 分析監控**：建立了內容表現追蹤和用戶行為分析
+#### 🎨 AI Formula 品牌視覺系統 / AI Formula Brand Visual System
+- **🌟 背景色**：#0D0D1A (深科技藍黑色)
+- **💚 主要強調色**：#3EFFDC (螢光綠青色) - 用於進度條、圖標、高亮
+- **💜 次要強調色**：#8A3FFC (紫色) - 用於按鈕和漸變結束
+- **🔤 文字色彩**：#FFFFFF (標題)，#E0E0E0 (正文)
+- **🎴 卡片樣式**：rgba(255, 255, 255, 0.05) 背景，#3EFFDC 到 #8A3FFC 線性漸變邊框
+- **📊 圖表樣式**：雷達圖表，rgba(255, 255, 255, 0.1) 網格，#3EFFDC 描邊
 
-### 🔄 架構優化 / Architecture Optimization
+#### 🖥️ 交互式學習介面 / Interactive Learning Interface
+- **📝 AI 遊樂場**：與AI助手即時對話，獲得學習支援
+- **📔 智慧筆記**：記錄學習重點，支援搜索和整理
+- **🎯 實作練習**：互動式練習題，即時反饋和評估
+- **📱 響應式設計**：50% 學習內容 + 50% 互動介面的完美平衡
 
-- **📁 資料夾結構重構**：優化了項目結構，提高了可維護性
-- **🔧 模板系統**：建立了統一的模板系統，提高開發效率
-- **🌟 組件重構**：重新組織了組件架構，提高了可重用性
-- **🔗 路由優化**：修正了所有路由問題，確保頁面正常訪問
+#### 🔓 進階解鎖機制 / Progressive Unlock Mechanism
+- **⏭️ 順序學習**：完成當前課程後才能解鎖下一課程
+- **✅ 進度追蹤**：即時顯示完成狀態和學習進度
+- **🎯 學習路徑**：清晰的學習路徑指引
+- **🔄 自動導航**：完成課程後自動跳轉到下一課程
+
+#### 🎭 多類型課程內容 / Multi-Type Course Content
+- **📹 影片課程**：支援影片播放和字幕顯示
+- **📖 互動文本**：豐富的文本內容，支援代碼高亮
+- **🧩 測驗系統**：多選題測驗，即時評分和反饋
+- **💡 LessonViewer 組件**：智能識別課程類型並提供對應介面
+
+### ✅ 全新提示工程課程內容 / New Prompt Engineering Course Content
+
+#### 🎯 三大學習主題 / Three Main Learning Themes
+
+**1. AI 的悄悄話 - 初探 AI 的魔法語言** (50分鐘，3課程)
+- 什麼是「提示」？(15分鐘)
+- 為什麼要學習提示？(20分鐘)
+- 認識你的AI夥伴 (15分鐘)
+
+**2. 把話說清楚的魔法 - 基礎提示技巧** (80分鐘，3課程)
+- 具體明確技巧 (25分鐘)
+- 提供情境技巧 (30分鐘)
+- 給出範例技巧 (25分鐘)
+
+**3. 釋放 AI 的全部潛力 - 進階提示技巧** (90分鐘，3課程)
+- 角色扮演技巧 (30分鐘)
+- 思維鏈技巧 (35分鐘)
+- 持續優化技巧 (25分鐘)
+
+#### 📚 詳細課程內容 / Detailed Course Content
+- **🎯 學習目標**：每課程都有明確的學習目標
+- **💡 實際範例**：包含畫狗、寫信等實際應用場景
+- **🧩 測驗題目**：精心設計的測驗題目和答案
+- **📖 豐富資源**：相關文章、範例和延伸閱讀
+
+### ✅ 語言系統完整修正 / Complete Language System Fix
+
+#### 🌐 香港繁體中文支援 / Hong Kong Traditional Chinese Support
+- **🔧 語言代碼統一**：全面從 'zh-TW' 更改為 'zh-HK'
+- **🎌 語言選擇器**：正確顯示「中文」選項
+- **📝 內容本地化**：完整的繁體中文（香港）內容
+- **📅 日期格式**：使用 'zh-HK' 本地化日期格式
+
+#### 📁 修正範圍 / Fixed Components
+- **🧭 LanguageSwitcher.tsx**：修正語言代碼不一致問題
+- **🔗 Navigation.tsx**：更新語言檢查邏輯
+- **📚 所有課程組件**：統一使用 'zh-HK'
+- **📄 SEO 組件**：修正元標籤語言標記
+- **📊 數據對象**：更新所有課程數據的語言鍵值
 
 ## 🛠️ 技術棧 / Tech Stack
 
@@ -36,7 +86,7 @@
 - **Framer Motion** - 動畫庫
 - **React Router DOM** - 路由管理
 - **Lucide React** - 圖標庫
-- **Atropos** - 3D效果庫
+- **Recharts** - 圖表庫（雷達圖進度追蹤）
 
 ### 開發工具 / Development Tools
 - **ESLint** - 代碼質量檢查
@@ -50,6 +100,13 @@
 ai_formula/
 ├── 📁 src/
 │   ├── 📁 components/              # 組件系統
+│   │   ├── 📁 learning/           # 學習平台組件
+│   │   │   ├── CourseDashboardPage.tsx # 課程儀表板（全新設計）
+│   │   │   ├── LessonViewer.tsx   # 課程瀏覽器
+│   │   │   ├── AIPlayground.tsx   # AI互動遊樂場
+│   │   │   ├── SmartNotes.tsx     # 智慧筆記系統
+│   │   │   ├── QuizModal.tsx      # 測驗模態框
+│   │   │   └── AITutorChat.tsx    # AI導師聊天
 │   │   ├── 📁 ui/                 # 基礎UI組件
 │   │   │   ├── button.tsx         # 按鈕組件
 │   │   │   ├── card.tsx           # 卡片組件
@@ -69,25 +126,31 @@ ai_formula/
 │   │   │   ├── BlogHero.tsx       # 博客Hero區域
 │   │   │   ├── ArticleCard.tsx    # 文章卡片
 │   │   │   └── ArticleContent.tsx # 文章內容
-│   │   ├── 📁 ContentAudit/       # 內容審核工具
-│   │   │   └── ContentAuditTool.tsx # 內容分析工具
-│   │   ├── Navigation.tsx         # 導航組件
+│   │   ├── 📁 templates/          # 模板系統
+│   │   │   ├── CourseOutlineTemplate.tsx # 課程大綱模板
+│   │   │   ├── CourseTemplate.tsx # 課程模板
+│   │   │   └── BlogTemplate.tsx   # 博客模板
+│   │   ├── 📁 SEO/                # SEO組件
+│   │   │   ├── SEOHead.tsx        # SEO頭部
+│   │   │   ├── StructuredData.tsx # 結構化數據
+│   │   │   └── seoUtils.ts        # SEO工具（已修正語言）
+│   │   ├── Navigation.tsx         # 導航組件（已修正語言）
+│   │   ├── LanguageSwitcher.tsx   # 語言選擇器（已修正）
 │   │   ├── Footer.tsx             # 頁腳組件
 │   │   └── ErrorBoundary.tsx      # 錯誤邊界
 │   ├── 📁 contexts/               # React Context
-│   │   ├── LanguageContext.tsx    # 語言管理
+│   │   ├── LanguageContext.tsx    # 語言管理（預設zh-HK）
 │   │   ├── AuthContext.tsx        # 認證管理
 │   │   └── ViewCountContext.tsx   # 瀏覽計數管理
 │   ├── 📁 data/                   # 數據文件
 │   │   ├── 📁 blog/               # 博客數據
 │   │   │   ├── blogPosts.ts       # 博客文章
 │   │   │   └── articleContent.ts  # 文章內容
-│   │   ├── 📁 courses/            # 課程數據
+│   │   ├── 📁 courseData/         # 課程數據
+│   │   │   ├── promptEngineeringComplete.ts # 全新提示工程課程
 │   │   │   ├── courseData.ts      # 課程數據
 │   │   │   ├── courseDetails.ts   # 課程詳情
 │   │   │   ├── courses.ts         # 課程列表
-│   │   │   ├── aiImageVideoCreation.ts # AI影像課程
-│   │   │   ├── promptEngineering.ts    # 提示工程課程
 │   │   │   └── courseManager.ts   # 課程管理器
 │   │   └── __tests__/             # 測試文件
 │   ├── 📁 pages/                  # 頁面組件
@@ -97,14 +160,14 @@ ai_formula/
 │   │   │   ├── BlogListing.tsx    # 博客列表
 │   │   │   └── BlogPost.tsx       # 文章詳情
 │   │   ├── 📁 courses/            # 課程頁面
-│   │   │   ├── Course.tsx         # 課程主頁（原始設計）
+│   │   │   ├── Course.tsx         # 課程主頁
 │   │   │   ├── CourseDetail.tsx   # 課程詳情
-│   │   │   ├── FreePlanLearning.tsx # 免費版學習
-│   │   │   ├── ProPlanLearning.tsx # 專業版學習
-│   │   │   ├── PromptEngineeringOutline.tsx # 提示工程大綱
-│   │   │   ├── ChatGPTMasteryOutline.tsx # ChatGPT精通大綱
-│   │   │   ├── PerplexityToolsOutline.tsx # Perplexity工具大綱
+│   │   │   ├── CoursesListing.tsx # 課程列表（已修正語言）
+│   │   │   ├── CourseRegistration.tsx # 課程註冊
+│   │   │   ├── PromptEngineeringCourse.tsx # 提示工程課程
 │   │   │   └── ...                # 其他課程頁面
+│   │   ├── 📁 learning/           # 學習頁面
+│   │   │   └── Dashboard.tsx      # 學習儀表板
 │   │   ├── About.tsx              # 關於頁面
 │   │   ├── Auth.tsx               # 認證頁面
 │   │   └── NotFound.tsx           # 404頁面
@@ -120,9 +183,6 @@ ai_formula/
 │   │   ├── 📁 pages/              # 頁面樣式
 │   │   ├── gradients.ts           # 漸變樣式
 │   │   └── index.ts               # 樣式導出
-│   ├── 📁 templates/              # 模板系統
-│   │   ├── BlogTemplate.tsx       # 博客模板
-│   │   └── CourseTemplate.tsx     # 課程模板
 │   ├── 📁 types/                  # 類型定義
 │   │   └── courseTypes.ts         # 課程類型
 │   ├── 📁 utils/                  # 工具文件
@@ -133,21 +193,14 @@ ai_formula/
 │   ├── 📁 prompt-engineering-course/ # 提示工程課程資源
 │   │   ├── index.md               # 課程索引
 │   │   ├── module1-intro.md       # 模組1：介紹
-│   │   ├── module2-elements.md    # 模組2：元素
-│   │   ├── module3-bestpractices.md # 模組3：最佳實踐
 │   │   └── ...                    # 其他課程文件
 │   ├── favicon.ico                # 網站圖標
-│   ├── robots.txt                 # 搜索引擎配置
-│   └── placeholder.svg            # 佔位符圖像
+│   └── robots.txt                 # 搜索引擎配置
 ├── 📁 設計文檔/                    # 設計文檔
 │   ├── ARCHITECTURE_GUIDE.md      # 架構指南
-│   ├── PHASE4_CONTENT_OPTIMIZATION_PLAN.md # Phase 4計劃
-│   ├── CONTENT_OPTIMIZATION_GUIDE.md # 內容優化指南
-│   ├── COURSE_PAGES_GUIDE.md      # 課程頁面指南
+│   ├── AI_FORMULA_COLOR_GUIDELINES.md # AI Formula色彩指南
 │   ├── LESSON_PAGE_DESIGN.md      # 課程頁面設計
-│   ├── FOUR_LESSON_STYLES_DESIGN.md # 四種課程風格
-│   ├── COURSE_OUTLINE_DESIGNS.md  # 課程大綱設計
-│   └── AI_FORMULA_COLOR_GUIDELINES.md # 色彩指南
+│   └── COURSE_OUTLINE_DESIGNS.md  # 課程大綱設計
 ├── package.json                   # 項目配置
 ├── tailwind.config.ts             # Tailwind配置
 ├── tsconfig.json                  # TypeScript配置
@@ -157,14 +210,28 @@ ai_formula/
 
 ## 🌟 核心功能 / Core Features
 
-### 1. 🎨 課程系統 / Course System
+### 1. 🎓 全新學習體驗 / New Learning Experience
 
-#### 原始課程頁面設計 / Original Course Page Design
-- **🎯 學習路徑展示**：包含AI圖像影片創作、商業自動化、數據分析等三個主要學習路徑
-- **🛍️ 數位產品網格**：展示8個不同類別的產品，支援分類過濾
-- **🎨 3D視覺效果**：使用Atropos庫實現3D卡片效果
-- **✨ 動畫效果**：Framer Motion提供流暢的頁面動畫
-- **📱 響應式設計**：適配所有設備尺寸
+#### 課程儀表板 / Course Dashboard
+- **🎨 品牌視覺設計**：完整的AI Formula視覺系統
+- **📊 學習進度追蹤**：雷達圖表顯示各項能力發展
+- **🎯 課程管理**：三個主要模組，九個詳細課程
+- **🔓 進階解鎖系統**：完成課程後自動解鎖下一課程
+- **📱 響應式設計**：完美適配所有設備
+
+#### 交互式學習介面 / Interactive Learning Interface
+- **🤖 AI 遊樂場**：與AI助手即時對話，獲得個人化學習支援
+- **📝 智慧筆記系統**：記錄學習重點，支援搜索和分類整理
+- **🎯 實作練習**：互動式練習題，即時反饋和詳細評估
+- **📏 完美平衡佈局**：50% 學習內容 + 50% 互動工具
+
+#### 多類型課程內容 / Multi-Type Course Content
+- **📹 影片課程**：高清影片播放，支援字幕和速度調整
+- **📖 互動文本**：豐富的文本內容，支援代碼高亮和複製
+- **🧩 智能測驗**：多選題測驗，即時評分和詳細解析
+- **💡 智能識別**：自動識別課程類型並提供對應介面
+
+### 2. 🎨 課程系統 / Course System
 
 #### 課程大綱系統 / Course Outline System
 - **📚 學術專業風格**：提示工程課程 - 結構化、層次清晰
@@ -172,13 +239,26 @@ ai_formula/
 - **🎯 現代卡片風格**：ChatGPT精通課程 - 模組化、簡潔現代
 - **📊 儀表板風格**：Perplexity工具課程 - 數據驅動、專業工具
 
-#### 學習管理功能 / Learning Management Features
-- **📈 進度追蹤**：實時顯示學習進度
-- **📝 筆記系統**：支援課程筆記記錄
-- **🎯 測驗系統**：課程理解測驗
-- **🔖 書籤功能**：重要內容標記
+#### 課程大綱模板功能 / Course Outline Template Features
+- **🎨 動態主題系統**：根據導師自動切換色彩主題
+- **📱 響應式Tab系統**：四個主要標籤頁面
+- **🎯 智慧內容管理**：動態生成相關課程和最新消息
+- **💰 整合價格系統**：完整的定價和註冊功能
 
-### 2. 📝 博客系統 / Blog System
+### 3. 🌐 多語言支援 / Multi-language Support
+
+#### 香港繁體中文 / Hong Kong Traditional Chinese
+- **🎌 語言代碼統一**：全面使用 'zh-HK' 標準
+- **📝 內容本地化**：完整的繁體中文（香港）內容
+- **📅 日期格式**：使用香港本地化日期格式
+- **🔄 動態切換**：用戶可即時切換語言
+
+#### 英文支援 / English Support
+- **🌍 完整英文界面**：所有組件都支援英文
+- **🔄 無縫切換**：語言切換無需重新加載頁面
+- **📊 SEO優化**：多語言SEO優化支援
+
+### 4. 📝 博客系統 / Blog System
 
 #### 文章展示 / Article Display
 - **📋 文章列表**：精選文章和最新文章分區展示
@@ -186,42 +266,11 @@ ai_formula/
 - **🏷️ 分類系統**：文章分類和標籤管理
 - **🔍 搜索功能**：全文搜索支援
 
-#### 多語言支援 / Multi-language Support
-- **🌐 繁體中文**：完整的繁體中文界面
-- **🌍 英文**：完整的英文界面
-- **🔄 動態切換**：用戶可即時切換語言
-
-### 3. 🎯 內容優化系統 / Content Optimization System
-
-#### SEO優化 / SEO Optimization
-- **📊 動態元標籤**：自動生成頁面元標籤
-- **🗺️ 網站地圖**：自動生成sitemap.xml
-- **📝 結構化數據**：Schema.org標記支援
-- **🔍 搜索引擎優化**：完整的SEO最佳實踐
-
-#### 內容審核工具 / Content Audit Tool
-- **📊 SEO評分**：自動評估頁面SEO表現
-- **⚡ 性能分析**：頁面載入速度和性能指標
-- **🎯 建議系統**：提供改進建議和指導
-
-### 4. 🔐 認證系統 / Authentication System
-
-#### 用戶管理 / User Management
-- **👤 用戶註冊**：完整的註冊流程
-- **🔑 用戶登入**：安全的登入系統
-- **🛡️ 路由保護**：保護需要認證的頁面
-- **👥 用戶角色**：不同用戶角色管理
-
-#### 學習進度 / Learning Progress
-- **📈 進度追蹤**：個人學習進度管理
-- **🎯 成就系統**：學習成就和獎勵
-- **📊 學習統計**：詳細的學習數據統計
-
 ## 🚀 快速開始 / Quick Start
 
 ### 環境要求 / Requirements
-- **Node.js** >= 16.0.0
-- **npm** >= 7.0.0 或 **yarn** >= 1.22.0
+- **Node.js** >= 18.0.0
+- **npm** >= 8.0.0 或 **yarn** >= 1.22.0
 - **Git** 版本控制
 
 ### 安裝步驟 / Installation Steps
@@ -240,58 +289,87 @@ npm install
 yarn install
 ```
 
-3. **環境配置 / Environment Setup**
-```bash
-# 複製環境變量文件
-cp .env.example .env.local
-
-# 編輯環境變量
-# 添加必要的API密鑰和配置
-```
-
-4. **啟動開發服務器 / Start Development Server**
+3. **啟動開發服務器 / Start Development Server**
 ```bash
 npm run dev
 # 或使用 yarn
 yarn dev
 ```
 
-5. **訪問應用 / Access Application**
-打開瀏覽器訪問 `http://localhost:5173`
+4. **訪問應用 / Access Application**
+- **主頁**：http://localhost:5173
+- **課程儀表板**：http://localhost:5173/courses/dashboard
+- **課程列表**：http://localhost:5173/courses
 
-## 🔧 開發指南 / Development Guide
+## 🎯 使用指南 / Usage Guide
+
+### 課程學習流程 / Course Learning Flow
+
+1. **選擇課程 / Select Course**
+   - 訪問課程列表頁面
+   - 選擇感興趣的課程
+   - 點擊「開始學習」
+
+2. **進入學習儀表板 / Enter Learning Dashboard**
+   - 查看課程概覽和進度
+   - 選擇要學習的模組
+   - 開始第一個課程
+
+3. **交互式學習 / Interactive Learning**
+   - 觀看課程內容（影片/文本）
+   - 使用AI遊樂場提問
+   - 記錄學習筆記
+   - 完成實作練習
+
+4. **進度追蹤 / Progress Tracking**
+   - 完成課程後標記為已完成
+   - 自動解鎖下一個課程
+   - 查看整體學習進度
+
+### 語言切換 / Language Switching
+
+```typescript
+// 語言切換器使用
+const { language, setLanguage } = useLanguage();
+
+// 切換到繁體中文（香港）
+setLanguage('zh-HK');
+
+// 切換到英文
+setLanguage('en');
+```
 
 ### 添加新課程 / Adding New Courses
 
-1. **創建課程數據 / Create Course Data**
 ```typescript
-// src/data/courses/yourCourse.ts
-export const yourCourse = {
-  id: 'your-course-id',
+// 創建新課程數據
+const newCourse = {
+  id: 'new-course-id',
   title: {
-    'zh-TW': '你的課程標題',
-    'en': 'Your Course Title'
+    'zh-HK': '新課程標題',
+    'en': 'New Course Title'
   },
   description: {
-    'zh-TW': '課程描述',
+    'zh-HK': '課程描述',
     'en': 'Course Description'
   },
   modules: [
     {
       id: 'module-1',
       title: {
-        'zh-TW': '模組1',
+        'zh-HK': '模組1',
         'en': 'Module 1'
       },
       lessons: [
         {
           id: 'lesson-1',
           title: {
-            'zh-TW': '課程1',
+            'zh-HK': '課程1',
             'en': 'Lesson 1'
           },
+          type: 'video' | 'interactive-text' | 'quiz',
           content: {
-            'zh-TW': '課程內容...',
+            'zh-HK': '課程內容...',
             'en': 'Lesson content...'
           }
         }
@@ -301,115 +379,110 @@ export const yourCourse = {
 };
 ```
 
-2. **創建課程頁面 / Create Course Page**
-```typescript
-// src/pages/courses/YourCourse.tsx
-import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { yourCourse } from '@/data/courses/yourCourse';
-
-const YourCourse = () => {
-  const { language } = useLanguage();
-  
-  return (
-    <div className="course-container">
-      <h1>{yourCourse.title[language]}</h1>
-      <p>{yourCourse.description[language]}</p>
-      {/* 課程內容 */}
-    </div>
-  );
-};
-
-export default YourCourse;
-```
-
-3. **添加路由 / Add Routes**
-```typescript
-// src/App.tsx
-import YourCourse from '@/pages/courses/YourCourse';
-
-// 在 Routes 中添加
-<Route path="/courses/your-course" element={<YourCourse />} />
-```
-
-### 添加新博客文章 / Adding New Blog Posts
-
-1. **創建文章數據 / Create Article Data**
-```typescript
-// src/data/blog/blogPosts.ts
-export const newBlogPost = {
-  id: 'new-post-id',
-  title: {
-    'zh-TW': '文章標題',
-    'en': 'Article Title'
-  },
-  excerpt: {
-    'zh-TW': '文章摘要',
-    'en': 'Article Excerpt'
-  },
-  content: {
-    'zh-TW': '文章內容...',
-    'en': 'Article content...'
-  },
-  author: 'Author Name',
-  date: '2024-01-15',
-  category: 'AI',
-  tags: ['AI', 'Automation'],
-  readTime: 5,
-  image: '/images/article-image.jpg'
-};
-```
-
-2. **更新博客列表 / Update Blog List**
-```typescript
-// src/data/blog/blogPosts.ts
-export const blogPosts = [
-  newBlogPost,
-  // ... 其他文章
-];
-```
-
 ## 🎨 設計系統 / Design System
 
-### 色彩方案 / Color Scheme
+### AI Formula 品牌色彩 / AI Formula Brand Colors
 
 #### 主要色彩 / Primary Colors
-- **主色調 / Primary**: `#3B82F6` (Blue)
-- **次要色調 / Secondary**: `#8B5CF6` (Purple)
-- **成功色 / Success**: `#10B981` (Green)
-- **警告色 / Warning**: `#F59E0B` (Orange)
-- **錯誤色 / Error**: `#EF4444` (Red)
+- **背景色 / Background**: `#0D0D1A` (深科技藍黑色)
+- **主要強調色 / Primary Accent**: `#3EFFDC` (螢光綠青色)
+- **次要強調色 / Secondary Accent**: `#8A3FFC` (紫色)
+- **文字色 / Text**: `#FFFFFF` (白色標題), `#E0E0E0` (正文)
 
-#### 中性色彩 / Neutral Colors
-- **背景色 / Background**: `#000000` (Black)
-- **表面色 / Surface**: `#1F2937` (Dark Gray)
-- **文本色 / Text**: `#FFFFFF` (White)
-- **次要文本 / Secondary Text**: `#9CA3AF` (Light Gray)
+#### 組件樣式 / Component Styles
+- **卡片背景 / Card Background**: `rgba(255, 255, 255, 0.05)`
+- **漸變邊框 / Gradient Border**: `linear-gradient(135deg, #3EFFDC 0%, #8A3FFC 100%)`
+- **按鈕樣式 / Button Styles**: 
+  - 主按鈕：`#8A3FFC` 背景
+  - 次按鈕：透明背景，`#3EFFDC` 邊框
 
 ### 字體系統 / Typography
 
 #### 標題字體 / Heading Fonts
-- **H1**: `text-4xl md:text-6xl font-bold`
-- **H2**: `text-3xl md:text-4xl font-bold`
-- **H3**: `text-2xl md:text-3xl font-semibold`
-- **H4**: `text-xl md:text-2xl font-semibold`
+- **H1**: `text-4xl md:text-6xl font-bold text-white`
+- **H2**: `text-3xl md:text-4xl font-bold text-white`
+- **H3**: `text-2xl md:text-3xl font-semibold text-white`
 
 #### 內容字體 / Content Fonts
-- **正文 / Body**: `text-base leading-relaxed`
-- **小文本 / Small Text**: `text-sm`
-- **標籤 / Label**: `text-xs font-medium`
+- **正文 / Body**: `text-base leading-relaxed text-gray-200`
+- **小文本 / Small Text**: `text-sm text-gray-400`
 
-### 間距系統 / Spacing System
+## 🔧 開發指南 / Development Guide
 
-#### 內邊距 / Padding
-- **小 / Small**: `p-4`
-- **中 / Medium**: `p-6`
-- **大 / Large**: `p-8`
+### 使用 CourseDashboardPage / Using CourseDashboardPage
 
-#### 外邊距 / Margin
-- **小 / Small**: `m-4`
-- **中 / Medium**: `m-6`
-- **大 / Large**: `m-8`
+```typescript
+import { CourseDashboardPage } from '@/components/learning/CourseDashboardPage';
+
+const Dashboard = () => {
+  return (
+    <CourseDashboardPage />
+  );
+};
+```
+
+### 使用 LessonViewer / Using LessonViewer
+
+```typescript
+import { LessonViewer } from '@/components/learning/LessonViewer';
+
+const LearningInterface = () => {
+  return (
+    <LessonViewer 
+      lesson={currentLesson}
+      onComplete={handleLessonComplete}
+    />
+  );
+};
+```
+
+### 語言支援開發 / Language Support Development
+
+```typescript
+// 在組件中使用語言
+const { language } = useLanguage();
+
+// 多語言內容
+const content = {
+  'zh-HK': '繁體中文（香港）內容',
+  'en': 'English Content'
+};
+
+// 顯示對應語言內容
+<h1>{content[language]}</h1>
+```
+
+## 📊 性能優化 / Performance Optimization
+
+### 代碼分割 / Code Splitting
+- **路由級分割**：每個頁面組件獨立加載
+- **組件級分割**：大型組件使用 `React.lazy()` 懶加載
+- **第三方庫分割**：圖表庫等按需載入
+
+### 視覺優化 / Visual Optimization
+- **品牌色彩系統**：統一的色彩變量管理
+- **CSS-in-JS**：動態主題切換
+- **響應式設計**：移動端優化
+
+## 🧪 測試 / Testing
+
+### 單元測試 / Unit Testing
+```bash
+# 運行測試
+npm run test
+
+# 運行課程系統測試
+npm run test courseSystem
+```
+
+### 組件測試 / Component Testing
+```bash
+# 測試學習組件
+npm run test components/learning
+
+# 測試語言切換
+npm run test LanguageContext
+```
 
 ## 🔄 部署 / Deployment
 
@@ -423,130 +496,88 @@ npm run build
 npm run preview
 ```
 
-### 部署到Vercel / Deploy to Vercel
+### 環境變量 / Environment Variables
 
-1. **安裝Vercel CLI / Install Vercel CLI**
 ```bash
-npm install -g vercel
+# .env.local
+VITE_APP_TITLE=AI Formula
+VITE_DEFAULT_LANGUAGE=zh-HK
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-key
 ```
 
-2. **登入Vercel / Login to Vercel**
-```bash
-vercel login
-```
+## 📈 監控和分析 / Monitoring and Analytics
 
-3. **部署項目 / Deploy Project**
-```bash
-vercel --prod
-```
-
-### 部署到Netlify / Deploy to Netlify
-
-1. **構建項目 / Build Project**
-```bash
-npm run build
-```
-
-2. **使用Netlify CLI / Use Netlify CLI**
-```bash
-npm install -g netlify-cli
-netlify deploy --prod --dir=dist
-```
-
-## 📊 性能優化 / Performance Optimization
-
-### 代碼分割 / Code Splitting
-- **路由級分割**：每個頁面組件獨立加載
-- **組件級分割**：大型組件使用 `React.lazy()` 懶加載
-- **第三方庫分割**：將第三方庫單獨打包
-
-### 圖片優化 / Image Optimization
-- **格式選擇**：使用WebP格式提高壓縮率
-- **懶加載**：圖片懶加載減少初始加載時間
-- **響應式圖片**：不同設備使用不同尺寸圖片
-
-### 資源優化 / Resource Optimization
-- **CSS優化**：移除未使用的CSS
-- **JavaScript優化**：代碼壓縮和混淆
-- **緩存策略**：設置合適的緩存頭
-
-## 📈 分析和監控 / Analytics and Monitoring
-
-### 用戶行為分析 / User Behavior Analytics
-- **頁面瀏覽量**：追蹤頁面訪問次數
-- **用戶停留時間**：分析用戶參與度
-- **轉化率**：監控關鍵行為轉化
+### 學習進度分析 / Learning Progress Analytics
+- **完成率追蹤**：課程完成率統計
+- **學習時間分析**：用戶學習時間分佈
+- **互動數據**：AI遊樂場使用情況
 
 ### 性能監控 / Performance Monitoring
-- **載入時間**：監控頁面載入速度
-- **錯誤追蹤**：自動捕獲和報告錯誤
-- **用戶體驗指標**：Core Web Vitals監控
+- **頁面載入時間**：首頁和課程頁面載入速度
+- **組件渲染時間**：重要組件渲染性能
+- **用戶體驗指標**：Core Web Vitals 監控
 
-## 🧪 測試 / Testing
+## 🔧 故障排除 / Troubleshooting
 
-### 單元測試 / Unit Testing
+### 常見問題 / Common Issues
+
+#### 語言顯示問題 / Language Display Issues
 ```bash
-# 運行測試
-npm run test
-
-# 運行測試覆蓋率
-npm run test:coverage
+# 檢查語言設置
+grep -r "zh-TW" src/  # 應該沒有結果
+grep -r "zh-HK" src/  # 應該有正確的語言代碼
 ```
 
-### 端到端測試 / End-to-End Testing
+#### 課程無法訪問 / Course Access Issues
 ```bash
-# 運行E2E測試
-npm run test:e2e
+# 檢查路由配置
+http://localhost:5173/courses/dashboard
 ```
 
-### 類型檢查 / Type Checking
+#### 建置錯誤 / Build Errors
 ```bash
-# TypeScript類型檢查
-npm run type-check
+# 清除快取並重新安裝
+rm -rf node_modules package-lock.json
+npm install
+npm run build
 ```
-
-## 🛡️ 安全性 / Security
-
-### 認證和授權 / Authentication and Authorization
-- **JWT Token**：使用JWT進行用戶認證
-- **角色權限**：基於角色的訪問控制
-- **API安全**：API端點安全保護
-
-### 數據保護 / Data Protection
-- **輸入驗證**：所有用戶輸入都進行驗證
-- **XSS防護**：防止跨站點腳本攻擊
-- **CSRF保護**：防止跨站請求偽造
 
 ## 🤝 貢獻指南 / Contributing Guide
 
 ### 代碼規範 / Code Standards
-- **ESLint**：遵循ESLint規則
-- **Prettier**：使用Prettier格式化代碼
-- **TypeScript**：使用TypeScript進行類型檢查
+- **ESLint**：遵循 ESLint 規則
+- **TypeScript**：嚴格的類型檢查
+- **語言支援**：新功能必須支援 zh-HK 和 en
 
 ### 提交規範 / Commit Convention
 ```bash
-# 提交格式
-git commit -m "type(scope): description"
+# 功能開發
+git commit -m "feat(learning): add AI playground feature"
 
-# 示例
-git commit -m "feat(course): add new course template"
-git commit -m "fix(auth): resolve login issue"
-git commit -m "docs(readme): update installation guide"
+# 語言修正
+git commit -m "fix(i18n): update language code from zh-TW to zh-HK"
+
+# 課程內容
+git commit -m "content(course): update prompt engineering curriculum"
+
+# 視覺設計
+git commit -m "style(dashboard): implement AI Formula brand colors"
 ```
 
-### 分支策略 / Branch Strategy
-- **main**：主分支，穩定版本
-- **develop**：開發分支，新功能開發
-- **feature/**：功能分支，新功能開發
-- **hotfix/**：熱修復分支，緊急修復
+### Pull Request 檢查清單 / Pull Request Checklist
+- [ ] 語言支援完整（zh-HK 和 en）
+- [ ] 響應式設計測試
+- [ ] 品牌色彩系統一致性
+- [ ] 功能測試通過
+- [ ] 文檔更新完成
 
 ## 📞 支援和幫助 / Support and Help
 
 ### 文檔資源 / Documentation Resources
 - **架構指南**：[ARCHITECTURE_GUIDE.md](./ARCHITECTURE_GUIDE.md)
-- **課程頁面指南**：[COURSE_PAGES_GUIDE.md](./COURSE_PAGES_GUIDE.md)
-- **內容優化指南**：[CONTENT_OPTIMIZATION_GUIDE.md](./CONTENT_OPTIMIZATION_GUIDE.md)
+- **色彩指南**：[AI_FORMULA_COLOR_GUIDELINES.md](./AI_FORMULA_COLOR_GUIDELINES.md)
+- **課程設計**：[LESSON_PAGE_DESIGN.md](./LESSON_PAGE_DESIGN.md)
 
 ### 聯絡方式 / Contact Information
 - **Email**: support@ai-formula.com
@@ -559,11 +590,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 致謝 / Acknowledgments
 
-感謝所有為此項目做出貢獻的開發者和設計師。
-Thanks to all developers and designers who contributed to this project.
+感謝所有為此項目做出貢獻的開發者和設計師。特別感謝在品牌視覺系統、交互式學習平台和多語言支援方面的貢獻。
+
+Thanks to all developers and designers who contributed to this project. Special thanks for contributions to the brand visual system, interactive learning platform, and multi-language support.
 
 ---
 
-**最後更新 / Last Updated**: 2024-01-15
-**版本 / Version**: 2.0.0
+**最後更新 / Last Updated**: 2024-01-20
+**版本 / Version**: 3.0.0
 **狀態 / Status**: ✅ 生產就緒 / Production Ready
+**重大更新 / Major Updates**: 
+- 🎨 全新品牌視覺系統 (AI Formula Brand Visual System)
+- 🎓 交互式學習平台 (Interactive Learning Platform)
+- 🌐 完整語言支援修正 (Complete Language Support Fix)
+- 📚 全新課程內容 (New Course Content)
+- 🔓 進階解鎖機制 (Progressive Unlock Mechanism)
