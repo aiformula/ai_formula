@@ -10,7 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useViewCount } from "@/contexts/ViewCountContext";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { getFeaturedPosts, getRecentPosts, type BlogPost } from "@/data/blogPosts";
+import { getFeaturedPosts, getRecentPosts, type BlogPost } from "@/data/blog/blogPosts";
 
 // Types
 interface Category {

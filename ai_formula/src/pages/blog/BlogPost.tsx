@@ -9,8 +9,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useViewCount } from "@/contexts/ViewCountContext";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { blogPosts, getSortedPostsNewest, type BlogPost } from "@/data/blogPosts";
-import { getArticleContent } from "@/data/articleContent";
+import { blogPosts, getSortedPostsNewest, type BlogPost } from "@/data/blog/blogPosts";
+import { getArticleContent } from "@/data/blog/articleContent";
 import ArticleContentRenderer from "@/components/ArticleContentRenderer";
 
 // Types

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
 // 語言類型定義
-export type Language = 'en' | 'zh-TW'
+export type Language = 'en' | 'zh-HK'
 
 // 翻譯接口
 interface Translations {

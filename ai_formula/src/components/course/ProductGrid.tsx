@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ProductGridProps } from '@/data/courseData';
+import { ProductGridProps } from '@/data/courses/courseData';
 import ProductCard from './ProductCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';

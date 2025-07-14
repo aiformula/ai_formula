@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star, Users, Clock, ArrowRight, TrendingUp, Award } from 'lucide-react';
-import { getFeaturedCourses } from '@/data/courses';
+import { getFeaturedCourses } from '@/data/courses/courses';
 
 const FeaturedCoursesSection = () => {
   const { language } = useLanguage();

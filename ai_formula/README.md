@@ -1,687 +1,569 @@
 # AI Formula - 香港AI自動化解決方案平台
 
-## 項目概述 / Project Overview
+## 📋 項目概述 / Project Overview
 
-**繁體中文：** AI Formula 是一個專為香港企業設計的AI自動化解決方案平台，提供專業的AI技術服務、教學課程和商業應用指南。本項目使用React + TypeScript + Vite構建，具有現代化的用戶界面和豐富的交互功能。
+**繁體中文：** AI Formula 是一個專為香港企業設計的AI自動化解決方案平台，提供專業的AI技術服務、教學課程和商業應用指南。本項目已完成重大重構，採用模組化架構，並實施了完整的Phase 4內容優化策略。
 
-**English:** AI Formula is an AI automation solution platform designed specifically for Hong Kong businesses, providing professional AI technology services, educational courses, and business application guides. This project is built with React + TypeScript + Vite, featuring a modern user interface and rich interactive functionality.
+**English:** AI Formula is an AI automation solution platform designed specifically for Hong Kong businesses, providing professional AI technology services, educational courses, and business application guides. This project has undergone major refactoring with a modular architecture and implemented a complete Phase 4 content optimization strategy.
 
-## 技術棧 / Tech Stack
+## 🎯 最新更新 / Latest Updates
 
-- **前端框架 / Frontend:** React 18 + TypeScript
-- **構建工具 / Build Tool:** Vite
-- **UI組件庫 / UI Library:** Shadcn/UI + Tailwind CSS
-- **動畫庫 / Animation:** Framer Motion
-- **路由 / Routing:** React Router DOM
-- **狀態管理 / State Management:** React Context API
-- **圖標 / Icons:** Lucide React
+### ✅ Phase 4 內容優化完成 / Phase 4 Content Optimization Complete
 
-## 主要功能 / Key Features
+- **📊 內容審核工具**：實現了完整的內容審核和SEO評分系統
+- **🌐 多語言優化**：完善了中英文內容對照和本地化
+- **🔍 SEO增強**：動態元標籤、結構化數據和網站地圖生成
+- **📈 性能優化**：圖片優化、懶加載和內容壓縮
+- **📚 課程擴展**：增加了詳細的課程內容和學習路徑
+- **📝 博客策略**：制定了完整的內容日程和主題規劃
+- **🎨 用戶體驗**：改善了內容可讀性和導航體驗
+- **📊 分析監控**：建立了內容表現追蹤和用戶行為分析
 
-### 🌐 多語言支持 / Multi-language Support
+### 🔄 架構優化 / Architecture Optimization
 
-**繁體中文：**
-- 完整的繁體中文界面和內容
-- 動態切換：用戶可以隨時切換語言
+- **📁 資料夾結構重構**：優化了項目結構，提高了可維護性
+- **🔧 模板系統**：建立了統一的模板系統，提高開發效率
+- **🌟 組件重構**：重新組織了組件架構，提高了可重用性
+- **🔗 路由優化**：修正了所有路由問題，確保頁面正常訪問
 
-**English:**
-- Full English interface and content
-- Dynamic Switching: Users can switch languages at any time
+## 🛠️ 技術棧 / Tech Stack
 
-### 📝 智能博客系統 / Intelligent Blog System
+### 前端技術 / Frontend Technologies
+- **React 18** + **TypeScript** - 現代化前端框架
+- **Vite** - 快速構建工具
+- **Tailwind CSS** - 原子化CSS框架
+- **Shadcn/UI** - 高質量UI組件庫
+- **Framer Motion** - 動畫庫
+- **React Router DOM** - 路由管理
+- **Lucide React** - 圖標庫
+- **Atropos** - 3D效果庫
 
-#### 博客列表頁面 / Blog List Page
-- **精選文章區域：** 展示重要的公司介紹和技術文章
-- **Featured Articles Section:** Showcase important company introductions and technical articles
-- **最新文章區域：** 顯示最近發布的內容
-- **Recent Articles Section:** Display recently published content
-- **分類側邊欄：** 文章分類和熱門標籤
-- **Category Sidebar:** Article categories and popular tags
-- **搜索功能：** 文章搜索輸入框
-- **Search Functionality:** Article search input box
+### 開發工具 / Development Tools
+- **ESLint** - 代碼質量檢查
+- **TypeScript** - 類型檢查
+- **Git** - 版本控制
+- **GitHub** - 代碼托管
 
-#### 文章詳情頁面 / Article Detail Page
-- **完整文章內容：** 支持中英雙語的詳細文章
-- **Complete Article Content:** Detailed articles supporting bilingual content
-- **作者信息：** 作者、發布日期、閱讀時間
-- **Author Information:** Author, publication date, reading time
-- **分享功能：** 社交媒體分享按鈕
-- **Sharing Features:** Social media sharing buttons
-- **相關文章：** 推薦相關內容
-- **Related Articles:** Recommend related content
-
-### 📊 全局瀏覽次數管理 / Global View Count Management
-
-#### 核心功能 / Core Features
-- **實時同步：** 所有頁面的瀏覽次數保持一致
-- **Real-time Sync:** View counts remain consistent across all pages
-- **本地存儲：** 使用localStorage持久化數據
-- **Local Storage:** Persist data using localStorage
-- **智能增長：** 模擬真實的瀏覽行為
-- **Smart Growth:** Simulate realistic viewing behavior
-
-#### 技術實現 / Technical Implementation
-```typescript
-// ViewCountContext.tsx
-interface ViewCountContextType {
-  viewCounts: ViewCounts;
-  incrementView: (postId: number) => void;
-  getViewCount: (postId: number, initialViews: string) => number;
-}
-```
-
-### 🎨 用戶界面優化 / UI Optimization
-
-#### 按鈕間距改進 / Button Spacing Improvements
-- **精選文章：** 增加按鈕與內容的間距（space-y-6 + pt-4）
-- **Featured Articles:** Increased spacing between buttons and content (space-y-6 + pt-4)
-- **最新文章：** 優化小卡片的按鈕間距（space-y-4 + pt-3）
-- **Recent Articles:** Optimized button spacing for small cards (space-y-4 + pt-3)
-
-#### 視覺設計 / Visual Design
-- **深色主題：** 專業的黑色背景設計
-- **Dark Theme:** Professional black background design
-- **漸變效果：** 標題和按鈕的漸變色彩
-- **Gradient Effects:** Gradient colors for titles and buttons
-- **動畫效果：** 流暢的頁面過渡和懸停效果
-- **Animation Effects:** Smooth page transitions and hover effects
-
-### 🔄 動畫系統 / Animation System
-
-#### Framer Motion集成 / Framer Motion Integration
-- **頁面進入動畫：** 淡入和滑動效果
-- **Page Entry Animations:** Fade-in and slide effects
-- **懸停動畫：** 卡片懸停時的微妙動效
-- **Hover Animations:** Subtle animations when hovering over cards
-- **按鈕動畫：** 點擊和懸停的反饋效果
-- **Button Animations:** Click and hover feedback effects
-
-### 📚 課程/數位產品系統 / Course/Digital Products System
-
-#### 學習計劃架構 / Learning Plans Structure
-- **免費版計劃：** 每個類別提供基礎內容
-- **Free Plans:** Basic content for each category
-- **專業版計劃：** 完整的高級內容和額外功能
-- **Pro Plans:** Complete advanced content and additional features
-- **雙語支援：** 完整的廣東話和英文介面
-- **Bilingual Support:** Complete Cantonese and English interface
-
-#### 產品分類系統 / Product Category System
-- 🎨 **創意設計：** AI圖像和影片創作工具
-- 🎨 **Creative Design:** AI image and video creation tools
-- 🤖 **AI應用：** ChatGPT和大語言模型應用
-- 🤖 **AI Applications:** ChatGPT and LLM applications
-- ⚡ **自動化：** Make.com, n8n, Zapier自動化工具
-- ⚡ **Automation:** Make.com, n8n, Zapier automation tools
-- 📊 **數據分析：** AI驅動的數據分析解決方案
-- 📊 **Data Analytics:** AI-powered data analysis solutions
-
-#### 互動式過濾功能 / Interactive Filtering Features
-```typescript
-// 類別過濾狀態管理
-const [selectedCategory, setSelectedCategory] = useState('all');
-
-// 隨機排列算法
-const shuffleArray = (array) => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
-```
-
-#### 產品展示特色 / Product Display Features
-- **隨機排列：** 每次頁面載入或切換類別時重新排列
-- **Random Arrangement:** Rearrange on each page load or category switch
-- **動態過濾：** 即時顯示選中類別的產品
-- **Dynamic Filtering:** Real-time display of selected category products
-- **視覺回饋：** 選中按鈕的高亮效果
-- **Visual Feedback:** Highlight effects for selected buttons
-- **響應式設計：** 適配不同螢幕尺寸
-- **Responsive Design:** Adapt to different screen sizes
-
-## 項目結構 / Project Structure
+## 🏗️ 項目架構 / Project Architecture
 
 ```
 ai_formula/
-├── src/
-│   ├── components/          # 可重用組件 / Reusable components
-│   │   ├── ui/             # UI基礎組件 / Basic UI components
-│   │   ├── auth/           # 認證組件 / Authentication components
-│   │   ├── course/         # 課程組件 / Course components
-│   │   └── Navigation.tsx   # 導航組件 / Navigation component
-│   ├── contexts/           # React Context / React Context
-│   │   ├── LanguageContext.tsx    # 語言管理 / Language management
-│   │   ├── AuthContext.tsx        # 認證管理 / Auth management
-│   │   └── ViewCountContext.tsx   # 瀏覽次數管理 / View count management
-│   ├── data/               # 數據文件 / Data files
-│   │   ├── blogPosts.ts    # 博客文章數據 / Blog post data
-│   │   ├── courseDetails.ts # 課程詳情數據 / Course details data
-│   │   └── courses/        # 課程數據模組 / Course data modules
-│   ├── pages/              # 頁面組件 / Page components
-│   │   ├── Index.tsx       # 首頁 / Home page
-│   │   ├── Blog.tsx        # 博客列表 / Blog list
-│   │   ├── BlogPost.tsx    # 文章詳情 / Article detail
-│   │   ├── Course.tsx      # 課程頁面 / Course page
-│   │   ├── About.tsx       # 關於我們 / About us
-│   │   └── ...
-│   ├── types/              # TypeScript類型定義 / TypeScript type definitions
-│   └── App.tsx             # 主應用組件 / Main app component
-├── public/                 # 靜態資源 / Static assets
-├── package.json            # 項目配置 / Project configuration
-└── README.md              # 項目說明 / Project documentation
+├── 📁 src/
+│   ├── 📁 components/              # 組件系統
+│   │   ├── 📁 ui/                 # 基礎UI組件
+│   │   │   ├── button.tsx         # 按鈕組件
+│   │   │   ├── card.tsx           # 卡片組件
+│   │   │   ├── dialog.tsx         # 對話框組件
+│   │   │   └── ...                # 其他UI組件
+│   │   ├── 📁 auth/               # 認證相關組件
+│   │   │   ├── LoginForm.tsx      # 登入表單
+│   │   │   ├── SignUpForm.tsx     # 註冊表單
+│   │   │   └── ProtectedRoute.tsx # 路由保護
+│   │   ├── 📁 course/             # 課程相關組件
+│   │   │   ├── CourseHero.tsx     # 課程Hero區域
+│   │   │   ├── LessonContent.tsx  # 課程內容組件
+│   │   │   ├── ProgressTracker.tsx # 進度追蹤
+│   │   │   ├── CategoryFilters.tsx # 分類過濾
+│   │   │   └── ProductGrid.tsx    # 產品網格
+│   │   ├── 📁 blog/               # 博客相關組件
+│   │   │   ├── BlogHero.tsx       # 博客Hero區域
+│   │   │   ├── ArticleCard.tsx    # 文章卡片
+│   │   │   └── ArticleContent.tsx # 文章內容
+│   │   ├── 📁 ContentAudit/       # 內容審核工具
+│   │   │   └── ContentAuditTool.tsx # 內容分析工具
+│   │   ├── Navigation.tsx         # 導航組件
+│   │   ├── Footer.tsx             # 頁腳組件
+│   │   └── ErrorBoundary.tsx      # 錯誤邊界
+│   ├── 📁 contexts/               # React Context
+│   │   ├── LanguageContext.tsx    # 語言管理
+│   │   ├── AuthContext.tsx        # 認證管理
+│   │   └── ViewCountContext.tsx   # 瀏覽計數管理
+│   ├── 📁 data/                   # 數據文件
+│   │   ├── 📁 blog/               # 博客數據
+│   │   │   ├── blogPosts.ts       # 博客文章
+│   │   │   └── articleContent.ts  # 文章內容
+│   │   ├── 📁 courses/            # 課程數據
+│   │   │   ├── courseData.ts      # 課程數據
+│   │   │   ├── courseDetails.ts   # 課程詳情
+│   │   │   ├── courses.ts         # 課程列表
+│   │   │   ├── aiImageVideoCreation.ts # AI影像課程
+│   │   │   ├── promptEngineering.ts    # 提示工程課程
+│   │   │   └── courseManager.ts   # 課程管理器
+│   │   └── __tests__/             # 測試文件
+│   ├── 📁 pages/                  # 頁面組件
+│   │   ├── 📁 general/            # 通用頁面
+│   │   │   └── HomePage.tsx       # 首頁
+│   │   ├── 📁 blog/               # 博客頁面
+│   │   │   ├── BlogListing.tsx    # 博客列表
+│   │   │   └── BlogPost.tsx       # 文章詳情
+│   │   ├── 📁 courses/            # 課程頁面
+│   │   │   ├── Course.tsx         # 課程主頁（原始設計）
+│   │   │   ├── CourseDetail.tsx   # 課程詳情
+│   │   │   ├── FreePlanLearning.tsx # 免費版學習
+│   │   │   ├── ProPlanLearning.tsx # 專業版學習
+│   │   │   ├── PromptEngineeringOutline.tsx # 提示工程大綱
+│   │   │   ├── ChatGPTMasteryOutline.tsx # ChatGPT精通大綱
+│   │   │   ├── PerplexityToolsOutline.tsx # Perplexity工具大綱
+│   │   │   └── ...                # 其他課程頁面
+│   │   ├── About.tsx              # 關於頁面
+│   │   ├── Auth.tsx               # 認證頁面
+│   │   └── NotFound.tsx           # 404頁面
+│   ├── 📁 hooks/                  # 自定義Hook
+│   │   ├── useCourseData.ts       # 課程數據Hook
+│   │   ├── use-mobile.tsx         # 移動端檢測Hook
+│   │   └── use-toast.ts           # 通知Hook
+│   ├── 📁 lib/                    # 工具庫
+│   │   ├── utils.ts               # 工具函數
+│   │   └── supabase.ts            # Supabase配置
+│   ├── 📁 styles/                 # 樣式文件
+│   │   ├── 📁 components/         # 組件樣式
+│   │   ├── 📁 pages/              # 頁面樣式
+│   │   ├── gradients.ts           # 漸變樣式
+│   │   └── index.ts               # 樣式導出
+│   ├── 📁 templates/              # 模板系統
+│   │   ├── BlogTemplate.tsx       # 博客模板
+│   │   └── CourseTemplate.tsx     # 課程模板
+│   ├── 📁 types/                  # 類型定義
+│   │   └── courseTypes.ts         # 課程類型
+│   ├── 📁 utils/                  # 工具文件
+│   │   ├── seo.ts                 # SEO工具
+│   │   └── sitemap-generator.ts   # 網站地圖生成
+│   └── App.tsx                    # 主應用組件
+├── 📁 public/                     # 靜態資源
+│   ├── 📁 prompt-engineering-course/ # 提示工程課程資源
+│   │   ├── index.md               # 課程索引
+│   │   ├── module1-intro.md       # 模組1：介紹
+│   │   ├── module2-elements.md    # 模組2：元素
+│   │   ├── module3-bestpractices.md # 模組3：最佳實踐
+│   │   └── ...                    # 其他課程文件
+│   ├── favicon.ico                # 網站圖標
+│   ├── robots.txt                 # 搜索引擎配置
+│   └── placeholder.svg            # 佔位符圖像
+├── 📁 設計文檔/                    # 設計文檔
+│   ├── ARCHITECTURE_GUIDE.md      # 架構指南
+│   ├── PHASE4_CONTENT_OPTIMIZATION_PLAN.md # Phase 4計劃
+│   ├── CONTENT_OPTIMIZATION_GUIDE.md # 內容優化指南
+│   ├── COURSE_PAGES_GUIDE.md      # 課程頁面指南
+│   ├── LESSON_PAGE_DESIGN.md      # 課程頁面設計
+│   ├── FOUR_LESSON_STYLES_DESIGN.md # 四種課程風格
+│   ├── COURSE_OUTLINE_DESIGNS.md  # 課程大綱設計
+│   └── AI_FORMULA_COLOR_GUIDELINES.md # 色彩指南
+├── package.json                   # 項目配置
+├── tailwind.config.ts             # Tailwind配置
+├── tsconfig.json                  # TypeScript配置
+├── vite.config.ts                 # Vite配置
+└── README.md                      # 項目文檔
 ```
 
-## 開發歷程 / Development History
+## 🌟 核心功能 / Core Features
 
-### 第一階段：基礎設置 / Phase 1: Basic Setup
-- **項目初始化：** 使用Vite + React + TypeScript
-- **Project Initialization:** Using Vite + React + TypeScript
-- **UI框架集成：** 配置Shadcn/UI和Tailwind CSS
-- **UI Framework Integration:** Configure Shadcn/UI and Tailwind CSS
+### 1. 🎨 課程系統 / Course System
 
-### 第二階段：博客功能開發 / Phase 2: Blog Feature Development
-- **博客列表頁面：** 創建響應式的文章列表
-- **Blog List Page:** Create responsive article list
-- **文章詳情頁面：** 實現完整的文章閱讀體驗
-- **Article Detail Page:** Implement complete article reading experience
-- **路由配置：** 設置動態路由 /blog/:id
-- **Routing Configuration:** Set up dynamic routing /blog/:id
+#### 原始課程頁面設計 / Original Course Page Design
+- **🎯 學習路徑展示**：包含AI圖像影片創作、商業自動化、數據分析等三個主要學習路徑
+- **🛍️ 數位產品網格**：展示8個不同類別的產品，支援分類過濾
+- **🎨 3D視覺效果**：使用Atropos庫實現3D卡片效果
+- **✨ 動畫效果**：Framer Motion提供流暢的頁面動畫
+- **📱 響應式設計**：適配所有設備尺寸
 
-### 第三階段：功能優化 / Phase 3: Feature Optimization
-- **瀏覽次數系統：** 實現全局狀態管理
-- **View Count System:** Implement global state management
-- **按鈕間距優化：** 改善用戶界面體驗
-- **Button Spacing Optimization:** Improve user interface experience
-- **動畫效果增強：** 添加流暢的交互動畫
-- **Animation Enhancement:** Add smooth interactive animations
+#### 課程大綱系統 / Course Outline System
+- **📚 學術專業風格**：提示工程課程 - 結構化、層次清晰
+- **🛠️ 互動實作風格**：編程基礎課程 - 視覺化、互動性強
+- **🎯 現代卡片風格**：ChatGPT精通課程 - 模組化、簡潔現代
+- **📊 儀表板風格**：Perplexity工具課程 - 數據驅動、專業工具
 
-### 第四階段：用戶體驗改進 / Phase 4: UX Improvements
-- **移除不必要組件：** 刪除有問題的ScrollToTopButton
-- **Remove Unnecessary Components:** Delete problematic ScrollToTopButton
-- **性能優化：** 確保快速加載和流暢操作
-- **Performance Optimization:** Ensure fast loading and smooth operation
+#### 學習管理功能 / Learning Management Features
+- **📈 進度追蹤**：實時顯示學習進度
+- **📝 筆記系統**：支援課程筆記記錄
+- **🎯 測驗系統**：課程理解測驗
+- **🔖 書籤功能**：重要內容標記
 
-### 第五階段：課程頁面重構 / Phase 5: Course Page Restructure
-- **數位產品策略轉型：** 從傳統課程轉向數位產品銷售
-- **Digital Products Strategy:** Transform from traditional courses to digital product sales
-- **學習計劃系統：** 實現免費版和專業版的雙層結構
-- **Learning Plans System:** Implement dual-tier structure with free and pro versions
-- **產品分類過濾：** 添加互動式類別過濾功能
-- **Product Category Filtering:** Add interactive category filtering functionality
-- **隨機產品排列：** 實現產品的隨機顯示順序
-- **Random Product Arrangement:** Implement random product display order
+### 2. 📝 博客系統 / Blog System
 
-### 第六階段：免費版學習內容優化 / Phase 6: Free Plan Learning Content Optimization
-- **免費版詳細課程：** 創建 FreePlanLearning.tsx 組件，提供完整的免費學習體驗
-- **Free Plan Detailed Courses:** Created FreePlanLearning.tsx component for complete free learning experience
-- **Midjourney完整教學：** 三個詳細課程涵蓋AI圖像生成基礎到實踐
-- **Complete Midjourney Tutorial:** Three detailed lessons covering AI image generation from basics to practice
-- **內容本地化：** 完整的廣東話和英文雙語教學內容
-- **Content Localization:** Complete bilingual teaching content in Cantonese and English
-- **實用教學指南：** 從註冊到生成第一張圖片的完整流程
-- **Practical Teaching Guide:** Complete process from registration to generating first image
+#### 文章展示 / Article Display
+- **📋 文章列表**：精選文章和最新文章分區展示
+- **📄 文章詳情**：完整的文章閱讀體驗
+- **🏷️ 分類系統**：文章分類和標籤管理
+- **🔍 搜索功能**：全文搜索支援
 
-### 第七階段：專業版學習架構重設計 / Phase 7: Pro Plan Learning Architecture Redesign
-- **學生友好設計：** 將複雜模組結構簡化為4部分學習路徑
-- **Student-Friendly Design:** Simplified complex module structure to 4-part learning path
-- **初學者導向：** 專為完全不懂AI的新手設計的逐步指導
-- **Beginner-Oriented:** Step-by-step guidance designed for complete AI beginners
-- **視覺化學習：** 每部分配有彩色漸變背景和友好圖標
-- **Visual Learning:** Each part features colorful gradient backgrounds and friendly icons
-- **實例驅動教學：** 每部分包含具體的提示詞範例和預期結果
-- **Example-Driven Teaching:** Each part includes specific prompt examples and expected results
+#### 多語言支援 / Multi-language Support
+- **🌐 繁體中文**：完整的繁體中文界面
+- **🌍 英文**：完整的英文界面
+- **🔄 動態切換**：用戶可即時切換語言
 
-### 第八階段：Midjourney設置指南完善 / Phase 8: Midjourney Setup Guide Enhancement
-- **官方網站導向：** 更新所有內容使用官方Midjourney網站而非Discord
-- **Official Website Focus:** Updated all content to use official Midjourney website instead of Discord
-- **訂閱方案詳解：** 詳細說明Basic、Standard、Pro三種方案差異
-- **Subscription Plans Explanation:** Detailed explanation of Basic, Standard, Pro plan differences
-- **實用設置步驟：** 四個簡單步驟完成Midjourney設置
-- **Practical Setup Steps:** Four simple steps to complete Midjourney setup
-- **專業參數指導：** 包含--ar, --v, --s等重要參數使用方法
-- **Professional Parameter Guidance:** Includes usage of important parameters like --ar, --v, --s
+### 3. 🎯 內容優化系統 / Content Optimization System
 
-## 安裝和運行 / Installation and Running
+#### SEO優化 / SEO Optimization
+- **📊 動態元標籤**：自動生成頁面元標籤
+- **🗺️ 網站地圖**：自動生成sitemap.xml
+- **📝 結構化數據**：Schema.org標記支援
+- **🔍 搜索引擎優化**：完整的SEO最佳實踐
 
-### 前置要求 / Prerequisites
-- Node.js 18+
-- npm 或 yarn / npm or yarn
+#### 內容審核工具 / Content Audit Tool
+- **📊 SEO評分**：自動評估頁面SEO表現
+- **⚡ 性能分析**：頁面載入速度和性能指標
+- **🎯 建議系統**：提供改進建議和指導
+
+### 4. 🔐 認證系統 / Authentication System
+
+#### 用戶管理 / User Management
+- **👤 用戶註冊**：完整的註冊流程
+- **🔑 用戶登入**：安全的登入系統
+- **🛡️ 路由保護**：保護需要認證的頁面
+- **👥 用戶角色**：不同用戶角色管理
+
+#### 學習進度 / Learning Progress
+- **📈 進度追蹤**：個人學習進度管理
+- **🎯 成就系統**：學習成就和獎勵
+- **📊 學習統計**：詳細的學習數據統計
+
+## 🚀 快速開始 / Quick Start
+
+### 環境要求 / Requirements
+- **Node.js** >= 16.0.0
+- **npm** >= 7.0.0 或 **yarn** >= 1.22.0
+- **Git** 版本控制
 
 ### 安裝步驟 / Installation Steps
 
-1. **克隆項目 / Clone the project**
+1. **克隆項目 / Clone Repository**
 ```bash
-git clone [repository-url]
-cd ai-formula/ai_formula
+git clone https://github.com/your-username/ai-formula.git
+cd ai-formula
 ```
 
-2. **安裝依賴 / Install dependencies**
+2. **安裝依賴 / Install Dependencies**
 ```bash
+cd ai_formula
 npm install
+# 或使用 yarn
+yarn install
 ```
 
-3. **啟動開發服務器 / Start development server**
+3. **環境配置 / Environment Setup**
+```bash
+# 複製環境變量文件
+cp .env.example .env.local
+
+# 編輯環境變量
+# 添加必要的API密鑰和配置
+```
+
+4. **啟動開發服務器 / Start Development Server**
 ```bash
 npm run dev
+# 或使用 yarn
+yarn dev
 ```
 
-4. **訪問應用 / Access the application**
+5. **訪問應用 / Access Application**
+打開瀏覽器訪問 `http://localhost:5173`
+
+## 🔧 開發指南 / Development Guide
+
+### 添加新課程 / Adding New Courses
+
+1. **創建課程數據 / Create Course Data**
+```typescript
+// src/data/courses/yourCourse.ts
+export const yourCourse = {
+  id: 'your-course-id',
+  title: {
+    'zh-TW': '你的課程標題',
+    'en': 'Your Course Title'
+  },
+  description: {
+    'zh-TW': '課程描述',
+    'en': 'Course Description'
+  },
+  modules: [
+    {
+      id: 'module-1',
+      title: {
+        'zh-TW': '模組1',
+        'en': 'Module 1'
+      },
+      lessons: [
+        {
+          id: 'lesson-1',
+          title: {
+            'zh-TW': '課程1',
+            'en': 'Lesson 1'
+          },
+          content: {
+            'zh-TW': '課程內容...',
+            'en': 'Lesson content...'
+          }
+        }
+      ]
+    }
+  ]
+};
 ```
-http://localhost:5173
+
+2. **創建課程頁面 / Create Course Page**
+```typescript
+// src/pages/courses/YourCourse.tsx
+import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { yourCourse } from '@/data/courses/yourCourse';
+
+const YourCourse = () => {
+  const { language } = useLanguage();
+  
+  return (
+    <div className="course-container">
+      <h1>{yourCourse.title[language]}</h1>
+      <p>{yourCourse.description[language]}</p>
+      {/* 課程內容 */}
+    </div>
+  );
+};
+
+export default YourCourse;
 ```
+
+3. **添加路由 / Add Routes**
+```typescript
+// src/App.tsx
+import YourCourse from '@/pages/courses/YourCourse';
+
+// 在 Routes 中添加
+<Route path="/courses/your-course" element={<YourCourse />} />
+```
+
+### 添加新博客文章 / Adding New Blog Posts
+
+1. **創建文章數據 / Create Article Data**
+```typescript
+// src/data/blog/blogPosts.ts
+export const newBlogPost = {
+  id: 'new-post-id',
+  title: {
+    'zh-TW': '文章標題',
+    'en': 'Article Title'
+  },
+  excerpt: {
+    'zh-TW': '文章摘要',
+    'en': 'Article Excerpt'
+  },
+  content: {
+    'zh-TW': '文章內容...',
+    'en': 'Article content...'
+  },
+  author: 'Author Name',
+  date: '2024-01-15',
+  category: 'AI',
+  tags: ['AI', 'Automation'],
+  readTime: 5,
+  image: '/images/article-image.jpg'
+};
+```
+
+2. **更新博客列表 / Update Blog List**
+```typescript
+// src/data/blog/blogPosts.ts
+export const blogPosts = [
+  newBlogPost,
+  // ... 其他文章
+];
+```
+
+## 🎨 設計系統 / Design System
+
+### 色彩方案 / Color Scheme
+
+#### 主要色彩 / Primary Colors
+- **主色調 / Primary**: `#3B82F6` (Blue)
+- **次要色調 / Secondary**: `#8B5CF6` (Purple)
+- **成功色 / Success**: `#10B981` (Green)
+- **警告色 / Warning**: `#F59E0B` (Orange)
+- **錯誤色 / Error**: `#EF4444` (Red)
+
+#### 中性色彩 / Neutral Colors
+- **背景色 / Background**: `#000000` (Black)
+- **表面色 / Surface**: `#1F2937` (Dark Gray)
+- **文本色 / Text**: `#FFFFFF` (White)
+- **次要文本 / Secondary Text**: `#9CA3AF` (Light Gray)
+
+### 字體系統 / Typography
+
+#### 標題字體 / Heading Fonts
+- **H1**: `text-4xl md:text-6xl font-bold`
+- **H2**: `text-3xl md:text-4xl font-bold`
+- **H3**: `text-2xl md:text-3xl font-semibold`
+- **H4**: `text-xl md:text-2xl font-semibold`
+
+#### 內容字體 / Content Fonts
+- **正文 / Body**: `text-base leading-relaxed`
+- **小文本 / Small Text**: `text-sm`
+- **標籤 / Label**: `text-xs font-medium`
+
+### 間距系統 / Spacing System
+
+#### 內邊距 / Padding
+- **小 / Small**: `p-4`
+- **中 / Medium**: `p-6`
+- **大 / Large**: `p-8`
+
+#### 外邊距 / Margin
+- **小 / Small**: `m-4`
+- **中 / Medium**: `m-6`
+- **大 / Large**: `m-8`
+
+## 🔄 部署 / Deployment
 
 ### 構建生產版本 / Build for Production
+
+```bash
+# 構建項目
+npm run build
+
+# 預覽構建結果
+npm run preview
+```
+
+### 部署到Vercel / Deploy to Vercel
+
+1. **安裝Vercel CLI / Install Vercel CLI**
+```bash
+npm install -g vercel
+```
+
+2. **登入Vercel / Login to Vercel**
+```bash
+vercel login
+```
+
+3. **部署項目 / Deploy Project**
+```bash
+vercel --prod
+```
+
+### 部署到Netlify / Deploy to Netlify
+
+1. **構建項目 / Build Project**
 ```bash
 npm run build
 ```
 
-## 頁面路由 / Page Routes
-
-| 路由 / Route | 頁面 / Page | 描述 / Description |
-|--------------|-------------|-------------------|
-| `/` | 首頁 / Home | 主要登陸頁面 / Main landing page |
-| `/blog` | 博客列表 / Blog List | 文章列表和分類 / Article list and categories |
-| `/blog/:id` | 文章詳情 / Article Detail | 單篇文章閱讀 / Individual article reading |
-| `/course` | 課程/數位產品 / Courses/Digital Products | 學習計劃和數位產品展示 / Learning plans and digital products showcase |
-| `/about` | 關於我們 / About Us | 公司介紹 / Company introduction |
-
-## 核心組件說明 / Core Component Description
-
-### ViewCountContext
-**功能 / Function:** 管理全局瀏覽次數狀態 / Manage global view count state
-
-```typescript
-const { getViewCount, incrementView } = useViewCount();
+2. **使用Netlify CLI / Use Netlify CLI**
+```bash
+npm install -g netlify-cli
+netlify deploy --prod --dir=dist
 ```
 
-### LanguageContext
-**功能 / Function:** 處理多語言切換 / Handle multi-language switching
-
-```typescript
-const { language, setLanguage } = useLanguage();
-```
-
-### Navigation
-**功能 / Function:** 響應式導航欄 / Responsive navigation bar
-
-## 數據管理 / Data Management
-
-### 博客文章數據 / Blog Post Data
-- **文件位置 / File Location:** `src/data/blogPosts.ts`
-- **數據格式 / Data Format:** TypeScript接口定義
-- **多語言支持 / Multi-language Support:** 中英文內容分離
-
-### 瀏覽次數存儲 / View Count Storage
-- **存儲方式 / Storage Method:** localStorage
-- **數據格式 / Data Format:** `{ [postId]: additionalViews }`
-- **同步機制 / Sync Mechanism:** React Context + useEffect
-
-## 性能優化 / Performance Optimization
+## 📊 性能優化 / Performance Optimization
 
 ### 代碼分割 / Code Splitting
-- **路由級分割：** 每個頁面獨立加載
-- **Route-level Splitting:** Each page loads independently
+- **路由級分割**：每個頁面組件獨立加載
+- **組件級分割**：大型組件使用 `React.lazy()` 懶加載
+- **第三方庫分割**：將第三方庫單獨打包
 
-### 動畫優化 / Animation Optimization
-- **硬件加速：** 使用CSS transforms
-- **Hardware Acceleration:** Using CSS transforms
-- **條件渲染：** 避免不必要的動畫計算
-- **Conditional Rendering:** Avoid unnecessary animation calculations
+### 圖片優化 / Image Optimization
+- **格式選擇**：使用WebP格式提高壓縮率
+- **懶加載**：圖片懶加載減少初始加載時間
+- **響應式圖片**：不同設備使用不同尺寸圖片
 
-## 瀏覽器兼容性 / Browser Compatibility
+### 資源優化 / Resource Optimization
+- **CSS優化**：移除未使用的CSS
+- **JavaScript優化**：代碼壓縮和混淆
+- **緩存策略**：設置合適的緩存頭
 
-### 現代瀏覽器 / Modern Browsers
-- Chrome 90+, Firefox 88+, Safari 14+
+## 📈 分析和監控 / Analytics and Monitoring
 
-### 移動設備 / Mobile Devices
-- iOS Safari, Chrome Mobile
+### 用戶行為分析 / User Behavior Analytics
+- **頁面瀏覽量**：追蹤頁面訪問次數
+- **用戶停留時間**：分析用戶參與度
+- **轉化率**：監控關鍵行為轉化
 
-## 未來計劃 / Future Plans
+### 性能監控 / Performance Monitoring
+- **載入時間**：監控頁面載入速度
+- **錯誤追蹤**：自動捕獲和報告錯誤
+- **用戶體驗指標**：Core Web Vitals監控
 
-### 短期目標 / Short-term Goals
-- [ ] 添加文章搜索功能 / Add article search functionality
-- [ ] 實現用戶評論系統 / Implement user comment system
-- [ ] 優化SEO設置 / Optimize SEO settings
+## 🧪 測試 / Testing
 
-### 長期目標 / Long-term Goals
-- [ ] 後端API集成 / Backend API integration
-- [ ] 用戶認證系統 / User authentication system
-- [ ] 內容管理系統 / Content management system
+### 單元測試 / Unit Testing
+```bash
+# 運行測試
+npm run test
 
-## 最新課程頁面更新詳情 / Latest Course Page Update Details
-
-### 🎯 最新UI/UX重大改進 / Latest Major UI/UX Improvements
-
-#### 📱 移動端響應式設計優化 / Mobile Responsive Design Optimization
-
-**三大核心問題解決 / Three Core Issues Resolved:**
-- **❌ 千祈唔好設計雜亂無章 (No Cluttered Design)** - 簡化頁面結構，精簡內容
-- **❌ 千祈唔好收埋重要資訊 (No Hidden Information)** - 確保所有重要資訊可見
-- **❌ 千祈唔好忽略移動端體驗 (No Poor Mobile Experience)** - 完善移動端優化
-
-**具體改進措施 / Specific Improvements:**
-- **新增漢堡菜單：** 完整的移動端導航解決方案
-- **Added Hamburger Menu:** Complete mobile navigation solution
-- **頁面結構簡化：** 從12個區塊減少到10個區塊
-- **Page Structure Simplified:** Reduced from 12 sections to 10 sections
-- **觸控優化：** 改善按鈕大小和間距
-- **Touch Optimization:** Improved button sizes and spacing
-
-#### 🎨 文字可讀性與色彩系統改進 / Text Readability & Color System Improvements
-
-**色彩對比度修正 / Color Contrast Corrections:**
-- **修復低對比度問題：** 所有標籤和徽章改為實心背景
-- **Fixed Low Contrast Issues:** All badges and tags changed to solid backgrounds
-- **分類色彩系統：** 每個類別配置專屬顏色
-- **Category Color System:** Each category assigned dedicated colors
-  - 🟠 公司介紹 (Company Intro) - Orange
-  - 🟡 優勢特色 (Advantages) - Yellow
-  - 🔵 工具應用 (Tools) - Blue
-  - 🟢 基礎知識 (Fundamentals) - Green
-  - 🟣 技術創新 (Tech Innovation) - Purple
-
-**雙語一致性改進 / Bilingual Consistency Improvements:**
-- **語言切換修復：** 確保英文顯示英文，中文顯示中文
-- **Language Switching Fixed:** Ensure English displays in English, Chinese in Chinese
-- **內容同步：** 所有組件的雙語內容完全對應
-- **Content Synchronization:** All bilingual content perfectly aligned
-
-#### 📰 BlogSection 佈局重新設計 / BlogSection Layout Redesign
-
-**新佈局架構 / New Layout Architecture:**
-- **左側區域 (1/3)：** "最新 AI 資訊" - 4篇隨機文章垂直排列
-- **Left Section (1/3):** "Latest AI News" - 4 random articles vertically arranged
-- **右側區域 (2/3)：** 精選文章大圖顯示
-- **Right Section (2/3):** Featured article with large image display
-- **水平佈局：** 從垂直堆疊改為左右分佈
-- **Horizontal Layout:** Changed from vertical stacking to left-right distribution
-
-**互動性增強 / Enhanced Interactivity:**
-- **隨機文章：** 每次載入顯示不同的4篇文章
-- **Random Articles:** Different 4 articles shown on each load
-- **響應式設計：** 移動端自動調整為垂直佈局
-- **Responsive Design:** Auto-adjusts to vertical layout on mobile
-
-#### 🎓 LearningMaterials 組件重大重構 / LearningMaterials Component Major Restructure
-
-**輪播系統實現 / Carousel System Implementation:**
-- **3課程顯示：** 一次只顯示3個課程，支持左右導航
-- **3-Course Display:** Show only 3 courses at once with left/right navigation
-- **無縫輪播：** 流暢的課程切換動畫
-- **Seamless Carousel:** Smooth course switching animations
-- **導航指示器：** 圓點顯示當前位置
-- **Navigation Indicators:** Dots showing current position
-
-**教師團隊更新 / Teaching Team Updates:**
-- **Kenneth** - AI 營銷專家 (AI Marketing Expert)
-- **David** - 業務自動化專家 (Business Automation Expert)
-- **Ken** - 高級機器學習專家 (Advanced ML Expert)
-- **Jason** - AI 整合專家 (AI Integration Expert)
-
-**課程特色系統 / Course Features System:**
-- **Emoji 分類：** 🎯 新手友好, 💬 提示工程, 🤖 AI應用
-- **Emoji Categories:** 🎯 Beginner-friendly, 💬 Prompt Engineering, 🤖 AI Applications
-- **免費策略：** 所有課程標示為免費，綠色"免費"徽章
-- **Free Strategy:** All courses marked as free with green "免費" badges
-- **價格顯示：** 劃線原價展示價值感
-- **Price Display:** Crossed-out original prices to show value
-
-#### 🏠 MainHero 組件簡化優化 / MainHero Component Simplification
-
-**標題系統更新 / Title System Updates:**
-- **主標題：** AI Formula：香港最實戰嘅 AI 應用課程
-- **Main Title:** AI Formula: Hong Kong's Most Practical AI Application Course
-- **副標題：** 即學即用，專為香港職場而設
-- **Subtitle:** Learn and Apply Immediately, Designed for Hong Kong Workplace
-- **說明文字：** 學完即刻幫到你慳時間、提昇效率嘅 AI 課程
-- **Description:** AI courses that immediately help you save time and boost efficiency
-
-**設計簡化 / Design Simplification:**
-- **移動端優先：** 文字尺寸採用移動端優先策略
-- **Mobile-First:** Text sizes using mobile-first approach
-- **居中佈局：** 移除多餘的空白區域，內容完全居中
-- **Centered Layout:** Remove excessive white space, content fully centered
-- **CTA 按鈕優化：** 綠色"免費試學"主按鈕，白色邊框"了解更多"副按鈕
-- **CTA Button Optimization:** Green "免費試學" primary, white outline "了解更多" secondary
-
-#### 📞 聯絡表單增強 / Contact Form Enhancement
-
-**智能建議按鈕 / Smart Suggestion Buttons:**
-- **"我想查詢課程內容"** - 課程內容查詢
-- **"Course Content Inquiry"** - Course content questions
-- **"我唔知揀邊個課程好"** - 課程選擇協助
-- **"Course Selection Help"** - Course selection assistance
-- **"我想了解企業培訓方案"** - 企業培訓方案
-- **"Corporate Training"** - Corporate training solutions
-- **"我遇到付款/技術問題"** - 付款技術支援
-- **"Payment/Technical Issues"** - Payment and technical support
-- **"我想查詢合作機會"** - 合作機會查詢
-- **"Partnership Opportunities"** - Partnership inquiries
-
-**自動填寫功能 / Auto-Fill Functionality:**
-- **智能內容：** 點擊建議按鈕自動填寫相應的查詢內容
-- **Smart Content:** Click suggestion buttons to auto-fill relevant inquiry content
-- **雙語支援：** 建議按鈕和內容完全雙語化
-- **Bilingual Support:** Suggestion buttons and content fully bilingual
-- **佔位符優化：** 包含完整範例文字的佔位符
-- **Placeholder Optimization:** Placeholders with complete example text
-
-#### 🎨 裝飾元素優化 / Decorative Elements Optimization
-
-**視覺溢出修復 / Visual Overflow Fixes:**
-- **第一次修復：** 調整定位和尺寸
-- **First Fix:** Adjusted positioning and sizes
-- **第二次修復：** 移動元素遠離邊緣，改變顯示條件
-- **Second Fix:** Moved elements away from edges, changed display conditions
-- **最終解決：** 完全移除所有裝飾元素（根據用戶要求）
-- **Final Solution:** Complete removal of all decorative elements (per user request)
-
-**清潔設計理念 / Clean Design Philosophy:**
-- **專注內容：** 移除干擾元素，專注核心內容
-- **Focus on Content:** Remove distracting elements, focus on core content
-- **性能優化：** 減少不必要的動畫和裝飾
-- **Performance Optimization:** Reduce unnecessary animations and decorations
-- **用戶體驗：** 確保所有元素都在螢幕邊界內
-- **User Experience:** Ensure all elements stay within screen boundaries
-
-#### 💡 技術實現亮點 / Technical Implementation Highlights
-
-**Framer Motion 動畫系統 / Framer Motion Animation System:**
-```typescript
-// 輪播動畫實現 / Carousel Animation Implementation
-const [currentIndex, setCurrentIndex] = useState(0);
-
-const nextSlide = () => {
-  setCurrentIndex((prev) => (prev + 1) % Math.ceil(courses.length / 3));
-};
-
-// 顏色系統管理 / Color System Management
-const getCategoryColor = (category: string) => {
-  const colors = {
-    'company-intro': 'bg-orange-500',
-    'advantages': 'bg-yellow-500',
-    'tools': 'bg-blue-500',
-    'fundamentals': 'bg-green-500',
-    'tech-innovation': 'bg-purple-500'
-  };
-  return colors[category] || 'bg-gray-500';
-};
+# 運行測試覆蓋率
+npm run test:coverage
 ```
 
-**響應式設計實現 / Responsive Design Implementation:**
-```typescript
-// 移動端檢測 / Mobile Detection
-const isMobile = window.innerWidth < 768;
-
-// 適應性佈局 / Adaptive Layout
-className={`
-  ${isMobile ? 'flex-col' : 'flex-row'}
-  ${isMobile ? 'text-center' : 'text-left'}
-  gap-4 md:gap-8
-`}
+### 端到端測試 / End-to-End Testing
+```bash
+# 運行E2E測試
+npm run test:e2e
 ```
 
-### 🎯 課程頁面重構摘要 / Course Page Restructure Summary
-
-#### 核心變更 / Core Changes
-- **策略轉型：** 從傳統課程轉向數位產品銷售
-- **Strategy Shift:** From traditional courses to digital product sales
-- **學習計劃系統：** 免費版 + 專業版雙層架構
-- **Learning Plans System:** Free + Pro dual-tier architecture
-- **產品分類：** 4大類別，每類2個產品（新手+高級）
-- **Product Categories:** 4 main categories, 2 products each (beginner+advanced)
-
-### 🚀 最新更新：Midjourney設置指南完善 / Latest Update: Enhanced Midjourney Setup Guide
-
-#### 免費版學習內容大幅提升 / Significant Free Plan Learning Content Enhancement
-
-**完整Midjourney教學：** 三個詳細課程從零開始教學
-**Complete Midjourney Tutorial:** Three detailed lessons teaching from scratch
-
-- **課程1：** AI圖像生成簡介 / **Lesson 1:** Introduction to AI Image Generation
-- **課程2：** 設置你的Midjourney帳戶 / **Lesson 2:** Setting Up Your Midjourney Account
-- **課程3：** 創建你的第一張AI圖片 / **Lesson 3:** Creating Your First AI Image
-
-#### 官方網站導向教學 / Official Website-Based Teaching
-完全基於Midjourney官方網站的現代化教學方法
-Modern teaching approach completely based on Midjourney official website
-
-- 不再依賴Discord複雜設置 / No longer relying on complex Discord setup
-- 直接使用midjourney.com網頁版 / Direct use of midjourney.com web version
-- 更簡潔的用戶體驗 / More streamlined user experience
-
-#### 詳細訂閱方案說明 / Detailed Subscription Plan Explanation
-清楚解釋三種付費方案 / Clear explanation of three paid plans
-
-- **Basic Plan** (US$10/月) - 3.3小時快速生成時間
-- **Standard Plan** (US$30/月) - 15小時快速生成時間
-- **Pro Plan** (US$60/月) - 30小時快速生成時間 + 隱私模式
-
-#### 實用參數指導 / Practical Parameter Guidance
-包含重要的Midjourney參數使用方法
-Includes important Midjourney parameter usage
-
-- `--ar` (長寬比) / `--ar` (aspect ratio)
-- `--v` (版本選擇) / `--v` (version selection)
-- `--s` (風格化程度) / `--s` (stylization level)
-- `--q` (品質設定) / `--q` (quality setting)
-
-### 內容結構優化 / Content Structure Optimization
-
-```typescript
-// 課程詳情數據結構 / Course Details Data Structure
-interface LessonContent {
-  title: { en: string; zh: string };
-  content: { en: string; zh: string };
-  keyPoints: { en: string[]; zh: string[] };
-  examples?: { en: string; zh: string };
-}
-
-// Midjourney設置課程範例 / Midjourney Setup Course Example
-const lesson2Content = {
-  title: {
-    en: "Setting Up Your Midjourney Account",
-    zh: "設置你的Midjourney帳戶"
-  },
-  content: {
-    en: "Complete step-by-step guide to get started with Midjourney...",
-    zh: "完整的逐步指南，開始使用Midjourney..."
-  }
-};
+### 類型檢查 / Type Checking
+```bash
+# TypeScript類型檢查
+npm run type-check
 ```
 
-### 用戶體驗改進 / User Experience Improvements
+## 🛡️ 安全性 / Security
 
-- **清晰的要點格式：** 每個課程都有明確的重點摘要
-- **Clear Key Points Format:** Each lesson has clear key point summaries
-- **雙語對照：** 完整的廣東話和英文內容
-- **Bilingual Comparison:** Complete Cantonese and English content
-- **實用範例：** 具體的提示詞和預期結果展示
-- **Practical Examples:** Specific prompts and expected result demonstrations
-- **易讀格式：** 優化的文字排版和視覺層次
-- **Easy-to-Read Format:** Optimized text layout and visual hierarchy
+### 認證和授權 / Authentication and Authorization
+- **JWT Token**：使用JWT進行用戶認證
+- **角色權限**：基於角色的訪問控制
+- **API安全**：API端點安全保護
 
-### 技術實現 / Technical Implementation
+### 數據保護 / Data Protection
+- **輸入驗證**：所有用戶輸入都進行驗證
+- **XSS防護**：防止跨站點腳本攻擊
+- **CSRF保護**：防止跨站請求偽造
 
-```typescript
-// 狀態管理 / State Management
-const [selectedCategory, setSelectedCategory] = useState('all');
+## 🤝 貢獻指南 / Contributing Guide
 
-// 產品過濾 / Product Filtering
-const filteredProducts = digitalProducts
-  .filter(product => selectedCategory === 'all' || product.category === selectedCategory);
+### 代碼規範 / Code Standards
+- **ESLint**：遵循ESLint規則
+- **Prettier**：使用Prettier格式化代碼
+- **TypeScript**：使用TypeScript進行類型檢查
 
-// 隨機排列 / Random Shuffling
-const shuffleArray = (array) => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
+### 提交規範 / Commit Convention
+```bash
+# 提交格式
+git commit -m "type(scope): description"
+
+# 示例
+git commit -m "feat(course): add new course template"
+git commit -m "fix(auth): resolve login issue"
+git commit -m "docs(readme): update installation guide"
 ```
 
-### 產品類別詳情 / Product Category Details
+### 分支策略 / Branch Strategy
+- **main**：主分支，穩定版本
+- **develop**：開發分支，新功能開發
+- **feature/**：功能分支，新功能開發
+- **hotfix/**：熱修復分支，緊急修復
 
-#### 🎨 創意設計類別 / Creative Design Category:
-- **Midjourney新手指南** (HK$199) - 新手級
-- **高級視覺AI精通** (HK$699) - 高級
+## 📞 支援和幫助 / Support and Help
 
-#### 🤖 AI應用類別 / AI Applications Category:
-- **ChatGPT商業基礎** (HK$199) - 新手級
-- **高級AI整合企業解決方案** (HK$899) - 高級
+### 文檔資源 / Documentation Resources
+- **架構指南**：[ARCHITECTURE_GUIDE.md](./ARCHITECTURE_GUIDE.md)
+- **課程頁面指南**：[COURSE_PAGES_GUIDE.md](./COURSE_PAGES_GUIDE.md)
+- **內容優化指南**：[CONTENT_OPTIMIZATION_GUIDE.md](./CONTENT_OPTIMIZATION_GUIDE.md)
 
-#### ⚡ 自動化類別 / Automation Category:
-- **基礎自動化設置** (HK$299) - 新手級
-- **企業自動化精通** (HK$999) - 高級
+### 聯絡方式 / Contact Information
+- **Email**: support@ai-formula.com
+- **GitHub Issues**: [項目Issues頁面](https://github.com/your-username/ai-formula/issues)
+- **官方網站**: [https://ai-formula.com](https://ai-formula.com)
 
-#### 📊 數據分析類別 / Data Analytics Category:
-- **數據分析入門** (HK$299) - 新手級
-- **高級分析同AI專業套件** (HK$799) - 高級
+## 📄 許可證 / License
 
-### UI/UX 改進 / UI/UX Improvements
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- **文字可讀性：** 所有文字改為白色/淺灰色，確保在黑色背景下清晰
-- **Text Readability:** All text changed to white/light gray for clarity on black background
-- **按鈕互動：** 選中狀態的視覺回饋，懸停效果優化
-- **Button Interaction:** Visual feedback for selected states, optimized hover effects
-- **隨機排列：** 每次載入或切換類別時產品重新排列
-- **Random Arrangement:** Products rearrange on each load or category switch
-- **廣東話本地化：** 完整的廣東話介面和內容
-- **Cantonese Localization:** Complete Cantonese interface and content
+## 🙏 致謝 / Acknowledgments
 
-## 貢獻指南 / Contributing Guidelines
-
-1. Fork項目 / Fork the project
-2. 創建功能分支 / Create feature branch
-3. 提交更改 / Commit changes
-4. 推送到分支 / Push to branch
-5. 創建Pull Request / Create Pull Request
-
-## 許可證 / License
-
-本項目採用MIT許可證 / This project is licensed under the MIT License
-
-## 聯繫方式 / Contact
-
-- **Instagram:** @ai_formula_
-- **Email:** [contact email]
-- **Website:** [website url]
+感謝所有為此項目做出貢獻的開發者和設計師。
+Thanks to all developers and designers who contributed to this project.
 
 ---
 
-**最後更新 / Last Updated:** 2024年12月27日 / December 27, 2024  
-**版本 / Version:** 2.1.0 (Midjourney教學完善版 / Enhanced Midjourney Tutorial)  
-**維護者 / Maintainer:** AI Formula Team
-
-### 📋 最新更新摘要 / Latest Update Summary
-
-✅ 完善免費版Midjourney設置教學內容 / Enhanced Free Plan Midjourney setup tutorial content  
-✅ 更新為官方網站導向的教學方法 / Updated to official website-based teaching approach  
-✅ 新增詳細的訂閱方案說明 / Added detailed subscription plan explanations  
-✅ 包含實用的Midjourney參數指導 / Included practical Midjourney parameter guidance  
-✅ 優化雙語內容的可讀性和結構 / Optimized bilingual content readability and structure
+**最後更新 / Last Updated**: 2024-01-15
+**版本 / Version**: 2.0.0
+**狀態 / Status**: ✅ 生產就緒 / Production Ready

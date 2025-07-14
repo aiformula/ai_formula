@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { BookOpen, Clock, CheckCircle, Lock, ArrowLeft, Star, Upload, Zap, Crown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { courseDetails } from '@/data/courseDetails';
+import { courseDetails } from '@/data/courses/courseDetails';
 import Navigation from '@/components/Navigation';
 
 // Add flash animation style

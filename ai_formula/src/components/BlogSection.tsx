@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Clock, ArrowRight, TrendingUp, Brain, Zap, Users, Rocket, Star, Wrench, Settings, Bot, Building2 } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { blogPosts, getFeaturedPosts, getRecentPosts, type BlogPost } from '@/data/blogPosts'
+import { blogPosts, getFeaturedPosts, getRecentPosts, type BlogPost } from '@/data/blog/blogPosts'
 
 const BlogSection = () => {
   const { language } = useLanguage()

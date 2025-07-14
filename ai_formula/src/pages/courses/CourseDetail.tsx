@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { courseDetails } from '@/data/courseDetails';
+import { courseDetails } from '@/data/courses/courseDetails';
 import { Star, Clock, Users, Globe, CheckCircle, Lock, Play, Download, ArrowLeft } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
@@ -22,7 +22,7 @@ const CourseDetail: React.FC = () => {
             {language === 'en' ? 'Course Not Found' : '課程未找到'}
           </h1>
           <button
-            onClick={() => navigate('/course')}
+            onClick={() => navigate('/courses')}
             className="px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all"
           >
             {language === 'en' ? 'Back to Courses' : '返回課程'}
@@ -70,7 +70,7 @@ const CourseDetail: React.FC = () => {
       {/* Header */}
       <div className="container mx-auto px-6 py-8 pt-24 relative z-10">
         <button
-          onClick={() => navigate('/course')}
+          onClick={() => navigate('/courses')}
           className="flex items-center text-gray-300 hover:text-white mb-6 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />

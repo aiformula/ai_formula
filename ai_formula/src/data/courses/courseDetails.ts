@@ -7,8 +7,8 @@
  * now split into manageable modules with proper type safety and performance optimization
  */
 
-import { CourseDetail, CourseApiResponse } from '../types/courseTypes';
-import { courseManager } from './courses/courseManager';
+import { CourseDetail, CourseApiResponse } from '../../types/courseTypes';
+import { courseManager } from './courseManager';
 
 /**
  * Course cache for performance optimization
@@ -42,7 +42,7 @@ interface CourseRegistry {
 const courseRegistry: CourseRegistry = {
   'ai-image-video-creation': {
     loader: async () => {
-      const module = await import('./courses/aiImageVideoCreation');
+      const module = await import('./aiImageVideoCreation');
       return module.aiImageVideoCreationCourse;
     },
     summary: {
@@ -57,7 +57,7 @@ const courseRegistry: CourseRegistry = {
   },
   'prompt-engineering': {
     loader: async () => {
-      const module = await import('./courses/promptEngineering');
+      const module = await import('./promptEngineering');
       return module.promptEngineeringCourse;
     },
     summary: {

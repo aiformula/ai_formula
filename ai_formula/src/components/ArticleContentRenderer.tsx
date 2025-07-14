@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { type ArticleSection } from "@/data/articleContent";
+import { type ArticleSection } from "@/data/blog/articleContent";
 import React from "react";
 
 interface ArticleContentRendererProps {
