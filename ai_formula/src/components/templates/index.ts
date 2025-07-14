@@ -1,6 +1,7 @@
 // Template exports for easy importing
 export { default as CourseTemplate } from './CourseTemplate';
 export { default as BlogTemplate } from './BlogTemplate';
+export { default as CourseOutlineTemplate } from './CourseOutlineTemplate';
 
 // Note: Types are defined within the template files and can be imported directly
 // Example usage:
@@ -38,5 +39,19 @@ export { default as BlogTemplate } from './BlogTemplate';
  *   readTime="5 min read"
  *   category="Technology"
  *   tags={["AI", "Tech"]}
+ * />
+ * 
+ * Course Outline Template:
+ * <CourseOutlineTemplate
+ *   courseInfo={courseInfo}
+ *   courseStats={courseStats}
+ *   industryTags={industryTags}
+ *   availableCourses={availableCourses}
+ *   latestNews={latestNews}
+ *   pricingInfo={pricingInfo}
+ *   courseFeatures={courseFeatures}
+ *   faqData={faqData}
+ *   promotionalBanner={promotionalBanner}
+ *   onStartLearning={() => {}}
  * />
  */ 

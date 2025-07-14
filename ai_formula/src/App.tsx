@@ -29,6 +29,8 @@ import ProPlanLearning from '@/pages/courses/ProPlanLearning';
 import ChatGPTMasteryOutline from '@/pages/courses/ChatGPTMasteryOutline';
 import PerplexityToolsOutline from '@/pages/courses/PerplexityToolsOutline';
 import PromptEngineeringOutline from '@/pages/courses/PromptEngineeringOutline';
+import CodingBasicsOutline from '@/pages/courses/CodingBasicsOutline';
+import CourseRegistration from '@/pages/courses/CourseRegistration';
 
 // Lesson Pages
 import PromptEngineeringLesson1 from '@/pages/courses/PromptEngineeringLesson1';
@@ -36,7 +38,9 @@ import PromptEngineeringLesson2 from '@/pages/courses/PromptEngineeringLesson2';
 import ChatGPTMasteryLesson from '@/pages/courses/ChatGPTMasteryLesson';
 import PerplexityToolsLesson from '@/pages/courses/PerplexityToolsLesson';
 import PromptEngineeringCourse from '@/pages/courses/PromptEngineeringCourse';
-import PromptEngineeringLearning from '@/pages/courses/PromptEngineeringLearning';
+import AILearningOSPage from '@/components/learning/AILearningOSPage';
+import CourseDashboardPage from '@/components/learning/CourseDashboardPage';
+import LessonViewer from '@/components/learning/LessonViewer';
 
 import './App.css';
 
@@ -70,6 +74,8 @@ function App() {
                   <Route path="/courses/chatgpt-mastery-outline" element={<ChatGPTMasteryOutline />} />
                   <Route path="/courses/perplexity-tools-outline" element={<PerplexityToolsOutline />} />
                   <Route path="/courses/prompt-engineering-outline" element={<PromptEngineeringOutline />} />
+                  <Route path="/courses/coding-basics-outline" element={<CodingBasicsOutline />} />
+                  <Route path="/courses/registration" element={<CourseRegistration />} />
                   
                   {/* Course Lessons */}
                   <Route path="/courses/prompt-engineering-lesson-1" element={<PromptEngineeringLesson1 />} />
@@ -77,7 +83,66 @@ function App() {
                   <Route path="/courses/chatgpt-mastery-lesson" element={<ChatGPTMasteryLesson />} />
                   <Route path="/courses/perplexity-tools-lesson" element={<PerplexityToolsLesson />} />
                   <Route path="/courses/prompt-engineering-course" element={<PromptEngineeringCourse />} />
-                  <Route path="/courses/prompt-engineering-learning" element={<PromptEngineeringLearning />} />
+                  <Route path="/courses/prompt-engineering-learning" element={
+                    <AILearningOSPage 
+                      courseId="prompt-engineering"
+                      modules={[
+                        {
+                          id: 'module-1',
+                          title: 'Foundations of Prompt Engineering',
+                          titleZh: '提示工程基礎',
+                          duration: '25:00',
+                          videoUrl: '/api/placeholder/video/lesson1.mp4',
+                          transcript: 'Welcome to the foundations of prompt engineering...',
+                          completed: false,
+                          playgroundType: 'prompt-engineering',
+                          expectedOutput: 'A well-structured prompt that follows best practices',
+                          notes: [],
+                          resources: [
+                            {
+                              id: 'res-1',
+                              name: 'Prompt Engineering Cheat Sheet',
+                              type: 'pdf',
+                              url: '/resources/prompt-cheat-sheet.pdf',
+                              size: '2.5MB'
+                            },
+                            {
+                              id: 'res-2',
+                              name: 'Sample Prompts',
+                              type: 'code',
+                              url: '/resources/sample-prompts.txt',
+                              size: '856KB'
+                            }
+                          ]
+                        },
+                        {
+                          id: 'module-2',
+                          title: 'Advanced Prompt Techniques',
+                          titleZh: '進階提示技巧',
+                          duration: '18:00',
+                          videoUrl: '/api/placeholder/video/lesson2.mp4',
+                          transcript: 'In this lesson, we will explore advanced prompt techniques...',
+                          completed: false,
+                          playgroundType: 'prompt-engineering',
+                          expectedOutput: 'Complex prompts using chain-of-thought and few-shot learning',
+                          notes: [],
+                          resources: [
+                            {
+                              id: 'res-3',
+                              name: 'Advanced Techniques Guide',
+                              type: 'pdf',
+                              url: '/resources/advanced-guide.pdf',
+                              size: '3.2MB'
+                            }
+                          ]
+                        }
+                      ]}
+                    />
+                  } />
+                  <Route path="/courses/dashboard" element={
+                    <CourseDashboardPage courseId="prompt-engineering" />
+                  } />
+                  <Route path="/courses/lesson-viewer" element={<LessonViewer />} />
                   
                   {/* 404 Page */}
                   <Route path="*" element={<NotFound />} />

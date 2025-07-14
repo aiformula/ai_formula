@@ -9,7 +9,7 @@ import { getFeaturedCourses } from '@/data/courses/courses';
 
 const FeaturedCoursesSection = () => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   const featuredCourses = getFeaturedCourses().slice(0, 3); // Show top 3 featured courses
 
   return (

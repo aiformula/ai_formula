@@ -233,6 +233,21 @@
                 0 10px 10px -5px var(--ai-formula-primary-light);
   }
   .ai-bg-gradient-dark { background: linear-gradient(to bottom right, var(--ai-formula-dark), var(--ai-formula-dark-medium), var(--ai-formula-dark)); }
+  
+  /* Line clamp utilities for text truncation */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 /* AI Formula 課程內容專用樣式 */

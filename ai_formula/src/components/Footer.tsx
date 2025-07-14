@@ -11,7 +11,7 @@ const Footer = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Footer = () => {
   };
 
   const footerLinks = {
-    'zh-TW': {
+    'zh-HK': {
       services: {
         title: '企業培訓',
         links: [
@@ -66,7 +66,7 @@ const Footer = () => {
     }
   };
 
-  const currentLinks = footerLinks[isZhTW ? 'zh-TW' : 'en'];
+  const currentLinks = footerLinks[isZhTW ? 'zh-HK' : 'en'];
 
   return (
     <footer className="bg-slate-900 text-white relative overflow-hidden">
