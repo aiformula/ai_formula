@@ -19,171 +19,111 @@ const Course = () => {
   // Handle course navigation to outline pages
   const handleCourseClick = (courseId: string) => {
     const routeMap = {
-      'prompt-engineering': '/courses/prompt-engineering-outline',
-      'chatgpt-mastery': '/courses/chatgpt-mastery-outline',
-      'perplexity-tools': '/courses/perplexity-tools-outline',
-      'coding-basics': '/courses/coding-basics-outline',
-      'midjourney-free': '/courses/free-plan'
+      'ai-app-development': '/courses/free-plan',  // 指向免費計劃頁面
+      'dotai-advertising': '/courses/free-plan',   // 指向免費計劃頁面
+      'shopify-automation': '/courses/free-plan'   // 指向免費計劃頁面
     };
     
     const route = routeMap[courseId];
     if (route) {
       navigate(route);
     } else {
-      console.warn(`No route found for course: ${courseId}`);
+      // 暫時導向免費計劃頁面作為fallback
+      navigate('/courses/free-plan');
     }
   };
 
   // 只保留真正存在嘅課程
   const availableCourses = [
     {
-      id: 'prompt-engineering',
-      title: "Prompt Engineering Mastery",
-      titleCht: "提示工程精通課程",
-      description: "Master the art of AI communication and prompt optimization for maximum effectiveness.",
-      descriptionCht: "掌握AI溝通藝術同提示優化技巧，達到最佳效果。",
-      duration: "2 detailed lessons",
-      durationCht: "2堂詳細課程",
-      students: 2847,
+      id: 'ai-app-development',
+      title: "AI App Development Masterclass",
+      titleCht: "【AI主題班】3小時手把手教你一步步做出「真正好用」手機AI App！",
+      description: "Learn to build practical AI mobile apps step by step in just 3 hours.",
+      descriptionCht: "3小時完成2個手機App！本課程由全職工程師教你實際開發技能。",
+      duration: "3 hours",
+      durationCht: "3小時",
+      students: 1847,
       rating: 4.8,
-      level: "Intermediate",
-      levelCht: "中級",
-      image: "🧠",
-      type: "AI Communication",
-      typeCht: "AI溝通",
-      category: "ai",
-      featured: true,
-      includes: [
-        "Foundations of Prompt Engineering",
-        "Advanced Prompt Structure",
-        "Real-world Examples",
-        "Best Practices Guide"
-      ],
-      includesCht: [
-        "提示工程基礎",
-        "高級提示結構",
-        "實際範例",
-        "最佳實踐指南"
-      ]
-    },
-    {
-      id: 'chatgpt-mastery',
-      title: "ChatGPT Mastery Course",
-      titleCht: "ChatGPT精通課程",
-      description: "Comprehensive guide to mastering ChatGPT for business and personal use.",
-      descriptionCht: "全面指南，掌握ChatGPT商業同個人應用。",
-      duration: "Interactive lessons",
-      durationCht: "互動課程",
-      students: 1856,
-      rating: 4.9,
       level: "Beginner",
       levelCht: "初級",
-      image: "💬",
-      type: "AI Applications",
-      typeCht: "AI應用",
+      image: "📱",
+      type: "AI Development",
+      typeCht: "AI開發",
       category: "ai",
-      newCourse: true,
+      featured: true,
+      badge: "即將開班！",
       includes: [
-        "ChatGPT Fundamentals",
-        "Advanced Conversation Techniques",
-        "Business Applications",
-        "Practical Exercises"
+        "3 Hour Complete Course",
+        "2 Mobile App Projects",
+        "Professional Instructor",
+        "Hands-on Development"
       ],
       includesCht: [
-        "ChatGPT基礎知識",
-        "高級對話技巧",
-        "商業應用",
-        "實際練習"
+        "3小時完整課程",
+        "2個手機App專案",
+        "專業講師指導",
+        "實作開發"
       ]
     },
     {
-      id: 'perplexity-tools',
-      title: "Perplexity Tools Mastery",
-      titleCht: "Perplexity工具精通",
-      description: "Master advanced search and research techniques with Perplexity AI.",
-      descriptionCht: "掌握用Perplexity AI進行高級搜索同研究技巧。",
-      duration: "Comprehensive guide",
-      durationCht: "全面指南",
+      id: 'dotai-advertising',
+      title: "DotAI Advertising Masterclass Vol.1",
+      titleCht: "【AI廣告製作班Vol.1】拆解DotAI廣告片全流程：「Cup Noodle級」AI片",
+      description: "Master AI advertising creation with DotAI platform and create professional video ads.",
+      descriptionCht: "掌握AI廣告製作，DotAI團隊手把手教你創造專業級廣告片。",
+      duration: "4 hours",
+      durationCht: "4小時",
+      students: 923,
+      rating: 4.9,
+      level: "Intermediate",
+      levelCht: "中級",
+      image: "🎬",
+      type: "AI Advertising",
+      typeCht: "AI廣告",
+      category: "ai",
+      badge: "即將開班！",
+      includes: [
+        "DotAI Platform Training",
+        "Video Ad Creation",
+        "Brand Strategy",
+        "Professional Techniques"
+      ],
+      includesCht: [
+        "DotAI平台培訓",
+        "影片廣告創作",
+        "品牌策略",
+        "專業技巧"
+      ]
+    },
+    {
+      id: 'shopify-automation',
+      title: "AI × Make Automation: Shopify Store Express",
+      titleCht: "AI × Make自動化：Shopify網店營運速成班",
+      description: "Build automated Shopify systems that can be profitable even for beginners.",
+      descriptionCht: "建立無需請人也能盈利運作的Shopify自動化系統，適合新手。",
+      duration: "9 hours",
+      durationCht: "9小時",
       students: 1234,
       rating: 4.7,
-      level: "Intermediate",
-      levelCht: "中級",
-      image: "🔍",
-      type: "Research Tools",
-      typeCht: "研究工具",
-      category: "tools",
-      hotSelling: true,
+      level: "Advanced",
+      levelCht: "高級",
+      image: "🛒",
+      type: "E-commerce Automation",
+      typeCht: "電商自動化",
+      category: "automation",
+      badge: "了解更多",
       includes: [
-        "Advanced Search Strategies",
-        "Research Optimization",
-        "Information Verification",
-        "Professional Workflows"
+        "Shopify Store Setup",
+        "Make.com Automation",
+        "AI Integration",
+        "Profit Optimization"
       ],
       includesCht: [
-        "高級搜索策略",
-        "研究優化",
-        "信息驗證",
-        "專業工作流程"
-      ]
-    },
-    {
-      id: 'coding-basics',
-      title: "Coding Basics - Programming Introduction",
-      titleCht: "編程基礎 - 程式設計入門",
-      description: "Learn programming fundamentals with hands-on examples and interactive exercises.",
-      descriptionCht: "透過實際例子同互動練習學習程式設計基礎。",
-      duration: "Interactive lessons",
-      durationCht: "互動課程",
-      students: 987,
-      rating: 4.6,
-      level: "Beginner",
-      levelCht: "初級",
-      image: "💻",
-      type: "Programming",
-      typeCht: "程式設計",
-      category: "programming",
-      newCourse: true,
-      includes: [
-        "Programming Fundamentals",
-        "JavaScript Basics",
-        "HTML & CSS Introduction",
-        "Hands-on Projects"
-      ],
-      includesCht: [
-        "程式設計基礎",
-        "JavaScript基礎",
-        "HTML和CSS入門",
-        "實際項目"
-      ]
-    },
-    {
-      id: 'midjourney-free',
-      title: "Midjourney AI Image Creation",
-      titleCht: "Midjourney AI圖像創作",
-      description: "Complete guide to creating stunning AI images with Midjourney.",
-      descriptionCht: "用Midjourney創作令人驚豔AI圖像嘅完整指南。",
-      duration: "3 detailed lessons",
-      durationCht: "3堂詳細課程",
-      students: 3456,
-      rating: 4.8,
-      level: "Beginner",
-      levelCht: "初級",
-      image: "🎨",
-      type: "Creative Design",
-      typeCht: "創意設計",
-      category: "design",
-      featured: true,
-      includes: [
-        "AI Image Generation Introduction",
-        "Midjourney Account Setup",
-        "Creating Your First AI Image",
-        "Advanced Techniques"
-      ],
-      includesCht: [
-        "AI圖像生成介紹",
-        "Midjourney帳戶設定",
-        "創作你嘅第一張AI圖像",
-        "高級技巧"
+        "Shopify商店建置",
+        "Make.com自動化",
+        "AI整合應用",
+        "盈利優化"
       ]
     }
   ];
@@ -191,9 +131,7 @@ const Course = () => {
   const categories = [
     { id: 'all', label: isZhTW ? '全部' : 'All Courses' },
     { id: 'ai', label: isZhTW ? 'AI應用' : 'AI Applications' },
-    { id: 'design', label: isZhTW ? '創意設計' : 'Creative Design' },
-    { id: 'tools', label: isZhTW ? '工具' : 'Tools' },
-    { id: 'programming', label: isZhTW ? '程式設計' : 'Programming' }
+    { id: 'automation', label: isZhTW ? '自動化' : 'Automation' }
   ];
 
   const filteredCourses = selectedCategory === 'all' 
@@ -267,7 +205,7 @@ const Course = () => {
           </div>
 
           {/* Courses Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {filteredCourses.map((course, index) => (
               <motion.div
                 key={course.id}
@@ -291,14 +229,9 @@ const Course = () => {
                               {isZhTW ? '精選' : 'Featured'}
                             </Badge>
                           )}
-                          {course.newCourse && (
-                            <Badge className="bg-green-500/20 text-green-400 border-green-400">
-                              {isZhTW ? '新品' : 'New'}
-                            </Badge>
-                          )}
-                          {course.hotSelling && (
-                            <Badge className="bg-red-500/20 text-red-400 border-red-400">
-                              {isZhTW ? '熱銷' : 'Hot'}
+                          {course.badge && (
+                            <Badge className="bg-blue-500/20 text-blue-400 border-blue-400">
+                              {course.badge}
                             </Badge>
                           )}
                         </div>
@@ -347,8 +280,8 @@ const Course = () => {
                         <div className="flex flex-col gap-3 pt-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <span className="text-2xl font-bold text-green-400">
-                                {isZhTW ? '免費' : 'FREE'}
+                              <span className="text-xl font-bold text-blue-400">
+                                {course.badge || (isZhTW ? '免費' : 'FREE')}
                               </span>
                             </div>
                             <Badge variant="secondary" className="text-xs">
@@ -361,7 +294,7 @@ const Course = () => {
                             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
                             onClick={() => handleCourseClick(course.id)}
                           >
-                            {isZhTW ? '查看課程大綱' : 'View Course Outline'}
+                            {course.badge === '了解更多' ? (isZhTW ? '了解更多' : 'Learn More') : (isZhTW ? '即將開班' : 'Opening Soon')}
                             <ArrowRight className="w-4 h-4 ml-2" />
                           </Button>
                         </div>
@@ -371,75 +304,6 @@ const Course = () => {
                 </Atropos>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Learning Path Section */}
-      <section className="py-16 bg-gray-900/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-                {isZhTW ? '學習路徑' : 'Learning Paths'}
-              </span>
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              {isZhTW ? '按照建議順序學習，循序漸進掌握AI技能' : 'Follow the recommended sequence to progressively master AI skills'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center"
-            >
-              <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">1</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">
-                {isZhTW ? '基礎入門' : 'Foundations'}
-              </h3>
-              <p className="text-gray-400 text-sm">
-                {isZhTW ? '從Midjourney同基礎編程開始' : 'Start with Midjourney and basic programming'}
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-center"
-            >
-              <div className="bg-gradient-to-r from-purple-500 to-pink-600 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">2</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">
-                {isZhTW ? 'AI應用' : 'AI Applications'}
-              </h3>
-              <p className="text-gray-400 text-sm">
-                {isZhTW ? '學習ChatGPT同提示工程' : 'Learn ChatGPT and prompt engineering'}
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-center"
-            >
-              <div className="bg-gradient-to-r from-pink-500 to-red-600 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">3</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">
-                {isZhTW ? '高級工具' : 'Advanced Tools'}
-              </h3>
-              <p className="text-gray-400 text-sm">
-                {isZhTW ? '精通Perplexity研究工具' : 'Master Perplexity research tools'}
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>
