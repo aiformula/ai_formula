@@ -80,7 +80,7 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
-			// 統一的間距系統
+			// 統�??��?距系�?
 			spacing: {
 				'ai-xs': '0.25rem',    // 4px
 				'ai-sm': '0.5rem',     // 8px
@@ -91,7 +91,7 @@ export default {
 				'ai-3xl': '4rem',      // 64px
 				'ai-4xl': '6rem',      // 96px
 			},
-			// 統一的字體大小系統
+			// 統�??��?體大小系�?
 			fontSize: {
 				'ai-xs': ['0.75rem', { lineHeight: '1rem' }],      // 12px
 				'ai-sm': ['0.875rem', { lineHeight: '1.25rem' }],  // 14px
@@ -105,7 +105,7 @@ export default {
 				'ai-6xl': ['3.75rem', { lineHeight: '1' }],        // 60px
 				'ai-hero': ['4.5rem', { lineHeight: '1' }],        // 72px
 			},
-			// 統一的陰影系統
+			// 統�??�陰影系�?
 			boxShadow: {
 				'ai-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
 				'ai-md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',

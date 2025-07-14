@@ -26,24 +26,24 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       
-      // AI Formula 顏色系統規則
+      // AI Formula 顏色系統規�?
       'ai-formula/no-hardcoded-colors': 'error',
       'ai-formula/use-color-variables': 'error', 
       'ai-formula/no-inline-styles': 'warn',
       
-      // 額外的代碼質量規則
+      // 額�??�代碼質?��???
       'no-console': 'warn',
       'no-unused-vars': 'warn',
       'prefer-const': 'error',
       'no-var': 'error',
       
-      // TypeScript 特定規則
+      // TypeScript ?��?規�?
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       
-      // React 特定規則
+      // React ?��?規�?
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn'
     },

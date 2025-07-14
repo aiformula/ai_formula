@@ -1,21 +1,22 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-// èªè?é¡å?å®šç¾©
+// èªï¿½?é¡ï¿½?å®šç¾©
 export type Language = 'en' | 'zh-HK'
 
-// ç¿»è­¯?¥å£
+// ç¿»è­¯?ï¿½å£
 interface Translations {
   [key: string]: string
 }
 
-// èªè?ä¸Šä??‡é???interface LanguageContextType {
-  language: Language
-  setLanguage: (lang: Language) => void
-  t: (key: string) => string
-  translations: Translations
+// èªè¨€ä¸Šä¸‹æ–‡æ¥å£
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+  translations: Translations;
 }
 
-// ?±æ?ç¿»è­¯
+// ?ï¿½ï¿½?ç¿»è­¯
 const enTranslations: Translations = {
   // å°èˆª
   'nav.home': 'Home',
@@ -172,7 +173,7 @@ const enTranslations: Translations = {
   'testimonials.testimonial1.company': 'Local Trading Company',
   'testimonials.testimonial2.quote': 'Their team built us a custom business automation system that connects our inventory, orders, and accounting. Everything runs smoothly now.',
   'testimonials.testimonial2.author': 'Chan Siu Fung',
-  'testimonials.testimonial2.service': '?†æ¥­?ªå???(Business Automation)',
+  'testimonials.testimonial2.service': '?ï¿½æ¥­?ï¿½ï¿½???(Business Automation)',
   'testimonials.testimonial2.company': 'Small Manufacturing Business',
   'testimonials.testimonial3.quote': 'The custom AI chatbot they created for our restaurant handles reservations and orders perfectly. It understands Cantonese and English!',
   'testimonials.testimonial3.author': 'Lam Mei Ling',
@@ -223,233 +224,233 @@ const enTranslations: Translations = {
   'toast.messageDescription': "Thank you for your interest. We'll get back to you within 24 hours.",
 }
 
-// ä¸­æ?ç¿»è­¯
+// ä¸­ï¿½?ç¿»è­¯
 const zhTranslations: Translations = {
   // å°èˆª
-  'nav.home': 'é¦–é?',
-  'nav.about': '?œæ–¼?‘å€?,
-  'nav.courses': 'èª²ç?',
-  'nav.blog': '?¨è½??,
-  'nav.signup': 'è¨»å?',
+  'nav.home': 'é¦–ï¿½?',
+  'nav.about': '?ï¿½æ–¼?ï¿½ï¿½?,
+  'nav.courses': 'èª²ï¿½?',
+  'nav.blog': '?ï¿½è½??,
+  'nav.signup': 'è¨»ï¿½?',
   
   // Hero Section
-  'hero.badge': '?†æ¥­AI',
-  'hero.title': 'AIï¼šæœªä¾†ç?å­¸ç?',
-  'hero.title1': 'AIï¼šæœªä¾†ç?',
-  'hero.titleHighlight': 'å­¸ç?',
-  'hero.title2': '?†æ¥­?ªå???,
-  'hero.subtitle': 'äººå·¥?ºæ…§å¦‚ä??‹äºº?–ä¸¦è½‰å??†æ¥­?ªå??–ã€?,
-  'hero.cta1': '?‹å?å­¸ç?',
-  'hero.cta2': 'äº†è§£?´å?',
-  'hero.chooseProgram': '?¸æ?èª²ç?',
-  'hero.partners': '?ˆä?å¤¥ä¼´',
+  'hero.badge': '?ï¿½æ¥­AI',
+  'hero.title': 'AIï¼šæœªä¾†ï¿½?å­¸ï¿½?',
+  'hero.title1': 'AIï¼šæœªä¾†ï¿½?',
+  'hero.titleHighlight': 'å­¸ï¿½?',
+  'hero.title2': '?ï¿½æ¥­?ï¿½ï¿½???,
+  'hero.subtitle': 'äººå·¥?ï¿½æ…§å¦‚ï¿½??ï¿½äºº?ï¿½ä¸¦è½‰ï¿½??ï¿½æ¥­?ï¿½ï¿½??ï¿½ï¿½?,
+  'hero.cta1': '?ï¿½ï¿½?å­¸ï¿½?',
+  'hero.cta2': 'äº†è§£?ï¿½ï¿½?',
+  'hero.chooseProgram': '?ï¿½ï¿½?èª²ï¿½?',
+  'hero.partners': '?ï¿½ï¿½?å¤¥ä¼´',
   'hero.students': 'å­¸å“¡',
   'hero.instructors': 'è¬›å¸«',
   
   // Services Section
-  'services.title': '?‘å€‘ç??å?',
-  'services.subtitle': '?¸æ??¨é€šå?AIç²¾é€šå??†æ¥­?ªå??–å?è¶Šç??“è·¯',
-  'services.training.title': 'å°ˆå®¶ä¸»å??„AI?¹è?',
-  'services.training.description': '?±è?æ¥­å?å®¶è¨­è¨ˆç??¨é¢å­¸ç??æ?',
-  'services.training.benefit1': 'å¯¦ç”¨èª²ç?',
-  'services.training.benefit2': 'å¯¦å?æ¡†æ¶',
-  'services.training.benefit3': '?˜é??€?½æ???,
-  'services.training.button': '?¥ç?èª²ç?',
-  'services.automation.title': 'å®¢è£½?–è‡ª?•å?è§?±º?¹æ?',
-  'services.automation.description': '?ºæ‚¨?„æ¥­?™é?æ±‚é?èº«æ?? ç??ªå??–ç³»çµ?,
-  'services.automation.benefit1': '?é??ˆç?',
-  'services.automation.benefit2': 'æ¸›å??¯èª¤',
-  'services.automation.benefit3': '?´å¤§?Ÿé?',
-  'services.automation.button': '?²å??è²»è«®è©¢',
+  'services.title': '?ï¿½å€‘ï¿½??ï¿½ï¿½?',
+  'services.subtitle': '?ï¿½ï¿½??ï¿½é€šï¿½?AIç²¾é€šï¿½??ï¿½æ¥­?ï¿½ï¿½??ï¿½ï¿½?è¶Šï¿½??ï¿½è·¯',
+  'services.training.title': 'å°ˆå®¶ä¸»ï¿½??ï¿½AI?ï¿½ï¿½?',
+  'services.training.description': '?ï¿½ï¿½?æ¥­ï¿½?å®¶è¨­è¨ˆï¿½??ï¿½é¢å­¸ï¿½??ï¿½ï¿½?',
+  'services.training.benefit1': 'å¯¦ç”¨èª²ï¿½?',
+  'services.training.benefit2': 'å¯¦ï¿½?æ¡†æ¶',
+  'services.training.benefit3': '?ï¿½ï¿½??ï¿½?ï¿½ï¿½???,
+  'services.training.button': '?ï¿½ï¿½?èª²ï¿½?',
+  'services.automation.title': 'å®¢è£½?ï¿½è‡ª?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?',
+  'services.automation.description': '?ï¿½æ‚¨?ï¿½æ¥­?ï¿½ï¿½?æ±‚ï¿½?èº«ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ç³»ï¿½?,
+  'services.automation.benefit1': '?ï¿½ï¿½??ï¿½ï¿½?',
+  'services.automation.benefit2': 'æ¸›ï¿½??ï¿½èª¤',
+  'services.automation.benefit3': '?ï¿½å¤§?ï¿½ï¿½?',
+  'services.automation.button': '?ï¿½ï¿½??ï¿½è²»è«®è©¢',
   
   // Technology Section
-  'tech.title': '?±é??ˆæ?è¡“é???,
-  'tech.subtitle': '?‘å€‘ç²¾?šæ¨?•ç¾ä»??æ¥­è‡ª?•å??„å·¥??,
-  'tech.n8n': 'å·¥ä?æµç??ªå???,
-  'tech.make': '?´å?å¹³å°',
-  'tech.zapier': '?‰ç”¨ç¨‹å???¥',
-  'tech.python': '?¸æ??•ç?',
-  'tech.javascript': 'ç¶²é??‹ç™¼',
-  'tech.openai': 'AI?´å?',
+  'tech.title': '?ï¿½ï¿½??ï¿½ï¿½?è¡“ï¿½???,
+  'tech.subtitle': '?ï¿½å€‘ç²¾?ï¿½æ¨?ï¿½ç¾ï¿½??æ¥­è‡ª?ï¿½ï¿½??ï¿½å·¥??,
+  'tech.n8n': 'å·¥ï¿½?æµï¿½??ï¿½ï¿½???,
+  'tech.make': '?ï¿½ï¿½?å¹³å°',
+  'tech.zapier': '?ï¿½ç”¨ç¨‹ï¿½???ï¿½ï¿½',
+  'tech.python': '?ï¿½ï¿½??ï¿½ï¿½?',
+  'tech.javascript': 'ç¶²ï¿½??ï¿½ç™¼',
+  'tech.openai': 'AI?ï¿½ï¿½?',
   
   // Journey Section
-  'journey.title': '?¨ç??ªå??–ä???,
-  'journey.subtitle': '?‘å€‘ç??é?è­‰ç?4æ­¥é?æµç?ç¢ºä??å??„è‡ª?•å?å¯¦æ–½',
-  'journey.step1.title': '?¢ç´¢?ƒè­°',
-  'journey.step1.description': '?‘å€‘ä?è§?‚¨?„é?æ±‚ä¸¦è­˜åˆ¥?ªå??–æ???,
-  'journey.step2.title': 'ç­–ç•¥?‡è¨­è¨?,
-  'journey.step2.description': '?µå»º?å??¨æ¥­?™æ?ç¨‹ç?è©³ç´°?å?',
-  'journey.step3.title': 'å»ºæ??‡æ•´??,
-  'journey.step3.description': '?‹ç™¼ä¸¦ç„¡ç¸«æ•´?ˆæ‚¨?„å®¢è£½è‡ª?•å?è§?±º?¹æ?',
-  'journey.step4.title': '?Ÿå??‡æ”¯??,
-  'journey.step4.description': '?¨ç½²?¨ç?è§?±º?¹æ?ä¸¦æ?ä¾›æ?çºŒç??¯æ´?Œå„ª??,
+  'journey.title': '?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½???,
+  'journey.subtitle': '?ï¿½å€‘ï¿½??ï¿½ï¿½?è­‰ï¿½?4æ­¥ï¿½?æµï¿½?ç¢ºï¿½??ï¿½ï¿½??ï¿½è‡ª?ï¿½ï¿½?å¯¦æ–½',
+  'journey.step1.title': '?ï¿½ç´¢?ï¿½è­°',
+  'journey.step1.description': '?ï¿½å€‘ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?æ±‚ä¸¦è­˜åˆ¥?ï¿½ï¿½??ï¿½ï¿½???,
+  'journey.step2.title': 'ç­–ç•¥?ï¿½è¨­ï¿½?,
+  'journey.step2.description': '?ï¿½å»º?ï¿½ï¿½??ï¿½æ¥­?ï¿½ï¿½?ç¨‹ï¿½?è©³ç´°?ï¿½ï¿½?',
+  'journey.step3.title': 'å»ºï¿½??ï¿½æ•´??,
+  'journey.step3.description': '?ï¿½ç™¼ä¸¦ç„¡ç¸«æ•´?ï¿½æ‚¨?ï¿½å®¢è£½è‡ª?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?',
+  'journey.step4.title': '?ï¿½ï¿½??ï¿½æ”¯??,
+  'journey.step4.description': '?ï¿½ç½²?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?ä¸¦ï¿½?ä¾›ï¿½?çºŒï¿½??ï¿½æ´?ï¿½å„ª??,
   
   // Learning Materials
-  'learning.title': 'ç²¾é¸å­¸ç??æ?',
-  'learning.subtitle': 'å°ˆå®¶è£½ä??„èª²ç¨‹ï??¨åœ¨? é€Ÿæ‚¨?„AI?Œè‡ª?•å?ä¹‹æ?',
-  'learning.startLearning': '?‹å?å­¸ç?',
-  'learning.beginner': '?ç?',
-  'learning.intermediate': 'ä¸­ç?',
-  'learning.advanced': 'é«˜ç?',
+  'learning.title': 'ç²¾é¸å­¸ï¿½??ï¿½ï¿½?',
+  'learning.subtitle': 'å°ˆå®¶è£½ï¿½??ï¿½èª²ç¨‹ï¿½??ï¿½åœ¨?ï¿½é€Ÿæ‚¨?ï¿½AI?ï¿½è‡ª?ï¿½ï¿½?ä¹‹ï¿½?',
+  'learning.startLearning': '?ï¿½ï¿½?å­¸ï¿½?',
+  'learning.beginner': '?ï¿½ï¿½?',
+  'learning.intermediate': 'ä¸­ï¿½?',
+  'learning.advanced': 'é«˜ï¿½?',
   'learning.marketing': 'è¡ŒéŠ·',
-  'learning.development': '?‹ç™¼',
+  'learning.development': '?ï¿½ç™¼',
   'learning.ai': 'AI',
-  'learning.migration': '?·ç§»',
-  'learning.course1.title': 'è¡ŒéŠ·äººå“¡?„n8n?¥é?',
-  'learning.course1.description': 'å­¸ç?å¦‚ä?ä½¿ç”¨n8nå¼·å¤§?„è?è¦ºå?ä»‹é¢?ªå??–æ‚¨?„è??·å·¥ä½œæ?ç¨?,
-  'learning.course2.title': '?²é?Python?ªå???,
-  'learning.course2.description': '?Œæ¡Python?³æœ¬ä»¥å¯¦?¾è??œç?æ¥­å?æµç??ªå???,
-  'learning.course3.title': 'AI?´å?å¤§å¸«??,
-  'learning.course3.description': 'å°‡AI?Ÿèƒ½?´å??°æ‚¨?¾æ??„æ¥­?™å·¥ä½œæ?ç¨‹ä¸­',
-  'learning.course4.title': 'Zapier?°Make?„é·ç§?,
-  'learning.course4.description': 'å¾Zapier?¡ç¸«?æ¸¡?°Makeï¼Œç²å¾—å?å¼·ç??ªå??–èƒ½??,
-  'learning.duration.hours': 'å°æ?',
-  'learning.program.title': 'å®Œæ•´AIç²¾é€šèª²ç¨?,
-  'learning.program.description': '?šé??‘å€‘ç‚ºå°ˆæ¥­äººå£«è¨­è??„ç??ˆèª²ç¨‹ï??Œæ¡AI?Œè‡ª?•å??„å??‹æ–¹??,
-  'learning.program.hours': '50+ å°æ?',
+  'learning.migration': '?ï¿½ç§»',
+  'learning.course1.title': 'è¡ŒéŠ·äººå“¡?ï¿½n8n?ï¿½ï¿½?',
+  'learning.course1.description': 'å­¸ï¿½?å¦‚ï¿½?ä½¿ç”¨n8nå¼·å¤§?ï¿½ï¿½?è¦ºï¿½?ä»‹é¢?ï¿½ï¿½??ï¿½æ‚¨?ï¿½ï¿½??ï¿½å·¥ä½œï¿½?ï¿½?,
+  'learning.course2.title': '?ï¿½ï¿½?Python?ï¿½ï¿½???,
+  'learning.course2.description': '?ï¿½æ¡Python?ï¿½æœ¬ä»¥å¯¦?ï¿½ï¿½??ï¿½ï¿½?æ¥­ï¿½?æµï¿½??ï¿½ï¿½???,
+  'learning.course3.title': 'AI?ï¿½ï¿½?å¤§å¸«??,
+  'learning.course3.description': 'å°‡AI?ï¿½èƒ½?ï¿½ï¿½??ï¿½æ‚¨?ï¿½ï¿½??ï¿½æ¥­?ï¿½å·¥ä½œï¿½?ç¨‹ä¸­',
+  'learning.course4.title': 'Zapier?ï¿½Make?ï¿½é·ï¿½?,
+  'learning.course4.description': 'å¾Zapier?ï¿½ç¸«?ï¿½æ¸¡?ï¿½Makeï¼Œç²å¾—ï¿½?å¼·ï¿½??ï¿½ï¿½??ï¿½èƒ½??,
+  'learning.duration.hours': 'å°ï¿½?',
+  'learning.program.title': 'å®Œæ•´AIç²¾é€šèª²ï¿½?,
+  'learning.program.description': '?ï¿½ï¿½??ï¿½å€‘ç‚ºå°ˆæ¥­äººå£«è¨­ï¿½??ï¿½ï¿½??ï¿½èª²ç¨‹ï¿½??ï¿½æ¡AI?ï¿½è‡ª?ï¿½ï¿½??ï¿½ï¿½??ï¿½æ–¹??,
+  'learning.program.hours': '50+ å°ï¿½?',
   'learning.program.access': 'çµ‚èº«ä½¿ç”¨',
-  'learning.program.button': '?¢ç´¢å®Œæ•´èª²ç?',
+  'learning.program.button': '?ï¿½ç´¢å®Œæ•´èª²ï¿½?',
   
   // Instructors
-  'instructors.title': '?œæ–¼',
+  'instructors.title': '?ï¿½æ–¼',
   'instructors.titleHighlight': 'å°å¸«',
-  'instructors.subtitle': 'èªè??‘å€‘ä??Œç??„å?å¸«ï?ä»–å€‘ç??ˆæ·±?šç??€è¡“å??·å?å¯¦é??„å?æ¥­ç?é©—ã€‚å?å·²ç??¨å??´ç??·å??‹ç™¼?˜å?å»ºç??Œæ“´å±•AIè§?±º?¹æ??„è?æ¥­é?è¢–èº«ä¸Šå­¸ç¿’ã€?,
-  'instructors.cta': 'æº–å?å¥½å?å·²ç?å»ºç??Ÿæ­£AIè§?±º?¹æ??„è?æ¥­å?å®¶å­¸ç¿’å?ï¼?,
-  'instructors.ctaButton': 'èªè??‘å€‘å??´ç??™å­¸?˜é?',
-  'instructors.professionalJourney': 'å°ˆæ¥­æ­·ç?',
-  'instructors.teachingPhilosophy': '?™å­¸?†å¿µ',
-  'instructors.keyQualifications': 'AIè½‰å?å½±éŸ¿ï¼?,
-  'instructors.viewProfile': '?¥ç?å®Œæ•´æª”æ?',
-  'instructors.experience': 'ç¶“é?',
-  'instructors.more': '?´å?...',
+  'instructors.subtitle': 'èªï¿½??ï¿½å€‘ï¿½??ï¿½ï¿½??ï¿½ï¿½?å¸«ï¿½?ä»–å€‘ï¿½??ï¿½æ·±?ï¿½ï¿½??ï¿½è¡“ï¿½??ï¿½ï¿½?å¯¦ï¿½??ï¿½ï¿½?æ¥­ï¿½?é©—ã€‚ï¿½?å·²ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ç™¼?ï¿½ï¿½?å»ºï¿½??ï¿½æ“´å±•AIï¿½?ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?æ¥­ï¿½?è¢–èº«ä¸Šå­¸ç¿’ï¿½?,
+  'instructors.cta': 'æº–ï¿½?å¥½ï¿½?å·²ï¿½?å»ºï¿½??ï¿½æ­£AIï¿½?ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?æ¥­ï¿½?å®¶å­¸ç¿’ï¿½?ï¿½?,
+  'instructors.ctaButton': 'èªï¿½??ï¿½å€‘ï¿½??ï¿½ï¿½??ï¿½å­¸?ï¿½ï¿½?',
+  'instructors.professionalJourney': 'å°ˆæ¥­æ­·ï¿½?',
+  'instructors.teachingPhilosophy': '?ï¿½å­¸?ï¿½å¿µ',
+  'instructors.keyQualifications': 'AIè½‰ï¿½?å½±éŸ¿ï¿½?,
+  'instructors.viewProfile': '?ï¿½ï¿½?å®Œæ•´æª”ï¿½?',
+  'instructors.experience': 'ç¶“ï¿½?',
+  'instructors.more': '?ï¿½ï¿½?...',
   
   // Instructor 1 - Kenneth
   'instructors.sarah.name': 'Kenneth',
-  'instructors.sarah.title': 'AIè¡ŒéŠ·?‹ç™¼?…å??ªå??–å?å®?,
-  'instructors.sarah.specialty': 'AIå·¥å…·?Šè??·è‡ª?•å?',
-  'instructors.sarah.experience': '4å¹?',
-  'instructors.sarah.biography': 'Kenneth?¯ä?ä½å??’AIè¡ŒéŠ·?‹ç™¼?…ï?å°ˆç²¾?¼å?æ²¿AIå·¥å…·?è‡ª?•å?ç³»çµ±?Œç??¥å¯¦?½ã€‚ç???å¹´æ·±åº¦AIå­¸ç?ï¼Œä?å·²æ??¡é€é?äººå·¥?ºèƒ½?Œè‡ª?•å??€è¡“è??‹å‚³çµ±è??·æ–¹æ³•ç??è???,
-  'instructors.sarah.philosophy': 'AIæ­?œ¨?¹æœ¬?§åœ°?¹è??‘å€‘ç??Ÿæ´»?Œå·¥ä½œæ–¹å¼ã€‚æœªä¾†å±¬?¼ä?å¤©å°±?æŠ±AI?„äºº?‚æ?å¹«åŠ©?‹äºº?Œä?æ¥­åœ¨å¤§çœ¾è¶•ä?ä¹‹å?ï¼Œé€šé??Œæ¡AIå·¥å…·?Œè‡ª?•å?ä¾†é??ˆä?æ­¥ã€‚ç¾?¨æ­£?¯ç²å¾—ç«¶?­å„ª?¢ç?çµ•ä½³?‚æ???,
-  'instructors.sarah.qual1': 'AIè¡ŒéŠ·?ªå??–å?å®?,
-  'instructors.sarah.qual2': '?²é?AIå·¥å…·å¯¦æ–½',
-  'instructors.sarah.qual3': 'ç­–ç•¥?§AI?†æ¥­?´å?',
-  'instructors.sarah.qual4': '?ªä?å°±ç?è¡ŒéŠ·ç³»çµ±',
+  'instructors.sarah.title': 'AIè¡ŒéŠ·?ï¿½ç™¼?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½?,
+  'instructors.sarah.specialty': 'AIå·¥å…·?ï¿½ï¿½??ï¿½è‡ª?ï¿½ï¿½?',
+  'instructors.sarah.experience': '4ï¿½?',
+  'instructors.sarah.biography': 'Kenneth?ï¿½ï¿½?ä½ï¿½??ï¿½AIè¡ŒéŠ·?ï¿½ç™¼?ï¿½ï¿½?å°ˆç²¾?ï¿½ï¿½?æ²¿AIå·¥å…·?ï¿½è‡ª?ï¿½ï¿½?ç³»çµ±?ï¿½ï¿½??ï¿½å¯¦?ï¿½ã€‚ï¿½???å¹´æ·±åº¦AIå­¸ï¿½?ï¼Œï¿½?å·²ï¿½??ï¿½é€ï¿½?äººå·¥?ï¿½èƒ½?ï¿½è‡ª?ï¿½ï¿½??ï¿½è¡“ï¿½??ï¿½å‚³çµ±ï¿½??ï¿½æ–¹æ³•ï¿½??ï¿½ï¿½???,
+  'instructors.sarah.philosophy': 'AIï¿½?ï¿½ï¿½?ï¿½æœ¬?ï¿½åœ°?ï¿½ï¿½??ï¿½å€‘ï¿½??ï¿½æ´»?ï¿½å·¥ä½œæ–¹å¼ã€‚æœªä¾†å±¬?ï¿½ï¿½?å¤©å°±?ï¿½æŠ±AI?ï¿½äºº?ï¿½ï¿½?å¹«åŠ©?ï¿½äºº?ï¿½ï¿½?æ¥­åœ¨å¤§çœ¾è¶•ï¿½?ä¹‹ï¿½?ï¼Œé€šï¿½??ï¿½æ¡AIå·¥å…·?ï¿½è‡ª?ï¿½ï¿½?ä¾†ï¿½??ï¿½ï¿½?æ­¥ã€‚ç¾?ï¿½æ­£?ï¿½ç²å¾—ç«¶?ï¿½å„ª?ï¿½ï¿½?çµ•ä½³?ï¿½ï¿½???,
+  'instructors.sarah.qual1': 'AIè¡ŒéŠ·?ï¿½ï¿½??ï¿½ï¿½?ï¿½?,
+  'instructors.sarah.qual2': '?ï¿½ï¿½?AIå·¥å…·å¯¦æ–½',
+  'instructors.sarah.qual3': 'ç­–ç•¥?ï¿½AI?ï¿½æ¥­?ï¿½ï¿½?',
+  'instructors.sarah.qual4': '?ï¿½ï¿½?å°±ï¿½?è¡ŒéŠ·ç³»çµ±',
   
   // Instructor 2 - David
   'instructors.david.name': 'David',
-  'instructors.david.title': '?†æ¥­?ªå??–å?AI?´å?å°ˆå®¶',
-  'instructors.david.specialty': '?ªå??–å?AIè§?±º?¹æ?',
-  'instructors.david.experience': '7å¹?',
-  'instructors.david.biography': 'David?¯ä?ä½å?æ¥­è‡ª?•å?å°ˆå®¶ï¼Œæ???å¹´ä»¥ä¸Šå¹«?©ä?æ¥­æ??¤é??å?ç°¡å??Ÿé??„ç?é©—ã€‚ä?å°ˆç²¾?¼ä½¿?¨Make.com?n8n?ŒAIå·¥å…·?µå»ºå¼·å¤§?„è‡ª?•å?å·¥ä?æµç?ï¼Œè??†è²¼?‡ã€å…§å®¹ç®¡?†å?è¤‡é??„å?æ¥­æ?ç¨‹ã€?,
-  'instructors.david.philosophy': '?ªå??–æ?è©²è§£æ±ºç?æ­???†æ¥­?é?ä¸¦æ?å°‘é??ã€‚æ?å¹«åŠ©ä¼æ¥­å¯¦æ–½ä¸€é«”å?AI?Œè‡ª?•å?è§?±º?¹æ?ï¼Œè??‹ä??‘ç??Ÿé??¹å?ï¼Œè??˜é?å°ˆæ³¨?¼ç?æ­??è¦ç?äº‹æ?ï¼Œè€Œè??€è¡“è??†é?è¤‡æ€§å·¥ä½œã€?,
-  'instructors.david.qual1': 'Make.com?Šn8n?ªå??–å?å®?,
-  'instructors.david.qual2': '?†æ¥­æµç??ªå?',
-  'instructors.david.qual3': 'AIé©…å??§å®¹ç®¡ç?',
-  'instructors.david.qual4': 'ä¸€é«”å??†æ¥­è§?±º?¹æ?',
+  'instructors.david.title': '?ï¿½æ¥­?ï¿½ï¿½??ï¿½ï¿½?AI?ï¿½ï¿½?å°ˆå®¶',
+  'instructors.david.specialty': '?ï¿½ï¿½??ï¿½ï¿½?AIï¿½?ï¿½ï¿½?ï¿½ï¿½?',
+  'instructors.david.experience': '7ï¿½?',
+  'instructors.david.biography': 'David?ï¿½ï¿½?ä½ï¿½?æ¥­è‡ª?ï¿½ï¿½?å°ˆå®¶ï¼Œï¿½???å¹´ä»¥ä¸Šå¹«?ï¿½ï¿½?æ¥­ï¿½??ï¿½ï¿½??ï¿½ï¿½?ç°¡ï¿½??ï¿½ï¿½??ï¿½ï¿½?é©—ã€‚ï¿½?å°ˆç²¾?ï¿½ä½¿?ï¿½Make.com?ï¿½n8n?ï¿½AIå·¥å…·?ï¿½å»ºå¼·å¤§?ï¿½è‡ª?ï¿½ï¿½?å·¥ï¿½?æµï¿½?ï¼Œï¿½??ï¿½è²¼?ï¿½ã€å…§å®¹ç®¡?ï¿½ï¿½?è¤‡ï¿½??ï¿½ï¿½?æ¥­ï¿½?ç¨‹ï¿½?,
+  'instructors.david.philosophy': '?ï¿½ï¿½??ï¿½ï¿½?è©²è§£æ±ºï¿½?ï¿½???ï¿½æ¥­?ï¿½ï¿½?ä¸¦ï¿½?å°‘ï¿½??ï¿½ã€‚ï¿½?å¹«åŠ©ä¼æ¥­å¯¦æ–½ä¸€é«”ï¿½?AI?ï¿½è‡ª?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¼Œï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼Œï¿½??ï¿½ï¿½?å°ˆæ³¨?ï¿½ï¿½?ï¿½??è¦ï¿½?äº‹ï¿½?ï¼Œè€Œï¿½??ï¿½è¡“ï¿½??ï¿½ï¿½?è¤‡æ€§å·¥ä½œï¿½?,
+  'instructors.david.qual1': 'Make.com?ï¿½n8n?ï¿½ï¿½??ï¿½ï¿½?ï¿½?,
+  'instructors.david.qual2': '?ï¿½æ¥­æµï¿½??ï¿½ï¿½?',
+  'instructors.david.qual3': 'AIé©…ï¿½??ï¿½å®¹ç®¡ï¿½?',
+  'instructors.david.qual4': 'ä¸€é«”ï¿½??ï¿½æ¥­ï¿½?ï¿½ï¿½?ï¿½ï¿½?',
   
   // Instructor 3 - Ken
   'instructors.emily.name': 'Ken',
-  'instructors.emily.title': 'å®¢è£½?–å?æ¥­é??¼è€…å?AI?ªå??–å?å®?,
-  'instructors.emily.specialty': 'å®¢è£½?–ç·¨ç¨‹å?AI?ªå???,
-  'instructors.emily.experience': '5å¹?',
-  'instructors.emily.biography': 'Ken?¯ä?ä½ç?ç·´ç?å®¢è£½?–å?æ¥­é??¼è€…ï??æ?5å¹´ä»¥ä¸Šç?ç·¨ç?ç¶“é?ï¼Œå?ç²¾æ–¼?µå»ºå®¢è£½?–å?æ¥­è§£æ±ºæ–¹æ¡ˆå?AI?ªå??–ç³»çµ±ã€‚ä?æ§‹å»ºå®¢è£½?–æ??¨ç?å¼ï?å¹«åŠ©ä¼æ¥­?é??ºèƒ½?ªå??–æ›´å¿«å·¥ä½œå??´é??ˆé?è¡Œã€?,
-  'instructors.emily.philosophy': 'ç¨‹å?ç¢¼æ?è©²è?å·¥ä??´å¿«?Ÿï?è®“ä?æ¥­é?è¡Œæ›´?†æš¢?‚æ??µå»º?´å?AI?ªå??–ç?å®¢è£½?–è§£æ±ºæ–¹æ¡ˆï?æ¶ˆé™¤?¶é ¸ä¸¦å??Ÿå?æ¥­æ?ç¨‹ã€‚æ?ä¸€è¡Œç?å¼ç¢¼?½æ?è©²æ??®ç?ï¼šè?å·¥ä??´å¿«?´æ??ˆç???,
-  'instructors.emily.qual1': 'å®¢è£½?–å?æ¥­æ??¨ç?å¼é???,
-  'instructors.emily.qual2': 'AI?ªå??–æ•´?ˆå?å®?,
-  'instructors.emily.qual3': '?§èƒ½?ªå?å°ˆå®¶',
-  'instructors.emily.qual4': 'å¿«é€Ÿé??¼è§£æ±ºæ–¹æ¡?,
+  'instructors.emily.title': 'å®¢è£½?ï¿½ï¿½?æ¥­ï¿½??ï¿½è€…ï¿½?AI?ï¿½ï¿½??ï¿½ï¿½?ï¿½?,
+  'instructors.emily.specialty': 'å®¢è£½?ï¿½ç·¨ç¨‹ï¿½?AI?ï¿½ï¿½???,
+  'instructors.emily.experience': '5ï¿½?',
+  'instructors.emily.biography': 'Ken?ï¿½ï¿½?ä½ï¿½?ç·´ï¿½?å®¢è£½?ï¿½ï¿½?æ¥­ï¿½??ï¿½è€…ï¿½??ï¿½ï¿½?5å¹´ä»¥ä¸Šï¿½?ç·¨ï¿½?ç¶“ï¿½?ï¼Œï¿½?ç²¾æ–¼?ï¿½å»ºå®¢è£½?ï¿½ï¿½?æ¥­è§£æ±ºæ–¹æ¡ˆï¿½?AI?ï¿½ï¿½??ï¿½ç³»çµ±ã€‚ï¿½?æ§‹å»ºå®¢è£½?ï¿½ï¿½??ï¿½ï¿½?å¼ï¿½?å¹«åŠ©ä¼æ¥­?ï¿½ï¿½??ï¿½èƒ½?ï¿½ï¿½??ï¿½æ›´å¿«å·¥ä½œï¿½??ï¿½ï¿½??ï¿½ï¿½?è¡Œï¿½?,
+  'instructors.emily.philosophy': 'ç¨‹ï¿½?ç¢¼ï¿½?è©²ï¿½?å·¥ï¿½??ï¿½å¿«?ï¿½ï¿½?è®“ï¿½?æ¥­ï¿½?è¡Œæ›´?ï¿½æš¢?ï¿½ï¿½??ï¿½å»º?ï¿½ï¿½?AI?ï¿½ï¿½??ï¿½ï¿½?å®¢è£½?ï¿½è§£æ±ºæ–¹æ¡ˆï¿½?æ¶ˆé™¤?ï¿½é ¸ä¸¦ï¿½??ï¿½ï¿½?æ¥­ï¿½?ç¨‹ã€‚ï¿½?ä¸€è¡Œï¿½?å¼ç¢¼?ï¿½ï¿½?è©²ï¿½??ï¿½ï¿½?ï¼šï¿½?å·¥ï¿½??ï¿½å¿«?ï¿½ï¿½??ï¿½ï¿½???,
+  'instructors.emily.qual1': 'å®¢è£½?ï¿½ï¿½?æ¥­ï¿½??ï¿½ï¿½?å¼ï¿½???,
+  'instructors.emily.qual2': 'AI?ï¿½ï¿½??ï¿½æ•´?ï¿½ï¿½?ï¿½?,
+  'instructors.emily.qual3': '?ï¿½èƒ½?ï¿½ï¿½?å°ˆå®¶',
+  'instructors.emily.qual4': 'å¿«é€Ÿï¿½??ï¿½è§£æ±ºæ–¹ï¿½?,
   
   // Instructor 4 - Jason
   'instructors.michael.name': 'Jason',
-  'instructors.michael.title': 'å°ˆæ¥­?‹ç™¼?…å?å®¢è£½?–è‡ª?•å?å°ˆå®¶',
-  'instructors.michael.specialty': 'ç·¨ç??Šå®¢è£½å??ªå???,
-  'instructors.michael.experience': '8å¹?',
-  'instructors.michael.biography': 'Jason?¯ä?ä½å?æ¥­é??¼è€…ï??æ?8å¹´ä»¥ä¸Šç?ç·¨ç?ç¶“é?ï¼Œå?ç²¾æ–¼LLM?Šå¤©æ©Ÿå™¨äººé??¼ã€MCP?´å??Œç¶²?æ??¨ç?å¼ã€‚åœ¨?å»2å¹´ä¸­ï¼Œä?ä¸€?´åœ¨æ·±åº¦å­¸ç?AIä»¥æ??‡ä??„ç·¨ç¨‹æ??½ï?ä¸¦å¹«?©å…¬?¸æ•´?ˆå?ç«¯AIè§?±º?¹æ???,
-  'instructors.michael.philosophy': 'æ²’æ?AIï¼Œå°±æ²’æ??Ÿæ´»ï¼AI?½æ”¹è®Šç?æ¯”ä??³å??„æ›´å¤šã€‚æ??¸ä¿¡å°‡AI?´å??°é??¼å·¥ä½œä¸­ï¼Œä??…æ”¹è®Šæ??‘ç·¨ç¨‹ç??¹å?ï¼Œæ›´?¹è??‘å€‘èƒ½å¯¦ç¾?„ç›®æ¨™ã€‚æ??‹é??¼è€…éƒ½?€è¦æ??±AI?èƒ½ä¿æ??¸é??§ä¸¦?µé€ é??¡ç?è§?±º?¹æ???,
-  'instructors.michael.qual1': 'LLM?Šå¤©æ©Ÿå™¨äººé??¼å?å®?,
-  'instructors.michael.qual2': 'MCP?´å?å°ˆå®¶',
-  'instructors.michael.qual3': '?¨ç«¯ç¶²é??‹ç™¼',
-  'instructors.michael.qual4': 'AIå¢å¼·ç·¨ç?è§?±º?¹æ?',
+  'instructors.michael.title': 'å°ˆæ¥­?ï¿½ç™¼?ï¿½ï¿½?å®¢è£½?ï¿½è‡ª?ï¿½ï¿½?å°ˆå®¶',
+  'instructors.michael.specialty': 'ç·¨ï¿½??ï¿½å®¢è£½ï¿½??ï¿½ï¿½???,
+  'instructors.michael.experience': '8ï¿½?',
+  'instructors.michael.biography': 'Jason?ï¿½ï¿½?ä½ï¿½?æ¥­ï¿½??ï¿½è€…ï¿½??ï¿½ï¿½?8å¹´ä»¥ä¸Šï¿½?ç·¨ï¿½?ç¶“ï¿½?ï¼Œï¿½?ç²¾æ–¼LLM?ï¿½å¤©æ©Ÿå™¨äººï¿½??ï¿½ã€MCP?ï¿½ï¿½??ï¿½ç¶²?ï¿½ï¿½??ï¿½ï¿½?å¼ã€‚åœ¨?ï¿½å»2å¹´ä¸­ï¼Œï¿½?ä¸€?ï¿½åœ¨æ·±åº¦å­¸ï¿½?AIä»¥ï¿½??ï¿½ï¿½??ï¿½ç·¨ç¨‹ï¿½??ï¿½ï¿½?ä¸¦å¹«?ï¿½å…¬?ï¿½æ•´?ï¿½ï¿½?ç«¯AIï¿½?ï¿½ï¿½?ï¿½ï¿½???,
+  'instructors.michael.philosophy': 'æ²’ï¿½?AIï¼Œå°±æ²’ï¿½??ï¿½æ´»ï¼AI?ï¿½æ”¹è®Šï¿½?æ¯”ï¿½??ï¿½ï¿½??ï¿½æ›´å¤šã€‚ï¿½??ï¿½ä¿¡å°‡AI?ï¿½ï¿½??ï¿½ï¿½??ï¿½å·¥ä½œä¸­ï¼Œï¿½??ï¿½æ”¹è®Šï¿½??ï¿½ç·¨ç¨‹ï¿½??ï¿½ï¿½?ï¼Œæ›´?ï¿½ï¿½??ï¿½å€‘èƒ½å¯¦ç¾?ï¿½ç›®æ¨™ã€‚ï¿½??ï¿½ï¿½??ï¿½è€…éƒ½?ï¿½è¦ï¿½??ï¿½AI?ï¿½èƒ½ä¿ï¿½??ï¿½ï¿½??ï¿½ä¸¦?ï¿½é€ ï¿½??ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½???,
+  'instructors.michael.qual1': 'LLM?ï¿½å¤©æ©Ÿå™¨äººï¿½??ï¿½ï¿½?ï¿½?,
+  'instructors.michael.qual2': 'MCP?ï¿½ï¿½?å°ˆå®¶',
+  'instructors.michael.qual3': '?ï¿½ç«¯ç¶²ï¿½??ï¿½ç™¼',
+  'instructors.michael.qual4': 'AIå¢å¼·ç·¨ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?',
   
-  // Testimonials - ?´æ”¹äººå??ºè‹±?‡å?å­?  'testimonials.title': 'å®¢æˆ¶è¦‹è?',
-  'testimonials.subtitle': 'å·²ä½¿?¨æ??‘å®¢è£½å?AI?ªå??–è§£æ±ºæ–¹æ¡ˆç?ä¼æ¥­?Ÿå¯¦?é?',
-  'testimonials.testimonial1.quote': '?‘å€‘å?äº†å€‹WhatsApp?ªå??–ç³»çµ±ï?24å°æ??•ç?å®¢æˆ¶?¥è©¢?‚æ??‰å?æ¼ä?è¨Šæ¯ï¼Œå?è¦†é€Ÿåº¦å¿«ä?å¾ˆå???,
+  // Testimonials - ?ï¿½æ”¹äººï¿½??ï¿½è‹±?ï¿½ï¿½?ï¿½?  'testimonials.title': 'å®¢æˆ¶è¦‹ï¿½?',
+  'testimonials.subtitle': 'å·²ä½¿?ï¿½ï¿½??ï¿½å®¢è£½ï¿½?AI?ï¿½ï¿½??ï¿½è§£æ±ºæ–¹æ¡ˆï¿½?ä¼æ¥­?ï¿½å¯¦?ï¿½ï¿½?',
+  'testimonials.testimonial1.quote': '?ï¿½å€‘ï¿½?äº†å€‹WhatsApp?ï¿½ï¿½??ï¿½ç³»çµ±ï¿½?24å°ï¿½??ï¿½ï¿½?å®¢æˆ¶?ï¿½è©¢?ï¿½ï¿½??ï¿½ï¿½?æ¼ï¿½?è¨Šæ¯ï¼Œï¿½?è¦†é€Ÿåº¦å¿«ï¿½?å¾ˆï¿½???,
   'testimonials.testimonial1.author': 'Louis Liu',
-  'testimonials.testimonial1.service': 'å®¢è£½?–è‡ª?•å?è§?±º?¹æ?',
-  'testimonials.testimonial1.company': '?¬åœ°è²¿æ??¬å¸',
-  'testimonials.testimonial2.quote': 'ä»–å€‘å¹«?‘å€‘æ•´äº†å€‹å?æ¥­è‡ª?•å?ç³»çµ±ï¼Œå?åº«å??è??®å??ƒè??¨éƒ¨??œ¨ä¸€èµ·ã€‚ç¾?¨é?ä½œå??†æš¢??,
+  'testimonials.testimonial1.service': 'å®¢è£½?ï¿½è‡ª?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?',
+  'testimonials.testimonial1.company': '?ï¿½åœ°è²¿ï¿½??ï¿½å¸',
+  'testimonials.testimonial2.quote': 'ä»–å€‘å¹«?ï¿½å€‘æ•´äº†å€‹ï¿½?æ¥­è‡ª?ï¿½ï¿½?ç³»çµ±ï¼Œï¿½?åº«ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½éƒ¨??ï¿½ï¿½ä¸€èµ·ã€‚ç¾?ï¿½ï¿½?ä½œï¿½??ï¿½æš¢??,
   'testimonials.testimonial2.author': 'Sarah Chen',
-  'testimonials.testimonial2.service': '?†æ¥­?ªå???,
-  'testimonials.testimonial2.company': 'å°å?è£½é€ æ¥­',
-  'testimonials.testimonial3.quote': 'ä»–å€‘ç‚º?‘å€‘é?å»³å?äº†å€‹AI?Šå¤©æ©Ÿå™¨äººï??•ç?è¨‚åº§?Œè½?®éƒ½å¾ˆæ?ç¢ºã€‚é?è­˜è½å»?±è©±å??±æ?ï¼?,
+  'testimonials.testimonial2.service': '?ï¿½æ¥­?ï¿½ï¿½???,
+  'testimonials.testimonial2.company': 'å°ï¿½?è£½é€ æ¥­',
+  'testimonials.testimonial3.quote': 'ä»–å€‘ç‚º?ï¿½å€‘ï¿½?å»³ï¿½?äº†å€‹AI?ï¿½å¤©æ©Ÿå™¨äººï¿½??ï¿½ï¿½?è¨‚åº§?ï¿½è½?ï¿½éƒ½å¾ˆï¿½?ç¢ºã€‚ï¿½?è­˜è½ï¿½?ï¿½ï¿½è©±ï¿½??ï¿½ï¿½?ï¿½?,
   'testimonials.testimonial3.author': 'Mike Wong',
-  'testimonials.testimonial3.service': 'å®¢è£½?–AI?Šå¤©æ©Ÿå™¨äº?,
-  'testimonials.testimonial3.company': 'å®¶åº­å¼é?å»?,
+  'testimonials.testimonial3.service': 'å®¢è£½?ï¿½AI?ï¿½å¤©æ©Ÿå™¨ï¿½?,
+  'testimonials.testimonial3.company': 'å®¶åº­å¼ï¿½?ï¿½?,
   
   // Contact Section
-  'contact.title': 'æº–å?å¥½è??‹æ‚¨?„æ¥­?™ä??ï?',
-  'contact.subtitle': 'è®“æ??‘è?è«–AI Formulaå¦‚ä?å¹«åŠ©?¨ç²¾?šAIä¸¦è‡ª?•å??¨ç?æ¥­å?æµç?',
-  'contact.form.title': '?¯çµ¡?‘å€?,
-  'contact.form.name': 'å§“å?',
-  'contact.form.email': '?»å??µä»¶?°å?',
-  'contact.form.message': '?‘å€‘å?ä½•å¹«?©æ‚¨ï¼?,
-  'contact.form.messagePlaceholder': '?Šè¨´?‘å€‘æ‚¨?„è‡ª?•å??€æ±‚æ?å­¸ç??®æ?...',
-  'contact.form.send': '?¼é€è???,
-  'contact.form.description': 'å¡«å¯«ä¸‹æ–¹è¡¨æ ¼ï¼Œæ??‘å???4å°æ??§å?è¦†æ‚¨',
-  'contact.brainstorm.title': '?”çŸ¥è¦å’©ï¼Ÿè©¦ä¸‹å‘¢?²æƒ³æ³•ï?',
-  'contact.brainstorm.option1': 'AI?Šå¤©æ©Ÿå™¨äº?,
-  'contact.brainstorm.option2': '?ªå???,
-  'contact.brainstorm.option3': '?†æ¥­æµç?',
-  'contact.brainstorm.option4': 'å®¢è£½?–æ–¹æ¡?,
-  'contact.brainstorm.suggestion1': '?‘æƒ³?´å€‹AI?Šå¤©æ©Ÿå™¨äººï??¯ä»¥?•ç?å®¢æˆ¶?¥è©¢?Œå?èªè??¯æ´??,
-  'contact.brainstorm.suggestion2': '?‘é?è¦è‡ª?•å??¹æ??»ç°¡?–é?è¤‡å·¥ä½œï?å¥½ä¼¼è³‡æ?è¼¸å…¥?é›»?µå?è¦†å?å·¥ä?æµç?ç®¡ç???,
-  'contact.brainstorm.suggestion3': '?‘æƒ³?ªå??†æ¥­æµç?ï¼Œç”¨AI?å??ˆç??Œæ?å°‘äºº?‹å·¥ä½œã€?,
-  'contact.brainstorm.suggestion4': '?‘é?è¦ç‚º?‘è?æ¥­å?æ¥­å??€æ±‚åº¦èº«è?? å?AIè§?±º?¹æ???,
-  'contact.info.title': '?¯çµ¡è³‡è?',
-  'contact.info.email': '?»å??µä»¶',
-  'contact.info.phone': '?»è©±',
-  'contact.info.emailUs': '?»éƒµ?‘å€?,
-  'contact.info.callUs': '?´é›»?‘å€?,
-  'contact.info.visitUs': '?œè¨ª?‘å€?,
-  'contact.info.emailDescription': 'å¿«é€Ÿå??‰æ‚¨?„å?é¡?,
-  'contact.info.phoneDescription': '?±ä??³é€±ä? 9AM-6PM HKT',
-  'contact.info.visitDescription': '?ç??ƒé¢',
-  'contact.why.title': 'é»è§£ä½ é?è¦AI Formula',
-  'contact.why.benefit1': 'AIæ­?œ¨?¹è?æ¯å€‹è?æ¥?- ?”è?ä¸Šå°±?ƒè¢«æ·˜æ±°',
-  'contact.why.benefit2': 'ä½ ç«¶?­å??‹å·²ç¶“ç”¨ç·ŠAI - ?”å¥½ä¿¾ä½¢?‹æ¶??,
-  'contact.why.benefit3': 'äººæ?æµç?å·²ç??æ? - ?¾åœ¨?ªå??–é??¯ä?å¾Œè???,
-  'contact.why.benefit4': 'AI?©å‘½?¾åœ¨?¼ç?ä¸?- ? å…¥?„æ˜¯ç«™åœ¨ä¸€?Šç?',
+  'contact.title': 'æº–ï¿½?å¥½ï¿½??ï¿½æ‚¨?ï¿½æ¥­?ï¿½ï¿½??ï¿½ï¿½?',
+  'contact.subtitle': 'è®“ï¿½??ï¿½ï¿½?è«–AI Formulaå¦‚ï¿½?å¹«åŠ©?ï¿½ç²¾?ï¿½AIä¸¦è‡ª?ï¿½ï¿½??ï¿½ï¿½?æ¥­ï¿½?æµï¿½?',
+  'contact.form.title': '?ï¿½çµ¡?ï¿½ï¿½?,
+  'contact.form.name': 'å§“ï¿½?',
+  'contact.form.email': '?ï¿½ï¿½??ï¿½ä»¶?ï¿½ï¿½?',
+  'contact.form.message': '?ï¿½å€‘ï¿½?ä½•å¹«?ï¿½æ‚¨ï¿½?,
+  'contact.form.messagePlaceholder': '?ï¿½è¨´?ï¿½å€‘æ‚¨?ï¿½è‡ª?ï¿½ï¿½??ï¿½æ±‚ï¿½?å­¸ï¿½??ï¿½ï¿½?...',
+  'contact.form.send': '?ï¿½é€ï¿½???,
+  'contact.form.description': 'å¡«å¯«ä¸‹æ–¹è¡¨æ ¼ï¼Œï¿½??ï¿½ï¿½???4å°ï¿½??ï¿½ï¿½?è¦†æ‚¨',
+  'contact.brainstorm.title': '?ï¿½çŸ¥è¦å’©ï¼Ÿè©¦ä¸‹å‘¢?ï¿½æƒ³æ³•ï¿½?',
+  'contact.brainstorm.option1': 'AI?ï¿½å¤©æ©Ÿå™¨ï¿½?,
+  'contact.brainstorm.option2': '?ï¿½ï¿½???,
+  'contact.brainstorm.option3': '?ï¿½æ¥­æµï¿½?',
+  'contact.brainstorm.option4': 'å®¢è£½?ï¿½æ–¹ï¿½?,
+  'contact.brainstorm.suggestion1': '?ï¿½æƒ³?ï¿½å€‹AI?ï¿½å¤©æ©Ÿå™¨äººï¿½??ï¿½ä»¥?ï¿½ï¿½?å®¢æˆ¶?ï¿½è©¢?ï¿½ï¿½?èªï¿½??ï¿½æ´??,
+  'contact.brainstorm.suggestion2': '?ï¿½ï¿½?è¦è‡ª?ï¿½ï¿½??ï¿½ï¿½??ï¿½ç°¡?ï¿½ï¿½?è¤‡å·¥ä½œï¿½?å¥½ä¼¼è³‡ï¿½?è¼¸å…¥?ï¿½é›»?ï¿½ï¿½?è¦†ï¿½?å·¥ï¿½?æµï¿½?ç®¡ï¿½???,
+  'contact.brainstorm.suggestion3': '?ï¿½æƒ³?ï¿½ï¿½??ï¿½æ¥­æµï¿½?ï¼Œç”¨AI?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?å°‘äºº?ï¿½å·¥ä½œï¿½?,
+  'contact.brainstorm.suggestion4': '?ï¿½ï¿½?è¦ç‚º?ï¿½ï¿½?æ¥­ï¿½?æ¥­ï¿½??ï¿½æ±‚åº¦èº«ï¿½??ï¿½ï¿½?AIï¿½?ï¿½ï¿½?ï¿½ï¿½???,
+  'contact.info.title': '?ï¿½çµ¡è³‡ï¿½?',
+  'contact.info.email': '?ï¿½ï¿½??ï¿½ä»¶',
+  'contact.info.phone': '?ï¿½è©±',
+  'contact.info.emailUs': '?ï¿½éƒµ?ï¿½ï¿½?,
+  'contact.info.callUs': '?ï¿½é›»?ï¿½ï¿½?,
+  'contact.info.visitUs': '?ï¿½è¨ª?ï¿½ï¿½?,
+  'contact.info.emailDescription': 'å¿«é€Ÿï¿½??ï¿½æ‚¨?ï¿½ï¿½?ï¿½?,
+  'contact.info.phoneDescription': '?ï¿½ï¿½??ï¿½é€±ï¿½? 9AM-6PM HKT',
+  'contact.info.visitDescription': '?ï¿½ï¿½??ï¿½é¢',
+  'contact.why.title': 'é»è§£ä½ ï¿½?è¦AI Formula',
+  'contact.why.benefit1': 'AIï¿½?ï¿½ï¿½?ï¿½ï¿½?æ¯å€‹ï¿½?ï¿½?- ?ï¿½ï¿½?ä¸Šå°±?ï¿½è¢«æ·˜æ±°',
+  'contact.why.benefit2': 'ä½ ç«¶?ï¿½ï¿½??ï¿½å·²ç¶“ç”¨ç·ŠAI - ?ï¿½å¥½ä¿¾ä½¢?ï¿½æ¶??,
+  'contact.why.benefit3': 'äººï¿½?æµï¿½?å·²ï¿½??ï¿½ï¿½? - ?ï¿½åœ¨?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?å¾Œï¿½???,
+  'contact.why.benefit4': 'AI?ï¿½å‘½?ï¿½åœ¨?ï¿½ï¿½?ï¿½?- ?ï¿½å…¥?ï¿½æ˜¯ç«™åœ¨ä¸€?ï¿½ï¿½?',
   
   // 404 Page
   'notFound.title': '404',
-  'notFound.message': 'ç³Ÿç?ï¼æ‰¾ä¸åˆ°?é¢',
-  'notFound.returnHome': 'è¿”å?é¦–é?',
+  'notFound.message': 'ç³Ÿï¿½?ï¼æ‰¾ä¸åˆ°?ï¿½é¢',
+  'notFound.returnHome': 'è¿”ï¿½?é¦–ï¿½?',
   
   // Toast Messages
-  'toast.messageSent': 'è¨Šæ¯å·²ç™¼?ï?',
-  'toast.messageDescription': '?Ÿè??¨ç??œæ³¨?‚æ??‘å???4å°æ??§å?è¦†æ‚¨??,
+  'toast.messageSent': 'è¨Šæ¯å·²ç™¼?ï¿½ï¿½?',
+  'toast.messageDescription': '?ï¿½ï¿½??ï¿½ï¿½??ï¿½æ³¨?ï¿½ï¿½??ï¿½ï¿½???4å°ï¿½??ï¿½ï¿½?è¦†æ‚¨??,
 }
 
-// ?µå»ºèªè?ä¸Šä???const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+// ?ï¿½å»ºèªï¿½?ä¸Šï¿½???const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-// èªè??ä??…ç?ä»?export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+// èªï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½?export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>(() => {
-    // å¾?localStorage è®€?–è?è¨€è¨­å?ï¼Œé?è¨­ç‚ºä¸­æ?
+    // ï¿½?localStorage è®€?ï¿½ï¿½?è¨€è¨­ï¿½?ï¼Œï¿½?è¨­ç‚ºä¸­ï¿½?
     const savedLanguage = localStorage.getItem('language')
     return (savedLanguage as Language) || 'zh-HK'
   })
 
-  // ä¿å?èªè?è¨­å???localStorage
+  // ä¿ï¿½?èªï¿½?è¨­ï¿½???localStorage
   useEffect(() => {
     localStorage.setItem('language', language)
   }, [language])
 
-  // ?²å?ç¿»è­¯?‡æœ¬
+  // ?ï¿½ï¿½?ç¿»è­¯?ï¿½æœ¬
   const getTranslations = (lang: Language): Translations => {
     return lang === 'zh-HK' ? zhTranslations : enTranslations
   }
 
-  // ç¿»è­¯?½æ•¸
+  // ç¿»è­¯?ï¿½æ•¸
   const t = (key: string): string => {
     const translations = getTranslations(language)
     return translations[key] || key
@@ -469,7 +470,7 @@ const zhTranslations: Translations = {
   )
 }
 
-// ä½¿ç”¨èªè?ä¸Šä??‡ç? Hook
+// ä½¿ç”¨èªï¿½?ä¸Šï¿½??ï¿½ï¿½? Hook
 export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext)
   if (context === undefined) {

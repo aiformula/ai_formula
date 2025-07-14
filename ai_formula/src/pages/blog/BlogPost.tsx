@@ -1,27 +1,26 @@
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, User, Eye, Share2, Bookmark } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useViewCount } from "@/contexts/ViewCountContext";
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState, useCallback, useMemo } from "react";
-import { blogPosts, getSortedPostsNewest, type BlogPost } from "@/data/blog/blogPosts";
-import { getArticleContent } from "@/data/blog/articleContent";
-import ArticleContentRenderer from "@/components/ArticleContentRenderer";
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Share2, Bookmark, Eye, Calendar, Clock, User, Tag } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { Helmet } from 'react-helmet-async';
 
-// Types
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useViewCount } from '@/contexts/ViewCountContext';
+import { getSortedPostsNewest } from '@/data/blog/blogPosts';
+import { BlogPost as BlogPostType } from '@/data/blog/blogPosts';
+
 interface ArticleViewCounterProps {
   initialViews: string;
   postId: number;
 }
 
 interface BlogPostPageProps {
-  post: BlogPost;
-  isZhTW: boolean;
+  post: BlogPostType;
+  isZhHK: boolean;
 }
 
 interface ShareData {
@@ -30,31 +29,10 @@ interface ShareData {
   url: string;
 }
 
-// Animation configurations
-const ANIMATION_CONFIG = {
-  fadeIn: {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8 }
-  },
-  slideInLeft: {
-    initial: { opacity: 0, x: -20 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.6 }
-  },
-  staggerContainer: {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  } as const
-};
-
 // Utility functions
-const generateShareData = (post: BlogPost, isZhTW: boolean): ShareData => ({
-  title: isZhTW ? post.title : post.titleEn,
-  text: isZhTW ? post.excerpt : post.excerptEn,
+const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
+  title: isZhHK ? post.title : post.titleEn,
+  text: isZhHK ? post.excerpt : post.excerptEn,
   url: window.location.href
 });
 
@@ -63,46 +41,43 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   const { language } = useLanguage();
   const { getViewCount, incrementView } = useViewCount();
   const [isAnimating, setIsAnimating] = useState(false);
-  const [hasInitialIncrement, setHasInitialIncrement] = useState(false);
-
-  const currentViews = getViewCount(postId, initialViews);
-
-  const handleViewIncrement = useCallback(() => {
-    if (!hasInitialIncrement) {
-      incrementView(postId);
-      setIsAnimating(true);
-      setHasInitialIncrement(true);
-      
-      const timer = setTimeout(() => setIsAnimating(false), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [hasInitialIncrement, incrementView, postId]);
-
-  // Only increment view once when component mounts
+  
+  const currentViews = getViewCount(postId);
+  const displayViews = currentViews > 0 ? currentViews.toString() : initialViews;
+  
   useEffect(() => {
-    handleViewIncrement();
-  }, [handleViewIncrement]);
+    incrementView(postId);
+    setIsAnimating(true);
+    const timer = setTimeout(() => setIsAnimating(false), 500);
+    return () => clearTimeout(timer);
+  }, [postId, incrementView]);
 
   return (
-    <div className={`flex items-center gap-1 text-gray-300 transition-all duration-500 ${
-      isAnimating ? 'text-blue-300 scale-110' : ''
-    }`}>
-      <Eye className={`h-4 w-4 transition-all duration-500 ${
-        isAnimating ? 'text-blue-400' : ''
-      }`} />
-      <span className={`transition-all duration-500 ${
-        isAnimating ? 'text-blue-300 font-semibold' : ''
-      }`}>
-        {currentViews} {language === 'zh-HK' ? 'Ê¨°ÁÄèË¶Ω' : 'views'}
+    <motion.div 
+      className="flex items-center gap-2 text-blue-600 dark:text-blue-400"
+      animate={{ scale: isAnimating ? [1, 1.1, 1] : 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <Eye className="h-4 w-4" />
+      <span className="font-medium">{displayViews}</span>
+      <span className="text-sm opacity-75">
+        {language === 'zh-HK' ? 'Ê¨°ÁÄèË¶Ω' : 'views'}
       </span>
-    </div>
+    </motion.div>
   );
 };
 
-const ArticleHeader: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, isZhTW }) => {
-  const shareData = useMemo(() => generateShareData(post, isZhTW), [post, isZhTW]);
+const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
+  const navigate = useNavigate();
+  const [shareData, setShareData] = useState<ShareData | null>(null);
+
+  useEffect(() => {
+    setShareData(generateShareData(post, isZhHK));
+  }, [post, isZhHK]);
 
   const handleShare = useCallback(async () => {
+    if (!shareData) return;
+
     if (navigator.share) {
       try {
         await navigator.share(shareData);
@@ -112,199 +87,244 @@ const ArticleHeader: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, is
     } else {
       // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(shareData.url);
-      alert(isZhTW ? '???Â∑≤Ë?Ë£ΩÂà∞?™Ë≤ºÁ∞? : 'Link copied to clipboard');
+      alert(isZhHK ? 'ÈÄ£ÁµêÂ∑≤Ë§áË£ΩÂà∞Ââ™Ë≤ºÊùø' : 'Link copied to clipboard');
     }
-  }, [shareData, isZhTW]);
+  }, [shareData, isZhHK]);
 
   const handleBookmark = useCallback(() => {
     // Future Enhancement: Implement bookmark functionality with user accounts
-    // This will allow users to save and organize their favorite articles
-  }, [post.id]);
+    console.log('Bookmark functionality will be implemented with user accounts');
+  }, []);
+
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    return isZhHK 
+      ? date.toLocaleDateString('zh-HK', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })
+      : date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+  };
+
+  const title = isZhHK ? post.title : post.titleEn;
+  const excerpt = isZhHK ? post.excerpt : post.excerptEn;
+  const content = isZhHK ? post.content : post.contentEn;
 
   return (
-    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          {...ANIMATION_CONFIG.slideInLeft}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
+      <Helmet>
+        <title>{title} - AI Formula</title>
+        <meta name="description" content={excerpt} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={excerpt} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="article:author" content={post.author} />
+        <meta property="article:published_time" content={post.publishedAt} />
+        <meta property="article:tag" content={post.category} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={excerpt} />
+        <link rel="canonical" href={window.location.href} />
+      </Helmet>
+
+      <div className="container mx-auto px-4 py-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className="mb-8"
         >
           <Link to="/blog">
             <Button 
-              variant="outline" 
-              className="bg-white text-black border-white hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium"
+              variant="ghost" 
+              size="sm" 
+              className="mb-4 hover:bg-blue-50 dark:hover:bg-blue-900/20"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              {isZhTW ? 'ËøîÂ??®ËêΩ?? : 'Back to Blog'}
+              {isZhHK ? 'ËøîÂõûÈÉ®ËêΩÊ†º' : 'Back to Blog'}
             </Button>
           </Link>
         </motion.div>
 
-        <motion.article
-          {...ANIMATION_CONFIG.fadeIn}
-          className="mb-8"
-        >
-          <header className="mb-8">
-            <div className="flex items-center gap-4 mb-6">
-              <Badge className="bg-blue-500/20 text-blue-200 border-blue-400">
-                {isZhTW ? post.category : post.categoryEn}
-              </Badge>
-              <ArticleViewCounter initialViews={post.views} postId={post.id} />
-            </div>
-
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent leading-tight">
-              {isZhTW ? post.title : post.titleEn}
-            </h1>
-
-            <p className="text-xl text-gray-200 mb-8 leading-relaxed">
-              {isZhTW ? post.excerpt : post.excerptEn}
-            </p>
-
-            <div className="flex items-center justify-between flex-wrap gap-4 pb-8 border-b border-gray-700">
-              <div className="flex items-center gap-6 text-gray-300">
-                <div className="flex items-center gap-2">
-                  <User className="h-5 w-5" />
-                  <span className="text-gray-200 font-medium">{post.author}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5" />
-                  <span>{isZhTW ? post.date : post.dateEn}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5" />
-                  <span>{isZhTW ? post.readTime : post.readTimeEn}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={handleShare}
-                  className="bg-white text-black border-white hover:bg-gray-100 hover:text-black font-medium"
-                >
-                  <Share2 className="h-4 w-4 mr-2" />
-                  {isZhTW ? '?Ü‰∫´' : 'Share'}
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={handleBookmark}
-                  className="bg-white text-black border-white hover:bg-gray-100 hover:text-black font-medium"
-                >
-                  <Bookmark className="h-4 w-4 mr-2" />
-                  {isZhTW ? '?∂Ë?' : 'Bookmark'}
-                </Button>
-              </div>
-            </div>
-          </header>
-        </motion.article>
-      </div>
-    </section>
-  );
-};
-
-const ArticleContent: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, isZhTW }) => {
-  const articleContent = useMemo(() => getArticleContent(post.id), [post.id]);
-
-  return (
-    <section className="pb-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="prose prose-lg prose-invert max-w-none"
-        >
-          {articleContent ? (
-            <ArticleContentRenderer sections={articleContent.sections} isZhTW={isZhTW} />
-          ) : (
-            <div className="text-gray-200 leading-relaxed space-y-8">
-              {/* Fallback content for articles without detailed content */}
-              <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/20 rounded-lg p-8">
-                <h2 className="text-2xl font-bold text-white mb-4">
-                  {isZhTW ? '?áÁ??ßÂÆπ' : 'Article Content'}
-                </h2>
-                <p className="text-gray-300 mb-4">
-                  {isZhTW ? post.excerpt : post.excerptEn}
-                </p>
-                <p className="text-gray-300 mb-4">
-                  {isZhTW ? 
-                    '?ôÁ??áÁ??ÑË©≥Á¥∞ÂÖßÂÆπÊ≠£?®Ê??ô‰∏≠?ÇË??úÊ≥®?ëÂÄëÁ??¥Êñ∞?≤Â??¥Â?Á≤æÂΩ©?ßÂÆπ?? :
-                    'The detailed content for this article is being prepared. Please follow our updates for more exciting content.'
-                  }
-                </p>
-              </div>
-
-              {/* Call to Action */}
-              <div className="text-center mt-8 p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-400/30 rounded-lg">
-                <p className="text-gray-300">
-                  {isZhTW ? 
-                    <>?≥‰?Ëß?õ¥Â§öÈ??ºAI?åÁ??Ä?ºÂ??ÑÊ??∞Ë?Ë®äÔ??úÊ≥®?ëÂÄëÁ? Instagram <strong className="text-blue-300">@ai_formula_</strong> ?≤Â??¥Â?Ê∑±Â∫¶?ÜÊ??åË?Ëß?Ä?/> :
-                    <>Want to learn more about the latest information on AI and technology development? Follow our Instagram <strong className="text-blue-300">@ai_formula_</strong> for more in-depth analysis and insights.</>
-                  }
-                </p>
-              </div>
-            </div>
-          )}
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-
-const RelatedArticles: React.FC<{ currentPost: BlogPost; isZhTW: boolean }> = ({ currentPost, isZhTW }) => {
-  const relatedPosts = useMemo(() => {
-    const allPosts = getSortedPostsNewest();
-    return allPosts.filter(p => p.id !== currentPost.id).slice(0, 2);
-  }, [currentPost.id]);
-
-  return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
-      <div className="max-w-4xl mx-auto">
-        <h3 className="text-2xl font-bold text-white mb-8 text-center">
-          {isZhTW ? '?∏È??áÁ?' : 'Related Articles'}
-        </h3>
-        <div className="grid md:grid-cols-2 gap-6">
-          {relatedPosts.map((relatedPost) => (
-            <motion.div
-              key={relatedPost.id}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.2 }}
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <motion.article 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden"
             >
-              <Card className="bg-gray-900/50 border-gray-700 hover:border-blue-400 transition-all duration-300">
-                <CardContent className="p-6">
-                  <Badge className="mb-3 bg-purple-500/20 text-purple-200 border-purple-400">
-                    {isZhTW ? relatedPost.category : relatedPost.categoryEn}
+              {/* Hero Image */}
+              <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+                <img
+                  src={post.imageUrl}
+                  alt={title}
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <Badge variant="secondary" className="mb-3">
+                    {isZhHK ? post.category : post.categoryEn}
                   </Badge>
-                  <h4 className="text-lg font-semibold text-white mb-3 leading-tight">
-                    {isZhTW ? relatedPost.title : relatedPost.titleEn}
-                  </h4>
-                  <p className="text-gray-300 text-sm mb-4">
-                    {((isZhTW ? relatedPost.excerpt : relatedPost.excerptEn) || '').substring(0, 100)}...
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+                    {title}
+                  </h1>
+                  <p className="text-gray-200 text-lg md:text-xl max-w-2xl">
+                    {excerpt}
                   </p>
-                  <Link to={`/blog/${relatedPost.id}`}>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="bg-white text-black border-white hover:bg-gray-100 hover:text-black font-medium"
+                </div>
+              </div>
+
+              {/* Article Meta */}
+              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    <span>{post.author}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>{formatDate(post.publishedAt)}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    <span>{post.readingTime} {isZhHK ? 'ÂàÜÈêòÈñ±ËÆÄ' : 'min read'}</span>
+                  </div>
+                  <ArticleViewCounter initialViews={post.views} postId={post.id} />
+                </div>
+              </div>
+
+              {/* Article Content */}
+              <div className="p-6 md:p-8">
+                <div className="prose prose-lg dark:prose-invert max-w-none">
+                  <div dangerouslySetInnerHTML={{ __html: content }} />
+                </div>
+              </div>
+
+              {/* Article Actions */}
+              <div className="px-6 md:px-8 pb-6 md:pb-8">
+                <Separator className="mb-6" />
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleShare}
+                      className="flex items-center gap-2"
                     >
-                      {isZhTW ? '?±Ë??¥Â?' : 'Read More'}
+                      <Share2 className="h-4 w-4" />
+                      {isZhHK ? 'ÂàÜ‰∫´' : 'Share'}
                     </Button>
-                  </Link>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleBookmark}
+                      className="flex items-center gap-2"
+                    >
+                      <Bookmark className="h-4 w-4" />
+                      {isZhHK ? 'Êî∂Ëóè' : 'Bookmark'}
+                    </Button>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Tag className="h-4 w-4 text-gray-500" />
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {isZhHK ? post.category : post.categoryEn}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="sticky top-8 space-y-6"
+            >
+              {/* Author Info */}
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="font-semibold text-lg mb-3">
+                    {isZhHK ? 'ÈóúÊñº‰ΩúËÄÖ' : 'About Author'}
+                  </h3>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                      {post.author.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-medium">{post.author}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {isZhHK ? 'AI Â∞àÂÆ∂' : 'AI Expert'}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {isZhHK 
+                      ? 'Â∞àÊ≥®Êñº‰∫∫Â∑•Êô∫ËÉΩÊäÄË°ìÁ†îÁ©∂ËàáÂØ¶Áî®ÊáâÁî®ÔºåËá¥ÂäõÊñºÂàÜ‰∫´ÂâçÊ≤øÁöÑAIÁü•Ë≠òËàáË¶ãËß£„ÄÇ'
+                      : 'Focused on AI research and practical applications, dedicated to sharing cutting-edge AI knowledge and insights.'
+                    }
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Related Posts */}
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="font-semibold text-lg mb-3">
+                    {isZhHK ? 'Áõ∏ÈóúÊñáÁ´†' : 'Related Posts'}
+                  </h3>
+                  <div className="space-y-3">
+                    {getSortedPostsNewest()
+                      .filter(p => p.id !== post.id && p.category === post.category)
+                      .slice(0, 3)
+                      .map((relatedPost) => (
+                        <Link
+                          key={relatedPost.id}
+                          to={`/blog/${relatedPost.id}`}
+                          className="block group"
+                        >
+                          <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <img
+                              src={relatedPost.imageUrl}
+                              alt={isZhHK ? relatedPost.title : relatedPost.titleEn}
+                              className="w-16 h-16 object-cover rounded-lg"
+                            />
+                            <div className="flex-1">
+                              <h4 className="font-medium text-sm mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                {isZhHK ? relatedPost.title : relatedPost.titleEn}
+                              </h4>
+                              <p className="text-xs text-gray-600 dark:text-gray-400">
+                                {formatDate(relatedPost.publishedAt)}
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
-          ))}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
 const BlogPost: React.FC = () => {
   const { language } = useLanguage();
   const { id } = useParams<{ id: string }>();
-  const isZhTW = language === 'zh-HK';
+  const isZhHK = language === 'zh-HK';
 
   const post = useMemo(() => {
     const allPosts = getSortedPostsNewest();
@@ -314,37 +334,10 @@ const BlogPost: React.FC = () => {
 
   // Scroll to top when post changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, [id]);
 
-  // Update document title
-  useEffect(() => {
-    const title = isZhTW ? post.title : post.titleEn;
-    document.title = `${title} - AI Formula`;
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', isZhTW ? post.excerpt : post.excerptEn);
-    }
-  }, [post, isZhTW]);
-
-  return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Binary background pattern */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ctext x='10' y='20' font-family='monospace' font-size='12'%3E1%3C/text%3E%3Ctext x='30' y='40' font-family='monospace' font-size='12'%3E0%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
-      <Navigation />
-      <ArticleHeader post={post} isZhTW={isZhTW} />
-      <ArticleContent post={post} isZhTW={isZhTW} />
-      <RelatedArticles currentPost={post} isZhTW={isZhTW} />
-      <Footer />
-    </div>
-  );
+  return <BlogPostPage post={post} isZhHK={isZhHK} />;
 };
 
 export default BlogPost; 

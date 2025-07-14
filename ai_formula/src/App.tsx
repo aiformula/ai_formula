@@ -90,7 +90,7 @@ function App() {
                         {
                           id: 'module-1',
                           title: 'Foundations of Prompt Engineering',
-                          titleZh: '?êÁ§∫Â∑•Á??∫Á?',
+                          titleZh: '?ÔøΩÁ§∫Â∑•ÔøΩ??ÔøΩÔøΩ?',
                           duration: '25:00',
                           videoUrl: '/api/placeholder/video/lesson1.mp4',
                           transcript: 'Welcome to the foundations of prompt engineering...',
@@ -118,7 +118,7 @@ function App() {
                         {
                           id: 'module-2',
                           title: 'Advanced Prompt Techniques',
-                          titleZh: '?≤È??êÁ§∫?ÄÂ∑?,
+                          titleZh: 'ÈÄ≤ÈöéÊèêÁ§∫ÊäÄÂ∑ß',
                           duration: '18:00',
                           videoUrl: '/api/placeholder/video/lesson2.mp4',
                           transcript: 'In this lesson, we will explore advanced prompt techniques...',

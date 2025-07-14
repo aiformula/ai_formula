@@ -1,4 +1,4 @@
-// ESLint 插件：防止硬編碼顏色
+// ESLint ?�件：防止硬編碼顏色
 module.exports = {
   rules: {
     'no-hardcoded-colors': {
@@ -12,7 +12,7 @@ module.exports = {
         schema: []
       },
       create(context) {
-        // 硬編碼顏色模式
+        // 硬編碼�??�模�?
         const hardcodedColorPatterns = [
           // Hex 顏色
           /#[0-9a-fA-F]{3,6}/g,
@@ -20,11 +20,11 @@ module.exports = {
           /rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*(?:,\s*[\d.]+\s*)?\)/g,
           // HSL 顏色
           /hsla?\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*(?:,\s*[\d.]+\s*)?\)/g,
-          // 常見顏色名稱
+          // 常�?顏色?�稱
           /\b(red|blue|green|yellow|purple|orange|pink|brown|gray|grey|black|white|cyan|magenta)\b/g
         ];
 
-        // AI Formula 允許的顏色變量
+        // AI Formula ?�許?��??��???
         const allowedColorVariables = [
           'var(--ai-formula-primary)',
           'var(--ai-formula-primary-hover)',
@@ -44,12 +44,12 @@ module.exports = {
         function checkForHardcodedColors(node, value) {
           if (typeof value !== 'string') return;
 
-          // 檢查是否為允許的變量
+          // 檢查?�否?��?許�?變�?
           if (allowedColorVariables.some(allowed => value.includes(allowed))) {
             return;
           }
 
-          // 檢查硬編碼顏色模式
+          // 檢查硬編碼�??�模�?
           for (const pattern of hardcodedColorPatterns) {
             const matches = value.match(pattern);
             if (matches) {
@@ -61,7 +61,7 @@ module.exports = {
             }
           }
 
-          // 檢查 Tailwind 自定義顏色
+          // 檢查 Tailwind ?��?義�???
           const tailwindCustomColor = value.match(/bg-\[#[0-9a-fA-F]{3,6}\]|text-\[#[0-9a-fA-F]{3,6}\]|border-\[#[0-9a-fA-F]{3,6}\]/);
           if (tailwindCustomColor) {
             context.report({
@@ -73,7 +73,7 @@ module.exports = {
         }
 
         return {
-          // 檢查 JSX 屬性
+          // 檢查 JSX 屬�?
           JSXAttribute(node) {
             if (node.name.name === 'className' && node.value && node.value.type === 'Literal') {
               checkForHardcodedColors(node, node.value.value);
@@ -91,7 +91,7 @@ module.exports = {
             }
           },
 
-          // 檢查 CSS 樣式對象
+          // 檢查 CSS �??對象
           Property(node) {
             if (node.value && node.value.type === 'Literal' && 
                 typeof node.value.value === 'string' &&
@@ -104,10 +104,10 @@ module.exports = {
             }
           },
 
-          // 檢查字符串字面量
+          // 檢查字符串�??��?
           Literal(node) {
             if (typeof node.value === 'string') {
-              // 檢查是否在樣式相關的上下文中
+              // 檢查?�否?�樣式相?��?上�??�中
               const parent = node.parent;
               if (parent && parent.type === 'Property' && 
                   parent.key && parent.key.name && 
@@ -133,7 +133,7 @@ module.exports = {
         schema: []
       },
       create(context) {
-        // 顏色替換映射
+        // 顏色?��??��?
         const colorReplacements = {
           '#FFD600': 'var(--ai-formula-primary)',
           '#EAB308': 'var(--ai-formula-primary-hover)',
@@ -200,7 +200,7 @@ module.exports = {
   }
 };
 
-// 預設配置
+// ?�設?�置
 module.exports.configs = {
   recommended: {
     plugins: ['ai-formula'],

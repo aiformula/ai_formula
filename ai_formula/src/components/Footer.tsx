@@ -21,8 +21,8 @@ const Footer = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
-      title: isZhTW ? '訂閱?��?�? : 'Subscription Successful!',
-      description: isZhTW ? '?��??��?訂閱，�??��?定�??�送�??��?AI資�?給您?? : 'Thank you for subscribing! We will send you the latest AI updates regularly.',
+      title: language === 'zh-HK' ? '訂閱成功!' : 'Subscription Successful!',
+      description: language === 'zh-HK' ? '感謝您的訂閱，我們會定期發送最新的AI資訊給您！' : 'Thank you for subscribing! We will send you the latest AI updates regularly.',
     });
     
     setEmail('');
@@ -32,18 +32,18 @@ const Footer = () => {
   const footerLinks = {
     'zh-HK': {
       services: {
-        title: '企業?��?',
+        title: '企業?��?',
         links: [
-          { name: '顧�??��?', href: '/about' }
+          { name: '顧�??��?', href: '/about' }
         ]
       },
       about: {
-        title: '?�於?��?,
+        title: '?�於?��?,
         links: [
-          { name: '?�司介紹', href: '/about' },
-          { name: '?��??�員', href: '/about' },
-          { name: '?�絡?��?, href: '/about' },
-          { name: '?�落??, href: '/blog' }
+          { name: '?�司介紹', href: '/about' },
+          { name: '?��??�員', href: '/about' },
+          { name: '?�絡?��?, href: '/about' },
+          { name: '?�落??, href: '/blog' }
         ]
       }
     },
@@ -89,11 +89,11 @@ const Footer = () => {
             className="lg:col-span-1"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-yellow-200 to-orange-200 bg-clip-text text-transparent">
-              {isZhTW ? '香港?�實用??AI 課�?' : 'Hong Kong\'s Most Practical AI Courses'}
+              {isZhTW ? '香港?�實用??AI 課�?' : 'Hong Kong\'s Most Practical AI Courses'}
             </h2>
             <p className="text-yellow-100 text-lg mb-8 leading-relaxed">
               {isZhTW 
-                ? '?�們�?享�?�???�正確�?課�??�學了就?��?，知?�就?�用?��?住�?，�?一定�?得到！這就?��?港�?實用?�AI課�??? 
+                ? '?�們�?享�?�???�正確�?課�??�學了就?��?，知?�就?�用?��?住�?，�?一定�?得到！這就?��?港�?實用?�AI課�??? 
                 : 'We share real, right courses. Learn it, know it, use it. Follow along and you can definitely do it! These are Hong Kong\'s most useful AI courses.'
               }
             </p>
@@ -165,7 +165,7 @@ const Footer = () => {
             {/* Social Media */}
             <div className="flex items-center gap-4">
               <span className="text-yellow-200 text-sm">
-                {isZhTW ? '追蹤?�們�?' : 'Follow us:'}
+                {isZhTW ? '追蹤?�們�?' : 'Follow us:'}
               </span>
               <div className="flex gap-3">
                 <a
@@ -205,7 +205,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="text-yellow-300 text-sm">
-              © AI Formula {new Date().getFullYear()}. {isZhTW ? '?��??�?? : 'All Rights Reserved'}.
+              © AI Formula {new Date().getFullYear()}. {isZhTW ? '?��??�?? : 'All Rights Reserved'}.
             </div>
           </div>
         </motion.div>
