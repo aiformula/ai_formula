@@ -1,6 +1,6 @@
 import React from 'react';
 
-// 圖片展示組件
+// ?��?展示組件
 interface CourseImageProps {
   src: string;
   alt: string;
@@ -51,7 +51,7 @@ export const CourseVideo: React.FC<CourseVideoProps> = ({ src, alt, caption }) =
   </div>
 );
 
-// 代碼塊組件
+// �?��塊�?�?
 interface CourseCodeBlockProps {
   code: string;
   title: string;
@@ -68,7 +68,7 @@ export const CourseCodeBlock: React.FC<CourseCodeBlockProps> = ({ code, title })
   </div>
 );
 
-// 模板區段組件
+// 模板?�段�?�?
 interface TemplateSectionProps {
   title: string;
   images?: CourseImageProps[];
@@ -89,7 +89,7 @@ export const TemplateSection: React.FC<TemplateSectionProps> = ({
       {title}
     </h3>
     
-    {/* 渲染圖片 */}
+    {/* 渲�??��? */}
     {images.length > 0 && (
       <div className={images.length > 1 ? "grid grid-cols-1 md:grid-cols-2 gap-4 my-6 max-w-3xl" : ""}>
         {images.map((image, index) => (
@@ -98,17 +98,17 @@ export const TemplateSection: React.FC<TemplateSectionProps> = ({
       </div>
     )}
     
-    {/* 渲染代碼塊 */}
+    {/* 渲�?�?���?*/}
     {codeBlocks.map((codeBlock, index) => (
       <CourseCodeBlock key={index} {...codeBlock} />
     ))}
     
-    {/* 渲染視頻 */}
+    {/* 渲�?視頻 */}
     {videos.map((video, index) => (
       <CourseVideo key={index} {...video} />
     ))}
     
-    {/* 渲染其他內容 */}
+    {/* 渲�??��??�容 */}
     {content && (
       <div dangerouslySetInnerHTML={{
         __html: content
@@ -146,17 +146,17 @@ export const VideoTemplate: React.FC<VideoTemplateProps> = ({
       {title}
     </h3>
     
-    {/* 圖片 */}
+    {/* ?��? */}
     <CourseImage src={imageUrl} alt={imageAlt} caption={imageAlt} />
     
-    {/* 圖像提示 */}
-    <CourseCodeBlock code={imagePrompt} title="第1步 - 圖像提示：" />
+    {/* ?��??�示 */}
+    <CourseCodeBlock code={imagePrompt} title="�?�?- ?��??�示�? />
     
     {/* 視頻 */}
     <CourseVideo src={videoUrl} alt={videoAlt} caption={videoAlt} />
     
-    {/* 視頻提示 */}
-    <CourseCodeBlock code={videoPrompt} title="第2步 - 視頻提示：" />
+    {/* 視頻?�示 */}
+    <CourseCodeBlock code={videoPrompt} title="�?�?- 視頻?�示�? />
   </div>
 );
 

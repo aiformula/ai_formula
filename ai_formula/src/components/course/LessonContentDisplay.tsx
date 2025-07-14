@@ -11,7 +11,7 @@ interface LessonContentDisplayProps {
   totalParts: number;
   onNextPart: () => void;
   onPrevPart: () => void;
-  language: 'en' | 'zh-TW';
+  language: 'en' | 'zh-HK';
 }
 
 const LessonContentDisplay: React.FC<LessonContentDisplayProps> = ({
@@ -117,12 +117,12 @@ const LessonContentDisplay: React.FC<LessonContentDisplayProps> = ({
             <div className="mt-8 text-center">
               <div className="bg-yellow-500/20 rounded-2xl p-6 border border-yellow-500/30">
                 <h4 className="text-xl font-bold text-yellow-400 mb-3">
-                  {language === 'en' ? '💡 Pro Tip: Practice These Daily!' : '💡 專業貼士：每日練習呢啲！'}
+                  {language === 'en' ? '?�� Pro Tip: Practice These Daily!' : '?�� 專業貼士：�??�練習呢?��?'}
                 </h4>
                 <p className="text-gray-300">
                   {language === 'en' ? 
                     'Master these 10 tips and you\'ll create professional-quality images that can sell for $50-500 each!' :
-                    '掌握呢10個貼士，你就可以創造每張可以賣$50-500嘅專業質量圖像！'
+                    '?�握??0?�貼士�?你就?�以?�造�?張可以賣$50-500?��?業質?��??��?'
                   }
                 </p>
               </div>
@@ -138,7 +138,7 @@ const LessonContentDisplay: React.FC<LessonContentDisplayProps> = ({
               className="flex items-center gap-2 px-8 py-4 bg-gray-600 hover:bg-gray-500 text-white rounded-2xl font-semibold transition-all duration-300 hover:scale-105"
             >
               <ArrowLeft className="w-5 h-5" />
-              {language === 'en' ? 'Previous Part' : '上一部分'}
+              {language === 'en' ? 'Previous Part' : '上�??��?'}
             </button>
           )}
           
@@ -147,7 +147,7 @@ const LessonContentDisplay: React.FC<LessonContentDisplayProps> = ({
               onClick={onNextPart}
               className="flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-semibold transition-all duration-300 hover:scale-105 ml-auto"
             >
-              {language === 'en' ? 'Next Part' : '下一部分'}
+              {language === 'en' ? 'Next Part' : '下�??��?'}
               <ArrowLeft className="w-5 h-5 rotate-180" />
             </button>
           )}

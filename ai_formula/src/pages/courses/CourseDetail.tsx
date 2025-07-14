@@ -19,13 +19,13 @@ const CourseDetail: React.FC = () => {
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">
-            {language === 'en' ? 'Course Not Found' : '課程未找到'}
+            {language === 'en' ? 'Course Not Found' : '課�??�找??}
           </h1>
           <button
             onClick={() => navigate('/courses')}
             className="px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all"
           >
-            {language === 'en' ? 'Back to Courses' : '返回課程'}
+            {language === 'en' ? 'Back to Courses' : '返�?課�?'}
           </button>
         </div>
       </div>
@@ -46,12 +46,12 @@ const CourseDetail: React.FC = () => {
 
   const handleLessonClick = (lesson: any) => {
     if (lesson.isLocked && selectedPlan === 'free') {
-      alert(language === 'en' ? 'This lesson is available in Pro plan only.' : '呢堂課只有專業版先有。');
+      alert(language === 'en' ? 'This lesson is available in Pro plan only.' : '?��?課只?��?業�??��???);
       return;
     }
     
     if (lesson.videoUrl) {
-      alert(language === 'en' ? `Playing: ${lesson.title}` : `播放中：${lesson.titleCht}`);
+      alert(language === 'en' ? `Playing: ${lesson.title}` : `?�放中�?${lesson.titleCht}`);
     }
   };
 
@@ -74,7 +74,7 @@ const CourseDetail: React.FC = () => {
           className="flex items-center text-gray-300 hover:text-white mb-6 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          {language === 'en' ? 'Back to Courses' : '返回課程'}
+          {language === 'en' ? 'Back to Courses' : '返�?課�?'}
         </button>
 
         {/* Course Header */}
@@ -95,7 +95,7 @@ const CourseDetail: React.FC = () => {
               </div>
               <div className="flex items-center">
                 <Users className="w-5 h-5 text-blue-400 mr-2" />
-                <span>{course.enrollmentCount.toLocaleString()} {language === 'en' ? 'students' : '學生'}</span>
+                <span>{course.enrollmentCount.toLocaleString()} {language === 'en' ? 'students' : '學�?'}</span>
               </div>
               <div className="flex items-center">
                 <Clock className="w-5 h-5 text-green-400 mr-2" />
@@ -110,7 +110,7 @@ const CourseDetail: React.FC = () => {
             {/* Learning Outcomes */}
             <div className="mb-8">
               <h3 className="text-xl font-bold mb-4">
-                {language === 'en' ? 'What You\'ll Learn' : '你會學到'}
+                {language === 'en' ? 'What You\'ll Learn' : '你�?學到'}
               </h3>
               <div className="grid md:grid-cols-2 gap-3">
                 {(language === 'en' ? course.learningOutcomes : course.learningOutcomesCht).map((outcome, index) => (
@@ -134,7 +134,7 @@ const CourseDetail: React.FC = () => {
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
-                {language === 'en' ? 'Free Plan' : '免費版'}
+                {language === 'en' ? 'Free Plan' : '?�費??}
               </button>
               <button
                 onClick={() => setSelectedPlan('pro')}
@@ -144,7 +144,7 @@ const CourseDetail: React.FC = () => {
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
-                {language === 'en' ? 'Pro Plan' : '專業版'}
+                {language === 'en' ? 'Pro Plan' : '專業??}
               </button>
             </div>
 
@@ -155,14 +155,14 @@ const CourseDetail: React.FC = () => {
                     {course.freePrice}
                   </div>
                   <div className="text-gray-400">
-                    {language === 'en' ? 'Get started for free' : '免費開始學習'}
+                    {language === 'en' ? 'Get started for free' : '?�費?��?學�?'}
                   </div>
                 </div>
                 <button
                   onClick={handleEnrollFree}
                   className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all mb-4"
                 >
-                  {language === 'en' ? 'Start Free' : '開始免費學習'}
+                  {language === 'en' ? 'Start Free' : '?��??�費學�?'}
                 </button>
               </div>
             ) : (
@@ -174,7 +174,7 @@ const CourseDetail: React.FC = () => {
                   <div className="flex items-center justify-center gap-2 text-gray-400">
                     <span className="line-through">{course.originalPrice}</span>
                     <span className="text-green-400 font-medium">
-                      {language === 'en' ? `Save ${course.savings}` : `節省${course.savings}`}
+                      {language === 'en' ? `Save ${course.savings}` : `節??{course.savings}`}
                     </span>
                   </div>
                 </div>
@@ -182,7 +182,7 @@ const CourseDetail: React.FC = () => {
                   onClick={handleUpgradePro}
                   className="w-full py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all mb-4"
                 >
-                  {language === 'en' ? 'Upgrade to Pro' : '升級到專業版'}
+                  {language === 'en' ? 'Upgrade to Pro' : '?��??��?業�?'}
                 </button>
               </div>
             )}
@@ -190,7 +190,7 @@ const CourseDetail: React.FC = () => {
             {/* Bonuses */}
             <div className="border-t border-gray-700 pt-4">
               <h4 className="font-bold mb-3">
-                {language === 'en' ? 'Included Bonuses:' : '包含獎勵：'}
+                {language === 'en' ? 'Included Bonuses:' : '?�含?�勵�?}
               </h4>
               <div className="space-y-2">
                 {(language === 'en' ? currentBonuses : currentBonusesCht).map((bonus, index) => (
@@ -207,7 +207,7 @@ const CourseDetail: React.FC = () => {
         {/* Course Content */}
         <div className="max-w-4xl">
           <h2 className="text-2xl font-bold mb-6">
-            {language === 'en' ? 'Course Content' : '課程內容'}
+            {language === 'en' ? 'Course Content' : '課�??�容'}
           </h2>
           
           <div className="space-y-4">
@@ -227,7 +227,7 @@ const CourseDetail: React.FC = () => {
                       </p>
                     </div>
                     <div className="text-gray-400">
-                      {module.lessons.length} {language === 'en' ? 'lessons' : '堂課'}
+                      {module.lessons.length} {language === 'en' ? 'lessons' : '?�課'}
                     </div>
                   </div>
                 </button>
@@ -273,7 +273,7 @@ const CourseDetail: React.FC = () => {
         {/* Requirements */}
         <div className="mt-12 max-w-4xl">
           <h2 className="text-2xl font-bold mb-6">
-            {language === 'en' ? 'Requirements' : '要求'}
+            {language === 'en' ? 'Requirements' : '要�?'}
           </h2>
           <div className="bg-gray-900 rounded-lg p-6">
             <div className="space-y-3">

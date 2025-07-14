@@ -361,9 +361,9 @@ export class CourseManager {
       
       if (filters.priceRange) {
         if (filters.priceRange === 'free') {
-          filteredCourses = filteredCourses.filter(course => course.pricing.free === '鍏嶈不');
+          filteredCourses = filteredCourses.filter(course => course.pricing.free === '?嶈不');
         } else if (filters.priceRange === 'paid') {
-          filteredCourses = filteredCourses.filter(course => course.pricing.free !== '鍏嶈不');
+          filteredCourses = filteredCourses.filter(course => course.pricing.free !== '?嶈不');
         }
       }
       

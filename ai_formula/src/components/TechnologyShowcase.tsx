@@ -6,12 +6,12 @@ const TechnologyShowcase = () => {
   const { language, t } = useLanguage();
   
   const technologies = [
-    { name: "n8n", description: language === 'zh-TW' ? t('tech.n8n') : "Workflow Automation" },
-    { name: "Make", description: language === 'zh-TW' ? t('tech.make') : "Integration Platform" },
-    { name: "Zapier", description: language === 'zh-TW' ? t('tech.zapier') : "App Connections" },
-    { name: "Python", description: language === 'zh-TW' ? t('tech.python') : "Data Processing" },
-    { name: "JavaScript", description: language === 'zh-TW' ? t('tech.javascript') : "Web Development" },
-    { name: "OpenAI", description: language === 'zh-TW' ? t('tech.openai') : "AI Integration" }
+    { name: "n8n", description: language === 'zh-HK' ? t('tech.n8n') : "Workflow Automation" },
+    { name: "Make", description: language === 'zh-HK' ? t('tech.make') : "Integration Platform" },
+    { name: "Zapier", description: language === 'zh-HK' ? t('tech.zapier') : "App Connections" },
+    { name: "Python", description: language === 'zh-HK' ? t('tech.python') : "Data Processing" },
+    { name: "JavaScript", description: language === 'zh-HK' ? t('tech.javascript') : "Web Development" },
+    { name: "OpenAI", description: language === 'zh-HK' ? t('tech.openai') : "AI Integration" }
   ];
 
   return (
@@ -25,7 +25,7 @@ const TechnologyShowcase = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            {language === 'zh-TW' ? (
+            {language === 'zh-HK' ? (
               <>
                 {t('tech.title').split(' ')[0]}{' '}
                 <span className="text-[#FFC700]">{t('tech.title').split(' ').slice(1).join(' ')}</span>
@@ -37,7 +37,7 @@ const TechnologyShowcase = () => {
             )}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {language === 'zh-TW' ? t('tech.subtitle') : 'We master the tools that drive modern business automation'}
+            {language === 'zh-HK' ? t('tech.subtitle') : 'We master the tools that drive modern business automation'}
           </p>
         </motion.div>
 

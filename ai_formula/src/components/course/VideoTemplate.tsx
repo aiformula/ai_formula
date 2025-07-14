@@ -3,7 +3,7 @@ import { VideoTemplateData } from '../../types/courseTypes';
 
 interface VideoTemplateProps {
   templates?: VideoTemplateData[];
-  language: 'en' | 'zh-TW';
+  language: 'en' | 'zh-HK';
   onImageError?: (url: string) => void;
   onVideoError?: (url: string) => void;
 }
@@ -12,7 +12,7 @@ interface VideoTemplateProps {
 const videoTemplateData: VideoTemplateData[] = [
   {
     id: 'cyberpunk',
-    title: '🔥 Video Generation Template 1: Cyberpunk Streets',
+    title: '?�� Video Generation Template 1: Cyberpunk Streets',
     imageUrl: 'https://cdn.midjourney.com/8aca4b16-1777-4cfa-bf0b-2e580dfc0a19/0_0.png',
     videoUrl: 'https://cdn.midjourney.com/video/edb4f881-28bc-43c2-94f1-de33c099966a/3.mp4',
     imageAlt: 'Cyberpunk Streets Example',
@@ -22,7 +22,7 @@ const videoTemplateData: VideoTemplateData[] = [
   },
   {
     id: 'magical',
-    title: '⚡ Video Generation Template 2: Magical Forest',
+    title: '??Video Generation Template 2: Magical Forest',
     imageUrl: 'https://cdn.midjourney.com/1096de2a-d098-48d0-9d67-dc6eb34fa506/0_1.png',
     videoUrl: 'https://cdn.midjourney.com/video/525dfefd-45be-4c83-96e9-aaf2c992cee4/1.mp4',
     imageAlt: 'Magical Forest Example',
@@ -32,7 +32,7 @@ const videoTemplateData: VideoTemplateData[] = [
   },
   {
     id: 'underwater',
-    title: '🌊 Video Generation Template 3: Underwater Fantasy',
+    title: '?? Video Generation Template 3: Underwater Fantasy',
     imageUrl: 'https://cdn.midjourney.com/e6dbb98b-6e05-40e7-8df8-fe10d8c5f9fa/0_1.png',
     videoUrl: 'https://cdn.midjourney.com/video/878b9a50-1af9-4231-ba5c-85b2b60a33ef/3.mp4',
     imageAlt: 'Underwater Fantasy Example',
@@ -42,7 +42,7 @@ const videoTemplateData: VideoTemplateData[] = [
   },
   {
     id: 'space',
-    title: '🚀 Video Generation Template 4: Space Exploration',
+    title: '?? Video Generation Template 4: Space Exploration',
     imageUrl: 'https://cdn.midjourney.com/1e964ccd-561d-4184-9989-01e7e00b5ea9/0_0.png',
     videoUrl: 'https://cdn.midjourney.com/video/ca6eccee-3e34-4491-ab46-19c980c724bc/0.mp4',
     imageAlt: 'Space Exploration Example',
@@ -52,7 +52,7 @@ const videoTemplateData: VideoTemplateData[] = [
   },
   {
     id: 'fashion',
-    title: '🎭 Video Generation Template 5: High Fashion',
+    title: '?�� Video Generation Template 5: High Fashion',
     imageUrl: 'https://cdn.midjourney.com/507f8008-822f-4da3-8194-6965964e0bd4/0_0.png',
     videoUrl: 'https://cdn.midjourney.com/video/a1f878a0-52b0-4be4-83d5-227f3bf378f3/2.mp4',
     imageAlt: 'High Fashion Example',
@@ -82,12 +82,12 @@ const VideoTemplate: React.FC<VideoTemplateProps> = ({
   }, [onVideoError]);
 
   const getLocalizedTitle = (template: VideoTemplateData): string => {
-    if (language === 'zh-TW') {
-      return template.title.replace('Video Generation Template 1: Cyberpunk Streets', '視頻生成模板1：賽博朋克街頭')
-        .replace('Video Generation Template 2: Magical Forest', '視頻生成模板2：魔法森林')
-        .replace('Video Generation Template 3: Underwater Fantasy', '視頻生成模板3：水下奇幻')
-        .replace('Video Generation Template 4: Space Exploration', '視頻生成模板4：太空探索')
-        .replace('Video Generation Template 5: High Fashion', '視頻生成模板5：時尚大片');
+    if (language === 'zh-HK') {
+      return template.title.replace('Video Generation Template 1: Cyberpunk Streets', '視頻?��?模板1：賽?��??��???)
+        .replace('Video Generation Template 2: Magical Forest', '視頻?��?模板2：�?法森??)
+        .replace('Video Generation Template 3: Underwater Fantasy', '視頻?��?模板3：水下�?�?)
+        .replace('Video Generation Template 4: Space Exploration', '視頻?��?模板4：太空探�?)
+        .replace('Video Generation Template 5: High Fashion', '視頻?��?模板5：�?尚大??);
     }
     return template.title;
   };
@@ -95,7 +95,7 @@ const VideoTemplate: React.FC<VideoTemplateProps> = ({
   return (
     <div className="space-y-12">
       <h2 className="text-2xl font-bold text-yellow-400 mb-8 text-center">
-        {language === 'en' ? '🎬 Midjourney Video Generation Templates' : '🎬 Midjourney視頻生成模板'}
+        {language === 'en' ? '?�� Midjourney Video Generation Templates' : '?�� Midjourney視頻?��?模板'}
       </h2>
 
       {templates.map((template) => (
@@ -118,17 +118,17 @@ const VideoTemplate: React.FC<VideoTemplateProps> = ({
                 />
               ) : (
                 <div className="w-full max-w-md mx-auto bg-gray-800 border-2 border-gray-600 rounded-lg p-8 text-center">
-                  <div className="text-gray-400 mb-2">🖼️</div>
+                  <div className="text-gray-400 mb-2">?���?/div>
                   <p className="text-gray-400 text-sm">
-                    {language === 'en' ? 'Image failed to load' : '圖像加載失敗'}
+                    {language === 'en' ? 'Image failed to load' : '?��??��?失�?'}
                   </p>
                 </div>
               )}
               <p className="text-blue-400 text-sm mt-2 font-medium">
                 {language === 'en' ? template.imageAlt : 
-                  template.imageAlt.replace('Example', '範例').replace('Cyberpunk Streets', '賽博朋克街頭')
-                    .replace('Magical Forest', '魔法森林').replace('Underwater Fantasy', '水下奇幻')
-                    .replace('Space Exploration', '太空探索').replace('High Fashion', '時尚大片')
+                  template.imageAlt.replace('Example', '範�?').replace('Cyberpunk Streets', '賽�??��?街頭')
+                    .replace('Magical Forest', '魔�?森�?').replace('Underwater Fantasy', '水�?奇幻')
+                    .replace('Space Exploration', '太空?�索').replace('High Fashion', '?��?大�?')
                 }
               </p>
             </div>
@@ -137,7 +137,7 @@ const VideoTemplate: React.FC<VideoTemplateProps> = ({
           {/* Image Prompt */}
           <div className="mb-6">
             <h4 className="text-lg font-semibold text-pink-400 mb-3">
-              {language === 'en' ? 'Step 1 - Image Prompt:' : '第1步 - 圖像提示：'}
+              {language === 'en' ? 'Step 1 - Image Prompt:' : '�?�?- ?��??�示�?}
             </h4>
             <pre className="bg-gray-900 border border-gray-600 rounded-lg p-4 overflow-x-auto text-sm">
               <code className="text-green-400 whitespace-pre-wrap">
@@ -157,21 +157,21 @@ const VideoTemplate: React.FC<VideoTemplateProps> = ({
                   onError={() => handleVideoError(template.videoUrl)}
                 >
                   <source src={template.videoUrl} type="video/mp4" />
-                  {language === 'en' ? 'Your browser does not support the video tag.' : '您的瀏覽器不支持視頻標籤。'}
+                  {language === 'en' ? 'Your browser does not support the video tag.' : '?��??�覽?��??��?視頻標籤??}
                 </video>
               ) : (
                 <div className="w-full max-w-md mx-auto bg-gray-800 border-2 border-gray-600 rounded-lg p-8 text-center">
-                  <div className="text-gray-400 mb-2">🎥</div>
+                  <div className="text-gray-400 mb-2">?��</div>
                   <p className="text-gray-400 text-sm">
-                    {language === 'en' ? 'Video failed to load' : '視頻加載失敗'}
+                    {language === 'en' ? 'Video failed to load' : '視頻?��?失�?'}
                   </p>
                 </div>
               )}
               <p className="text-blue-400 text-sm mt-2 font-medium">
                 {language === 'en' ? template.videoAlt : 
-                  template.videoAlt.replace('Video Example', '視頻範例').replace('Cyberpunk Streets', '賽博朋克街頭')
-                    .replace('Magical Forest', '魔法森林').replace('Underwater Fantasy', '水下奇幻')
-                    .replace('Space Exploration', '太空探索').replace('High Fashion', '時尚大片')
+                  template.videoAlt.replace('Video Example', '視頻範�?').replace('Cyberpunk Streets', '賽�??��?街頭')
+                    .replace('Magical Forest', '魔�?森�?').replace('Underwater Fantasy', '水�?奇幻')
+                    .replace('Space Exploration', '太空?�索').replace('High Fashion', '?��?大�?')
                 }
               </p>
             </div>
@@ -180,7 +180,7 @@ const VideoTemplate: React.FC<VideoTemplateProps> = ({
           {/* Video Prompt */}
           <div>
             <h4 className="text-lg font-semibold text-pink-400 mb-3">
-              {language === 'en' ? 'Step 2 - Video Prompt:' : '第2步 - 視頻提示：'}
+              {language === 'en' ? 'Step 2 - Video Prompt:' : '�?�?- 視頻?�示�?}
             </h4>
             <pre className="bg-gray-900 border border-gray-600 rounded-lg p-4 overflow-x-auto text-sm">
               <code className="text-green-400 whitespace-pre-wrap">
@@ -194,36 +194,36 @@ const VideoTemplate: React.FC<VideoTemplateProps> = ({
       {/* Pro Tips Section */}
       <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-2xl p-6 border border-purple-500/30 mt-8">
         <h4 className="text-lg font-bold text-purple-400 mb-4">
-          {language === 'en' ? '💡 Pro Video Tips:' : '💡 視頻專業貼士：'}
+          {language === 'en' ? '?�� Pro Video Tips:' : '?�� 視頻專業貼士�?}
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div className="text-gray-300">
             <strong className="text-blue-400">
-              {language === 'en' ? 'Create Visual Impact:' : '創造視覺衝擊：'}
+              {language === 'en' ? 'Create Visual Impact:' : '?�造�?覺�??��?'}
             </strong>
             <br />
-            {language === 'en' ? 'Use strong contrast and dynamic effects' : '使用強烈對比和動態效果'}
+            {language === 'en' ? 'Use strong contrast and dynamic effects' : '使用強�?對�??��??��???}
           </div>
           <div className="text-gray-300">
             <strong className="text-blue-400">
-              {language === 'en' ? 'Add Motion Keywords:' : '添加動作關鍵詞：'}
+              {language === 'en' ? 'Add Motion Keywords:' : '添�??��??�鍵詞�?'}
             </strong>
             <br />
-            {language === 'en' ? '"spiral movement", "explosion effects", "morphing"' : '"螺旋運動"，"爆炸效果"，"變形"'}
+            {language === 'en' ? '"spiral movement", "explosion effects", "morphing"' : '"?��??��?"�??�炸?��?"�?變形"'}
           </div>
           <div className="text-gray-300">
             <strong className="text-blue-400">
-              {language === 'en' ? 'Mix Style Elements:' : '混合風格元素：'}
+              {language === 'en' ? 'Mix Style Elements:' : '混�?風格?��?�?}
             </strong>
             <br />
-            {language === 'en' ? 'Combine different aesthetics for unique effects' : '結合不同美學創造獨特效果'}
+            {language === 'en' ? 'Combine different aesthetics for unique effects' : '結�?不�?美學?�造獨?��???}
           </div>
           <div className="text-gray-300">
             <strong className="text-blue-400">
-              {language === 'en' ? 'Add Rhythm:' : '添加韻律感：'}
+              {language === 'en' ? 'Add Rhythm:' : '添�??��??��?'}
             </strong>
             <br />
-            {language === 'en' ? '"rhythmic pulsing", "music sync", "beat-driven"' : '"節奏性脈動"，"音樂同步"，"韻律感"'}
+            {language === 'en' ? '"rhythmic pulsing", "music sync", "beat-driven"' : '"節奏性�???�??��??�步"�??��???'}
           </div>
         </div>
       </div>

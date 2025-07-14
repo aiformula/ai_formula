@@ -7,7 +7,7 @@ import LessonContent, { useLessonCompletion } from '@/components/course/LessonCo
 import type { LessonItem, LessonSection } from '@/components/course/LessonSidebar';
 import type { QuizQuestion } from '@/components/course/QuizCard';
 
-// Quiz 問題定義
+// Quiz ?��?定義
 
 // Define English quiz questions
 const enQuizQuestions = [
@@ -66,67 +66,67 @@ const enQuizQuestions = [
 // Define Cantonese quiz questions
 const zhQuizQuestions: QuizQuestion[] = [
   {
-    q: '1. 提示工程的主要目的是什麼？',
+    q: '1. ?�示工�??�主要目?�是什麼�?',
     options: [
-      '設計和優化輸入指令，引導AI模型生成準確且相關的輸出',
-      '為AI模型編寫代碼',
-      '創建機器學習數據集',
-      '僅測試AI模型性能',
+      '設�??�優?�輸?��?令�?引�?AI模�??��?準確且相?��?輸出',
+      '?�AI模�?編寫�?��',
+      '?�建機器學�??��???,
+      '?�測試AI模�??�能',
     ],
     answer: 0,
   },
   {
-    q: '2. 以下哪個組件通常不是結構良好的提示的一部分？',
+    q: '2. 以�??�個�?件通常不是結�??�好?��?示�?一?��?�?,
     options: [
-      '清晰的指令',
-      '上下文信息',
-      '隨機無關的文本',
-      '期望的輸出格式',
+      '清晰?��?�?,
+      '上�??�信??,
+      '?��??��??��???,
+      '?��??�輸?�格�?,
     ],
     answer: 2,
   },
   {
-    q: '3. 什麼讓提示更有效？',
+    q: '3. 什麼�??�示?��??��?',
     options: [
-      '盡可能模糊',
-      '提供具體、清晰的指令和充分的上下文',
-      '只使用簡單的詞語',
-      '讓它極其冗長',
+      '?�可?�模�?,
+      '?��??��??��??��??�令?��??��?上�???,
+      '?�使?�簡?��?詞�?',
+      '讓�?極其?�長',
     ],
     answer: 1,
   },
   {
-    q: '4. 為什麼上下文在提示中很重要？',
+    q: '4. ?��?麼�?下�??��?示中很�?要�?',
     options: [
-      '它讓提示更長',
-      '它提供背景信息，幫助AI更好地理解情況',
-      '它會讓AI模型困惑',
-      '它一點也不重要',
+      '它�??�示?�長',
+      '它�?供�??�信?��?幫助AI?�好?��?�??�?,
+      '它�?讓AI模�??��?',
+      '它�?點�?不�?�?,
     ],
     answer: 1,
   },
   {
-    q: '5. 當提示沒有給出期望結果時，最佳方法是什麼？',
+    q: '5. ?��?示�??�給?��??��??��?，�?佳方法是什麼�?',
     options: [
-      '放棄並嘗試不同的AI模型',
-      '縮短提示',
-      '根據輸出迭代地改進提示',
-      '添加更多隨機詞語',
+      '?��?並�?試�??��?AI模�?',
+      '縮短?�示',
+      '?��?輸出迭代?�改?��?�?,
+      '添�??��??��?詞�?',
     ],
     answer: 2,
   },
 ];
 
-const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
+const lesson1Sections: { en: LessonSection[], 'zh-HK': LessonSection[] } = {
   en: [
     {
       group: 'Lesson 1: Foundations of Prompt Engineering',
-      groupIcon: '🚀',
+      groupIcon: '??',
       items: [
         {
           key: 'what-is-prompt-engineering',
           title: 'What is Prompt Engineering?',
-          icon: '🎯',
+          icon: '?��',
           duration: '4 min',
           description: 'Introduction to the concept and importance of prompt engineering.',
           type: 'reading',
@@ -155,7 +155,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'core-principles',
           title: 'Core Principles',
-          icon: '⚡',
+          icon: '??,
           duration: '5 min',
           description: 'Essential principles that make prompts effective.',
           type: 'reading',
@@ -168,8 +168,8 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                   <h4 className="font-semibold text-green-400 mb-2">1. Clarity and Specificity</h4>
                   <p className="text-gray-300 mb-2">Be clear about what you want the AI to do. Vague prompts lead to vague results.</p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-red-400 text-sm">❌ Bad: "Write something about dogs"</p>
-                    <p className="text-green-400 text-sm">✅ Good: "Write a 200-word informative article about the benefits of daily exercise for senior dogs"</p>
+                    <p className="text-red-400 text-sm">??Bad: "Write something about dogs"</p>
+                    <p className="text-green-400 text-sm">??Good: "Write a 200-word informative article about the benefits of daily exercise for senior dogs"</p>
                   </div>
                 </div>
 
@@ -177,8 +177,8 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                   <h4 className="font-semibold text-blue-400 mb-2">2. Provide Context</h4>
                   <p className="text-gray-300 mb-2">Context helps the AI understand the situation and respond appropriately.</p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-red-400 text-sm">❌ Bad: "Explain this concept"</p>
-                    <p className="text-green-400 text-sm">✅ Good: "Explain machine learning to a high school student who has basic understanding of mathematics"</p>
+                    <p className="text-red-400 text-sm">??Bad: "Explain this concept"</p>
+                    <p className="text-green-400 text-sm">??Good: "Explain machine learning to a high school student who has basic understanding of mathematics"</p>
                   </div>
                 </div>
 
@@ -186,8 +186,8 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                   <h4 className="font-semibold text-purple-400 mb-2">3. Define Output Format</h4>
                   <p className="text-gray-300 mb-2">Specify how you want the response formatted - length, style, structure, etc.</p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-red-400 text-sm">❌ Bad: "List some benefits"</p>
-                    <p className="text-green-400 text-sm">✅ Good: "List 5 benefits in bullet points, each with a brief explanation"</p>
+                    <p className="text-red-400 text-sm">??Bad: "List some benefits"</p>
+                    <p className="text-green-400 text-sm">??Good: "List 5 benefits in bullet points, each with a brief explanation"</p>
                   </div>
                 </div>
 
@@ -195,7 +195,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                   <h4 className="font-semibold text-orange-400 mb-2">4. Use Examples</h4>
                   <p className="text-gray-300 mb-2">Examples help the AI understand the style and format you're looking for.</p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-green-400 text-sm">✅ Good: "Write a product description like this example: [sample description]"</p>
+                    <p className="text-green-400 text-sm">??Good: "Write a product description like this example: [sample description]"</p>
                   </div>
                 </div>
               </div>
@@ -205,7 +205,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'types-of-prompts',
           title: 'Types of Prompts',
-          icon: '🎨',
+          icon: '?��',
           duration: '4 min',
           description: 'Different categories of prompts and their applications.',
           type: 'reading',
@@ -256,7 +256,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'best-practices',
           title: 'Best Practices',
-          icon: '🏆',
+          icon: '??',
           duration: '5 min',
           description: 'Proven strategies for crafting effective prompts.',
           type: 'reading',
@@ -266,7 +266,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
               
               <div className="space-y-4">
                 <div className="bg-green-900/20 p-4 rounded-lg border border-green-500/30">
-                  <h4 className="font-semibold text-green-400 mb-2">✅ Do's</h4>
+                  <h4 className="font-semibold text-green-400 mb-2">??Do's</h4>
                   <ul className="list-disc ml-6 space-y-1 text-gray-300">
                     <li>Start with clear, specific instructions</li>
                     <li>Provide relevant context and background</li>
@@ -279,7 +279,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                 </div>
 
                 <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
-                  <h4 className="font-semibold text-red-400 mb-2">❌ Don'ts</h4>
+                  <h4 className="font-semibold text-red-400 mb-2">??Don'ts</h4>
                   <ul className="list-disc ml-6 space-y-1 text-gray-300">
                     <li>Don't be vague or ambiguous</li>
                     <li>Don't assume the AI knows unstated context</li>
@@ -291,7 +291,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                 </div>
 
                 <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
-                  <h4 className="font-semibold text-blue-400 mb-2">💡 Pro Tips</h4>
+                  <h4 className="font-semibold text-blue-400 mb-2">?�� Pro Tips</h4>
                   <ul className="list-disc ml-6 space-y-1 text-gray-300">
                     <li><strong>Iterate:</strong> Refine your prompts based on the AI's responses</li>
                     <li><strong>Test variations:</strong> Try different phrasings to see what works best</li>
@@ -307,7 +307,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'common-mistakes',
           title: 'Common Mistakes',
-          icon: '⚠️',
+          icon: '?��?',
           duration: '3 min',
           description: 'Typical pitfalls in prompt engineering and how to avoid them.',
           type: 'reading',
@@ -341,7 +341,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                 </div>
 
                 <div className="bg-yellow-900/20 p-4 rounded-lg border border-yellow-500/30">
-                  <h4 className="font-semibold text-yellow-400 mb-2">💡 Remember</h4>
+                  <h4 className="font-semibold text-yellow-400 mb-2">?�� Remember</h4>
                   <p className="text-gray-300">Prompt engineering is iterative. Don't expect perfect results immediately. Refine your prompts based on the AI's responses to get better results.</p>
                 </div>
               </div>
@@ -351,84 +351,84 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
       ]
     }
   ],
-  'zh-TW': [
+  'zh-HK': [
     {
-      group: '第一課：提示工程基礎',
-      groupIcon: '🚀',
+      group: '第�?課�??�示工�??��?',
+      groupIcon: '??',
       items: [
         {
           key: 'what-is-prompt-engineering',
-          title: '什麼是提示工程？',
-          icon: '🎯',
-          duration: '4 分鐘',
-          description: '提示工程概念及重要性介紹。',
+          title: '什麼是?�示工�?�?,
+          icon: '?��',
+          duration: '4 ?��?',
+          description: '?�示工�?概念?��?要性�?紹�?,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">什麼是提示工程？</h3>
-              <p className="mb-4">提示工程是設計和優化輸入指令（提示）的藝術和科學，目的是引導AI模型生成準確、相關且有用的輸出。它是關於如何與AI系統有效溝通以獲得最佳結果。</p>
+              <h3 className="text-xl font-bold mb-2">什麼是?�示工�?�?/h3>
+              <p className="mb-4">?�示工�??�設計�??��?輸入?�令（�?示�??��?術�?科學，目?�是引�?AI模�??��?準確?�相?��??�用?�輸?�。�??��??��?何�?AI系統?��?溝通以?��??�佳�??��?/p>
               
               <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30 mb-4">
-                <h4 className="font-semibold text-blue-400 mb-2">關鍵定義：</h4>
-                <p className="text-gray-300">提示是您提供給AI模型的文本輸入，用於引導其回應。可以把它想像成給出清晰、具體的指令來獲得您想要的輸出。</p>
+                <h4 className="font-semibold text-blue-400 mb-2">?�鍵定義�?/h4>
+                <p className="text-gray-300">?�示?�您?��?給AI模�??��??�輸?��??�於引�??��??�。可以�?它想?��?給出清晰?�具體�??�令來獲得您?��??�輸?��?/p>
               </div>
 
-              <p className="mb-4">就像您會給同事一個任務的明確指令一樣，提示工程涉及制作AI模型能夠理解並有效執行的指令。</p>
+              <p className="mb-4">就�??��?給�?事�??�任?��??�確?�令一�???�示工�?涉�??��?AI模�??��??�解並�??�執行�??�令??/p>
 
-              <h4 className="font-semibold text-white mb-2">為什麼重要？</h4>
+              <h4 className="font-semibold text-white mb-2">?��?麼�?要�?</h4>
               <ul className="list-disc ml-6 space-y-2 text-gray-300">
-                <li><strong>精確性：</strong>精心製作的提示能產生更準確和相關的回應</li>
-                <li><strong>效率：</strong>減少獲得理想結果所需的多次嘗試</li>
-                <li><strong>一致性：</strong>有助於維持AI輸出的一致質量</li>
-                <li><strong>控制：</strong>讓您更好地控制AI的行為和輸出風格</li>
+                <li><strong>精確?��?</strong>精�?製�??��?示能?��??��?確�??��??��???/li>
+                <li><strong>?��?�?/strong>減�??��??�想結�??�?�?��?次�?�?/li>
+                <li><strong>一?�性�?</strong>?�助?�維?�AI輸出?��??�質??/li>
+                <li><strong>?�制�?/strong>讓您?�好?�控?�AI?��??��?輸出風格</li>
               </ul>
             </div>
           )
         },
         {
           key: 'core-principles',
-          title: '核心原則',
-          icon: '⚡',
-          duration: '5 分鐘',
-          description: '讓提示有效的基本原則。',
+          title: '?��??��?',
+          icon: '??,
+          duration: '5 ?��?',
+          description: '讓�?示�??��??�本?��???,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">有效提示的核心原則</h3>
+              <h3 className="text-xl font-bold mb-2">?��??�示?�核心�???/h3>
               
               <div className="space-y-6">
                 <div className="bg-green-900/20 p-4 rounded-lg border border-green-500/30">
-                  <h4 className="font-semibold text-green-400 mb-2">1. 清晰和具體</h4>
-                  <p className="text-gray-300 mb-2">明確說明您希望AI做什麼。模糊的提示導致模糊的結果。</p>
+                  <h4 className="font-semibold text-green-400 mb-2">1. 清晰?�具�?/h4>
+                  <p className="text-gray-300 mb-2">?�確說�??��??�AI?��?麼。模糊�??�示導致模�??��??��?/p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-red-400 text-sm">❌ 不好：「寫一些關於狗的東西」</p>
-                    <p className="text-green-400 text-sm">✅ 好：「寫一篇200字的資訊文章，介紹老年犬每日運動的好處」</p>
+                    <p className="text-red-400 text-sm">??不好：「寫一些�??��??�東西�?/p>
+                    <p className="text-green-400 text-sm">??好�??�寫一�?00字�?資�??��?，�?紹老年?��??��??��?好�???/p>
                   </div>
                 </div>
 
                 <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
-                  <h4 className="font-semibold text-blue-400 mb-2">2. 提供背景</h4>
-                  <p className="text-gray-300 mb-2">背景有助於AI理解情況並適當回應。</p>
+                  <h4 className="font-semibold text-blue-400 mb-2">2. ?��??�景</h4>
+                  <p className="text-gray-300 mb-2">?�景?�助?�AI?�解?��?並適?��??��?/p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-red-400 text-sm">❌ 不好：「解釋這個概念」</p>
-                    <p className="text-green-400 text-sm">✅ 好：「向有基礎數學理解的高中生解釋機器學習」</p>
+                    <p className="text-red-400 text-sm">??不好：「解?�這個�?念�?/p>
+                    <p className="text-green-400 text-sm">??好�??��??�基礎數學�?�??高中?�解?��??�學習�?/p>
                   </div>
                 </div>
 
                 <div className="bg-purple-900/20 p-4 rounded-lg border border-purple-500/30">
-                  <h4 className="font-semibold text-purple-400 mb-2">3. 定義輸出格式</h4>
-                  <p className="text-gray-300 mb-2">指定您希望回應的格式 - 長度、風格、結構等。</p>
+                  <h4 className="font-semibold text-purple-400 mb-2">3. 定義輸出?��?</h4>
+                  <p className="text-gray-300 mb-2">?��??��??��??��??��? - ?�度?�風?�、�?構�???/p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-red-400 text-sm">❌ 不好：「列出一些好處」</p>
-                    <p className="text-green-400 text-sm">✅ 好：「用項目符號列出5個好處，每個都有簡短解釋」</p>
+                    <p className="text-red-400 text-sm">??不好：「�??��?些好?��?/p>
+                    <p className="text-green-400 text-sm">??好�??�用?�目符�??�出5?�好?��?每個都?�簡?�解?��?/p>
                   </div>
                 </div>
 
                 <div className="bg-orange-900/20 p-4 rounded-lg border border-orange-500/30">
-                  <h4 className="font-semibold text-orange-400 mb-2">4. 使用範例</h4>
-                  <p className="text-gray-300 mb-2">範例幫助AI理解您要找的風格和格式。</p>
+                  <h4 className="font-semibold text-orange-400 mb-2">4. 使用範�?</h4>
+                  <p className="text-gray-300 mb-2">範�?幫助AI?�解?��??��?風格?�格式�?/p>
                   <div className="bg-gray-800/50 p-3 rounded">
-                    <p className="text-green-400 text-sm">✅ 好：「寫一個像這個範例的產品描述：[樣本描述]」</p>
+                    <p className="text-green-400 text-sm">??好�??�寫一?��??�個�?例�??��??�述：[�?��?�述]??/p>
                   </div>
                 </div>
               </div>
@@ -437,49 +437,49 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         },
         {
           key: 'types-of-prompts',
-          title: '提示類型',
-          icon: '🎨',
-          duration: '4 分鐘',
-          description: '不同類別的提示及其應用。',
+          title: '?�示類�?',
+          icon: '?��',
+          duration: '4 ?��?',
+          description: '不�?類別?��?示�??��??��?,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">提示類型</h3>
+              <h3 className="text-xl font-bold mb-2">?�示類�?</h3>
               
               <div className="space-y-4">
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
-                  <h4 className="font-semibold text-blue-400 mb-2">1. 指令式提示</h4>
-                  <p className="text-gray-300 mb-2">直接命令告訴AI要做什麼。</p>
+                  <h4 className="font-semibold text-blue-400 mb-2">1. ?�令式�?�?/h4>
+                  <p className="text-gray-300 mb-2">?�接?�令?�訴AI要�?什麼�?/p>
                   <div className="bg-gray-700/50 p-3 rounded text-sm">
-                    <p className="text-gray-300">「將這篇文章總結成3個要點」</p>
-                    <p className="text-gray-300">「將這段文字翻譯成西班牙語」</p>
+                    <p className="text-gray-300">?��??��??��?總�????��?點�?/p>
+                    <p className="text-gray-300">?��??�段?��?翻譯?�西?��?語�?/p>
                   </div>
                 </div>
 
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
-                  <h4 className="font-semibold text-green-400 mb-2">2. 角色扮演提示</h4>
-                  <p className="text-gray-300 mb-2">要求AI採用特定角色或人格。</p>
+                  <h4 className="font-semibold text-green-400 mb-2">2. 角色?��??�示</h4>
+                  <p className="text-gray-300 mb-2">要�?AI?�用?��?角色?�人?��?/p>
                   <div className="bg-gray-700/50 p-3 rounded text-sm">
-                    <p className="text-gray-300">「作為專業市場顧問，並且...」</p>
-                    <p className="text-gray-300">「你是一位樂於助人的老師，正在解釋...」</p>
+                    <p className="text-gray-300">?��??��?業�??�顧?��?並�?...??/p>
+                    <p className="text-gray-300">?��??��?位�??�助人�??�師，正?�解??..??/p>
                   </div>
                 </div>
 
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
-                  <h4 className="font-semibold text-purple-400 mb-2">3. 問題式提示</h4>
-                  <p className="text-gray-300 mb-2">提出特定問題以獲得針對性資訊。</p>
+                  <h4 className="font-semibold text-purple-400 mb-2">3. ?��?式�?�?/h4>
+                  <p className="text-gray-300 mb-2">?�出?��??��?以獲得�?對性�?訊�?/p>
                   <div className="bg-gray-700/50 p-3 rounded text-sm">
-                    <p className="text-gray-300">「再生能源的主要優點是什麼？」</p>
-                    <p className="text-gray-300">「我如何提高寫作技巧？」</p>
+                    <p className="text-gray-300">?��??�能源�?主�??��??��?麼�???/p>
+                    <p className="text-gray-300">?��?如�??��?寫�??�巧�???/p>
                   </div>
                 </div>
 
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
-                  <h4 className="font-semibold text-yellow-400 mb-2">4. 創意提示</h4>
-                  <p className="text-gray-300 mb-2">鼓勵創意或想像性回應。</p>
+                  <h4 className="font-semibold text-yellow-400 mb-2">4. ?��??�示</h4>
+                  <p className="text-gray-300 mb-2">鼓勵?��??�想?�性�??��?/p>
                   <div className="bg-gray-700/50 p-3 rounded text-sm">
-                    <p className="text-gray-300">「寫一個關於發現情感的機器人的短故事」</p>
-                    <p className="text-gray-300">「為減少塑膠廢物腦力激盪10個創新解決方案」</p>
+                    <p className="text-gray-300">?�寫一?��??�發?��??��?機器人�??��?事�?/p>
+                    <p className="text-gray-300">?�為減�?塑�?廢物?��?激??0?�創?�解決方案�?/p>
                   </div>
                 </div>
               </div>
@@ -488,49 +488,49 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         },
         {
           key: 'best-practices',
-          title: '最佳實踐',
-          icon: '🏆',
-          duration: '5 分鐘',
-          description: '制作有效提示的經驗證策略。',
+          title: '?�佳實�?,
+          icon: '??',
+          duration: '5 ?��?',
+          description: '?��??��??�示?��?驗�?策略??,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">提示工程的最佳實踐</h3>
+              <h3 className="text-xl font-bold mb-2">?�示工�??��?佳實�?/h3>
               
               <div className="space-y-4">
                 <div className="bg-green-900/20 p-4 rounded-lg border border-green-500/30">
-                  <h4 className="font-semibold text-green-400 mb-2">✅ 該做的</h4>
+                  <h4 className="font-semibold text-green-400 mb-2">??該�???/h4>
                   <ul className="list-disc ml-6 space-y-1 text-gray-300">
-                    <li>從清晰、具體的指令開始</li>
-                    <li>提供相關背景和上下文</li>
-                    <li>指定所需的輸出格式</li>
-                    <li>盡可能使用範例</li>
-                    <li>測試和迭代您的提示</li>
-                    <li>保持語言的一致性</li>
-                    <li>將複雜任務分解成較小的步驟</li>
+                    <li>從�??�、具體�??�令?��?</li>
+                    <li>?��??��??�景?��?下�?</li>
+                    <li>?��??�?�?�輸?�格�?/li>
+                    <li>?�可?�使?��?�?/li>
+                    <li>測試?�迭�?��?��?�?/li>
+                    <li>保�?語�??��??��?/li>
+                    <li>將�??�任?��?�??較�??�步�?/li>
                   </ul>
                 </div>
 
                 <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
-                  <h4 className="font-semibold text-red-400 mb-2">❌ 不該做的</h4>
+                  <h4 className="font-semibold text-red-400 mb-2">??不該?��?</h4>
                   <ul className="list-disc ml-6 space-y-1 text-gray-300">
-                    <li>不要模糊或含糊不清</li>
-                    <li>不要假設AI知道未說明的背景</li>
-                    <li>不要不必要地使用過於複雜的語言</li>
-                    <li>不要忽視格式的重要性</li>
-                    <li>不要期望第一次就有完美結果</li>
-                    <li>不要讓提示不必要地冗長</li>
+                    <li>不�?模�??�含糊�?�?/li>
+                    <li>不�??�設AI?��??�說?��??�景</li>
+                    <li>不�?不�?要地使用?�於複�??��?言</li>
+                    <li>不�?忽�??��??��?要�?/li>
+                    <li>不�??��?第�?次就?��?美�???/li>
+                    <li>不�?讓�?示�?必�??��???/li>
                   </ul>
                 </div>
 
                 <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
-                  <h4 className="font-semibold text-blue-400 mb-2">💡 專業技巧</h4>
+                  <h4 className="font-semibold text-blue-400 mb-2">?�� 專業?��?/h4>
                   <ul className="list-disc ml-6 space-y-1 text-gray-300">
-                    <li><strong>迭代：</strong>根據AI的回應改進您的提示</li>
-                    <li><strong>測試變化：</strong>嘗試不同的措辭，看看什麼最有效</li>
-                    <li><strong>使用約束：</strong>設定界限（字數、語調、風格）</li>
-                    <li><strong>鏈接提示：</strong>將複雜任務分解成一系列簡單提示</li>
-                    <li><strong>保存好提示：</strong>保留有效提示的集合以便重複使用</li>
+                    <li><strong>迭代�?/strong>?��?AI?��??�改?�您?��?�?/li>
+                    <li><strong>測試變�?�?/strong>?�試不�??�措辭�??��?什麼�??��?</li>
+                    <li><strong>使用約�?�?/strong>設�??��?（�??�、�?調、風?��?</li>
+                    <li><strong>?�接?�示�?/strong>將�??�任?��?�??一系�?簡單?�示</li>
+                    <li><strong>保�?好�?示�?</strong>保�??��??�示?��??�以便�?複使??/li>
                   </ul>
                 </div>
               </div>
@@ -539,43 +539,43 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         },
         {
           key: 'common-mistakes',
-          title: '常見錯誤',
-          icon: '⚠️',
-          duration: '3 分鐘',
-          description: '提示工程中的典型陷阱及如何避免。',
+          title: '常�??�誤',
+          icon: '?��?',
+          duration: '3 ?��?',
+          description: '?�示工�?中�??��??�阱?��?何避?��?,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">需要避免的常見錯誤</h3>
+              <h3 className="text-xl font-bold mb-2">?�要避?��?常�??�誤</h3>
               
               <div className="space-y-4">
                 <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
-                  <h4 className="font-semibold text-red-400 mb-2">1. 太過模糊</h4>
-                  <p className="text-gray-300 mb-2">問題：「寫一些有趣的東西」</p>
-                  <p className="text-green-400 text-sm">解決方案：「寫一篇150字的文章，介紹AI對醫療保健的影響，重點關注診斷改進」</p>
+                  <h4 className="font-semibold text-red-400 mb-2">1. 太�?模�?</h4>
+                  <p className="text-gray-300 mb-2">?��?：「寫一些�?�???�西??/p>
+                  <p className="text-green-400 text-sm">�?��?��?：「寫一�?50字�??��?，�?紹AI對醫?��??��?影響，�?點�?注診?�改?��?/p>
                 </div>
 
                 <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
-                  <h4 className="font-semibold text-red-400 mb-2">2. 過度複雜化提示</h4>
-                  <p className="text-gray-300 mb-2">問題：在一個提示中添加太多條件和約束</p>
-                  <p className="text-green-400 text-sm">解決方案：將複雜請求分解成多個簡單的提示</p>
+                  <h4 className="font-semibold text-red-400 mb-2">2. ?�度複�??��?�?/h4>
+                  <p className="text-gray-300 mb-2">?��?：在一?��?示中添�?太�?條件?��???/p>
+                  <p className="text-green-400 text-sm">�?��?��?：�?複�?請�??�解?��??�簡?��??�示</p>
                 </div>
 
                 <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
-                  <h4 className="font-semibold text-red-400 mb-2">3. 不提供背景</h4>
-                  <p className="text-gray-300 mb-2">問題：「解釋這個概念」（不說明是什麼概念）</p>
-                  <p className="text-green-400 text-sm">解決方案：「向沒有技術背景的初學者解釋機器學習」</p>
+                  <h4 className="font-semibold text-red-400 mb-2">3. 不�?供�???/h4>
+                  <p className="text-gray-300 mb-2">?��?：「解?�這個�?念」�?不說?�是什麼�?念�?</p>
+                  <p className="text-green-400 text-sm">�?��?��?：「�?沒�??�術�??��??�學?�解?��??�學習�?/p>
                 </div>
 
                 <div className="bg-red-900/20 p-4 rounded-lg border border-red-500/30">
-                  <h4 className="font-semibold text-red-400 mb-2">4. 忽視輸出格式</h4>
-                  <p className="text-gray-300 mb-2">問題：不指定您希望回應的結構</p>
-                  <p className="text-green-400 text-sm">解決方案：「用項目符號提供您的答案，並附上簡短解釋」</p>
+                  <h4 className="font-semibold text-red-400 mb-2">4. 忽�?輸出?��?</h4>
+                  <p className="text-gray-300 mb-2">?��?：�??��??��??��??��?結�?</p>
+                  <p className="text-green-400 text-sm">�?��?��?：「用?�目符�??��??��?答�?，並?��?簡短�????/p>
                 </div>
 
                 <div className="bg-yellow-900/20 p-4 rounded-lg border border-yellow-500/30">
-                  <h4 className="font-semibold text-yellow-400 mb-2">💡 記住</h4>
-                  <p className="text-gray-300">提示工程是迭代的。不要期望立即獲得完美結果。根據AI的回應改進您的提示以獲得更好的結果。</p>
+                  <h4 className="font-semibold text-yellow-400 mb-2">?�� 記�?</h4>
+                  <p className="text-gray-300">?�示工�??�迭�???��?要�??��??�獲得�?美�??�。根?�AI?��??�改?�您?��?示以?��??�好?��??��?/p>
                 </div>
               </div>
             </div>
@@ -586,16 +586,16 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
   ]
 };
 
-// 測驗部分
+// 測�??��?
 const Quiz = memo(() => {
   const { language } = useLanguage();
-  const questions = language === 'zh-TW' ? zhQuizQuestions : enQuizQuestions;
-  const isZhTW = language === 'zh-TW';
+  const questions = language === 'zh-HK' ? zhQuizQuestions : enQuizQuestions;
+  const isZhTW = language === 'zh-HK';
   
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6 text-white">
-        {isZhTW ? '第一課測驗' : 'Lesson 1 Quiz'}
+        {isZhTW ? '第�?課測�? : 'Lesson 1 Quiz'}
       </h2>
       <QuizCard
         questions={questions}
@@ -623,9 +623,9 @@ const PromptEngineeringLesson1: React.FC = () => {
     return null;
   }, [currentSection, sections, showQuiz]);
   
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   
-  // 處理測驗切換
+  // ?��?測�??��?
   const handleQuizToggle = useCallback(() => {
     setShowQuiz(!showQuiz);
     if (!showQuiz) {
@@ -633,7 +633,7 @@ const PromptEngineeringLesson1: React.FC = () => {
     }
   }, [showQuiz]);
   
-  // 處理項目選擇
+  // ?��??�目?��?
   const handleItemSelect = useCallback((key: string) => {
     if (key === 'quiz') {
       setShowQuiz(true);
@@ -649,7 +649,7 @@ const PromptEngineeringLesson1: React.FC = () => {
       
       <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="flex gap-8">
-          {/* 側邊欄 */}
+          {/* ?��?�?*/}
           <div className="w-80 flex-shrink-0">
             <LessonSidebar
               sections={sections}
@@ -660,7 +660,7 @@ const PromptEngineeringLesson1: React.FC = () => {
             />
           </div>
           
-          {/* 主要內容 */}
+          {/* 主�??�容 */}
           <div className="flex-1">
             <LessonContent
               currentContent={currentContent}

@@ -67,7 +67,7 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
     }
   };
 
-  // 默認展開第一個section
+  // 默�?展�?第�??�section
   React.useEffect(() => {
     if (sections.length > 0 && expandedSections.length === 0) {
       setExpandedSections([sections[0].group]);
@@ -76,18 +76,18 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
 
   return (
     <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 sticky top-24 h-fit">
-      {/* 課程標題和進度 */}
+      {/* 課�?標�??�進度 */}
       <div className="p-6 border-b border-gray-700/50">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-blue-400" />
-          {isZhTW ? '課程大綱' : 'Course Outline'}
+          {isZhTW ? '課�?大綱' : 'Course Outline'}
         </h3>
         
-        {/* 進度條 */}
+        {/* ?�度�?*/}
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-gray-400">
-              {isZhTW ? '完成進度' : 'Progress'}
+              {isZhTW ? '完�??�度' : 'Progress'}
             </span>
             <span className="text-gray-300 font-medium">
               {progress.completedCount}/{progress.totalCount} ({progress.percentage}%)
@@ -102,7 +102,7 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
         </div>
       </div>
 
-      {/* 課程章節 */}
+      {/* 課�?章�? */}
       <div className="p-4 max-h-[60vh] overflow-y-auto">
         {sections.map((section, sectionIndex) => {
           const isExpanded = expandedSections.includes(section.group);
@@ -111,7 +111,7 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
 
           return (
             <div key={section.group} className="mb-4">
-              {/* 章節標題 */}
+              {/* 章�?標�? */}
               <button
                 onClick={() => toggleSection(section.group)}
                 className="w-full flex items-center justify-between p-3 rounded-xl bg-gray-700/30 hover:bg-gray-600/50 transition-all duration-200 border border-gray-600/30"
@@ -121,7 +121,7 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
                   <div className="text-left">
                     <h4 className="font-semibold text-white text-sm">{section.group}</h4>
                     <p className="text-xs text-gray-400">
-                      {sectionCompletedCount}/{section.items.length} {isZhTW ? '已完成' : 'completed'}
+                      {sectionCompletedCount}/{section.items.length} {isZhTW ? '已�??? : 'completed'}
                     </p>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
                 </div>
               </button>
 
-              {/* 章節內容 */}
+              {/* 章�??�容 */}
               {isExpanded && (
                 <div className="mt-2 space-y-2">
                   {section.items.map((item, itemIndex) => {
@@ -196,14 +196,14 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
         })}
       </div>
 
-      {/* 底部操作 */}
+      {/* 底部?��? */}
       <div className="p-4 border-t border-gray-700/50">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm text-gray-400">
-            {isZhTW ? '學習統計' : 'Learning Stats'}
+            {isZhTW ? '學�?統�?' : 'Learning Stats'}
           </span>
           <span className="text-sm font-medium text-green-400">
-            {progress.percentage}% {isZhTW ? '完成' : 'Complete'}
+            {progress.percentage}% {isZhTW ? '完�?' : 'Complete'}
           </span>
         </div>
         
@@ -213,8 +213,8 @@ const EnhancedLessonSidebar: React.FC<EnhancedLessonSidebarProps> = ({
           disabled={progress.percentage < 100}
         >
           {progress.percentage >= 100 
-            ? (isZhTW ? '課程完成!' : 'Course Complete!') 
-            : (isZhTW ? '繼續學習' : 'Continue Learning')
+            ? (isZhTW ? '課�?完�?!' : 'Course Complete!') 
+            : (isZhTW ? '繼�?學�?' : 'Continue Learning')
           }
         </Button>
       </div>

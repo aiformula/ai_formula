@@ -87,20 +87,20 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
   const [questions, setQuestions] = useState<Question[]>([
     {
       id: '1',
-      title: '如何優化 Prompt 來獲得更好的回應？',
-      content: '我嘗試了很多不同的 prompt，但是 AI 的回應總是不夠準確。有什麼具體的技巧嗎？',
+      title: '如�??��? Prompt 來獲得更好�??��?�?,
+      content: '?��?試�?很�?不�???prompt，�???AI ?��??�總?��?夠�?確。�?什麼具體�??�巧�?�?,
       author: {
-        name: '小明',
+        name: '小�?',
         role: 'student',
         reputation: 85
       },
       timestamp: new Date('2024-01-15T10:30:00'),
-      tags: ['prompt-engineering', '優化', '技巧'],
+      tags: ['prompt-engineering', '?��?', '?��?],
       votes: 12,
       answers: [
         {
           id: '1-1',
-          content: '這是一個很好的問題！我建議你嘗試以下幾個技巧：\n\n1. **具體化你的需求** - 不要說"幫我寫文章"，而是說"幫我寫一篇500字的科技產品介紹文章"\n2. **提供上下文** - 告訴 AI 你的目標受眾是誰\n3. **使用範例** - 給出一個理想回應的例子\n4. **分步驟說明** - 將複雜任務分解成小步驟\n\n你可以嘗試這個模板：\n```\n你是一個[角色]，為[目標受眾]撰寫[內容類型]。\n要求：[具體要求]\n格式：[輸出格式]\n```',
+          content: '?�是一?��?好�??��?！�?建議你�?試以下幾?��?巧�?\n\n1. **?��??��??��?�?* - 不�?�?幫�?寫�?�?，而是�?幫�?寫�?�?00字�?科�??��?介紹?��?"\n2. **?��?上�???* - ?�訴 AI 你�??��??�眾?�誰\n3. **使用範�?** - 給出一?��??��??��?例�?\n4. **?�步驟說??* - 將�??�任?��?�??小步驟\n\n你可以�?試這個模?��?\n```\n你是一?�[角色]，為[?��??�眾]?�寫[?�容類�?]?�\n要�?：[?��?要�?]\n?��?：[輸出?��?]\n```',
           author: {
             name: 'Kenneth Wong',
             role: 'instructor',
@@ -112,9 +112,9 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
           replies: [
             {
               id: '1-1-1',
-              content: '謝謝老師！我試了一下，效果真的好很多！',
+              content: '謝�??�師！�?試�?一下�??��??��?好�?多�?',
               author: {
-                name: '小明',
+                name: '小�?',
                 role: 'student',
                 reputation: 85
               },
@@ -130,15 +130,15 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     },
     {
       id: '2',
-      title: 'ChatGPT 和 Claude 在 prompt engineering 上有什麼區別？',
-      content: '我發現同樣的 prompt 在不同的 AI 模型上效果不同，想了解一下各自的特點。',
+      title: 'ChatGPT ??Claude ??prompt engineering 上�?什麼�??��?',
+      content: '?�發?��?�?? prompt ?��??��? AI 模�?上�??��??��??��?�??下�??��??��???,
       author: {
-        name: '李小華',
+        name: '?��???,
         role: 'student',
         reputation: 120
       },
       timestamp: new Date('2024-01-16T14:20:00'),
-      tags: ['ChatGPT', 'Claude', '比較'],
+      tags: ['ChatGPT', 'Claude', '比�?'],
       votes: 8,
       answers: [],
       views: 89,
@@ -155,7 +155,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
   const [sortBy, setSortBy] = useState<'newest' | 'popular' | 'unanswered'>('newest');
   const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(null);
 
-  // 過濾和排序問題
+  // ?�濾?��?序�?�?
   const filteredQuestions = questions
     .filter(question => 
       question.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -175,7 +175,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
       }
     });
 
-  // 獲取角色顏色
+  // ?��?角色顏色
   const getRoleColor = (role: string) => {
     switch (role) {
       case 'instructor':
@@ -187,19 +187,19 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     }
   };
 
-  // 獲取角色標籤
+  // ?��?角色標籤
   const getRoleLabel = (role: string) => {
     switch (role) {
       case 'instructor':
         return '導師';
       case 'ta':
-        return '助教';
+        return '?��?';
       default:
         return '學員';
     }
   };
 
-  // 提交新問題
+  // ?�交?��?�?
   const handleSubmitQuestion = () => {
     if (!newQuestionTitle.trim() || !newQuestionContent.trim()) return;
 
@@ -208,7 +208,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
       title: newQuestionTitle,
       content: newQuestionContent,
       author: {
-        name: '當前用戶',
+        name: '?��??�戶',
         role: 'student',
         reputation: 50
       },
@@ -228,7 +228,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     setShowNewQuestion(false);
   };
 
-  // 時間格式化
+  // ?��??��???
   const formatTime = (date: Date) => {
     const now = new Date();
     const diff = now.getTime() - date.getTime();
@@ -237,22 +237,22 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
     if (minutes < 60) {
-      return `${minutes} 分鐘前`;
+      return `${minutes} ?��??�`;
     } else if (hours < 24) {
-      return `${hours} 小時前`;
+      return `${hours} 小�??�`;
     } else {
-      return `${days} 天前`;
+      return `${days} 天�?`;
     }
   };
 
   return (
     <div className="h-full flex flex-col">
-      {/* 頂部搜索和控制 */}
+      {/* ?�部?�索?�控??*/}
       <div className="p-4 border-b border-gray-700 space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-white flex items-center">
             <MessageSquare className="w-5 h-5 mr-2 text-blue-400" />
-            社群問答
+            社群?��?
           </h3>
           <Button
             onClick={() => setShowNewQuestion(true)}
@@ -260,7 +260,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
             size="sm"
           >
             <Plus className="w-4 h-4 mr-2" />
-            提問
+            ?��?
           </Button>
         </div>
 
@@ -268,7 +268,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input
-              placeholder="搜索問題..."
+              placeholder="?�索?��?..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 bg-gray-700 border-gray-600 text-white"
@@ -280,22 +280,22 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
             onChange={(e) => setSortBy(e.target.value as any)}
             className="bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2 text-sm"
           >
-            <option value="newest">最新</option>
-            <option value="popular">熱門</option>
-            <option value="unanswered">未回答</option>
+            <option value="newest">?�??/option>
+            <option value="popular">?��?</option>
+            <option value="unanswered">?��?�?/option>
           </select>
         </div>
       </div>
 
-      {/* 問題列表 */}
+      {/* ?��??�表 */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="p-4 space-y-4">
             {filteredQuestions.length === 0 ? (
               <div className="text-center py-8">
                 <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-300 mb-2">還沒有問題</h3>
-                <p className="text-sm text-gray-500">成為第一個提問的人吧！</p>
+                <h3 className="text-lg font-semibold text-gray-300 mb-2">?��??��?�?/h3>
+                <p className="text-sm text-gray-500">?�為第�??��??��?人吧�?/p>
               </div>
             ) : (
               filteredQuestions.map((question) => (
@@ -308,7 +308,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                   <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-4">
-                        {/* 投票區域 */}
+                        {/* ?�票?�??*/}
                         <div className="flex flex-col items-center space-y-2 text-sm">
                           <Button variant="ghost" size="sm" className="text-gray-400 hover:text-green-400 p-1">
                             <ThumbsUp className="w-4 h-4" />
@@ -319,7 +319,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                           </Button>
                         </div>
 
-                        {/* 問題內容 */}
+                        {/* ?��??�容 */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center space-x-2 mb-2">
                             {question.isPinned && (
@@ -364,7 +364,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                                 {getRoleLabel(question.author.role)}
                               </span>
                               <span className="font-medium">{question.author.name}</span>
-                              <span>•</span>
+                              <span>??/span>
                               <span>{formatTime(question.timestamp)}</span>
                             </div>
                           </div>
@@ -379,7 +379,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
         </ScrollArea>
       </div>
 
-      {/* 新問題模態框 */}
+      {/* ?��?題模?��? */}
       {showNewQuestion && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <motion.div
@@ -388,45 +388,45 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
             className="bg-gray-800 rounded-xl shadow-2xl w-full max-w-2xl"
           >
             <div className="p-6 border-b border-gray-700">
-              <h3 className="text-xl font-semibold text-white">提出新問題</h3>
+              <h3 className="text-xl font-semibold text-white">?�出?��?�?/h3>
               <p className="text-sm text-gray-400 mt-1">
-                詳細描述您的問題，其他學員和導師會幫助您解答
+                詳細?�述?��??��?，其他學?��?導師?�幫?�您�??
               </p>
             </div>
             
             <div className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  問題標題
+                  ?��?標�?
                 </label>
                 <Input
                   value={newQuestionTitle}
                   onChange={(e) => setNewQuestionTitle(e.target.value)}
-                  placeholder="用一句話概括您的問題..."
+                  placeholder="?��??�話概括?��??��?..."
                   className="bg-gray-700 border-gray-600 text-white"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  問題詳情
+                  ?��?詳�?
                 </label>
                 <Textarea
                   value={newQuestionContent}
                   onChange={(e) => setNewQuestionContent(e.target.value)}
-                  placeholder="詳細描述您的問題，包含相關背景和您已經嘗試的方法..."
+                  placeholder="詳細?�述?��??��?，�??�相?��??��??�已經�?試�??��?..."
                   className="bg-gray-700 border-gray-600 text-white min-h-[120px]"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  標籤 (用逗號分隔)
+                  標籤 (?�逗�??��?)
                 </label>
                 <Input
                   value={newQuestionTags}
                   onChange={(e) => setNewQuestionTags(e.target.value)}
-                  placeholder="例如: prompt-engineering, ChatGPT, 優化"
+                  placeholder="例�?: prompt-engineering, ChatGPT, ?��?"
                   className="bg-gray-700 border-gray-600 text-white"
                 />
               </div>
@@ -438,7 +438,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                 onClick={() => setShowNewQuestion(false)}
                 className="text-gray-400 border-gray-600"
               >
-                取消
+                ?��?
               </Button>
               <Button
                 onClick={handleSubmitQuestion}
@@ -446,28 +446,28 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                 className="bg-blue-600 hover:bg-blue-700 text-white"
               >
                 <Send className="w-4 h-4 mr-2" />
-                發布問題
+                ?��??��?
               </Button>
             </div>
           </motion.div>
         </div>
       )}
 
-      {/* 底部統計 */}
+      {/* 底部統�? */}
       <div className="p-4 border-t border-gray-700">
         <div className="flex items-center justify-between text-sm text-gray-400">
           <span>
-            共 {filteredQuestions.length} 個問題
-            {searchTerm && ` • 搜索: "${searchTerm}"`}
+            ??{filteredQuestions.length} ?��?�?
+            {searchTerm && ` ???�索: "${searchTerm}"`}
           </span>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <CheckCircle className="w-3 h-3 text-green-400" />
-              <span>{questions.filter(q => q.isSolved).length} 已解決</span>
+              <span>{questions.filter(q => q.isSolved).length} 已解�?/span>
             </div>
             <div className="flex items-center space-x-1">
               <MessageSquare className="w-3 h-3 text-blue-400" />
-              <span>{questions.filter(q => q.answers.length === 0).length} 待回答</span>
+              <span>{questions.filter(q => q.answers.length === 0).length} 待�?�?/span>
             </div>
           </div>
         </div>

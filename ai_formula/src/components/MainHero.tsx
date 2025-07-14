@@ -54,7 +54,7 @@ const MainHero = () => {
               className="inline-flex items-center space-x-2 bg-blue-900/30 text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6 md:mb-8"
             >
               <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-              <span>{language === 'zh-TW' ? t('hero.badge') : 'AI in Business'}</span>
+              <span>{language === 'zh-HK' ? t('hero.badge') : 'AI in Business'}</span>
             </motion.div>
             
             {/* Main Title - Mobile First */}
@@ -64,10 +64,10 @@ const MainHero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              {language === 'zh-TW' ? (
+              {language === 'zh-HK' ? (
                 <>
-                  AI Formula：香港最實戰<br />
-                  <span className="text-yellow-500">AI 應用課程</span>
+                  AI Formula：�?港�?實戰<br />
+                  <span className="text-yellow-500">AI ?�用課�?</span>
                 </>
               ) : (
                 <>
@@ -84,7 +84,7 @@ const MainHero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              {language === 'zh-TW' ? '即學即用，專為香港職場而設' : 'Practical AI training designed for Hong Kong professionals'}
+              {language === 'zh-HK' ? '?�學?�用，�??��?港職?�而設' : 'Practical AI training designed for Hong Kong professionals'}
             </motion.h2>
             
             {/* Subtitle - Mobile Friendly */}
@@ -94,7 +94,7 @@ const MainHero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {language === 'zh-TW' ? '學完即刻幫到你慳時間、提昇效率嘅 AI 課程' : 'Learn AI skills that immediately help you save time and boost efficiency'}
+              {language === 'zh-HK' ? '學�??�刻幫到你慳?��??��??��??��? AI 課�?' : 'Learn AI skills that immediately help you save time and boost efficiency'}
             </motion.p>
             
             {/* Improved CTA Buttons */}
@@ -108,7 +108,7 @@ const MainHero = () => {
                 className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
                 onClick={() => navigate('/course')}
               >
-                {language === 'zh-TW' ? '免費試學' : 'Start Free Trial'}
+                {language === 'zh-HK' ? '?�費試學' : 'Start Free Trial'}
               </Button>
               
               <Button 
@@ -116,7 +116,7 @@ const MainHero = () => {
                 className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300"
                 onClick={() => navigate('/course')}
               >
-                {language === 'zh-TW' ? '了解更多' : 'Learn More'}
+                {language === 'zh-HK' ? '了解?��?' : 'Learn More'}
               </Button>
             </motion.div>
 

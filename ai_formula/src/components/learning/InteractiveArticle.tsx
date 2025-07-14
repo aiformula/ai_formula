@@ -64,7 +64,7 @@ const InteractiveArticle: React.FC<InteractiveArticleProps> = ({
   const [completedElements, setCompletedElements] = useState<Set<string>>(new Set());
   const [isLoading, setIsLoading] = useState(true);
 
-  // 模擬加載 Markdown 內容
+  // 模擬?��? Markdown ?�容
   useEffect(() => {
     const loadContent = async () => {
       setIsLoading(true);
@@ -72,67 +72,67 @@ const InteractiveArticle: React.FC<InteractiveArticleProps> = ({
       // 模擬 API 調用
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // 示例 Markdown 內容
+      // 示�? Markdown ?�容
       const sampleContent = `
 # ${isZhTW ? lesson.titleZh : lesson.title}
 
 ${isZhTW ? lesson.descriptionZh : lesson.description}
 
-## 核心概念
+## ?��?概念
 
-在這個課程中，我們將深入探討以下關鍵概念：
+?�這個課程中，�??��?深入?��?以�??�鍵概念�?
 
-### 1. 提示工程的定義
+### 1. ?�示工�??��?�?
 
-提示工程是一門藝術，也是一門科學。它涉及到如何精確地設計和優化輸入給 AI 系統的指令，以獲得最佳的輸出結果。
+?�示工�??��??�?��?，�??��??�科學?��?涉�??��?何精確地設�??�優?�輸?�給 AI 系統?��?令�?以獲得�?佳�?輸出結�???
 
-[TRY-IT-PROMPT:"請幫我寫一個關於春天的詩"]
+[TRY-IT-PROMPT:"請幫?�寫一?��??�春天�?�?]
 
-### 2. 有效提示的特徵
+### 2. ?��??�示?�特�?
 
-一個有效的提示通常具備以下特徵：
-- **清晰性**: 指令明確，不含歧義
-- **具體性**: 提供足夠的細節和背景信息
-- **結構化**: 使用適當的格式和組織
+一?��??��??�示?�常?��?以�??�徵�?
+- **清晰??*: ?�令?�確，�??�歧�?
+- **?��???*: ?��?足�??�細節?��??�信??
+- **結�???*: 使用?�當?�格式�?組�?
 
-[CONCEPT-CHECK:"什麼是有效提示的三個主要特徵？"]
+[CONCEPT-CHECK:"什麼是?��??�示?��??�主要特徵�?"]
 
-### 3. 實例演示
+### 3. 實�?演示
 
-讓我們看一個具體的例子：
+讓�??��?一?�具體�?例�?�?
 
 \`\`\`
-// 不良提示
-"寫一個函數"
+// 不良?�示
+"寫�??�函??
 
-// 良好提示
-"請用 Python 寫一個函數，接受一個整數列表作為輸入，返回列表中所有偶數的和。包含適當的註釋和錯誤處理。"
+// ?�好?�示
+"請用 Python 寫�??�函?��??��?一?�整?��?表�??�輸?��?返�??�表中�??�偶?��??�。�??�適?��?註�??�錯誤�??��?
 \`\`\`
 
-[TRY-IT-PROMPT:"請根據上面的良好提示範例，寫一個 Python 函數"]
+[TRY-IT-PROMPT:"請根?��??��??�好?�示範�?，寫一??Python ?�數"]
 
-## 進階技巧
+## ?��??��?
 
-### Chain-of-Thought 提示
+### Chain-of-Thought ?�示
 
-這是一種引導 AI 進行分步推理的技巧：
+?�是一種�?�?AI ?��??�步?��??��?巧�?
 
-[TRY-IT-PROMPT:"讓我們一步一步思考：如何優化網站的加載速度？1. 分析當前問題 2. 識別瓶頸 3. 提出解決方案"]
+[TRY-IT-PROMPT:"讓�??��?步�?步思考�?如�??��?網�??��?載速度�?. ?��??��??��? 2. 識別?�頸 3. ?�出�?��?��?"]
 
-### 角色扮演提示
+### 角色?��??�示
 
-通過設定特定角色來獲得更專業的回答：
+?��?設�??��?角色來獲得更專業?��?答�?
 
-[TRY-IT-PROMPT:"你是一位經驗豐富的 UX 設計師，請分析這個移動應用的用戶界面設計"]
+[TRY-IT-PROMPT:"你是一位�?驗�?富�? UX 設�?師�?請�??�這個移?��??��??�戶?�面設�?"]
 
-## 總結
+## 總�?
 
-掌握提示工程需要：
-1. 理解 AI 系統的工作原理
-2. 練習不同類型的提示技巧
-3. 持續優化和改進
+?�握?�示工�??�要�?
+1. ?�解 AI 系統?�工作�???
+2. 練�?不�?類�??��?示�?�?
+3. ?��??��??�改??
 
-[CONCEPT-CHECK:"列舉至少三種不同的提示技巧"]
+[CONCEPT-CHECK:"?��??��?三種不�??��?示�?�?]
       `;
       
       setMarkdownContent(sampleContent);
@@ -142,7 +142,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     loadContent();
   }, [lesson, isZhTW]);
 
-  // 處理迷你 Playground 執行
+  // ?��?迷�? Playground ?��?
   const handleMiniPlaygroundExecution = async (elementId: string, prompt: string) => {
     setMiniPlaygrounds(prev => ({
       ...prev,
@@ -156,9 +156,9 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     // 模擬 API 調用
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    const mockResponse = `AI 回應: ${prompt}
+    const mockResponse = `AI ?��?: ${prompt}
 
-這是一個模擬的 AI 回應，展示了如何處理您的提示。在實際應用中，這裡會顯示真實的 AI 生成內容。`;
+?�是一?�模?��? AI ?��?，�?示�?如�??��??��??�示?�在實�??�用中�??�裡?�顯示�?實�? AI ?��??�容?�`;
 
     setMiniPlaygrounds(prev => ({
       ...prev,
@@ -170,18 +170,18 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
       }
     }));
 
-    // 標記為已完成
+    // 標�??�已完�?
     setCompletedElements(prev => new Set([...prev, elementId]));
   };
 
-  // 處理概念檢查
+  // ?��?概念檢查
   const handleConceptCheck = (elementId: string, answer: string, expectedAnswer: string) => {
     const isCorrect = answer.toLowerCase().includes(expectedAnswer.toLowerCase()) || 
-                     answer.length > 20; // 簡單的正確性檢查
+                     answer.length > 20; // 簡單?�正確性檢??
 
     const feedback = isCorrect ? 
-      (isZhTW ? '回答正確！很好地理解了概念。' : 'Correct! Good understanding of the concept.') :
-      (isZhTW ? '請再仔細思考一下，或者查看上面的內容。' : 'Please think more carefully or review the content above.');
+      (isZhTW ? '?��?�?��！�?好地?�解了�?念�? : 'Correct! Good understanding of the concept.') :
+      (isZhTW ? '請�?仔細?�考�?下�??�者查?��??��??�容?? : 'Please think more carefully or review the content above.');
 
     setConceptChecks(prev => ({
       ...prev,
@@ -198,17 +198,17 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     }
   };
 
-  // 發送到主 Playground
+  // ?�送到�?Playground
   const sendToMainPlayground = (prompt: string) => {
     onSendToMainPlayground(prompt);
   };
 
-  // 複製到剪貼板
+  // 複製?�剪貼板
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
   };
 
-  // 渲染迷你 Playground
+  // 渲�?迷�? Playground
   const renderMiniPlayground = (elementId: string, prompt: string) => {
     const state = miniPlaygrounds[elementId] || {
       prompt,
@@ -226,17 +226,17 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         <div className="flex items-center space-x-2 mb-3">
           <Zap className="w-5 h-5 text-yellow-400" />
           <span className="text-sm font-semibold text-slate-200">
-            {isZhTW ? '迷你實驗室' : 'Mini Playground'}
+            {isZhTW ? '迷�?實�?�? : 'Mini Playground'}
           </span>
           <Badge variant="outline" className="text-green-300 border-green-500/30 bg-green-500/10">
-            {isZhTW ? '互動' : 'Interactive'}
+            {isZhTW ? '互�?' : 'Interactive'}
           </Badge>
         </div>
         
         <div className="space-y-3">
           <div>
             <label className="text-sm text-slate-300 mb-2 block">
-              {isZhTW ? '提示內容：' : 'Prompt:'}
+              {isZhTW ? '?�示?�容�? : 'Prompt:'}
             </label>
             <Textarea
               value={state.prompt}
@@ -244,7 +244,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
                 ...prev,
                 [elementId]: { ...prev[elementId], prompt: e.target.value }
               }))}
-              placeholder={isZhTW ? '輸入你的提示...' : 'Enter your prompt...'}
+              placeholder={isZhTW ? '輸入你�??�示...' : 'Enter your prompt...'}
               className="bg-slate-700 border-slate-600 text-slate-100 placeholder-slate-400 min-h-[80px]"
             />
           </div>
@@ -261,7 +261,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
               ) : (
                 <Play className="w-4 h-4 mr-2" />
               )}
-              {isZhTW ? '執行' : 'Execute'}
+              {isZhTW ? '?��?' : 'Execute'}
             </Button>
             
             <Button
@@ -271,7 +271,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
               className="border-slate-600 text-slate-300 hover:bg-slate-700"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
-              {isZhTW ? '發送到主實驗室' : 'Send to Main Playground'}
+              {isZhTW ? '?�送到主實驗室' : 'Send to Main Playground'}
             </Button>
           </div>
           
@@ -283,7 +283,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-slate-300 font-medium">
-                  {isZhTW ? '回應：' : 'Response:'}
+                  {isZhTW ? '?��?�? : 'Response:'}
                 </span>
                 <Button
                   onClick={() => copyToClipboard(state.response)}
@@ -304,7 +304,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     );
   };
 
-  // 渲染概念檢查
+  // 渲�?概念檢查
   const renderConceptCheck = (elementId: string, question: string, expectedAnswer: string) => {
     const state = conceptChecks[elementId] || {
       userAnswer: '',
@@ -325,7 +325,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             {isZhTW ? '概念檢查' : 'Concept Check'}
           </span>
           <Badge variant="outline" className="text-purple-300 border-purple-500/30 bg-purple-500/10">
-            {isZhTW ? '思考' : 'Think'}
+            {isZhTW ? '?��? : 'Think'}
           </Badge>
         </div>
         
@@ -338,7 +338,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
                 ...prev,
                 [elementId]: { ...prev[elementId], userAnswer: e.target.value }
               }))}
-              placeholder={isZhTW ? '輸入你的答案...' : 'Enter your answer...'}
+              placeholder={isZhTW ? '輸入你�?答�?...' : 'Enter your answer...'}
               className="bg-slate-700 border-slate-600 text-slate-100 placeholder-slate-400 min-h-[80px]"
             />
           </div>
@@ -350,7 +350,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             className="bg-purple-600 hover:bg-purple-700 text-white"
           >
             <CheckCircle className="w-4 h-4 mr-2" />
-            {isZhTW ? '檢查答案' : 'Check Answer'}
+            {isZhTW ? '檢查答�?' : 'Check Answer'}
           </Button>
           
           {state.hasAnswered && (
@@ -371,8 +371,8 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
                 )}
                 <span className="font-medium">
                   {state.isCorrect ? 
-                    (isZhTW ? '正確！' : 'Correct!') : 
-                    (isZhTW ? '再試一次' : 'Try Again')
+                    (isZhTW ? '�?���? : 'Correct!') : 
+                    (isZhTW ? '?�試一�? : 'Try Again')
                   }
                 </span>
               </div>
@@ -384,13 +384,13 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     );
   };
 
-  // 處理 Markdown 中的特殊語法
+  // ?��? Markdown 中�??��?語�?
   const processMarkdown = (content: string) => {
     const lines = content.split('\n');
     const processedLines: React.ReactNode[] = [];
     
     lines.forEach((line, index) => {
-      // 處理 TRY-IT-PROMPT 語法
+      // ?��? TRY-IT-PROMPT 語�?
       const promptMatch = line.match(/\[TRY-IT-PROMPT:"(.+?)"\]/);
       if (promptMatch) {
         const prompt = promptMatch[1];
@@ -403,7 +403,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // 處理 CONCEPT-CHECK 語法
+      // ?��? CONCEPT-CHECK 語�?
       const checkMatch = line.match(/\[CONCEPT-CHECK:"(.+?)"\]/);
       if (checkMatch) {
         const question = checkMatch[1];
@@ -416,10 +416,10 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // 處理普通 Markdown 語法（簡化版）
+      // ?��??��?Markdown 語�?（簡?��?�?
       let processedLine = line;
       
-      // 標題
+      // 標�?
       if (line.startsWith('# ')) {
         processedLines.push(
           <h1 key={index} className="text-2xl font-bold text-white mb-4 mt-6">
@@ -447,7 +447,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // 代碼塊
+      // �?���?
       if (line.startsWith('```')) {
         processedLines.push(
           <div key={index} className="bg-slate-800 p-4 rounded-lg my-4 border border-slate-700">
@@ -459,7 +459,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // 列表項
+      // ?�表??
       if (line.startsWith('- ')) {
         processedLines.push(
           <li key={index} className="text-slate-300 mb-1 ml-4">
@@ -469,7 +469,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // 普通段落
+      // ?�通段??
       if (line.trim()) {
         processedLines.push(
           <p key={index} className="text-slate-300 mb-3 leading-relaxed">
@@ -484,7 +484,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     return processedLines;
   };
 
-  // 計算完成進度
+  // 計�?完�??�度
   const calculateProgress = () => {
     const totalElements = (lesson.interactiveElements || []).length;
     const completedCount = completedElements.size;
@@ -501,7 +501,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
       <div className="flex items-center justify-center h-64">
         <div className="flex items-center space-x-2 text-slate-400">
           <RefreshCw className="w-5 h-5 animate-spin" />
-          <span>{isZhTW ? '加載中...' : 'Loading...'}</span>
+          <span>{isZhTW ? '?��?�?..' : 'Loading...'}</span>
         </div>
       </div>
     );
@@ -509,12 +509,12 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-slate-900 text-slate-100 min-h-screen">
-      {/* 文章頭部 */}
+      {/* ?��??�部 */}
       <div className="mb-8 pb-6 border-b border-slate-700">
         <div className="flex items-center space-x-2 mb-4">
           <BookOpen className="w-6 h-6 text-blue-400" />
           <Badge variant="outline" className="text-green-300 border-green-500/30 bg-green-500/10">
-            {isZhTW ? '互動文章' : 'Interactive Article'}
+            {isZhTW ? '互�??��?' : 'Interactive Article'}
           </Badge>
         </div>
         <h1 className="text-3xl font-bold text-white mb-3">
@@ -527,7 +527,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
           <div className="flex items-center space-x-2">
             <Sparkles className="w-4 h-4 text-yellow-400" />
             <span className="text-sm text-slate-300">
-              {isZhTW ? '進度' : 'Progress'}: {calculateProgress()}%
+              {isZhTW ? '?�度' : 'Progress'}: {calculateProgress()}%
             </span>
           </div>
           <div className="flex items-center space-x-2">
@@ -539,7 +539,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         </div>
       </div>
 
-      {/* 文章內容 */}
+      {/* ?��??�容 */}
       <div className="prose prose-invert max-w-none">
         <ScrollArea className="max-h-[80vh]">
           <div className="space-y-4">
@@ -548,13 +548,13 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         </ScrollArea>
       </div>
 
-      {/* 底部操作 */}
+      {/* 底部?��? */}
       <div className="mt-8 pt-6 border-t border-slate-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-5 h-5 text-green-400" />
             <span className="text-sm text-slate-300">
-              {isZhTW ? '完成度' : 'Completion'}: {calculateProgress()}%
+              {isZhTW ? '完�?�? : 'Completion'}: {calculateProgress()}%
             </span>
           </div>
           <Button
@@ -563,7 +563,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             className="bg-green-600 hover:bg-green-700 text-white"
           >
             <ArrowRight className="w-4 h-4 mr-2" />
-            {isZhTW ? '完成課程' : 'Complete Lesson'}
+            {isZhTW ? '完�?課�?' : 'Complete Lesson'}
           </Button>
         </div>
       </div>

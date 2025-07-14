@@ -53,18 +53,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 {product.bestseller && (
                   <Badge variant="outline" className="text-yellow-400 border-yellow-400">
                     <Award className="h-3 w-3 mr-1" />
-                    {isZhTW ? '暢銷' : 'Bestseller'}
+                    {isZhTW ? '?�銷' : 'Bestseller'}
                   </Badge>
                 )}
                 {product.newProduct && (
                   <Badge variant="outline" className="text-green-400 border-green-400">
                     <TrendingUp className="h-3 w-3 mr-1" />
-                    {isZhTW ? '新產品' : 'New'}
+                    {isZhTW ? '?�產?? : 'New'}
                   </Badge>
                 )}
                 {product.hotSelling && (
                   <Badge variant="outline" className="text-red-400 border-red-400">
-                    🔥 {isZhTW ? '熱賣' : 'Hot'}
+                    ?�� {isZhTW ? '?�賣' : 'Hot'}
                   </Badge>
                 )}
               </div>
@@ -89,7 +89,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4 text-gray-300" />
                     <span aria-label={`Downloads: ${product.downloads.toLocaleString()}`}>
-                      {product.downloads.toLocaleString()} {isZhTW ? '下載' : 'downloads'}
+                      {product.downloads.toLocaleString()} {isZhTW ? '下�?' : 'downloads'}
                     </span>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
               <div>
                 <h4 className="font-semibold mb-2 text-white">
-                  {isZhTW ? '包含內容：' : 'What\'s Included:'}
+                  {isZhTW ? '?�含?�容�? : 'What\'s Included:'}
                 </h4>
                 <ul className="text-sm text-gray-200 space-y-1" role="list">
                   {(isZhTW ? product.includesCht : product.includes).map((item, idx) => (
@@ -127,7 +127,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   </div>
                   {product.originalPrice && (
                     <div className="text-sm text-green-400">
-                      {isZhTW ? '節省 ' : 'Save '}
+                      {isZhTW ? '節??' : 'Save '}
                       {savingsPercentage}%
                     </div>
                   )}

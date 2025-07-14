@@ -512,7 +512,7 @@ export interface VideoTemplateData {
 
 export interface ContentRendererProps {
   content: string;
-  language: 'en' | 'zh-TW';
+  language: 'en' | 'zh-HK';
   partNumber: number;
   onImageError?: (url: string) => void;
   onVideoError?: (url: string) => void;

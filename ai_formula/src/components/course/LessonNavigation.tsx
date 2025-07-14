@@ -8,7 +8,7 @@ interface LessonNavigationProps {
   completedParts: number[];
   onPartSelect: (partIndex: number) => void;
   onMarkComplete: (partNumber: number) => void;
-  language: 'en' | 'zh-TW';
+  language: 'en' | 'zh-HK';
 }
 
 const LessonNavigation: React.FC<LessonNavigationProps> = ({
@@ -25,7 +25,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
     <div className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-6 border border-gray-700/50 sticky top-24">
       <h3 className="text-2xl font-bold mb-6 text-yellow-400 flex items-center gap-2">
         <Target className="w-6 h-6" />
-        {language === 'en' ? 'Learning Path' : '學習路徑'}
+        {language === 'en' ? 'Learning Path' : '學�?路�?'}
       </h3>
       
       {parts.map((part, index) => (
@@ -85,7 +85,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
                   {language === 'en' ? part.sampleContent.prompt : part.sampleContent.promptCht}
                 </div>
                 <div className="text-xs text-green-400 mt-1">
-                  → {language === 'en' ? part.sampleContent.result : part.sampleContent.resultCht}
+                  ??{language === 'en' ? part.sampleContent.result : part.sampleContent.resultCht}
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
       {/* Completion Status */}
       <div className="mt-6 pt-4 border-t border-gray-600">
         <div className="text-sm text-gray-400 mb-2">
-          {language === 'en' ? 'Progress' : '進度'}
+          {language === 'en' ? 'Progress' : '?�度'}
         </div>
         <div className="flex items-center gap-2">
           <div className="flex-1 bg-gray-700 rounded-full h-2">
@@ -122,8 +122,8 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
       >
         <CheckCircle className="w-5 h-5" />
         {completedParts.includes(currentPartData.number)
-          ? (language === 'en' ? 'Completed!' : '已完成！')
-          : (language === 'en' ? 'Mark Complete' : '標記完成')
+          ? (language === 'en' ? 'Completed!' : '已�??��?')
+          : (language === 'en' ? 'Mark Complete' : '標�?完�?')
         }
       </button>
     </div>

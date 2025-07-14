@@ -56,15 +56,15 @@ export const SEOHead: React.FC<SEOProps> = ({
   
   // Default values based on language
   const defaultTitle = language === 'zh-HK' 
-    ? 'AI Formula - 香港AI自動化解決方案平台'
+    ? 'AI Formula - 香港AI?��??�解決方案平??
     : 'AI Formula - Hong Kong AI Automation Solutions Platform';
   
   const defaultDescription = language === 'zh-HK'
-    ? '香港領先的AI自動化解決方案平台，提供專業的AI技術服務、教學課程和商業應用指南。專注於ChatGPT、Midjourney、自動化工具等AI技術培訓。'
+    ? '香港?��??�AI?��??�解決方案平?��??��?專業?�AI?�術�??�、�?學課程�??�業?�用?��??��?注於ChatGPT?�Midjourney?�自?��?工具等AI?�術培訓�?
     : 'Leading AI automation solutions platform in Hong Kong, providing professional AI technology services, educational courses, and business application guides. Specializing in ChatGPT, Midjourney, automation tools and AI technology training.';
 
   const defaultKeywords = language === 'zh-HK'
-    ? 'AI自動化,香港AI培訓,ChatGPT課程,Midjourney教學,AI工具,人工智能,自動化解決方案,AI Formula'
+    ? 'AI?��???香港AI?��?,ChatGPT課�?,Midjourney?�學,AI工具,人工?�能,?��??�解決方�?AI Formula'
     : 'AI automation,Hong Kong AI training,ChatGPT courses,Midjourney tutorials,AI tools,artificial intelligence,automation solutions,AI Formula';
 
   const siteUrl = import.meta.env.VITE_SITE_URL || 'https://ai-formula.com';

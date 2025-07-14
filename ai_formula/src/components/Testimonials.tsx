@@ -8,24 +8,24 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      quote: language === 'zh-TW' ? t('testimonials.testimonial1.quote') : 'We got a custom WhatsApp automation system that handles customer inquiries 24/7. No more missed messages and our response time improved dramatically.',
-      author: language === 'zh-TW' ? t('testimonials.testimonial1.author') : 'Wong Ka Ming',
-      service: language === 'zh-TW' ? t('testimonials.testimonial1.service') : 'Custom Automation Solution',
-      company: language === 'zh-TW' ? t('testimonials.testimonial1.company') : 'Local Trading Company',
+      quote: language === 'zh-HK' ? t('testimonials.testimonial1.quote') : 'We got a custom WhatsApp automation system that handles customer inquiries 24/7. No more missed messages and our response time improved dramatically.',
+      author: language === 'zh-HK' ? t('testimonials.testimonial1.author') : 'Wong Ka Ming',
+      service: language === 'zh-HK' ? t('testimonials.testimonial1.service') : 'Custom Automation Solution',
+      company: language === 'zh-HK' ? t('testimonials.testimonial1.company') : 'Local Trading Company',
       rating: 5
     },
     {
-      quote: language === 'zh-TW' ? t('testimonials.testimonial2.quote') : 'Their team built us a custom business automation system that connects our inventory, orders, and accounting. Everything runs smoothly now.',
-      author: language === 'zh-TW' ? t('testimonials.testimonial2.author') : 'Chan Siu Fung',
-      service: language === 'zh-TW' ? t('testimonials.testimonial2.service') : 'Business Automation',
-      company: language === 'zh-TW' ? t('testimonials.testimonial2.company') : 'Small Manufacturing Business',
+      quote: language === 'zh-HK' ? t('testimonials.testimonial2.quote') : 'Their team built us a custom business automation system that connects our inventory, orders, and accounting. Everything runs smoothly now.',
+      author: language === 'zh-HK' ? t('testimonials.testimonial2.author') : 'Chan Siu Fung',
+      service: language === 'zh-HK' ? t('testimonials.testimonial2.service') : 'Business Automation',
+      company: language === 'zh-HK' ? t('testimonials.testimonial2.company') : 'Small Manufacturing Business',
       rating: 5
     },
     {
-      quote: language === 'zh-TW' ? t('testimonials.testimonial3.quote') : 'The custom AI chatbot they created for our restaurant handles reservations and orders perfectly. It understands Cantonese and English!',
-      author: language === 'zh-TW' ? t('testimonials.testimonial3.author') : 'Lam Mei Ling',
-      service: language === 'zh-TW' ? t('testimonials.testimonial3.service') : 'Custom AI Chatbot',
-      company: language === 'zh-TW' ? t('testimonials.testimonial3.company') : 'Family Restaurant',
+      quote: language === 'zh-HK' ? t('testimonials.testimonial3.quote') : 'The custom AI chatbot they created for our restaurant handles reservations and orders perfectly. It understands Cantonese and English!',
+      author: language === 'zh-HK' ? t('testimonials.testimonial3.author') : 'Lam Mei Ling',
+      service: language === 'zh-HK' ? t('testimonials.testimonial3.service') : 'Custom AI Chatbot',
+      company: language === 'zh-HK' ? t('testimonials.testimonial3.company') : 'Family Restaurant',
       rating: 5
     }
   ];
@@ -41,10 +41,10 @@ const Testimonials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            {language === 'zh-TW' ? t('testimonials.title') : 'What Our Clients Say'}
+            {language === 'zh-HK' ? t('testimonials.title') : 'What Our Clients Say'}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {language === 'zh-TW' ? t('testimonials.subtitle') : 'Real feedback from businesses using our custom AI automation solutions'}
+            {language === 'zh-HK' ? t('testimonials.subtitle') : 'Real feedback from businesses using our custom AI automation solutions'}
           </p>
         </motion.div>
 

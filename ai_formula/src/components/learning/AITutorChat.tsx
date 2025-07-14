@@ -74,68 +74,68 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // 初始化歡迎訊息
+  // ?��??�歡迎�???
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       const welcomeMessage: ChatMessage = {
         id: 'welcome',
         type: 'ai',
-        content: `👋 您好！我是您的專屬 AI 助教。我已經學習了這個課程的所有內容，包括講義、逐字稿和常見問題。
+        content: `?? ?�好！�??�您?��?�?AI ?��??��?已�?學�?了這個課程�??�?�內容�??�括講義?�逐�?稿�?常�??��???
 
-我可以幫您：
-• 解釋複雜的概念
-• 除錯您的代碼
-• 提供學習建議
-• 回答課程相關問題
-• 為您總結重點
+?�可以幫?��?
+??�??複�??��?�?
+???�錯?��?�?��
+???��?學�?建議
+???��?課�??��??��?
+???�您總�??��?
 
-請告訴我您需要什麼幫助！`,
+請�?訴�??��?要�?麼幫?��?`,
         timestamp: new Date(),
         messageType: 'text',
         suggestions: [
-          '解釋當前章節的重點',
-          '檢查我的代碼',
-          '給我一些練習建議',
-          '總結到目前為止的學習內容'
+          '�???��?章�??��?�?,
+          '檢查?��?�?��',
+          '給�?一些練習建�?,
+          '總�??�目?�為止�?學�??�容'
         ]
       };
       setMessages([welcomeMessage]);
     }
   }, [isOpen, messages.length]);
 
-  // 快速操作按鈕
+  // 快速�?作�???
   const quickActions: QuickAction[] = [
     {
       id: 'explain-current',
-      label: '解釋當前內容',
+      label: '�???��??�容',
       icon: <Lightbulb className="w-4 h-4" />,
-      action: () => handleQuickAction('請解釋當前章節的重點概念'),
+      action: () => handleQuickAction('請解?�當?��?節?��?點�?�?),
       category: 'explain'
     },
     {
       id: 'debug-code',
-      label: '除錯代碼',
+      label: '?�錯�?��',
       icon: <Code className="w-4 h-4" />,
-      action: () => handleQuickAction('幫我檢查代碼有沒有問題'),
+      action: () => handleQuickAction('幫�?檢查�?��?��??��?�?),
       category: 'debug'
     },
     {
       id: 'practice-suggestions',
-      label: '練習建議',
+      label: '練�?建議',
       icon: <Target className="w-4 h-4" />,
-      action: () => handleQuickAction('給我一些練習建議'),
+      action: () => handleQuickAction('給�?一些練習建�?),
       category: 'practice'
     },
     {
       id: 'review-summary',
-      label: '總結重點',
+      label: '總�??��?',
       icon: <BookOpen className="w-4 h-4" />,
-      action: () => handleQuickAction('總結到目前為止的重點'),
+      action: () => handleQuickAction('總�??�目?�為止�??��?'),
       category: 'review'
     }
   ];
 
-  // 發送訊息
+  // ?�送�???
   const handleSendMessage = async (message: string = inputValue) => {
     if (!message.trim()) return;
 
@@ -151,7 +151,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
     setInputValue('');
     setIsTyping(true);
 
-    // 模擬 AI 回應
+    // 模擬 AI ?��?
     setTimeout(() => {
       const aiResponse = generateAIResponse(message);
       setMessages(prev => [...prev, aiResponse]);
@@ -159,167 +159,167 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
     }, 1500);
   };
 
-  // 快速操作
+  // 快速�?�?
   const handleQuickAction = (action: string) => {
     handleSendMessage(action);
   };
 
-  // 生成 AI 回應
+  // ?��? AI ?��?
   const generateAIResponse = (userMessage: string): ChatMessage => {
     const lowerMessage = userMessage.toLowerCase();
     
-    // 代碼相關問題
-    if (lowerMessage.includes('代碼') || lowerMessage.includes('code') || lowerMessage.includes('除錯') || lowerMessage.includes('bug')) {
+    // �?��?��??��?
+    if (lowerMessage.includes('�?��') || lowerMessage.includes('code') || lowerMessage.includes('?�錯') || lowerMessage.includes('bug')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `我來幫您檢查代碼！請把您的代碼貼上來，我會：
+        content: `?��?幫您檢查�?��！�??�您?�代碼貼上�?，�??��?
 
-1. 🔍 檢查語法錯誤
-2. 🎯 分析邏輯問題
-3. 💡 提供改進建議
-4. 📚 解釋相關概念
+1. ?? 檢查語�??�誤
+2. ?�� ?��??�輯?��?
+3. ?�� ?��??�進建�?
+4. ?? �???��?概念
 
-您也可以直接從 AI Playground 複製代碼過來！`,
+?��??�以?�接�?AI Playground 複製�?��?��?！`,
         timestamp: new Date(),
         messageType: 'code',
         codeLanguage: 'python',
         suggestions: [
-          '檢查 Python 代碼',
-          '解釋這段代碼的邏輯',
-          '優化代碼效能',
-          '修復錯誤'
+          '檢查 Python �?��',
+          '�???�段�?��?��?�?,
+          '?��?�?��?�能',
+          '修復?�誤'
         ]
       };
     }
 
-    // 解釋概念
-    if (lowerMessage.includes('解釋') || lowerMessage.includes('什麼是') || lowerMessage.includes('概念')) {
+    // �??概念
+    if (lowerMessage.includes('�??') || lowerMessage.includes('什麼是') || lowerMessage.includes('概念')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `讓我為您解釋重要概念！
+        content: `讓�??�您�???��?概念�?
 
-**Prompt Engineering 核心原則：**
+**Prompt Engineering ?��??��?�?*
 
-1. **明確性** - 清晰描述您的需求
-2. **上下文** - 提供足夠的背景信息
-3. **格式化** - 指定輸出格式
-4. **範例** - 提供具體例子
+1. **?�確??* - 清晰?�述?��??��?
+2. **上�???* - ?��?足�??��??�信??
+3. **?��???* - ?��?輸出?��?
+4. **範�?** - ?��??��?例�?
 
-**實用技巧：**
-- 使用角色設定 ("你是一個...")
-- 指定步驟 ("請按照以下步驟...")
-- 設定限制 ("在100字內...")
+**實用?�巧�?**
+- 使用角色設�? ("你是一??..")
+- ?��?步�? ("請�??�以下步�?..")
+- 設�??�制 ("??00字內...")
 
-想了解更多細節嗎？我可以深入解釋任何概念！`,
+?��?�?��多細節?��??�可以深?�解?�任何�?念�?`,
         timestamp: new Date(),
         messageType: 'explanation',
         relatedTimestamp: '08:15',
         suggestions: [
-          '什麼是 Temperature 參數？',
-          '如何寫好的 System Prompt？',
-          '零樣本和少樣本的差別',
-          '鏈式思維提示技巧'
+          '什麼是 Temperature ?�數�?,
+          '如�?寫好??System Prompt�?,
+          '?�樣?��?少樣?��?差別',
+          '?��??�維?�示?��?
         ]
       };
     }
 
-    // 練習建議
-    if (lowerMessage.includes('練習') || lowerMessage.includes('建議') || lowerMessage.includes('如何提升')) {
+    // 練�?建議
+    if (lowerMessage.includes('練�?') || lowerMessage.includes('建議') || lowerMessage.includes('如�??��?')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `根據您的學習進度，我建議以下練習：
+        content: `?��??��?學�??�度，�?建議以�?練�?�?
 
-**🎯 立即可做的練習：**
-1. 嘗試寫一個產品描述的 prompt
-2. 練習調整 Temperature 參數
-3. 比較不同模型的回應
+**?�� 立即?��??�練習�?**
+1. ?�試寫�??�產?��?述�? prompt
+2. 練�?調整 Temperature ?�數
+3. 比�?不�?模�??��???
 
-**💪 進階挑戰：**
-- 設計一個多步驟的推理任務
-- 創建自己的 prompt 模板
-- 實現鏈式思維提示
+**?�� ?��??�戰�?*
+- 設�?一?��?步�??�推?�任??
+- ?�建?�己??prompt 模板
+- 實現?��??�維?�示
 
-**📊 評估方式：**
-- 與預期輸出比較
-- 測試不同情況
-- 收集用戶反饋
+**?? 評估?��?�?*
+- ?��??�輸?��?�?
+- 測試不�??��?
+- ?��??�戶?��?
 
-您想先從哪個練習開始？`,
+?�想?��??�個練習�?始�?`,
         timestamp: new Date(),
         messageType: 'suggestion',
         suggestions: [
-          '開始第一個練習',
-          '看看更多範例',
-          '測試我的 prompt',
-          '獲得個人化建議'
+          '?��?第�??�練�?,
+          '?��??��?範�?',
+          '測試?��? prompt',
+          '?��??�人?�建�?
         ]
       };
     }
 
-    // 總結
-    if (lowerMessage.includes('總結') || lowerMessage.includes('重點') || lowerMessage.includes('複習')) {
+    // 總�?
+    if (lowerMessage.includes('總�?') || lowerMessage.includes('?��?') || lowerMessage.includes('複�?')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `📚 **學習重點總結**
+        content: `?? **學�??��?總�?**
 
-**已完成內容：**
-✅ Prompt Engineering 基礎概念
-✅ 參數調整技巧
-✅ 實際案例分析
+**已�??�內容�?**
+??Prompt Engineering ?��?概念
+???�數調整?��?
+??實�?案�??��?
 
-**核心要點：**
-🎯 **明確的指令** - 越具體越好
-🎯 **適當的上下文** - 提供必要背景
-🎯 **格式化輸出** - 指定期望格式
-🎯 **迭代優化** - 不斷改進 prompt
+**?��?要�?�?*
+?�� **?�確?��?�?* - 越具體�?�?
+?�� **?�當?��?下�?** - ?��?必�??�景
+?�� **?��??�輸??* - ?��??��??��?
+?�� **迭代?��?** - 不斷?��?prompt
 
-**下一步建議：**
-• 完成本章節測驗
-• 嘗試更複雜的 prompt 設計
-• 學習高階技巧
+**下�?步建議�?**
+??完�??��?節測�?
+???�試?��??��? prompt 設�?
+??學�?高�??��?
 
-您對哪個部分還有疑問？`,
+?��??�個部?��??��??��?`,
         timestamp: new Date(),
         messageType: 'explanation',
         relatedTimestamp: currentTimestamp,
         suggestions: [
-          '測試我的理解',
-          '看看實際例子',
-          '進入下一章節',
-          '複習重要概念'
+          '測試?��??�解',
+          '?��?實�?例�?',
+          '?�入下�?章�?',
+          '複�??��?概念'
         ]
       };
     }
 
-    // 預設回應
+    // ?�設?��?
     return {
       id: (Date.now() + 1).toString(),
       type: 'ai',
-      content: `我理解您的問題！讓我為您提供幫助。
+      content: `?��?�?��?��?題�?讓�??�您?��?幫助??
 
-根據您的提問，我建議：
+?��??��??��?，�?建議�?
 
-1. **檢查當前學習進度** - 確保理解基礎概念
-2. **參考相關資料** - 我可以指向具體的課程內容
-3. **實際練習** - 動手嘗試是最好的學習方式
+1. **檢查?��?學�??�度** - 確�??�解?��?概念
+2. **?�考相?��???* - ?�可以�??�具體�?課�??�容
+3. **實�?練�?** - ?��??�試?��?好�?學�??��?
 
-您能更具體地描述您遇到的問題嗎？這樣我可以提供更精確的幫助！`,
+?�能?�具體地?�述?��??��??��??��??�樣?�可以�?供更精確?�幫?��?`,
       timestamp: new Date(),
       messageType: 'text',
       suggestions: [
-        '我在這個步驟卡住了',
-        '這個概念不太理解',
-        '需要更多練習',
-        '想看實際例子'
+        '?�在?�個步驟卡住�?',
+        '?�個�?念�?太�?�?,
+        '?�要更多練�?,
+        '?��?實�?例�?'
       ]
     };
   };
 
-  // 訊息評分
+  // 訊息評�?
   const handleRateMessage = (messageId: string, rating: 'positive' | 'negative') => {
     setMessages(prev => 
       prev.map(msg => 
@@ -330,12 +330,12 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
     );
   };
 
-  // 複製內容
+  // 複製?�容
   const handleCopyMessage = (content: string) => {
     navigator.clipboard.writeText(content);
   };
 
-  // 渲染訊息
+  // 渲�?訊息
   const renderMessage = (message: ChatMessage) => {
     return (
       <motion.div
@@ -366,7 +366,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
                 className="mt-2 text-xs text-blue-400 hover:text-blue-300"
               >
                 <Play className="w-3 h-3 mr-1" />
-                跳轉到 {message.relatedTimestamp}
+                跳�???{message.relatedTimestamp}
               </Button>
             )}
           </div>
@@ -449,15 +449,15 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
           exit={{ scale: 0.9, opacity: 0 }}
           className="bg-gray-800 rounded-xl shadow-2xl w-full max-w-4xl h-[600px] flex flex-col"
         >
-          {/* 頂部標題列 */}
+          {/* ?�部標�???*/}
           <div className="flex items-center justify-between p-4 border-b border-gray-700">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-white">AI 助教</h2>
-                <p className="text-sm text-gray-400">隨時為您解答疑問</p>
+                <h2 className="text-lg font-semibold text-white">AI ?��?</h2>
+                <p className="text-sm text-gray-400">?��??�您�???��?</p>
               </div>
             </div>
             
@@ -471,7 +471,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             </Button>
           </div>
 
-          {/* 快速操作欄 */}
+          {/* 快速�?作�? */}
           <div className="p-4 border-b border-gray-700">
             <div className="flex flex-wrap gap-2">
               {quickActions.map((action) => (
@@ -489,7 +489,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             </div>
           </div>
 
-          {/* 訊息區域 */}
+          {/* 訊息?�??*/}
           <div className="flex-1 overflow-hidden">
             <ScrollArea className="h-full">
               <div className="p-4 space-y-6">
@@ -511,7 +511,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
                     <div className="bg-gray-700 rounded-lg p-4">
                       <div className="flex items-center space-x-2">
                         <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
-                        <span className="text-sm text-gray-400">AI 助教正在思考...</span>
+                        <span className="text-sm text-gray-400">AI ?��?�?��?��?..</span>
                       </div>
                     </div>
                   </motion.div>
@@ -520,14 +520,14 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             </ScrollArea>
           </div>
 
-          {/* 輸入區域 */}
+          {/* 輸入?�??*/}
           <div className="p-4 border-t border-gray-700">
             <div className="flex gap-2">
               <Input
                 ref={inputRef}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="輸入您的問題..."
+                placeholder="輸入?��??��?..."
                 className="flex-1 bg-gray-700 border-gray-600 text-white placeholder-gray-400"
                 onKeyPress={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
@@ -547,14 +547,14 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             
             <div className="flex items-center justify-between mt-2">
               <span className="text-xs text-gray-500">
-                按 Enter 發送 • Shift+Enter 換行
+                ??Enter ?��???Shift+Enter ?��?
               </span>
               <div className="flex items-center space-x-2">
                 <Badge variant="outline" className="text-xs text-green-400 border-green-400">
-                  在線
+                  ?��?
                 </Badge>
                 <span className="text-xs text-gray-500">
-                  時間: {currentTimestamp}
+                  ?��?: {currentTimestamp}
                 </span>
               </div>
             </div>

@@ -55,7 +55,7 @@ const ContentAuditTool: React.FC = () => {
   const mockContentItems: ContentAuditItem[] = [
     {
       id: '1',
-      title: 'AI Formula 主頁',
+      title: 'AI Formula 主�?',
       url: '/',
       type: 'page',
       language: 'zh-HK',
@@ -66,16 +66,16 @@ const ContentAuditTool: React.FC = () => {
         {
           type: 'warning',
           category: 'seo',
-          message: '缺少結構化數據標記',
+          message: '缺�?結�??�數?��?�?,
           severity: 'medium',
-          recommendation: '添加 JSON-LD 結構化數據以提高搜索引擎理解'
+          recommendation: '添�? JSON-LD 結�??�數?�以?��??�索引�??�解'
         },
         {
           type: 'error',
           category: 'performance',
-          message: '圖片未優化',
+          message: '?��??�優??,
           severity: 'high',
-          recommendation: '壓縮圖片並使用 WebP 格式'
+          recommendation: '壓縮?��?並使??WebP ?��?'
         }
       ],
       lastUpdated: new Date('2024-01-15')
@@ -109,7 +109,7 @@ const ContentAuditTool: React.FC = () => {
     },
     {
       id: '3',
-      title: 'AI 工具教學博客',
+      title: 'AI 工具?�學?�客',
       url: '/blog/ai-tools-guide',
       type: 'blog',
       language: 'zh-HK',
@@ -120,9 +120,9 @@ const ContentAuditTool: React.FC = () => {
         {
           type: 'info',
           category: 'ux',
-          message: '可讀性可以改善',
+          message: '?��??�可以改??,
           severity: 'low',
-          recommendation: '增加段落間距和使用更多小標題'
+          recommendation: '增�?段落?��??�使?�更多�?標�?'
         }
       ],
       lastUpdated: new Date('2024-01-20')
@@ -201,7 +201,7 @@ const ContentAuditTool: React.FC = () => {
             className="px-3 py-2 border border-gray-300 rounded-md"
           >
             <option value="all">All Languages</option>
-            <option value="zh-HK">中文 (香港)</option>
+            <option value="zh-HK">中�? (香港)</option>
             <option value="en">English</option>
           </select>
           

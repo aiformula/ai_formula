@@ -95,9 +95,9 @@ const CourseTemplate: React.FC<CourseTemplateProps> = ({
 
   const getLevelText = (level: string, isZh: boolean) => {
     const levelMap = {
-      beginner: isZh ? '初學者' : 'Beginner',
-      intermediate: isZh ? '中級' : 'Intermediate',
-      advanced: isZh ? '高級' : 'Advanced',
+      beginner: isZh ? '?�學?? : 'Beginner',
+      intermediate: isZh ? '中�?' : 'Intermediate',
+      advanced: isZh ? '高�?' : 'Advanced',
     };
     return levelMap[level as keyof typeof levelMap];
   };
@@ -149,7 +149,7 @@ const CourseTemplate: React.FC<CourseTemplateProps> = ({
                     onClick={onEnroll}
                     className="bg-blue-600 hover:bg-blue-700 text-white"
                   >
-                    {titleZh ? '開始學習' : 'Start Learning'}
+                    {titleZh ? '?��?學�?' : 'Start Learning'}
                   </Button>
                 )}
               </div>

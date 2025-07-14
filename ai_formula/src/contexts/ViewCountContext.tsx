@@ -15,7 +15,7 @@ const ViewCountContext = createContext<ViewCountContextType | undefined>(undefin
 export const ViewCountProvider = ({ children }: { children: ReactNode }) => {
   const [viewCounts, setViewCounts] = useState<ViewCounts>({});
 
-  // 從localStorage載入數據
+  // 從localStorage載入?��?
   useEffect(() => {
     const savedCounts = localStorage.getItem('blogViewCounts');
     if (savedCounts) {
@@ -27,7 +27,7 @@ export const ViewCountProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // 保存到localStorage
+  // 保�??�localStorage
   useEffect(() => {
     if (Object.keys(viewCounts).length > 0) {
       localStorage.setItem('blogViewCounts', JSON.stringify(viewCounts));

@@ -72,26 +72,25 @@ interface CourseDashboardPageProps {
 const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  // 確保中文顯示
+  // 確�?中�?顯示
   const isZhTW = language === 'zh-HK';
   
-  // Debug: 輸出當前語言
+  // Debug: 輸出?��?語�?
   console.log('Current language:', language, 'isZhTW:', isZhTW);
   
-  // 使用示例數據，實際應用中會從 API 或狀態管理獲取
-  const courseData = promptEngineeringCourseData;
+  // 使用示�??��?，實?��??�中?��? API ?��??�管?�獲??  const courseData = promptEngineeringCourseData;
   const [userProgress] = useState<UserProgress>(sampleUserProgress);
   const [communityData] = useState<CommunityData>(sampleCommunityData);
   const [dailyFocusType, setDailyFocusType] = useState<'prompt' | 'tool' | 'fact'>('prompt');
 
-  // 計算總體進度
+  // 計�?總�??�度
   const calculateTotalProgress = (): number => {
     const totalLessons = courseData.modules.reduce((total, module) => total + module.lessons.length, 0);
     const completedLessons = userProgress.completedLessons.length;
     return Math.round((completedLessons / totalLessons) * 100);
   };
 
-  // 獲取下一個未完成課程
+  // ?��?下�??�未完�?課�?
   const getNextLesson = (): CourseLesson | null => {
     for (const module of courseData.modules) {
       for (const lesson of module.lessons) {
@@ -103,23 +102,21 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     return null;
   };
 
-  // 檢查課程是否解鎖
+  // 檢查課�??�否�??
   const isLessonUnlocked = (lesson: CourseLesson): boolean => {
     const isCompleted = userProgress.completedLessons.includes(lesson.id);
     const nextLesson = getNextLesson();
     const isNext = nextLesson?.id === lesson.id;
     
-    // 如果已完成或者是下一個課程，則解鎖
-    return isCompleted || isNext;
+    // 如�?已�??��??�是下�??�課程�??�解??    return isCompleted || isNext;
   };
 
-  // 檢查整個模塊是否有任何課程解鎖
+  // 檢查?�個模塊是?��?任�?課�?�??
   const isModuleAccessible = (module: CourseModule): boolean => {
     return module.lessons.some(lesson => isLessonUnlocked(lesson));
   };
 
-  // 獲取課程狀態圖標
-  const getLessonStatusIcon = (lesson: CourseLesson) => {
+  // ?��?課�??�?��?�?  const getLessonStatusIcon = (lesson: CourseLesson) => {
     if (userProgress.completedLessons.includes(lesson.id)) {
       return <CheckCircle className="w-5 h-5 text-[#3EFFDC]" />;
     }
@@ -132,8 +129,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     return <Lock className="w-5 h-5 text-gray-500" />;
   };
 
-  // 獲取課程類型圖標 - 處理視頻類型更安全
-  const getLessonTypeIcon = (lesson: CourseLesson) => {
+  // ?��?課�?類�??��? - ?��?視頻類�??��???  const getLessonTypeIcon = (lesson: CourseLesson) => {
     if (!lesson.lessonType) {
       return <FileText className="w-4 h-4 text-[#E0E0E0]" />;
     }
@@ -150,16 +146,14 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     }
   };
 
-  // 處理繼續學習按鈕
+  // ?��?繼�?學�??��?
   const handleContinueLearning = () => {
     if (userProgress.lastViewedLesson) {
-      // 如果有上次觀看的課程，跳轉到課程檢視器
-      navigate('/courses/lesson-viewer', {
+      // 如�??��?次�??��?課�?，跳轉到課�?檢�???      navigate('/courses/lesson-viewer', {
         state: { lessonId: userProgress.lastViewedLesson }
       });
     } else {
-      // 否則開始第一課
-      const firstLesson = courseData.modules[0]?.lessons[0];
+      // ?��??��?第�?�?      const firstLesson = courseData.modules[0]?.lessons[0];
       if (firstLesson) {
         navigate('/courses/lesson-viewer', {
           state: { lessonId: firstLesson.id }
@@ -168,22 +162,20 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     }
   };
 
-  // 處理課程點擊
+  // ?��?課�?點�?
   const handleLessonClick = (lesson: CourseLesson) => {
-    // 檢查是否已解鎖
-    if (isLessonUnlocked(lesson)) {
-      // 跳轉到新的課程檢視器
+    // 檢查?�否已解??    if (isLessonUnlocked(lesson)) {
+      // 跳�??�新?�課程檢視器
       navigate('/courses/lesson-viewer', { 
         state: { lessonId: lesson.id } 
       });
     } else {
-      // 顯示需要完成前面課程的提示
-      alert(isZhTW ? '請先完成前面嘅課程！' : 'Please complete previous lessons first!');
+      // 顯示?�要�??��??�課程�??�示
+      alert(isZhTW ? '請�?完�??�面?�課程�?' : 'Please complete previous lessons first!');
     }
   };
 
-  // 格式化時間
-  const formatTime = (minutes: number): string => {
+  // ?��??��???  const formatTime = (minutes: number): string => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     if (hours > 0) {
@@ -192,7 +184,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     return `${mins}m`;
   };
 
-  // 獲取成就稀有度顏色
+  // ?��??�就稀?�度顏色
   const getAchievementRarityColor = (rarity: string) => {
     switch (rarity) {
       case 'common': return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
@@ -203,7 +195,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     }
   };
 
-  // 隨機切換每日焦點內容
+  // ?��??��?每日?��??�容
   useEffect(() => {
     const focusTypes: ('prompt' | 'tool' | 'fact')[] = ['prompt', 'tool', 'fact'];
     const randomType = focusTypes[Math.floor(Math.random() * focusTypes.length)];
@@ -213,8 +205,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
   const totalProgress = calculateTotalProgress();
   const nextLesson = getNextLesson();
 
-  // 自定義卡片樣式
-  const cardStyle = {
+  // ?��?義卡?�樣�?  const cardStyle = {
     backgroundColor: 'rgba(255, 255, 255, 0.05)',
     border: '1px solid',
     borderImageSlice: 1,
@@ -222,7 +213,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     borderRadius: '8px',
   };
 
-  // 子組件：技能雷達圖
+  // 子�?件�??�?�雷?��?
   const SkillRadarChart: React.FC<{ skills: SkillLevel[] }> = ({ skills }) => {
     const radarData = skills.map(skill => ({
       skill: isZhTW ? skill.skillZh : skill.skill,
@@ -234,7 +225,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-white flex items-center space-x-2">
             <BarChart3 className="w-5 h-5 text-[#3EFFDC]" />
-            <span>{isZhTW ? '技能雷達圖' : 'Skill Radar'}</span>
+            <span>{isZhTW ? '?�?�雷?��?' : 'Skill Radar'}</span>
           </h3>
         </div>
         <div className="h-64">
@@ -247,7 +238,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
                 domain={[0, 100]} 
               />
               <Radar
-                name="技能等級"
+                name="?�?��?�?
                 dataKey="level"
                 stroke="#3EFFDC"
                 fill="rgba(62, 255, 220, 0.2)"
@@ -259,29 +250,29 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
         </div>
         <div className="mt-4 text-center">
           <p className="text-sm text-[#E0E0E0]">
-            {isZhTW ? '你嘅 AI 技能發展情況' : 'Your AI skill development'}
+            {isZhTW ? '你�? AI ?�?�發展�?�? : 'Your AI skill development'}
           </p>
         </div>
       </div>
     );
   };
 
-  // 子組件：每日 AI 焦點
+  // 子�?件�?每日 AI ?��?
   const DailyAIFocus: React.FC = () => {
     const focusContent = {
       prompt: {
-        title: isZhTW ? '今日挑戰' : 'Daily Challenge',
-        content: isZhTW ? '試下用呢個 Prompt 令 AI 寫一首詩：「作為一位浪漫詩人，請寫一首關於秋天落葉嘅五言絕句」' : 'Try this prompt to make AI write poetry: "As a romantic poet, write a 5-character quatrain about autumn leaves"',
+        title: isZhTW ? '今日?�戰' : 'Daily Challenge',
+        content: isZhTW ? '試�??�呢??Prompt �?AI 寫�?首詩：「�??��?位浪漫詩人�?請寫一首�??��?天落?��?五�?絕句?? : 'Try this prompt to make AI write poetry: "As a romantic poet, write a 5-character quatrain about autumn leaves"',
         icon: <PenTool className="w-5 h-5 text-[#3EFFDC]" />
       },
       tool: {
-        title: isZhTW ? '工具聚焦' : 'Tool Spotlight', 
-        content: isZhTW ? '你試過 Perplexity AI 未？佢擅長做資料整合同實時搜索，對於研究工作特別有用！' : 'Have you tried Perplexity AI? It excels at data integration and real-time search, especially useful for research!',
+        title: isZhTW ? '工具?�焦' : 'Tool Spotlight', 
+        content: isZhTW ? '你試??Perplexity AI ?��?佢�??��?資�??��??�實?��?索�?對於?�究工�??�別?�用�? : 'Have you tried Perplexity AI? It excels at data integration and real-time search, especially useful for research!',
         icon: <Zap className="w-5 h-5 text-[#3EFFDC]" />
       },
       fact: {
-        title: isZhTW ? 'AI 趣聞' : 'AI Fun Fact',
-        content: isZhTW ? '你知道 GPT 個 "T" 係咩意思嗎？係 "Transformer"！呢個架構革命性地改變咗自然語言處理。' : 'Do you know what the "T" in GPT stands for? It\'s "Transformer"! This architecture revolutionized natural language processing.',
+        title: isZhTW ? 'AI �??' : 'AI Fun Fact',
+        content: isZhTW ? '你知??GPT ??"T" 係咩?�思�?？�? "Transformer"！呢?�架構革?�性地?��??�自?��?言?��??? : 'Do you know what the "T" in GPT stands for? It\'s "Transformer"! This architecture revolutionized natural language processing.',
         icon: <Lightbulb className="w-5 h-5 text-[#3EFFDC]" />
       }
     };
@@ -293,7 +284,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-white flex items-center space-x-2">
             <Sparkles className="w-5 h-5 text-[#8A3FFC]" />
-            <span>{isZhTW ? '每日 AI 焦點' : 'Daily AI Focus'}</span>
+            <span>{isZhTW ? '每日 AI ?��?' : 'Daily AI Focus'}</span>
           </h3>
         </div>
         <motion.div
@@ -321,15 +312,15 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     );
   };
 
-  // 子組件：社群熱點
+  // 子�?件�?社群?��?
   const CommunityHotspot: React.FC = () => (
     <div style={cardStyle} className="p-6">
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-white flex items-center space-x-2">
           <Users className="w-5 h-5 text-[#3EFFDC]" />
-          <span>{isZhTW ? '社群熱點' : 'Community Hotspot'}</span>
+          <span>{isZhTW ? '社群?��?' : 'Community Hotspot'}</span>
           <div className="px-2 py-1 bg-[#3EFFDC]/20 border border-[#3EFFDC]/30 rounded-full text-xs text-[#3EFFDC]">
-            {communityData.onlineUsers} {isZhTW ? '在線' : 'online'}
+            {communityData.onlineUsers} {isZhTW ? '?��?' : 'online'}
           </div>
         </h3>
       </div>
@@ -337,7 +328,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
         <div>
           <h4 className="text-sm font-semibold text-[#E0E0E0] mb-3 flex items-center space-x-1">
             <Flame className="w-4 h-4 text-[#3EFFDC]" />
-            <span>{isZhTW ? '最多人討論嘅問題' : 'Most Discussed Topics'}</span>
+            <span>{isZhTW ? '?�多人討�??��?�? : 'Most Discussed Topics'}</span>
           </h4>
           <div className="space-y-2">
             {communityData.hotTopics.map((topic) => (
@@ -357,7 +348,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
         <div>
           <h4 className="text-sm font-semibold text-[#E0E0E0] mb-3 flex items-center space-x-1">
             <Star className="w-4 h-4 text-[#3EFFDC]" />
-            <span>{isZhTW ? '上星期最受歡迎嘅學生作品' : 'Popular Student Works'}</span>
+            <span>{isZhTW ? '上�??��??�歡迎�?學�?作�?' : 'Popular Student Works'}</span>
           </h4>
           <div className="space-y-2">
             {communityData.popularWorks.map((work) => (
@@ -380,13 +371,13 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     </div>
   );
 
-  // 子組件：我嘅成就
+  // 子�?件�??��??�就
   const MyAchievements: React.FC = () => (
     <div style={cardStyle} className="p-6">
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-white flex items-center space-x-2">
           <Trophy className="w-5 h-5 text-[#3EFFDC]" />
-          <span>{isZhTW ? '我嘅成就' : 'My Achievements'}</span>
+          <span>{isZhTW ? '?��??�就' : 'My Achievements'}</span>
         </h3>
       </div>
       <ScrollArea className="h-40">
@@ -423,7 +414,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
     <div className="min-h-screen bg-[#0D0D1A] text-[#E0E0E0]">
       <Navigation />
       
-      {/* 1. 頁面頂部：智能總覽區 */}
+      {/* 1. ?�面?�部：智?�總覽�? */}
       <div className="pt-20 pb-8 bg-gradient-to-r from-[#0D0D1A] to-[#1A1A2E] border-b border-[#3EFFDC]/20">
         <div className="container mx-auto px-4">
           <motion.div
@@ -436,15 +427,15 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
                 <Brain className="w-10 h-10 text-white" />
               </div>
               <div>
-                {/* 個人化歡迎語 */}
+                {/* ?�人?�歡迎�? */}
                 <h1 className="text-3xl font-bold text-white mb-2">
-                  {isZhTW ? `歡迎返嚟，${userProgress.studentName}！` : `Welcome back, ${userProgress.studentName}!`}
+                  {isZhTW ? `歡�?返�?�?{userProgress.studentName}！` : `Welcome back, ${userProgress.studentName}!`}
                 </h1>
                 <p className="text-[#E0E0E0] text-lg mb-4">
                   {isZhTW ? courseData.titleZh : courseData.title}
                 </p>
                 
-                {/* 智能繼續學習按鈕 */}
+                {/* ?�能繼�?學�??��? */}
                 <button
                   onClick={handleContinueLearning}
                   className="bg-[#8A3FFC] hover:bg-[#7A35EC] text-white px-6 py-3 rounded-lg flex items-center space-x-2 transition-colors"
@@ -452,8 +443,8 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
                   <PlayCircle className="w-5 h-5" />
                   <span>
                     {userProgress.lastViewedLesson ? 
-                      (isZhTW ? '繼續學習：核心原則和最佳實踐' : 'Continue Learning: Core Principles') :
-                      (isZhTW ? '由第一課開始' : 'Start from First Lesson')
+                      (isZhTW ? '繼�?學�?：核心�??��??�佳實�? : 'Continue Learning: Core Principles') :
+                      (isZhTW ? '?�第一課�?�? : 'Start from First Lesson')
                     }
                   </span>
                 </button>
@@ -465,7 +456,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
               <div className="flex items-center space-x-2 mb-2">
                 <Trophy className="w-5 h-5 text-[#3EFFDC]" />
                 <span className="text-sm text-white">
-                  {isZhTW ? '學習進度' : 'Progress'}: {totalProgress}%
+                  {isZhTW ? '學�??�度' : 'Progress'}: {totalProgress}%
                 </span>
               </div>
               <div className="w-48 bg-gray-700 rounded-full h-2 mb-2">
@@ -475,25 +466,25 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
                 />
               </div>
               <div className="flex items-center space-x-4 text-sm text-[#E0E0E0]">
-                <span>{formatTime(userProgress.totalTimeSpent)} {isZhTW ? '已學習' : 'studied'}</span>
-                <span>{userProgress.dailyStreak} {isZhTW ? '天連續' : 'day streak'}</span>
+                <span>{formatTime(userProgress.totalTimeSpent)} {isZhTW ? '已學�? : 'studied'}</span>
+                <span>{userProgress.dailyStreak} {isZhTW ? '天�??' : 'day streak'}</span>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* 主要內容區域 */}
+      {/* 主�??�容?�??*/}
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          {/* 2. 主欄 (左側)：互動式課程目錄 */}
+          {/* 2. 主�? (左側)：�??��?課�??��? */}
           <div className="lg:col-span-2">
             <div style={cardStyle} className="p-6">
               <div className="mb-6">
                 <h2 className="text-xl font-semibold text-white flex items-center space-x-2">
                   <BookMarked className="w-6 h-6 text-[#3EFFDC]" />
-                  <span>{isZhTW ? '課程模塊' : 'Course Modules'}</span>
+                  <span>{isZhTW ? '課�?模�?' : 'Course Modules'}</span>
                 </h2>
               </div>
               <Accordion type="multiple" className="w-full" defaultValue={courseData.modules.map(module => module.id)}>
@@ -522,7 +513,7 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
                                 {isZhTW ? module.titleZh : module.title}
                               </h3>
                               <p className="text-sm text-[#E0E0E0]">
-                                {isZhTW ? module.estimatedTimeZh : module.estimatedTime} • {module.lessons.length} {isZhTW ? '課' : 'lessons'}
+                                {isZhTW ? module.estimatedTimeZh : module.estimatedTime} ??{module.lessons.length} {isZhTW ? '�? : 'lessons'}
                               </p>
                             </div>
                           </div>
@@ -546,10 +537,10 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
                                 isUnlocked ? 'bg-white/5' : 'bg-white/2'
                               }`}>
                                 <div className="flex items-center space-x-3">
-                                  {/* 狀態圖標 */}
+                                  {/* ?�?��?�?*/}
                                   {getLessonStatusIcon(lesson)}
                                   
-                                  {/* 類型圖標 */}
+                                  {/* 類�??��? */}
                                   {getLessonTypeIcon(lesson)}
                                   
                                   <div>
@@ -580,18 +571,18 @@ const CourseDashboardPage: React.FC<CourseDashboardPageProps> = ({ courseId }) =
             </div>
           </div>
 
-          {/* 3. 資訊邊欄 (右側)：個人化儀表板 */}
+          {/* 3. 資�??��? (?�側)：個人?��?表板 */}
           <div className="space-y-6">
-            {/* A. 技能雷達圖 */}
+            {/* A. ?�?�雷?��? */}
             <SkillRadarChart skills={userProgress.skillCompetency} />
             
-            {/* B. 每日 AI 焦點 */}
+            {/* B. 每日 AI ?��? */}
             <DailyAIFocus />
             
-            {/* C. 社群熱點 */}
+            {/* C. 社群?��? */}
             <CommunityHotspot />
             
-            {/* D. 我嘅成就 */}
+            {/* D. ?��??�就 */}
             <MyAchievements />
           </div>
         </div>

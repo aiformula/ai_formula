@@ -16,148 +16,148 @@ export interface BlogPost {
   tags: string[];
   tagsEn: string[];
   views: string;
-  publishDate: Date; // 用於排序
+  publishDate: Date; // ?�於?��?
 }
 
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "AI Formula 如何幫助香港中小企實現業務自動化轉型",
+    title: "AI Formula 如�?幫助香港中�?企實?�業?�自?��?轉�?",
     titleEn: "How AI Formula Helps Hong Kong SMEs Achieve Business Automation Transformation",
-    excerpt: "深入了解AI Formula的服務理念和方法論，我們如何為香港中小企業提供量身定制的AI自動化解決方案，從諮詢到實施的完整服務流程。",
+    excerpt: "深入了解AI Formula?��??��?念�??��?論�??�們�?何為香港中�?企業?��??�身定制?�AI?��??�解決方案�?從諮詢到實施?��??��??��?程�?,
     excerptEn: "Learn about AI Formula's service philosophy and methodology, how we provide customized AI automation solutions for Hong Kong SMEs, from consultation to implementation.",
     author: "Kenneth",
-    date: "2025年5月15日",
+    date: "2025�???5??,
     dateEn: "May 15, 2025",
-    readTime: "8分鐘閱讀",
+    readTime: "8?��??��?",
     readTimeEn: "8 min read",
-    category: "公司介紹",
+    category: "?�司介紹",
     categoryEn: "Company Introduction",
-    image: "🚀",
+    image: "??",
     featured: true,
-    tags: ["AI Formula", "商業自動化", "香港中小企", "數位轉型"],
+    tags: ["AI Formula", "?�業?��???, "香港中�?�?, "?��?轉�?"],
     tagsEn: ["AI Formula", "Business Automation", "Hong Kong SME", "Digital Transformation"],
     views: "156",
     publishDate: new Date('2025-05-15')
   },
   {
     id: 2,
-    title: "選擇AI Formula的五大理由：為何我們是香港最佳AI自動化夥伴",
+    title: "?��?AI Formula?��?大�??��??��??�們是香港?�佳AI?��??�夥�?,
     titleEn: "5 Reasons to Choose AI Formula: Why We're Hong Kong's Best AI Automation Partner",
-    excerpt: "探索AI Formula的核心優勢：本地化服務、專業團隊、成功案例、持續支援和合理價格。了解為何越來越多香港企業選擇我們作為AI轉型夥伴。",
+    excerpt: "?�索AI Formula?�核心優?��??�地?��??�、�?業�??�、�??��?例、�?續支?��??��??�格?��?�?��何�?來�?多�?港�?業選?��??��??�AI轉�?夥伴??,
     excerptEn: "Discover AI Formula's core advantages: localized service, professional team, success stories, ongoing support and reasonable pricing. Learn why more Hong Kong businesses choose us as their AI transformation partner.",
     author: "David",
-    date: "2025年5月12日",
+    date: "2025�???2??,
     dateEn: "May 12, 2025",
-    readTime: "12分鐘閱讀",
+    readTime: "12?��??��?",
     readTimeEn: "12 min read",
-    category: "公司優勢",
+    category: "?�司?�勢",
     categoryEn: "Company Advantages",
-    image: "⭐",
+    image: "�?,
     featured: true,
-    tags: ["AI Formula", "服務優勢", "專業團隊", "客戶成功"],
+    tags: ["AI Formula", "?��??�勢", "專業?��?", "客戶?��?"],
     tagsEn: ["AI Formula", "Service Advantages", "Professional Team", "Customer Success"],
     views: "143",
     publishDate: new Date('2025-05-12')
   },
   {
     id: 3,
-    title: "Make.com是什麼？香港企業如何使用它實現自動化",
+    title: "Make.com?��?麼�?香港企業如�?使用它實?�自?��?",
     titleEn: "What is Make.com? How Hong Kong Businesses Can Use It for Automation",
-    excerpt: "全面介紹Make.com這個強大的自動化平台，從基本概念到實際應用，幫助香港企業了解如何透過Make.com提升工作效率和業務流程。",
+    excerpt: "?�面介紹Make.com?�個強大�??��??�平?��?從基?��?念到實�??�用，幫?��?港�?業�?�??何透�?Make.com?��?工�??��??�業?��?程�?,
     excerptEn: "Comprehensive introduction to Make.com, a powerful automation platform. From basic concepts to practical applications, helping Hong Kong businesses understand how to improve work efficiency and business processes through Make.com.",
     author: "David",
-    date: "2025年5月20日",
+    date: "2025�???0??,
     dateEn: "May 20, 2025",
-    readTime: "10分鐘閱讀",
+    readTime: "10?��??��?",
     readTimeEn: "10 min read",
-    category: "工具指南",
+    category: "工具?��?",
     categoryEn: "Tool Guide",
-    image: "🔧",
+    image: "?��",
     featured: false,
-    tags: ["Make.com", "自動化工具", "工作流程", "香港企業"],
+    tags: ["Make.com", "?��??�工??, "工�?流�?", "香港企業"],
     tagsEn: ["Make.com", "Automation Tools", "Workflow", "Hong Kong Business"],
     views: "0",
     publishDate: new Date('2025-05-20')
   },
   {
     id: 4,
-    title: "n8n是什麼？開源自動化平台的終極指南",
+    title: "n8n?��?麼�??��??��??�平?��?終極?��?",
     titleEn: "What is n8n? The Ultimate Guide to Open Source Automation Platform",
-    excerpt: "深入探索n8n這個強大的開源自動化平台，了解它如何幫助企業實現工作流程自動化，以及它與其他自動化工具的區別。適合想要更多控制權和自定義選項的香港企業。",
+    excerpt: "深入?�索n8n?�個強大�??��??��??�平?��?了解它�?何幫?��?業實?�工作�?程自?��?，以?��??�其他自?��?工具?��??�。適?�想要更多控?��??�自定義?��??��?港�?業�?,
     excerptEn: "Dive deep into n8n, a powerful open-source automation platform. Learn how it helps businesses achieve workflow automation and its differences from other automation tools. Perfect for Hong Kong businesses seeking more control and customization options.",
     author: "Kenneth",
-    date: "2025年5月25日",
+    date: "2025�???5??,
     dateEn: "May 25, 2025",
-    readTime: "12分鐘閱讀",
+    readTime: "12?��??��?",
     readTimeEn: "12 min read",
-    category: "工具指南",
+    category: "工具?��?",
     categoryEn: "Tool Guide",
-    image: "⚙️",
+    image: "?��?",
     featured: false,
-    tags: ["n8n", "開源自動化", "工作流程", "自主託管"],
+    tags: ["n8n", "?��??��???, "工�?流�?", "?�主託管"],
     tagsEn: ["n8n", "Open Source Automation", "Workflow", "Self-hosted"],
     views: "0",
     publishDate: new Date('2025-05-25')
   },
   {
     id: 5,
-    title: "自動化是什麼？為何我們需要它？",
+    title: "?��??�是什麼�??��??�們�?要�?�?,
     titleEn: "What is Automation? Why Do We Need It?",
-    excerpt: "全面解析自動化的基本概念、發展歷程和重要性。了解自動化如何改變我們的工作方式，為何每個企業都應該考慮實施自動化解決方案來提升效率和競爭力。",
+    excerpt: "?�面�???��??��??�本概念?�發展歷程�??��??�。�?�?��?��?如�??��??�們�?工�??��?，為何�??��?業都?�該?�慮實施?��??�解決方案�??��??��??�競?��???,
     excerptEn: "Comprehensive analysis of automation's basic concepts, development history, and importance. Understand how automation changes our work methods and why every business should consider implementing automation solutions to improve efficiency and competitiveness.",
     author: "David",
-    date: "2025年5月28日",
+    date: "2025�???8??,
     dateEn: "May 28, 2025",
-    readTime: "9分鐘閱讀",
+    readTime: "9?��??��?",
     readTimeEn: "9 min read",
-    category: "基礎知識",
+    category: "?��??��?",
     categoryEn: "Fundamentals",
-    image: "🤖",
+    image: "??",
     featured: false,
-    tags: ["自動化", "基礎概念", "企業效率", "數位轉型"],
+    tags: ["?��???, "?��?概念", "企業?��?", "?��?轉�?"],
     tagsEn: ["Automation", "Basic Concepts", "Business Efficiency", "Digital Transformation"],
     views: "0",
     publishDate: new Date('2025-05-28')
   },
   {
     id: 6,
-    title: "Neuralink 的下一步：從意念打機到人機融合，我們離科幻未來還有多遠？",
+    title: "Neuralink ?��?一步�?從�?念�?機到人�??��?，�??�離科幻?��??��?多�?�?,
     titleEn: "Neuralink's Next Step: From Mind Gaming to Human-Machine Fusion, How Far Are We from a Sci-Fi Future?",
-    excerpt: "深入剖析 Neuralink 最新的腦機介面技術突破，從目前七名志願者的成功案例到2028年人腦與AI高速整合的宏大願景，探討這項顛覆性技術背後的機遇和倫理挑戰。",
+    excerpt: "深入?��? Neuralink ?�?��??��?介面?�術�??��?從目?��??��?願者�??��?案�???028年人?��?AI高速整?��?宏大願景，探討這�?顛�??��?術�?後�?機�??�倫�??�戰??,
     excerptEn: "In-depth analysis of Neuralink's latest brain-computer interface breakthroughs, from current success stories of seven volunteers to the grand vision of high-speed brain-AI integration by 2028, exploring the opportunities and ethical challenges behind this disruptive technology.",
     author: "Kenneth",
-    date: "2025年6月29日",
+    date: "2025�???9??,
     dateEn: "June 29, 2025",
-    readTime: "15分鐘閱讀",
+    readTime: "15?��??��?",
     readTimeEn: "15 min read",
-    category: "科技前瞻",
+    category: "科�??�瞻",
     categoryEn: "Tech Innovation",
-    image: "🧠",
+    image: "??",
     featured: false,
-    tags: ["Neuralink", "腦機介面", "人工智能", "科技倫理", "未來科技"],
+    tags: ["Neuralink", "?��?介面", "人工?�能", "科�??��?", "?��?科�?"],
     tagsEn: ["Neuralink", "Brain-Computer Interface", "Artificial Intelligence", "Tech Ethics", "Future Technology"],
     views: "0",
     publishDate: new Date('2025-06-29')
   }
 ];
 
-// 排序函數：由舊到新
+// ?��??�數：由?�到??
 export const getSortedPosts = () => {
   return [...blogPosts].sort((a, b) => a.publishDate.getTime() - b.publishDate.getTime());
 };
 
-// 排序函數：由新到舊
+// ?��??�數：由?�到??
 export const getSortedPostsNewest = () => {
   return [...blogPosts].sort((a, b) => b.publishDate.getTime() - a.publishDate.getTime());
 };
 
-// 獲取精選文章
+// ?��?精選?��?
 export const getFeaturedPosts = () => {
   return blogPosts.filter(post => post.featured);
 };
 
-// 獲取最新文章（非精選）
+// ?��??�?��?章�??�精?��?
 export const getRecentPosts = () => {
   return blogPosts.filter(post => !post.featured);
 }; 

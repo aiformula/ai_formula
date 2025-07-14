@@ -67,7 +67,7 @@ export const useCourseData = (isZhTW: boolean) => {
         }
       } else {
         // For other plans, show coming soon message
-        const message = isZhTW ? '此課程即將推出！' : 'This course is coming soon!';
+        const message = isZhTW ? '此課程即將推?��?' : 'This course is coming soon!';
         alert(message);
       }
     } catch (err) {

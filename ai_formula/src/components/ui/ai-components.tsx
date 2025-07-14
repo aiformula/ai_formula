@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './card';
 import { Button } from './button';
 
-// AI Formula 卡片組件
+// AI Formula ?��?組件
 interface AICardProps {
   children: React.ReactNode;
   className?: string;
@@ -44,7 +44,7 @@ export const AICard: React.FC<AICardProps> = ({
   );
 };
 
-// AI Formula 按鈕組件
+// AI Formula ?��?組件
 interface AIButtonProps {
   children: React.ReactNode;
   className?: string;
@@ -97,7 +97,7 @@ export const AIButton: React.FC<AIButtonProps> = ({
   );
 };
 
-// AI Formula 章節容器
+// AI Formula 章�?容器
 interface AISectionProps {
   children: React.ReactNode;
   className?: string;
@@ -135,7 +135,7 @@ export const AISection: React.FC<AISectionProps> = ({
   );
 };
 
-// AI Formula 標題組件
+// AI Formula 標�?組件
 interface AIHeadingProps {
   children: React.ReactNode;
   className?: string;
@@ -187,7 +187,7 @@ export const AIHeading: React.FC<AIHeadingProps> = ({
   );
 };
 
-// AI Formula 文字組件
+// AI Formula ?��?組件
 interface AITextProps {
   children: React.ReactNode;
   className?: string;

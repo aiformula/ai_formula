@@ -32,7 +32,7 @@ interface ValidationResult {
 function assert(condition: boolean, message: string): ValidationResult {
   return {
     passed: condition,
-    message: condition ? `✅ ${message}` : `❌ ${message}`
+    message: condition ? `??${message}` : `??${message}`
   };
 }
 
@@ -79,7 +79,7 @@ export async function validateBasicFunctionality(): Promise<ValidationResult[]> 
   } catch (error) {
     results.push({
       passed: false,
-      message: `❌ Basic functionality validation failed: ${error}`,
+      message: `??Basic functionality validation failed: ${error}`,
       error
     });
   }
@@ -120,7 +120,7 @@ export async function validatePerformanceFeatures(): Promise<ValidationResult[]>
   } catch (error) {
     results.push({
       passed: false,
-      message: `❌ Performance features validation failed: ${error}`,
+      message: `??Performance features validation failed: ${error}`,
       error
     });
   }
@@ -168,7 +168,7 @@ export async function validateDataIntegrity(): Promise<ValidationResult[]> {
   } catch (error) {
     results.push({
       passed: false,
-      message: `❌ Data integrity validation failed: ${error}`,
+      message: `??Data integrity validation failed: ${error}`,
       error
     });
   }
@@ -201,7 +201,7 @@ export async function validateErrorHandling(): Promise<ValidationResult[]> {
   } catch (error) {
     results.push({
       passed: false,
-      message: `❌ Error handling validation failed: ${error}`,
+      message: `??Error handling validation failed: ${error}`,
       error
     });
   }
@@ -228,7 +228,7 @@ export async function validateBackwardCompatibility(): Promise<ValidationResult[
   } catch (error) {
     results.push({
       passed: false,
-      message: `❌ Backward compatibility validation failed: ${error}`,
+      message: `??Backward compatibility validation failed: ${error}`,
       error
     });
   }
@@ -254,7 +254,7 @@ export async function runAllValidations(): Promise<{
     backwardCompatibility: ValidationResult[];
   };
 }> {
-  console.log('🧪 Running course system validation...');
+  console.log('?�� Running course system validation...');
   
   // Clear cache before validation
   clearCourseCache();
@@ -290,7 +290,7 @@ export async function runAllValidations(): Promise<{
   const success = failed === 0;
   
   // Display results
-  console.log('\n📊 Validation Results:');
+  console.log('\n?? Validation Results:');
   console.log('========================');
   console.log(`Basic Functionality: ${basicFunctionality.filter(r => r.passed).length}/${basicFunctionality.length} passed`);
   console.log(`Performance Features: ${performanceFeatures.filter(r => r.passed).length}/${performanceFeatures.length} passed`);
@@ -299,10 +299,10 @@ export async function runAllValidations(): Promise<{
   console.log(`Backward Compatibility: ${backwardCompatibility.filter(r => r.passed).length}/${backwardCompatibility.length} passed`);
   console.log('========================');
   console.log(`Total: ${passed}/${total} passed`);
-  console.log(`Status: ${success ? '✅ ALL TESTS PASSED' : '❌ SOME TESTS FAILED'}`);
+  console.log(`Status: ${success ? '??ALL TESTS PASSED' : '??SOME TESTS FAILED'}`);
   
   // Display detailed results
-  console.log('\n📋 Detailed Results:');
+  console.log('\n?? Detailed Results:');
   allResults.forEach(result => {
     console.log(result.message);
     if (!result.passed && result.error) {
@@ -326,40 +326,40 @@ export async function runAllValidations(): Promise<{
  * Manual test runner for development
  */
 export const runManualTests = async () => {
-  console.log('🧪 Running manual course system tests...');
+  console.log('?�� Running manual course system tests...');
   
   try {
     // Test 1: Basic loading
     console.log('1. Testing basic course loading...');
     const course = await getCourseById('ai-image-video-creation');
-    console.log('✅ Course loaded:', course?.title.en);
+    console.log('??Course loaded:', course?.title.en);
     
     // Test 2: Error handling
     console.log('2. Testing error handling...');
     const response = await getCourseWithErrorHandling('invalid-course');
-    console.log('✅ Error handled:', response.success ? 'FAIL' : 'PASS');
+    console.log('??Error handled:', response.success ? 'FAIL' : 'PASS');
     
     // Test 3: Health check
     console.log('3. Testing health check...');
     const health = await healthCheck();
-    console.log('✅ Health status:', health.status);
+    console.log('??Health status:', health.status);
     
     // Test 4: Performance
     console.log('4. Testing performance...');
     const start = performance.now();
     await preloadCourse('prompt-engineering');
     const end = performance.now();
-    console.log('✅ Preload time:', `${end - start}ms`);
+    console.log('??Preload time:', `${end - start}ms`);
     
     // Test 5: Metadata
     console.log('5. Testing metadata...');
     const metadata = getAllCourseMetadata();
-    console.log('✅ Available courses:', metadata.length);
+    console.log('??Available courses:', metadata.length);
     
-    console.log('🎉 All manual tests passed!');
+    console.log('?? All manual tests passed!');
     
   } catch (error) {
-    console.error('❌ Manual test failed:', error);
+    console.error('??Manual test failed:', error);
   }
 };
 
@@ -367,7 +367,7 @@ export const runManualTests = async () => {
  * Performance benchmark
  */
 export const runPerformanceBenchmark = async () => {
-  console.log('⚡ Running performance benchmark...');
+  console.log('??Running performance benchmark...');
   
   const iterations = 10;
   const courseId = 'ai-image-video-creation';
@@ -394,7 +394,7 @@ export const runPerformanceBenchmark = async () => {
   console.log(`Cached load average: ${avgCached.toFixed(2)}ms`);
   console.log(`Cache improvement: ${((coldEnd - coldStart) / avgCached).toFixed(2)}x faster`);
   
-  console.log('⚡ Benchmark completed!');
+  console.log('??Benchmark completed!');
 };
 
 // Export for easy testing in development
@@ -410,7 +410,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
     validateBackwardCompatibility
   };
   
-  console.log('🔧 Course System Validation Tools loaded!');
+  console.log('?�� Course System Validation Tools loaded!');
   console.log('Available commands:');
   console.log('  - courseSystemTests.runAllValidations()');
   console.log('  - courseSystemTests.runManualTests()');

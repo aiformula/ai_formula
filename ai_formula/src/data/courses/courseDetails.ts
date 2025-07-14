@@ -49,7 +49,7 @@ const courseRegistry: CourseRegistry = {
       id: 'ai-image-video-creation',
       title: {
         en: 'AI Image & Video Creation Mastery',
-        'zh-HK': 'AI圖像影片創作精通課程'
+        'zh-HK': 'AI?��?影�??��?精通課�?
       },
       category: 'Creative Design',
       difficulty: 'Beginner'
@@ -64,7 +64,7 @@ const courseRegistry: CourseRegistry = {
       id: 'prompt-engineering',
       title: {
         en: 'Prompt Engineering Mastery - AI Communication Skills',
-        'zh-HK': '提示工程精通 - AI溝通技巧'
+        'zh-HK': '?�示工�?精�?- AI溝通�?�?
       },
       category: 'Prompt Engineering',
       difficulty: 'Intermediate'

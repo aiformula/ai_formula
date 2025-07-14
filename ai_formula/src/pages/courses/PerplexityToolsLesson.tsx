@@ -33,7 +33,7 @@ import {
   Eye
 } from 'lucide-react';
 
-// 數據結構
+// ?��?結�?
 interface LessonModule {
   id: string;
   title: string;
@@ -60,7 +60,7 @@ interface Discussion {
   likes: number;
 }
 
-// 學習統計組件
+// 學�?統�?組件
 const StatsCard: React.FC<{
   title: string;
   value: string;
@@ -78,7 +78,7 @@ const StatsCard: React.FC<{
   </div>
 );
 
-// 影片播放器組件
+// 影�??�放?��?�?
 const VideoPlayer: React.FC<{
   title: string;
   duration: string;
@@ -108,7 +108,7 @@ const VideoPlayer: React.FC<{
   </div>
 );
 
-// 互動練習組件
+// 互�?練�?組件
 const InteractivePractice: React.FC<{
   title: string;
   description: string;
@@ -121,38 +121,38 @@ const InteractivePractice: React.FC<{
         <p className="text-gray-400 text-sm">{description}</p>
       </div>
       <Badge variant="outline" className="text-blue-400 border-blue-400">
-        實作
+        實�?
       </Badge>
     </div>
     <div className="space-y-3">
       <Textarea
-        placeholder="在此輸入您的 Perplexity 搜索查詢..."
+        placeholder="?�此輸入?��? Perplexity ?�索?�詢..."
         className="bg-gray-900/50 border-gray-600 min-h-[80px]"
       />
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 text-sm text-gray-400">
           <Target className="w-4 h-4" />
-          <span>練習目標: 精確搜索</span>
+          <span>練�??��?: 精確?�索</span>
         </div>
         <Button onClick={onStart} size="sm" className="bg-blue-600 hover:bg-blue-700">
-          開始練習
+          ?��?練�?
         </Button>
       </div>
     </div>
   </div>
 );
 
-// 筆記編輯器組件
+// 筆�?編輯?��?�?
 const NotesEditor: React.FC<{
   notes: string;
   onNotesChange: (notes: string) => void;
 }> = ({ notes, onNotesChange }) => (
   <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
     <div className="flex items-center justify-between mb-4">
-      <h4 className="font-semibold text-white">個人筆記</h4>
+      <h4 className="font-semibold text-white">?�人筆�?</h4>
       <div className="flex items-center gap-2">
         <Badge variant="outline" className="text-xs">
-          自動保存
+          ?��?保�?
         </Badge>
         <Button size="sm" variant="outline">
           <Download className="w-4 h-4 mr-1" />
@@ -163,22 +163,22 @@ const NotesEditor: React.FC<{
     <Textarea
       value={notes}
       onChange={(e) => onNotesChange(e.target.value)}
-      placeholder="記錄您的學習重點、想法和問題..."
+      placeholder="記�??��?學�??��??�想法�??��?..."
       className="bg-gray-900/50 border-gray-600 min-h-[200px] resize-none"
     />
     <div className="flex items-center justify-between mt-3 text-sm text-gray-400">
-      <span>最後更新: 2 分鐘前</span>
+      <span>?�後更?? 2 ?��???/span>
       <span>{notes.length}/1000 字符</span>
     </div>
   </div>
 );
 
-// 主要課程數據
+// 主�?課�??��?
 const lessonModules: LessonModule[] = [
   {
     id: 'search',
     title: 'Search',
-    titleZh: '搜索',
+    titleZh: '?�索',
     icon: <Search className="w-5 h-5" />,
     status: 'current',
     progress: 75
@@ -186,7 +186,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'writing',
     title: 'Writing',
-    titleZh: '寫作',
+    titleZh: '寫�?',
     icon: <Edit className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -194,7 +194,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'analysis',
     title: 'Analysis',
-    titleZh: '分析',
+    titleZh: '?��?',
     icon: <BarChart3 className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -202,7 +202,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'optimization',
     title: 'Optimization',
-    titleZh: '優化',
+    titleZh: '?��?',
     icon: <Target className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -210,7 +210,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'reporting',
     title: 'Reporting',
-    titleZh: '報告',
+    titleZh: '?��?',
     icon: <TrendingUp className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -223,7 +223,7 @@ const discussions: Discussion[] = [
     type: 'instructor',
     author: 'Dr. Chen',
     content: 'Remember to use specific keywords when searching with Perplexity for better results.',
-    contentZh: '記住在使用 Perplexity 搜索時使用具體關鍵詞以獲得更好的結果。',
+    contentZh: '記�??�使??Perplexity ?�索?�使?�具體�??��?以獲得更好�?結�???,
     time: '2 hours ago',
     likes: 12
   },
@@ -232,7 +232,7 @@ const discussions: Discussion[] = [
     type: 'student',
     author: 'Alex Wang',
     content: 'How do I search for academic papers using Perplexity?',
-    contentZh: '如何使用 Perplexity 搜索學術論文？',
+    contentZh: '如�?使用 Perplexity ?�索學�?論�?�?,
     time: '3 hours ago',
     likes: 8
   },
@@ -241,7 +241,7 @@ const discussions: Discussion[] = [
     type: 'faq',
     author: 'FAQ Bot',
     content: 'Common search operators: quotation marks for exact phrases, AND/OR for logical operations.',
-    contentZh: '常見搜索操作符：引號用於精確短語，AND/OR用於邏輯運算。',
+    contentZh: '常�??�索?��?符�?引�??�於精確?��?，AND/OR?�於?�輯?��???,
     time: '1 day ago',
     likes: 15
   }
@@ -249,7 +249,7 @@ const discussions: Discussion[] = [
 
 const PerplexityToolsLesson: React.FC = () => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   
   const [activeModule, setActiveModule] = useState('search');
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -287,7 +287,7 @@ const PerplexityToolsLesson: React.FC = () => {
       <Navigation />
       
       <div className="container mx-auto px-4 pt-24 pb-8">
-        {/* 頂部儀表板 */}
+        {/* ?�部?�表板 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -297,18 +297,18 @@ const PerplexityToolsLesson: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                📊 {isZhTW ? 'Perplexity 工具掌握' : 'Perplexity Tools Mastery'}
+                ?? {isZhTW ? 'Perplexity 工具?�握' : 'Perplexity Tools Mastery'}
               </h1>
               <p className="text-gray-300 mt-2">
-                {isZhTW ? '當前: 搜索技巧' : 'Current: Search Techniques'}
+                {isZhTW ? '?��?: ?�索?��? : 'Current: Search Techniques'}
               </p>
             </div>
             <div className="text-right">
               <div className="text-2xl font-bold text-blue-400">
-                ⏱️ {isZhTW ? '剩餘: 12分' : 'Remaining: 12 min'}
+                ?��? {isZhTW ? '?��?: 12?? : 'Remaining: 12 min'}
               </div>
               <div className="text-sm text-gray-400">
-                {isZhTW ? '第 2 課 / 共 5 課' : 'Lesson 2 / 5'}
+                {isZhTW ? '�?2 �?/ ??5 �? : 'Lesson 2 / 5'}
               </div>
             </div>
           </div>
@@ -323,7 +323,7 @@ const PerplexityToolsLesson: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* 模組選擇標籤 */}
+        {/* 模�??��?標籤 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -360,45 +360,45 @@ const PerplexityToolsLesson: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* 主要學習區域 - 三欄佈局 */}
+        {/* 主�?學�??�??- 三�?佈�? */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8"
         >
-          {/* 左欄 - 理論學習 */}
+          {/* 左�? - ?��?學�? */}
           <div className="lg:col-span-1">
             <Card className="bg-gray-800/50 border-gray-700 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <BookOpen className="w-5 h-5 text-blue-400" />
-                  {isZhTW ? '📚 理論' : '📚 Theory'}
+                  {isZhTW ? '?? ?��?' : '?? Theory'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-white mb-2">搜索技巧</h4>
+                    <h4 className="font-semibold text-white mb-2">?�索?��?/h4>
                     <p className="text-gray-400 text-sm mb-3">
-                      掌握 Perplexity 的高級搜索功能，包括語義搜索、引用追蹤和多語言支持。
+                      ?�握 Perplexity ?��?級�?索�??��??�括語義?�索?��??�追蹤�?多�?言?��???
                     </p>
                   </div>
                   
                   <VideoPlayer
-                    title="Perplexity 搜索基礎"
+                    title="Perplexity ?�索?��?"
                     duration="8:45"
                     isPlaying={isVideoPlaying}
                     onToggle={() => setIsVideoPlaying(!isVideoPlaying)}
                   />
                   
                   <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
-                    <h5 className="font-semibold text-blue-400 mb-2">✨ 核心概念</h5>
+                    <h5 className="font-semibold text-blue-400 mb-2">???��?概念</h5>
                     <ul className="text-sm text-gray-300 space-y-1">
-                      <li>• 語義搜索 vs 關鍵詞搜索</li>
-                      <li>• 引用來源驗證</li>
-                      <li>• 搜索結果優化</li>
-                      <li>• 多語言查詢技巧</li>
+                      <li>??語義?�索 vs ?�鍵詞�?�?/li>
+                      <li>??引用來�?驗�?</li>
+                      <li>???�索結�??��?</li>
+                      <li>??多�?言?�詢?��?/li>
                     </ul>
                   </div>
                 </div>
@@ -406,36 +406,36 @@ const PerplexityToolsLesson: React.FC = () => {
             </Card>
           </div>
 
-          {/* 中欄 - 實作練習 */}
+          {/* 中�? - 實�?練�? */}
           <div className="lg:col-span-1">
             <Card className="bg-gray-800/50 border-gray-700 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Target className="w-5 h-5 text-orange-400" />
-                  {isZhTW ? '🛠️ 實作' : '🛠️ Practice'}
+                  {isZhTW ? '??�?實�?' : '??�?Practice'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <InteractivePractice
-                    title="即時搜索練習"
-                    description="使用 Perplexity 進行實時搜索練習，學習如何構建有效的查詢。"
+                    title="?��??�索練�?"
+                    description="使用 Perplexity ?��?實�??�索練�?，學習�?何�?建�??��??�詢??
                     onStart={() => {}}
                   />
                   
                   <div className="bg-orange-900/20 p-4 rounded-lg border border-orange-500/30">
-                    <h5 className="font-semibold text-orange-400 mb-2">🎯 練習目標</h5>
+                    <h5 className="font-semibold text-orange-400 mb-2">?�� 練�??��?</h5>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-300">搜索準確性</span>
+                        <span className="text-gray-300">?�索準確??/span>
                         <span className="text-orange-400">85%</span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-300">查詢優化</span>
+                        <span className="text-gray-300">?�詢?��?</span>
                         <span className="text-orange-400">92%</span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-300">引用驗證</span>
+                        <span className="text-gray-300">引用驗�?</span>
                         <span className="text-orange-400">78%</span>
                       </div>
                     </div>
@@ -444,11 +444,11 @@ const PerplexityToolsLesson: React.FC = () => {
                   <div className="grid grid-cols-2 gap-2">
                     <Button size="sm" variant="outline" className="flex items-center gap-1">
                       <Play className="w-4 h-4" />
-                      開始
+                      ?��?
                     </Button>
                     <Button size="sm" variant="outline" className="flex items-center gap-1">
                       <Settings className="w-4 h-4" />
-                      設定
+                      設�?
                     </Button>
                   </div>
                 </div>
@@ -456,13 +456,13 @@ const PerplexityToolsLesson: React.FC = () => {
             </Card>
           </div>
 
-          {/* 右欄 - 筆記 */}
+          {/* ?��? - 筆�? */}
           <div className="lg:col-span-1">
             <Card className="bg-gray-800/50 border-gray-700 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <FileText className="w-5 h-5 text-green-400" />
-                  {isZhTW ? '📝 筆記' : '📝 Notes'}
+                  {isZhTW ? '?? 筆�?' : '?? Notes'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -475,19 +475,19 @@ const PerplexityToolsLesson: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* 討論區和學習統計 */}
+        {/* 討�??�?�學習統�?*/}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8"
         >
-          {/* 討論區 */}
+          {/* 討�??� */}
           <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <MessageSquare className="w-5 h-5 text-purple-400" />
-                {isZhTW ? '💬 討論區' : '💬 Discussion'}
+                {isZhTW ? '?�� 討�??�' : '?�� Discussion'}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -504,8 +504,8 @@ const PerplexityToolsLesson: React.FC = () => {
                           {discussion.author}
                         </span>
                         <Badge variant="outline" className="text-xs">
-                          {discussion.type === 'instructor' ? '🧑‍💼 導師' : 
-                           discussion.type === 'student' ? '👥 學員' : '💡 FAQ'}
+                          {discussion.type === 'instructor' ? '???��??導師' : 
+                           discussion.type === 'student' ? '?�� 學員' : '?�� FAQ'}
                         </Badge>
                       </div>
                       <span className="text-xs text-gray-500">{discussion.time}</span>
@@ -514,8 +514,8 @@ const PerplexityToolsLesson: React.FC = () => {
                       {isZhTW ? discussion.contentZh : discussion.content}
                     </p>
                     <div className="flex items-center gap-2 text-xs text-gray-400">
-                      <button className="hover:text-red-400">❤️ {discussion.likes}</button>
-                      <button className="hover:text-blue-400">回覆</button>
+                      <button className="hover:text-red-400">?��? {discussion.likes}</button>
+                      <button className="hover:text-blue-400">?��?</button>
                     </div>
                   </div>
                 ))}
@@ -523,36 +523,36 @@ const PerplexityToolsLesson: React.FC = () => {
             </CardContent>
           </Card>
 
-          {/* 學習統計 */}
+          {/* 學�?統�? */}
           <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <BarChart3 className="w-5 h-5 text-blue-400" />
-                {isZhTW ? '📊 學習統計' : '📊 Learning Stats'}
+                {isZhTW ? '?? 學�?統�?' : '?? Learning Stats'}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-4">
                 <StatsCard
-                  title={isZhTW ? '本課時間' : 'Session Time'}
-                  value={`${learningStats.timeSpent}分`}
+                  title={isZhTW ? '?�課?��?' : 'Session Time'}
+                  value={`${learningStats.timeSpent}?�`}
                   icon={<Clock className="w-5 h-5" />}
                   color="from-blue-500/20 to-blue-600/20"
                 />
                 <StatsCard
-                  title={isZhTW ? '完成率' : 'Completion'}
+                  title={isZhTW ? '完�??? : 'Completion'}
                   value={`${learningStats.completionRate}%`}
                   icon={<TrendingUp className="w-5 h-5" />}
                   color="from-green-500/20 to-green-600/20"
                 />
                 <StatsCard
-                  title={isZhTW ? '正確率' : 'Accuracy'}
+                  title={isZhTW ? '�?��?? : 'Accuracy'}
                   value={`${learningStats.accuracy}%`}
                   icon={<Target className="w-5 h-5" />}
                   color="from-orange-500/20 to-orange-600/20"
                 />
                 <StatsCard
-                  title={isZhTW ? '連續天數' : 'Streak'}
+                  title={isZhTW ? '???天數' : 'Streak'}
                   value={`${learningStats.streak}天`}
                   icon={<Award className="w-5 h-5" />}
                   color="from-purple-500/20 to-purple-600/20"
@@ -572,26 +572,26 @@ const PerplexityToolsLesson: React.FC = () => {
           <div className="flex items-center justify-between">
             <Button variant="outline" className="flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />
-              {isZhTW ? '上一課' : 'Previous'}
+              {isZhTW ? '上�?�? : 'Previous'}
             </Button>
             
             <div className="flex items-center gap-4">
               <Button variant="outline" className="flex items-center gap-2">
                 <Pause className="w-4 h-4" />
-                {isZhTW ? '暫停' : 'Pause'}
+                {isZhTW ? '?��?' : 'Pause'}
               </Button>
               <Button className="flex items-center gap-2 bg-green-600 hover:bg-green-700">
                 <CheckCircle className="w-4 h-4" />
-                {isZhTW ? '完成' : 'Complete'}
+                {isZhTW ? '完�?' : 'Complete'}
               </Button>
               <Button variant="outline" className="flex items-center gap-2">
                 <Share2 className="w-4 h-4" />
-                {isZhTW ? '分享' : 'Share'}
+                {isZhTW ? '?�享' : 'Share'}
               </Button>
             </div>
             
             <Button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700">
-              {isZhTW ? '下一課' : 'Next'}
+              {isZhTW ? '下�?�? : 'Next'}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>

@@ -26,7 +26,7 @@ const ErrorDisplay: React.FC<{ error: string; onRetry: () => void; isZhTW: boole
           onClick={onRetry}
           className="ml-2 text-blue-400 hover:text-blue-300 underline"
         >
-          {isZhTW ? '重試' : 'Retry'}
+          {isZhTW ? '?�試' : 'Retry'}
         </button>
       </AlertDescription>
     </Alert>
@@ -63,7 +63,7 @@ const Course: React.FC = () => {
 
   // Loading state
   if (isLoading) {
-    return <PageLoadingSpinner message={isZhTW ? '載入課程內容中...' : 'Loading course content...'} />;
+    return <PageLoadingSpinner message={isZhTW ? '載入課�??�容�?..' : 'Loading course content...'} />;
   }
 
   return (
@@ -83,8 +83,8 @@ const Course: React.FC = () => {
         <Navigation />
 
         {/* Main Content with Suspense */}
-        <Suspense fallback={<PageLoadingSpinner message={isZhTW ? '載入組件中...' : 'Loading components...'} />}>
-          <main role="main" aria-label={isZhTW ? "課程頁面主要內容" : "Course page main content"}>
+        <Suspense fallback={<PageLoadingSpinner message={isZhTW ? '載入組件�?..' : 'Loading components...'} />}>
+          <main role="main" aria-label={isZhTW ? "課�??�面主�??�容" : "Course page main content"}>
             {/* Learning Plans Section */}
             <LearningPlansSection 
               plans={learningPlans}

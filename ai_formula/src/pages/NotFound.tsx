@@ -19,7 +19,7 @@ import {
   Users
 } from 'lucide-react'
 
-// 類型定義 / Type Definitions
+// 類�?定義 / Type Definitions
 interface NotFoundProps {
   statusCode?: number
   customMessage?: string
@@ -42,9 +42,9 @@ interface ErrorReport {
 interface QuickLink {
   href: string
   icon: React.ComponentType<{ className?: string }>
-  name: { en: string; 'zh-TW': string }
+  name: { en: string; 'zh-HK': string }
   badge?: { text: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }
-  description: { en: string; 'zh-TW': string }
+  description: { en: string; 'zh-HK': string }
 }
 
 interface NotFoundTexts {
@@ -62,87 +62,87 @@ interface NotFoundTexts {
 const suggestedRoutes: SuggestedRoute[] = [
   {
     path: '/',
-    name: { en: 'Home', zh: '首頁' },
+    name: { en: 'Home', zh: '首�?' },
     icon: <Home className="h-5 w-5" />,
-    description: { en: 'Return to homepage', zh: '返回首頁' }
+    description: { en: 'Return to homepage', zh: '返�?首�?' }
   },
   {
     path: '/course',
-    name: { en: 'Courses', zh: '課程' },
+    name: { en: 'Courses', zh: '課�?' },
     icon: <BookOpen className="h-5 w-5" />,
-    description: { en: 'Browse our courses', zh: '瀏覽我們的課程' }
+    description: { en: 'Browse our courses', zh: '?�覽?�們�?課�?' }
   },
   {
     path: '/blog',
-    name: { en: 'Blog', zh: '網誌' },
+    name: { en: 'Blog', zh: '網�?' },
     icon: <BookOpen className="h-5 w-5" />,
-    description: { en: 'Read our articles', zh: '閱讀我們的文章' }
+    description: { en: 'Read our articles', zh: '?��??�們�??��?' }
   },
   {
     path: '/about',
-    name: { en: 'About', zh: '關於我們' },
+    name: { en: 'About', zh: '?�於?��? },
     icon: <HelpCircle className="h-5 w-5" />,
-    description: { en: 'Learn about us', zh: '了解我們' }
+    description: { en: 'Learn about us', zh: '了解?��? }
   }
 ]
 
-// 錯誤報告函數 / Error Reporting Function
+// ?�誤?��??�數 / Error Reporting Function
 const reportError = (errorData: ErrorReport): void => {
-  // 在生產環境中，這裡會發送到錯誤追蹤服務
+  // ?��??�環境中，這裡?�發?�到?�誤追蹤?��?
   // In production, this would send to error tracking service
   if (process.env.NODE_ENV === 'development') {
     console.warn('404 Error Report:', errorData)
   }
   
-  // 可以集成到分析工具
+  // ?�以?��??��??�工??
   // Could integrate with analytics tools
   try {
-    // 例如: analytics.track('404_error', errorData)
+    // 例�?: analytics.track('404_error', errorData)
   } catch (error) {
-    // 靜默處理分析錯誤
+    // ?��??��??��??�誤
     // Silently handle analytics errors
   }
 }
 
-// 快速連結配置 / Quick Links Configuration
+// 快速�???�置 / Quick Links Configuration
 const quickLinks: QuickLink[] = [
   {
     href: '/',
     icon: Home,
-    name: { en: 'Home', 'zh-TW': '首頁' },
+    name: { en: 'Home', 'zh-HK': '首�?' },
     badge: { text: 'Popular', variant: 'default' },
-    description: { en: 'Return to homepage', 'zh-TW': '返回首頁' }
+    description: { en: 'Return to homepage', 'zh-HK': '返�?首�?' }
   },
   {
     href: '/courses',
     icon: BookOpen,
-    name: { en: 'Courses', 'zh-TW': '課程' },
+    name: { en: 'Courses', 'zh-HK': '課�?' },
     badge: { text: 'New', variant: 'secondary' },
-    description: { en: 'Browse our courses', 'zh-TW': '瀏覽我們的課程' }
+    description: { en: 'Browse our courses', 'zh-HK': '?�覽?�們�?課�?' }
   },
   {
     href: '/blog',
     icon: FileText,
-    name: { en: 'Blog', 'zh-TW': '網誌' },
+    name: { en: 'Blog', 'zh-HK': '網�?' },
     badge: { text: 'Updated', variant: 'outline' },
-    description: { en: 'Read our articles', 'zh-TW': '閱讀我們的文章' }
+    description: { en: 'Read our articles', 'zh-HK': '?��??�們�??��?' }
   },
   {
     href: '/about',
     icon: Users,
-    name: { en: 'About', 'zh-TW': '關於我們' },
+    name: { en: 'About', 'zh-HK': '?�於?��? },
     badge: { text: 'Team', variant: 'secondary' },
-    description: { en: 'Learn about us', 'zh-TW': '了解我們' }
+    description: { en: 'Learn about us', 'zh-HK': '了解?��? }
   }
 ]
 
-// 主要 NotFound 組件 / Main NotFound Component
+// 主�? NotFound 組件 / Main NotFound Component
 const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { language } = useLanguage()
   
-  // 狀態管理 / State Management
+  // ?�?�管??/ State Management
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
   const [showSuggestions, setShowSuggestions] = useState(true)
@@ -158,31 +158,31 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
       error404: '404',
       pageNotFound: 'Page Not Found'
     },
-    'zh-TW': {
-      title: '糟糕！找不到頁面',
-      subtitle: '您要找的頁面不存在。',
-      description: '別擔心，這種情況時有發生。頁面可能已移動、刪除，或您可能輸入錯誤的網址。',
-      quickLinks: '快速連結',
-      backToHome: '返回首頁',
-      contactSupport: '聯繫支援',
+    'zh-HK': {
+      title: '糟�?！找不到?�面',
+      subtitle: '?��??��??�面不�??��?,
+      description: '?��?心�??�種?��??��??��??��??�可?�已移�??�刪?��??�您?�能輸入?�誤?�網?�??,
+      quickLinks: '快速�??',
+      backToHome: '返�?首�?',
+      contactSupport: '?�繫?�援',
       error404: '404',
-      pageNotFound: '找不到頁面'
+      pageNotFound: '?��??��???
     }
   }
 
   const t = notFoundTexts[language] || notFoundTexts.en
 
-  // 設置頁面標題和狀態碼 / Set page title and status code
+  // 設置?�面標�??��??�碼 / Set page title and status code
   useEffect(() => {
     document.title = `${statusCode} - ${t.title} | AI Formula`
     
-    // 設置 meta 描述 / Set meta description
+    // 設置 meta ?�述 / Set meta description
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
       metaDescription.setAttribute('content', t.description)
     }
     
-    // 錯誤報告 / Error reporting
+    // ?�誤?��? / Error reporting
     const errorData: ErrorReport = {
       path: location.pathname,
       timestamp: new Date().toISOString(),
@@ -193,20 +193,20 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
     reportError(errorData)
   }, [statusCode, t.title, t.description, location.pathname])
 
-  // 搜索處理 / Search handling
+  // ?�索?��? / Search handling
   const handleSearch = useCallback(async (query: string) => {
     if (!query.trim()) return
     
     setIsSearching(true)
     
     try {
-      // 模擬搜索延遲 / Simulate search delay
+      // 模擬?�索延遲 / Simulate search delay
       await new Promise(resolve => setTimeout(resolve, 800))
       
-      // 在實際應用中，這裡會調用搜索 API
+      // ?�實?��??�中，這裡?�調?��?�?API
       // In real application, this would call search API
       
-      // 基於查詢的簡單路由建議 / Simple route suggestions based on query
+      // ?�於?�詢?�簡?�路?�建�?/ Simple route suggestions based on query
       const query_lower = query.toLowerCase()
       const matchingRoutes = suggestedRoutes.filter(route => 
         route.name.en.toLowerCase().includes(query_lower) ||
@@ -225,14 +225,14 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
     }
   }, [])
 
-  // 鍵盤事件處理 / Keyboard event handling
+  // ?�盤事件?��? / Keyboard event handling
   const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSearch(searchQuery)
     }
   }, [searchQuery, handleSearch])
 
-  // 返回上一頁 / Go back
+  // 返�?上�???/ Go back
   const handleGoBack = useCallback(() => {
     if (window.history.length > 1) {
       navigate(-1)
@@ -241,7 +241,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
     }
   }, [navigate])
 
-  // 動畫變體 / Animation variants
+  // ?�畫變�? / Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -261,7 +261,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
-      {/* 背景裝飾 / Background decoration */}
+      {/* ?�景裝飾 / Background decoration */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%)`
@@ -274,7 +274,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
         animate="visible"
         className="max-w-4xl w-full relative z-10"
       >
-        {/* 主要錯誤卡片 / Main error card */}
+        {/* 主�??�誤?��? / Main error card */}
         <motion.div variants={itemVariants}>
           <Card className="bg-gray-900 border-gray-700 mb-8">
             <CardHeader className="text-center pb-4">
@@ -298,17 +298,17 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 {t.description}
               </p>
               
-              {/* 錯誤詳情 / Error details */}
+              {/* ?�誤詳�? / Error details */}
               <div className="bg-gray-800 rounded-lg p-4 mb-6 text-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <span className="text-gray-400">未找到於:</span>
+                    <span className="text-gray-400">?�找?�於:</span>
                     <code className="ml-2 text-red-300 bg-gray-700 px-2 py-1 rounded">
                       {location.pathname}
                     </code>
                   </div>
                   <div>
-                    <span className="text-gray-400">時間戳:</span>
+                    <span className="text-gray-400">?��???</span>
                     <span className="ml-2 text-gray-300">
                       {new Date().toLocaleString()}
                     </span>
@@ -316,12 +316,12 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 </div>
               </div>
 
-              {/* 搜索區域 / Search area */}
+              {/* ?�索?�??/ Search area */}
               <div className="max-w-md mx-auto mb-6">
                 <div className="flex gap-2">
                   <Input
                     type="text"
-                    placeholder="搜索頁面..."
+                    placeholder="?�索?�面..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={handleKeyPress}
@@ -336,19 +336,19 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                     {isSearching ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                        搜索中...
+                        ?�索�?..
                       </>
                     ) : (
                       <>
                         <Search className="h-4 w-4 mr-2" />
-                        搜索
+                        ?�索
                       </>
                     )}
                   </Button>
                 </div>
               </div>
 
-              {/* 動作按鈕 / Action buttons */}
+              {/* ?��??��? / Action buttons */}
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button
                   onClick={handleGoBack}
@@ -356,7 +356,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                   className="border-gray-600 text-gray-300 hover:bg-gray-800"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  返回
+                  返�?
                 </Button>
                 <Button
                   asChild
@@ -364,7 +364,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 >
                   <Link to="/">
                     <Home className="h-4 w-4 mr-2" />
-                    返回首頁
+                    返�?首�?
                   </Link>
                 </Button>
               </div>
@@ -372,7 +372,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
           </Card>
         </motion.div>
 
-        {/* 建議頁面 / Suggested pages */}
+        {/* 建議?�面 / Suggested pages */}
         <AnimatePresence>
           {showSuggestions && (
             <motion.div
@@ -385,10 +385,10 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 <CardHeader>
                   <CardTitle className="flex items-center text-white">
                     <Navigation className="h-5 w-5 mr-2 text-blue-400" />
-                    建議頁面
+                    建議?�面
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    您可能正在尋找以下頁面之一
+                    ?�可?�正?��??�以下�??��?一
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -430,7 +430,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
           )}
         </AnimatePresence>
 
-        {/* 支援區域 / Support area */}
+        {/* ?�援?�??/ Support area */}
         <motion.div variants={itemVariants}>
           <Card className="bg-gray-900 border-gray-700">
             <CardContent className="p-6 text-center">
@@ -438,32 +438,32 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 <Mail className="h-8 w-8 text-green-400" />
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">
-                需要幫助？
+                ?�要幫?��?
               </h3>
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button
                   variant="outline"
                   className="border-green-600 text-green-400 hover:bg-green-900/20"
                   onClick={() => {
-                    // 在實際應用中，這會開啟報告表單
+                    // ?�實?��??�中，這�??��??��?表單
                     // In real application, this would open a report form
-                    alert('報告功能將在此實現')
+                    alert('?��??�能將在此實??)
                   }}
                 >
                   <AlertTriangle className="h-4 w-4 mr-2" />
-                  報告問題
+                  ?��??��?
                 </Button>
                 <Button
                   variant="outline"
                   className="border-blue-600 text-blue-400 hover:bg-blue-900/20"
                   onClick={() => {
-                    // 在實際應用中，這會開啟聯繫表單
+                    // ?�實?��??�中，這�??��??�繫表單
                     // In real application, this would open contact form
                     window.location.href = 'mailto:support@aiformula.com'
                   }}
                 >
                   <Mail className="h-4 w-4 mr-2" />
-                  聯繫支援
+                  ?�繫?�援
                 </Button>
               </div>
             </CardContent>
@@ -474,5 +474,5 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
   )
 }
 
-// 記憶化組件 / Memoized component
+// 記憶?��?�?/ Memoized component
 export default NotFound;

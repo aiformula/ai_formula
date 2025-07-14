@@ -25,7 +25,7 @@ import {
   Share2
 } from 'lucide-react';
 
-// 類型定義
+// 類�?定義
 interface AIPlaygroundProps {
   type: 'prompt-engineering' | 'image-generation' | 'code-editor';
   expectedOutput: string;
@@ -75,22 +75,22 @@ export const AIPlayground: React.FC<AIPlaygroundProps> = ({
   const [currentInput, setCurrentInput] = useState('');
   const [results, setResults] = useState<(PromptResult | ImageResult | CodeResult)[]>([]);
   
-  // Prompt Engineering 狀態
+  // Prompt Engineering ?�??
   const [temperature, setTemperature] = useState(0.7);
   const [maxTokens, setMaxTokens] = useState(1000);
   const [selectedModel, setSelectedModel] = useState('gpt-4');
   
-  // Image Generation 狀態
+  // Image Generation ?�??
   const [imageWidth, setImageWidth] = useState(512);
   const [imageHeight, setImageHeight] = useState(512);
   const [steps, setSteps] = useState(50);
   const [guidance, setGuidance] = useState(7.5);
   
-  // Code Editor 狀態
+  // Code Editor ?�??
   const [selectedLanguage, setSelectedLanguage] = useState('python');
-  const [code, setCode] = useState('# 在這裡寫您的代碼\nprint("Hello, AI!")');
+  const [code, setCode] = useState('# ?�這裡寫您?�代碼\nprint("Hello, AI!")');
 
-  // 處理提交
+  // ?��??�交
   const handleSubmit = async () => {
     if (!currentInput.trim() && type !== 'code-editor') return;
     
@@ -127,16 +127,16 @@ export const AIPlayground: React.FC<AIPlaygroundProps> = ({
     // 模擬 API 延遲
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    const mockResponse = `這是對您的 prompt "${currentInput}" 的回應。
+    const mockResponse = `?�是對您??prompt "${currentInput}" ?��??��?
     
-在真實的實現中，這裡會調用實際的 AI API (如 OpenAI GPT-4)。
+?��?實�?實現中�??�裡?�調?�實?��? AI API (�?OpenAI GPT-4)??
     
-參數設置：
+?�數設置�?
 - Temperature: ${temperature}
 - Max Tokens: ${maxTokens}
 - Model: ${selectedModel}
 
-這個回應會根據您的具體 prompt 而變化。`;
+?�個�??��??��??��??��? prompt ?��??�。`;
 
     return {
       id: Date.now().toString(),
@@ -173,12 +173,12 @@ export const AIPlayground: React.FC<AIPlaygroundProps> = ({
   const handleCodeExecution = async (): Promise<CodeResult> => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    const mockOutput = `執行結果：
+    const mockOutput = `?��?結�?�?
     
 Hello, AI!
     
-代碼執行成功！
-在真實的實現中，這裡會在安全的沙盒環境中執行您的代碼。`;
+�?��?��??��?�?
+?��?實�?實現中�??�裡?�在安全?��??�環境中?��??��?�?��?�`;
 
     return {
       id: Date.now().toString(),
@@ -190,17 +190,17 @@ Hello, AI!
     };
   };
 
-  // 清除結果
+  // 清除結�?
   const clearResults = () => {
     setResults([]);
   };
 
-  // 複製到剪貼板
+  // 複製?�剪貼板
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
   };
 
-  // 渲染 Prompt Engineering 界面
+  // 渲�? Prompt Engineering ?�面
   const renderPromptEngineering = () => (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -209,7 +209,7 @@ Hello, AI!
           id="prompt"
           value={currentInput}
           onChange={(e) => setCurrentInput(e.target.value)}
-          placeholder="請輸入您的 prompt..."
+          placeholder="請輸?�您??prompt..."
           className="min-h-[100px] bg-gray-700 border-gray-600 text-white"
         />
       </div>
@@ -255,7 +255,7 @@ Hello, AI!
     </div>
   );
 
-  // 渲染 Image Generation 界面
+  // 渲�? Image Generation ?�面
   const renderImageGeneration = () => (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -264,7 +264,7 @@ Hello, AI!
           id="image-prompt"
           value={currentInput}
           onChange={(e) => setCurrentInput(e.target.value)}
-          placeholder="描述您想要生成的圖像..."
+          placeholder="?�述?�想要�??��??��?..."
           className="min-h-[100px] bg-gray-700 border-gray-600 text-white"
         />
       </div>
@@ -323,7 +323,7 @@ Hello, AI!
     </div>
   );
 
-  // 渲染 Code Editor 界面
+  // 渲�? Code Editor ?�面
   const renderCodeEditor = () => (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -347,7 +347,7 @@ Hello, AI!
           id="code-editor"
           value={code}
           onChange={(e) => setCode(e.target.value)}
-          placeholder="在這裡寫您的代碼..."
+          placeholder="?�這裡寫您?�代�?.."
           className="min-h-[200px] bg-gray-900 border-gray-600 text-white font-mono text-sm"
         />
       </div>
@@ -356,7 +356,7 @@ Hello, AI!
 
   return (
     <div className="h-full flex flex-col bg-gray-900 text-white">
-      {/* 頂部控制區 */}
+      {/* ?�部?�制?� */}
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
@@ -383,12 +383,12 @@ Hello, AI!
           </div>
         </div>
         
-        {/* 輸入界面 */}
+        {/* 輸入?�面 */}
         {type === 'prompt-engineering' && renderPromptEngineering()}
         {type === 'image-generation' && renderImageGeneration()}
         {type === 'code-editor' && renderCodeEditor()}
         
-        {/* 提交按鈕 */}
+        {/* ?�交?��? */}
         <Button
           onClick={handleSubmit}
           disabled={isLoading || (!currentInput.trim() && type !== 'code-editor')}
@@ -397,22 +397,22 @@ Hello, AI!
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              {type === 'prompt-engineering' && '生成中...'}
-              {type === 'image-generation' && '生成圖像中...'}
-              {type === 'code-editor' && '執行中...'}
+              {type === 'prompt-engineering' && '?��?�?..'}
+              {type === 'image-generation' && '?��??��?�?..'}
+              {type === 'code-editor' && '?��?�?..'}
             </>
           ) : (
             <>
               <Send className="w-4 h-4 mr-2" />
-              {type === 'prompt-engineering' && '發送'}
-              {type === 'image-generation' && '生成圖像'}
-              {type === 'code-editor' && '執行代碼'}
+              {type === 'prompt-engineering' && '?��?}
+              {type === 'image-generation' && '?��??��?'}
+              {type === 'code-editor' && '?��?�?��'}
             </>
           )}
         </Button>
       </div>
       
-      {/* 結果展示區 */}
+      {/* 結�?展示?� */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="p-4 space-y-4">
@@ -424,9 +424,9 @@ Hello, AI!
                   {type === 'code-editor' && <Code className="w-12 h-12 mx-auto mb-4 text-green-400" />}
                 </div>
                 <p className="text-gray-400">
-                  {type === 'prompt-engineering' && '開始輸入您的 prompt...'}
-                  {type === 'image-generation' && '描述您想要生成的圖像...'}
-                  {type === 'code-editor' && '寫下您的代碼並執行...'}
+                  {type === 'prompt-engineering' && '?��?輸入?��? prompt...'}
+                  {type === 'image-generation' && '?�述?�想要�??��??��?...'}
+                  {type === 'code-editor' && '寫�??��?�?��並執�?..'}
                 </p>
               </div>
             ) : (

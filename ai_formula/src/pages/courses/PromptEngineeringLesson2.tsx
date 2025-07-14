@@ -7,7 +7,7 @@ import LessonContent, { useLessonCompletion } from '@/components/course/LessonCo
 import type { LessonItem, LessonSection } from '@/components/course/LessonSidebar';
 import type { QuizQuestion } from '@/components/course/QuizCard';
 
-// Quiz 問題定義
+// Quiz ?��?定義
 
 // Define English quiz questions
 const enQuizQuestions = [
@@ -66,52 +66,52 @@ const enQuizQuestions = [
 // Define Cantonese quiz questions
 const zhQuizQuestions: QuizQuestion[] = [
   {
-    q: '1. 以下哪一項是寫好提示的最佳做法？',
+    q: '1. 以�??��??�是寫好?�示?��?佳�?法�?',
     options: [
-      '確保提示內容具體清晰，並包含背景資料',
-      '盡量模糊提示，讓AI自由發揮',
-      '重複相同的詞語來強調重要性',
-      '避免設置任何格式限制',
+      '確�??�示?�容?��?清晰，並?�含?�景資�?',
+      '?��?模�??�示，�?AI?�由?�揮',
+      '?��??��??��?語�?強調?��???,
+      '?��?設置任�??��??�制',
     ],
     answer: 0,
   },
   {
-    q: '2. 在生成式AI中，角色扮演（Role-play）提示的主要目的是？',
+    q: '2. ?��??��?AI中�?角色?��?（Role-play）�?示�?主�??��??��?',
     options: [
-      '引導AI扮演特定角色，幫助生成更貼近需求的內容',
-      '讓AI能自動選擇最適合的回答風格',
-      '減少AI所需的輸入數據量',
-      '測試AI的創造性和邏輯能力',
+      '引�?AI?��??��?角色，幫?��??�更貼�??�求�??�容',
+      '讓AI?�自?�選?��??��??��?答風??,
+      '減�?AI?�?�?�輸?�數?��?',
+      '測試AI?�創?�性�??�輯?��?',
     ],
     answer: 0,
   },
   {
-    q: '3. 要提高生成式AI的提示效果，以下哪個元素最為重要？',
+    q: '3. 要�?高�??��?AI?��?示�??��?以�??�個�?素�??��?要�?',
     options: [
-      '提供充分的上下文和數據，確保提示有根有據',
-      '輸入多個模糊不清的指令，激發AI創造性',
-      '只提供最簡單的指令，避免過多詳細要求',
-      '強調使用高深的專業術語，挑戰模型的理解能力',
+      '?��??��??��?下�??�數?��?確�??�示?�根?��?',
+      '輸入多個模糊�?清�??�令，�??�AI?�造�?,
+      '?��?供�?簡單?��?令�??��??��?詳細要�?',
+      '強調使用高深?��?業�?語�??�戰模�??��?�?��??,
     ],
     answer: 0,
   },
   {
-    q: '4. 在編寫提示時，如何設置"輸出指標"（Output Indicator）有助於指引AI生成合適的回應？',
+    q: '4. ?�編寫�?示�?，�?何設�?輸出?��?"（Output Indicator）�??�於?��?AI?��??�適?��??��?',
     options: [
-      '定義輸出的語氣、風格、長度、格式等要求',
-      '只要求AI提供簡短的回應，不設格式要求',
-      '提供大量數據但沒有設置具體要求',
-      '只要求生成一個隨機的回答',
+      '定義輸出?��?�?��風?�、長度、格式�?要�?',
+      '?��?求AI?��?簡短?��??��?不設?��?要�?',
+      '?��?大�??��?但�??�設置具體�?�?,
+      '?��?求�??��??�隨機�??��?',
     ],
     answer: 0,
   },
   {
-    q: '5. 在提示工程工具中，哪個功能幫助使用者改進提示的效果？',
+    q: '5. ?��?示工程工?�中，哪?��??�幫?�使?�者改?��?示�??��?�?,
     options: [
-      '提供即時反饋，讓使用者調整提示以達到最佳效果',
-      '幫助使用者生成數據集以支持生成內容',
-      '自動將提示重寫成程式碼',
-      '限制提示只能按照某一固定格式輸入',
+      '?��??��??��?，�?使用?�調?��?示以?�到?�佳�???,
+      '幫助使用?��??�數?��?以支?��??�內�?,
+      '?��?將�?示�?寫�?程�?�?,
+      '?�制?�示?�能?�照?��??��??��?輸入',
     ],
     answer: 0,
   },
@@ -120,16 +120,16 @@ const zhQuizQuestions: QuizQuestion[] = [
 
 
 
-const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
+const lesson2Sections: { en: LessonSection[], 'zh-HK': LessonSection[] } = {
   en: [
     {
       group: 'Lesson 2: Prompt Structure',
-      groupIcon: '🧩',
+      groupIcon: '?��',
       items: [
         {
           key: 'instruction',
           title: 'Instruction',
-          icon: '🔍',
+          icon: '??',
           duration: '3 min',
           description: 'Tell the AI what to do, clearly define action requirements and goals.',
           type: 'reading',
@@ -149,7 +149,7 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'context',
           title: 'Context',
-          icon: '🔍',
+          icon: '??',
           duration: '2 min',
           description: 'Provide background information to help the AI understand the situation.',
           type: 'reading',
@@ -169,7 +169,7 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'input-data',
           title: 'Input Data',
-          icon: '🔍',
+          icon: '??',
           duration: '2 min',
           description: 'Provide specific information or data to help the AI generate more precise content.',
           type: 'reading',
@@ -194,7 +194,7 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'output-indicator',
           title: 'Output Indicator',
-          icon: '🔍',
+          icon: '??',
           duration: '2 min',
           description: 'Define the format, tone, length, and other requirements for the answer.',
           type: 'reading',
@@ -222,7 +222,7 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'full-example',
           title: 'Full Example Prompt (Complete Structure)',
-          icon: '🧠',
+          icon: '??',
           duration: '2 min',
           description: 'Complete structure demonstration',
           type: 'reading',
@@ -241,19 +241,19 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'practice',
           title: 'Practice Exercise',
-          icon: '👩‍💻',
+          icon: '?��?��??,
           duration: '3 min',
           description: 'Practice breaking down the four elements of a prompt',
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">👩‍💻 Practice Exercise</h3>
+              <h3 className="text-xl font-bold mb-2">?��?��??Practice Exercise</h3>
               <p>Now, try breaking down the following prompt into the four elements, and think about how you could improve it:</p>
               <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
                 <strong>Practice Prompt:</strong><br/>
                 "You are a customer service representative at a premium e-commerce company. Write a professional response to a customer complaint about a delayed order. The customer has been waiting for 10 days beyond the promised delivery date for their anniversary gift. Apologize sincerely for the delay, explain the reason (shipping partner issues), offer a meaningful solution (expedited delivery + discount), and maintain the company's reputation for excellent customer service."
               </blockquote>
-              <p className="mt-2 font-semibold">✅ Enhanced Analysis Solution</p>
+              <p className="mt-2 font-semibold">??Enhanced Analysis Solution</p>
               <ul className="list-disc ml-6 space-y-1">
                 <li><b>Instruction:</b> You are a customer service representative at a premium e-commerce company. Write a professional response to a customer complaint about a delayed order.</li>
                 <li><b>Context:</b> The customer has been waiting for 10 days beyond the promised delivery date for their anniversary gift.</li>
@@ -266,7 +266,7 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'quiz',
           title: 'Quiz',
-          icon: '📝',
+          icon: '??',
           duration: '5 min',
           description: 'Complete the following multiple-choice questions to test your understanding of prompt structure.',
           type: 'quiz',
@@ -275,111 +275,111 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
       ]
     },
   ],
-  'zh-TW': [
+  'zh-HK': [
     {
-      group: '課堂 2：優質提示結構',
-      groupIcon: '🧩',
+      group: '課�? 2：優質�?示�?�?,
+      groupIcon: '?��',
       items: [
         {
           key: 'instruction',
-          title: '指令',
-          icon: '🔍',
-          duration: '3分鐘',
-          description: '告訴AI要做什麼，明確行動要求和目標。',
+          title: '?�令',
+          icon: '??',
+          duration: '3?��?',
+          description: '?�訴AI要�?什麼�??�確行�?要�??�目標�?,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">指令</h3>
-              <p>這一部分是告訴模型要做什麼，是最基本的部分。指令能夠確保模型能夠理解你的需求，並且朝著正確的方向去生成內容。</p>
+              <h3 className="text-xl font-bold mb-2">?�令</h3>
+              <p>?��??��??��?訴模?��??��?麼�??��??�本?�部?�。�?令能夠確保模?�能夠�?�???��?求�?並�??��?�?��?�方?�去?��??�容??/p>
               <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
-                <strong>專業範例：</strong><br/>
-                "您是一位資深的職業顧問和LinkedIn專家。請為一位主修數據科學的大學生撰寫一份具有說服力的LinkedIn個人摘要，該學生正在尋求一個遠程實習機會。請確保摘要能夠突出其技術能力、學習熱忱和對初創公司文化的適應性。"
+                <strong>專業範�?�?/strong><br/>
+                "?�是一位�?深�??�業顧�??�LinkedIn專家?��??��?位主修數?��?學�?大學?�撰寫�?份具?�說?��??�LinkedIn?�人?��?，該學�?�?��尋�?一?��?程實習�??�。�?確�??��??��?突出?��?術能?�、學習熱忱�?對�??�公?��??��??��??��?
               </blockquote>
-              <p className="mt-2 font-semibold">分析：</p>
+              <p className="mt-2 font-semibold">?��?�?/p>
               <ul className="list-disc ml-6 space-y-1">
-                <li><b>角色明確：</b>指定了「資深職業顧問」和「LinkedIn專家」兩重身份，提供專業權威感。</li>
-                <li><b>行動要求：</b>明確指示要撰寫「具有說服力的LinkedIn個人摘要」，目標清晰。</li>
-                <li><b>目標受眾：</b>指定了「主修數據科學的大學生」，幫助AI理解內容方向。</li>
-                <li><b>具體目標：</b>「尋求遠程實習機會」給予了明確的職業目標框架。</li>
+                <li><b>角色?�確�?/b>?��?了「�?深職業顧?�」�??�LinkedIn專家?�兩?�身份�??��?專業權�??��?/li>
+                <li><b>行�?要�?�?/b>?�確?�示要撰寫「具?�說?��??�LinkedIn?�人?��??��??��?清晰??/li>
+                <li><b>?��??�眾�?/b>?��?了「主修數?��?學�?大學?�」�?幫助AI?�解?�容?��???/li>
+                <li><b>?��??��?�?/b>?��?求�?程實習�??�」給予�??�確?�職業目標�??��?/li>
               </ul>
             </div>
           )
         },
         {
           key: 'context',
-          title: '背景',
-          icon: '🔍',
-          duration: '2分鐘',
-          description: '給AI背景資料，讓它明白情境。',
+          title: '?�景',
+          icon: '??',
+          duration: '2?��?',
+          description: '給AI?�景資�?，�?它�??��?境�?,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">背景</h3>
-              <p>背景提供了重要的情境，幫助AI理解需求和情境，並且讓生成的內容更加相關和有深度。沒有背景的話，生成的內容可能會失去焦點。</p>
+              <h3 className="text-xl font-bold mb-2">?�景</h3>
+              <p>?�景?��?了�?要�??��?，幫?�AI?�解?�求�??��?，並且�??��??�內容更?�相?��??�深度。�??��??��?話�??��??�內容可?��?失去?��???/p>
               <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
-                <strong>詳細背景範例：</strong><br/>
-                "該學生在過去兩年中累積了豐富的Python和機器學習經驗，包括完成了三個主要項目和兩次實習。他特別希望在充滿創新精神的初創公司環境中工作，渴望參與產品開發的早期階段，並且願意接受快節奏的工作挑戰。此外，他對遠程工作模式非常適應，具備良好的自我管理和溝通能力。"
+                <strong>詳細?�景範�?�?/strong><br/>
+                "該學?�在?�去?�年中累積�?豐�??�Python?��??�學習�?驗�??�括完�?了�??�主要�??��??�次實�??��??�別希�??��?滿創?�精神�??�創?�司?��?中工作�?渴�??��??��??�發?�早?��?段�?並�?願�??��?快�?奏�?工�??�戰?�此外�?他�??��?工�?模�??�常?��?，具?�良好�??��?管�??��??�能?��?
               </blockquote>
-              <p className="mt-2 font-semibold">分析：</p>
+              <p className="mt-2 font-semibold">?��?�?/p>
               <ul className="list-disc ml-6 space-y-1">
-                <li><b>時間框架：</b>「過去兩年」提供了經驗的時間深度，增加可信度。</li>
-                <li><b>具體經驗：</b>「三個主要項目和兩次實習」給予了量化的成就背景。</li>
-                <li><b>工作偏好：</b>明確表達對初創公司環境的偏好和原因。</li>
-                <li><b>適應能力：</b>突出了遠程工作和自我管理的能力，符合現代職場需求。</li>
+                <li><b>?��?框架�?/b>?��??�兩年」�?供�?經�??��??�深度�?增�??�信度�?/li>
+                <li><b>?��?經�?�?/b>?��??�主要�??��??�次實�??�給予�??��??��?就�??��?/li>
+                <li><b>工�??�好�?/b>?�確表�?對�??�公?�環境�??�好?��??��?/li>
+                <li><b>?��??��?�?/b>突出了�?程工作�??��?管�??�能?��?符�??�代?�場?�求�?/li>
               </ul>
             </div>
           )
         },
         {
           key: 'input-data',
-          title: '輸入數據',
-          icon: '🔍',
-          duration: '2分鐘',
-          description: '提供具體資料或數據，讓AI生成更精準內容。',
+          title: '輸入?��?',
+          icon: '??',
+          duration: '2?��?',
+          description: '?��??��?資�??�數?��?讓AI?��??�精準內容�?,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">輸入數據</h3>
-              <p>這部分是指你給AI提供的具體資料或數據，可以是一個資料集、一段文字或者其他補充資料，幫助模型生成更具體和精準的內容。</p>
+              <h3 className="text-xl font-bold mb-2">輸入?��?</h3>
+              <p>?�部?�是?��?給AI?��??�具體�??��??��?，可以是一?��??��??��?段�?字�??�其他�??��??��?幫助模�??��??�具體�?精�??�內容�?/p>
               <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">Example:<br/>"You have access to a dataset with Pacific Ocean temperature records and sea level measurements."</blockquote>
-              <p className="mt-2 font-semibold">分析：</p>
+              <p className="mt-2 font-semibold">?��?�?/p>
               <ul className="list-disc ml-6 space-y-1">
-                <li>資料：這部分提供了具體的數據集（Pacific Ocean temperature records 和 sea level measurements）。雖然這個例子跟背景和職位無關，但可以理解為AI在撰寫履歷或者文章時，可能需要背景數據來支持它的分析或建議。</li>
-                <li>作用：數據用來支持論點、例子或具體分析，提供精準的參考。</li>
+                <li>資�?：這部?��?供�??��??�數?��?（Pacific Ocean temperature records ??sea level measurements）。�??�這個�?子�??�景?�職位無?��?但可以�?�?��AI?�撰寫履歷�??��?章�?，可?��?要�??�數?��??��?它�??��??�建議�?/li>
+                <li>作用：數?�用來支?��?點、�?子�??��??��?，�?供精準�??�考�?/li>
               </ul>
             </div>
           )
         },
         {
           key: 'output-indicator',
-          title: '輸出指標',
-          icon: '🔍',
-          duration: '2分鐘',
-          description: '定義答案格式、語氣、長度等。',
+          title: '輸出?��?',
+          icon: '??',
+          duration: '2?��?',
+          description: '定義答�??��??��?�?��長度�???,
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">輸出指標</h3>
-              <p>輸出指標指定了生成內容的格式、風格、長度或者其他要求，從而讓AI知道應該生成怎樣的內容。</p>
+              <h3 className="text-xl font-bold mb-2">輸出?��?</h3>
+              <p>輸出?��??��?了�??�內容�??��??�風?�、長度�??�其他�?求�?從而�?AI?��??�該?��??�樣?�內容�?/p>
               <blockquote className="border-l-4 border-blue-400 pl-4 my-2 text-gray-200">Example:<br/>"Make sure the response is in a formal tone and includes at least two case studies."</blockquote>
-              <p className="mt-2 font-semibold">分析：</p>
+              <p className="mt-2 font-semibold">?��?�?/p>
               <ul className="list-disc ml-6 space-y-1">
-                <li>風格要求：強調生成的內容要有「正式語氣」，這個能夠幫助AI確保產生的內容適合專業用途，例如履歷或者工作申請。</li>
-                <li>具體要求：包括至少兩個具體的「案例研究」，這個讓AI明確知道要有實際範例，增加說服力。</li>
+                <li>風格要�?：強調�??��??�容要�??�正式�?�?���??�個能夠幫?�AI確�??��??�內容適?��?業用?��?例�?履歷?�者工作申請�?/li>
+                <li>?��?要�?：�??�至少兩?�具體�??��?例�?究」�??�個�?AI?�確?��?要�?實�?範�?，�??�說?��???/li>
               </ul>
             </div>
           )
         },
         {
           key: 'full-examples',
-          title: '綜合範例 Prompt（完整結構）',
-          icon: '🧠',
-          duration: '2分鐘',
-          description: '完整結構示範',
+          title: '綜�?範�? Prompt（�??��?構�?',
+          icon: '??',
+          duration: '2?��?',
+          description: '完整結�?示�?',
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2"> 綜合範例 Prompt（完整結構）</h3>
+              <h3 className="text-xl font-bold mb-2"> 綜�?範�? Prompt（�??��?構�?</h3>
               <ul className="list-disc ml-6 space-y-1">
                 <li><b>Instruction:</b> You are a career advisor. Write a persuasive LinkedIn summary for a student majoring in data science who is seeking a remote internship.</li>
                 <li><b>Context:</b> The student has experience in Python and machine learning, and wants to work in a startup.</li>
@@ -391,35 +391,35 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         },
         {
           key: 'practice',
-          title: '練習：拆解與理解',
-          icon: '👩‍💻',
-          duration: '3分鐘',
-          description: '練習拆解Prompt四大元素',
+          title: '練�?：�?�???�解',
+          icon: '?��?��??,
+          duration: '3?��?',
+          description: '練�??�解Prompt?�大?��?',
           type: 'reading',
           content: (
             <div>
-              <h3 className="text-xl font-bold mb-2">👩‍💻 練習：拆解與理解</h3>
-              <p>現在，你可以練習將下面的 Prompt 拆解成四個元素，並思考如何優化：</p>
+              <h3 className="text-xl font-bold mb-2">?��?��??練�?：�?�???�解</h3>
+              <p>?�在，�??�以練�?將�??��? Prompt ?�解?��??��?素�?並思考�?何優?��?</p>
               <blockquote className="border-l-4 border-green-400 pl-4 my-2 text-green-100">
-                <strong>進階練習題：</strong><br/>
-                「你是一位高級電商客戶服務代表。請專業回應一位客戶對於超過承諾交付日期10天的訂單延遲投訴。客戶正在等待重要的週年紀念禮物。請真誠地為延遲道歉，解釋原因（物流合作夥伴問題），提供有意義的解決方案（加急配送+折扣補償），並維護公司在優質客戶服務方面的聲譽。」
+                <strong>?��?練�?題�?</strong><br/>
+                ?��??��?位�?級電?�客?��??�代表。�?專業?��?一位客?��??��??�承諾交付日??0天�?訂單延遲?�訴?�客?�正?��?待�?要�??�年紀念禮?�。�??��??�為延遲?��?，解?��??��??��??��?夥伴?��?）�??��??��?義�?�?��?��?（�??��????�扣補�?）�?並維護公?�在?�質客戶?��??�面?�聲譽。�?
               </blockquote>
-              <p className="mt-2 font-semibold">✅ 增強版答案拆解範例</p>
+              <p className="mt-2 font-semibold">??增強?��?案�?�??�?/p>
               <ul className="list-disc ml-6 space-y-1">
-                <li><b>指令：</b>你是一位高級電商客戶服務代表。請專業回應一位客戶對於訂單延遲的投訴。</li>
-                <li><b>背景：</b>客戶等待超過承諾交付日期10天的重要週年紀念禮物。</li>
-                <li><b>輸入數據：</b>具體延遲時間框架（10天）、場合（週年紀念禮物）、原因（物流合作夥伴問題）、公司定位（高級電商）。</li>
-                <li><b>輸出指標：</b>真誠道歉，解釋原因，提供有意義的解決方案（加急配送+折扣補償），並維護公司優質客戶服務聲譽。</li>
+                <li><b>?�令�?/b>你是一位�?級電?�客?��??�代表。�?專業?��?一位客?��??��??�延?��??�訴??/li>
+                <li><b>?�景�?/b>客戶等�?超�??�諾交�??��?10天�??��??�年紀念禮?��?/li>
+                <li><b>輸入?��?�?/b>?��?延遲?��?框架�?0天�??�場?��??�年紀念禮?��??��??��??��??��?夥伴?��?）、公?��?位�?高�??��?）�?/li>
+                <li><b>輸出?��?�?/b>?��??��?，解?��??��??��??��?義�?�?��?��?（�??��????�扣補�?）�?並維護公?�優質客?��??�聲譽�?/li>
               </ul>
             </div>
           )
         },
         {
           key: 'quiz',
-          title: '小測驗',
-          icon: '📝',
-          duration: '5分鐘',
-          description: '完成以下選擇題，測試你對優質提示結構的理解。',
+          title: '小測�?,
+          icon: '??',
+          duration: '5?��?',
+          description: '完�?以�??��?題�?測試你�??�質?�示結�??��?�?�?,
           type: 'quiz',
           content: <QuizCard questions={zhQuizQuestions} isZhTW={true} />
         },
@@ -432,19 +432,19 @@ const lesson2Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
 
 const PromptEngineeringLesson2: React.FC = memo(() => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
   const [selectedKey, setSelectedKey] = useState(() => {
-    const sections = isZhTW ? lesson2Sections['zh-TW'] : lesson2Sections.en;
+    const sections = isZhTW ? lesson2Sections['zh-HK'] : lesson2Sections.en;
     return sections[0]?.items?.[0]?.key || '';
   });
   
-  // 記憶化 sections 避免不必要重新計算
+  // 記憶??sections ?��?不�?要�??��?�?
   const sections = useMemo(() => 
-    isZhTW ? lesson2Sections['zh-TW'] : lesson2Sections.en, 
+    isZhTW ? lesson2Sections['zh-HK'] : lesson2Sections.en, 
     [isZhTW]
   );
 
-  // 使用來自 LessonContent 的 hooks
+  // 使用來自 LessonContent ??hooks
   const { isCompleted } = useLessonCompletion();
 
   return (

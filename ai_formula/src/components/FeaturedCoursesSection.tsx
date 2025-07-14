@@ -39,19 +39,19 @@ const FeaturedCoursesSection = () => {
           >
             <TrendingUp className="w-5 h-5 text-yellow-400" />
             <span className="text-yellow-300 font-medium">
-              {isZhTW ? '熱門推薦' : 'Featured'}
+              {isZhTW ? '?��??�薦' : 'Featured'}
             </span>
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-amber-300 bg-clip-text text-transparent">
-              {isZhTW ? '精選課程預覽' : 'Featured Course Preview'}
+              {isZhTW ? '精選課�??�覽' : 'Featured Course Preview'}
             </span>
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {isZhTW 
-              ? '發掘我們最受歡迎的AI課程，從基礎到進階，幫助你在AI領域建立紮實的技能基礎。' 
+              ? '?��??�們�??�歡迎�?AI課�?，�??��??�進�?，幫?��??�AI?��?建�?紮實?��??�基礎�? 
               : 'Discover our most popular AI courses, from basics to advanced, helping you build solid skills in the AI field.'
             }
           </p>
@@ -98,7 +98,7 @@ const FeaturedCoursesSection = () => {
                       {course.bestseller && (
                         <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/50">
                           <Award className="w-3 h-3 mr-1" />
-                          {isZhTW ? '暢銷' : 'Bestseller'}
+                          {isZhTW ? '?�銷' : 'Bestseller'}
                         </Badge>
                       )}
                       {course.featured && (
@@ -169,7 +169,7 @@ const FeaturedCoursesSection = () => {
                     <Button 
                       className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group"
                     >
-                      {isZhTW ? '立即報名' : 'Enroll Now'}
+                      {isZhTW ? '立即?��?' : 'Enroll Now'}
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
                   </motion.div>
@@ -192,7 +192,7 @@ const FeaturedCoursesSection = () => {
             size="lg"
             className="bg-transparent border-2 border-yellow-500/50 text-yellow-300 hover:bg-yellow-500/10 hover:border-yellow-400 transition-all duration-300 px-8 py-3"
           >
-            {isZhTW ? '查看所有課程' : 'View All Courses'}
+            {isZhTW ? '?��??�?�課�? : 'View All Courses'}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </motion.div>

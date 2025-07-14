@@ -9,7 +9,7 @@ import type { QuizQuestion } from '@/components/course/QuizCard';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, BookOpen, Code, Play, CheckCircle, Users, MessageSquare, FileText, Download, ExternalLink } from 'lucide-react';
 
-// Quiz 問題定義
+// Quiz ?��?定義
 const enQuizQuestions: QuizQuestion[] = [
   {
     q: '1. What is a variable in programming?',
@@ -65,37 +65,37 @@ const enQuizQuestions: QuizQuestion[] = [
 
 const zhQuizQuestions: QuizQuestion[] = [
   {
-    q: '1. 編程中的變量是什麼？',
+    q: '1. 編�?中�?變�??��?麼�?',
     options: [
-      '存儲數據值的容器',
-      '一種編程語言',
-      '電腦硬件組件',
+      '存儲?��??��?容器',
+      '一種編程�?言',
+      '?�腦硬件組件',
       '調試工具',
     ],
     answer: 0,
   },
   {
-    q: '2. 以下哪個不是基本數據類型？',
+    q: '2. 以�??�個�??�基?�數?��??��?',
     options: [
-      '字符串',
-      '數字',
-      '布爾值',
-      '數據庫',
+      '字符�?,
+      '?��?',
+      '布爾??,
+      '?��?�?,
     ],
     answer: 3,
   },
   {
-    q: '3. "HTML"代表什麼？',
+    q: '3. "HTML"�?��什麼�?',
     options: [
-      '超連結和文本標記語言',
-      '超文本標記語言',
-      '家庭工具標記語言',
-      '超連結文本管理語言',
+      '超�???��??��?記�?言',
+      '超�??��?記�?言',
+      '家庭工具標�?語�?',
+      '超�???�本管�?語�?',
     ],
     answer: 1,
   },
   {
-    q: '4. 在大多數編程語言中，哪個符號用於為變量賦值？',
+    q: '4. ?�大多數編�?語�?中�??�個符?�用?�為變�?賦值�?',
     options: [
       '==',
       '=',
@@ -105,27 +105,27 @@ const zhQuizQuestions: QuizQuestion[] = [
     answer: 1,
   },
   {
-    q: '5. 函數在編程中的主要目的是什麼？',
+    q: '5. ?�數?�編程中?�主要目?�是什麼�?',
     options: [
-      '讓代碼更長',
-      '創建可重用的代碼塊',
-      '減慢程序運行',
-      '讓編程變得更困難',
+      '讓代碼更??,
+      '?�建?��??��?�?���?,
+      '減慢程�??��?',
+      '讓編程�?得更?�難',
     ],
     answer: 1,
   },
 ];
 
-const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
+const lesson1Sections: { en: LessonSection[], 'zh-HK': LessonSection[] } = {
   en: [
     {
       group: 'Lesson 1: Introduction to Programming',
-      groupIcon: '💻',
+      groupIcon: '?��',
       items: [
         {
           key: 'what-is-programming',
           title: 'What is Programming?',
-          icon: '🎯',
+          icon: '?��',
           duration: '5 min',
           description: 'Learn the fundamentals of programming and why it matters.',
           type: 'reading',
@@ -146,10 +146,10 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                     What Programmers Do
                   </h4>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• Write code to solve problems</li>
-                    <li>• Create websites and mobile apps</li>
-                    <li>• Automate repetitive tasks</li>
-                    <li>• Build games and software</li>
+                    <li>??Write code to solve problems</li>
+                    <li>??Create websites and mobile apps</li>
+                    <li>??Automate repetitive tasks</li>
+                    <li>??Build games and software</li>
                   </ul>
                 </div>
 
@@ -159,16 +159,16 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
                     Why Learn Programming?
                   </h4>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• High demand career field</li>
-                    <li>• Develop logical thinking</li>
-                    <li>• Create your own projects</li>
-                    <li>• Work from anywhere</li>
+                    <li>??High demand career field</li>
+                    <li>??Develop logical thinking</li>
+                    <li>??Create your own projects</li>
+                    <li>??Work from anywhere</li>
                   </ul>
                 </div>
               </div>
 
               <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-600/30">
-                <h4 className="font-semibold text-yellow-400 mb-3">💡 Key Concept</h4>
+                <h4 className="font-semibold text-yellow-400 mb-3">?�� Key Concept</h4>
                 <p className="text-gray-300">
                   Think of programming like learning a new language - but instead of communicating with people, 
                   you're communicating with computers. Just like any language, it has grammar rules (syntax) 
@@ -181,7 +181,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'programming-languages',
           title: 'Popular Programming Languages',
-          icon: '🌐',
+          icon: '??',
           duration: '6 min',
           description: 'Overview of different programming languages and their uses.',
           type: 'reading',
@@ -222,7 +222,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
               </div>
 
               <div className="bg-purple-900/20 p-6 rounded-xl border border-purple-500/30 mt-6">
-                <h4 className="font-semibold text-purple-400 mb-3">🚀 Getting Started Tip</h4>
+                <h4 className="font-semibold text-purple-400 mb-3">?? Getting Started Tip</h4>
                 <p className="text-gray-300">
                   Don't worry about choosing the "perfect" language. Start with one that interests you, 
                   and you can always learn others later. The fundamental concepts transfer between languages!
@@ -234,7 +234,7 @@ const lesson1Sections: { en: LessonSection[], 'zh-TW': LessonSection[] } = {
         {
           key: 'basic-concepts',
           title: 'Basic Programming Concepts',
-          icon: '🔧',
+          icon: '?��',
           duration: '8 min',
           description: 'Variables, data types, and basic operations.',
           type: 'reading',
@@ -260,7 +260,7 @@ let isStudent = true;`}
                     </pre>
                   </div>
                   <div className="bg-blue-900/20 p-3 rounded-lg">
-                    <p className="text-blue-400 font-semibold mb-1">💡 Real-world analogy:</p>
+                    <p className="text-blue-400 font-semibold mb-1">?�� Real-world analogy:</p>
                     <p className="text-gray-300 text-sm">
                       Variables are like nametags on storage containers. The nametag (variable name) tells you what's inside the container (the data).
                     </p>
@@ -315,7 +315,7 @@ console.log(message); // Output: Hello, Alice!`}
         {
           key: 'first-code',
           title: 'Your First Code',
-          icon: '🎉',
+          icon: '??',
           duration: '7 min',
           description: 'Write and understand your first piece of code.',
           type: 'reading',
@@ -379,12 +379,12 @@ console.log("The answer is: " + result);
                 </div>
 
                 <div className="bg-purple-900/20 p-6 rounded-xl border border-purple-500/30">
-                  <h5 className="text-purple-400 font-semibold mb-3">🎯 Challenge</h5>
+                  <h5 className="text-purple-400 font-semibold mb-3">?�� Challenge</h5>
                   <p className="text-gray-300 mb-3">Try these modifications:</p>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• Change the numbers to different values</li>
-                    <li>• Try subtraction (-), multiplication (*), or division (/)</li>
-                    <li>• Add a third number to the calculation</li>
+                    <li>??Change the numbers to different values</li>
+                    <li>??Try subtraction (-), multiplication (*), or division (/)</li>
+                    <li>??Add a third number to the calculation</li>
                   </ul>
                 </div>
               </div>
@@ -394,25 +394,25 @@ console.log("The answer is: " + result);
       ]
     }
   ],
-  'zh-TW': [
+  'zh-HK': [
     {
-      group: '第一課：編程入門',
-      groupIcon: '💻',
+      group: '第�?課�?編�??��?',
+      groupIcon: '?��',
       items: [
         {
           key: 'what-is-programming',
-          title: '什麼是編程？',
-          icon: '🎯',
-          duration: '5 分鐘',
-          description: '學習編程的基本概念和重要性。',
+          title: '什麼是編�?�?,
+          icon: '?��',
+          duration: '5 ?��?',
+          description: '學�?編�??�基?��?念�??��??��?,
           type: 'reading',
           content: (
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-6 rounded-2xl border border-blue-500/30 mb-8">
-                <h3 className="text-3xl font-bold mb-4 text-white">什麼是編程？</h3>
+                <h3 className="text-3xl font-bold mb-4 text-white">什麼是編�?�?/h3>
                 <p className="text-lg text-gray-300 leading-relaxed">
-                  編程是為電腦創建指令的過程。
-                  就像寫食譜一樣，告訴電腦要做什麼，一步一步地執行。
+                  編�??�為?�腦?�建?�令?��?程�?
+                  就�?寫�?譜�?�???�訴?�腦要�?什麼�?一步�?步地?��???
                 </p>
               </div>
 
@@ -420,48 +420,48 @@ console.log("The answer is: " + result);
                 <div className="bg-green-900/20 p-6 rounded-xl border border-green-500/30">
                   <h4 className="font-semibold text-green-400 mb-3 flex items-center gap-2">
                     <Code className="w-5 h-5" />
-                    程序員做什麼
+                    程�??��?什�?
                   </h4>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• 寫代碼解決問題</li>
-                    <li>• 創建網站和手機應用</li>
-                    <li>• 自動化重複性任務</li>
-                    <li>• 開發遊戲和軟件</li>
+                    <li>??寫代碼解決�?�?/li>
+                    <li>???�建網�??��?機�???/li>
+                    <li>???��??��?複性任??/li>
+                    <li>???�發?�戲?��?�?/li>
                   </ul>
                 </div>
 
                 <div className="bg-blue-900/20 p-6 rounded-xl border border-blue-500/30">
                   <h4 className="font-semibold text-blue-400 mb-3 flex items-center gap-2">
                     <Play className="w-5 h-5" />
-                    為什麼要學編程？
+                    ?��?麼�?學編程�?
                   </h4>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• 高需求的職業領域</li>
-                    <li>• 培養邏輯思維</li>
-                    <li>• 創建自己的項目</li>
-                    <li>• 可以遠程工作</li>
+                    <li>??高�?求�??�業?��?</li>
+                    <li>???��??�輯?�維</li>
+                    <li>???�建?�己?��???/li>
+                    <li>???�以?��?工�?</li>
                   </ul>
                 </div>
               </div>
 
               <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-600/30">
-                <h4 className="font-semibold text-yellow-400 mb-3">💡 重要概念</h4>
+                <h4 className="font-semibold text-yellow-400 mb-3">?�� ?��?概念</h4>
                 <p className="text-gray-300">
-                  把編程想象成學習一門新語言 - 但不是與人交流，
-                  而是與電腦交流。就像任何語言一樣，它有語法規則（語法）
-                  和詞彙（關鍵字和函數）。
+                  ?�編程想象�?學�?一?�?��?言 - 但�??��?人交流�?
+                  ?�是?�電?�交流。就?�任何�?言一�??它�?語�?規�?（�?法�?
+                  ?��?彙�??�鍵字�??�數）�?
                 </p>
               </div>
             </div>
           )
         },
-        // 其他課程內容...
+        // ?��?課�??�容...
       ]
     }
   ]
 };
 
-// 自定義 Hook：管理資源面板
+// ?��?�?Hook：管?��?源面??
 const useResourcePanel = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('notes');
@@ -478,18 +478,18 @@ const useResourcePanel = () => {
   };
 };
 
-// 資源面板組件
+// 資�??�板組件
 const ResourcePanel: React.FC<{
   isOpen: boolean;
   activeTab: string;
   setActiveTab: (tab: string) => void;
   onClose: () => void;
-  language: 'en' | 'zh-TW';
+  language: 'en' | 'zh-HK';
 }> = ({ isOpen, activeTab, setActiveTab, onClose, language }) => {
   const tabs = [
-    { id: 'notes', label: language === 'en' ? 'Notes' : '筆記', icon: FileText },
-    { id: 'resources', label: language === 'en' ? 'Resources' : '資源', icon: Download },
-    { id: 'links', label: language === 'en' ? 'Links' : '連結', icon: ExternalLink }
+    { id: 'notes', label: language === 'en' ? 'Notes' : '筆�?', icon: FileText },
+    { id: 'resources', label: language === 'en' ? 'Resources' : '資�?', icon: Download },
+    { id: 'links', label: language === 'en' ? 'Links' : '???', icon: ExternalLink }
   ];
 
   if (!isOpen) return null;
@@ -499,13 +499,13 @@ const ResourcePanel: React.FC<{
       <div className="bg-gray-900/95 rounded-2xl border border-gray-700/50 max-w-4xl w-full max-h-[80vh] overflow-hidden">
         <div className="flex items-center justify-between p-6 border-b border-gray-700/50">
           <h3 className="text-xl font-bold text-white">
-            {language === 'en' ? 'Course Resources' : '課程資源'}
+            {language === 'en' ? 'Course Resources' : '課�?資�?'}
           </h3>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-white transition-colors"
           >
-            ✕
+            ??
           </button>
         </div>
 
@@ -531,17 +531,17 @@ const ResourcePanel: React.FC<{
             <div className="space-y-4">
               <div className="bg-yellow-900/20 p-4 rounded-lg border border-yellow-500/30">
                 <h4 className="font-semibold text-yellow-400 mb-2">
-                  {language === 'en' ? 'Key Points' : '重點筆記'}
+                  {language === 'en' ? 'Key Points' : '?��?筆�?'}
                 </h4>
                 <ul className="space-y-1 text-gray-300">
-                  <li>• Variables store data values</li>
-                  <li>• Functions are reusable code blocks</li>
-                  <li>• Console.log() displays output</li>
+                  <li>??Variables store data values</li>
+                  <li>??Functions are reusable code blocks</li>
+                  <li>??Console.log() displays output</li>
                 </ul>
               </div>
               <textarea
                 className="w-full h-32 bg-gray-800/50 border border-gray-600/30 rounded-lg p-3 text-white placeholder-gray-400 resize-none"
-                placeholder={language === 'en' ? 'Add your personal notes here...' : '在此添加您的個人筆記...'}
+                placeholder={language === 'en' ? 'Add your personal notes here...' : '?�此添�??��??�人筆�?...'}
               />
             </div>
           )}
@@ -550,7 +550,7 @@ const ResourcePanel: React.FC<{
             <div className="space-y-4">
               <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
                 <h4 className="font-semibold text-blue-400 mb-3">
-                  {language === 'en' ? 'Downloadable Files' : '可下載檔案'}
+                  {language === 'en' ? 'Downloadable Files' : '?��?載�?�?}
                 </h4>
                 <div className="space-y-2">
                   <button className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
@@ -570,7 +570,7 @@ const ResourcePanel: React.FC<{
             <div className="space-y-4">
               <div className="bg-purple-900/20 p-4 rounded-lg border border-purple-500/30">
                 <h4 className="font-semibold text-purple-400 mb-3">
-                  {language === 'en' ? 'Useful Links' : '有用連結'}
+                  {language === 'en' ? 'Useful Links' : '?�用???'}
                 </h4>
                 <div className="space-y-2">
                   <a href="#" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
@@ -591,11 +591,11 @@ const ResourcePanel: React.FC<{
   );
 };
 
-// 討論區組件
+// 討�??�組件
 const DiscussionPanel: React.FC<{
   isOpen: boolean;
   onClose: () => void;
-  language: 'en' | 'zh-TW';
+  language: 'en' | 'zh-HK';
 }> = ({ isOpen, onClose, language }) => {
   if (!isOpen) return null;
 
@@ -604,13 +604,13 @@ const DiscussionPanel: React.FC<{
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-bold text-white flex items-center gap-2">
           <Users className="w-5 h-5" />
-          {language === 'en' ? 'Discussion' : '討論區'}
+          {language === 'en' ? 'Discussion' : '討�??�'}
         </h3>
         <button
           onClick={onClose}
           className="text-gray-400 hover:text-white transition-colors"
         >
-          ✕
+          ??
         </button>
       </div>
 
@@ -626,7 +626,7 @@ const DiscussionPanel: React.FC<{
           <p className="text-gray-300">
             {language === 'en' 
               ? "Great lesson! The calculator example really helped me understand variables."
-              : "很棒的課程！計算器例子真的幫助我理解了變量。"
+              : "很�??�課程�?計�??��?子�??�幫?��??�解了�??��?
             }
           </p>
         </div>
@@ -635,11 +635,11 @@ const DiscussionPanel: React.FC<{
           <textarea
             className="w-full bg-transparent border border-gray-600/30 rounded-lg p-3 text-white placeholder-gray-400 resize-none"
             rows={3}
-            placeholder={language === 'en' ? 'Join the discussion...' : '加入討論...'}
+            placeholder={language === 'en' ? 'Join the discussion...' : '?�入討�?...'}
           />
           <div className="flex justify-end mt-2">
             <Button size="sm" className="bg-blue-500 hover:bg-blue-600">
-              {language === 'en' ? 'Post' : '發佈'}
+              {language === 'en' ? 'Post' : '?��?'}
             </Button>
           </div>
         </div>
@@ -648,10 +648,10 @@ const DiscussionPanel: React.FC<{
   );
 };
 
-// 主要課程組件
+// 主�?課�?組件
 const CodingBasicsLesson: React.FC = () => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
 
   const sections = lesson1Sections[language];
   const [selectedKey, setSelectedKey] = useState(sections[0]?.items[0]?.key || '');
@@ -699,7 +699,7 @@ const CodingBasicsLesson: React.FC = () => {
 
   const handleQuizComplete = useCallback(() => {
     setShowQuiz(false);
-    // 可以在這裡添加課程完成邏輯
+    // ?�以?�這裡添�?課�?完�??�輯
   }, []);
 
   return (
@@ -708,7 +708,7 @@ const CodingBasicsLesson: React.FC = () => {
       
       <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="flex gap-8">
-          {/* 左側：課程大綱 */}
+          {/* 左側：課程大�?*/}
           <div className="w-80 flex-shrink-0">
             <EnhancedLessonSidebar
               sections={sections}
@@ -720,13 +720,13 @@ const CodingBasicsLesson: React.FC = () => {
             />
           </div>
 
-          {/* 主要內容區域 */}
+          {/* 主�??�容?�??*/}
           <div className="flex-1 max-w-4xl">
-            {/* 課程頭部 */}
+            {/* 課�??�部 */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 mb-8">
               <div className="flex items-center justify-between mb-4">
                 <h1 className="text-3xl font-bold text-white">
-                  {isZhTW ? '基礎編程入門' : 'Introduction to Programming'}
+                  {isZhTW ? '?��?編�??��?' : 'Introduction to Programming'}
                 </h1>
                 <div className="flex items-center gap-4">
                   <Button
@@ -736,7 +736,7 @@ const CodingBasicsLesson: React.FC = () => {
                     className="border-gray-600 hover:bg-gray-700"
                   >
                     <BookOpen className="w-4 h-4 mr-2" />
-                    {isZhTW ? '資源' : 'Resources'}
+                    {isZhTW ? '資�?' : 'Resources'}
                   </Button>
                   <Button
                     variant="outline"
@@ -745,23 +745,23 @@ const CodingBasicsLesson: React.FC = () => {
                     className="border-gray-600 hover:bg-gray-700"
                   >
                     <MessageSquare className="w-4 h-4 mr-2" />
-                    {isZhTW ? '討論' : 'Discussion'}
+                    {isZhTW ? '討�?' : 'Discussion'}
                   </Button>
                 </div>
               </div>
               
               <div className="flex items-center gap-4 text-sm text-gray-400">
                 <span>
-                  {isZhTW ? '進度' : 'Progress'}: {progress.completedCount}/{progress.totalCount} ({progress.percentage}%)
+                  {isZhTW ? '?�度' : 'Progress'}: {progress.completedCount}/{progress.totalCount} ({progress.percentage}%)
                 </span>
-                <span>•</span>
+                <span>??/span>
                 <span>
-                  {isZhTW ? '第' : 'Part'} {currentIndex + 1} {isZhTW ? '部分' : 'of'} {allItems.length}
+                  {isZhTW ? '�? : 'Part'} {currentIndex + 1} {isZhTW ? '?��?' : 'of'} {allItems.length}
                 </span>
               </div>
             </div>
 
-            {/* 課程內容 */}
+            {/* 課�??�容 */}
             <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/50 mb-8">
               <div className="p-8">
                 {showQuiz ? (
@@ -776,7 +776,7 @@ const CodingBasicsLesson: React.FC = () => {
                         <div className="flex items-center gap-3 mb-4">
                           <span className="text-2xl">{currentItem.icon}</span>
                           <h2 className="text-2xl font-bold text-white">{currentItem.title}</h2>
-                          <span className="text-sm text-gray-400">• {currentItem.duration}</span>
+                          <span className="text-sm text-gray-400">??{currentItem.duration}</span>
                         </div>
                         <p className="text-gray-300 mb-6">{currentItem.description}</p>
                         <div className="prose prose-invert max-w-none">
@@ -789,7 +789,7 @@ const CodingBasicsLesson: React.FC = () => {
               </div>
             </div>
 
-            {/* 課程導航 */}
+            {/* 課�?導航 */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
               <div className="flex items-center justify-between">
                 <Button
@@ -799,7 +799,7 @@ const CodingBasicsLesson: React.FC = () => {
                   className="border-gray-600 hover:bg-gray-700"
                 >
                   <ChevronLeft className="w-4 h-4 mr-2" />
-                  {isZhTW ? '上一個' : 'Previous'}
+                  {isZhTW ? '上�??? : 'Previous'}
                 </Button>
 
                 <div className="flex items-center gap-4">
@@ -810,8 +810,8 @@ const CodingBasicsLesson: React.FC = () => {
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
                     {currentItem && isCompleted(currentItem.key)
-                      ? (isZhTW ? '已完成' : 'Completed')
-                      : (isZhTW ? '標記完成' : 'Mark Complete')
+                      ? (isZhTW ? '已�??? : 'Completed')
+                      : (isZhTW ? '標�?完�?' : 'Mark Complete')
                     }
                   </Button>
 
@@ -820,7 +820,7 @@ const CodingBasicsLesson: React.FC = () => {
                       onClick={() => setShowQuiz(true)}
                       className="bg-blue-500 hover:bg-blue-600"
                     >
-                      {isZhTW ? '開始測驗' : 'Start Quiz'}
+                      {isZhTW ? '?��?測�?' : 'Start Quiz'}
                     </Button>
                   )}
                 </div>
@@ -831,13 +831,13 @@ const CodingBasicsLesson: React.FC = () => {
                   disabled={currentIndex === allItems.length - 1}
                   className="border-gray-600 hover:bg-gray-700"
                 >
-                  {isZhTW ? '下一個' : 'Next'}
+                  {isZhTW ? '下�??? : 'Next'}
                   <ChevronRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
             </div>
 
-            {/* 討論區 */}
+            {/* 討�??� */}
             <DiscussionPanel
               isOpen={showDiscussion}
               onClose={() => setShowDiscussion(false)}
@@ -847,7 +847,7 @@ const CodingBasicsLesson: React.FC = () => {
         </div>
       </div>
 
-      {/* 資源面板 */}
+      {/* 資�??�板 */}
       <ResourcePanel
         isOpen={resourcePanel.isOpen}
         activeTab={resourcePanel.activeTab}

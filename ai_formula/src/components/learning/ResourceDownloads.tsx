@@ -54,58 +54,58 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
   const [sortBy, setSortBy] = useState<'name' | 'size' | 'downloads' | 'updated'>('name');
   const [downloadedItems, setDownloadedItems] = useState<Set<string>>(new Set());
 
-  // 模擬資源數據
+  // 模擬資�??��?
   const mockResources: Resource[] = [
     {
       id: '1',
-      name: 'Prompt Engineering 完整指南',
+      name: 'Prompt Engineering 完整?��?',
       type: 'pdf',
       url: '/downloads/prompt-engineering-guide.pdf',
       size: '2.3 MB',
-      description: '完整的 Prompt Engineering 指南，包含所有重要概念和實用技巧。',
+      description: '完整??Prompt Engineering ?��?，�??��??��?要�?念�?實用?�巧�?,
       downloadCount: 1245,
       lastUpdated: new Date('2024-01-15'),
-      category: '教學資料',
-      tags: ['prompt-engineering', '指南', 'AI'],
+      category: '?�學資�?',
+      tags: ['prompt-engineering', '?��?', 'AI'],
       isNew: false,
       isPopular: true,
       previewUrl: '/preview/prompt-engineering-guide.pdf'
     },
     {
       id: '2',
-      name: 'ChatGPT API 範例代碼',
+      name: 'ChatGPT API 範�?�?��',
       type: 'code',
       url: '/downloads/chatgpt-api-examples.zip',
       size: '156 KB',
-      description: '完整的 ChatGPT API 使用範例，包含 Python 和 JavaScript 版本。',
+      description: '完整??ChatGPT API 使用範�?，�???Python ??JavaScript ?�本??,
       downloadCount: 892,
       lastUpdated: new Date('2024-01-18'),
-      category: '代碼範例',
+      category: '�?��範�?',
       tags: ['ChatGPT', 'API', 'Python', 'JavaScript'],
       isNew: true,
       isPopular: false
     },
     {
       id: '3',
-      name: 'AI 應用案例資料集',
+      name: 'AI ?�用案�?資�???,
       type: 'dataset',
       url: '/downloads/ai-use-cases-dataset.csv',
       size: '5.7 MB',
-      description: '包含 1000+ 個 AI 應用案例的資料集，適合分析和研究。',
+      description: '?�含 1000+ ??AI ?�用案�??��??��?，適?��??��??�究??,
       downloadCount: 567,
       lastUpdated: new Date('2024-01-10'),
-      category: '資料集',
-      tags: ['dataset', 'AI', '案例研究'],
+      category: '資�???,
+      tags: ['dataset', 'AI', '案�??�究'],
       isNew: false,
       isPopular: false
     },
     {
       id: '4',
-      name: 'Prompt 模板集合',
+      name: 'Prompt 模板?��?',
       type: 'template',
       url: '/downloads/prompt-templates.json',
       size: '89 KB',
-      description: '精選的 Prompt 模板集合，涵蓋各種應用場景。',
+      description: '精選??Prompt 模板?��?，涵?��?種�??�場?��?,
       downloadCount: 1834,
       lastUpdated: new Date('2024-01-20'),
       category: '模板',
@@ -115,15 +115,15 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
     },
     {
       id: '5',
-      name: '課程重點總結',
+      name: '課�??��?總�?',
       type: 'document',
       url: '/downloads/course-summary.docx',
       size: '445 KB',
-      description: '課程重點總結文檔，包含所有重要概念和關鍵要點。',
+      description: '課�??��?總�??��?，�??��??��?要�?念�??�鍵要�???,
       downloadCount: 723,
       lastUpdated: new Date('2024-01-16'),
-      category: '總結',
-      tags: ['summary', '重點', '總結'],
+      category: '總�?',
+      tags: ['summary', '?��?', '總�?'],
       isNew: false,
       isPopular: false
     },
@@ -133,7 +133,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
       type: 'video',
       url: '/downloads/demo-video.mp4',
       size: '127 MB',
-      description: '完整的實戰演示視頻，展示 Prompt Engineering 的實際應用。',
+      description: '完整?�實?��?示�??��?展示 Prompt Engineering ?�實?��??��?,
       downloadCount: 456,
       lastUpdated: new Date('2024-01-12'),
       category: '視頻',
@@ -145,7 +145,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
 
   const allResources = resources.length > 0 ? resources : mockResources;
 
-  // 過濾和排序資源
+  // ?�濾?��?序�?�?
   const filteredResources = allResources
     .filter(resource => {
       const matchesSearch = resource.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -169,7 +169,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
       }
     });
 
-  // 獲取類型圖標
+  // ?��?類�??��?
   const getTypeIcon = (type: Resource['type']) => {
     switch (type) {
       case 'pdf':
@@ -191,31 +191,31 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
     }
   };
 
-  // 獲取類型標籤
+  // ?��?類�?標籤
   const getTypeLabel = (type: Resource['type']) => {
     switch (type) {
       case 'pdf':
         return 'PDF';
       case 'code':
-        return '代碼';
+        return '�?��';
       case 'dataset':
-        return '資料集';
+        return '資�???;
       case 'template':
         return '模板';
       case 'video':
         return '視頻';
       case 'image':
-        return '圖片';
+        return '?��?';
       case 'document':
-        return '文檔';
+        return '?��?';
       default:
-        return '文件';
+        return '?�件';
     }
   };
 
-  // 處理下載
+  // ?��?下�?
   const handleDownload = (resource: Resource) => {
-    // 模擬下載
+    // 模擬下�?
     const link = document.createElement('a');
     link.href = resource.url;
     link.download = resource.name;
@@ -223,24 +223,24 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
     link.click();
     document.body.removeChild(link);
     
-    // 標記為已下載
+    // 標�??�已下�?
     setDownloadedItems(prev => new Set([...prev, resource.id]));
   };
 
-  // 複製連結
+  // 複製???
   const handleCopyLink = (resource: Resource) => {
     const fullUrl = window.location.origin + resource.url;
     navigator.clipboard.writeText(fullUrl);
   };
 
-  // 預覽文件
+  // ?�覽?�件
   const handlePreview = (resource: Resource) => {
     if (resource.previewUrl) {
       window.open(resource.previewUrl, '_blank');
     }
   };
 
-  // 格式化時間
+  // ?��??��???
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('zh-HK', {
       year: 'numeric',
@@ -249,7 +249,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
     });
   };
 
-  // 格式化下載次數
+  // ?��??��?載次??
   const formatDownloadCount = (count: number) => {
     if (count >= 1000) {
       return `${(count / 1000).toFixed(1)}K`;
@@ -262,10 +262,10 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
       <div className="p-4 h-full flex items-center justify-center">
         <div className="text-center">
           <FolderOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-300 mb-2">還沒有資源</h3>
+          <h3 className="text-lg font-semibold text-gray-300 mb-2">?��??��?�?/h3>
           <p className="text-sm text-gray-500">
-            隨著課程進行，這裡會出現相關的下載資源，
-            包括課程資料、代碼範例和參考文檔。
+            ?��?課�??��?，這裡?�出?�相?��?下�?資�?�?
+            ?�括課�?資�??�代碼�?例�??�考�?檔�?
           </p>
         </div>
       </div>
@@ -274,12 +274,12 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
 
   return (
     <div className="h-full flex flex-col">
-      {/* 搜索和過濾控制 */}
+      {/* ?�索?��?濾控??*/}
       <div className="p-4 border-b border-gray-700 space-y-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
-            placeholder="搜索資源..."
+            placeholder="?�索資�?..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 bg-gray-700 border-gray-600 text-white"
@@ -294,13 +294,13 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
               onChange={(e) => setFilterType(e.target.value as any)}
               className="bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2 text-sm"
             >
-              <option value="all">全部類型</option>
+              <option value="all">?�部類�?</option>
               <option value="pdf">PDF</option>
-              <option value="code">代碼</option>
-              <option value="dataset">資料集</option>
+              <option value="code">�?��</option>
+              <option value="dataset">資�???/option>
               <option value="template">模板</option>
               <option value="video">視頻</option>
-              <option value="document">文檔</option>
+              <option value="document">?��?</option>
             </select>
           </div>
           
@@ -309,22 +309,22 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
             onChange={(e) => setSortBy(e.target.value as any)}
             className="bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2 text-sm"
           >
-            <option value="name">按名稱</option>
-            <option value="size">按大小</option>
-            <option value="downloads">按下載數</option>
-            <option value="updated">按更新時間</option>
+            <option value="name">?��?�?/option>
+            <option value="size">?�大�?/option>
+            <option value="downloads">?��?載數</option>
+            <option value="updated">?�更?��???/option>
           </select>
         </div>
       </div>
 
-      {/* 資源列表 */}
+      {/* 資�??�表 */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="p-4 space-y-4">
             {filteredResources.length === 0 ? (
               <div className="text-center py-8">
                 <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-400">沒有找到相關資源</p>
+                <p className="text-gray-400">沒�??�到?��?資�?</p>
               </div>
             ) : (
               filteredResources.map((resource) => (
@@ -337,13 +337,13 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
                   <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-4">
-                        {/* 文件類型圖標 */}
+                        {/* ?�件類�??��? */}
                         <div className="flex-shrink-0 p-3 bg-gray-700 rounded-lg">
                           {getTypeIcon(resource.type)}
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          {/* 文件名和標籤 */}
+                          {/* ?�件?��?標籤 */}
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center space-x-2">
                               <h4 className="font-semibold text-white text-lg truncate">
@@ -353,10 +353,10 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
                                 {getTypeLabel(resource.type)}
                               </Badge>
                               {resource.isNew && (
-                                <Badge className="text-xs bg-green-600 text-white">新</Badge>
+                                <Badge className="text-xs bg-green-600 text-white">??/Badge>
                               )}
                               {resource.isPopular && (
-                                <Badge className="text-xs bg-orange-600 text-white">熱門</Badge>
+                                <Badge className="text-xs bg-orange-600 text-white">?��?</Badge>
                               )}
                             </div>
                             
@@ -389,7 +389,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
                             </div>
                           </div>
                           
-                          {/* 描述 */}
+                          {/* ?�述 */}
                           <p className="text-gray-300 text-sm mb-3 line-clamp-2">
                             {resource.description}
                           </p>
@@ -403,7 +403,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
                             ))}
                           </div>
                           
-                          {/* 底部信息和下載按鈕 */}
+                          {/* 底部信息?��?載�???*/}
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-4 text-sm text-gray-400">
                               <span className="flex items-center space-x-1">
@@ -424,7 +424,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
                               {downloadedItems.has(resource.id) && (
                                 <div className="flex items-center space-x-1 text-green-400">
                                   <CheckCircle className="w-4 h-4" />
-                                  <span className="text-sm">已下載</span>
+                                  <span className="text-sm">已�?�?/span>
                                 </div>
                               )}
                               <Button
@@ -433,7 +433,7 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
                                 size="sm"
                               >
                                 <Download className="w-4 h-4 mr-2" />
-                                下載
+                                下�?
                               </Button>
                             </div>
                           </div>
@@ -448,13 +448,13 @@ export const ResourceDownloads: React.FC<ResourceDownloadsProps> = ({ resources 
         </ScrollArea>
       </div>
 
-      {/* 底部統計 */}
+      {/* 底部統�? */}
       <div className="p-4 border-t border-gray-700">
         <div className="flex items-center justify-between text-sm text-gray-400">
           <span>
-            共 {filteredResources.length} 個資源
-            {searchTerm && ` • 搜索: "${searchTerm}"`}
-            {filterType !== 'all' && ` • 類型: ${getTypeLabel(filterType)}`}
+            ??{filteredResources.length} ?��?�?
+            {searchTerm && ` ???�索: "${searchTerm}"`}
+            {filterType !== 'all' && ` ??類�?: ${getTypeLabel(filterType)}`}
           </span>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">

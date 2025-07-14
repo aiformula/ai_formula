@@ -45,7 +45,7 @@ import {
   Video
 } from 'lucide-react';
 
-// 子組件導入
+// 子�?件�???
 import AIPlayground from './AIPlayground';
 import QuizModal from './QuizModal';
 import AITutorChat from './AITutorChat';
@@ -55,7 +55,7 @@ import ResourceDownloads from './ResourceDownloads';
 import InteractiveArticle from './InteractiveArticle';
 import { promptEngineeringCourseData, CourseLesson } from '@/data/courseData/promptEngineeringComplete';
 
-// 類型定義
+// 類�?定義
 interface CourseModule {
   id: string;
   title: string;
@@ -113,7 +113,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
   modules,
   initialProgress
 }) => {
-  // 狀態管理
+  // ?�?�管??
   const [currentModule, setCurrentModule] = useState<CourseModule>(modules[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
@@ -123,13 +123,13 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPictureInPicture, setIsPictureInPicture] = useState(false);
   
-  // 互動區域狀態
+  // 互�??�?��???
   const [isBottomPanelExpanded, setIsBottomPanelExpanded] = useState(true);
   const [activeTab, setActiveTab] = useState('notes');
   const [showQuizModal, setShowQuizModal] = useState(false);
   const [showAITutor, setShowAITutor] = useState(false);
   
-  // 學習進度狀態
+  // 學�??�度?�??
   const [progress, setProgress] = useState<LearningProgress>(
     initialProgress || {
       currentModule: modules[0].id,
@@ -144,7 +144,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 影片控制函數
+  // 影�??�制?�數
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -186,7 +186,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     }
   };
 
-  // 學習進度更新
+  // 學�??�度?�新
   const updateProgress = (moduleId: string, completed: boolean) => {
     setProgress(prev => ({
       ...prev,
@@ -197,7 +197,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     }));
   };
 
-  // 檢查是否可以開始測驗
+  // 檢查?�否?�以?��?測�?
   const canStartQuiz = () => {
     const currentIndex = modules.findIndex(m => m.id === currentModule.id);
     const currentChapterModules = modules.slice(0, currentIndex + 1);
@@ -206,7 +206,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     );
   };
 
-  // 鍵盤快捷鍵
+  // ?�盤快捷??
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
@@ -241,7 +241,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [currentTime, duration, isFullscreen, isPlaying]);
 
-  // 時間格式化
+  // ?��??��???
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
@@ -250,7 +250,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
 
   return (
     <div ref={containerRef} className="h-screen bg-slate-900 text-slate-50 overflow-hidden">
-      {/* 頂部導航欄 */}
+      {/* ?�部導航�?*/}
       <div className="h-16 bg-slate-800 border-b border-slate-600 flex items-center justify-between px-6">
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
@@ -265,7 +265,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <Trophy className="w-5 h-5 text-yellow-400" />
-            <span className="text-sm text-slate-200">進度: {progress.totalProgress}%</span>
+            <span className="text-sm text-slate-200">?�度: {progress.totalProgress}%</span>
           </div>
           <Progress value={progress.totalProgress} className="w-32" />
           <Button
@@ -276,18 +276,18 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
             className="text-green-300 hover:text-green-200 hover:bg-green-900/20"
           >
             <Target className="w-4 h-4 mr-2" />
-            開始測驗
+            ?��?測�?
           </Button>
         </div>
       </div>
 
-      {/* 主要內容區域 */}
+      {/* 主�??�容?�??*/}
       <div className="h-[calc(100vh-4rem)]">
         <PanelGroup direction="horizontal" className="h-full">
-          {/* A區：影片播放器 (左/主) */}
+          {/* A?�：影?�播?�器 (�?�? */}
           <Panel defaultSize={60} minSize={40}>
             <div className="h-full flex flex-col">
-              {/* 影片播放器 */}
+              {/* 影�??�放??*/}
               <div className="flex-1 relative bg-black">
                 <video
                   ref={videoRef}
@@ -301,7 +301,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   }}
                 />
                 
-                {/* 影片控制覆蓋層 */}
+                {/* 影�??�制覆�?�?*/}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                   <div className="flex items-center space-x-4">
                     <Button
@@ -379,7 +379,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
 
            <PanelResizeHandle />
 
-           {/* B區：AI Playground (右) */}
+           {/* B?�：AI Playground (?? */}
            <Panel defaultSize={40} minSize={30}>
             <div className="h-full flex flex-col">
               <div className="bg-gray-800 border-b border-gray-700 p-4">
@@ -388,7 +388,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   AI Playground
                 </h3>
                 <p className="text-sm text-gray-400 mt-1">
-                  在這裡實踐您學到的概念
+                  ?�這裡實�??�學?��?概念
                 </p>
               </div>
               
@@ -397,7 +397,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   type={currentModule.playgroundType}
                   expectedOutput={currentModule.expectedOutput}
                   onOutputGenerated={(output) => {
-                    // 處理生成的輸出
+                    // ?��??��??�輸??
                     console.log('Generated output:', output);
                   }}
                 />
@@ -407,7 +407,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
          </PanelGroup>
       </div>
 
-      {/* C區：參考與互動區 (下/可收合) */}
+      {/* C?�：�??��?互�??� (�??�收?? */}
       <AnimatePresence>
         {isBottomPanelExpanded && (
           <motion.div
@@ -419,7 +419,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
           >
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-700">
-                <h3 className="text-lg font-semibold">參考與互動</h3>
+                <h3 className="text-lg font-semibold">?�考�?互�?</h3>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -434,19 +434,19 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   <TabsList className="grid w-full grid-cols-4 bg-gray-700">
                     <TabsTrigger value="notes" className="flex items-center">
                       <BookOpen className="w-4 h-4 mr-2" />
-                      智能筆記
+                      ?�能筆�?
                     </TabsTrigger>
                     <TabsTrigger value="reference" className="flex items-center">
                       <Target className="w-4 h-4 mr-2" />
-                      參考輸出
+                      ?�考輸??
                     </TabsTrigger>
                     <TabsTrigger value="community" className="flex items-center">
                       <Users className="w-4 h-4 mr-2" />
-                      社群問答
+                      社群?��?
                     </TabsTrigger>
                     <TabsTrigger value="resources" className="flex items-center">
                       <Download className="w-4 h-4 mr-2" />
-                      資源下載
+                      資�?下�?
                     </TabsTrigger>
                   </TabsList>
                   
@@ -462,7 +462,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                       <div className="bg-gray-700 rounded-lg p-4">
                         <h4 className="font-semibold mb-2 flex items-center">
                           <Lightbulb className="w-4 h-4 mr-2 text-yellow-400" />
-                          導師參考輸出
+                          導師?�考輸??
                         </h4>
                         <div className="bg-gray-900 rounded p-3 font-mono text-sm">
                           <pre className="whitespace-pre-wrap">{currentModule.expectedOutput}</pre>
@@ -494,7 +494,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         )}
       </AnimatePresence>
 
-      {/* 收合面板按鈕 */}
+      {/* ?��??�板?��? */}
       {!isBottomPanelExpanded && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -506,12 +506,12 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full shadow-lg"
           >
             <ChevronUp className="w-4 h-4 mr-2" />
-            顯示參考資料
+            顯示?�考�???
           </Button>
         </motion.div>
       )}
 
-      {/* AI 助教懸浮按鈕 */}
+      {/* AI ?��??�浮?��? */}
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -525,7 +525,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         </Button>
       </motion.div>
 
-      {/* 智能測驗模態框 */}
+      {/* ?�能測�?模�?�?*/}
       <QuizModal
         isOpen={showQuizModal}
         onClose={() => setShowQuizModal(false)}
@@ -537,7 +537,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         }}
       />
 
-      {/* AI 助教聊天 */}
+      {/* AI ?��??�天 */}
       <AITutorChat
         isOpen={showAITutor}
         onClose={() => setShowAITutor(false)}

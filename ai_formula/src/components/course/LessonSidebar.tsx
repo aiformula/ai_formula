@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import { Menu, X, CheckCircle } from 'lucide-react';
 
-// TypeScript 接口定義
+// TypeScript ?�口定義
 interface LessonItem {
   key: string;
   title: string;
@@ -26,7 +26,7 @@ interface LessonSidebarProps {
   isCompleted: (key: string) => boolean;
 }
 
-// Hook: 管理響應式側邊欄
+// Hook: 管�??��?式側?��?
 const useResponsiveSidebar = () => {
   const [drawerOpen, setDrawerOpen] = useState(() => window.innerWidth >= 768);
 
@@ -41,7 +41,7 @@ const useResponsiveSidebar = () => {
 
     window.addEventListener('resize', handleResize);
     
-    // 初始化檢查
+    // ?��??�檢??
     handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
@@ -63,7 +63,7 @@ const useResponsiveSidebar = () => {
   };
 };
 
-// 側邊欄導航組件
+// ?��?欄�??��?�?
 const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({ 
   sections, 
   selectedKey, 
@@ -77,11 +77,11 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
 
   return (
     <>
-      {/* 菜單icon+主目錄黃字 */}
+      {/* ?�單icon+主目?��?�?*/}
       <div className="flex items-center gap-3 mb-6 px-2">
         <Menu className="w-7 h-7 ai-text-primary" />
         <span className="text-lg font-bold ai-text-primary tracking-wide">
-          {isZhTW ? '主目錄' : 'Main'}
+          {isZhTW ? '主目?? : 'Main'}
         </span>
       </div>
       
@@ -124,7 +124,7 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
                   </span>
                   <span className="flex-1">{item.title}</span>
                   <span className="ml-2 text-xs text-gray-400 group-hover:text-blue-300">
-                    {item.type === 'reading' ? (isZhTW ? '閱讀' : 'Reading') : item.type === 'quiz' ? (isZhTW ? '測驗' : 'Quiz') : ''}
+                    {item.type === 'reading' ? (isZhTW ? '?��?' : 'Reading') : item.type === 'quiz' ? (isZhTW ? '測�?' : 'Quiz') : ''}
                   </span>
                   <span className="ml-4 text-xs text-gray-500 group-hover:text-blue-200">{item.duration}</span>
                 </div>
@@ -144,7 +144,7 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
 
 SidebarNavigation.displayName = 'SidebarNavigation';
 
-// 主側邊欄組件
+// 主側?��?組件
 const LessonSidebar: React.FC<LessonSidebarProps> = memo(({ 
   sections, 
   selectedKey, 
@@ -161,7 +161,7 @@ const LessonSidebar: React.FC<LessonSidebarProps> = memo(({
 
   return (
     <>
-      {/* 桌面 sidebar：md 以上永遠顯示，mobile 隱藏 */}
+      {/* 桌面 sidebar：md 以�?永�?顯示，mobile ?��? */}
       <div className="hidden md:flex w-72 bg-gray-950 border-r border-gray-800 flex-col py-8 px-4 gap-2 min-h-screen">
         <SidebarNavigation
           sections={sections}
@@ -172,7 +172,7 @@ const LessonSidebar: React.FC<LessonSidebarProps> = memo(({
         />
       </div>
       
-      {/* Drawer for mobile：細屏時自動打開，可關閉 */}
+      {/* Drawer for mobile：細屏�??��??��?，可?��? */}
       {sidebarState.drawerOpen && sidebarState.isMobile && (
         <div className="fixed inset-0 z-50 flex">
           {/* Overlay */}

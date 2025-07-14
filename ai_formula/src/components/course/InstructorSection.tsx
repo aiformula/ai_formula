@@ -11,67 +11,67 @@ const InstructorSection = () => {
 
   const instructors = [
     {
-      name: language === 'zh-TW' ? t('instructors.sarah.name') : 'Kenneth',
-      title: language === 'zh-TW' ? t('instructors.sarah.title') : 'AI Marketing Developer & Automation Specialist',
-      specialty: language === 'zh-TW' ? t('instructors.sarah.specialty') : 'AI Tools & Marketing Automation',
-      experience: language === 'zh-TW' ? t('instructors.sarah.experience') : '4+ years',
-      biography: language === 'zh-TW' ? t('instructors.sarah.biography') : 'Kenneth is a pioneering AI marketing developer who specializes in cutting-edge AI tools, automation systems, and strategic implementation. Over 4 years of intensive AI learning, he has mastered the art of transforming traditional marketing approaches through artificial intelligence and automation technologies.',
-      philosophy: language === 'zh-TW' ? t('instructors.sarah.philosophy') : 'AI is fundamentally transforming how we live and work. The future belongs to those who embrace AI today. I help individuals and businesses get ahead of the curve by mastering AI tools and automation before the masses catch up. Now is the perfect time to gain that competitive advantage.',
+      name: language === 'zh-HK' ? t('instructors.sarah.name') : 'Kenneth',
+      title: language === 'zh-HK' ? t('instructors.sarah.title') : 'AI Marketing Developer & Automation Specialist',
+      specialty: language === 'zh-HK' ? t('instructors.sarah.specialty') : 'AI Tools & Marketing Automation',
+      experience: language === 'zh-HK' ? t('instructors.sarah.experience') : '4+ years',
+      biography: language === 'zh-HK' ? t('instructors.sarah.biography') : 'Kenneth is a pioneering AI marketing developer who specializes in cutting-edge AI tools, automation systems, and strategic implementation. Over 4 years of intensive AI learning, he has mastered the art of transforming traditional marketing approaches through artificial intelligence and automation technologies.',
+      philosophy: language === 'zh-HK' ? t('instructors.sarah.philosophy') : 'AI is fundamentally transforming how we live and work. The future belongs to those who embrace AI today. I help individuals and businesses get ahead of the curve by mastering AI tools and automation before the masses catch up. Now is the perfect time to gain that competitive advantage.',
       qualifications: [
-        language === 'zh-TW' ? t('instructors.sarah.qual1') : 'AI Marketing Automation Expert',
-        language === 'zh-TW' ? t('instructors.sarah.qual2') : 'Advanced AI Tools Implementation',
-        language === 'zh-TW' ? t('instructors.sarah.qual3') : 'Strategic AI Business Integration',
-        language === 'zh-TW' ? t('instructors.sarah.qual4') : 'Future-Ready Marketing Systems'
+        language === 'zh-HK' ? t('instructors.sarah.qual1') : 'AI Marketing Automation Expert',
+        language === 'zh-HK' ? t('instructors.sarah.qual2') : 'Advanced AI Tools Implementation',
+        language === 'zh-HK' ? t('instructors.sarah.qual3') : 'Strategic AI Business Integration',
+        language === 'zh-HK' ? t('instructors.sarah.qual4') : 'Future-Ready Marketing Systems'
       ],
-      avatar: 'ðŸ‘¨â€ðŸ’¼',
+      avatar: '?‘¨?ð??,
       gradient: 'from-blue-500 to-purple-600'
     },
     {
-      name: language === 'zh-TW' ? t('instructors.david.name') : 'David',
-      title: language === 'zh-TW' ? t('instructors.david.title') : 'Business Automation & AI Integration Specialist',
-      specialty: language === 'zh-TW' ? t('instructors.david.specialty') : 'Automation & AI Solutions',
-      experience: language === 'zh-TW' ? t('instructors.david.experience') : '7+ years',
-      biography: language === 'zh-TW' ? t('instructors.david.biography') : 'David is a business automation expert who has spent 7+ years helping companies eliminate overwork and streamline operations. He specializes in creating powerful automation workflows using Make.com, n8n, and AI tools to handle posts, content management, and complex business processes.',
-      philosophy: language === 'zh-TW' ? t('instructors.david.philosophy') : 'Automation should solve real business problems and reduce overwork. I help businesses implement all-in-one AI and automation solutions that transform how they operate, allowing teams to focus on what truly matters while technology handles the repetitive tasks.',
+      name: language === 'zh-HK' ? t('instructors.david.name') : 'David',
+      title: language === 'zh-HK' ? t('instructors.david.title') : 'Business Automation & AI Integration Specialist',
+      specialty: language === 'zh-HK' ? t('instructors.david.specialty') : 'Automation & AI Solutions',
+      experience: language === 'zh-HK' ? t('instructors.david.experience') : '7+ years',
+      biography: language === 'zh-HK' ? t('instructors.david.biography') : 'David is a business automation expert who has spent 7+ years helping companies eliminate overwork and streamline operations. He specializes in creating powerful automation workflows using Make.com, n8n, and AI tools to handle posts, content management, and complex business processes.',
+      philosophy: language === 'zh-HK' ? t('instructors.david.philosophy') : 'Automation should solve real business problems and reduce overwork. I help businesses implement all-in-one AI and automation solutions that transform how they operate, allowing teams to focus on what truly matters while technology handles the repetitive tasks.',
       qualifications: [
-        language === 'zh-TW' ? t('instructors.david.qual1') : 'Make.com & n8n Automation Expert',
-        language === 'zh-TW' ? t('instructors.david.qual2') : 'Business Process Optimization',
-        language === 'zh-TW' ? t('instructors.david.qual3') : 'AI-Powered Content Management',
-        language === 'zh-TW' ? t('instructors.david.qual4') : 'All-in-One Business Solutions'
+        language === 'zh-HK' ? t('instructors.david.qual1') : 'Make.com & n8n Automation Expert',
+        language === 'zh-HK' ? t('instructors.david.qual2') : 'Business Process Optimization',
+        language === 'zh-HK' ? t('instructors.david.qual3') : 'AI-Powered Content Management',
+        language === 'zh-HK' ? t('instructors.david.qual4') : 'All-in-One Business Solutions'
       ],
-      avatar: 'ðŸ‘¨â€ðŸ’»',
+      avatar: '?‘¨?ð??,
       gradient: 'from-green-500 to-teal-600'
     },
     {
-      name: language === 'zh-TW' ? t('instructors.emily.name') : 'Ken',
-      title: language === 'zh-TW' ? t('instructors.emily.title') : 'Custom Business Developer & AI Automation Specialist',
-      specialty: language === 'zh-TW' ? t('instructors.emily.specialty') : 'Custom Coding & AI Automation',
-      experience: language === 'zh-TW' ? t('instructors.emily.experience') : '5+ years',
-      biography: language === 'zh-TW' ? t('instructors.emily.biography') : 'Ken is a skilled custom business developer with 5+ years of coding experience, specializing in creating tailored business solutions and AI automation systems. He builds custom applications that help businesses work faster and run more efficiently through intelligent automation.',
-      philosophy: language === 'zh-TW' ? t('instructors.emily.philosophy') : 'Code should make work faster and businesses run smoother. I create custom solutions that integrate AI automation to eliminate bottlenecks and accelerate business processes. Every line of code should serve a purpose: making work faster and more efficient.',
+      name: language === 'zh-HK' ? t('instructors.emily.name') : 'Ken',
+      title: language === 'zh-HK' ? t('instructors.emily.title') : 'Custom Business Developer & AI Automation Specialist',
+      specialty: language === 'zh-HK' ? t('instructors.emily.specialty') : 'Custom Coding & AI Automation',
+      experience: language === 'zh-HK' ? t('instructors.emily.experience') : '5+ years',
+      biography: language === 'zh-HK' ? t('instructors.emily.biography') : 'Ken is a skilled custom business developer with 5+ years of coding experience, specializing in creating tailored business solutions and AI automation systems. He builds custom applications that help businesses work faster and run more efficiently through intelligent automation.',
+      philosophy: language === 'zh-HK' ? t('instructors.emily.philosophy') : 'Code should make work faster and businesses run smoother. I create custom solutions that integrate AI automation to eliminate bottlenecks and accelerate business processes. Every line of code should serve a purpose: making work faster and more efficient.',
       qualifications: [
-        language === 'zh-TW' ? t('instructors.emily.qual1') : 'Custom Business Application Development',
-        language === 'zh-TW' ? t('instructors.emily.qual2') : 'AI Automation Integration Expert',
-        language === 'zh-TW' ? t('instructors.emily.qual3') : 'Performance Optimization Specialist',
-        language === 'zh-TW' ? t('instructors.emily.qual4') : 'Rapid Development Solutions'
+        language === 'zh-HK' ? t('instructors.emily.qual1') : 'Custom Business Application Development',
+        language === 'zh-HK' ? t('instructors.emily.qual2') : 'AI Automation Integration Expert',
+        language === 'zh-HK' ? t('instructors.emily.qual3') : 'Performance Optimization Specialist',
+        language === 'zh-HK' ? t('instructors.emily.qual4') : 'Rapid Development Solutions'
       ],
-      avatar: 'ðŸ‘¨â€ðŸ”¬',
+      avatar: '?‘¨?ð??,
       gradient: 'from-orange-500 to-red-600'
     },
     {
-      name: language === 'zh-TW' ? t('instructors.michael.name') : 'Jason',
-      title: language === 'zh-TW' ? t('instructors.michael.title') : 'Professional Developer & Custom Automation Specialist',
-      specialty: language === 'zh-TW' ? t('instructors.michael.specialty') : 'Coding & Custom Automation',
-      experience: language === 'zh-TW' ? t('instructors.michael.experience') : '8+ years',
-      biography: language === 'zh-TW' ? t('instructors.michael.biography') : 'Jason is a professional developer with 8+ years of coding experience, specializing in LLM chatbox development, MCP integration, and web applications. For the past 2 years, he has been intensively learning AI to uplevel his coding skills and help companies integrate cutting-edge AI solutions.',
-      philosophy: language === 'zh-TW' ? t('instructors.michael.philosophy') : 'No AI, no life! AI can change more than you think. I believe that integrating AI into development work transforms not just how we code, but what we can achieve. Every developer needs to embrace AI to stay relevant and create extraordinary solutions.',
+      name: language === 'zh-HK' ? t('instructors.michael.name') : 'Jason',
+      title: language === 'zh-HK' ? t('instructors.michael.title') : 'Professional Developer & Custom Automation Specialist',
+      specialty: language === 'zh-HK' ? t('instructors.michael.specialty') : 'Coding & Custom Automation',
+      experience: language === 'zh-HK' ? t('instructors.michael.experience') : '8+ years',
+      biography: language === 'zh-HK' ? t('instructors.michael.biography') : 'Jason is a professional developer with 8+ years of coding experience, specializing in LLM chatbox development, MCP integration, and web applications. For the past 2 years, he has been intensively learning AI to uplevel his coding skills and help companies integrate cutting-edge AI solutions.',
+      philosophy: language === 'zh-HK' ? t('instructors.michael.philosophy') : 'No AI, no life! AI can change more than you think. I believe that integrating AI into development work transforms not just how we code, but what we can achieve. Every developer needs to embrace AI to stay relevant and create extraordinary solutions.',
       qualifications: [
-        language === 'zh-TW' ? t('instructors.michael.qual1') : 'LLM Chatbox Development Expert',
-        language === 'zh-TW' ? t('instructors.michael.qual2') : 'MCP Integration Specialist',
-        language === 'zh-TW' ? t('instructors.michael.qual3') : 'Full-Stack Web Development',
-        language === 'zh-TW' ? t('instructors.michael.qual4') : 'AI-Enhanced Coding Solutions'
+        language === 'zh-HK' ? t('instructors.michael.qual1') : 'LLM Chatbox Development Expert',
+        language === 'zh-HK' ? t('instructors.michael.qual2') : 'MCP Integration Specialist',
+        language === 'zh-HK' ? t('instructors.michael.qual3') : 'Full-Stack Web Development',
+        language === 'zh-HK' ? t('instructors.michael.qual4') : 'AI-Enhanced Coding Solutions'
       ],
-      avatar: 'ðŸ‘¨â€ðŸŽ“',
+      avatar: '?‘¨?ð??,
       gradient: 'from-purple-500 to-pink-600'
     }
   ];
@@ -87,10 +87,10 @@ const InstructorSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            {language === 'zh-TW' ? t('instructors.title') : 'About the'} <span className="text-yellow-500">{language === 'zh-TW' ? t('instructors.titleHighlight') : 'Instructors'}</span>
+            {language === 'zh-HK' ? t('instructors.title') : 'About the'} <span className="text-yellow-500">{language === 'zh-HK' ? t('instructors.titleHighlight') : 'Instructors'}</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            {language === 'zh-TW' ? t('instructors.subtitle') : 'Meet our world-class instructors who combine deep technical expertise with real-world business experience. Learn from industry leaders who have built and scaled AI solutions across marketing and development.'}
+            {language === 'zh-HK' ? t('instructors.subtitle') : 'Meet our world-class instructors who combine deep technical expertise with real-world business experience. Learn from industry leaders who have built and scaled AI solutions across marketing and development.'}
           </p>
         </motion.div>
 
@@ -119,7 +119,7 @@ const InstructorSection = () => {
                         </div>
                         <div className="flex items-center space-x-1">
                           <Award className="w-4 h-4" />
-                          <span>{instructor.experience} {language === 'zh-TW' ? t('instructors.experience') : 'Experience'}</span>
+                          <span>{instructor.experience} {language === 'zh-HK' ? t('instructors.experience') : 'Experience'}</span>
                         </div>
                       </div>
                     </div>
@@ -127,17 +127,17 @@ const InstructorSection = () => {
 
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-TW' ? t('instructors.professionalJourney') : 'Professional Journey'}</h4>
+                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-HK' ? t('instructors.professionalJourney') : 'Professional Journey'}</h4>
                       <p className="text-gray-300 text-sm leading-relaxed">{instructor.biography}</p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-TW' ? t('instructors.teachingPhilosophy') : 'Teaching Philosophy'}</h4>
+                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-HK' ? t('instructors.teachingPhilosophy') : 'Teaching Philosophy'}</h4>
                       <p className="text-gray-300 text-sm leading-relaxed italic">"{instructor.philosophy}"</p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-yellow-500 mb-3">{language === 'zh-TW' ? t('instructors.keyQualifications') : 'AI Transformation Impact:'}</h4>
+                      <h4 className="font-semibold text-yellow-500 mb-3">{language === 'zh-HK' ? t('instructors.keyQualifications') : 'AI Transformation Impact:'}</h4>
                       <div className="grid grid-cols-1 gap-2">
                         {instructor.qualifications.map((qual, qualIndex) => (
                           <div key={qualIndex} className="flex items-center space-x-2">
@@ -155,7 +155,7 @@ const InstructorSection = () => {
                       size="sm"
                       className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-300"
                     >
-                      {language === 'zh-TW' ? t('instructors.viewProfile') : 'View Full Profile'}
+                      {language === 'zh-HK' ? t('instructors.viewProfile') : 'View Full Profile'}
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>

@@ -31,8 +31,8 @@ const AboutCht = () => {
           </motion.svg>
         </span>
       ),
-      title: "慳返寶貴時間",
-      description: "告別重複性嘅工作，將精力放喺更有創造力嘅地方。"
+      title: "?��?寶貴?��?",
+      description: "?�別?��??��?工�?，�?精�??�喺?��??�造�??�地?��?
     },
     {
       icon: (
@@ -44,13 +44,13 @@ const AboutCht = () => {
           <Zap className="w-6 h-6" />
         </motion.span>
       ),
-      title: "提升工作效率",
-      description: "學習使用最新嘅AI工具，例如大型語言模型同N8N自動化流程，令你嘅工作流程更上一層樓。"
+      title: "?��?工�??��?",
+      description: "學�?使用?�?��?AI工具，�?如大?��?言模�??�N8N?��??��?程�?令�??�工作�?程更上�?層�???
     },
     {
       icon: <Trophy className="w-6 h-6" />,
-      title: "增加競爭能力",
-      description: "無論你是個人還是公司，掌握AI就等於掌握未來的入場券。"
+      title: "增�?競爭?��?",
+      description: "?��?你是?�人?�是?�司，�??�AI就�??��??�未來�??�場?��?
     }
   ];
 
@@ -94,7 +94,7 @@ const AboutCht = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            關於我們
+            ?�於?��?
           </motion.h1>
           <motion.div 
             className="max-w-3xl mx-auto"
@@ -107,15 +107,15 @@ const AboutCht = () => {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              歡迎嚟到 AI Formula - 你專屬嘅香港AI自動化教室同官方專家！
+              歡�??�到 AI Formula - 你�?屬�?香港AI?��??��?室�?官方專家�?
             </motion.p>
             <motion.p 
               className="text-gray-400"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              在這個科技日新月異的時代，人工智能 (AI) 已經不再是遙不可及的概念，而是提升工作效率和生活質素的實用工具。
-              AI Formula 的誕生，源於一個簡單的信念：我們想將強大的AI力量，變得簡單易明，帶給香港每一個想進步的你和你的企業。
+              ?�這個�??�?�新?�異?��?�??人工?�能 (AI) 已�?不�??��?不可?��?概念，而是?��?工�??��??��?活質素�?實用工具??
+              AI Formula ?��??��?源於一?�簡?��?信念：�??�想將強大�?AI?��?，�?得簡?��??��?帶給香港每�??�想?�步?��??��??��?業�?
             </motion.p>
           </motion.div>
         </motion.div>
@@ -175,7 +175,7 @@ const AboutCht = () => {
             >
               <Users2 className="w-8 h-8 text-yellow-400 mr-4" />
             </motion.div>
-            <h2 className="text-2xl font-bold">我們是誰？</h2>
+            <h2 className="text-2xl font-bold">?�們是誰�?</h2>
           </motion.div>
           <motion.p 
             className="text-gray-400"
@@ -184,8 +184,8 @@ const AboutCht = () => {
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
           >
-            我們是一班熱愛AI、專注於自動化技術的專家。我們不單止會教你理論，更重要的是分享實戰經驗，
-            提供全方位嘅應用攻略，確保你學到嘅知識都可以即時應用。
+            ?�們是一?�熱?�AI?��?注於?��??��?術�?專家?��??��??�止?��?你�?論�??��?要�??��?享實?��?驗�?
+            ?��??�方位�??�用?�略，確保�?學到?�知識都?�以?��??�用??
           </motion.p>
         </motion.div>
 
@@ -206,7 +206,7 @@ const AboutCht = () => {
             <div className="relative">
               <Brain className="w-8 h-8 text-yellow-400 mr-4" />
             </div>
-            <h2 className="text-2xl font-bold">我們怎樣看AI工具？</h2>
+            <h2 className="text-2xl font-bold">?�們怎樣?�AI工具�?/h2>
           </motion.div>
           <motion.p 
             className="text-gray-400 mb-6"
@@ -215,9 +215,9 @@ const AboutCht = () => {
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
           >
-            市面上嘅AI工具五花八門，由大型語言模型 (ChatGPT, Gemini)，繪圖工具 (Midjourney)，
-            到自動化流程 (N8N, Zapier) 應有盡有。我們深信，沒有絕對「最好」或者「最壞」嘅工具，
-            只有「最適合」你當下需要嘅工具。
+            市面上�?AI工具五花?��?，由大�?語�?模�? (ChatGPT, Gemini)，繪?�工??(Midjourney)�?
+            ?�自?��?流�? (N8N, Zapier) ?��??��??��??�深信�?沒�?絕�??��?好」�??�「�?壞」�?工具�?
+            ?��??��??��??��??��??�要�?工具??
           </motion.p>
           <motion.ul 
             className="space-y-4"
@@ -227,9 +227,9 @@ const AboutCht = () => {
             viewport={{ once: true }}
           >
             {[
-              "深入剖析：唔單止話你知點用，仲會同你分析每個工具嘅核心功能、優點同埋潛在嘅缺點。",
-              "專注實用：我們會集中分享能夠真正解決香港人工作痛點嘅工具。",
-              "分享真實資訊：我們會將第一手嘅測試結果同實戰心得，坦白咁分享俾你。"
+              "深入?��?：�??�止話�??��??��?仲�??��??��?每個工?��??��??�能?�優點�??��??��?缺�???,
+              "專注實用：�??��??�中?�享?��??�正�?��香港人工作�?點�?工具??,
+              "?�享?�實資�?：�??��?將第一?��?測試結�??�實?��?得�??�白?��?享俾你�?
             ].map((item, index) => (
               <motion.li 
                 key={index}
@@ -263,7 +263,7 @@ const AboutCht = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            我們提供什麼？
+            ?�們�?供�?麼�?
           </motion.h2>
           <motion.div 
             className="grid md:grid-cols-3 gap-8"
@@ -274,16 +274,16 @@ const AboutCht = () => {
           >
             {[
               {
-                title: "AI線上課程",
-                description: "由淺入深，涵蓋各種實用AI工具同概念。"
+                title: "AI線�?課�?",
+                description: "?�淺?�深，涵?��?種實?�AI工具?��?念�?
               },
               {
-                title: "企業自動化方案",
-                description: "為你嘅公司度身訂造自動化方案。"
+                title: "企業?��??�方�?,
+                description: "?��??�公?�度身�??�自?��??��???
               },
               {
-                title: "一對一諮詢",
-                description: "解答你喺應用AI時遇到嘅各種疑難雜症。"
+                title: "一對�?諮詢",
+                description: "�??你喺?�用AI?��??��??�種?�難?��???
               }
             ].map((service, index) => (
               <motion.div

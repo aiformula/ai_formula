@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
   const { language } = useLanguage()
   const { user, signOut } = useAuth()
   
-  // 多語言文字
+  // 多�?言?��?
   const text = {
     en: {
       welcome: 'Welcome back',
@@ -58,35 +58,35 @@ const Dashboard: React.FC = () => {
       advanced: 'Advanced'
     },
     zh: {
-      welcome: '歡迎回來',
-      learningProgress: '學習進度',
-      coursesCompleted: '已完成課程',
-      totalStudyTime: '總學習時間',
-      averageScore: '平均分數',
-      currentCourses: '當前課程',
-      recommendedCourses: '推薦課程',
-      recentActivity: '最近活動',
-      viewAll: '查看全部',
-      continueLearning: '繼續學習',
-      startCourse: '開始課程',
-      viewCourse: '查看課程',
-      profile: '個人資料',
-      settings: '設定',
-      signOut: '登出',
-      hours: '小時',
-      minutes: '分鐘',
-      completed: '已完成',
-      inProgress: '進行中',
-      notStarted: '未開始',
-      beginner: '初級',
-      intermediate: '中級',
-      advanced: '高級'
+      welcome: '歡�??��?',
+      learningProgress: '學�??�度',
+      coursesCompleted: '已�??�課�?,
+      totalStudyTime: '總學習�???,
+      averageScore: '平�??�數',
+      currentCourses: '?��?課�?',
+      recommendedCourses: '?�薦課�?',
+      recentActivity: '?�近活??,
+      viewAll: '?��??�部',
+      continueLearning: '繼�?學�?',
+      startCourse: '?��?課�?',
+      viewCourse: '?��?課�?',
+      profile: '?�人資�?',
+      settings: '設�?',
+      signOut: '?�出',
+      hours: '小�?',
+      minutes: '?��?',
+      completed: '已�???,
+      inProgress: '?��?�?,
+      notStarted: '?��?�?,
+      beginner: '?��?',
+      intermediate: '中�?',
+      advanced: '高�?'
     }
   }
 
-  const t = text[language === 'zh-TW' ? 'zh' : 'en']
+  const t = text[language === 'zh-HK' ? 'zh' : 'en']
 
-  // 用戶學習數據
+  // ?�戶學�??��?
   const [learningStats, setLearningStats] = useState({
     coursesCompleted: 3,
     totalStudyTime: 24.5,
@@ -95,42 +95,42 @@ const Dashboard: React.FC = () => {
     totalCourses: 12
   })
 
-  // 當前課程數據
+  // ?��?課�??��?
   const currentCourses = [
     {
       id: 'prompt-engineering',
       title: 'Prompt Engineering Mastery',
-      titleZh: '提示工程精通課程',
+      titleZh: '?�示工�?精通課�?,
       progress: 65,
       status: 'inProgress',
       nextLesson: 'Advanced Techniques',
-      nextLessonZh: '高級技巧',
+      nextLessonZh: '高�??��?,
       estimatedTime: '2h 15m',
       difficulty: 'intermediate'
     },
     {
       id: 'ai-ethics',
       title: 'AI Ethics and Responsibility',
-      titleZh: 'AI倫理與責任',
+      titleZh: 'AI?��??�責�?,
       progress: 30,
       status: 'inProgress',
       nextLesson: 'Bias in AI Systems',
-      nextLessonZh: 'AI系統中的偏見',
+      nextLessonZh: 'AI系統中�??��?',
       estimatedTime: '1h 45m',
       difficulty: 'beginner'
     }
   ]
 
-  // 推薦課程
+  // ?�薦課�?
   const recommendedCourses = [
     {
       id: 'machine-learning-basics',
       title: 'Machine Learning Fundamentals',
-      titleZh: '機器學習基礎',
+      titleZh: '機器學�??��?',
       description: 'Learn the core concepts of machine learning',
-      descriptionZh: '學習機器學習的核心概念',
+      descriptionZh: '學�?機器學�??�核心�?�?,
       duration: '8 hours',
-      durationZh: '8小時',
+      durationZh: '8小�?',
       difficulty: 'beginner',
       rating: 4.8,
       students: 15420
@@ -138,42 +138,42 @@ const Dashboard: React.FC = () => {
     {
       id: 'neural-networks',
       title: 'Neural Networks Deep Dive',
-      titleZh: '神經網絡深度探索',
+      titleZh: '神�?網絡深度?�索',
       description: 'Advanced neural network architectures and applications',
-      descriptionZh: '高級神經網絡架構和應用',
+      descriptionZh: '高�?神�?網絡?��??��???,
       duration: '12 hours',
-      durationZh: '12小時',
+      durationZh: '12小�?',
       difficulty: 'advanced',
       rating: 4.9,
       students: 8750
     }
   ]
 
-  // 最近活動
+  // ?�近活??
   const recentActivity = [
     {
       id: 1,
       type: 'completed',
       title: 'Introduction to Prompt Engineering',
-      titleZh: '提示工程介紹',
+      titleZh: '?�示工�?介紹',
       time: '2 hours ago',
-      timeZh: '2小時前'
+      timeZh: '2小�???
     },
     {
       id: 2,
       type: 'started',
       title: 'Advanced Prompt Techniques',
-      titleZh: '高級提示技巧',
+      titleZh: '高�??�示?��?,
       time: '1 day ago',
-      timeZh: '1天前'
+      timeZh: '1天�?'
     },
     {
       id: 3,
       type: 'quiz',
       title: 'Quiz: Prompt Structure',
-      titleZh: '測驗：提示結構',
+      titleZh: '測�?：�?示�?�?,
       time: '2 days ago',
-      timeZh: '2天前',
+      timeZh: '2天�?',
       score: 92
     }
   ]
@@ -194,7 +194,7 @@ const Dashboard: React.FC = () => {
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
-        {/* 用戶歡迎區域 */}
+        {/* ?�戶歡�??�??*/}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <motion.div
@@ -206,7 +206,7 @@ const Dashboard: React.FC = () => {
                 {t.welcome}, {user?.email?.split('@')[0] || 'Student'}!
               </h1>
               <p className="text-gray-400 mt-1">
-                {language === 'zh-TW' ? '繼續你的學習之旅' : 'Continue your learning journey'}
+                {language === 'zh-HK' ? '繼�?你�?學�?之�?' : 'Continue your learning journey'}
               </p>
             </motion.div>
             
@@ -241,7 +241,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* 學習統計卡片 */}
+        {/* 學�?統�??��? */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -325,7 +325,7 @@ const Dashboard: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* 當前課程 */}
+        {/* ?��?課�? */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -356,11 +356,11 @@ const Dashboard: React.FC = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-white">
-                          {language === 'zh-TW' ? course.titleZh : course.title}
+                          {language === 'zh-HK' ? course.titleZh : course.title}
                         </h3>
                         <p className="text-sm text-gray-400">
-                          {language === 'zh-TW' ? '下一課：' : 'Next: '}
-                          {language === 'zh-TW' ? course.nextLessonZh : course.nextLesson}
+                          {language === 'zh-HK' ? '下�?課�?' : 'Next: '}
+                          {language === 'zh-HK' ? course.nextLessonZh : course.nextLesson}
                         </p>
                       </div>
                     </div>
@@ -387,9 +387,9 @@ const Dashboard: React.FC = () => {
           </Card>
         </motion.div>
 
-        {/* 推薦課程和最近活動 */}
+        {/* ?�薦課�??��?近活??*/}
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* 推薦課程 */}
+          {/* ?�薦課�? */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -410,7 +410,7 @@ const Dashboard: React.FC = () => {
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-semibold text-white">
-                          {language === 'zh-TW' ? course.titleZh : course.title}
+                          {language === 'zh-HK' ? course.titleZh : course.title}
                         </h3>
                         <Badge variant="outline" className="text-xs">
                           {t[course.difficulty]}
@@ -418,14 +418,14 @@ const Dashboard: React.FC = () => {
                       </div>
                       
                       <p className="text-sm text-gray-400 mb-3">
-                        {language === 'zh-TW' ? course.descriptionZh : course.description}
+                        {language === 'zh-HK' ? course.descriptionZh : course.description}
                       </p>
                       
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4 text-sm text-gray-400">
                           <span className="flex items-center">
                             <Clock className="h-4 w-4 mr-1" />
-                            {language === 'zh-TW' ? course.durationZh : course.duration}
+                            {language === 'zh-HK' ? course.durationZh : course.duration}
                           </span>
                           <span className="flex items-center">
                             <Star className="h-4 w-4 mr-1" />
@@ -448,7 +448,7 @@ const Dashboard: React.FC = () => {
             </Card>
           </motion.div>
 
-          {/* 最近活動 */}
+          {/* ?�近活??*/}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -483,10 +483,10 @@ const Dashboard: React.FC = () => {
                       
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-white">
-                          {language === 'zh-TW' ? activity.titleZh : activity.title}
+                          {language === 'zh-HK' ? activity.titleZh : activity.title}
                         </h4>
                         <p className="text-xs text-gray-400">
-                          {language === 'zh-TW' ? activity.timeZh : activity.time}
+                          {language === 'zh-HK' ? activity.timeZh : activity.time}
                           {activity.score && (
                             <span className="ml-2 text-green-400">
                               {activity.score}%

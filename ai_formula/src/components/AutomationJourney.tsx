@@ -9,27 +9,27 @@ const AutomationJourney = () => {
   const journeySteps = [
     {
       number: '01',
-      title: language === 'zh-TW' ? t('journey.step1.title') : 'Discovery Call',
-      description: language === 'zh-TW' ? t('journey.step1.description') : 'We understand your needs and identify automation opportunities',
-      icon: 'ðŸŽ¯'
+      title: language === 'zh-HK' ? t('journey.step1.title') : 'Discovery Call',
+      description: language === 'zh-HK' ? t('journey.step1.description') : 'We understand your needs and identify automation opportunities',
+      icon: '?Ž¯'
     },
     {
       number: '02',
-      title: language === 'zh-TW' ? t('journey.step2.title') : 'Strategy & Design',
-      description: language === 'zh-TW' ? t('journey.step2.description') : 'Create a detailed blueprint tailored to your business processes',
-      icon: 'ðŸ“‹'
+      title: language === 'zh-HK' ? t('journey.step2.title') : 'Strategy & Design',
+      description: language === 'zh-HK' ? t('journey.step2.description') : 'Create a detailed blueprint tailored to your business processes',
+      icon: '??'
     },
     {
       number: '03',
-      title: language === 'zh-TW' ? t('journey.step3.title') : 'Build & Integrate',
-      description: language === 'zh-TW' ? t('journey.step3.description') : 'Develop and seamlessly integrate your custom automation solution',
-      icon: 'ðŸ”§'
+      title: language === 'zh-HK' ? t('journey.step3.title') : 'Build & Integrate',
+      description: language === 'zh-HK' ? t('journey.step3.description') : 'Develop and seamlessly integrate your custom automation solution',
+      icon: '?”§'
     },
     {
       number: '04',
-      title: language === 'zh-TW' ? t('journey.step4.title') : 'Launch & Support',
-      description: language === 'zh-TW' ? t('journey.step4.description') : 'Deploy your solution and provide ongoing support and optimization',
-      icon: 'ðŸš€'
+      title: language === 'zh-HK' ? t('journey.step4.title') : 'Launch & Support',
+      description: language === 'zh-HK' ? t('journey.step4.description') : 'Deploy your solution and provide ongoing support and optimization',
+      icon: '??'
     }
   ];
 
@@ -44,10 +44,10 @@ const AutomationJourney = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            {language === 'zh-TW' ? t('journey.title') : 'Your Automation Journey'}
+            {language === 'zh-HK' ? t('journey.title') : 'Your Automation Journey'}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {language === 'zh-TW' ? t('journey.subtitle') : 'Our proven 4-step process ensures successful automation implementation'}
+            {language === 'zh-HK' ? t('journey.subtitle') : 'Our proven 4-step process ensures successful automation implementation'}
           </p>
         </motion.div>
 

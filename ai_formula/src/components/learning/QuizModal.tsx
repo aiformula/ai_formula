@@ -29,7 +29,7 @@ import {
   Award
 } from 'lucide-react';
 
-// 問題類型定義
+// ?��?類�?定義
 interface BaseQuestion {
   id: string;
   type: 'multiple-choice' | 'code-analysis' | 'prompt-writing' | 'concept-matching' | 'interactive-choice';
@@ -37,10 +37,10 @@ interface BaseQuestion {
   questionZh: string;
   difficulty: 'easy' | 'medium' | 'hard';
   points: number;
-  timeLimit?: number; // 秒
+  timeLimit?: number; // �?
   explanation: string;
   explanationZh: string;
-  videoTimestamp?: string; // 格式: "12:34"
+  videoTimestamp?: string; // ?��?: "12:34"
 }
 
 interface MultipleChoiceQuestion extends BaseQuestion {
@@ -135,7 +135,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<QuizResult[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(300); // 5 分鐘
+  const [timeLeft, setTimeLeft] = useState(300); // 5 ?��?
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [isFinished, setIsFinished] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -143,51 +143,51 @@ export const QuizModal: React.FC<QuizModalProps> = ({
   const [matchedPairs, setMatchedPairs] = useState<{[key: string]: string}>({});
   const [score, setScore] = useState(0);
 
-  // 模擬問題數據
+  // 模擬?��??��?
   const questions: Question[] = [
     {
       id: '1',
       type: 'multiple-choice',
       question: 'What is the main purpose of prompt engineering?',
-      questionZh: 'Prompt Engineering 的主要目的是什麼？',
+      questionZh: 'Prompt Engineering ?�主要目?�是什麼�?',
       difficulty: 'easy',
       points: 10,
       timeLimit: 60,
       explanation: 'Prompt engineering is the process of designing and optimizing prompts to get better responses from AI models.',
-      explanationZh: 'Prompt Engineering 是設計和優化提示詞以從 AI 模型獲得更好回應的過程。',
+      explanationZh: 'Prompt Engineering ?�設計�??��??�示詞以�?AI 模�??��??�好?��??��?程�?,
       videoTimestamp: '05:32',
       options: [
         {
           id: 'a',
           text: 'To make AI models faster',
-          textZh: '讓 AI 模型更快',
+          textZh: '�?AI 模�??�快',
           isCorrect: false,
           feedback: 'Speed is not the primary goal of prompt engineering.',
-          feedbackZh: '速度不是 Prompt Engineering 的主要目標。'
+          feedbackZh: '?�度不是 Prompt Engineering ?�主要目標�?
         },
         {
           id: 'b',
           text: 'To get better and more accurate responses from AI',
-          textZh: '從 AI 獲得更好更準確的回應',
+          textZh: '�?AI ?��??�好?��?確�??��?',
           isCorrect: true,
           feedback: 'Correct! Prompt engineering focuses on crafting prompts that elicit the desired response.',
-          feedbackZh: '正確！Prompt Engineering 專注於製作能引出所需回應的提示詞。'
+          feedbackZh: '�?��！Prompt Engineering 專注?�製作能引出?�?�?��??��?示�???
         },
         {
           id: 'c',
           text: 'To reduce the cost of AI usage',
-          textZh: '降低 AI 使用成本',
+          textZh: '?��? AI 使用?�本',
           isCorrect: false,
           feedback: 'While good prompts can be more efficient, cost reduction is not the primary purpose.',
-          feedbackZh: '雖然好的提示詞可以更有效率，但成本削減不是主要目的。'
+          feedbackZh: '?�然好�??�示詞可以更?��??��?但�??��?減�??�主要目?��?
         },
         {
           id: 'd',
           text: 'To train new AI models',
-          textZh: '訓練新的 AI 模型',
+          textZh: '訓練?��? AI 模�?',
           isCorrect: false,
           feedback: 'Prompt engineering works with existing models, not training new ones.',
-          feedbackZh: 'Prompt Engineering 是與現有模型合作，而不是訓練新模型。'
+          feedbackZh: 'Prompt Engineering ?��??��?模�??��?，而�??��?練新模�???
         }
       ]
     },
@@ -195,12 +195,12 @@ export const QuizModal: React.FC<QuizModalProps> = ({
       id: '2',
       type: 'code-analysis',
       question: 'What will be the output of this Python code?',
-      questionZh: '這段 Python 代碼的輸出是什麼？',
+      questionZh: '?�段 Python �?��?�輸?�是什麼�?',
       difficulty: 'medium',
       points: 15,
       timeLimit: 90,
       explanation: 'The code creates a list comprehension that filters even numbers and squares them.',
-      explanationZh: '這段代碼創建了一個列表推導，過濾偶數並將其平方。',
+      explanationZh: '?�段�?��?�建了�??��?表推導�??�濾?�數並�??�平?��?,
       videoTimestamp: '12:45',
       codeSnippet: `numbers = [1, 2, 3, 4, 5, 6]
 result = [x**2 for x in numbers if x % 2 == 0]
@@ -228,7 +228,7 @@ print(result)`,
         {
           id: 'd',
           text: 'Error',
-          textZh: '錯誤',
+          textZh: '?�誤',
           isCorrect: false
         }
       ]
@@ -237,15 +237,15 @@ print(result)`,
       id: '3',
       type: 'prompt-writing',
       question: 'Write a prompt to generate a marketing email for a new coffee machine.',
-      questionZh: '寫一個提示詞來生成新咖啡機的營銷電子郵件。',
+      questionZh: '寫�??��?示�?來�??�新?�啡機�??�銷?��??�件??,
       difficulty: 'hard',
       points: 20,
       timeLimit: 180,
       explanation: 'A good prompt should be specific, include context, and specify the desired tone and format.',
-      explanationZh: '好的提示詞應該具體，包含上下文，並指定所需的語調和格式。',
+      explanationZh: '好�??�示詞�?該具體�??�含上�??��?並�?定�??�?��?調�??��???,
       videoTimestamp: '18:20',
       scenario: 'You are a marketing manager at a coffee equipment company. You need to create an email to promote your new premium coffee machine to existing customers.',
-      scenarioZh: '您是一家咖啡設備公司的營銷經理。您需要創建一封電子郵件向現有客戶推廣新的優質咖啡機。',
+      scenarioZh: '?�是一家�??�設?�公?��??�銷經�??�您?�要創建�?封電子郵件�??��?客戶?�廣?��??�質?�啡機�?,
       targetOutput: 'A compelling marketing email with subject line, personalized greeting, product benefits, and call-to-action.',
       evaluationCriteria: [
         'Includes specific role and context',
@@ -255,23 +255,23 @@ print(result)`,
         'Includes key elements (benefits, call-to-action)'
       ],
       evaluationCriteriaZh: [
-        '包含特定角色和上下文',
-        '提及目標受眾（現有客戶）',
-        '請求特定格式（帶主題行的電子郵件）',
-        '指定語調（專業、熱情）',
-        '包含關鍵元素（優勢、行動呼籲）'
+        '?�含?��?角色?��?下�?',
+        '?��??��??�眾（現?�客?��?',
+        '請�??��??��?（帶主�?行�??��??�件�?,
+        '?��?語調（�?業、熱?��?',
+        '?�含?�鍵?��?（優?�、�??�呼籲�?'
       ]
     },
     {
       id: '4',
       type: 'concept-matching',
       question: 'Match the AI concepts with their definitions.',
-      questionZh: '將 AI 概念與其定義匹配。',
+      questionZh: '�?AI 概念?�其定義?��???,
       difficulty: 'medium',
       points: 15,
       timeLimit: 120,
       explanation: 'Understanding key AI terminology is essential for effective prompt engineering.',
-      explanationZh: '理解關鍵 AI 術語對於有效的 Prompt Engineering 至關重要。',
+      explanationZh: '?�解?�鍵 AI 術�?對於?��???Prompt Engineering ?��??��???,
       videoTimestamp: '25:10',
       concepts: [
         { id: 'transformer', term: 'Transformer', termZh: 'Transformer' },
@@ -283,25 +283,25 @@ print(result)`,
         {
           id: 'def1',
           definition: 'A neural network architecture that uses attention mechanisms',
-          definitionZh: '使用注意力機制的神經網絡架構',
+          definitionZh: '使用注�??��??��?神�?網絡?��?',
           matchesTerm: 'transformer'
         },
         {
           id: 'def2',
           definition: 'Retrieval-Augmented Generation',
-          definitionZh: '檢索增強生成',
+          definitionZh: '檢索增強?��?',
           matchesTerm: 'rag'
         },
         {
           id: 'def3',
           definition: 'Low-Rank Adaptation for efficient model training',
-          definitionZh: '用於高效模型訓練的低秩適應',
+          definitionZh: '?�於高�?模�?訓練?��?秩適??,
           matchesTerm: 'lora'
         },
         {
           id: 'def4',
           definition: 'Training a pre-trained model on specific data',
-          definitionZh: '在特定數據上訓練預訓練模型',
+          definitionZh: '?�特定數?��?訓練?��?練模??,
           matchesTerm: 'finetuning'
         }
       ]
@@ -310,7 +310,7 @@ print(result)`,
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  // 倒計時
+  // ?��???
   useEffect(() => {
     if (isOpen && !isFinished) {
       const timer = setInterval(() => {
@@ -327,21 +327,21 @@ print(result)`,
     }
   }, [isOpen, isFinished]);
 
-  // 開始計時
+  // ?��?計�?
   useEffect(() => {
     if (isOpen && !startTime) {
       setStartTime(new Date());
     }
   }, [isOpen, startTime]);
 
-  // 格式化時間
+  // ?��??��???
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // 提交答案
+  // ?�交答�?
   const handleSubmitAnswer = () => {
     if (!currentAnswer) return;
 
@@ -351,7 +351,7 @@ print(result)`,
     let isCorrect = false;
     let points = 0;
 
-    // 評估答案
+    // 評估答�?
     switch (currentQuestion.type) {
       case 'multiple-choice':
       case 'code-analysis':
@@ -367,7 +367,7 @@ print(result)`,
         const criteria = currentQuestion.evaluationCriteria;
         let score = 0;
         
-        // 簡單的關鍵詞檢查
+        // 簡單?��??��?檢查
         if (prompt.toLowerCase().includes('marketing') || prompt.toLowerCase().includes('email')) score += 2;
         if (prompt.toLowerCase().includes('coffee') || prompt.toLowerCase().includes('machine')) score += 2;
         if (prompt.toLowerCase().includes('customer') || prompt.toLowerCase().includes('existing')) score += 1;
@@ -407,7 +407,7 @@ print(result)`,
     setAnswers(prev => [...prev, result]);
     setShowFeedback(true);
     
-    // 延遲顯示下一題或完成
+    // 延遲顯示下�?題�?完�?
     setTimeout(() => {
       setShowFeedback(false);
       setCurrentAnswer('');
@@ -421,7 +421,7 @@ print(result)`,
     }, 3000);
   };
 
-  // 完成測驗
+  // 完�?測�?
   const handleFinishQuiz = () => {
     setIsFinished(true);
     const totalScore = answers.reduce((sum, answer) => sum + answer.points, 0);
@@ -433,7 +433,7 @@ print(result)`,
     onComplete(percentage);
   };
 
-  // 重新開始
+  // ?�新?��?
   const handleRestart = () => {
     setCurrentQuestionIndex(0);
     setAnswers([]);
@@ -447,7 +447,7 @@ print(result)`,
     setScore(0);
   };
 
-  // 渲染問題
+  // 渲�??��?
   const renderQuestion = () => {
     switch (currentQuestion.type) {
       case 'multiple-choice':
@@ -510,22 +510,22 @@ print(result)`,
         return (
           <div className="space-y-4">
             <div className="bg-gray-700 rounded-lg p-4">
-              <h4 className="font-semibold mb-2">情境描述：</h4>
+              <h4 className="font-semibold mb-2">?��??�述�?/h4>
               <p className="text-sm">{currentQuestion.scenarioZh}</p>
             </div>
             
             <div className="space-y-2">
-              <label className="text-sm font-medium">您的 Prompt：</label>
+              <label className="text-sm font-medium">?��? Prompt�?/label>
               <Textarea
                 value={currentAnswer as string}
                 onChange={(e) => setCurrentAnswer(e.target.value)}
-                placeholder="在這裡寫下您的 prompt..."
+                placeholder="?�這裡寫�??��? prompt..."
                 className="min-h-[150px] bg-gray-700 border-gray-600"
               />
             </div>
             
             <div className="bg-gray-700 rounded-lg p-4">
-              <h4 className="font-semibold mb-2">評估標準：</h4>
+              <h4 className="font-semibold mb-2">評估標�?�?/h4>
               <ul className="text-sm space-y-1">
                 {currentQuestion.evaluationCriteriaZh.map((criteria, index) => (
                   <li key={index} className="flex items-center space-x-2">
@@ -543,7 +543,7 @@ print(result)`,
           <div className="space-y-4">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold mb-3">概念：</h4>
+                <h4 className="font-semibold mb-3">概念�?/h4>
                 <div className="space-y-2">
                   {currentQuestion.concepts.map((concept) => (
                     <Card key={concept.id} className="bg-gray-700 border-gray-600">
@@ -551,7 +551,7 @@ print(result)`,
                         <div className="flex items-center justify-between">
                           <span className="font-medium">{concept.termZh}</span>
                           <Badge variant="outline" className="text-xs">
-                            {matchedPairs[concept.id] ? '已匹配' : '未匹配'}
+                            {matchedPairs[concept.id] ? '已匹?? : '?�匹??}
                           </Badge>
                         </div>
                       </CardContent>
@@ -561,7 +561,7 @@ print(result)`,
               </div>
               
               <div>
-                <h4 className="font-semibold mb-3">定義：</h4>
+                <h4 className="font-semibold mb-3">定義�?/h4>
                 <div className="space-y-2">
                   {currentQuestion.definitions.map((definition) => (
                     <Card
@@ -572,7 +572,7 @@ print(result)`,
                           : 'bg-gray-700 border-gray-600 hover:bg-gray-600'
                       }`}
                       onClick={() => {
-                        // 簡化的匹配邏輯
+                        // 簡�??�匹?��?�?
                         const newPairs = { ...matchedPairs };
                         const concept = currentQuestion.concepts.find(c => c.id === definition.matchesTerm);
                         if (concept) {
@@ -616,12 +616,12 @@ print(result)`,
         >
           {!showResult ? (
             <div className="flex flex-col h-full">
-              {/* 頂部進度條 */}
+              {/* ?�部?�度�?*/}
               <div className="bg-gray-700 p-4 border-b border-gray-600">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     <Brain className="w-6 h-6 text-blue-400" />
-                    <h2 className="text-xl font-bold text-white">智能測驗</h2>
+                    <h2 className="text-xl font-bold text-white">?�能測�?</h2>
                     <Badge variant="outline" className="text-blue-400 border-blue-400">
                       {currentQuestionIndex + 1} / {questions.length}
                     </Badge>
@@ -649,7 +649,7 @@ print(result)`,
                 />
               </div>
 
-              {/* 問題內容 */}
+              {/* ?��??�容 */}
               <div className="flex-1 overflow-y-auto p-6">
                 <div className="max-w-3xl mx-auto">
                   {showFeedback ? (
@@ -665,7 +665,7 @@ print(result)`,
                           <XCircle className="w-8 h-8 text-red-400" />
                         )}
                         <h3 className="text-xl font-bold">
-                          {answers[answers.length - 1]?.isCorrect ? '答對了！' : '答錯了'}
+                          {answers[answers.length - 1]?.isCorrect ? '答�?了�?' : '答錯�?}
                         </h3>
                       </div>
                       
@@ -681,7 +681,7 @@ print(result)`,
                             className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-white"
                           >
                             <Play className="w-4 h-4 mr-2" />
-                            重溫相關內容 ({currentQuestion.videoTimestamp})
+                            ?�溫?��??�容 ({currentQuestion.videoTimestamp})
                           </Button>
                         )}
                       </div>
@@ -696,17 +696,17 @@ print(result)`,
                             'bg-red-600'
                           }`}>
                             {currentQuestion.difficulty === 'easy' ? '簡單' :
-                             currentQuestion.difficulty === 'medium' ? '中等' : '困難'}
+                             currentQuestion.difficulty === 'medium' ? '中�?' : '?�難'}
                           </Badge>
                           <span className="text-sm text-gray-400">
-                            {currentQuestion.points} 分
+                            {currentQuestion.points} ??
                           </span>
                         </div>
                         
                         {currentQuestion.timeLimit && (
                           <div className="flex items-center space-x-2 text-sm text-gray-400">
                             <Clock className="w-4 h-4" />
-                            <span>建議時間: {currentQuestion.timeLimit}秒</span>
+                            <span>建議?��?: {currentQuestion.timeLimit}�?/span>
                           </div>
                         )}
                       </div>
@@ -727,7 +727,7 @@ print(result)`,
                           className="text-gray-400"
                         >
                           <ArrowLeft className="w-4 h-4 mr-2" />
-                          上一題
+                          上�?�?
                         </Button>
                         
                         <Button
@@ -735,7 +735,7 @@ print(result)`,
                           disabled={!currentAnswer}
                           className="bg-blue-600 hover:bg-blue-700 text-white px-8"
                         >
-                          {currentQuestionIndex === questions.length - 1 ? '完成測驗' : '下一題'}
+                          {currentQuestionIndex === questions.length - 1 ? '完�?測�?' : '下�?�?}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                       </div>
@@ -745,12 +745,12 @@ print(result)`,
               </div>
             </div>
           ) : (
-            // 結果頁面
+            // 結�??�面
             <div className="p-8 text-center">
               <div className="max-w-2xl mx-auto space-y-6">
                 <div className="flex items-center justify-center space-x-3">
                   <Trophy className="w-12 h-12 text-yellow-400" />
-                  <h2 className="text-3xl font-bold text-white">測驗完成！</h2>
+                  <h2 className="text-3xl font-bold text-white">測�?完�?�?/h2>
                 </div>
                 
                 <div className="bg-gray-700 rounded-lg p-6">
@@ -758,7 +758,7 @@ print(result)`,
                     {score}%
                   </div>
                   <p className="text-gray-300">
-                    您答對了 {answers.filter(a => a.isCorrect).length} / {questions.length} 題
+                    ?��?對�? {answers.filter(a => a.isCorrect).length} / {questions.length} �?
                   </p>
                 </div>
                 
@@ -767,19 +767,19 @@ print(result)`,
                     <div className="text-2xl font-bold text-green-400">
                       {answers.reduce((sum, a) => sum + a.points, 0)}
                     </div>
-                    <p className="text-sm text-gray-400">總分</p>
+                    <p className="text-sm text-gray-400">總�?</p>
                   </div>
                   <div className="bg-gray-700 rounded-lg p-4">
                     <div className="text-2xl font-bold text-blue-400">
                       {Math.round(answers.reduce((sum, a) => sum + a.timeSpent, 0) / 60)}
                     </div>
-                    <p className="text-sm text-gray-400">用時(分鐘)</p>
+                    <p className="text-sm text-gray-400">?��?(?��?)</p>
                   </div>
                   <div className="bg-gray-700 rounded-lg p-4">
                     <div className="text-2xl font-bold text-purple-400">
                       {score >= 80 ? 'A' : score >= 60 ? 'B' : 'C'}
                     </div>
-                    <p className="text-sm text-gray-400">等級</p>
+                    <p className="text-sm text-gray-400">等�?</p>
                   </div>
                 </div>
                 
@@ -790,7 +790,7 @@ print(result)`,
                       <span className="font-semibold text-orange-400">建議</span>
                     </div>
                     <p className="text-sm text-gray-300">
-                      您似乎在這個章節遇到一些困難。我們的 AI 助教已經準備好一份個人化的複習筆記給您，您想現在查看嗎？
+                      ?�似乎在?�個�?節?�到一些困??���??��? AI ?��?已�?準�?好�?份個人?��?複�?筆�?給您，您?�現?�查?��?�?
                     </p>
                   </div>
                 )}
@@ -802,14 +802,14 @@ print(result)`,
                     className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-white"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
-                    重新測驗
+                    ?�新測�?
                   </Button>
                   <Button
                     onClick={onClose}
                     className="bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
-                    完成
+                    完�?
                   </Button>
                 </div>
               </div>

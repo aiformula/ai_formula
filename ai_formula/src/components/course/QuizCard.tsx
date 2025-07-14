@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { Trophy, Award, Check, XCircle } from 'lucide-react';
 
-// TypeScript 接口定義
+// TypeScript ?�口定義
 interface QuizQuestion {
   q: string;
   options: string[];
@@ -20,13 +20,13 @@ interface InteractiveQuizProps {
   isZhTW: boolean;
 }
 
-// Hook: 管理 Quiz 進度和狀態
+// Hook: 管�? Quiz ?�度?��???
 const useQuizProgress = (isZhTW: boolean) => {
   const ATTEMPT_LIMIT = 5;
   const attemptKey = isZhTW ? 'pe_lesson2_quiz_attempts_zh' : 'pe_lesson2_quiz_attempts_en';
   const scoreKey = isZhTW ? 'pe_lesson2_quiz_score_zh' : 'pe_lesson2_quiz_score_en';
 
-  // 安全嘅 localStorage 操作
+  // 安全??localStorage ?��?
   const getStoredValue = useCallback((key: string, defaultValue: any) => {
     try {
       const item = localStorage.getItem(key);
@@ -154,17 +154,17 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
                 />
                 <span>{opt}</span>
                 {submitted && q.answer === j && (
-                  <span className="ml-2 text-green-400 font-bold">{isZhTW ? '正確答案' : 'Correct'}</span>
+                  <span className="ml-2 text-green-400 font-bold">{isZhTW ? '�?��答�?' : 'Correct'}</span>
                 )}
                 {submitted && answers[i] === j && answers[i] !== q.answer && (
-                  <span className="ml-2 text-red-400 font-bold">{isZhTW ? '你的選擇' : 'Your choice'}</span>
+                  <span className="ml-2 text-red-400 font-bold">{isZhTW ? '你�??��?' : 'Your choice'}</span>
                 )}
               </label>
             ))}
           </div>
           {submitted && answers[i] !== q.answer && (
             <div className="mt-2 text-sm text-yellow-300">
-              {isZhTW ? '正確答案：' : 'Correct answer: '}
+              {isZhTW ? '�?��答�?�? : 'Correct answer: '}
               <b>{q.options[q.answer]}</b>
             </div>
           )}
@@ -177,17 +177,17 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
           onClick={handleSubmit}
           disabled={answers.some(a => a === null)}
         >
-          {isZhTW ? '提交答案' : 'Submit Answers'}
+          {isZhTW ? '?�交答�?' : 'Submit Answers'}
         </button>
       )}
       
       {submitted && (
         <div className="flex flex-col gap-4 mt-6">
           <div className="text-xl font-bold text-blue-400">
-            {isZhTW ? '你的分數：' : 'Your Score: '}{percent}%
+            {isZhTW ? '你�??�數�? : 'Your Score: '}{percent}%
           </div>
           <div className={`mt-2 font-semibold ${pass ? 'text-green-400' : 'text-red-400'}`}>
-            {pass ? (isZhTW ? '合格' : 'Passed') : (isZhTW ? '未合格' : 'Not passed')}
+            {pass ? (isZhTW ? '?�格' : 'Passed') : (isZhTW ? '?��??? : 'Not passed')}
           </div>
           <div className="flex gap-4">
             {score === questions.length ? (
@@ -195,7 +195,7 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
                 className="px-8 py-3 rounded-lg font-bold text-lg bg-blue-600 hover:bg-blue-700 text-white"
                 onClick={onBack}
               >
-                {isZhTW ? '返回小測驗' : 'Back to Quiz'}
+                {isZhTW ? '返�?小測�? : 'Back to Quiz'}
               </button>
             ) : (
               <>
@@ -203,13 +203,13 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
                   className="px-8 py-3 rounded-lg font-bold text-lg bg-yellow-600 hover:bg-yellow-700 text-white"
                   onClick={handleRedo}
                 >
-                  {isZhTW ? '重做' : 'Redo'}
+                  {isZhTW ? '?��?' : 'Redo'}
                 </button>
                 <button
                   className="px-8 py-3 rounded-lg font-bold text-lg bg-blue-600 hover:bg-blue-700 text-white"
                   onClick={onBack}
                 >
-                  {isZhTW ? '返回小測驗' : 'Back to Quiz'}
+                  {isZhTW ? '返�?小測�? : 'Back to Quiz'}
                 </button>
               </>
             )}
@@ -250,22 +250,22 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
   }, [quizProgress]);
 
   const attemptsMsg = isZhTW
-    ? `已嘗試 ${quizProgress.attempts} 次`
+    ? `已�?�?${quizProgress.attempts} 次`
     : `${quizProgress.attempts} attempt${quizProgress.attempts !== 1 ? 's' : ''} made`;
 
   if (!started) {
     return (
       <div className="max-w-xl mx-auto bg-gray-900 rounded-2xl p-8 shadow-xl flex flex-col gap-8">
         <div>
-          <h2 className="text-2xl font-bold mb-2 text-blue-300">{isZhTW ? '小測驗' : 'Quiz'}</h2>
-          <div className="text-blue-400 font-semibold mb-4">{isZhTW ? '優質提示結構' : 'Prompt Structure'}</div>
+          <h2 className="text-2xl font-bold mb-2 text-blue-300">{isZhTW ? '小測�? : 'Quiz'}</h2>
+          <div className="text-blue-400 font-semibold mb-4">{isZhTW ? '?�質?�示結�?' : 'Prompt Structure'}</div>
         </div>
         <div className="bg-gray-800 rounded-xl p-6 mb-4 shadow-xl animate-fade-in">
-          <div className="font-bold mb-2">{isZhTW ? '作業詳情' : 'Assignment details'}</div>
+          <div className="font-bold mb-2">{isZhTW ? '作業詳�?' : 'Assignment details'}</div>
           <div className="flex items-center gap-8">
             <div className="text-sm text-gray-300">
-              <div className="font-semibold">{isZhTW ? '嘗試次數' : 'Attempts'}</div>
-              <div>{isZhTW ? '最多 5 次' : 'Max 5 times'}</div>
+              <div className="font-semibold">{isZhTW ? '?�試次數' : 'Attempts'}</div>
+              <div>{isZhTW ? '?��?5 �? : 'Max 5 times'}</div>
               <div className="mt-1 text-xs text-yellow-300">{attemptsMsg}</div>
             </div>
           </div>
@@ -278,7 +278,7 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
             onClick={handleStart}
             disabled={!quizProgress.canAttempt}
           >
-            {!quizProgress.canAttempt ? (isZhTW ? '已達上限' : 'No more attempts') : (isZhTW ? '開始' : 'Start')}
+            {!quizProgress.canAttempt ? (isZhTW ? '已�?上�?' : 'No more attempts') : (isZhTW ? '?��?' : 'Start')}
           </button>
         </div>
         <div className="bg-gray-800 rounded-xl p-6 shadow-xl animate-fade-in">
@@ -288,10 +288,10 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
             ) : (
               <Award className="inline-block w-6 h-6 text-gray-400 mr-1" />
             )}
-            {isZhTW ? '你的分數' : 'Your grade'}
+            {isZhTW ? '你�??�數' : 'Your grade'}
           </div>
           <div className="text-gray-400 text-sm mb-2">
-            {isZhTW ? '你未提交過答案。我們會記錄你最高分。' : "You haven't submitted this yet. We keep your highest score."}
+            {isZhTW ? '你未?�交?��?案。�??��?記�?你�?高�??? : "You haven't submitted this yet. We keep your highest score."}
           </div>
           <div className="text-3xl font-extrabold flex items-center justify-center gap-2 mb-2">
             {quizProgress.percent !== null ? (
@@ -306,7 +306,7 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
               ) : (
                 <XCircle className="w-5 h-5 text-red-400" />
               )}
-              {quizProgress.passed ? (isZhTW ? '合格' : 'Passed') : (isZhTW ? '未合格' : 'Not passed')}
+              {quizProgress.passed ? (isZhTW ? '?�格' : 'Passed') : (isZhTW ? '?��??? : 'Not passed')}
             </div>
           )}
         </div>

@@ -21,8 +21,8 @@ const Footer = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
-      title: isZhTW ? '訂閱成功！' : 'Subscription Successful!',
-      description: isZhTW ? '感謝您的訂閱，我們會定期發送最新的AI資訊給您。' : 'Thank you for subscribing! We will send you the latest AI updates regularly.',
+      title: isZhTW ? '訂閱?��?�? : 'Subscription Successful!',
+      description: isZhTW ? '?��??��?訂閱，�??��?定�??�送�??��?AI資�?給您?? : 'Thank you for subscribing! We will send you the latest AI updates regularly.',
     });
     
     setEmail('');
@@ -32,18 +32,18 @@ const Footer = () => {
   const footerLinks = {
     'zh-HK': {
       services: {
-        title: '企業培訓',
+        title: '企業?��?',
         links: [
-          { name: '顧問服務', href: '/about' }
+          { name: '顧�??��?', href: '/about' }
         ]
       },
       about: {
-        title: '關於我們',
+        title: '?�於?��?,
         links: [
-          { name: '公司介紹', href: '/about' },
-          { name: '團隊成員', href: '/about' },
-          { name: '聯絡我們', href: '/about' },
-          { name: '部落格', href: '/blog' }
+          { name: '?�司介紹', href: '/about' },
+          { name: '?��??�員', href: '/about' },
+          { name: '?�絡?��?, href: '/about' },
+          { name: '?�落??, href: '/blog' }
         ]
       }
     },
@@ -73,7 +73,7 @@ const Footer = () => {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ctext x='10' y='20' font-family='monospace' font-size='12'%3EAI%3C/text%3E%3Ctext x='30' y='40' font-family='monospace' font-size='12'%3E✨%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ctext x='10' y='20' font-family='monospace' font-size='12'%3EAI%3C/text%3E%3Ctext x='30' y='40' font-family='monospace' font-size='12'%3E??3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }} />
       </div>
 
@@ -89,11 +89,11 @@ const Footer = () => {
             className="lg:col-span-1"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-yellow-200 to-orange-200 bg-clip-text text-transparent">
-              {isZhTW ? '香港最實用的 AI 課程' : 'Hong Kong\'s Most Practical AI Courses'}
+              {isZhTW ? '香港?�實用??AI 課�?' : 'Hong Kong\'s Most Practical AI Courses'}
             </h2>
             <p className="text-yellow-100 text-lg mb-8 leading-relaxed">
               {isZhTW 
-                ? '我們分享真正的、正確的課程。學了就知道，知道就會用。跟住做，你一定做得到！這就是香港最實用的AI課程。' 
+                ? '?�們�?享�?�???�正確�?課�??�學了就?��?，知?�就?�用?��?住�?，�?一定�?得到！這就?��?港�?實用?�AI課�??? 
                 : 'We share real, right courses. Learn it, know it, use it. Follow along and you can definitely do it! These are Hong Kong\'s most useful AI courses.'
               }
             </p>
@@ -165,7 +165,7 @@ const Footer = () => {
             {/* Social Media */}
             <div className="flex items-center gap-4">
               <span className="text-yellow-200 text-sm">
-                {isZhTW ? '追蹤我們：' : 'Follow us:'}
+                {isZhTW ? '追蹤?�們�?' : 'Follow us:'}
               </span>
               <div className="flex gap-3">
                 <a
@@ -205,7 +205,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="text-yellow-300 text-sm">
-              © AI Formula {new Date().getFullYear()}. {isZhTW ? '版權所有' : 'All Rights Reserved'}.
+              © AI Formula {new Date().getFullYear()}. {isZhTW ? '?��??�?? : 'All Rights Reserved'}.
             </div>
           </div>
         </motion.div>

@@ -17,17 +17,17 @@ const Course = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   
   const categories = [
-    { id: 'all', name: 'All', nameCht: '全部', label: '全部' },
-    { id: 'ai', name: 'AI', nameCht: 'AI應用', label: 'AI應用' },
-    { id: 'automation', name: 'Automation', nameCht: '自動化', label: '自動化' },
+    { id: 'all', name: 'All', nameCht: '?�部', label: '?�部' },
+    { id: 'ai', name: 'AI', nameCht: 'AI?�用', label: 'AI?�用' },
+    { id: 'automation', name: 'Automation', nameCht: '?��???, label: '?��??? },
   ];
 
   // Handle course navigation to outline pages
   const handleCourseClick = (courseId: string) => {
     const routeMap = {
-      'ai-app-development': '/courses/free-plan',  // 指向免費計劃頁面
-      'ai-formula-advertising': '/courses/free-plan',   // 指向免費計劃頁面
-      'shopify-automation': '/courses/free-plan',   // 指向免費計劃頁面
+      'ai-app-development': '/courses/free-plan',  // ?��??�費計�??�面
+      'ai-formula-advertising': '/courses/free-plan',   // ?��??�費計�??�面
+      'shopify-automation': '/courses/free-plan',   // ?��??�費計�??�面
       'prompt-engineering': '/courses/prompt-engineering-outline',
       'chatgpt-mastery': '/courses/chatgpt-mastery-outline',
       'perplexity-tools': '/courses/perplexity-tools-outline',
@@ -39,7 +39,7 @@ const Course = () => {
     if (route) {
       navigate(route);
     } else {
-      // 暫時導向免費計劃頁面作為fallback
+      // ?��?導�??�費計�??�面作為fallback
       navigate('/courses/free-plan');
     }
   };
@@ -62,26 +62,26 @@ const Course = () => {
     }
   };
 
-  // 3個特色課程（圖片2的內容）
+  // 3?�特?�課程�??��?2?�內容�?
   const availableCourses = [
     {
       id: 'ai-app-development',
       title: "AI App Development Masterclass",
-      titleCht: "【AI主題班】3小時手把手教你一步步做出「真正好用」手機AI App！",
+      titleCht: "?�AI主�??��?小�??��??��?你�?步步?�出?��?�?��?�」�?機AI App�?,
       description: "Learn to build practical AI mobile apps step by step in just 3 hours.",
-      descriptionCht: "3小時完成2個手機App！本課程由全職工程師教你實際開發技能。",
+      descriptionCht: "3小�?完�?2?��?機App！本課�??�全?�工程師?��?實�??�發?�?��?,
       duration: "3 hours",
-      durationCht: "3小時",
+      durationCht: "3小�?",
       students: 1847,
       rating: 4.8,
       level: "Beginner",
-      levelCht: "初級",
-      image: "📱",
+      levelCht: "?��?",
+      image: "?��",
       type: "AI Development",
-      typeCht: "AI開發",
+      typeCht: "AI?�發",
       category: "ai",
       featured: true,
-      badge: "即將開班！",
+      badge: "?��??�班�?,
       includes: [
         "3 Hour Complete Course",
         "2 Mobile App Projects",
@@ -89,30 +89,30 @@ const Course = () => {
         "Hands-on Development"
       ],
       includesCht: [
-        "3小時完整課程",
-        "2個手機App專案",
-        "專業講師指導",
-        "實際開發練習"
+        "3小�?完整課�?",
+        "2?��?機App專�?",
+        "專業講師?��?",
+        "實�??�發練�?"
       ]
     },
     {
       id: 'ai-formula-advertising',
       title: "AI Formula Advertising Masterclass Vol.1",
-      titleCht: "【AI廣告製作班Vol.1】拆解AI Formula廣告片全流程：「Cup Noodle級」AI片",
+      titleCht: "?�AI�??製�??�Vol.1?��?解AI Formula�???�全流�?：「Cup Noodle級」AI??,
       description: "Master AI advertising creation with AI Formula platform and create professional video ads.",
-      descriptionCht: "掌握AI廣告製作，AI Formula團隊手把手教你創造專業級廣告片。",
+      descriptionCht: "?�握AI�??製�?，AI Formula?��??��??��?你創?��?業�?�???��?,
       duration: "4 hours",
-      durationCht: "4小時",
+      durationCht: "4小�?",
       students: 923,
       rating: 4.9,
       level: "Intermediate",
-      levelCht: "中級",
-      image: "🎬",
+      levelCht: "中�?",
+      image: "?��",
       type: "AI Advertising",
-      typeCht: "AI廣告",
+      typeCht: "AI�??",
       category: "ai",
       featured: true,
-      badge: "即將開班！",
+      badge: "?��??�班�?,
       includes: [
         "AI Formula Platform Training",
         "Professional Video Creation",
@@ -121,29 +121,29 @@ const Course = () => {
       ],
       includesCht: [
         "AI Formula平台訓練",
-        "專業影片製作",
-        "品牌整合應用",
-        "進階製作技巧"
+        "專業影�?製�?",
+        "?��??��??�用",
+        "?��?製�??��?
       ]
     },
     {
       id: 'shopify-automation',
-      title: "AI × Make Automation: Shopify Store Express",
-      titleCht: "AI × Make自動化：Shopify網店營運速成班",
+      title: "AI ? Make Automation: Shopify Store Express",
+      titleCht: "AI ? Make?��??��?Shopify網�??��??��???,
       description: "Build automated Shopify systems that can be profitable even for beginners.",
-      descriptionCht: "建立無需請人也能盈利運作的Shopify自動化系統，適合新手。",
+      descriptionCht: "建�??��?請人也能?�利?��??�Shopify?��??�系統�??��??��???,
       duration: "9 hours",
-      durationCht: "9小時",
+      durationCht: "9小�?",
       students: 1234,
       rating: 4.7,
       level: "Beginner",
-      levelCht: "初級",
-      image: "🛒",
+      levelCht: "?��?",
+      image: "??",
       type: "E-commerce Automation",
-      typeCht: "電商自動化",
+      typeCht: "?��??��???,
       category: "automation",
       featured: true,
-      badge: "了解更多",
+      badge: "了解?��?",
       includes: [
         "Shopify Store Setup",
         "Make.com Automation",
@@ -151,34 +151,34 @@ const Course = () => {
         "Profit Optimization"
       ],
       includesCht: [
-        "Shopify商店建置",
-        "Make.com自動化",
-        "AI整合應用",
-        "盈利優化策略"
+        "Shopify?��?建置",
+        "Make.com?��???,
+        "AI?��??�用",
+        "?�利?��?策略"
       ]
     }
   ];
 
-  // 5個真正存在的課程
+  // 5?��?�???��?課�?
   const realCourses = [
     {
       id: 'prompt-engineering',
       title: "Prompt Engineering Mastery",
-      titleCht: "提示工程精通課程",
+      titleCht: "?�示工�?精通課�?,
       description: "Master the art of AI prompt engineering for better results.",
-      descriptionCht: "掌握AI提示工程技巧，獲得更好的結果。",
+      descriptionCht: "?�握AI?�示工�??�巧�??��??�好?��??��?,
       duration: "6 hours",
-      durationCht: "6小時",
+      durationCht: "6小�?",
       students: 2341,
       rating: 4.9,
       level: "All Levels",
-      levelCht: "所有級別",
-      image: "🧠",
+      levelCht: "?�?��???,
+      image: "??",
       type: "AI Fundamentals",
-      typeCht: "AI基礎",
+      typeCht: "AI?��?",
       category: "ai",
       featured: true,
-      badge: "免費",
+      badge: "?�費",
       includes: [
         "Complete Prompt Guide",
         "Practical Examples",
@@ -186,30 +186,30 @@ const Course = () => {
         "Real-world Applications"
       ],
       includesCht: [
-        "完整提示指南",
-        "實用範例",
-        "進階技巧",
-        "實際應用"
+        "完整?�示?��?",
+        "實用範�?",
+        "?��??��?,
+        "實�??�用"
       ]
     },
     {
       id: 'chatgpt-mastery',
       title: "ChatGPT Mastery Course",
-      titleCht: "ChatGPT精通課程",
+      titleCht: "ChatGPT精通課�?,
       description: "Complete guide to mastering ChatGPT for productivity and creativity.",
-      descriptionCht: "完整的ChatGPT精通指南，提升生產力和創造力。",
+      descriptionCht: "完整?�ChatGPT精通�??��??��??�產?��??�造�???,
       duration: "4 hours",
-      durationCht: "4小時",
+      durationCht: "4小�?",
       students: 1876,
       rating: 4.8,
       level: "Beginner",
-      levelCht: "初級",
-      image: "💬",
+      levelCht: "?��?",
+      image: "?��",
       type: "AI Tools",
       typeCht: "AI工具",
       category: "ai",
       featured: true,
-      badge: "免費",
+      badge: "?�費",
       includes: [
         "ChatGPT Fundamentals",
         "Advanced Prompting",
@@ -217,30 +217,30 @@ const Course = () => {
         "Productivity Tips"
       ],
       includesCht: [
-        "ChatGPT基礎",
-        "進階提示技巧",
-        "使用案例",
-        "生產力技巧"
+        "ChatGPT?��?",
+        "?��??�示?��?,
+        "使用案�?",
+        "?�產?��?�?
       ]
     },
     {
       id: 'perplexity-tools',
       title: "Perplexity Tools Mastery",
-      titleCht: "Perplexity工具精通",
+      titleCht: "Perplexity工具精�?,
       description: "Master Perplexity AI for research and information gathering.",
-      descriptionCht: "掌握Perplexity AI進行研究和資訊收集。",
+      descriptionCht: "?�握Perplexity AI?��??�究?��?訊收?��?,
       duration: "3 hours",
-      durationCht: "3小時",
+      durationCht: "3小�?",
       students: 1234,
       rating: 4.7,
       level: "Intermediate",
-      levelCht: "中級",
-      image: "🔍",
+      levelCht: "中�?",
+      image: "??",
       type: "AI Research",
-      typeCht: "AI研究",
+      typeCht: "AI?�究",
       category: "ai",
       featured: true,
-      badge: "免費",
+      badge: "?�費",
       includes: [
         "Perplexity Basics",
         "Research Techniques",
@@ -248,30 +248,30 @@ const Course = () => {
         "Advanced Queries"
       ],
       includesCht: [
-        "Perplexity基礎",
-        "研究技巧",
-        "資訊驗證",
-        "進階查詢"
+        "Perplexity?��?",
+        "?�究?��?,
+        "資�?驗�?",
+        "?��??�詢"
       ]
     },
     {
       id: 'coding-basics',
       title: "Coding Basics with AI",
-      titleCht: "AI輔助編程基礎",
+      titleCht: "AI輔助編�??��?",
       description: "Learn programming fundamentals with AI assistance.",
-      descriptionCht: "使用AI輔助學習編程基礎。",
+      descriptionCht: "使用AI輔助學�?編�??��???,
       duration: "8 hours",
-      durationCht: "8小時",
+      durationCht: "8小�?",
       students: 987,
       rating: 4.6,
       level: "Beginner",
-      levelCht: "初級",
-      image: "💻",
+      levelCht: "?��?",
+      image: "?��",
       type: "Programming",
-      typeCht: "編程",
+      typeCht: "編�?",
       category: "ai",
       featured: true,
-      badge: "免費",
+      badge: "?�費",
       includes: [
         "Programming Fundamentals",
         "AI-Assisted Coding",
@@ -279,30 +279,30 @@ const Course = () => {
         "Best Practices"
       ],
       includesCht: [
-        "編程基礎",
+        "編�??��?",
         "AI輔助編碼",
-        "專案建構",
-        "最佳實踐"
+        "專�?建�?",
+        "?�佳實�?
       ]
     },
     {
       id: 'midjourney-ai',
       title: "Midjourney AI Image Creation",
-      titleCht: "Midjourney AI圖像創作",
+      titleCht: "Midjourney AI?��??��?",
       description: "Create stunning AI-generated images with Midjourney.",
-      descriptionCht: "使用Midjourney創造令人驚嘆的AI生成圖像。",
+      descriptionCht: "使用Midjourney?�造令人�??��?AI?��??��???,
       duration: "5 hours",
-      durationCht: "5小時",
+      durationCht: "5小�?",
       students: 2156,
       rating: 4.8,
       level: "All Levels",
-      levelCht: "所有級別",
-      image: "🎨",
+      levelCht: "?�?��???,
+      image: "?��",
       type: "AI Art",
-      typeCht: "AI藝術",
+      typeCht: "AI?��?",
       category: "ai",
       featured: true,
-      badge: "免費",
+      badge: "?�費",
       includes: [
         "Midjourney Basics",
         "Advanced Prompting",
@@ -310,10 +310,10 @@ const Course = () => {
         "Commercial Usage"
       ],
       includesCht: [
-        "Midjourney基礎",
-        "進階提示技巧",
-        "風格技法",
-        "商業應用"
+        "Midjourney?��?",
+        "?��??�示?��?,
+        "風格?��?,
+        "?�業?�用"
       ]
     }
   ];
@@ -340,7 +340,7 @@ const Course = () => {
         />
       </div>
 
-      {/* Part 1: Main Title - 免費學習課程 */}
+      {/* Part 1: Main Title - ?�費學�?課�? */}
       <section className="relative py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -351,18 +351,18 @@ const Course = () => {
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  {isZhTW ? '免費學習課程' : 'Free Learning Courses'}
+                  {isZhTW ? '?�費學�?課�?' : 'Free Learning Courses'}
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-                {isZhTW ? '精心製作嘅免費課程，幫助你快速提升AI技能並實現商業目標' : 'Carefully crafted free courses to help you quickly improve AI skills and achieve business goals'}
+                {isZhTW ? '精�?製�??��?費課程�?幫助你快?��??�AI?�?�並實現?�業?��?' : 'Carefully crafted free courses to help you quickly improve AI skills and achieve business goals'}
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Part 2: Featured Courses (3個特色課程) */}
+      {/* Part 2: Featured Courses (3?�特?�課�? */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -410,7 +410,7 @@ const Course = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-white">{isZhTW ? '包含內容：' : 'Includes:'}</h4>
+                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?�含?�容�? : 'Includes:'}</h4>
                         <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
                           {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
                             <li key={idx} className="flex items-center gap-2">
@@ -426,7 +426,7 @@ const Course = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-xl font-bold text-blue-400">
-                            {course.badge || (isZhTW ? '免費' : 'FREE')}
+                            {course.badge || (isZhTW ? '?�費' : 'FREE')}
                           </span>
                         </div>
                         <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
@@ -439,9 +439,9 @@ const Course = () => {
                         className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
                         onClick={() => handleCourseClick(course.id)}
                       >
-                        {course.id === 'ai-app-development' ? (isZhTW ? '即將開班' : 'Coming Soon') : 
-                         course.id === 'ai-formula-advertising' ? (isZhTW ? '即將開班' : 'Coming Soon') : 
-                         (isZhTW ? '了解更多' : 'Learn More')}
+                        {course.id === 'ai-app-development' ? (isZhTW ? '?��??�班' : 'Coming Soon') : 
+                         course.id === 'ai-formula-advertising' ? (isZhTW ? '?��??�班' : 'Coming Soon') : 
+                         (isZhTW ? '了解?��?' : 'Learn More')}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>
@@ -453,15 +453,15 @@ const Course = () => {
         </div>
       </section>
 
-      {/* Part 3: 精選免費課程 Title and Description */}
+      {/* Part 3: 精選?�費課�? Title and Description */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {isZhTW ? '精選免費課程' : 'Featured Free Courses'}
+              {isZhTW ? '精選?�費課�?' : 'Featured Free Courses'}
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              {isZhTW ? '精心製作嘅數位課程，幫助你快速提升技能並實現商業目標' : 'Carefully crafted digital courses to help you quickly improve skills and achieve business goals'}
+              {isZhTW ? '精�?製�??�數位課程�?幫助你快?��??��??�並實現?�業?��?' : 'Carefully crafted digital courses to help you quickly improve skills and achieve business goals'}
             </p>
           </div>
 
@@ -482,7 +482,7 @@ const Course = () => {
             </div>
           </div>
 
-          {/* Part 4: Real Courses (5個真實課程) */}
+          {/* Part 4: Real Courses (5?��?實課�? */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCourses.map((course, index) => (
               <motion.div
@@ -528,7 +528,7 @@ const Course = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-white">{isZhTW ? '包含內容：' : 'Includes:'}</h4>
+                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?�含?�容�? : 'Includes:'}</h4>
                         <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
                           {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
                             <li key={idx} className="flex items-center gap-2">
@@ -544,7 +544,7 @@ const Course = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-xl font-bold text-green-400">
-                            {course.badge || (isZhTW ? '免費' : 'FREE')}
+                            {course.badge || (isZhTW ? '?�費' : 'FREE')}
                           </span>
                         </div>
                         <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
@@ -557,7 +557,7 @@ const Course = () => {
                         className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
                         onClick={() => handleRealCourseClick(course.id)}
                       >
-                        {isZhTW ? '查看課程大綱' : 'View Course Outline'}
+                        {isZhTW ? '?��?課�?大綱' : 'View Course Outline'}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>

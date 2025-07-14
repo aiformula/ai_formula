@@ -8,10 +8,10 @@ import LessonContentDisplay from '../components/course/LessonContentDisplay';
 import { TemplateSection, VideoTemplate, CourseImage } from '../components/course/TemplateSection';
 import { beginnerCourse } from '../data/courseData/proPlanCourse';
 
-// 模板數據配置
+// 模板?��??�置
 const TEMPLATE_DATA = {
   portrait: {
-    title: '肖像攝影模板',
+    title: '?��??�影模板',
     images: [
       {
         src: 'https://cdn.midjourney.com/856765d0-10a3-4bba-a823-67c2412a0c65/0_0.png',
@@ -26,7 +26,7 @@ const TEMPLATE_DATA = {
     ]
   },
   product: {
-    title: '產品攝影模板',
+    title: '?��??�影模板',
     images: [
       {
         src: 'https://cdn.midjourney.com/f7a6bb2d-a33e-49fc-becb-43b80276c9c8/0_2.png',
@@ -41,22 +41,22 @@ const TEMPLATE_DATA = {
     ]
   },
   artistic: {
-    title: '藝術創作模板',
+    title: '?��??��?模板',
     images: [
       {
         src: 'https://cdn.midjourney.com/81e5ec51-141e-4eb7-80db-01267da045dd/0_3.png',
         alt: 'Artistic Creation Example',
-        caption: '藝術創作範例'
+        caption: '?��??��?範�?'
       }
     ]
   },
   landscape: {
-    title: '風景攝影模板',
+    title: '風景?�影模板',
     images: [
       {
         src: 'https://cdn.midjourney.com/c90fd7fe-9245-468a-a624-20023c0fcbf1/0_1.png',
         alt: 'Landscape Photography Example',
-        caption: '風景攝影範例'
+        caption: '風景?�影範�?'
       }
     ]
   }
@@ -65,51 +65,51 @@ const TEMPLATE_DATA = {
 const VIDEO_TEMPLATES = [
   {
     id: 'cyberpunk',
-    title: '🔥 視頻生成模板1：賽博朋克街頭',
+    title: '?�� 視頻?��?模板1：賽?��??��???,
     imageUrl: 'https://cdn.midjourney.com/8aca4b16-1777-4cfa-bf0b-2e580dfc0a19/0_0.png',
     videoUrl: 'https://cdn.midjourney.com/video/edb4f881-28bc-43c2-94f1-de33c099966a/3.mp4',
-    imageAlt: '賽博朋克街頭範例',
-    videoAlt: '賽博朋克街頭視頻範例',
+    imageAlt: '賽�??��?街頭範�?',
+    videoAlt: '賽�??��?街頭視頻範�?',
     imagePrompt: 'A futuristic cyberpunk street scene at night, neon lights reflecting on wet pavement, holographic advertisements floating in the air, people in futuristic clothing walking through the scene, cinematic lighting, ultra-detailed, 4K resolution --ar 16:9 --style raw',
     videoPrompt: 'Camera slowly pans through the cyberpunk street, following the movement of people and vehicles, neon signs flickering, rain starting to fall, creating dynamic reflections on the ground --motion 3 --fps 24'
   },
   {
     id: 'magical',
-    title: '⚡ 視頻生成模板2：魔法森林',
+    title: '??視頻?��?模板2：�?法森??,
     imageUrl: 'https://cdn.midjourney.com/1096de2a-d098-48d0-9d67-dc6eb34fa506/0_1.png',
     videoUrl: 'https://cdn.midjourney.com/video/525dfefd-45be-4c83-96e9-aaf2c992cee4/1.mp4',
-    imageAlt: '魔法森林範例',
-    videoAlt: '魔法森林視頻範例',
+    imageAlt: '魔�?森�?範�?',
+    videoAlt: '魔�?森�?視頻範�?',
     imagePrompt: 'An enchanted magical forest with glowing mushrooms, floating fairy lights, ancient twisted trees with luminous bark, magical creatures in the shadows, ethereal mist flowing between trees, fantasy art style --ar 16:9 --v 6',
     videoPrompt: 'Gentle camera movement through the magical forest, fairy lights dancing in the air, mist swirling around ancient trees, subtle magical sparkles appearing and disappearing --motion 2 --fps 30'
   },
   {
     id: 'underwater',
-    title: '🌊 視頻生成模板3：水下奇幻',
+    title: '?? 視頻?��?模板3：水下�?�?,
     imageUrl: 'https://cdn.midjourney.com/e6dbb98b-6e05-40e7-8df8-fe10d8c5f9fa/0_1.png',
     videoUrl: 'https://cdn.midjourney.com/video/878b9a50-1af9-4231-ba5c-85b2b60a33ef/3.mp4',
-    imageAlt: '水下奇幻範例',
-    videoAlt: '水下奇幻視頻範例',
+    imageAlt: '水�?奇幻範�?',
+    videoAlt: '水�?奇幻視頻範�?',
     imagePrompt: 'Underwater fantasy scene with bioluminescent coral reefs, schools of colorful tropical fish, rays of sunlight penetrating the water, ancient underwater ruins in the background, crystal clear water, peaceful and serene atmosphere --ar 16:9 --style cinematic',
     videoPrompt: 'Smooth underwater camera movement, fish swimming gracefully, sunlight rays moving through the water, coral gently swaying with water currents, bubbles rising to the surface --motion 2 --fps 24'
   },
   {
     id: 'space',
-    title: '🚀 視頻生成模板4：太空探索',
+    title: '?? 視頻?��?模板4：太空探�?,
     imageUrl: 'https://cdn.midjourney.com/1e964ccd-561d-4184-9989-01e7e00b5ea9/0_0.png',
     videoUrl: 'https://cdn.midjourney.com/video/ca6eccee-3e34-4491-ab46-19c980c724bc/0.mp4',
-    imageAlt: '太空探索範例',
-    videoAlt: '太空探索視頻範例',
+    imageAlt: '太空?�索範�?',
+    videoAlt: '太空?�索視頻範�?',
     imagePrompt: 'Deep space exploration scene with a massive spacecraft approaching a distant planet, stars twinkling in the background, nebula clouds with vibrant colors, asteroid fields, realistic space physics, epic sci-fi atmosphere --ar 16:9 --style photorealistic',
     videoPrompt: 'Slow majestic movement of the spacecraft through space, planets rotating in the distance, stars twinkling, nebula clouds slowly shifting, asteroids drifting by --motion 1 --fps 30'
   },
   {
     id: 'fashion',
-    title: '🎭 視頻生成模板5：時尚大片',
+    title: '?�� 視頻?��?模板5：�?尚大??,
     imageUrl: 'https://cdn.midjourney.com/ba3cb5c1-2e5f-4c16-8af3-8d2a4e6c7891/0_2.png',
     videoUrl: 'https://cdn.midjourney.com/video/f1d8e5a3-4b2c-4c89-a7d6-1e9c2b8f6543/2.mp4',
-    imageAlt: '時尚大片範例',
-    videoAlt: '時尚大片視頻範例',
+    imageAlt: '?��?大�?範�?',
+    videoAlt: '?��?大�?視頻範�?',
     imagePrompt: 'High fashion photoshoot with a model in avant-garde designer clothing, dramatic studio lighting, minimalist background, professional makeup and styling, artistic poses, luxury fashion photography style --ar 9:16 --style fashion',
     videoPrompt: 'Model poses flowing naturally from one position to another, dramatic lighting creating dynamic shadows, fabric moving elegantly, professional fashion video style --motion 2 --fps 24'
   }
@@ -150,16 +150,16 @@ const ProPlanLearningRefactored: React.FC = () => {
     setCurrentPart(prev => Math.max(prev - 1, 0));
   }, []);
 
-  // 處理第4部分的特殊渲染
+  // ?��?�??��??�特殊渲??
   const renderPart4Content = useCallback(() => {
     if (currentPart !== 3) return null; // Part 4 is index 3
     
     return (
       <div className="midjourney-enhanced-content">
-        {/* 渲染基本內容 */}
+        {/* 渲�??�本?�容 */}
         <div dangerouslySetInnerHTML={{
           __html: currentPartContent.content
-            .split('### 肖像攝影模板')[0]
+            .split('### ?��??�影模板')[0]
             .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
             .replace(/^### (.+)$/gm, '<h3>$1</h3>')
             .replace(/^## (.+)$/gm, '<h2>$1</h2>')
@@ -170,7 +170,7 @@ const ProPlanLearningRefactored: React.FC = () => {
             .replace(/\n/g, '<br>')
         }} />
         
-        {/* 渲染模板區段 */}
+        {/* 渲�?模板?��?*/}
         <TemplateSection 
           title={TEMPLATE_DATA.portrait.title}
           images={TEMPLATE_DATA.portrait.images}
@@ -191,7 +191,7 @@ const ProPlanLearningRefactored: React.FC = () => {
           images={TEMPLATE_DATA.landscape.images}
         />
         
-        {/* 渲染視頻模板 */}
+        {/* 渲�?視頻模板 */}
         {VIDEO_TEMPLATES.map((template) => (
           <VideoTemplate key={template.id} {...template} />
         ))}
@@ -211,7 +211,7 @@ const ProPlanLearningRefactored: React.FC = () => {
             className="inline-flex items-center gap-2 text-gray-400 hover:ai-text-primary mb-8 transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            {language === 'en' ? 'Back to Courses' : '返回課程'}
+            {language === 'en' ? 'Back to Courses' : '返�?課�?'}
           </button>
 
           <div className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-4">
@@ -227,15 +227,15 @@ const ProPlanLearningRefactored: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-6 mb-6">
               <div className="flex items-center gap-2 bg-green-500/20 px-4 py-2 rounded-full">
                 <CheckCircle className="w-5 h-5 text-green-400" />
-                <span className="text-green-300">{language === 'en' ? 'Beginner Friendly' : '初學者友好'}</span>
+                <span className="text-green-300">{language === 'en' ? 'Beginner Friendly' : '?�學?��?�?}</span>
               </div>
               <div className="flex items-center gap-2 bg-blue-500/20 px-4 py-2 rounded-full">
                 <Clock className="w-5 h-5 text-blue-400" />
-                <span className="text-blue-300">{language === 'en' ? '4 Parts Total' : '總共4部分'}</span>
+                <span className="text-blue-300">{language === 'en' ? '4 Parts Total' : '總共4?��?'}</span>
               </div>
               <div className="flex items-center gap-2 bg-purple-500/20 px-4 py-2 rounded-full">
                 <Star className="w-5 h-5 text-purple-400" />
-                <span className="text-purple-300">{language === 'en' ? 'Step by Step' : '逐步指導'}</span>
+                <span className="text-purple-300">{language === 'en' ? 'Step by Step' : '?�步?��?'}</span>
               </div>
             </div>
           </div>
@@ -261,7 +261,7 @@ const ProPlanLearningRefactored: React.FC = () => {
           {/* Main Content - Lesson Display */}
           <div className="lg:col-span-2">
             {currentPart === 3 ? (
-              // 特殊處理第4部分
+              // ?��??��?�??��?
               <div className="ai-bg-dark-medium rounded-2xl p-8 border border-gray-800">
                 <h2 className="text-3xl font-bold mb-6 ai-text-primary">
                   {courseData.parts[currentPart].title}
@@ -269,7 +269,7 @@ const ProPlanLearningRefactored: React.FC = () => {
                 {renderPart4Content()}
               </div>
             ) : (
-              // 其他部分使用標準組件
+              // ?��??��?使用標�?組件
               <LessonContentDisplay
                 currentPart={courseData.parts[currentPart]}
                 partContent={currentPartContent}
@@ -287,45 +287,45 @@ const ProPlanLearningRefactored: React.FC = () => {
         <div className="mt-16 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl p-8 border border-purple-500/30">
           <h3 className="text-2xl font-bold mb-6 text-center text-purple-400 flex items-center justify-center gap-2">
             <Lightbulb className="w-6 h-6" />
-            {language === 'en' ? 'Quick Success Tips' : '快速成功貼士'}
+            {language === 'en' ? 'Quick Success Tips' : '快速�??�貼�?}
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-green-500/20 rounded-2xl p-6 border border-green-500/30">
-              <div className="text-3xl mb-3">🎯</div>
+              <div className="text-3xl mb-3">?��</div>
               <h4 className="text-lg font-semibold mb-2 text-green-400">
-                {language === 'en' ? 'Start Simple' : '從簡單開始'}
+                {language === 'en' ? 'Start Simple' : '從簡?��?�?}
               </h4>
               <p className="text-gray-300 text-sm">
                 {language === 'en' ? 
                   'Don\'t try to create complex images on day 1. Master the basics first!' :
-                  '唔好第一日就試創造複雜圖像。先掌握基礎！'
+                  '?�好第�??�就試創?��??��??�。�??�握?��?�?
                 }
               </p>
             </div>
             
             <div className="bg-blue-500/20 rounded-2xl p-6 border border-blue-500/30">
-              <div className="text-3xl mb-3">💡</div>
+              <div className="text-3xl mb-3">?��</div>
               <h4 className="text-lg font-semibold mb-2 text-blue-400">
-                {language === 'en' ? 'Practice Daily' : '每日練習'}
+                {language === 'en' ? 'Practice Daily' : '每日練�?'}
               </h4>
               <p className="text-gray-300 text-sm">
                 {language === 'en' ? 
                   'Spend 15-30 minutes daily. Consistency beats intensity!' :
-                  '每日花15-30分鐘。持續勝過強度！'
+                  '每日??5-30?��??��?續�??�強度�?'
                 }
               </p>
             </div>
             
             <div className="bg-yellow-500/20 rounded-2xl p-6 border border-yellow-500/30">
-              <div className="text-3xl mb-3">🚀</div>
+              <div className="text-3xl mb-3">??</div>
               <h4 className="text-lg font-semibold mb-2 text-yellow-400">
-                {language === 'en' ? 'Have Fun!' : '享受樂趣！'}
+                {language === 'en' ? 'Have Fun!' : '享�?樂趣�?}
               </h4>
               <p className="text-gray-300 text-sm">
                 {language === 'en' ? 
                   'Experiment, make mistakes, and enjoy the creative process!' :
-                  '實驗、犯錯誤同享受創作過程！'
+                  '實�??�犯?�誤?�享?�創作�?程�?'
                 }
               </p>
             </div>

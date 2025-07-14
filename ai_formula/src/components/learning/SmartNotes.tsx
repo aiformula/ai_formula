@@ -43,13 +43,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
 
-  // 時間戳轉換為秒數
+  // ?��??��??�為秒數
   const timestampToSeconds = (timestamp: string): number => {
     const [minutes, seconds] = timestamp.split(':').map(Number);
     return minutes * 60 + seconds;
   };
 
-  // 過濾筆記
+  // ?�濾筆�?
   const filteredNotes = notes.filter(note => {
     const matchesSearch = note.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          note.codeSnippet?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -57,7 +57,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
     return matchesSearch && matchesFilter;
   });
 
-  // 獲取類型圖標
+  // ?��?類�??��?
   const getTypeIcon = (type: Note['type']) => {
     switch (type) {
       case 'concept':
@@ -73,7 +73,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
     }
   };
 
-  // 獲取類型顏色
+  // ?��?類�?顏色
   const getTypeColor = (type: Note['type']) => {
     switch (type) {
       case 'concept':
@@ -89,52 +89,52 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
     }
   };
 
-  // 獲取類型標籤
+  // ?��?類�?標籤
   const getTypeLabel = (type: Note['type']) => {
     switch (type) {
       case 'concept':
         return '概念';
       case 'example':
-        return '範例';
+        return '範�?';
       case 'tip':
-        return '提示';
+        return '?�示';
       case 'warning':
-        return '警告';
+        return '警�?';
       default:
-        return '筆記';
+        return '筆�?';
     }
   };
 
-  // 複製內容
+  // 複製?�容
   const copyNote = (note: Note) => {
     const content = `[${note.timestamp}] ${note.content}${note.codeSnippet ? `\n\n${note.codeSnippet}` : ''}`;
     navigator.clipboard.writeText(content);
   };
 
-  // 處理編輯
+  // ?��?編輯
   const handleEdit = (noteId: string, content: string) => {
     setIsEditing(noteId);
     setEditContent(content);
   };
 
-  // 保存編輯
+  // 保�?編輯
   const handleSaveEdit = (noteId: string) => {
-    // 在實際應用中，這裡會更新筆記
+    // ?�實?��??�中，這裡?�更?��?�?
     console.log('Save edit for note:', noteId, 'New content:', editContent);
     setIsEditing(null);
     setEditContent('');
   };
 
-  // 如果沒有筆記，顯示空狀態
+  // 如�?沒�?筆�?，顯示空?�??
   if (notes.length === 0) {
     return (
       <div className="p-4 h-full flex items-center justify-center">
         <div className="text-center">
           <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-300 mb-2">還沒有筆記</h3>
+          <h3 className="text-lg font-semibold text-gray-300 mb-2">?��??��?�?/h3>
           <p className="text-sm text-gray-500">
-            在學習過程中，系統會自動為您生成智能筆記，
-            包含重要概念、代碼範例和學習提示。
+            ?�學習�?程中，系統�??��??�您?��??�能筆�?�?
+            ?�含?��?概念?�代碼�?例�?學�??�示??
           </p>
         </div>
       </div>
@@ -143,12 +143,12 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
 
   return (
     <div className="h-full flex flex-col">
-      {/* 搜索和過濾控制 */}
+      {/* ?�索?��?濾控??*/}
       <div className="p-4 border-b border-gray-700 space-y-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
-            placeholder="搜索筆記..."
+            placeholder="?�索筆�?..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 bg-gray-700 border-gray-600 text-white"
@@ -159,11 +159,11 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
           <Filter className="w-4 h-4 text-gray-400" />
           <div className="flex space-x-2">
             {[
-              { value: 'all', label: '全部' },
+              { value: 'all', label: '?�部' },
               { value: 'concept', label: '概念' },
-              { value: 'example', label: '範例' },
-              { value: 'tip', label: '提示' },
-              { value: 'warning', label: '警告' }
+              { value: 'example', label: '範�?' },
+              { value: 'tip', label: '?�示' },
+              { value: 'warning', label: '警�?' }
             ].map(({ value, label }) => (
               <Button
                 key={value}
@@ -183,14 +183,14 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
         </div>
       </div>
 
-      {/* 筆記列表 */}
+      {/* 筆�??�表 */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="p-4 space-y-4">
             {filteredNotes.length === 0 ? (
               <div className="text-center py-8">
                 <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-400">沒有找到相關筆記</p>
+                <p className="text-gray-400">沒�??�到?��?筆�?</p>
               </div>
             ) : (
               filteredNotes.map((note) => (
@@ -203,13 +203,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                   <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-3">
-                        {/* 類型圖標 */}
+                        {/* 類�??��? */}
                         <div className={`p-2 rounded-lg ${getTypeColor(note.type)}`}>
                           {getTypeIcon(note.type)}
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          {/* 頭部資訊 */}
+                          {/* ?�部資�? */}
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center space-x-2">
                               <Button
@@ -246,7 +246,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                             </div>
                           </div>
                           
-                          {/* 筆記內容 */}
+                          {/* 筆�??�容 */}
                           <div className="space-y-2">
                             {isEditing === note.id ? (
                               <div className="space-y-2">
@@ -262,7 +262,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                                     className="bg-green-600 hover:bg-green-700"
                                   >
                                     <CheckCircle className="w-3 h-3 mr-1" />
-                                    保存
+                                    保�?
                                   </Button>
                                   <Button
                                     size="sm"
@@ -270,7 +270,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                                     onClick={() => setIsEditing(null)}
                                     className="text-gray-400 border-gray-600"
                                   >
-                                    取消
+                                    ?��?
                                   </Button>
                                 </div>
                               </div>
@@ -280,13 +280,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                               </p>
                             )}
                             
-                            {/* 代碼片段 */}
+                            {/* �?��?�段 */}
                             {note.codeSnippet && (
                               <div className="bg-gray-900 rounded-lg p-3 border border-gray-700">
                                 <div className="flex items-center justify-between mb-2">
                                   <div className="flex items-center space-x-2">
                                     <Code className="w-3 h-3 text-green-400" />
-                                    <span className="text-xs text-gray-400">代碼片段</span>
+                                    <span className="text-xs text-gray-400">�?��?�段</span>
                                   </div>
                                   <Button
                                     variant="ghost"
@@ -314,13 +314,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
         </ScrollArea>
       </div>
 
-      {/* 底部統計 */}
+      {/* 底部統�? */}
       <div className="p-4 border-t border-gray-700">
         <div className="flex items-center justify-between text-sm text-gray-400">
           <span>
-            共 {filteredNotes.length} 條筆記
-            {searchTerm && ` • 搜索: "${searchTerm}"`}
-            {filterType !== 'all' && ` • 類型: ${getTypeLabel(filterType)}`}
+            ??{filteredNotes.length} 條�?�?
+            {searchTerm && ` ???�索: "${searchTerm}"`}
+            {filterType !== 'all' && ` ??類�?: ${getTypeLabel(filterType)}`}
           </span>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">

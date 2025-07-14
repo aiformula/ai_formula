@@ -1,13 +1,13 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-// 基礎布局組件接口
+// ?��?布�?組件?�口
 interface BaseLayoutProps {
   children: React.ReactNode;
   className?: string;
 }
 
-// 居中布局組件 - 替代重複的 "flex items-center justify-center"
+// 居中布�?組件 - ?�代?��???"flex items-center justify-center"
 export const CenterLayout: React.FC<BaseLayoutProps> = ({ 
   children, 
   className 
@@ -17,7 +17,7 @@ export const CenterLayout: React.FC<BaseLayoutProps> = ({
   </div>
 );
 
-// 垂直居中布局組件 - 用於全屏居中
+// ?�直居中布�?組件 - ?�於?��?居中
 export const FullCenterLayout: React.FC<BaseLayoutProps> = ({ 
   children, 
   className 
@@ -27,7 +27,7 @@ export const FullCenterLayout: React.FC<BaseLayoutProps> = ({
   </div>
 );
 
-// 列布局居中組件 - 用於垂直排列且居中的內容
+// ?��?局居中組件 - ?�於?�直?��?且�?中�??�容
 export const ColumnCenterLayout: React.FC<BaseLayoutProps> = ({ 
   children, 
   className 
@@ -37,7 +37,7 @@ export const ColumnCenterLayout: React.FC<BaseLayoutProps> = ({
   </div>
 );
 
-// 卡片居中布局 - 帶內邊距的居中布局
+// ?��?居中布�? - 帶內?��??��?中�?局
 export const CardCenterLayout: React.FC<BaseLayoutProps> = ({ 
   children, 
   className 
@@ -47,7 +47,7 @@ export const CardCenterLayout: React.FC<BaseLayoutProps> = ({
   </div>
 );
 
-// 圓形圖標容器 - 常用於圖標背景
+// ?�形?��?容器 - 常用?��?標�???
 interface CircleIconProps extends BaseLayoutProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
@@ -84,7 +84,7 @@ export const CircleIconLayout: React.FC<CircleIconProps> = ({
   </div>
 );
 
-// 帶間距的容器布局
+// 帶�?距�?容器布�?
 interface SpacedLayoutProps extends BaseLayoutProps {
   spacing?: 'sm' | 'md' | 'lg';
   direction?: 'row' | 'col';
@@ -112,7 +112,7 @@ export const SpacedLayout: React.FC<SpacedLayoutProps> = ({
   </div>
 );
 
-// 響應式容器布局
+// ?��?式容?��?局
 export const ResponsiveLayout: React.FC<BaseLayoutProps> = ({ 
   children, 
   className 

@@ -112,7 +112,7 @@ const ArticleHeader: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, is
     } else {
       // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(shareData.url);
-      alert(isZhTW ? 'é€£çµå·²è¤‡è£½åˆ°å‰ªè²¼ç°¿' : 'Link copied to clipboard');
+      alert(isZhTW ? '???å·²è?è£½åˆ°?ªè²¼ç°? : 'Link copied to clipboard');
     }
   }, [shareData, isZhTW]);
 
@@ -134,7 +134,7 @@ const ArticleHeader: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, is
               className="bg-white text-black border-white hover:bg-gray-100 hover:text-black transition-all duration-300 font-medium"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              {isZhTW ? 'è¿”å›éƒ¨è½æ ¼' : 'Back to Blog'}
+              {isZhTW ? 'è¿”å??¨è½?? : 'Back to Blog'}
             </Button>
           </Link>
         </motion.div>
@@ -183,7 +183,7 @@ const ArticleHeader: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, is
                   className="bg-white text-black border-white hover:bg-gray-100 hover:text-black font-medium"
                 >
                   <Share2 className="h-4 w-4 mr-2" />
-                  {isZhTW ? 'åˆ†äº«' : 'Share'}
+                  {isZhTW ? '?†äº«' : 'Share'}
                 </Button>
                 <Button 
                   variant="outline" 
@@ -192,7 +192,7 @@ const ArticleHeader: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, is
                   className="bg-white text-black border-white hover:bg-gray-100 hover:text-black font-medium"
                 >
                   <Bookmark className="h-4 w-4 mr-2" />
-                  {isZhTW ? 'æ”¶è—' : 'Bookmark'}
+                  {isZhTW ? '?¶è?' : 'Bookmark'}
                 </Button>
               </div>
             </div>
@@ -222,14 +222,14 @@ const ArticleContent: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, i
               {/* Fallback content for articles without detailed content */}
               <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/20 rounded-lg p-8">
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  {isZhTW ? 'æ–‡ç« å…§å®¹' : 'Article Content'}
+                  {isZhTW ? '?‡ç??§å®¹' : 'Article Content'}
                 </h2>
                 <p className="text-gray-300 mb-4">
                   {isZhTW ? post.excerpt : post.excerptEn}
                 </p>
                 <p className="text-gray-300 mb-4">
                   {isZhTW ? 
-                    'é€™ç¯‡æ–‡ç« çš„è©³ç´°å…§å®¹æ­£åœ¨æº–å‚™ä¸­ã€‚è«‹é—œæ³¨æˆ‘å€‘çš„æ›´æ–°ç²å–æ›´å¤šç²¾å½©å…§å®¹ã€‚' :
+                    '?™ç??‡ç??„è©³ç´°å…§å®¹æ­£?¨æ??™ä¸­?‚è??œæ³¨?‘å€‘ç??´æ–°?²å??´å?ç²¾å½©?§å®¹?? :
                     'The detailed content for this article is being prepared. Please follow our updates for more exciting content.'
                   }
                 </p>
@@ -239,7 +239,7 @@ const ArticleContent: React.FC<{ post: BlogPost; isZhTW: boolean }> = ({ post, i
               <div className="text-center mt-8 p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-400/30 rounded-lg">
                 <p className="text-gray-300">
                   {isZhTW ? 
-                    <>æƒ³äº†è§£æ›´å¤šé—œæ–¼AIå’Œç§‘æŠ€ç™¼å±•çš„æœ€æ–°è³‡è¨Šï¼Ÿé—œæ³¨æˆ‘å€‘çš„ Instagram <strong className="text-blue-300">@ai_formula_</strong> ç²å–æ›´å¤šæ·±åº¦åˆ†æå’Œè¦‹è§£ã€‚</> :
+                    <>?³ä?è§?›´å¤šé??¼AI?Œç??€?¼å??„æ??°è?è¨Šï??œæ³¨?‘å€‘ç? Instagram <strong className="text-blue-300">@ai_formula_</strong> ?²å??´å?æ·±åº¦?†æ??Œè?è§?€?/> :
                     <>Want to learn more about the latest information on AI and technology development? Follow our Instagram <strong className="text-blue-300">@ai_formula_</strong> for more in-depth analysis and insights.</>
                   }
                 </p>
@@ -262,7 +262,7 @@ const RelatedArticles: React.FC<{ currentPost: BlogPost; isZhTW: boolean }> = ({
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
       <div className="max-w-4xl mx-auto">
         <h3 className="text-2xl font-bold text-white mb-8 text-center">
-          {isZhTW ? 'ç›¸é—œæ–‡ç« ' : 'Related Articles'}
+          {isZhTW ? '?¸é??‡ç?' : 'Related Articles'}
         </h3>
         <div className="grid md:grid-cols-2 gap-6">
           {relatedPosts.map((relatedPost) => (
@@ -288,7 +288,7 @@ const RelatedArticles: React.FC<{ currentPost: BlogPost; isZhTW: boolean }> = ({
                       size="sm" 
                       className="bg-white text-black border-white hover:bg-gray-100 hover:text-black font-medium"
                     >
-                      {isZhTW ? 'é–±è®€æ›´å¤š' : 'Read More'}
+                      {isZhTW ? '?±è??´å?' : 'Read More'}
                     </Button>
                   </Link>
                 </CardContent>

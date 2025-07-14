@@ -24,27 +24,27 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     {
       id: 'coding-basics',
       title: 'Coding Basics Class',
-      titleCht: '編程基礎班',
+      titleCht: '編�??��???,
       description: '4 Hours Learn Truly Practical Programming from Zero!',
-      descriptionCht: '4小時 零基礎學會『真正實用』的程式設計！',
+      descriptionCht: '4小�? ?�基礎學?�『�?�?��?�』�?程�?設�?�?,
       price: 'HK$3,800',
       originalPrice: 'HK$4,800',
       rating: 5.0,
       students: 234,
-      icon: '💻',
+      icon: '?��',
       category: 'programming'
     },
     {
       id: 'perplexity-tools',
       title: 'Perplexity Tools Class',
-      titleCht: 'Perplexity 工具班', 
+      titleCht: 'Perplexity 工具??, 
       description: '3 Hours Become AI Search Research Super Expert!',
-      descriptionCht: '3小時 成為AI搜尋研究『超級專家』！',
+      descriptionCht: '3小�? ?�為AI?��??�究?��?級�?家』�?',
       price: 'HK$1,980',
       originalPrice: 'HK$2,800',
       rating: 5.0,
       students: 156,
-      icon: '🔍',
+      icon: '??',
       category: 'ai'
     }
   ];
@@ -52,20 +52,20 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   // Combined filter tags - categories and industries in one unified system
   const allFilterTags = [
     // Category filters
-    { key: 'all', label: 'All', labelCht: '全部', emoji: '📋', type: 'category' },
-    { key: 'design', label: 'Creative Design', labelCht: '創意設計', emoji: '🎨', type: 'category' },
-    { key: 'ai', label: 'AI Applications', labelCht: 'AI應用', emoji: '🤖', type: 'category' },
-    { key: 'automation', label: 'Automation', labelCht: '自動化', emoji: '⚡', type: 'category' },
-    { key: 'analytics', label: 'Data Analytics', labelCht: '數據分析', emoji: '📊', type: 'category' },
-    { key: 'prompt-engineering', label: 'Prompt Engineering', labelCht: '提示工程', emoji: '💬', type: 'category' },
-    { key: 'programming', label: 'Programming', labelCht: '程式設計', emoji: '💻', type: 'category' },
+    { key: 'all', label: 'All', labelCht: '?�部', emoji: '??', type: 'category' },
+    { key: 'design', label: 'Creative Design', labelCht: '?��?設�?', emoji: '?��', type: 'category' },
+    { key: 'ai', label: 'AI Applications', labelCht: 'AI?�用', emoji: '??', type: 'category' },
+    { key: 'automation', label: 'Automation', labelCht: '?��???, emoji: '??, type: 'category' },
+    { key: 'analytics', label: 'Data Analytics', labelCht: '?��??��?', emoji: '??', type: 'category' },
+    { key: 'prompt-engineering', label: 'Prompt Engineering', labelCht: '?�示工�?', emoji: '?��', type: 'category' },
+    { key: 'programming', label: 'Programming', labelCht: '程�?設�?', emoji: '?��', type: 'category' },
     // Industry filters
-    { key: 'daily-life', label: 'Daily Life', labelCht: '日常生活', emoji: '🏠', type: 'industry' },
-    { key: 'insurance', label: 'Insurance', labelCht: '保險業', emoji: '🛡️', type: 'industry' },
-    { key: 'retail', label: 'Retail', labelCht: '零售業', emoji: '🛍️', type: 'industry' },
-    { key: 'finance', label: 'Finance', labelCht: '金融業', emoji: '💰', type: 'industry' },
-    { key: 'education', label: 'Education', labelCht: '教育業', emoji: '🎓', type: 'industry' },
-    { key: 'healthcare', label: 'Healthcare', labelCht: '醫療業', emoji: '🏥', type: 'industry' }
+    { key: 'daily-life', label: 'Daily Life', labelCht: '?�常?�活', emoji: '??', type: 'industry' },
+    { key: 'insurance', label: 'Insurance', labelCht: '保險�?, emoji: '?���?, type: 'industry' },
+    { key: 'retail', label: 'Retail', labelCht: '?�售�?, emoji: '??�?, type: 'industry' },
+    { key: 'finance', label: 'Finance', labelCht: '?��?�?, emoji: '?��', type: 'industry' },
+    { key: 'education', label: 'Education', labelCht: '?�育�?, emoji: '??', type: 'industry' },
+    { key: 'healthcare', label: 'Healthcare', labelCht: '?��?�?, emoji: '?��', type: 'industry' }
   ];
 
   // Get button color based on unified selection
@@ -96,7 +96,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     e.preventDefault();
     // Here you would typically send the lead data to your backend
     console.log('Lead collected:', leadForm);
-    alert(isZhTW ? '多謝你嘅興趣！我哋會盡快聯絡你。' : 'Thanks for your interest! We\'ll contact you soon.');
+    alert(isZhTW ? '多�?你�??�趣！�??��??�快?�絡你�? : 'Thanks for your interest! We\'ll contact you soon.');
     setLeadForm({ email: '', interest: '' });
   };
 
@@ -133,14 +133,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     // Handle special case for 'all' category
     if (currentTag?.key === 'all') {
       return {
-        title: isZhTW ? '搵唔到想要嘅課程？' : 'Can\'t find what you\'re looking for?',
+        title: isZhTW ? '?��??�想要�?課�?�? : 'Can\'t find what you\'re looking for?',
         description: isZhTW 
-          ? '話俾我哋知你想學咩，我哋會為你度身訂造課程！'
+          ? '話俾?��??��??�學?��??��??�為你度身�??�課程�?'
           : 'Tell us what you want to learn, and we\'ll create a course just for you!',
-        emailPlaceholder: isZhTW ? '你嘅電郵地址' : 'Your email address',
-        textareaPlaceholder: isZhTW ? '你想學咩課程？例如：Excel進階技巧、Python數據分析、數位營銷策略等...' : 'What course would you like? e.g., Advanced Excel, Python Data Analysis, Digital Marketing...',
-        buttonText: isZhTW ? '提交課程需求' : 'Submit Course Request',
-        footerText: isZhTW ? '我哋會在24小時內回覆你嘅需求' : 'We\'ll respond to your request within 24 hours'
+        emailPlaceholder: isZhTW ? '你�??�郵?��?' : 'Your email address',
+        textareaPlaceholder: isZhTW ? '你想學咩課�?？�?如�?Excel?��??�巧、Python?��??��??�數位�??��??��?...' : 'What course would you like? e.g., Advanced Excel, Python Data Analysis, Digital Marketing...',
+        buttonText: isZhTW ? '?�交課�??��? : 'Submit Course Request',
+        footerText: isZhTW ? '?��??�在24小�??��?覆�??��?�? : 'We\'ll respond to your request within 24 hours'
       };
     }
     
@@ -148,14 +148,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     const categoryName = getCategoryName(currentTag?.key || '');
     
     return {
-      title: isZhTW ? `「${categoryName}」嘅課程我哋準備緊喇！` : `"${categoryName}" course is coming soon!`,
+      title: isZhTW ? `??{categoryName}?��?課�??��?準�?緊�?！` : `"${categoryName}" course is coming soon!`,
       description: isZhTW 
-        ? '內容好快就到。想成為第一批學員？留低你嘅電郵，新課程一上架即刻通知你！'
+        ? '?�容好快就到?�想?�為第�??�學?��??��?你�??�郵，新課�?一上架?�刻?�知你�?'
         : 'Content coming soon. Want to be in the first batch? Leave your email and we\'ll notify you when the new course launches!',
-      emailPlaceholder: isZhTW ? '你嘅電郵地址' : 'Your email address',
-      textareaPlaceholder: isZhTW ? `你對${categoryName}有咩特別想學嘅？（選填）` : `What specifically do you want to learn about ${categoryName}? (Optional)`,
-      buttonText: isZhTW ? '通知我新課程上架' : 'Notify me when available',
-      footerText: isZhTW ? '新課程一上架即刻通知你' : 'We\'ll notify you as soon as the course is available'
+      emailPlaceholder: isZhTW ? '你�??�郵?��?' : 'Your email address',
+      textareaPlaceholder: isZhTW ? `你�?${categoryName}?�咩?�別?�學?��?（選填�?` : `What specifically do you want to learn about ${categoryName}? (Optional)`,
+      buttonText: isZhTW ? '?�知?�新課�?上架' : 'Notify me when available',
+      footerText: isZhTW ? '?�課程�?上架?�刻?�知�? : 'We\'ll notify you as soon as the course is available'
     };
   };
 
@@ -169,11 +169,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            {isZhTW ? '精選數位產品類別' : 'Featured Digital Product Categories'}
+            {isZhTW ? '精選?��??��?類別' : 'Featured Digital Product Categories'}
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
             {isZhTW 
-              ? '高質素筆記同影片教學，即刻下載就用得。'
+              ? '高質素�?記�?影�??�學，即?��?載就?��???
               : 'High-quality notes and video tutorials, instant download and access.'
             }
           </p>
@@ -345,10 +345,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
                   <TrendingUp className="w-6 h-6 text-yellow-400" />
-                  {isZhTW ? '熱門推薦課程' : 'Popular Recommended Courses'}
+                  {isZhTW ? '?��??�薦課�?' : 'Popular Recommended Courses'}
                 </h3>
                 <p className="text-gray-300">
-                  {isZhTW ? '發掘其他學員都喜愛嘅課程' : 'Discover courses loved by other students'}
+                  {isZhTW ? '?��??��?學員?��??��?課�?' : 'Discover courses loved by other students'}
                 </p>
               </div>
               
@@ -365,7 +365,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-3xl">{course.icon}</span>
                           <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
-                            {isZhTW ? '熱門' : 'Popular'}
+                            {isZhTW ? '?��?' : 'Popular'}
                           </Badge>
                         </div>
                         <CardTitle className="text-white text-lg">
@@ -383,7 +383,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                           </div>
                           <div className="flex items-center gap-1">
                             <Users className="w-4 h-4" />
-                            <span>{course.students} {isZhTW ? '學生' : 'students'}</span>
+                            <span>{course.students} {isZhTW ? '學�?' : 'students'}</span>
                           </div>
                         </div>
                         <div className="flex items-center justify-between mb-4">
@@ -408,7 +408,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                             }
                           }}
                         >
-                          {isZhTW ? '查看課程' : 'View Course'}
+                          {isZhTW ? '?��?課�?' : 'View Course'}
                         </Button>
                       </CardContent>
                     </Card>

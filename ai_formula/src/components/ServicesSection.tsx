@@ -10,27 +10,27 @@ const ServicesSection = () => {
 
   const services = [
     {
-      title: language === 'zh-TW' ? t('services.training.title') : 'Expert-Led AI Training',
-      description: language === 'zh-TW' ? t('services.training.description') : 'Comprehensive learning materials designed by industry experts',
+      title: language === 'zh-HK' ? t('services.training.title') : 'Expert-Led AI Training',
+      description: language === 'zh-HK' ? t('services.training.description') : 'Comprehensive learning materials designed by industry experts',
       icon: BookOpen,
       benefits: [
-        language === 'zh-TW' ? t('services.training.benefit1') : 'Actionable Courses',
-        language === 'zh-TW' ? t('services.training.benefit2') : 'Practical Frameworks',
-        language === 'zh-TW' ? t('services.training.benefit3') : 'Team Upskilling'
+        language === 'zh-HK' ? t('services.training.benefit1') : 'Actionable Courses',
+        language === 'zh-HK' ? t('services.training.benefit2') : 'Practical Frameworks',
+        language === 'zh-HK' ? t('services.training.benefit3') : 'Team Upskilling'
       ],
-      buttonText: language === 'zh-TW' ? t('services.training.button') : 'View Courses',
+      buttonText: language === 'zh-HK' ? t('services.training.button') : 'View Courses',
       gradient: 'from-blue-500 to-purple-600'
     },
     {
-      title: language === 'zh-TW' ? t('services.automation.title') : 'Bespoke Automation Solutions',
-      description: language === 'zh-TW' ? t('services.automation.description') : 'Custom-built automation systems tailored to your business needs',
+      title: language === 'zh-HK' ? t('services.automation.title') : 'Bespoke Automation Solutions',
+      description: language === 'zh-HK' ? t('services.automation.description') : 'Custom-built automation systems tailored to your business needs',
       icon: Cog,
       benefits: [
-        language === 'zh-TW' ? t('services.automation.benefit1') : 'Increase Efficiency',
-        language === 'zh-TW' ? t('services.automation.benefit2') : 'Reduce Errors',
-        language === 'zh-TW' ? t('services.automation.benefit3') : 'Scale Operations'
+        language === 'zh-HK' ? t('services.automation.benefit1') : 'Increase Efficiency',
+        language === 'zh-HK' ? t('services.automation.benefit2') : 'Reduce Errors',
+        language === 'zh-HK' ? t('services.automation.benefit3') : 'Scale Operations'
       ],
-      buttonText: language === 'zh-TW' ? t('services.automation.button') : 'Get Free Consultation',
+      buttonText: language === 'zh-HK' ? t('services.automation.button') : 'Get Free Consultation',
       gradient: 'from-green-500 to-teal-600'
     }
   ];
@@ -46,10 +46,10 @@ const ServicesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            {language === 'zh-TW' ? t('services.title') : 'Our Services'}
+            {language === 'zh-HK' ? t('services.title') : 'Our Services'}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {language === 'zh-TW' ? t('services.subtitle') : 'Choose your path to AI mastery and business automation excellence'}
+            {language === 'zh-HK' ? t('services.subtitle') : 'Choose your path to AI mastery and business automation excellence'}
           </p>
         </motion.div>
 

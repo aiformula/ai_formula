@@ -12,7 +12,7 @@ interface CourseHeroProps {
 
 const CourseHero: React.FC<CourseHeroProps> = ({ title, description, estimatedTime, difficulty }) => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
 
   return (
     <motion.section
@@ -29,10 +29,10 @@ const CourseHero: React.FC<CourseHeroProps> = ({ title, description, estimatedTi
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-sm">
         <span className="px-4 py-2 bg-blue-500/20 text-blue-200 rounded-full">
-          {isZhTW ? 'È†êË®àÊôÇÈñì' : 'Estimated Time'}: {estimatedTime}
+          {isZhTW ? '?êË??ÇÈ?' : 'Estimated Time'}: {estimatedTime}
         </span>
         <span className="px-4 py-2 bg-purple-500/20 text-purple-200 rounded-full">
-          {isZhTW ? 'Èõ£Â∫¶' : 'Difficulty'}: {difficulty}
+          {isZhTW ? '??∫¶' : 'Difficulty'}: {difficulty}
         </span>
       </div>
     </motion.section>

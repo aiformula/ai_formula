@@ -28,7 +28,7 @@ const parseMarkdownToHTML = (content: string): string => {
     .replace(/`([^`]+)`/g, '<code class="ai-bg-dark-medium ai-text-primary px-2 py-1 rounded text-sm font-mono">$1</code>')
     
     // List items
-    .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2 text-gray-200">• $1</li>')
+    .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2 text-gray-200">??$1</li>')
     
     // Line breaks
     .replace(/\n/g, '<br>');

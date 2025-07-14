@@ -19,30 +19,30 @@ import {
 
 const AudiencePathwaysSection = () => {
   const { language } = useLanguage();
-  const isZhTW = language === 'zh-TW';
+  const isZhTW = language === 'zh-HK';
 
   const pathways = [
     {
       id: 1,
       icon: <BookOpen className="w-8 h-8" />,
-      emoji: "🔰",
-      title: isZhTW ? "我係AI新手，想打好基礎" : "I'm an AI beginner, want to build foundations",
+      emoji: "?��",
+      title: isZhTW ? "?��?AI?��?，想?�好?��?" : "I'm an AI beginner, want to build foundations",
       description: isZhTW 
-        ? "從零開始學習AI，建立紮實的基礎知識，適合完全沒有AI經驗的初學者。"
+        ? "從零?��?學�?AI，建立紮實�??��??��?，適?��??��??�AI經�??��?學者�?
         : "Start learning AI from scratch, build solid foundational knowledge, perfect for complete beginners.",
       features: isZhTW ? [
-        "AI基礎概念解釋",
+        "AI?��?概念�??",
         "實用工具介紹", 
-        "真實案例分析",
-        "逐步實作指導"
+        "?�實案�??��?",
+        "?�步實�??��?"
       ] : [
         "AI fundamental concepts",
         "Practical tools introduction",
         "Real case studies", 
         "Step-by-step guidance"
       ],
-      level: isZhTW ? "初級" : "Beginner",
-      duration: isZhTW ? "4-6週" : "4-6 weeks",
+      level: isZhTW ? "?��?" : "Beginner",
+      duration: isZhTW ? "4-6?? : "4-6 weeks",
       gradient: "from-green-500 to-emerald-600",
       bgGradient: "from-green-500/10 to-emerald-500/10",
       borderColor: "border-green-500/50",
@@ -51,24 +51,24 @@ const AudiencePathwaysSection = () => {
     {
       id: 2,
       icon: <Code2 className="w-8 h-8" />,
-      emoji: "💻",
-      title: isZhTW ? "我係開發者，想學進階技術" : "I'm a developer, want to learn advanced techniques",
+      emoji: "?��",
+      title: isZhTW ? "?��??�發?��??�學?��??��? : "I'm a developer, want to learn advanced techniques",
       description: isZhTW 
-        ? "深入AI技術細節，學習API整合、自動化工具和進階開發技巧。"
+        ? "深入AI?�術細節，學習API?��??�自?��?工具?�進�??�發?�巧�?
         : "Dive deep into AI technical details, learn API integration, automation tools and advanced development skills.",
       features: isZhTW ? [
-        "API整合實戰",
-        "自動化工具開發",
-        "進階程式技巧",
-        "系統架構設計"
+        "API?��?實戰",
+        "?��??�工?��???,
+        "?��?程�??��?,
+        "系統?��?設�?"
       ] : [
         "API integration practice",
         "Automation tool development",
         "Advanced programming skills",
         "System architecture design"
       ],
-      level: isZhTW ? "進階" : "Advanced",
-      duration: isZhTW ? "8-12週" : "8-12 weeks",
+      level: isZhTW ? "?��?" : "Advanced",
+      duration: isZhTW ? "8-12?? : "8-12 weeks",
       gradient: "from-blue-500 to-cyan-600",
       bgGradient: "from-blue-500/10 to-cyan-500/10",
       borderColor: "border-blue-500/50",
@@ -77,24 +77,24 @@ const AudiencePathwaysSection = () => {
     {
       id: 3,
       icon: <TrendingUp className="w-8 h-8" />,
-      emoji: "📈",
-      title: isZhTW ? "我係行銷人員，想用AI提升效率" : "I'm a marketer, want to use AI to boost efficiency",
+      emoji: "??",
+      title: isZhTW ? "?��?行銷人員，想?�AI?��??��?" : "I'm a marketer, want to use AI to boost efficiency",
       description: isZhTW 
-        ? "學習如何運用AI工具優化行銷流程，提升內容創作和數據分析效率。"
+        ? "學�?如�??�用AI工具?��?行銷流�?，�??�內容創作�??��??��??��???
         : "Learn how to use AI tools to optimize marketing processes, enhance content creation and data analysis efficiency.",
       features: isZhTW ? [
-        "AI內容創作工具",
-        "行銷自動化設置",
-        "數據分析優化",
-        "客戶關係管理"
+        "AI?�容?��?工具",
+        "行銷?��??�設�?,
+        "?��??��??��?",
+        "客戶?��?管�?"
       ] : [
         "AI content creation tools",
         "Marketing automation setup",
         "Data analysis optimization",
         "Customer relationship management"
       ],
-      level: isZhTW ? "中級" : "Intermediate",
-      duration: isZhTW ? "6-8週" : "6-8 weeks",
+      level: isZhTW ? "中�?" : "Intermediate",
+      duration: isZhTW ? "6-8?? : "6-8 weeks",
       gradient: "from-purple-500 to-pink-600",
       bgGradient: "from-purple-500/10 to-pink-500/10",
       borderColor: "border-purple-500/50",
@@ -133,19 +133,19 @@ const AudiencePathwaysSection = () => {
           >
             <Target className="w-5 h-5 text-yellow-400" />
             <span className="text-yellow-300 font-medium">
-              {isZhTW ? '個人化學習路徑' : 'Personalized Learning Path'}
+              {isZhTW ? '?�人?�學習路�? : 'Personalized Learning Path'}
             </span>
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-amber-300 bg-clip-text text-transparent">
-              {isZhTW ? '你係邊一類人？' : 'What Type Are You?'}
+              {isZhTW ? '你�??��?類人�? : 'What Type Are You?'}
             </span>
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {isZhTW 
-              ? '唔同背景嘅你需要唔同嘅學習路徑。揀啱你嘅起點，開始你嘅AI學習之旅！' 
+              ? '?��??�景?��??�要�??��?學�?路�??��??��??�起點�??��?你�?AI學�?之�?�? 
               : 'Different backgrounds require different learning paths. Choose your starting point and begin your AI learning journey!'
             }
           </p>
@@ -217,7 +217,7 @@ const AudiencePathwaysSection = () => {
                   <div className="mb-8">
                     <h4 className="text-sm font-semibold text-yellow-300 mb-3 flex items-center gap-2">
                       <Lightbulb className="w-4 h-4" />
-                      {isZhTW ? '你會學到' : 'You will learn'}
+                      {isZhTW ? '你�?學到' : 'You will learn'}
                     </h4>
                     <ul className="space-y-2">
                       {pathway.features.map((feature, idx) => (
@@ -237,7 +237,7 @@ const AudiencePathwaysSection = () => {
                     <Button 
                       className={`w-full bg-gradient-to-r ${pathway.gradient} hover:shadow-lg hover:shadow-${pathway.gradient.split('-')[1]}-500/25 text-white font-semibold py-3 transition-all duration-300 group border-0`}
                     >
-                      {isZhTW ? '開始學習' : 'Start Learning'}
+                      {isZhTW ? '?��?學�?' : 'Start Learning'}
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
                   </motion.div>
@@ -256,14 +256,14 @@ const AudiencePathwaysSection = () => {
           className="text-center"
         >
           <p className="text-gray-400 mb-6">
-            {isZhTW ? '仍然唔確定邊個課程適合你？' : 'Still not sure which course suits you?'}
+            {isZhTW ? '仍然?�確定�??�課程適?��?�? : 'Still not sure which course suits you?'}
           </p>
           <Button 
             variant="outline"
             size="lg"
             className="bg-transparent border-2 border-yellow-500/50 text-yellow-300 hover:bg-yellow-500/10 hover:border-yellow-400 transition-all duration-300 px-8 py-3"
           >
-            {isZhTW ? '聯絡我們獲得建議' : 'Contact Us for Advice'}
+            {isZhTW ? '?�絡?�們獲得建�? : 'Contact Us for Advice'}
             <Users className="ml-2 h-5 w-5" />
           </Button>
         </motion.div>

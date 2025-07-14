@@ -41,7 +41,7 @@ const CourseRegistration: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Get course info from URL params or location state
-  const courseTitle = location.state?.courseTitle || 'AI 課程';
+  const courseTitle = location.state?.courseTitle || 'AI 課�?';
   const coursePrice = location.state?.coursePrice || '$3,800';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -69,7 +69,7 @@ const CourseRegistration: React.FC = () => {
   };
 
   const handleWhatsAppRegister = () => {
-    const message = `我想報名${courseTitle}課程，價格是${coursePrice}。請問如何進行報名？`;
+    const message = `?�想?��?${courseTitle}課�?，價?�是${coursePrice}?��??��?何進�??��?？`;
     window.open(`https://wa.me/85298765432?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -84,20 +84,20 @@ const CourseRegistration: React.FC = () => {
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
               <h1 className="text-2xl font-bold text-white mb-4">
-                {isZhTW ? '報名成功！' : 'Registration Successful!'}
+                {isZhTW ? '?��??��?�? : 'Registration Successful!'}
               </h1>
               <p className="text-gray-300 mb-6">
                 {isZhTW 
-                  ? '恭喜您已成功報名課程！我們將在24小時內透過電郵聯絡您，提供課程詳細資訊和開課時間。'
+                  ? '?��??�已?��??��?課�?！�??��???4小�??�透�??�郵?�絡?��??��?課�?詳細資�??��?課�??��?
                   : 'Congratulations! You have successfully registered for the course. We will contact you within 24 hours via email with detailed course information and schedule.'
                 }
               </p>
               <div className="space-y-4">
                 <div className="text-sm text-gray-400">
-                  {isZhTW ? '正在跳轉到課程頁面...' : 'Redirecting to course page...'}
+                  {isZhTW ? '�?��跳�??�課程�???..' : 'Redirecting to course page...'}
                 </div>
                 <Button onClick={() => navigate('/courses/free-plan')} className="w-full bg-green-600 hover:bg-green-700">
-                  {isZhTW ? '立即開始學習' : 'Start Learning Now'}
+                  {isZhTW ? '立即?��?學�?' : 'Start Learning Now'}
                 </Button>
               </div>
             </CardContent>
@@ -121,14 +121,14 @@ const CourseRegistration: React.FC = () => {
               className="text-gray-400 hover:text-white"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              {isZhTW ? '返回' : 'Back'}
+              {isZhTW ? '返�?' : 'Back'}
             </Button>
             <div>
               <h1 className="text-3xl font-bold text-white">
-                {isZhTW ? '課程報名' : 'Course Registration'}
+                {isZhTW ? '課�??��?' : 'Course Registration'}
               </h1>
               <p className="text-gray-400 mt-2">
-                {isZhTW ? '填寫以下信息完成報名' : 'Fill out the information below to complete registration'}
+                {isZhTW ? '填寫以�?信息完�??��?' : 'Fill out the information below to complete registration'}
               </p>
             </div>
           </div>
@@ -138,14 +138,14 @@ const CourseRegistration: React.FC = () => {
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-white">
-                  {isZhTW ? '報名信息' : 'Registration Information'}
+                  {isZhTW ? '?��?信息' : 'Registration Information'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Label htmlFor="name" className="text-white">
-                      {isZhTW ? '姓名' : 'Full Name'} *
+                      {isZhTW ? '姓�?' : 'Full Name'} *
                     </Label>
                     <Input
                       id="name"
@@ -155,13 +155,13 @@ const CourseRegistration: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="bg-gray-700 border-gray-600 text-white mt-1"
-                      placeholder={isZhTW ? '請輸入您的姓名' : 'Enter your full name'}
+                      placeholder={isZhTW ? '請輸?�您?��??? : 'Enter your full name'}
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="email" className="text-white">
-                      {isZhTW ? '電子郵箱' : 'Email Address'} *
+                      {isZhTW ? '?��??�箱' : 'Email Address'} *
                     </Label>
                     <Input
                       id="email"
@@ -171,13 +171,13 @@ const CourseRegistration: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="bg-gray-700 border-gray-600 text-white mt-1"
-                      placeholder={isZhTW ? '請輸入您的電子郵箱' : 'Enter your email address'}
+                      placeholder={isZhTW ? '請輸?�您?�電子郵�? : 'Enter your email address'}
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="phone" className="text-white">
-                      {isZhTW ? '聯絡電話' : 'Phone Number'} *
+                      {isZhTW ? '?�絡?�話' : 'Phone Number'} *
                     </Label>
                     <Input
                       id="phone"
@@ -187,13 +187,13 @@ const CourseRegistration: React.FC = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="bg-gray-700 border-gray-600 text-white mt-1"
-                      placeholder={isZhTW ? '請輸入您的聯絡電話' : 'Enter your phone number'}
+                      placeholder={isZhTW ? '請輸?�您?�聯絡電�? : 'Enter your phone number'}
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="experience" className="text-white">
-                      {isZhTW ? '相關經驗' : 'Relevant Experience'}
+                      {isZhTW ? '?��?經�?' : 'Relevant Experience'}
                     </Label>
                     <select
                       id="experience"
@@ -203,23 +203,23 @@ const CourseRegistration: React.FC = () => {
                       className="w-full mt-1 bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2"
                     >
                       <option value="">
-                        {isZhTW ? '請選擇您的經驗程度' : 'Select your experience level'}
+                        {isZhTW ? '請選?�您?��?驗�?�? : 'Select your experience level'}
                       </option>
                       <option value="beginner">
-                        {isZhTW ? '初學者' : 'Beginner'}
+                        {isZhTW ? '?�學?? : 'Beginner'}
                       </option>
                       <option value="intermediate">
-                        {isZhTW ? '中級' : 'Intermediate'}
+                        {isZhTW ? '中�?' : 'Intermediate'}
                       </option>
                       <option value="advanced">
-                        {isZhTW ? '高級' : 'Advanced'}
+                        {isZhTW ? '高�?' : 'Advanced'}
                       </option>
                     </select>
                   </div>
 
                   <div>
                     <Label htmlFor="goals" className="text-white">
-                      {isZhTW ? '學習目標' : 'Learning Goals'}
+                      {isZhTW ? '學�??��?' : 'Learning Goals'}
                     </Label>
                     <Textarea
                       id="goals"
@@ -227,7 +227,7 @@ const CourseRegistration: React.FC = () => {
                       value={formData.goals}
                       onChange={handleInputChange}
                       className="bg-gray-700 border-gray-600 text-white mt-1"
-                      placeholder={isZhTW ? '請簡單描述您的學習目標和期望' : 'Please describe your learning goals and expectations'}
+                      placeholder={isZhTW ? '請簡?��?述您?�學習目標�??��?' : 'Please describe your learning goals and expectations'}
                       rows={4}
                     />
                   </div>
@@ -241,12 +241,12 @@ const CourseRegistration: React.FC = () => {
                       {isSubmitting ? (
                         <div className="flex items-center gap-2">
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          {isZhTW ? '提交中...' : 'Submitting...'}
+                          {isZhTW ? '?�交�?..' : 'Submitting...'}
                         </div>
                       ) : (
                         <>
                           <Calendar className="w-4 h-4 mr-2" />
-                          {isZhTW ? '立即報名' : 'Register Now'}
+                          {isZhTW ? '立即?��?' : 'Register Now'}
                         </>
                       )}
                     </Button>
@@ -258,7 +258,7 @@ const CourseRegistration: React.FC = () => {
                       className="flex-1 border-green-600 text-green-400 hover:bg-green-600 hover:text-white"
                     >
                       <MessageCircle className="w-4 h-4 mr-2" />
-                      {isZhTW ? 'WhatsApp 報名' : 'WhatsApp Register'}
+                      {isZhTW ? 'WhatsApp ?��?' : 'WhatsApp Register'}
                     </Button>
                   </div>
                 </form>
@@ -270,7 +270,7 @@ const CourseRegistration: React.FC = () => {
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white">
-                    {isZhTW ? '課程摘要' : 'Course Summary'}
+                    {isZhTW ? '課�??��?' : 'Course Summary'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -279,10 +279,10 @@ const CourseRegistration: React.FC = () => {
                       <h3 className="font-semibold text-white mb-2">{courseTitle}</h3>
                       <div className="flex items-center gap-2 mb-3">
                         <Badge className="bg-yellow-600 text-white">
-                          {isZhTW ? '熱門課程' : 'Popular Course'}
+                          {isZhTW ? '?��?課�?' : 'Popular Course'}
                         </Badge>
                         <Badge variant="outline" className="text-green-400 border-green-400">
-                          {isZhTW ? '限時優惠' : 'Limited Time Offer'}
+                          {isZhTW ? '?��??��?' : 'Limited Time Offer'}
                         </Badge>
                       </div>
                       <div className="text-2xl font-bold text-yellow-400 mb-4">
@@ -297,25 +297,25 @@ const CourseRegistration: React.FC = () => {
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-gray-400" />
                         <span className="text-gray-300">
-                          {isZhTW ? '12 週課程' : '12 Weeks Course'}
+                          {isZhTW ? '12 ?�課�? : '12 Weeks Course'}
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
                         <BookOpen className="w-5 h-5 text-gray-400" />
                         <span className="text-gray-300">
-                          {isZhTW ? '24 小時內容' : '24 Hours Content'}
+                          {isZhTW ? '24 小�??�容' : '24 Hours Content'}
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
                         <Users className="w-5 h-5 text-gray-400" />
                         <span className="text-gray-300">
-                          {isZhTW ? '一對一導師指導' : '1-on-1 Mentorship'}
+                          {isZhTW ? '一對�?導師?��?' : '1-on-1 Mentorship'}
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
                         <Award className="w-5 h-5 text-gray-400" />
                         <span className="text-gray-300">
-                          {isZhTW ? '完成證書' : 'Certificate of Completion'}
+                          {isZhTW ? '完�?證書' : 'Certificate of Completion'}
                         </span>
                       </div>
                     </div>
@@ -326,7 +326,7 @@ const CourseRegistration: React.FC = () => {
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white">
-                    {isZhTW ? '課程價值' : 'Course Value'}
+                    {isZhTW ? '課�??��? : 'Course Value'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -334,25 +334,25 @@ const CourseRegistration: React.FC = () => {
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-green-400" />
                       <span className="text-gray-300">
-                        {isZhTW ? '永久觀看權限' : 'Lifetime Access'}
+                        {isZhTW ? '永�?觀?��??? : 'Lifetime Access'}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-green-400" />
                       <span className="text-gray-300">
-                        {isZhTW ? '課程源代碼下載' : 'Source Code Download'}
+                        {isZhTW ? '課�?源代碼�?�? : 'Source Code Download'}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-green-400" />
                       <span className="text-gray-300">
-                        {isZhTW ? '導師問答支援' : 'Instructor Q&A Support'}
+                        {isZhTW ? '導師?��??�援' : 'Instructor Q&A Support'}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-green-400" />
                       <span className="text-gray-300">
-                        {isZhTW ? '學習社群加入' : 'Learning Community Access'}
+                        {isZhTW ? '學�?社群?�入' : 'Learning Community Access'}
                       </span>
                     </div>
                   </div>
@@ -364,7 +364,7 @@ const CourseRegistration: React.FC = () => {
                   <div className="flex items-center gap-2 text-sm text-gray-400">
                     <Shield className="w-4 h-4" />
                     <span>
-                      {isZhTW ? '安全付款 · 7天退款保證' : 'Secure Payment · 7-Day Money Back Guarantee'}
+                      {isZhTW ? '安全付款 · 7天退款�?�? : 'Secure Payment · 7-Day Money Back Guarantee'}
                     </span>
                   </div>
                 </CardContent>

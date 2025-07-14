@@ -183,7 +183,7 @@ Allow: /js/`;
               </div>
               <div className="text-sm text-blue-600 hover:text-blue-800">
                 <a href={`${baseUrl}${page.url}`} target="_blank" rel="noopener noreferrer">
-                  Visit →
+                  Visit ??
                 </a>
               </div>
             </div>

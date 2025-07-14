@@ -56,13 +56,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'prompt-engineering',
       title: 'Prompt Engineering Mastery',
-      titleZh: '提示工程精通',
+      titleZh: '?�示工�?精�?,
       description: 'Master the art of crafting effective prompts for AI systems',
-      descriptionZh: '掌握為AI系統製作有效提示的藝術',
+      descriptionZh: '?�握?�AI系統製�??��??�示?��?�?,
       category: 'course',
       difficulty: 'intermediate',
       duration: '6 hours',
-      durationZh: '6小時',
+      durationZh: '6小�?',
       rating: 4.8,
       students: 1234,
       instructor: 'Kenneth',
@@ -70,18 +70,18 @@ const LearningMaterials: React.FC = () => {
       price: 99,
       originalPrice: 149,
       tags: ['AI', 'Prompt Engineering', 'Machine Learning'],
-      tagsZh: ['AI', '提示工程', '機器學習'],
+      tagsZh: ['AI', '?�示工�?', '機器學�?'],
       features: [
-        '🎯 新手友好：零基礎也能快速上手',
-        '💬 提示工程：掌握AI對話技巧',
-        '🤖 AI應用：實際商業案例演練',
-        '🎓 適合學生：系統化學習路徑'
+        '?�� ?��??�好：零?��?也能快速�???,
+        '?�� ?�示工�?：�??�AI對話?��?,
+        '?? AI?�用：實?��?業�?例�?�?,
+        '?? ?��?學�?：系統�?學�?路�?'
       ],
       featuresZh: [
-        '🎯 新手友好：零基礎也能快速上手',
-        '💬 提示工程：掌握AI對話技巧',
-        '🤖 AI應用：實際商業案例演練',
-        '🎓 適合學生：系統化學習路徑'
+        '?�� ?��??�好：零?��?也能快速�???,
+        '?�� ?�示工�?：�??�AI對話?��?,
+        '?? AI?�用：實?��?業�?例�?�?,
+        '?? ?��?學�?：系統�?學�?路�?'
       ],
       lessons: 25,
       progress: 65,
@@ -90,13 +90,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'ai-fundamentals',
       title: 'AI Fundamentals for Beginners',
-      titleZh: 'AI基礎入門',
+      titleZh: 'AI?��??��?',
       description: 'Learn the basics of artificial intelligence and machine learning',
-      descriptionZh: '學習人工智慧和機器學習的基礎知識',
+      descriptionZh: '學�?人工?�慧?��??�學習�??��??��?',
       category: 'course',
       difficulty: 'beginner',
       duration: '4 hours',
-      durationZh: '4小時',
+      durationZh: '4小�?',
       rating: 4.6,
       students: 2156,
       instructor: 'David',
@@ -104,18 +104,18 @@ const LearningMaterials: React.FC = () => {
       price: 79,
       originalPrice: 129,
       tags: ['AI', 'Machine Learning', 'Beginner'],
-      tagsZh: ['AI', '機器學習', '入門'],
+      tagsZh: ['AI', '機器學�?', '?��?'],
       features: [
-        '🎓 學生專屬：專為初學者設計',
-        '🚀 新手起步：零基礎友好入門',
-        '🤖 AI應用：生活化實例教學',
-        '💡 基礎概念：深入淺出解釋'
+        '?? 學�?專屬：�??��?學者設�?,
+        '?? ?��?起步：零?��??�好?��?',
+        '?? AI?�用：�?活�?實�??�學',
+        '?�� ?��?概念：深?�淺?�解??
       ],
       featuresZh: [
-        '🎓 學生專屬：專為初學者設計',
-        '🚀 新手起步：零基礎友好入門',
-        '🤖 AI應用：生活化實例教學',
-        '💡 基礎概念：深入淺出解釋'
+        '?? 學�?專屬：�??��?學者設�?,
+        '?? ?��?起步：零?��??�好?��?',
+        '?? AI?�用：�?活�?實�??�學',
+        '?�� ?��?概念：深?�淺?�解??
       ],
       lessons: 18,
       progress: 100,
@@ -124,13 +124,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'advanced-ml-techniques',
       title: 'Advanced Machine Learning Techniques',
-      titleZh: '進階機器學習技術',
+      titleZh: '?��?機器學�??��?,
       description: 'Deep dive into advanced ML algorithms and techniques',
-      descriptionZh: '深入探討進階ML演算法和技術',
+      descriptionZh: '深入?��??��?ML演�?法�??��?,
       category: 'workshop',
       difficulty: 'advanced',
       duration: '8 hours',
-      durationZh: '8小時',
+      durationZh: '8小�?',
       rating: 4.9,
       students: 876,
       instructor: 'Ken',
@@ -138,18 +138,18 @@ const LearningMaterials: React.FC = () => {
       price: 199,
       originalPrice: 299,
       tags: ['Machine Learning', 'Deep Learning', 'Advanced'],
-      tagsZh: ['機器學習', '深度學習', '進階'],
+      tagsZh: ['機器學�?', '深度學�?', '?��?'],
       features: [
-        '🔬 進階算法：深度學習核心技術',
-        '📊 數據分析：大數據處理技巧',
-        '💻 程式設計：Python實戰演練',
-        '🏢 企業應用：實際業務場景'
+        '?�� ?��?算�?：深度學習核心�?�?,
+        '?? ?��??��?：大?��??��??��?,
+        '?�� 程�?設�?：Python實戰演練',
+        '?�� 企業?�用：實?�業?�場??
       ],
       featuresZh: [
-        '🔬 進階算法：深度學習核心技術',
-        '📊 數據分析：大數據處理技巧',
-        '💻 程式設計：Python實戰演練',
-        '🏢 企業應用：實際業務場景'
+        '?�� ?��?算�?：深度學習核心�?�?,
+        '?? ?��??��?：大?��??��??��?,
+        '?�� 程�?設�?：Python實戰演練',
+        '?�� 企業?�用：實?�業?�場??
       ],
       lessons: 32,
       progress: 0,
@@ -158,13 +158,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'business-automation',
       title: 'Business Automation with AI',
-      titleZh: '商業AI自動化',
+      titleZh: '?�業AI?��???,
       description: 'Automate business processes using AI tools and workflows',
-      descriptionZh: '使用AI工具和工作流程自動化商業流程',
+      descriptionZh: '使用AI工具?�工作�?程自?��??�業流�?',
       category: 'course',
       difficulty: 'intermediate',
       duration: '5 hours',
-      durationZh: '5小時',
+      durationZh: '5小�?',
       rating: 4.7,
       students: 1567,
       instructor: 'Jason',
@@ -172,18 +172,18 @@ const LearningMaterials: React.FC = () => {
       price: 129,
       originalPrice: 199,
       tags: ['Automation', 'Business', 'AI Tools'],
-      tagsZh: ['自動化', '商業', 'AI工具'],
+      tagsZh: ['?��???, '?�業', 'AI工具'],
       features: [
-        '⚡ 自動化：提升工作效率',
-        '💰 金融業：銀行保險應用',
-        '🛍️ 零售業：電商營運優化',
-        '🏥 醫療業：流程數位轉型'
+        '???��??��??��?工�??��?',
+        '?�� ?��?業�??�行�??��???,
+        '??�??�售業�??��??��??��?',
+        '?�� ?��?業�?流�??��?轉�?'
       ],
       featuresZh: [
-        '⚡ 自動化：提升工作效率',
-        '💰 金融業：銀行保險應用',
-        '🛍️ 零售業：電商營運優化',
-        '🏥 醫療業：流程數位轉型'
+        '???��??��??��?工�??��?',
+        '?�� ?��?業�??�行�??��???,
+        '??�??�售業�??��??��??��?',
+        '?�� ?��?業�?流�??��?轉�?'
       ],
       lessons: 22,
       progress: 30,
@@ -192,13 +192,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'creative-ai-design',
       title: 'Creative AI Design',
-      titleZh: '創意AI設計',
+      titleZh: '?��?AI設�?',
       description: 'Create stunning designs using AI-powered tools',
-      descriptionZh: '使用AI工具創作出色的設計作品',
+      descriptionZh: '使用AI工具?��??�色?�設計�???,
       category: 'workshop',
       difficulty: 'intermediate',
       duration: '6 hours',
-      durationZh: '6小時',
+      durationZh: '6小�?',
       rating: 4.5,
       students: 892,
       instructor: 'Kenneth',
@@ -206,18 +206,18 @@ const LearningMaterials: React.FC = () => {
       price: 89,
       originalPrice: 149,
       tags: ['Design', 'Creative', 'AI Tools'],
-      tagsZh: ['設計', '創意', 'AI工具'],
+      tagsZh: ['設�?', '?��?', 'AI工具'],
       features: [
-        '🎨 創意設計：視覺藝術創作',
-        '🖼️ 圖像生成：AI繪圖技術',
-        '🏠 日常生活：個人創作應用',
-        '🎭 藝術表現：風格化設計'
+        '?�� ?��?設�?：�?覺�?術創�?,
+        '?���??��??��?：AI繪�??��?,
+        '?? ?�常?�活：個人?��??�用',
+        '?�� ?��?表現：風?��?設�?'
       ],
       featuresZh: [
-        '🎨 創意設計：視覺藝術創作',
-        '🖼️ 圖像生成：AI繪圖技術',
-        '🏠 日常生活：個人創作應用',
-        '🎭 藝術表現：風格化設計'
+        '?�� ?��?設�?：�?覺�?術創�?,
+        '?���??��??��?：AI繪�??��?,
+        '?? ?�常?�活：個人?��??�用',
+        '?�� ?��?表現：風?��?設�?'
       ],
       lessons: 20,
       progress: 0,
@@ -226,13 +226,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'ai-for-education',
       title: 'AI for Education',
-      titleZh: 'AI教育應用',
+      titleZh: 'AI?�育?�用',
       description: 'Transform education with AI-powered learning tools',
-      descriptionZh: '使用AI工具革新教育學習方式',
+      descriptionZh: '使用AI工具?�新?�育學�??��?',
       category: 'course',
       difficulty: 'beginner',
       duration: '4 hours',
-      durationZh: '4小時',
+      durationZh: '4小�?',
       rating: 4.4,
       students: 1345,
       instructor: 'David',
@@ -240,18 +240,18 @@ const LearningMaterials: React.FC = () => {
       price: 69,
       originalPrice: 129,
       tags: ['Education', 'AI', 'Learning'],
-      tagsZh: ['教育', 'AI', '學習'],
+      tagsZh: ['?�育', 'AI', '學�?'],
       features: [
-        '🎓 教育業：師生互動優化',
-        '📚 個人化學習：因材施教',
-        '🤖 AI應用：智能教學助手',
-        '👨‍🎓 學生適用：提升學習效果'
+        '?? ?�育業�?師�?互�??��?',
+        '?? ?�人?�學習�??��??��?',
+        '?? AI?�用：智?��?學助??,
+        '?��?��??學�??�用：�??�學習�???
       ],
       featuresZh: [
-        '🎓 教育業：師生互動優化',
-        '📚 個人化學習：因材施教',
-        '🤖 AI應用：智能教學助手',
-        '👨‍🎓 學生適用：提升學習效果'
+        '?? ?�育業�?師�?互�??��?',
+        '?? ?�人?�學習�??��??��?',
+        '?? AI?�用：智?��?學助??,
+        '?��?��??學�??�用：�??�學習�???
       ],
       lessons: 15,
       progress: 0,
@@ -260,26 +260,26 @@ const LearningMaterials: React.FC = () => {
   ]
 
   const categories = [
-    { id: 'all', label: 'All Categories', labelZh: '所有類別' },
-    { id: 'course', label: 'Courses', labelZh: '課程' },
-    { id: 'tutorial', label: 'Tutorials', labelZh: '教學' },
-    { id: 'workshop', label: 'Workshops', labelZh: '工作坊' },
-    { id: 'webinar', label: 'Webinars', labelZh: '網路研討會' }
+    { id: 'all', label: 'All Categories', labelZh: '?�?��??? },
+    { id: 'course', label: 'Courses', labelZh: '課�?' },
+    { id: 'tutorial', label: 'Tutorials', labelZh: '?�學' },
+    { id: 'workshop', label: 'Workshops', labelZh: '工�??? },
+    { id: 'webinar', label: 'Webinars', labelZh: '網路?��??? }
   ]
 
   const difficulties = [
-    { id: 'all', label: 'All Levels', labelZh: '所有程度' },
-    { id: 'beginner', label: 'Beginner', labelZh: '初級' },
-    { id: 'intermediate', label: 'Intermediate', labelZh: '中級' },
-    { id: 'advanced', label: 'Advanced', labelZh: '進階' }
+    { id: 'all', label: 'All Levels', labelZh: '?�?��?�? },
+    { id: 'beginner', label: 'Beginner', labelZh: '?��?' },
+    { id: 'intermediate', label: 'Intermediate', labelZh: '中�?' },
+    { id: 'advanced', label: 'Advanced', labelZh: '?��?' }
   ]
 
   const filteredMaterials = materials.filter(material => {
     const matchesCategory = selectedCategory === 'all' || material.category === selectedCategory
     const matchesDifficulty = selectedDifficulty === 'all' || material.difficulty === selectedDifficulty
     const matchesSearch = searchTerm === '' || 
-      (language === 'zh-TW' ? material.titleZh : material.title).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (language === 'zh-TW' ? material.descriptionZh : material.description).toLowerCase().includes(searchTerm.toLowerCase())
+      (language === 'zh-HK' ? material.titleZh : material.title).toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (language === 'zh-HK' ? material.descriptionZh : material.description).toLowerCase().includes(searchTerm.toLowerCase())
     
     return matchesCategory && matchesDifficulty && matchesSearch
   })
@@ -321,19 +321,19 @@ const LearningMaterials: React.FC = () => {
 
   const getCategoryName = (category: string) => {
     switch (category) {
-      case 'course': return language === 'zh-TW' ? '課程' : 'Course'
-      case 'tutorial': return language === 'zh-TW' ? '教學' : 'Tutorial'
-      case 'workshop': return language === 'zh-TW' ? '工作坊' : 'Workshop'
-      case 'webinar': return language === 'zh-TW' ? '網路研討會' : 'Webinar'
+      case 'course': return language === 'zh-HK' ? '課�?' : 'Course'
+      case 'tutorial': return language === 'zh-HK' ? '?�學' : 'Tutorial'
+      case 'workshop': return language === 'zh-HK' ? '工�??? : 'Workshop'
+      case 'webinar': return language === 'zh-HK' ? '網路?��??? : 'Webinar'
       default: return category
     }
   }
 
   const getDifficultyName = (difficulty: string) => {
     switch (difficulty) {
-      case 'beginner': return language === 'zh-TW' ? '初級' : 'Beginner'
-      case 'intermediate': return language === 'zh-TW' ? '中級' : 'Intermediate'
-      case 'advanced': return language === 'zh-TW' ? '進階' : 'Advanced'
+      case 'beginner': return language === 'zh-HK' ? '?��?' : 'Beginner'
+      case 'intermediate': return language === 'zh-HK' ? '中�?' : 'Intermediate'
+      case 'advanced': return language === 'zh-HK' ? '?��?' : 'Advanced'
       default: return difficulty
     }
   }
@@ -372,26 +372,26 @@ const LearningMaterials: React.FC = () => {
     const specialties = {
       'Kenneth': {
         en: 'AI Marketing & Prompt Engineering',
-        zh: 'AI行銷與提示工程專家'
+        zh: 'AI行銷?��?示工程�?�?
       },
       'David': {
         en: 'Business Automation Expert',
-        zh: '商業自動化專家'
+        zh: '?�業?��??��?�?
       },
       'Ken': {
         en: 'Custom Development & Advanced ML',
-        zh: '客制開發與進階機器學習'
+        zh: '客制?�發?�進�?機器學�?'
       },
       'Jason': {
         en: 'Professional Developer & AI Integration',
-        zh: '專業開發者與AI整合'
+        zh: '專業?�發?��?AI?��?'
       }
     }
     
     const specialty = specialties[instructor as keyof typeof specialties]
-    if (!specialty) return language === 'zh-TW' ? '專業講師' : 'Professional Instructor'
+    if (!specialty) return language === 'zh-HK' ? '專業講師' : 'Professional Instructor'
     
-    return language === 'zh-TW' ? specialty.zh : specialty.en
+    return language === 'zh-HK' ? specialty.zh : specialty.en
   }
 
   return (
@@ -405,13 +405,13 @@ const LearningMaterials: React.FC = () => {
           className="text-center mb-12"
         >
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-6">
-            {language === 'zh-TW' ? '免費資源 ' : 'Free Resources / Trial Offers'}
+            {language === 'zh-HK' ? '?�費資�? ' : 'Free Resources / Trial Offers'}
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {language === 'zh-TW' 
+            {language === 'zh-HK' 
               ? <>
-                  免費下載：2025年十大必學AI工具懶人包 <br />
-                  立即登記：免費試睇我哋皇牌課程嘅第一個單元！
+                  ?�費下�?�?025年�?大�?學AI工具?�人??<br />
+                  立即?��?：�?費試?��??��??�課程�?第�??�單?��?
                 </>
               : 'Free Download: Top 10 AI Tools Cheat Sheet 2025 + Register Now for Free Trial of Our Premium Course First Module!'
             }
@@ -433,7 +433,7 @@ const LearningMaterials: React.FC = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                   <input
                     type="text"
-                    placeholder={language === 'zh-TW' ? '搜尋課程...' : 'Search courses...'}
+                    placeholder={language === 'zh-HK' ? '?��?課�?...' : 'Search courses...'}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -452,7 +452,7 @@ const LearningMaterials: React.FC = () => {
                           : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                       }`}
                     >
-                      {language === 'zh-TW' ? category.labelZh : category.label}
+                      {language === 'zh-HK' ? category.labelZh : category.label}
                     </button>
                   ))}
                 </div>
@@ -469,7 +469,7 @@ const LearningMaterials: React.FC = () => {
                           : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                       }`}
                     >
-                      {language === 'zh-TW' ? difficulty.labelZh : difficulty.label}
+                      {language === 'zh-HK' ? difficulty.labelZh : difficulty.label}
                     </button>
                   ))}
                 </div>
@@ -512,11 +512,11 @@ const LearningMaterials: React.FC = () => {
                     </div>
                     
                     <CardTitle className="text-white group-hover:text-blue-400 transition-colors">
-                      {language === 'zh-TW' ? material.titleZh : material.title}
+                      {language === 'zh-HK' ? material.titleZh : material.title}
                     </CardTitle>
                     
                     <p className="text-gray-400 text-sm">
-                      {language === 'zh-TW' ? material.descriptionZh : material.description}
+                      {language === 'zh-HK' ? material.descriptionZh : material.description}
                     </p>
                   </CardHeader>
                   
@@ -526,7 +526,7 @@ const LearningMaterials: React.FC = () => {
                       <div className="mb-4">
                         <div className="flex justify-between text-sm mb-1">
                           <span className="text-gray-400">
-                            {language === 'zh-TW' ? '進度' : 'Progress'}
+                            {language === 'zh-HK' ? '?�度' : 'Progress'}
                           </span>
                           <span className="text-gray-400">{material.progress}%</span>
                         </div>
@@ -544,7 +544,7 @@ const LearningMaterials: React.FC = () => {
                       <div className="flex items-center space-x-4">
                         <span className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
-                          {language === 'zh-TW' ? material.durationZh : material.duration}
+                          {language === 'zh-HK' ? material.durationZh : material.duration}
                         </span>
                         <span className="flex items-center">
                           <Star className="h-4 w-4 mr-1 text-yellow-400" />
@@ -566,10 +566,10 @@ const LearningMaterials: React.FC = () => {
                           </div>
                           <div>
                             <div className="text-xs text-gray-400 mb-1">
-                              {language === 'zh-TW' ? '講師' : 'Instructor'}
+                              {language === 'zh-HK' ? '講師' : 'Instructor'}
                             </div>
                             <div className="text-sm font-medium text-white">
-                              {language === 'zh-TW' ? material.instructorZh : material.instructor}
+                              {language === 'zh-HK' ? material.instructorZh : material.instructor}
                             </div>
                             <div className="text-xs text-gray-300">
                               {getInstructorSpecialty(material.instructor)}
@@ -582,10 +582,10 @@ const LearningMaterials: React.FC = () => {
                     {/* Features */}
                     <div className="mb-6">
                       <h4 className="text-sm font-medium text-gray-300 mb-3">
-                        {language === 'zh-TW' ? '課程特色' : 'Course Features'}
+                        {language === 'zh-HK' ? '課�??�色' : 'Course Features'}
                       </h4>
                       <div className="grid grid-cols-1 gap-2">
-                        {(language === 'zh-TW' ? material.featuresZh : material.features).map((feature, idx) => (
+                        {(language === 'zh-HK' ? material.featuresZh : material.features).map((feature, idx) => (
                           <div 
                             key={idx} 
                             className="flex items-center p-2 rounded-lg bg-gray-700/30 hover:bg-gray-600/50 transition-colors cursor-pointer group"
@@ -606,7 +606,7 @@ const LearningMaterials: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Badge className="bg-green-500/20 text-green-300 border-green-500/50 text-lg px-3 py-1">
-                          {language === 'zh-TW' ? '免費' : 'FREE'}
+                          {language === 'zh-HK' ? '?�費' : 'FREE'}
                         </Badge>
                         <span className="text-sm text-gray-400 line-through">
                           HK${material.originalPrice || material.price}
@@ -621,16 +621,16 @@ const LearningMaterials: React.FC = () => {
                         {material.completed ? (
                           <>
                             <CheckCircle className="h-4 w-4 mr-2" />
-                            {language === 'zh-TW' ? '已完成' : 'Completed'}
+                            {language === 'zh-HK' ? '已�??? : 'Completed'}
                           </>
                         ) : material.progress ? (
                           <>
-                            {language === 'zh-TW' ? '繼續學習' : 'Continue Learning'}
+                            {language === 'zh-HK' ? '繼�?學�?' : 'Continue Learning'}
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </>
                         ) : (
                           <>
-                            {language === 'zh-TW' ? '免費開始' : 'Start Free'}
+                            {language === 'zh-HK' ? '?�費?��?' : 'Start Free'}
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </>
                         )}
@@ -657,7 +657,7 @@ const LearningMaterials: React.FC = () => {
               className="flex items-center px-6 py-3 rounded-lg text-sm font-medium transition-all bg-gray-700 text-gray-300 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
             >
               <ChevronLeft className="h-4 w-4 mr-2" />
-              {language === 'zh-TW' ? '上一頁' : 'Previous'}
+              {language === 'zh-HK' ? '上�??? : 'Previous'}
             </button>
             
             <div className="flex items-center gap-2">
@@ -675,7 +675,7 @@ const LearningMaterials: React.FC = () => {
               disabled={currentIndex + itemsPerPage >= filteredMaterials.length}
               className="flex items-center px-6 py-3 rounded-lg text-sm font-medium transition-all bg-gray-700 text-gray-300 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
             >
-              {language === 'zh-TW' ? '下一頁' : 'Next'}
+              {language === 'zh-HK' ? '下�??? : 'Next'}
               <ChevronRight className="h-4 w-4 ml-2" />
             </button>
           </motion.div>
@@ -690,10 +690,10 @@ const LearningMaterials: React.FC = () => {
             className="text-center py-16"
           >
             <div className="text-gray-400 text-lg">
-              {language === 'zh-TW' ? '找不到符合條件的課程' : 'No courses found matching your criteria'}
+              {language === 'zh-HK' ? '?��??�符?��?件�?課�?' : 'No courses found matching your criteria'}
             </div>
             <p className="text-gray-500 mt-2">
-              {language === 'zh-TW' ? '請嘗試調整搜尋條件' : 'Try adjusting your search criteria'}
+              {language === 'zh-HK' ? '請�?試調?��?尋�?�? : 'Try adjusting your search criteria'}
             </p>
           </motion.div>
         )}

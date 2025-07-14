@@ -47,13 +47,13 @@ const ProPlanLearning: React.FC = () => {
   const isZhTW = language === 'zh-HK';
 
   const courseInfo = {
-    title: isZhTW ? "專業培訓方案 - 冠軍聯賽" : "Professional Training - Champion League",
-    subtitle: isZhTW ? "解鎖全部課程，成為AI領域的終極冠軍！" : "Unlock All Courses, Become the Ultimate AI Champion!",
-    level: isZhTW ? "冠軍等級" : "Champion Level",
+    title: isZhTW ? "專業?��??��? - ?��??�賽" : "Professional Training - Champion League",
+    subtitle: isZhTW ? "�???�部課�?，�??�AI?��??��?極�?軍�?" : "Unlock All Courses, Become the Ultimate AI Champion!",
+    level: isZhTW ? "?��?等�?" : "Champion Level",
     xp: "50,000+ XP",
     badges: "100+",
-    duration: isZhTW ? "無限學習時間" : "Unlimited Learning Time",
-    difficulty: isZhTW ? "全階級通關" : "All Levels Mastery"
+    duration: isZhTW ? "?��?學�??��?" : "Unlimited Learning Time",
+    difficulty: isZhTW ? "?��?級通�?" : "All Levels Mastery"
   };
 
   const championStats = {
@@ -69,26 +69,26 @@ const ProPlanLearning: React.FC = () => {
   const championFeatures = [
     {
       icon: <Crown className="w-8 h-8 text-yellow-400" />,
-      title: isZhTW ? "冠軍特權" : "Champion Privileges",
-      description: isZhTW ? "解鎖所有課程和專屬內容" : "Unlock all courses and exclusive content",
+      title: isZhTW ? "?��??��?" : "Champion Privileges",
+      description: isZhTW ? "�???�?�課程�?專屬?�容" : "Unlock all courses and exclusive content",
       color: "bg-yellow-900/20 border-yellow-500/50"
     },
     {
       icon: <Sword className="w-8 h-8 text-red-400" />,
-      title: isZhTW ? "專家武器庫" : "Expert Arsenal",
-      description: isZhTW ? "獲得最強大的AI工具" : "Get the most powerful AI tools",
+      title: isZhTW ? "專家武器�? : "Expert Arsenal",
+      description: isZhTW ? "?��??�強大?�AI工具" : "Get the most powerful AI tools",
       color: "bg-red-900/20 border-red-500/50"
     },
     {
       icon: <Sparkles className="w-8 h-8 text-purple-400" />,
-      title: isZhTW ? "終極技能" : "Ultimate Skills",
-      description: isZhTW ? "掌握所有AI技能組合" : "Master all AI skill combinations",
+      title: isZhTW ? "終極?�?? : "Ultimate Skills",
+      description: isZhTW ? "?�握?�?�AI?�?��??? : "Master all AI skill combinations",
       color: "bg-purple-900/20 border-purple-500/50"
     },
     {
       icon: <Flame className="w-8 h-8 text-orange-400" />,
-      title: isZhTW ? "無限潛能" : "Infinite Potential",
-      description: isZhTW ? "持續更新的新內容" : "Continuously updated new content",
+      title: isZhTW ? "?��?潛能" : "Infinite Potential",
+      description: isZhTW ? "?��??�新?�新?�容" : "Continuously updated new content",
       color: "bg-orange-900/20 border-orange-500/50"
     }
   ];
@@ -96,8 +96,8 @@ const ProPlanLearning: React.FC = () => {
   const championshipPath = [
     {
       id: 1,
-      title: isZhTW ? "提示工程王者" : "Prompt Engineering Master",
-      description: isZhTW ? "征服AI提示的藝術" : "Conquer the art of AI prompts",
+      title: isZhTW ? "?�示工�??��? : "Prompt Engineering Master",
+      description: isZhTW ? "征�?AI?�示?��?�? : "Conquer the art of AI prompts",
       icon: <Wand2 className="w-6 h-6" />,
       status: "available",
       xp: 15000,
@@ -106,8 +106,8 @@ const ProPlanLearning: React.FC = () => {
     },
     {
       id: 2,
-      title: isZhTW ? "編程英雄" : "Coding Hero",
-      description: isZhTW ? "成為程式設計的傳奇" : "Become a programming legend",
+      title: isZhTW ? "編�??��?" : "Coding Hero",
+      description: isZhTW ? "?�為程�?設�??�傳�? : "Become a programming legend",
       icon: <Sword className="w-6 h-6" />,
       status: "available",
       xp: 12000,
@@ -117,7 +117,7 @@ const ProPlanLearning: React.FC = () => {
     {
       id: 3,
       title: isZhTW ? "ChatGPT 神話" : "ChatGPT Legend",
-      description: isZhTW ? "掌控對話AI的力量" : "Control the power of conversational AI",
+      description: isZhTW ? "?�控對話AI?��??? : "Control the power of conversational AI",
       icon: <Sparkles className="w-6 h-6" />,
       status: "available",
       xp: 18000,
@@ -127,7 +127,7 @@ const ProPlanLearning: React.FC = () => {
     {
       id: 4,
       title: isZhTW ? "Perplexity 專家" : "Perplexity Expert",
-      description: isZhTW ? "成為搜索研究的大師" : "Become a search research master",
+      description: isZhTW ? "?�為?�索?�究?�大�? : "Become a search research master",
       icon: <Crown className="w-6 h-6" />,
       status: "available",
       xp: 14000,
@@ -139,32 +139,32 @@ const ProPlanLearning: React.FC = () => {
   const legendaryAchievements = [
     {
       id: 1,
-      title: isZhTW ? "全能冠軍" : "All-Round Champion",
-      description: isZhTW ? "完成所有課程" : "Complete all courses",
+      title: isZhTW ? "?�能?��?" : "All-Round Champion",
+      description: isZhTW ? "完�??�?�課�? : "Complete all courses",
       icon: <Trophy className="w-6 h-6" />,
       unlocked: false,
       rarity: "legendary"
     },
     {
       id: 2,
-      title: isZhTW ? "技能大師" : "Skill Master",
-      description: isZhTW ? "獲得所有技能徽章" : "Earn all skill badges",
+      title: isZhTW ? "?�?�大�? : "Skill Master",
+      description: isZhTW ? "?��??�?��??�徽�? : "Earn all skill badges",
       icon: <Star className="w-6 h-6" />,
       unlocked: false,
       rarity: "legendary"
     },
     {
       id: 3,
-      title: isZhTW ? "連勝傳奇" : "Winning Streak Legend",
-      description: isZhTW ? "保持30天學習連勝" : "Maintain 30-day learning streak",
+      title: isZhTW ? "????��?" : "Winning Streak Legend",
+      description: isZhTW ? "保�?30天學習�??" : "Maintain 30-day learning streak",
       icon: <Flame className="w-6 h-6" />,
       unlocked: false,
       rarity: "legendary"
     },
     {
       id: 4,
-      title: isZhTW ? "AI領袖" : "AI Leader",
-      description: isZhTW ? "成為AI領域的領導者" : "Become a leader in AI field",
+      title: isZhTW ? "AI?��?" : "AI Leader",
+      description: isZhTW ? "?�為AI?��??��?導�? : "Become a leader in AI field",
       icon: <Crown className="w-6 h-6" />,
       unlocked: false,
       rarity: "legendary"
@@ -173,28 +173,28 @@ const ProPlanLearning: React.FC = () => {
 
   const premiumTools = [
     {
-      name: isZhTW ? "終極AI工具包" : "Ultimate AI Toolkit",
-      icon: "🛠️",
-      power: isZhTW ? "神級" : "Divine",
-      description: isZhTW ? "包含所有專業AI工具" : "Includes all professional AI tools"
+      name: isZhTW ? "終極AI工具?? : "Ultimate AI Toolkit",
+      icon: "??�?,
+      power: isZhTW ? "神�?" : "Divine",
+      description: isZhTW ? "?�含?�?��?業AI工具" : "Includes all professional AI tools"
     },
     {
-      name: isZhTW ? "專家模板庫" : "Expert Template Library",
-      icon: "📚",
-      power: isZhTW ? "傳說" : "Legendary",
+      name: isZhTW ? "專家模板�? : "Expert Template Library",
+      icon: "??",
+      power: isZhTW ? "?�說" : "Legendary",
       description: isZhTW ? "1000+專業模板" : "1000+ professional templates"
     },
     {
-      name: isZhTW ? "VIP支援" : "VIP Support",
-      icon: "💎",
-      power: isZhTW ? "至尊" : "Supreme",
-      description: isZhTW ? "24/7專家支援" : "24/7 expert support"
+      name: isZhTW ? "VIP?�援" : "VIP Support",
+      icon: "??",
+      power: isZhTW ? "?��?" : "Supreme",
+      description: isZhTW ? "24/7專家?�援" : "24/7 expert support"
     },
     {
-      name: isZhTW ? "認證徽章" : "Certification Badge",
-      icon: "🏅",
+      name: isZhTW ? "認�?徽�?" : "Certification Badge",
+      icon: "??",
       power: isZhTW ? "榮耀" : "Glorious",
-      description: isZhTW ? "業界認可的專業認證" : "Industry-recognized certification"
+      description: isZhTW ? "業�?認可?��?業�?�? : "Industry-recognized certification"
     }
   ];
 
@@ -261,7 +261,7 @@ const ProPlanLearning: React.FC = () => {
             <CardHeader>
               <CardTitle className="text-2xl text-white flex items-center gap-2">
                 <Gamepad2 className="w-6 h-6 text-yellow-400" />
-                {isZhTW ? "冠軍成就統計" : "Champion Achievement Stats"}
+                {isZhTW ? "?��??�就統�?" : "Champion Achievement Stats"}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -270,7 +270,7 @@ const ProPlanLearning: React.FC = () => {
                   <div className="text-3xl font-bold text-yellow-400 mb-2">
                     {championStats.currentLevel}
                   </div>
-                  <div className="text-gray-400">{isZhTW ? "冠軍等級" : "Champion Level"}</div>
+                  <div className="text-gray-400">{isZhTW ? "?��?等�?" : "Champion Level"}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-400 mb-2">
@@ -282,19 +282,19 @@ const ProPlanLearning: React.FC = () => {
                   <div className="text-3xl font-bold text-red-400 mb-2">
                     {championStats.completedCourses}/{championStats.totalCourses}
                   </div>
-                  <div className="text-gray-400">{isZhTW ? "征服課程" : "Conquered Courses"}</div>
+                  <div className="text-gray-400">{isZhTW ? "征�?課�?" : "Conquered Courses"}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-purple-400 mb-2">
                     {championStats.streak}
                   </div>
-                  <div className="text-gray-400">{isZhTW ? "勝利連擊" : "Victory Streak"}</div>
+                  <div className="text-gray-400">{isZhTW ? "?�利???" : "Victory Streak"}</div>
                 </div>
               </div>
               
               <div className="mt-6">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-white">{isZhTW ? "冠軍之路進度" : "Champion Path Progress"}</span>
+                  <span className="text-white">{isZhTW ? "?��?之路?�度" : "Champion Path Progress"}</span>
                   <span className="text-yellow-400">{championStats.currentXP} / {championStats.totalXP}</span>
                 </div>
                 <Progress value={(championStats.currentXP / championStats.totalXP) * 100} className="h-3" />
@@ -311,7 +311,7 @@ const ProPlanLearning: React.FC = () => {
           className="mb-12"
         >
           <h2 className="text-3xl font-bold mb-8 text-center">
-            {isZhTW ? "專業工具庫" : "Professional Arsenal"}
+            {isZhTW ? "專業工具�? : "Professional Arsenal"}
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -338,7 +338,7 @@ const ProPlanLearning: React.FC = () => {
           className="mb-12"
         >
           <h2 className="text-3xl font-bold mb-8 text-center">
-            {isZhTW ? "冠軍特權" : "Champion Privileges"}
+            {isZhTW ? "?��??��?" : "Champion Privileges"}
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -364,7 +364,7 @@ const ProPlanLearning: React.FC = () => {
           className="mb-12"
         >
           <h2 className="text-3xl font-bold mb-8 text-center">
-            {isZhTW ? "冠軍征程" : "Championship Journey"}
+            {isZhTW ? "?��?征�?" : "Championship Journey"}
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -403,7 +403,7 @@ const ProPlanLearning: React.FC = () => {
           className="mb-12"
         >
           <h2 className="text-3xl font-bold mb-8 text-center">
-            {isZhTW ? "傳奇成就殿堂" : "Legendary Achievement Hall"}
+            {isZhTW ? "?��??�就殿�?" : "Legendary Achievement Hall"}
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -437,10 +437,10 @@ const ProPlanLearning: React.FC = () => {
             <CardContent className="p-8">
               <Crown className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-4 text-white">
-                {isZhTW ? "準備好成為AI冠軍了嗎？" : "Ready to Become the AI Champion?"}
+                {isZhTW ? "準�?好�??�AI?��?了�?�? : "Ready to Become the AI Champion?"}
               </h3>
               <p className="text-gray-300 mb-6">
-                {isZhTW ? "解鎖所有課程，開始你的冠軍之路！" : "Unlock all courses and start your championship journey!"}
+                {isZhTW ? "�???�?�課程�??��?你�??��?之路�? : "Unlock all courses and start your championship journey!"}
               </p>
               
               <div className="flex flex-wrap justify-center gap-4">
@@ -450,7 +450,7 @@ const ProPlanLearning: React.FC = () => {
                   className="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold"
                 >
                   <PlayCircle className="w-5 h-5 mr-2" />
-                  {isZhTW ? "開始征程" : "Start Journey"}
+                  {isZhTW ? "?��?征�?" : "Start Journey"}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </div>

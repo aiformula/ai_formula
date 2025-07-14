@@ -12,19 +12,19 @@ const CoursesListing: React.FC = () => {
       id: 'prompt-engineering',
       title: {
         en: 'Prompt Engineering Mastery',
-        'zh-HK': 'Prompt Engineering 精通課程'
+        'zh-HK': 'Prompt Engineering 精通課�?
       },
       description: {
         en: 'Master the art of AI communication and prompt optimization',
-        'zh-HK': '掌握AI溝通技巧和提示詞優化的藝術'
+        'zh-HK': '?�握AI溝通�?巧�??�示詞優?��??��?'
       },
       level: {
         en: 'Intermediate',
-        'zh-HK': '中級'
+        'zh-HK': '中�?'
       },
       duration: {
         en: '8 hours',
-        'zh-HK': '8小時'
+        'zh-HK': '8小�?'
       },
       students: 2847,
       rating: 4.8,
@@ -40,7 +40,7 @@ const CoursesListing: React.FC = () => {
       image: '/placeholder.svg',
       features: {
         en: ['Real-world projects', 'Expert guidance', 'Lifetime access', 'Certificate of completion'],
-        'zh-HK': ['真實項目實戰', '專家指導', '終身學習', '完成證書']
+        'zh-HK': ['?�實?�目實戰', '專家?��?', '終身學�?', '完�?證書']
       },
       path: '/courses/prompt-engineering-course'
     },
@@ -48,19 +48,19 @@ const CoursesListing: React.FC = () => {
       id: 'chatgpt-mastery',
       title: {
         en: 'ChatGPT Mastery for Professionals',
-        'zh-HK': 'ChatGPT 專業應用精通'
+        'zh-HK': 'ChatGPT 專業?�用精�?
       },
       description: {
         en: 'Learn to leverage ChatGPT for professional productivity and business applications',
-        'zh-HK': '學習運用ChatGPT提升專業生產力和商業應用'
+        'zh-HK': '學�??�用ChatGPT?��?專業?�產?��??�業?�用'
       },
       level: {
         en: 'Beginner',
-        'zh-HK': '初級'
+        'zh-HK': '?��?'
       },
       duration: {
         en: '6 hours',
-        'zh-HK': '6小時'
+        'zh-HK': '6小�?'
       },
       students: 1923,
       rating: 4.9,
@@ -76,7 +76,7 @@ const CoursesListing: React.FC = () => {
       image: '/placeholder.svg',
       features: {
         en: ['Hands-on practice', 'Business use cases', 'Templates included', 'Community access'],
-        'zh-HK': ['實際操作練習', '商業應用案例', '模板包含', '社群權限']
+        'zh-HK': ['實�??��?練�?', '?�業?�用案�?', '模板?�含', '社群權�?']
       },
       path: '/courses/chatgpt-mastery-lesson'
     },
@@ -84,19 +84,19 @@ const CoursesListing: React.FC = () => {
       id: 'ai-image-creation',
       title: {
         en: 'AI Image & Video Creation',
-        'zh-HK': 'AI圖像影片創作'
+        'zh-HK': 'AI?��?影�??��?'
       },
       description: {
         en: 'Create stunning visuals with AI-powered tools and techniques',
-        'zh-HK': '運用AI工具創造令人驚豔的視覺內容'
+        'zh-HK': '?�用AI工具?�造令人�?豔�?視覺?�容'
       },
       level: {
         en: 'Intermediate',
-        'zh-HK': '中級'
+        'zh-HK': '中�?'
       },
       duration: {
         en: '10 hours',
-        'zh-HK': '10小時'
+        'zh-HK': '10小�?'
       },
       students: 1456,
       rating: 4.7,
@@ -112,7 +112,7 @@ const CoursesListing: React.FC = () => {
       image: '/placeholder.svg',
       features: {
         en: ['Creative projects', 'Tool mastery', 'Portfolio building', 'Industry insights'],
-        'zh-HK': ['創意項目', '工具精通', '作品集建立', '行業洞察']
+        'zh-HK': ['?��??�目', '工具精�?, '作�??�建�?, '行業洞�?']
       },
       path: '/courses/ai-image-creation'
     }
@@ -137,11 +137,11 @@ const CoursesListing: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              {language === 'zh-HK' ? 'AI 課程' : 'AI Courses'}
+              {language === 'zh-HK' ? 'AI 課�?' : 'AI Courses'}
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               {language === 'zh-HK' 
-                ? '掌握人工智能技術，提升您的職業競爭力。從基礎到進階，我們的課程涵蓋最新的AI工具和技術。'
+                ? '?�握人工?�能?�術�??��??��??�業競爭?�。�??��??�進�?，�??��?課�?涵�??�?��?AI工具?��?術�?
                 : 'Master artificial intelligence technologies and boost your professional competitiveness. From basics to advanced, our courses cover the latest AI tools and technologies.'
               }
             </p>
@@ -152,13 +152,13 @@ const CoursesListing: React.FC = () => {
                 onClick={handleFreePlan}
                 className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all"
               >
-                {language === 'zh-HK' ? '免費學習計劃' : 'Free Learning Plan'}
+                {language === 'zh-HK' ? '?�費學�?計�?' : 'Free Learning Plan'}
               </button>
               <button
                 onClick={handleProPlan}
                 className="px-8 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all"
               >
-                {language === 'zh-HK' ? '專業學習計劃' : 'Pro Learning Plan'}
+                {language === 'zh-HK' ? '專業學�?計�?' : 'Pro Learning Plan'}
               </button>
             </div>
           </div>
@@ -234,7 +234,7 @@ const CoursesListing: React.FC = () => {
                     </span>
                   </div>
                   <button className="px-4 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all">
-                    {language === 'zh-HK' ? '開始學習' : 'Start Learning'}
+                    {language === 'zh-HK' ? '?��?學�?' : 'Start Learning'}
                   </button>
                 </div>
               </div>
@@ -247,7 +247,7 @@ const CoursesListing: React.FC = () => {
       <div className="bg-gray-900 py-16">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">
-            {language === 'zh-HK' ? '為什麼選擇我們' : 'Why Choose Us'}
+            {language === 'zh-HK' ? '?��?麼選?��??? : 'Why Choose Us'}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -255,11 +255,11 @@ const CoursesListing: React.FC = () => {
                 <Award className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">
-                {language === 'zh-HK' ? '專業認證' : 'Professional Certification'}
+                {language === 'zh-HK' ? '專業認�?' : 'Professional Certification'}
               </h3>
               <p className="text-gray-400">
                 {language === 'zh-HK' 
-                  ? '完成課程後獲得業界認可的證書，提升您的職業競爭力。'
+                  ? '完�?課�?後獲得業?��??��?證書，�??�您?�職業競?��???
                   : 'Get industry-recognized certificates upon course completion to boost your career competitiveness.'
                 }
               </p>
@@ -269,11 +269,11 @@ const CoursesListing: React.FC = () => {
                 <Globe className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">
-                {language === 'zh-HK' ? '本地化教學' : 'Localized Teaching'}
+                {language === 'zh-HK' ? '?�地?��?�? : 'Localized Teaching'}
               </h3>
               <p className="text-gray-400">
                 {language === 'zh-HK' 
-                  ? '針對香港市場設計的課程內容，更貼近本地工作環境。'
+                  ? '?��?香港市場設�??�課程內容�??�貼近本?�工作環境�?
                   : 'Course content designed for the Hong Kong market, more relevant to local work environments.'
                 }
               </p>
@@ -283,11 +283,11 @@ const CoursesListing: React.FC = () => {
                 <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">
-                {language === 'zh-HK' ? '社群支援' : 'Community Support'}
+                {language === 'zh-HK' ? '社群?�援' : 'Community Support'}
               </h3>
               <p className="text-gray-400">
                 {language === 'zh-HK' 
-                  ? '加入我們的學習社群，與其他學員交流心得，共同成長。'
+                  ? '?�入?�們�?學�?社群，�??��?學員交�?心�?，共?��??��?
                   : 'Join our learning community, exchange insights with other students, and grow together.'
                 }
               </p>

@@ -1,22 +1,21 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-// 語言類型定義
+// 語�?類�?定義
 export type Language = 'en' | 'zh-HK'
 
-// 翻譯接口
+// 翻譯?�口
 interface Translations {
   [key: string]: string
 }
 
-// 語言上下文類型
-interface LanguageContextType {
+// 語�?上�??��???interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
   t: (key: string) => string
   translations: Translations
 }
 
-// 英文翻譯
+// ?��?翻譯
 const enTranslations: Translations = {
   // 導航
   'nav.home': 'Home',
@@ -173,7 +172,7 @@ const enTranslations: Translations = {
   'testimonials.testimonial1.company': 'Local Trading Company',
   'testimonials.testimonial2.quote': 'Their team built us a custom business automation system that connects our inventory, orders, and accounting. Everything runs smoothly now.',
   'testimonials.testimonial2.author': 'Chan Siu Fung',
-  'testimonials.testimonial2.service': '商業自動化 (Business Automation)',
+  'testimonials.testimonial2.service': '?�業?��???(Business Automation)',
   'testimonials.testimonial2.company': 'Small Manufacturing Business',
   'testimonials.testimonial3.quote': 'The custom AI chatbot they created for our restaurant handles reservations and orders perfectly. It understands Cantonese and English!',
   'testimonials.testimonial3.author': 'Lam Mei Ling',
@@ -224,236 +223,233 @@ const enTranslations: Translations = {
   'toast.messageDescription': "Thank you for your interest. We'll get back to you within 24 hours.",
 }
 
-// 中文翻譯
+// 中�?翻譯
 const zhTranslations: Translations = {
   // 導航
-  'nav.home': '首頁',
-  'nav.about': '關於我們',
-  'nav.courses': '課程',
-  'nav.blog': '部落格',
-  'nav.signup': '註冊',
+  'nav.home': '首�?',
+  'nav.about': '?�於?��?,
+  'nav.courses': '課�?',
+  'nav.blog': '?�落??,
+  'nav.signup': '註�?',
   
   // Hero Section
-  'hero.badge': '商業AI',
-  'hero.title': 'AI：未來的學習',
-  'hero.title1': 'AI：未來的',
-  'hero.titleHighlight': '學習',
-  'hero.title2': '商業自動化',
-  'hero.subtitle': '人工智慧如何個人化並轉型商業自動化。',
-  'hero.cta1': '開始學習',
-  'hero.cta2': '了解更多',
-  'hero.chooseProgram': '選擇課程',
-  'hero.partners': '合作夥伴',
+  'hero.badge': '?�業AI',
+  'hero.title': 'AI：未來�?學�?',
+  'hero.title1': 'AI：未來�?',
+  'hero.titleHighlight': '學�?',
+  'hero.title2': '?�業?��???,
+  'hero.subtitle': '人工?�慧如�??�人?�並轉�??�業?��??��?,
+  'hero.cta1': '?��?學�?',
+  'hero.cta2': '了解?��?',
+  'hero.chooseProgram': '?��?課�?',
+  'hero.partners': '?��?夥伴',
   'hero.students': '學員',
   'hero.instructors': '講師',
   
   // Services Section
-  'services.title': '我們的服務',
-  'services.subtitle': '選擇您通往AI精通和商業自動化卓越的道路',
-  'services.training.title': '專家主導的AI培訓',
-  'services.training.description': '由行業專家設計的全面學習材料',
-  'services.training.benefit1': '實用課程',
-  'services.training.benefit2': '實務框架',
-  'services.training.benefit3': '團隊技能提升',
-  'services.training.button': '查看課程',
-  'services.automation.title': '客製化自動化解決方案',
-  'services.automation.description': '為您的業務需求量身打造的自動化系統',
-  'services.automation.benefit1': '提高效率',
-  'services.automation.benefit2': '減少錯誤',
-  'services.automation.benefit3': '擴大營運',
-  'services.automation.button': '獲得免費諮詢',
+  'services.title': '?�們�??��?',
+  'services.subtitle': '?��??�通�?AI精通�??�業?��??��?越�??�路',
+  'services.training.title': '專家主�??�AI?��?',
+  'services.training.description': '?��?業�?家設計�??�面學�??��?',
+  'services.training.benefit1': '實用課�?',
+  'services.training.benefit2': '實�?框架',
+  'services.training.benefit3': '?��??�?��???,
+  'services.training.button': '?��?課�?',
+  'services.automation.title': '客製?�自?��?�?��?��?',
+  'services.automation.description': '?�您?�業?��?求�?身�??��??��??�系�?,
+  'services.automation.benefit1': '?��??��?',
+  'services.automation.benefit2': '減�??�誤',
+  'services.automation.benefit3': '?�大?��?',
+  'services.automation.button': '?��??�費諮詢',
   
   // Technology Section
-  'tech.title': '由領先技術驅動',
-  'tech.subtitle': '我們精通推動現代商業自動化的工具',
-  'tech.n8n': '工作流程自動化',
-  'tech.make': '整合平台',
-  'tech.zapier': '應用程式連接',
-  'tech.python': '數據處理',
-  'tech.javascript': '網頁開發',
-  'tech.openai': 'AI整合',
+  'tech.title': '?��??��?術�???,
+  'tech.subtitle': '?�們精?�推?�現�??業自?��??�工??,
+  'tech.n8n': '工�?流�??��???,
+  'tech.make': '?��?平台',
+  'tech.zapier': '?�用程�???��',
+  'tech.python': '?��??��?',
+  'tech.javascript': '網�??�發',
+  'tech.openai': 'AI?��?',
   
   // Journey Section
-  'journey.title': '您的自動化之旅',
-  'journey.subtitle': '我們經過驗證的4步驟流程確保成功的自動化實施',
-  'journey.step1.title': '探索會議',
-  'journey.step1.description': '我們了解您的需求並識別自動化機會',
-  'journey.step2.title': '策略與設計',
-  'journey.step2.description': '創建針對您業務流程的詳細藍圖',
-  'journey.step3.title': '建構與整合',
-  'journey.step3.description': '開發並無縫整合您的客製自動化解決方案',
-  'journey.step4.title': '啟動與支援',
-  'journey.step4.description': '部署您的解決方案並提供持續的支援和優化',
+  'journey.title': '?��??��??��???,
+  'journey.subtitle': '?�們�??��?證�?4步�?流�?確�??��??�自?��?實施',
+  'journey.step1.title': '?�索?�議',
+  'journey.step1.description': '?�們�?�?��?��?求並識別?��??��???,
+  'journey.step2.title': '策略?�設�?,
+  'journey.step2.description': '?�建?��??�業?��?程�?詳細?��?',
+  'journey.step3.title': '建�??�整??,
+  'journey.step3.description': '?�發並無縫整?�您?�客製自?��?�?��?��?',
+  'journey.step4.title': '?��??�支??,
+  'journey.step4.description': '?�署?��?�?��?��?並�?供�?續�??�援?�優??,
   
   // Learning Materials
-  'learning.title': '精選學習材料',
-  'learning.subtitle': '專家製作的課程，旨在加速您的AI和自動化之旅',
-  'learning.startLearning': '開始學習',
-  'learning.beginner': '初級',
-  'learning.intermediate': '中級',
-  'learning.advanced': '高級',
+  'learning.title': '精選學�??��?',
+  'learning.subtitle': '專家製�??�課程�??�在?�速您?�AI?�自?��?之�?',
+  'learning.startLearning': '?��?學�?',
+  'learning.beginner': '?��?',
+  'learning.intermediate': '中�?',
+  'learning.advanced': '高�?',
   'learning.marketing': '行銷',
-  'learning.development': '開發',
+  'learning.development': '?�發',
   'learning.ai': 'AI',
-  'learning.migration': '遷移',
-  'learning.course1.title': '行銷人員的n8n入門',
-  'learning.course1.description': '學習如何使用n8n強大的視覺化介面自動化您的行銷工作流程',
-  'learning.course2.title': '進階Python自動化',
-  'learning.course2.description': '掌握Python腳本以實現複雜的業務流程自動化',
-  'learning.course3.title': 'AI整合大師班',
-  'learning.course3.description': '將AI功能整合到您現有的業務工作流程中',
-  'learning.course4.title': 'Zapier到Make的遷移',
-  'learning.course4.description': '從Zapier無縫過渡到Make，獲得增強的自動化能力',
-  'learning.duration.hours': '小時',
-  'learning.program.title': '完整AI精通課程',
-  'learning.program.description': '通過我們為專業人士設計的綜合課程，掌握AI和自動化的各個方面',
-  'learning.program.hours': '50+ 小時',
+  'learning.migration': '?�移',
+  'learning.course1.title': '行銷人員?�n8n?��?',
+  'learning.course1.description': '學�?如�?使用n8n強大?��?覺�?介面?��??�您?��??�工作�?�?,
+  'learning.course2.title': '?��?Python?��???,
+  'learning.course2.description': '?�握Python?�本以實?��??��?業�?流�??��???,
+  'learning.course3.title': 'AI?��?大師??,
+  'learning.course3.description': '將AI?�能?��??�您?��??�業?�工作�?程中',
+  'learning.course4.title': 'Zapier?�Make?�遷�?,
+  'learning.course4.description': '從Zapier?�縫?�渡?�Make，獲得�?強�??��??�能??,
+  'learning.duration.hours': '小�?',
+  'learning.program.title': '完整AI精通課�?,
+  'learning.program.description': '?��??�們為專業人士設�??��??�課程�??�握AI?�自?��??��??�方??,
+  'learning.program.hours': '50+ 小�?',
   'learning.program.access': '終身使用',
-  'learning.program.button': '探索完整課程',
+  'learning.program.button': '?�索完整課�?',
   
   // Instructors
-  'instructors.title': '關於',
+  'instructors.title': '?�於',
   'instructors.titleHighlight': '導師',
-  'instructors.subtitle': '認識我們世界級的導師，他們結合深厚的技術專長和實際的商業經驗。從已經在市場營銷和開發領域建立和擴展AI解決方案的行業領袖身上學習。',
-  'instructors.cta': '準備好向已經建立真正AI解決方案的行業專家學習嗎？',
-  'instructors.ctaButton': '認識我們完整的教學團隊',
-  'instructors.professionalJourney': '專業歷程',
-  'instructors.teachingPhilosophy': '教學理念',
-  'instructors.keyQualifications': 'AI轉型影響：',
-  'instructors.viewProfile': '查看完整檔案',
-  'instructors.experience': '經驗',
-  'instructors.more': '更多...',
+  'instructors.subtitle': '認�??�們�??��??��?師�?他們�??�深?��??�術�??��?實�??��?業�?驗。�?已�??��??��??��??�發?��?建�??�擴展AI�?��?��??��?業�?袖身上學習�?,
+  'instructors.cta': '準�?好�?已�?建�??�正AI�?��?��??��?業�?家學習�?�?,
+  'instructors.ctaButton': '認�??�們�??��??�學?��?',
+  'instructors.professionalJourney': '專業歷�?',
+  'instructors.teachingPhilosophy': '?�學?�念',
+  'instructors.keyQualifications': 'AI轉�?影響�?,
+  'instructors.viewProfile': '?��?完整檔�?',
+  'instructors.experience': '經�?',
+  'instructors.more': '?��?...',
   
   // Instructor 1 - Kenneth
   'instructors.sarah.name': 'Kenneth',
-  'instructors.sarah.title': 'AI行銷開發者及自動化專家',
-  'instructors.sarah.specialty': 'AI工具及行銷自動化',
-  'instructors.sarah.experience': '4年+',
-  'instructors.sarah.biography': 'Kenneth是一位先鋒AI行銷開發者，專精於前沿AI工具、自動化系統和策略實施。經過4年深度AI學習，他已掌握透過人工智能和自動化技術轉型傳統行銷方法的藝術。',
-  'instructors.sarah.philosophy': 'AI正在根本性地改變我們的生活和工作方式。未來屬於今天就擁抱AI的人。我幫助個人和企業在大眾趕上之前，通過掌握AI工具和自動化來領先一步。現在正是獲得競爭優勢的絕佳時機。',
-  'instructors.sarah.qual1': 'AI行銷自動化專家',
-  'instructors.sarah.qual2': '進階AI工具實施',
-  'instructors.sarah.qual3': '策略性AI商業整合',
-  'instructors.sarah.qual4': '未來就緒行銷系統',
+  'instructors.sarah.title': 'AI行銷?�發?��??��??��?�?,
+  'instructors.sarah.specialty': 'AI工具?��??�自?��?',
+  'instructors.sarah.experience': '4�?',
+  'instructors.sarah.biography': 'Kenneth?��?位�??�AI行銷?�發?��?專精?��?沿AI工具?�自?��?系統?��??�實?�。�???年深度AI學�?，�?已�??�透�?人工?�能?�自?��??�術�??�傳統�??�方法�??��???,
+  'instructors.sarah.philosophy': 'AI�?��?�本?�地?��??�們�??�活?�工作方式。未來屬?��?天就?�抱AI?�人?��?幫助?�人?��?業在大眾趕�?之�?，通�??�握AI工具?�自?��?來�??��?步。現?�正?�獲得競?�優?��?絕佳?��???,
+  'instructors.sarah.qual1': 'AI行銷?��??��?�?,
+  'instructors.sarah.qual2': '?��?AI工具實施',
+  'instructors.sarah.qual3': '策略?�AI?�業?��?',
+  'instructors.sarah.qual4': '?��?就�?行銷系統',
   
   // Instructor 2 - David
   'instructors.david.name': 'David',
-  'instructors.david.title': '商業自動化及AI整合專家',
-  'instructors.david.specialty': '自動化及AI解決方案',
-  'instructors.david.experience': '7年+',
-  'instructors.david.biography': 'David是一位商業自動化專家，擁有7年以上幫助企業消除過勞和簡化營運的經驗。他專精於使用Make.com、n8n和AI工具創建強大的自動化工作流程，處理貼文、內容管理和複雜的商業流程。',
-  'instructors.david.philosophy': '自動化應該解決真正的商業問題並減少過勞。我幫助企業實施一體化AI和自動化解決方案，轉型他們的營運方式，讓團隊專注於真正重要的事情，而讓技術處理重複性工作。',
-  'instructors.david.qual1': 'Make.com及n8n自動化專家',
-  'instructors.david.qual2': '商業流程優化',
-  'instructors.david.qual3': 'AI驅動內容管理',
-  'instructors.david.qual4': '一體化商業解決方案',
+  'instructors.david.title': '?�業?��??��?AI?��?專家',
+  'instructors.david.specialty': '?��??��?AI�?��?��?',
+  'instructors.david.experience': '7�?',
+  'instructors.david.biography': 'David?��?位�?業自?��?專家，�???年以上幫?��?業�??��??��?簡�??��??��?驗。�?專精?�使?�Make.com?�n8n?�AI工具?�建強大?�自?��?工�?流�?，�??�貼?�、內容管?��?複�??��?業�?程�?,
+  'instructors.david.philosophy': '?��??��?該解決�?�???�業?��?並�?少�??�。�?幫助企業實施一體�?AI?�自?��?�?��?��?，�??��??��??��??��?，�??��?專注?��?�??要�?事�?，而�??�術�??��?複性工作�?,
+  'instructors.david.qual1': 'Make.com?�n8n?��??��?�?,
+  'instructors.david.qual2': '?�業流�??��?',
+  'instructors.david.qual3': 'AI驅�??�容管�?',
+  'instructors.david.qual4': '一體�??�業�?��?��?',
   
   // Instructor 3 - Ken
   'instructors.emily.name': 'Ken',
-  'instructors.emily.title': '客製化商業開發者及AI自動化專家',
-  'instructors.emily.specialty': '客製化編程及AI自動化',
-  'instructors.emily.experience': '5年+',
-  'instructors.emily.biography': 'Ken是一位熟練的客製化商業開發者，擁有5年以上的編程經驗，專精於創建客製化商業解決方案和AI自動化系統。他構建客製化應用程式，幫助企業透過智能自動化更快工作和更高效運行。',
-  'instructors.emily.philosophy': '程式碼應該讓工作更快速，讓企業運行更順暢。我創建整合AI自動化的客製化解決方案，消除瓶頸並加速商業流程。每一行程式碼都應該有目的：讓工作更快更有效率。',
-  'instructors.emily.qual1': '客製化商業應用程式開發',
-  'instructors.emily.qual2': 'AI自動化整合專家',
-  'instructors.emily.qual3': '性能優化專家',
-  'instructors.emily.qual4': '快速開發解決方案',
+  'instructors.emily.title': '客製?��?業�??�者�?AI?��??��?�?,
+  'instructors.emily.specialty': '客製?�編程�?AI?��???,
+  'instructors.emily.experience': '5�?',
+  'instructors.emily.biography': 'Ken?��?位�?練�?客製?��?業�??�者�??��?5年以上�?編�?經�?，�?精於?�建客製?��?業解決方案�?AI?��??�系統。�?構建客製?��??��?式�?幫助企業?��??�能?��??�更快工作�??��??��?行�?,
+  'instructors.emily.philosophy': '程�?碼�?該�?工�??�快?��?讓�?業�?行更?�暢?��??�建?��?AI?��??��?客製?�解決方案�?消除?�頸並�??��?業�?程。�?一行�?式碼?��?該�??��?：�?工�??�快?��??��???,
+  'instructors.emily.qual1': '客製?��?業�??��?式�???,
+  'instructors.emily.qual2': 'AI?��??�整?��?�?,
+  'instructors.emily.qual3': '?�能?��?專家',
+  'instructors.emily.qual4': '快速�??�解決方�?,
   
   // Instructor 4 - Jason
   'instructors.michael.name': 'Jason',
-  'instructors.michael.title': '專業開發者及客製化自動化專家',
-  'instructors.michael.specialty': '編程及客製化自動化',
-  'instructors.michael.experience': '8年+',
-  'instructors.michael.biography': 'Jason是一位專業開發者，擁有8年以上的編程經驗，專精於LLM聊天機器人開發、MCP整合和網頁應用程式。在過去2年中，他一直在深度學習AI以提升他的編程技能，並幫助公司整合尖端AI解決方案。',
-  'instructors.michael.philosophy': '沒有AI，就沒有生活！AI能改變的比你想像的更多。我相信將AI整合到開發工作中，不僅改變我們編程的方式，更改變我們能實現的目標。每個開發者都需要擁抱AI才能保持相關性並創造非凡的解決方案。',
-  'instructors.michael.qual1': 'LLM聊天機器人開發專家',
-  'instructors.michael.qual2': 'MCP整合專家',
-  'instructors.michael.qual3': '全端網頁開發',
-  'instructors.michael.qual4': 'AI增強編程解決方案',
+  'instructors.michael.title': '專業?�發?��?客製?�自?��?專家',
+  'instructors.michael.specialty': '編�??�客製�??��???,
+  'instructors.michael.experience': '8�?',
+  'instructors.michael.biography': 'Jason?��?位�?業�??�者�??��?8年以上�?編�?經�?，�?精於LLM?�天機器人�??�、MCP?��??�網?��??��?式。在?�去2年中，�?一?�在深度學�?AI以�??��??�編程�??��?並幫?�公?�整?��?端AI�?��?��???,
+  'instructors.michael.philosophy': '沒�?AI，就沒�??�活！AI?�改變�?比�??��??�更多。�??�信將AI?��??��??�工作中，�??�改變�??�編程�??��?，更?��??�們能實現?�目標。�??��??�者都?�要�??�AI?�能保�??��??�並?�造�??��?�?��?��???,
+  'instructors.michael.qual1': 'LLM?�天機器人�??��?�?,
+  'instructors.michael.qual2': 'MCP?��?專家',
+  'instructors.michael.qual3': '?�端網�??�發',
+  'instructors.michael.qual4': 'AI增強編�?�?��?��?',
   
-  // Testimonials - 更改人名為英文名字
-  'testimonials.title': '客戶見證',
-  'testimonials.subtitle': '已使用我們客製化AI自動化解決方案的企業真實回饋',
-  'testimonials.testimonial1.quote': '我們做了個WhatsApp自動化系統，24小時處理客戶查詢。沒有再漏了訊息，回覆速度快了很多。',
+  // Testimonials - ?�改人�??�英?��?�?  'testimonials.title': '客戶見�?',
+  'testimonials.subtitle': '已使?��??�客製�?AI?��??�解決方案�?企業?�實?��?',
+  'testimonials.testimonial1.quote': '?�們�?了個WhatsApp?��??�系統�?24小�??��?客戶?�詢?��??��?漏�?訊息，�?覆速度快�?很�???,
   'testimonials.testimonial1.author': 'Louis Liu',
-  'testimonials.testimonial1.service': '客製化自動化解決方案',
-  'testimonials.testimonial1.company': '本地貿易公司',
-  'testimonials.testimonial2.quote': '他們幫我們整了個商業自動化系統，將庫存、訂單和會計全部連在一起。現在運作很順暢。',
+  'testimonials.testimonial1.service': '客製?�自?��?�?��?��?',
+  'testimonials.testimonial1.company': '?�地貿�??�司',
+  'testimonials.testimonial2.quote': '他們幫?�們整了個�?業自?��?系統，�?庫�??��??��??��??�部??��一起。現?��?作�??�暢??,
   'testimonials.testimonial2.author': 'Sarah Chen',
-  'testimonials.testimonial2.service': '商業自動化',
-  'testimonials.testimonial2.company': '小型製造業',
-  'testimonials.testimonial3.quote': '他們為我們餐廳做了個AI聊天機器人，處理訂座和落單都很準確。還識聽廣東話和英文！',
+  'testimonials.testimonial2.service': '?�業?��???,
+  'testimonials.testimonial2.company': '小�?製造業',
+  'testimonials.testimonial3.quote': '他們為?�們�?廳�?了個AI?�天機器人�??��?訂座?�落?�都很�?確。�?識聽�?��話�??��?�?,
   'testimonials.testimonial3.author': 'Mike Wong',
-  'testimonials.testimonial3.service': '客製化AI聊天機器人',
-  'testimonials.testimonial3.company': '家庭式餐廳',
+  'testimonials.testimonial3.service': '客製?�AI?�天機器�?,
+  'testimonials.testimonial3.company': '家庭式�?�?,
   
   // Contact Section
-  'contact.title': '準備好轉型您的業務了嗎？',
-  'contact.subtitle': '讓我們討論AI Formula如何幫助您精通AI並自動化您的業務流程',
-  'contact.form.title': '聯絡我們',
-  'contact.form.name': '姓名',
-  'contact.form.email': '電子郵件地址',
-  'contact.form.message': '我們如何幫助您？',
-  'contact.form.messagePlaceholder': '告訴我們您的自動化需求或學習目標...',
-  'contact.form.send': '發送訊息',
-  'contact.form.description': '填寫下方表格，我們將在24小時內回覆您',
-  'contact.brainstorm.title': '唔知要咩？試下呢啲想法：',
-  'contact.brainstorm.option1': 'AI聊天機器人',
-  'contact.brainstorm.option2': '自動化',
-  'contact.brainstorm.option3': '商業流程',
-  'contact.brainstorm.option4': '客製化方案',
-  'contact.brainstorm.suggestion1': '我想整個AI聊天機器人，可以處理客戶查詢同多語言支援。',
-  'contact.brainstorm.suggestion2': '我需要自動化方案去簡化重複工作，好似資料輸入、電郵回覆同工作流程管理。',
-  'contact.brainstorm.suggestion3': '我想優化商業流程，用AI提升效率同減少人手工作。',
-  'contact.brainstorm.suggestion4': '我需要為我行業同業務需求度身訂造嘅AI解決方案。',
-  'contact.info.title': '聯絡資訊',
-  'contact.info.email': '電子郵件',
-  'contact.info.phone': '電話',
-  'contact.info.emailUs': '電郵我們',
-  'contact.info.callUs': '致電我們',
-  'contact.info.visitUs': '拜訪我們',
-  'contact.info.emailDescription': '快速回應您的問題',
-  'contact.info.phoneDescription': '週一至週五 9AM-6PM HKT',
-  'contact.info.visitDescription': '預約會面',
-  'contact.why.title': '點解你需要AI Formula',
-  'contact.why.benefit1': 'AI正在改變每個行業 - 唔跟上就會被淘汰',
-  'contact.why.benefit2': '你競爭對手已經用緊AI - 唔好俾佢哋搶先',
-  'contact.why.benefit3': '人手流程已經過時 - 現在自動化還是之後辛苦',
-  'contact.why.benefit4': 'AI革命現在發生中 - 加入還是站在一邊看',
+  'contact.title': '準�?好�??�您?�業?��??��?',
+  'contact.subtitle': '讓�??��?論AI Formula如�?幫助?�精?�AI並自?��??��?業�?流�?',
+  'contact.form.title': '?�絡?��?,
+  'contact.form.name': '姓�?',
+  'contact.form.email': '?��??�件?��?',
+  'contact.form.message': '?�們�?何幫?�您�?,
+  'contact.form.messagePlaceholder': '?�訴?�們您?�自?��??�求�?學�??��?...',
+  'contact.form.send': '?�送�???,
+  'contact.form.description': '填寫下方表格，�??��???4小�??��?覆您',
+  'contact.brainstorm.title': '?�知要咩？試下呢?�想法�?',
+  'contact.brainstorm.option1': 'AI?�天機器�?,
+  'contact.brainstorm.option2': '?��???,
+  'contact.brainstorm.option3': '?�業流�?',
+  'contact.brainstorm.option4': '客製?�方�?,
+  'contact.brainstorm.suggestion1': '?�想?�個AI?�天機器人�??�以?��?客戶?�詢?��?語�??�援??,
+  'contact.brainstorm.suggestion2': '?��?要自?��??��??�簡?��?複工作�?好似資�?輸入?�電?��?覆�?工�?流�?管�???,
+  'contact.brainstorm.suggestion3': '?�想?��??�業流�?，用AI?��??��??��?少人?�工作�?,
+  'contact.brainstorm.suggestion4': '?��?要為?��?業�?業�??�求度身�??��?AI�?��?��???,
+  'contact.info.title': '?�絡資�?',
+  'contact.info.email': '?��??�件',
+  'contact.info.phone': '?�話',
+  'contact.info.emailUs': '?�郵?��?,
+  'contact.info.callUs': '?�電?��?,
+  'contact.info.visitUs': '?�訪?��?,
+  'contact.info.emailDescription': '快速�??�您?��?�?,
+  'contact.info.phoneDescription': '?��??�週�? 9AM-6PM HKT',
+  'contact.info.visitDescription': '?��??�面',
+  'contact.why.title': '點解你�?要AI Formula',
+  'contact.why.benefit1': 'AI�?��?��?每個�?�?- ?��?上就?�被淘汰',
+  'contact.why.benefit2': '你競?��??�已經用緊AI - ?�好俾佢?�搶??,
+  'contact.why.benefit3': '人�?流�?已�??��? - ?�在?��??��??��?後�???,
+  'contact.why.benefit4': 'AI?�命?�在?��?�?- ?�入?�是站在一?��?',
   
   // 404 Page
   'notFound.title': '404',
-  'notFound.message': '糟糕！找不到頁面',
-  'notFound.returnHome': '返回首頁',
+  'notFound.message': '糟�?！找不到?�面',
+  'notFound.returnHome': '返�?首�?',
   
   // Toast Messages
-  'toast.messageSent': '訊息已發送！',
-  'toast.messageDescription': '感謝您的關注。我們將在24小時內回覆您。',
+  'toast.messageSent': '訊息已發?��?',
+  'toast.messageDescription': '?��??��??�注?��??��???4小�??��?覆您??,
 }
 
-// 創建語言上下文
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+// ?�建語�?上�???const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-// 語言提供者組件
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+// 語�??��??��?�?export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>(() => {
-    // 從 localStorage 讀取語言設定，預設為中文
+    // �?localStorage 讀?��?言設�?，�?設為中�?
     const savedLanguage = localStorage.getItem('language')
     return (savedLanguage as Language) || 'zh-HK'
   })
 
-  // 保存語言設定到 localStorage
+  // 保�?語�?設�???localStorage
   useEffect(() => {
     localStorage.setItem('language', language)
   }, [language])
 
-  // 獲取翻譯文本
+  // ?��?翻譯?�本
   const getTranslations = (lang: Language): Translations => {
     return lang === 'zh-HK' ? zhTranslations : enTranslations
   }
 
-  // 翻譯函數
+  // 翻譯?�數
   const t = (key: string): string => {
     const translations = getTranslations(language)
     return translations[key] || key
@@ -473,7 +469,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   )
 }
 
-// 使用語言上下文的 Hook
+// 使用語�?上�??��? Hook
 export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext)
   if (context === undefined) {

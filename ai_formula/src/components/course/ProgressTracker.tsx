@@ -70,30 +70,30 @@ const useProgressTracking = () => {
         {
           id: 'first-lesson',
           title: 'First Steps',
-          titleZh: '第一步',
+          titleZh: '第�?�?,
           description: 'Complete your first lesson',
-          descriptionZh: '完成第一堂課',
-          icon: '🎯',
+          descriptionZh: '完�?第�??�課',
+          icon: '?��',
           unlockedAt: '2024-01-15',
           rarity: 'common'
         },
         {
           id: 'week-streak',
           title: 'Week Warrior',
-          titleZh: '一週戰士',
+          titleZh: '一?�戰�?,
           description: 'Study for 7 consecutive days',
-          descriptionZh: '連續學習7天',
-          icon: '🔥',
+          descriptionZh: '???學�?7�?,
+          icon: '?��',
           unlockedAt: '2024-01-20',
           rarity: 'rare'
         },
         {
           id: 'perfect-score',
           title: 'Perfectionist',
-          titleZh: '完美主義者',
+          titleZh: '完�?主義??,
           description: 'Score 100% on a quiz',
-          descriptionZh: '測驗得到100分',
-          icon: '⭐',
+          descriptionZh: '測�?得到100??,
+          icon: '�?,
           unlockedAt: '2024-01-18',
           rarity: 'epic'
         }
@@ -105,21 +105,21 @@ const useProgressTracking = () => {
       topicProgress: [
         {
           topic: 'Prompt Engineering Basics',
-          topicZh: '提示工程基礎',
+          topicZh: '?�示工�??��?',
           progress: 75,
           lessons: 4,
           completedLessons: 3
         },
         {
           topic: 'Advanced Techniques',
-          topicZh: '進階技巧',
+          topicZh: '?��??��?,
           progress: 40,
           lessons: 5,
           completedLessons: 2
         },
         {
           topic: 'Real-world Applications',
-          topicZh: '實際應用',
+          topicZh: '實�??�用',
           progress: 20,
           lessons: 3,
           completedLessons: 1
@@ -166,7 +166,7 @@ const ProgressTracker: React.FC = () => {
     getEstimatedTimeRemaining 
   } = useProgressTracking()
 
-  const isZhTW = language === 'zh-TW'
+  const isZhTW = language === 'zh-HK'
   const overallProgress = getProgressPercentage()
   const weeklyProgress = getWeeklyProgressPercentage()
   const estimatedTimeRemaining = getEstimatedTimeRemaining()
@@ -185,9 +185,9 @@ const ProgressTracker: React.FC = () => {
     const hours = Math.floor(minutes / 60)
     const mins = minutes % 60
     if (hours > 0) {
-      return isZhTW ? `${hours}小時 ${mins}分鐘` : `${hours}h ${mins}m`
+      return isZhTW ? `${hours}小�? ${mins}?��?` : `${hours}h ${mins}m`
     }
-    return isZhTW ? `${mins}分鐘` : `${mins}m`
+    return isZhTW ? `${mins}?��?` : `${mins}m`
   }
 
   return (
@@ -202,7 +202,7 @@ const ProgressTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
-              {isZhTW ? '學習進度總覽' : 'Learning Progress Overview'}
+              {isZhTW ? '學�??�度總覽' : 'Learning Progress Overview'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -212,28 +212,28 @@ const ProgressTracker: React.FC = () => {
                 <div className="text-3xl font-bold text-white mb-2">{overallProgress}%</div>
                 <Progress value={overallProgress} className="mb-2" />
                 <p className="text-sm text-gray-300">
-                  {progress.completedLessons} / {progress.totalLessons} {isZhTW ? '課程完成' : 'lessons completed'}
+                  {progress.completedLessons} / {progress.totalLessons} {isZhTW ? '課�?完�?' : 'lessons completed'}
                 </p>
               </div>
 
-              {/* 學習時間 */}
+              {/* 學�??��? */}
               <div className="text-center">
                 <div className="text-3xl font-bold text-white mb-2">{formatTime(progress.totalTime)}</div>
-                <div className="text-sm text-gray-300">{isZhTW ? '總學習時間' : 'Total study time'}</div>
+                <div className="text-sm text-gray-300">{isZhTW ? '總學習�??? : 'Total study time'}</div>
                 <p className="text-xs text-gray-400 mt-1">
-                  {isZhTW ? `預計剩餘：${formatTime(estimatedTimeRemaining)}` : `Est. remaining: ${formatTime(estimatedTimeRemaining)}`}
+                  {isZhTW ? `?��??��?�?{formatTime(estimatedTimeRemaining)}` : `Est. remaining: ${formatTime(estimatedTimeRemaining)}`}
                 </p>
               </div>
 
-              {/* 連續學習天數 */}
+              {/* ???學�?天數 */}
               <div className="text-center">
                 <div className="text-3xl font-bold text-white mb-2 flex items-center justify-center">
                   <Flame className="h-8 w-8 text-orange-400 mr-2" />
                   {progress.currentStreak}
                 </div>
-                <div className="text-sm text-gray-300">{isZhTW ? '連續學習天數' : 'Study streak'}</div>
+                <div className="text-sm text-gray-300">{isZhTW ? '???學�?天數' : 'Study streak'}</div>
                 <p className="text-xs text-gray-400 mt-1">
-                  {isZhTW ? `最長記錄：${progress.longestStreak}天` : `Best: ${progress.longestStreak} days`}
+                  {isZhTW ? `?�?��??��?${progress.longestStreak}天` : `Best: ${progress.longestStreak} days`}
                 </p>
               </div>
             </div>
@@ -241,7 +241,7 @@ const ProgressTracker: React.FC = () => {
         </Card>
       </motion.div>
 
-      {/* 週目標進度 */}
+      {/* ?�目標進度 */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -251,7 +251,7 @@ const ProgressTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <Target className="h-5 w-5 mr-2 text-green-400" />
-              {isZhTW ? '本週目標' : 'Weekly Goal'}
+              {isZhTW ? '?�週目�? : 'Weekly Goal'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -263,14 +263,14 @@ const ProgressTracker: React.FC = () => {
             </div>
             <Progress value={weeklyProgress} className="mb-4" />
             <div className="flex items-center justify-between text-sm text-gray-400">
-              <span>{isZhTW ? '本週已學習' : 'This week'}</span>
+              <span>{isZhTW ? '?�週已學�?' : 'This week'}</span>
               <span>
                 {weeklyProgress >= 100 ? (
                   <Badge className="bg-green-500/20 text-green-400">
-                    {isZhTW ? '目標達成！' : 'Goal achieved!'}
+                    {isZhTW ? '?��??��?�? : 'Goal achieved!'}
                   </Badge>
                 ) : (
-                  `${formatTime(progress.weeklyGoal - progress.weeklyProgress)} ${isZhTW ? '剩餘' : 'remaining'}`
+                  `${formatTime(progress.weeklyGoal - progress.weeklyProgress)} ${isZhTW ? '?��?' : 'remaining'}`
                 )}
               </span>
             </div>
@@ -278,7 +278,7 @@ const ProgressTracker: React.FC = () => {
         </Card>
       </motion.div>
 
-      {/* 主題進度 */}
+      {/* 主�??�度 */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -288,7 +288,7 @@ const ProgressTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <BookOpen className="h-5 w-5 mr-2 text-purple-400" />
-              {isZhTW ? '主題進度' : 'Topic Progress'}
+              {isZhTW ? '主�??�度' : 'Topic Progress'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -300,7 +300,7 @@ const ProgressTracker: React.FC = () => {
                       {isZhTW ? topic.topicZh : topic.topic}
                     </span>
                     <span className="text-gray-400 text-sm">
-                      {topic.completedLessons}/{topic.lessons} {isZhTW ? '課程' : 'lessons'}
+                      {topic.completedLessons}/{topic.lessons} {isZhTW ? '課�?' : 'lessons'}
                     </span>
                   </div>
                   <Progress value={topic.progress} className="h-2" />
@@ -311,7 +311,7 @@ const ProgressTracker: React.FC = () => {
         </Card>
       </motion.div>
 
-      {/* 成就徽章 */}
+      {/* ?�就徽�? */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -321,7 +321,7 @@ const ProgressTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <Trophy className="h-5 w-5 mr-2 text-yellow-400" />
-              {isZhTW ? '成就徽章' : 'Achievements'}
+              {isZhTW ? '?�就徽�?' : 'Achievements'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -351,7 +351,7 @@ const ProgressTracker: React.FC = () => {
         </Card>
       </motion.div>
 
-      {/* 學習統計 */}
+      {/* 學�?統�? */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -361,31 +361,31 @@ const ProgressTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <BarChart3 className="h-5 w-5 mr-2 text-blue-400" />
-              {isZhTW ? '學習統計' : 'Learning Statistics'}
+              {isZhTW ? '學�?統�?' : 'Learning Statistics'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-blue-400">{progress.averageScore}%</div>
-                <div className="text-sm text-gray-400">{isZhTW ? '平均分數' : 'Avg Score'}</div>
+                <div className="text-sm text-gray-400">{isZhTW ? '平�??�數' : 'Avg Score'}</div>
               </div>
               
               <div>
                 <div className="text-2xl font-bold text-green-400">{progress.studyDays.length}</div>
-                <div className="text-sm text-gray-400">{isZhTW ? '學習天數' : 'Study Days'}</div>
+                <div className="text-sm text-gray-400">{isZhTW ? '學�?天數' : 'Study Days'}</div>
               </div>
               
               <div>
                 <div className="text-2xl font-bold text-purple-400">
                   {Math.round(progress.totalTime / progress.completedLessons || 0)}m
                 </div>
-                <div className="text-sm text-gray-400">{isZhTW ? '平均課時' : 'Avg/Lesson'}</div>
+                <div className="text-sm text-gray-400">{isZhTW ? '平�?課�?' : 'Avg/Lesson'}</div>
               </div>
               
               <div>
                 <div className="text-2xl font-bold text-yellow-400">{progress.achievements.length}</div>
-                <div className="text-sm text-gray-400">{isZhTW ? '獲得成就' : 'Achievements'}</div>
+                <div className="text-sm text-gray-400">{isZhTW ? '?��??�就' : 'Achievements'}</div>
               </div>
             </div>
           </CardContent>

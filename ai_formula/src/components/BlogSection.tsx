@@ -8,17 +8,15 @@ import { blogPosts, getFeaturedPosts, getRecentPosts, type BlogPost } from '@/da
 
 const BlogSection = () => {
   const { language } = useLanguage()
-  const isZhTW = language === 'zh-TW'
+  const isZhTW = language === 'zh-HK'
 
-  // 使用真實的部落格資料
+  // 使用?�實?�部?�格資�?
   const featuredPosts = getFeaturedPosts()
   const recentPosts = getRecentPosts()
   const allPosts = [...blogPosts].sort((a, b) => b.publishDate.getTime() - a.publishDate.getTime())
 
-  const featuredPost = featuredPosts[0] // 取第一篇精選文章
-
-  // 獲取4個隨機文章
-  const getRandomPosts = (posts: BlogPost[], count: number) => {
+  const featuredPost = featuredPosts[0] // ?�第一篇精?��?�?
+  // ?��?4?�隨機�?�?  const getRandomPosts = (posts: BlogPost[], count: number) => {
     const shuffled = [...posts].sort(() => 0.5 - Math.random())
     return shuffled.slice(0, count)
   }
@@ -27,19 +25,19 @@ const BlogSection = () => {
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case '公司介紹':
+      case '?�司介紹':
       case 'Company Introduction':
         return Rocket
-      case '公司優勢':
+      case '?�司?�勢':
       case 'Company Advantages':
         return Star
-      case '工具指南':
+      case '工具?��?':
       case 'Tool Guide':
         return Wrench
-      case '基礎知識':
+      case '?��??��?':
       case 'Fundamentals':
         return Bot
-      case '科技前瞻':
+      case '科�??�瞻':
       case 'Tech Innovation':
         return Brain
       default:
@@ -49,19 +47,19 @@ const BlogSection = () => {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case '公司介紹':
+      case '?�司介紹':
       case 'Company Introduction':
         return 'bg-orange-500/20 text-orange-300 border-orange-500/50'
-      case '公司優勢':
+      case '?�司?�勢':
       case 'Company Advantages':
         return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50'
-      case '工具指南':
+      case '工具?��?':
       case 'Tool Guide':
         return 'bg-blue-500/20 text-blue-300 border-blue-500/50'
-      case '基礎知識':
+      case '?��??��?':
       case 'Fundamentals':
         return 'bg-green-500/20 text-green-300 border-green-500/50'
-      case '科技前瞻':
+      case '科�??�瞻':
       case 'Tech Innovation':
         return 'bg-purple-500/20 text-purple-300 border-purple-500/50'
       default:
@@ -71,19 +69,19 @@ const BlogSection = () => {
 
   const getCategoryIconColor = (category: string) => {
     switch (category) {
-      case '公司介紹':
+      case '?�司介紹':
       case 'Company Introduction':
         return 'text-orange-400'
-      case '公司優勢':
+      case '?�司?�勢':
       case 'Company Advantages':
         return 'text-yellow-400'
-      case '工具指南':
+      case '工具?��?':
       case 'Tool Guide':
         return 'text-blue-400'
-      case '基礎知識':
+      case '?��??��?':
       case 'Fundamentals':
         return 'text-green-400'
-      case '科技前瞻':
+      case '科�??�瞻':
       case 'Tech Innovation':
         return 'text-purple-400'
       default:
@@ -93,19 +91,19 @@ const BlogSection = () => {
 
   const getCategoryIconBackground = (category: string) => {
     switch (category) {
-      case '公司介紹':
+      case '?�司介紹':
       case 'Company Introduction':
         return 'bg-gradient-to-br from-orange-500/20 to-red-500/20'
-      case '公司優勢':
+      case '?�司?�勢':
       case 'Company Advantages':
         return 'bg-gradient-to-br from-yellow-500/20 to-orange-500/20'
-      case '工具指南':
+      case '工具?��?':
       case 'Tool Guide':
         return 'bg-gradient-to-br from-blue-500/20 to-cyan-500/20'
-      case '基礎知識':
+      case '?��??��?':
       case 'Fundamentals':
         return 'bg-gradient-to-br from-green-500/20 to-emerald-500/20'
-      case '科技前瞻':
+      case '科�??�瞻':
       case 'Tech Innovation':
         return 'bg-gradient-to-br from-purple-500/20 to-indigo-500/20'
       default:
@@ -125,16 +123,16 @@ const BlogSection = () => {
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {isZhTW ? 'AI 攻略及資訊' : 'AI Strategy & Information'}
+              {isZhTW ? 'AI ?�略?��?�? : 'AI Strategy & Information'}
             </h2>
             <p className="text-xl text-gray-300 lg:text-right">
-              {isZhTW ? '各種實用 AI 資訊，一頁掌握！' : 'Various useful AI information, all in one page!'}
+              {isZhTW ? '?�種實用 AI 資�?，�??��??��?' : 'Various useful AI information, all in one page!'}
             </p>
           </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* Latest Articles - 4個隨機文章 - 1/3 寬度 */}
+          {/* Latest Articles - 4?�隨機�?�?- 1/3 寬度 */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -145,11 +143,11 @@ const BlogSection = () => {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-white flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
-                  {isZhTW ? '最新 AI 資訊' : 'Latest AI Information'}
+                  {isZhTW ? '?�??AI 資�?' : 'Latest AI Information'}
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex-1">
-                {/* 4個隨機文章垂直排列 */}
+                {/* 4?�隨機�?章�??��???*/}
                 <div className="grid grid-cols-1 gap-4">
                   {randomPosts.map((post, index) => {
                     const CategoryIcon = getCategoryIcon(post.category)
@@ -198,7 +196,7 @@ const BlogSection = () => {
               <Card className="bg-gray-800/50 border-gray-700 hover:border-blue-500/50 transition-all duration-300 group overflow-hidden h-full flex flex-col">
                 <div className="relative h-64 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 flex items-center justify-center">
-                    <div className="text-6xl opacity-20">🤖</div>
+                    <div className="text-6xl opacity-20">??</div>
                   </div>
                   <div className="absolute top-4 left-4">
                     <Badge className={`${getCategoryColor(featuredPost.category)}`}>
@@ -219,7 +217,7 @@ const BlogSection = () => {
                     {isZhTW ? featuredPost.excerpt : featuredPost.excerptEn}
                   </p>
                   <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200 transition-colors mt-auto">
-                    <span className="mr-2">{isZhTW ? '閱讀更多' : 'Read More'}</span>
+                    <span className="mr-2">{isZhTW ? '?��??��?' : 'Read More'}</span>
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </CardContent>

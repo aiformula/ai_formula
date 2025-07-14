@@ -49,15 +49,15 @@ interface NewsletterState {
 
 // Constants
 const ICON_MAP: Record<string, JSX.Element> = {
-  "🚀": <Rocket className="h-8 w-8 text-blue-400" />,
-  "⭐": <Star className="h-8 w-8 text-yellow-400" />,
-  "⚙️": <Settings className="h-8 w-8 text-gray-400" />,
-  "🔧": <Settings className="h-8 w-8 text-gray-400" />,
-  "📦": <Package className="h-8 w-8 text-green-400" />,
-  "🔄": <RotateCcw className="h-8 w-8 text-purple-400" />,
-  "⚡": <Zap className="h-8 w-8 text-orange-400" />,
-  "🤖": <Settings className="h-8 w-8 text-cyan-400" />,
-  "🧠": <Settings className="h-8 w-8 text-pink-400" />
+  "??": <Rocket className="h-8 w-8 text-blue-400" />,
+  "�?: <Star className="h-8 w-8 text-yellow-400" />,
+  "?��?": <Settings className="h-8 w-8 text-gray-400" />,
+  "?��": <Settings className="h-8 w-8 text-gray-400" />,
+  "?��": <Package className="h-8 w-8 text-green-400" />,
+  "??": <RotateCcw className="h-8 w-8 text-purple-400" />,
+  "??: <Zap className="h-8 w-8 text-orange-400" />,
+  "??": <Settings className="h-8 w-8 text-cyan-400" />,
+  "??": <Settings className="h-8 w-8 text-pink-400" />
 };
 
 const TAG_HOVER_COLORS = [
@@ -72,16 +72,16 @@ const TAG_HOVER_COLORS = [
 ];
 
 const CATEGORIES: Category[] = [
-  { name: "公司介紹", nameEn: "Company Introduction", count: 1 },
-  { name: "公司優勢", nameEn: "Company Advantages", count: 1 },
-  { name: "工具指南", nameEn: "Tool Guide", count: 1 },
-  { name: "科技前瞻", nameEn: "Tech Innovation", count: 1 },
-  { name: "基礎知識", nameEn: "Fundamentals", count: 1 }
+  { name: "?�司介紹", nameEn: "Company Introduction", count: 1 },
+  { name: "?�司?�勢", nameEn: "Company Advantages", count: 1 },
+  { name: "工具?��?", nameEn: "Tool Guide", count: 1 },
+  { name: "科�??�瞻", nameEn: "Tech Innovation", count: 1 },
+  { name: "?��??��?", nameEn: "Fundamentals", count: 1 }
 ];
 
 const POPULAR_TAGS = [
-  "AI Formula", "商業自動化", "香港中小企", "數位轉型", 
-  "服務優勢", "專業團隊", "Make.com", "自動化工具"
+  "AI Formula", "?�業?��???, "香港中�?�?, "?��?轉�?", 
+  "?��??�勢", "專業?��?", "Make.com", "?��??�工??
 ];
 
 const POPULAR_TAGS_EN = [
@@ -206,7 +206,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, index, isZhTW, variant = 'rec
                   size={isFeatured ? "default" : "sm"}
                   className="w-full group bg-white text-black hover:bg-gray-100 border-0 transition-all duration-300 hover:shadow-lg hover:shadow-white/25 font-semibold"
                 >
-                  {isZhTW ? (isFeatured ? '閱讀文章' : '閱讀更多') : (isFeatured ? 'Read Article' : 'Read More')}
+                  {isZhTW ? (isFeatured ? '?��??��?' : '?��??��?') : (isFeatured ? 'Read Article' : 'Read More')}
                   <ArrowRight className={`ml-2 ${isFeatured ? 'h-4 w-4' : 'h-3 w-3'} group-hover:translate-x-1 transition-transform`} />
                 </Button>
               </Link>
@@ -226,7 +226,7 @@ const SearchBar: React.FC<{ searchState: SearchState; onSearchChange: (query: st
   <div className="max-w-md mx-auto relative">
     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 h-4 w-4" />
     <Input
-      placeholder={isZhTW ? "搜尋文章..." : "Search articles..."}
+      placeholder={isZhTW ? "?��??��?..." : "Search articles..."}
       value={searchState.query}
       onChange={(e) => onSearchChange(e.target.value)}
       className="pl-10 bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-300 focus:border-blue-400"
@@ -249,18 +249,18 @@ const NewsletterSection: React.FC<{
         transition={{ duration: 0.8, delay: 1.2 }}
       >
         <h3 className="text-3xl font-bold mb-4 text-white">
-          {isZhTW ? '訂閱AI Formula電子報' : 'Subscribe to AI Formula Newsletter'}
+          {isZhTW ? '訂閱AI Formula?��??? : 'Subscribe to AI Formula Newsletter'}
         </h3>
         <p className="text-gray-200 mb-8">
           {isZhTW 
-            ? '獲得AI Formula最新的專業見解、實用教學和香港商業案例分析，助力您的AI轉型之路。'
+            ? '?��?AI Formula?�?��?專業見解?�實?��?學�?香港?�業案�??��?，助?�您?�AI轉�?之路??
             : 'Get AI Formula\'s latest professional insights, practical tutorials and Hong Kong business case studies to accelerate your AI transformation journey.'
           }
         </p>
         {!newsletterState.isSubscribed ? (
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input
-              placeholder={isZhTW ? "輸入您的電子郵件地址" : "Enter your email address"}
+              placeholder={isZhTW ? "輸入?��??��??�件?��?" : "Enter your email address"}
               value={newsletterState.email}
               onChange={(e) => onEmailChange(e.target.value)}
               className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-300 focus:border-blue-400"
@@ -271,12 +271,12 @@ const NewsletterSection: React.FC<{
               disabled={newsletterState.isLoading || !newsletterState.email}
               className="bg-white text-black hover:bg-gray-100 font-semibold hover:shadow-lg hover:shadow-white/25 transition-all duration-300"
             >
-              {newsletterState.isLoading ? (isZhTW ? '處理中...' : 'Processing...') : (isZhTW ? '訂閱' : 'Subscribe')}
+              {newsletterState.isLoading ? (isZhTW ? '?��?�?..' : 'Processing...') : (isZhTW ? '訂閱' : 'Subscribe')}
             </Button>
           </div>
         ) : (
           <div className="text-green-400 font-semibold">
-            {isZhTW ? '✅ 訂閱成功！感謝您的關注。' : '✅ Successfully subscribed! Thank you for your interest.'}
+            {isZhTW ? '??訂閱?��?！�?謝您?��?注�? : '??Successfully subscribed! Thank you for your interest.'}
           </div>
         )}
       </motion.div>
@@ -359,14 +359,14 @@ const Blog: React.FC = () => {
             className="text-center"
           >
             <Badge variant="secondary" className="mb-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 border-blue-400">
-              {isZhTW ? '最新見解與更新' : 'Latest Insights & Updates'}
+              {isZhTW ? '?�?��?�???�新' : 'Latest Insights & Updates'}
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
               {isZhTW ? 'AI Formula 專家見解' : 'AI Formula Expert Insights'}
             </h1>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
               {isZhTW 
-                ? '探索AI Formula的專業見解，掌握最新AI自動化趨勢，獲得實用的商業應用指南。' 
+                ? '?�索AI Formula?��?業�?�???�握?�?�AI?��??�趨?��??��?實用?��?業�??��??��? 
                 : 'Explore AI Formula\'s professional insights, master the latest AI automation trends and get practical business application guides.'
               }
             </p>
@@ -389,7 +389,7 @@ const Blog: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-3xl font-bold mb-12 text-center text-white"
           >
-            {isZhTW ? '精選文章' : 'Featured Articles'}
+            {isZhTW ? '精選?��?' : 'Featured Articles'}
           </motion.h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-16">
@@ -422,11 +422,11 @@ const Blog: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Tag className="h-5 w-5" />
-                    {isZhTW ? '文章分類' : 'Categories'}
+                    {isZhTW ? '?��??��?' : 'Categories'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <nav className="space-y-3" role="navigation" aria-label="文章分類">
+                  <nav className="space-y-3" role="navigation" aria-label="?��??��?">
                     {CATEGORIES.map((category) => (
                       <button
                         key={category.name}
@@ -451,7 +451,7 @@ const Blog: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <TrendingUp className="h-5 w-5" />
-                    {isZhTW ? '熱門標籤' : 'Popular Tags'}
+                    {isZhTW ? '?��?標籤' : 'Popular Tags'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -477,7 +477,7 @@ const Blog: React.FC = () => {
               className="lg:col-span-3"
             >
               <h3 className="text-2xl font-bold mb-8 text-white">
-                {isZhTW ? '最新文章' : 'Recent Articles'}
+                {isZhTW ? '?�?��?�? : 'Recent Articles'}
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
                 {recentPosts.map((post, index) => (

@@ -9,15 +9,14 @@ export { default as CourseOutlineTemplate } from './CourseOutlineTemplate';
 // import type { CourseTemplateProps } from '@/components/templates/CourseTemplate';
 
 /**
- * 📚 Template Documentation
+ * ?? Template Documentation
  * 
  * Complete documentation is available in the following files:
  * 
- * 📋 TEMPLATE_USAGE_GUIDE.md     - 詳細的使用指南和屬性說明
- * 🚀 TEMPLATE_EXAMPLES.md        - 實際項目整合範例
- * 📖 QUICK_REFERENCE.md          - 快速參考和常用代碼片段
+ * ?? TEMPLATE_USAGE_GUIDE.md     - 詳細?�使?��??��?屬性說?? * ?? TEMPLATE_EXAMPLES.md        - 實�??�目?��?範�?
+ * ?? QUICK_REFERENCE.md          - 快速�??��?常用�?��?�段
  * 
- * 🎯 Quick Start:
+ * ?�� Quick Start:
  * 
  * Course Template:
  * <CourseTemplate

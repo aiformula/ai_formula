@@ -210,7 +210,7 @@ const About: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              Welcome to AI Formula – your dedicated Hong Kong AI automation classroom and official experts!
+              Welcome to AI Formula ??your dedicated Hong Kong AI automation classroom and official experts!
             </motion.p>
             <motion.p 
               className="text-gray-400"
@@ -278,7 +278,7 @@ const About: React.FC = () => {
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
           >
-            We are a team of AI enthusiasts and automation technology experts. We don't just teach theory – 
+            We are a team of AI enthusiasts and automation technology experts. We don't just teach theory ??
             we share real-world experience and provide comprehensive application strategies to ensure you can 
             immediately apply what you learn.
           </motion.p>
@@ -310,7 +310,7 @@ const About: React.FC = () => {
             viewport={{ once: true }}
           >
             The market is full of AI tools, from Large Language Models (ChatGPT, Gemini), image generation tools (Midjourney), 
-            to automation workflows (N8N, Zapier). We believe there is no absolute "best" or "worst" tool – only the tool 
+            to automation workflows (N8N, Zapier). We believe there is no absolute "best" or "worst" tool ??only the tool 
             that best fits your current needs.
           </motion.p>
           <motion.ul 
