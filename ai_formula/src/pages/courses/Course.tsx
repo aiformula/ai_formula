@@ -204,106 +204,255 @@ const Course = () => {
             ))}
           </div>
 
-          {/* Courses Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {filteredCourses.map((course, index) => (
-              <motion.div
-                key={course.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-              >
-                <Atropos
-                  className="atropos-banner"
-                  shadowScale={1.05}
-                  rotateXMax={10}
-                  rotateYMax={10}
+          {/* 免費學習課程 Section */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                免費學習課程
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                精心製作嘅免費課程，幫助你快速提升AI技能並實現商業目標
+              </p>
+            </div>
+
+            {/* Available Courses Table */}
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-6">
+                <h3 className="text-xl font-semibold mb-4 text-center">現在可用嘅課程</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-white/20">
+                        <th className="text-left py-3 px-4 font-medium">課程</th>
+                        <th className="text-left py-3 px-4 font-medium">導航路徑</th>
+                        <th className="text-left py-3 px-4 font-medium">狀態</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-2xl">🧠</span>
+                            <button
+                              onClick={() => navigate('/courses/prompt-engineering-outline')}
+                              className="font-medium hover:text-blue-400 transition-colors text-left"
+                            >
+                              Prompt Engineering
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/prompt-engineering-outline</code>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            ✅ 可用
+                          </Badge>
+                        </td>
+                      </tr>
+                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-2xl">💬</span>
+                            <button
+                              onClick={() => navigate('/courses/chatgpt-mastery-outline')}
+                              className="font-medium hover:text-blue-400 transition-colors text-left"
+                            >
+                              ChatGPT Mastery
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/chatgpt-mastery-outline</code>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            ✅ 可用
+                          </Badge>
+                        </td>
+                      </tr>
+                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-2xl">🔍</span>
+                            <button
+                              onClick={() => navigate('/courses/perplexity-tools-outline')}
+                              className="font-medium hover:text-blue-400 transition-colors text-left"
+                            >
+                              Perplexity Tools
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/perplexity-tools-outline</code>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            ✅ 可用
+                          </Badge>
+                        </td>
+                      </tr>
+                      <tr className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-2xl">💻</span>
+                            <button
+                              onClick={() => navigate('/courses/coding-basics-outline')}
+                              className="font-medium hover:text-blue-400 transition-colors text-left"
+                            >
+                              Coding Basics
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/coding-basics-outline</code>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            ✅ 可用
+                          </Badge>
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-white/5 transition-colors">
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-2xl">🎨</span>
+                            <button
+                              onClick={() => navigate('/courses/free-plan')}
+                              className="font-medium hover:text-blue-400 transition-colors text-left"
+                            >
+                              Midjourney AI Image
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <code className="text-sm bg-gray-800 px-2 py-1 rounded">/courses/free-plan</code>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            ✅ 可用
+                          </Badge>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 精選免費課程 Section */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                精選免費課程
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                精心製作嘅數位課程，幫助你快速提升技能並實現商業目標
+              </p>
+            </div>
+
+            {/* Courses Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {filteredCourses.map((course, index) => (
+                <motion.div
+                  key={course.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
                 >
-                  <Card className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-300 h-full">
-                    <CardHeader className="pb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-4xl">{course.image}</span>
-                        <div className="flex gap-2">
-                          {course.featured && (
-                            <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-400">
-                              {isZhTW ? '精選' : 'Featured'}
-                            </Badge>
-                          )}
-                          {course.badge && (
-                            <Badge className="bg-blue-500/20 text-blue-400 border-blue-400">
-                              {course.badge}
-                            </Badge>
-                          )}
+                  <Atropos
+                    className="atropos-banner"
+                    shadowScale={1.05}
+                    rotateXMax={10}
+                    rotateYMax={10}
+                  >
+                    <Card className="bg-gray-900/50 border-gray-800 hover:border-purple-500/50 transition-all duration-300 h-full">
+                      <CardHeader className="pb-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-4xl">{course.image}</span>
+                          <div className="flex gap-2">
+                            {course.featured && (
+                              <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-400">
+                                {isZhTW ? '精選' : 'Featured'}
+                              </Badge>
+                            )}
+                            {course.badge && (
+                              <Badge className="bg-blue-500/20 text-blue-400 border-blue-400">
+                                {course.badge}
+                              </Badge>
+                            )}
+                          </div>
                         </div>
-                      </div>
+                        
+                        <CardTitle className="text-xl font-bold text-white mb-2">
+                          {isZhTW ? course.titleCht : course.title}
+                        </CardTitle>
+                        
+                        <CardDescription className="text-gray-400 text-sm leading-relaxed">
+                          {isZhTW ? course.descriptionCht : course.description}
+                        </CardDescription>
+                      </CardHeader>
                       
-                      <CardTitle className="text-xl font-bold text-white mb-2">
-                        {isZhTW ? course.titleCht : course.title}
-                      </CardTitle>
-                      
-                      <CardDescription className="text-gray-400 text-sm leading-relaxed">
-                        {isZhTW ? course.descriptionCht : course.description}
-                      </CardDescription>
-                    </CardHeader>
-                    
-                    <CardContent className="pt-0">
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-4 text-sm text-gray-500">
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            {isZhTW ? course.durationCht : course.duration}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Users className="w-4 h-4" />
-                            {course.students.toLocaleString()} {isZhTW ? '學生' : 'students'}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Star className="w-4 h-4 text-yellow-400" />
-                            {course.rating}
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <div className="text-sm text-gray-500">
-                            {isZhTW ? '包含內容：' : 'Includes:'}
-                          </div>
-                          <div className="space-y-1">
-                            {(isZhTW ? course.includesCht : course.includes).slice(0, 3).map((include, idx) => (
-                              <div key={idx} className="text-xs text-gray-400 flex items-center gap-2">
-                                <div className="w-1 h-1 bg-blue-400 rounded-full flex-shrink-0"></div>
-                                {include}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col gap-3 pt-4">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xl font-bold text-blue-400">
-                                {course.badge || (isZhTW ? '免費' : 'FREE')}
-                              </span>
+                      <CardContent className="pt-0">
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <div className="flex items-center gap-1">
+                              <Clock className="w-4 h-4" />
+                              {isZhTW ? course.durationCht : course.duration}
                             </div>
-                            <Badge variant="secondary" className="text-xs">
-                              {isZhTW ? course.typeCht : course.type}
-                            </Badge>
+                            <div className="flex items-center gap-1">
+                              <Users className="w-4 h-4" />
+                              {course.students.toLocaleString()} {isZhTW ? '學生' : 'students'}
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Star className="w-4 h-4 text-yellow-400" />
+                              {course.rating}
+                            </div>
                           </div>
-                          
-                          <Button 
-                            size="sm"
-                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
-                            onClick={() => handleCourseClick(course.id)}
-                          >
-                            {course.badge === '了解更多' ? (isZhTW ? '了解更多' : 'Learn More') : (isZhTW ? '即將開班' : 'Opening Soon')}
-                            <ArrowRight className="w-4 h-4 ml-2" />
-                          </Button>
+
+                          <div className="space-y-2">
+                            <div className="text-sm text-gray-500">
+                              {isZhTW ? '包含內容：' : 'Includes:'}
+                            </div>
+                            <div className="space-y-1">
+                              {(isZhTW ? course.includesCht : course.includes).slice(0, 3).map((include, idx) => (
+                                <div key={idx} className="text-xs text-gray-400 flex items-center gap-2">
+                                  <div className="w-1 h-1 bg-blue-400 rounded-full flex-shrink-0"></div>
+                                  {include}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col gap-3 pt-4">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <span className="text-xl font-bold text-blue-400">
+                                  {course.badge || (isZhTW ? '免費' : 'FREE')}
+                                </span>
+                              </div>
+                              <Badge variant="secondary" className="text-xs">
+                                {isZhTW ? course.typeCht : course.type}
+                              </Badge>
+                            </div>
+                            
+                            <Button 
+                              size="sm"
+                              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+                              onClick={() => handleCourseClick(course.id)}
+                            >
+                              {course.badge === '了解更多' ? (isZhTW ? '了解更多' : 'Learn More') : (isZhTW ? '即將開班' : 'Opening Soon')}
+                              <ArrowRight className="w-4 h-4 ml-2" />
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Atropos>
-              </motion.div>
-            ))}
+                      </CardContent>
+                    </Card>
+                  </Atropos>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
