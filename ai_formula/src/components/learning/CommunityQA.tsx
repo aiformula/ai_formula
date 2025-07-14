@@ -87,20 +87,20 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
   const [questions, setQuestions] = useState<Question[]>([
     {
       id: '1',
-      title: 'å¦‚ä??ªå? Prompt ä¾†ç²å¾—æ›´å¥½ç??æ?ï¼?,
-      content: '?‘å?è©¦ä?å¾ˆå?ä¸å???promptï¼Œä???AI ?„å??‰ç¸½?¯ä?å¤ æ?ç¢ºã€‚æ?ä»€éº¼å…·é«”ç??€å·§å?ï¼?,
+      title: 'å¦‚ä½•æ’°å¯« Prompt ä¾†ç²å¾—æ›´å¥½çš„å›æ‡‰ï¼Ÿ',
+      content: 'æˆ‘å˜—è©¦äº†å¾ˆå¤šä¸åŒçš„promptï¼Œä½†æ˜¯AIçš„å›ç­”ç¸½æ˜¯ä¸å¤ ç²¾ç¢ºã€‚æœ‰ä»€éº¼å…·é«”çš„æŠ€å·§å—ï¼Ÿ',
       author: {
-        name: 'å°æ?',
+        name: 'å°ï¿½?',
         role: 'student',
         reputation: 85
       },
       timestamp: new Date('2024-01-15T10:30:00'),
-      tags: ['prompt-engineering', '?ªå?', '?€å·?],
+      tags: ['prompt-engineering', '?ï¿½ï¿½?', '?ï¿½ï¿½?],
       votes: 12,
       answers: [
         {
           id: '1-1',
-          content: '?™æ˜¯ä¸€?‹å?å¥½ç??é?ï¼æ?å»ºè­°ä½ å?è©¦ä»¥ä¸‹å¹¾?‹æ?å·§ï?\n\n1. **?·é??–ä??„é?æ±?* - ä¸è?èª?å¹«æ?å¯«æ?ç«?ï¼Œè€Œæ˜¯èª?å¹«æ?å¯«ä?ç¯?00å­—ç?ç§‘æ??¢å?ä»‹ç´¹?‡ç?"\n2. **?ä?ä¸Šä???* - ?Šè¨´ AI ä½ ç??®æ??—çœ¾?¯èª°\n3. **ä½¿ç”¨ç¯„ä?** - çµ¦å‡ºä¸€?‹ç??³å??‰ç?ä¾‹å?\n4. **?†æ­¥é©Ÿèªª??* - å°‡è??œä»»?™å?è§??å°æ­¥é©Ÿ\n\nä½ å¯ä»¥å?è©¦é€™å€‹æ¨¡?¿ï?\n```\nä½ æ˜¯ä¸€?‹[è§’è‰²]ï¼Œç‚º[?®æ??—çœ¾]?°å¯«[?§å®¹é¡å?]?‚\nè¦æ?ï¼š[?·é?è¦æ?]\n?¼å?ï¼š[è¼¸å‡º?¼å?]\n```',
+          content: '?ï¿½æ˜¯ä¸€?ï¿½ï¿½?å¥½ï¿½??ï¿½ï¿½?ï¼ï¿½?å»ºè­°ä½ ï¿½?è©¦ä»¥ä¸‹å¹¾?ï¿½ï¿½?å·§ï¿½?\n\n1. **?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½?* - ä¸ï¿½?ï¿½?å¹«ï¿½?å¯«ï¿½?ï¿½?ï¼Œè€Œæ˜¯ï¿½?å¹«ï¿½?å¯«ï¿½?ï¿½?00å­—ï¿½?ç§‘ï¿½??ï¿½ï¿½?ä»‹ç´¹?ï¿½ï¿½?"\n2. **?ï¿½ï¿½?ä¸Šï¿½???* - ?ï¿½è¨´ AI ä½ ï¿½??ï¿½ï¿½??ï¿½çœ¾?ï¿½èª°\n3. **ä½¿ç”¨ç¯„ï¿½?** - çµ¦å‡ºä¸€?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ä¾‹ï¿½?\n4. **?ï¿½æ­¥é©Ÿèªª??* - å°‡ï¿½??ï¿½ä»»?ï¿½ï¿½?ï¿½??å°æ­¥é©Ÿ\n\nä½ å¯ä»¥ï¿½?è©¦é€™å€‹æ¨¡?ï¿½ï¿½?\n```\nä½ æ˜¯ä¸€?ï¿½[è§’è‰²]ï¼Œç‚º[?ï¿½ï¿½??ï¿½çœ¾]?ï¿½å¯«[?ï¿½å®¹é¡ï¿½?]?ï¿½\nè¦ï¿½?ï¼š[?ï¿½ï¿½?è¦ï¿½?]\n?ï¿½ï¿½?ï¼š[è¼¸å‡º?ï¿½ï¿½?]\n```',
           author: {
             name: 'Kenneth Wong',
             role: 'instructor',
@@ -112,9 +112,9 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
           replies: [
             {
               id: '1-1-1',
-              content: 'è¬è??å¸«ï¼æ?è©¦ä?ä¸€ä¸‹ï??ˆæ??Ÿç?å¥½å?å¤šï?',
+              content: 'è¬ï¿½??ï¿½å¸«ï¼ï¿½?è©¦ï¿½?ä¸€ä¸‹ï¿½??ï¿½ï¿½??ï¿½ï¿½?å¥½ï¿½?å¤šï¿½?',
               author: {
-                name: 'å°æ?',
+                name: 'å°ï¿½?',
                 role: 'student',
                 reputation: 85
               },
@@ -130,15 +130,15 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     },
     {
       id: '2',
-      title: 'ChatGPT ??Claude ??prompt engineering ä¸Šæ?ä»€éº¼å??¥ï?',
-      content: '?‘ç™¼?¾å?æ¨?? prompt ?¨ä??Œç? AI æ¨¡å?ä¸Šæ??œä??Œï??³ä?è§??ä¸‹å??ªç??¹é???,
+      title: 'ChatGPT ??Claude ??prompt engineering ä¸Šï¿½?ä»€éº¼ï¿½??ï¿½ï¿½?',
+      content: '?ï¿½ç™¼?ï¿½ï¿½?ï¿½?? prompt ?ï¿½ï¿½??ï¿½ï¿½? AI æ¨¡ï¿½?ä¸Šï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½??ä¸‹ï¿½??ï¿½ï¿½??ï¿½ï¿½???,
       author: {
-        name: '?å???,
+        name: '?ï¿½ï¿½???,
         role: 'student',
         reputation: 120
       },
       timestamp: new Date('2024-01-16T14:20:00'),
-      tags: ['ChatGPT', 'Claude', 'æ¯”è?'],
+      tags: ['ChatGPT', 'Claude', 'æ¯”ï¿½?'],
       votes: 8,
       answers: [],
       views: 89,
@@ -155,7 +155,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
   const [sortBy, setSortBy] = useState<'newest' | 'popular' | 'unanswered'>('newest');
   const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(null);
 
-  // ?æ¿¾?Œæ?åºå?é¡?
+  // ?ï¿½æ¿¾?ï¿½ï¿½?åºï¿½?ï¿½?
   const filteredQuestions = questions
     .filter(question => 
       question.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -175,7 +175,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
       }
     });
 
-  // ?²å?è§’è‰²é¡è‰²
+  // ?ï¿½ï¿½?è§’è‰²é¡è‰²
   const getRoleColor = (role: string) => {
     switch (role) {
       case 'instructor':
@@ -187,19 +187,19 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     }
   };
 
-  // ?²å?è§’è‰²æ¨™ç±¤
+  // ?ï¿½ï¿½?è§’è‰²æ¨™ç±¤
   const getRoleLabel = (role: string) => {
     switch (role) {
       case 'instructor':
         return 'å°å¸«';
       case 'ta':
-        return '?©æ?';
+        return '?ï¿½ï¿½?';
       default:
         return 'å­¸å“¡';
     }
   };
 
-  // ?äº¤?°å?é¡?
+  // ?ï¿½äº¤?ï¿½ï¿½?ï¿½?
   const handleSubmitQuestion = () => {
     if (!newQuestionTitle.trim() || !newQuestionContent.trim()) return;
 
@@ -208,7 +208,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
       title: newQuestionTitle,
       content: newQuestionContent,
       author: {
-        name: '?¶å??¨æˆ¶',
+        name: '?ï¿½ï¿½??ï¿½æˆ¶',
         role: 'student',
         reputation: 50
       },
@@ -228,7 +228,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     setShowNewQuestion(false);
   };
 
-  // ?‚é??¼å???
+  // ?ï¿½ï¿½??ï¿½ï¿½???
   const formatTime = (date: Date) => {
     const now = new Date();
     const diff = now.getTime() - date.getTime();
@@ -237,22 +237,22 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
     if (minutes < 60) {
-      return `${minutes} ?†é??`;
+      return `${minutes} ?ï¿½ï¿½??ï¿½`;
     } else if (hours < 24) {
-      return `${hours} å°æ??`;
+      return `${hours} å°ï¿½??ï¿½`;
     } else {
-      return `${days} å¤©å?`;
+      return `${days} å¤©ï¿½?`;
     }
   };
 
   return (
     <div className="h-full flex flex-col">
-      {/* ?‚éƒ¨?œç´¢?Œæ§??*/}
+      {/* ?ï¿½éƒ¨?ï¿½ç´¢?ï¿½æ§??*/}
       <div className="p-4 border-b border-gray-700 space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-white flex items-center">
             <MessageSquare className="w-5 h-5 mr-2 text-blue-400" />
-            ç¤¾ç¾¤?ç?
+            ç¤¾ç¾¤?ï¿½ï¿½?
           </h3>
           <Button
             onClick={() => setShowNewQuestion(true)}
@@ -260,7 +260,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
             size="sm"
           >
             <Plus className="w-4 h-4 mr-2" />
-            ?å?
+            ?ï¿½ï¿½?
           </Button>
         </div>
 
@@ -268,7 +268,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input
-              placeholder="?œç´¢?é?..."
+              placeholder="?ï¿½ç´¢?ï¿½ï¿½?..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 bg-gray-700 border-gray-600 text-white"
@@ -280,22 +280,22 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
             onChange={(e) => setSortBy(e.target.value as any)}
             className="bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2 text-sm"
           >
-            <option value="newest">?€??/option>
-            <option value="popular">?±é?</option>
-            <option value="unanswered">?ªå?ç­?/option>
+            <option value="newest">?ï¿½??/option>
+            <option value="popular">?ï¿½ï¿½?</option>
+            <option value="unanswered">?ï¿½ï¿½?ï¿½?/option>
           </select>
         </div>
       </div>
 
-      {/* ?é??—è¡¨ */}
+      {/* ?ï¿½ï¿½??ï¿½è¡¨ */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="p-4 space-y-4">
             {filteredQuestions.length === 0 ? (
               <div className="text-center py-8">
                 <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-300 mb-2">?„æ??‰å?é¡?/h3>
-                <p className="text-sm text-gray-500">?ç‚ºç¬¬ä??‹æ??ç?äººå§ï¼?/p>
+                <h3 className="text-lg font-semibold text-gray-300 mb-2">?ï¿½ï¿½??ï¿½ï¿½?ï¿½?/h3>
+                <p className="text-sm text-gray-500">?ï¿½ç‚ºç¬¬ï¿½??ï¿½ï¿½??ï¿½ï¿½?äººå§ï¿½?/p>
               </div>
             ) : (
               filteredQuestions.map((question) => (
@@ -308,7 +308,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                   <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-4">
-                        {/* ?•ç¥¨?€??*/}
+                        {/* ?ï¿½ç¥¨?ï¿½??*/}
                         <div className="flex flex-col items-center space-y-2 text-sm">
                           <Button variant="ghost" size="sm" className="text-gray-400 hover:text-green-400 p-1">
                             <ThumbsUp className="w-4 h-4" />
@@ -319,7 +319,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                           </Button>
                         </div>
 
-                        {/* ?é??§å®¹ */}
+                        {/* ?ï¿½ï¿½??ï¿½å®¹ */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center space-x-2 mb-2">
                             {question.isPinned && (
@@ -379,7 +379,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
         </ScrollArea>
       </div>
 
-      {/* ?°å?é¡Œæ¨¡?‹æ? */}
+      {/* ?ï¿½ï¿½?é¡Œæ¨¡?ï¿½ï¿½? */}
       {showNewQuestion && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <motion.div
@@ -388,45 +388,45 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
             className="bg-gray-800 rounded-xl shadow-2xl w-full max-w-2xl"
           >
             <div className="p-6 border-b border-gray-700">
-              <h3 className="text-xl font-semibold text-white">?å‡º?°å?é¡?/h3>
+              <h3 className="text-xl font-semibold text-white">?ï¿½å‡º?ï¿½ï¿½?ï¿½?/h3>
               <p className="text-sm text-gray-400 mt-1">
-                è©³ç´°?è¿°?¨ç??é?ï¼Œå…¶ä»–å­¸?¡å?å°å¸«?ƒå¹«?©æ‚¨è§??
+                è©³ç´°?ï¿½è¿°?ï¿½ï¿½??ï¿½ï¿½?ï¼Œå…¶ä»–å­¸?ï¿½ï¿½?å°å¸«?ï¿½å¹«?ï¿½æ‚¨ï¿½??
               </p>
             </div>
             
             <div className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  ?é?æ¨™é?
+                  ?ï¿½ï¿½?æ¨™ï¿½?
                 </label>
                 <Input
                   value={newQuestionTitle}
                   onChange={(e) => setNewQuestionTitle(e.target.value)}
-                  placeholder="?¨ä??¥è©±æ¦‚æ‹¬?¨ç??é?..."
+                  placeholder="?ï¿½ï¿½??ï¿½è©±æ¦‚æ‹¬?ï¿½ï¿½??ï¿½ï¿½?..."
                   className="bg-gray-700 border-gray-600 text-white"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  ?é?è©³æ?
+                  ?ï¿½ï¿½?è©³ï¿½?
                 </label>
                 <Textarea
                   value={newQuestionContent}
                   onChange={(e) => setNewQuestionContent(e.target.value)}
-                  placeholder="è©³ç´°?è¿°?¨ç??é?ï¼Œå??«ç›¸?œè??¯å??¨å·²ç¶“å?è©¦ç??¹æ?..."
+                  placeholder="è©³ç´°?ï¿½è¿°?ï¿½ï¿½??ï¿½ï¿½?ï¼Œï¿½??ï¿½ç›¸?ï¿½ï¿½??ï¿½ï¿½??ï¿½å·²ç¶“ï¿½?è©¦ï¿½??ï¿½ï¿½?..."
                   className="bg-gray-700 border-gray-600 text-white min-h-[120px]"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  æ¨™ç±¤ (?¨é€—è??†é?)
+                  æ¨™ç±¤ (?ï¿½é€—ï¿½??ï¿½ï¿½?)
                 </label>
                 <Input
                   value={newQuestionTags}
                   onChange={(e) => setNewQuestionTags(e.target.value)}
-                  placeholder="ä¾‹å?: prompt-engineering, ChatGPT, ?ªå?"
+                  placeholder="ä¾‹ï¿½?: prompt-engineering, ChatGPT, ?ï¿½ï¿½?"
                   className="bg-gray-700 border-gray-600 text-white"
                 />
               </div>
@@ -438,7 +438,7 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                 onClick={() => setShowNewQuestion(false)}
                 className="text-gray-400 border-gray-600"
               >
-                ?–æ?
+                ?ï¿½ï¿½?
               </Button>
               <Button
                 onClick={handleSubmitQuestion}
@@ -446,28 +446,28 @@ export const CommunityQA: React.FC<CommunityQAProps> = ({ courseId, moduleId }) 
                 className="bg-blue-600 hover:bg-blue-700 text-white"
               >
                 <Send className="w-4 h-4 mr-2" />
-                ?¼å??é?
+                ?ï¿½ï¿½??ï¿½ï¿½?
               </Button>
             </div>
           </motion.div>
         </div>
       )}
 
-      {/* åº•éƒ¨çµ±è? */}
+      {/* åº•éƒ¨çµ±ï¿½? */}
       <div className="p-4 border-t border-gray-700">
         <div className="flex items-center justify-between text-sm text-gray-400">
           <span>
-            ??{filteredQuestions.length} ?‹å?é¡?
-            {searchTerm && ` ???œç´¢: "${searchTerm}"`}
+            ??{filteredQuestions.length} ?ï¿½ï¿½?ï¿½?
+            {searchTerm && ` ???ï¿½ç´¢: "${searchTerm}"`}
           </span>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <CheckCircle className="w-3 h-3 text-green-400" />
-              <span>{questions.filter(q => q.isSolved).length} å·²è§£æ±?/span>
+              <span>{questions.filter(q => q.isSolved).length} å·²è§£ï¿½?/span>
             </div>
             <div className="flex items-center space-x-1">
               <MessageSquare className="w-3 h-3 text-blue-400" />
-              <span>{questions.filter(q => q.answers.length === 0).length} å¾…å?ç­?/span>
+              <span>{questions.filter(q => q.answers.length === 0).length} å¾…ï¿½?ï¿½?/span>
             </div>
           </div>
         </div>

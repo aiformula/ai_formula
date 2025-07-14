@@ -23,7 +23,7 @@ const InstructorSection = () => {
         language === 'zh-HK' ? t('instructors.sarah.qual3') : 'Strategic AI Business Integration',
         language === 'zh-HK' ? t('instructors.sarah.qual4') : 'Future-Ready Marketing Systems'
       ],
-      avatar: '?ë®?ç??,
+      avatar: '/images/instructors/kenneth.jpg',
       gradient: 'from-blue-500 to-purple-600'
     },
     {
@@ -39,7 +39,7 @@ const InstructorSection = () => {
         language === 'zh-HK' ? t('instructors.david.qual3') : 'AI-Powered Content Management',
         language === 'zh-HK' ? t('instructors.david.qual4') : 'All-in-One Business Solutions'
       ],
-      avatar: '?ë®?ç??,
+      avatar: '/images/instructors/david.jpg',
       gradient: 'from-green-500 to-teal-600'
     },
     {
@@ -55,7 +55,7 @@ const InstructorSection = () => {
         language === 'zh-HK' ? t('instructors.emily.qual3') : 'Performance Optimization Specialist',
         language === 'zh-HK' ? t('instructors.emily.qual4') : 'Rapid Development Solutions'
       ],
-      avatar: '?ë®?ç??,
+      avatar: '/images/instructors/ken.jpg',
       gradient: 'from-orange-500 to-red-600'
     },
     {
@@ -71,7 +71,7 @@ const InstructorSection = () => {
         language === 'zh-HK' ? t('instructors.michael.qual3') : 'Full-Stack Web Development',
         language === 'zh-HK' ? t('instructors.michael.qual4') : 'AI-Enhanced Coding Solutions'
       ],
-      avatar: '?ë®?ç??,
+      avatar: '/images/instructors/jason.jpg',
       gradient: 'from-purple-500 to-pink-600'
     }
   ];

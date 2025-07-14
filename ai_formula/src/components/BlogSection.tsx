@@ -10,13 +10,15 @@ const BlogSection = () => {
   const { language } = useLanguage()
   const isZhTW = language === 'zh-HK'
 
-  // ä½¿ç”¨?Ÿå¯¦?„éƒ¨?½æ ¼è³‡æ?
+  // ä½¿ç”¨?ï¿½å¯¦?ï¿½éƒ¨?ï¿½æ ¼è³‡ï¿½?
   const featuredPosts = getFeaturedPosts()
   const recentPosts = getRecentPosts()
   const allPosts = [...blogPosts].sort((a, b) => b.publishDate.getTime() - a.publishDate.getTime())
 
-  const featuredPost = featuredPosts[0] // ?–ç¬¬ä¸€ç¯‡ç²¾?¸æ?ç«?
-  // ?²å?4?‹éš¨æ©Ÿæ?ç«?  const getRandomPosts = (posts: BlogPost[], count: number) => {
+  const featuredPost = featuredPosts[0] // å–ç¬¬ä¸€ç¯‡ç²¾é¸æ–‡ç« 
+  
+  // ç²å–4å€‹éš¨æ©Ÿæ–‡ç« 
+  const getRandomPosts = (posts: BlogPost[], count: number) => {
     const shuffled = [...posts].sort(() => 0.5 - Math.random())
     return shuffled.slice(0, count)
   }
@@ -25,19 +27,19 @@ const BlogSection = () => {
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case '?¬å¸ä»‹ç´¹':
+      case 'å…¬å¸ä»‹ç´¹':
       case 'Company Introduction':
         return Rocket
-      case '?¬å¸?ªå‹¢':
+      case 'å…¬å¸å„ªå‹¢':
       case 'Company Advantages':
         return Star
-      case 'å·¥å…·?‡å?':
+      case 'å·¥å…·æŒ‡å—':
       case 'Tool Guide':
         return Wrench
-      case '?ºç??¥è?':
+      case '?ï¿½ï¿½??ï¿½ï¿½?':
       case 'Fundamentals':
         return Bot
-      case 'ç§‘æ??ç»':
+      case 'ç§‘ï¿½??ï¿½ç»':
       case 'Tech Innovation':
         return Brain
       default:
@@ -47,19 +49,19 @@ const BlogSection = () => {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case '?¬å¸ä»‹ç´¹':
+      case '?ï¿½å¸ä»‹ç´¹':
       case 'Company Introduction':
         return 'bg-orange-500/20 text-orange-300 border-orange-500/50'
-      case '?¬å¸?ªå‹¢':
+      case '?ï¿½å¸?ï¿½å‹¢':
       case 'Company Advantages':
         return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50'
-      case 'å·¥å…·?‡å?':
+      case 'å·¥å…·?ï¿½ï¿½?':
       case 'Tool Guide':
         return 'bg-blue-500/20 text-blue-300 border-blue-500/50'
-      case '?ºç??¥è?':
+      case '?ï¿½ï¿½??ï¿½ï¿½?':
       case 'Fundamentals':
         return 'bg-green-500/20 text-green-300 border-green-500/50'
-      case 'ç§‘æ??ç»':
+      case 'ç§‘ï¿½??ï¿½ç»':
       case 'Tech Innovation':
         return 'bg-purple-500/20 text-purple-300 border-purple-500/50'
       default:
@@ -69,19 +71,19 @@ const BlogSection = () => {
 
   const getCategoryIconColor = (category: string) => {
     switch (category) {
-      case '?¬å¸ä»‹ç´¹':
+      case '?ï¿½å¸ä»‹ç´¹':
       case 'Company Introduction':
         return 'text-orange-400'
-      case '?¬å¸?ªå‹¢':
+      case '?ï¿½å¸?ï¿½å‹¢':
       case 'Company Advantages':
         return 'text-yellow-400'
-      case 'å·¥å…·?‡å?':
+      case 'å·¥å…·?ï¿½ï¿½?':
       case 'Tool Guide':
         return 'text-blue-400'
-      case '?ºç??¥è?':
+      case '?ï¿½ï¿½??ï¿½ï¿½?':
       case 'Fundamentals':
         return 'text-green-400'
-      case 'ç§‘æ??ç»':
+      case 'ç§‘ï¿½??ï¿½ç»':
       case 'Tech Innovation':
         return 'text-purple-400'
       default:
@@ -91,19 +93,19 @@ const BlogSection = () => {
 
   const getCategoryIconBackground = (category: string) => {
     switch (category) {
-      case '?¬å¸ä»‹ç´¹':
+      case '?ï¿½å¸ä»‹ç´¹':
       case 'Company Introduction':
         return 'bg-gradient-to-br from-orange-500/20 to-red-500/20'
-      case '?¬å¸?ªå‹¢':
+      case '?ï¿½å¸?ï¿½å‹¢':
       case 'Company Advantages':
         return 'bg-gradient-to-br from-yellow-500/20 to-orange-500/20'
-      case 'å·¥å…·?‡å?':
+      case 'å·¥å…·?ï¿½ï¿½?':
       case 'Tool Guide':
         return 'bg-gradient-to-br from-blue-500/20 to-cyan-500/20'
-      case '?ºç??¥è?':
+      case '?ï¿½ï¿½??ï¿½ï¿½?':
       case 'Fundamentals':
         return 'bg-gradient-to-br from-green-500/20 to-emerald-500/20'
-      case 'ç§‘æ??ç»':
+      case 'ç§‘ï¿½??ï¿½ç»':
       case 'Tech Innovation':
         return 'bg-gradient-to-br from-purple-500/20 to-indigo-500/20'
       default:
@@ -123,16 +125,16 @@ const BlogSection = () => {
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {isZhTW ? 'AI ?»ç•¥?Šè?è¨? : 'AI Strategy & Information'}
+              {isZhTW ? 'AI ç­–ç•¥è³‡è¨Š' : 'AI Strategy & Information'}
             </h2>
             <p className="text-xl text-gray-300 lg:text-right">
-              {isZhTW ? '?„ç¨®å¯¦ç”¨ AI è³‡è?ï¼Œä??æ??¡ï?' : 'Various useful AI information, all in one page!'}
+              {isZhTW ? 'å„ç¨®å¯¦ç”¨ AI è³‡è¨Šï¼Œä¸€é çœ‹æ‡‚æ‰€æœ‰ï¼' : 'Various useful AI information, all in one page!'}
             </p>
           </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* Latest Articles - 4?‹éš¨æ©Ÿæ?ç«?- 1/3 å¯¬åº¦ */}
+          {/* Latest Articles - 4?ï¿½éš¨æ©Ÿï¿½?ï¿½?- 1/3 å¯¬åº¦ */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -143,11 +145,11 @@ const BlogSection = () => {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-white flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
-                  {isZhTW ? '?€??AI è³‡è?' : 'Latest AI Information'}
+                  {isZhTW ? '?ï¿½??AI è³‡ï¿½?' : 'Latest AI Information'}
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex-1">
-                {/* 4?‹éš¨æ©Ÿæ?ç« å??´æ???*/}
+                {/* 4?ï¿½éš¨æ©Ÿï¿½?ç« ï¿½??ï¿½ï¿½???*/}
                 <div className="grid grid-cols-1 gap-4">
                   {randomPosts.map((post, index) => {
                     const CategoryIcon = getCategoryIcon(post.category)
@@ -217,7 +219,7 @@ const BlogSection = () => {
                     {isZhTW ? featuredPost.excerpt : featuredPost.excerptEn}
                   </p>
                   <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200 transition-colors mt-auto">
-                    <span className="mr-2">{isZhTW ? '?±è??´å?' : 'Read More'}</span>
+                    <span className="mr-2">{isZhTW ? '?ï¿½ï¿½??ï¿½ï¿½?' : 'Read More'}</span>
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </CardContent>

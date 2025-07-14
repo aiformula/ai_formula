@@ -43,13 +43,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
 
-  // ?‚é??³è??›ç‚ºç§’æ•¸
+  // ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ç‚ºç§’æ•¸
   const timestampToSeconds = (timestamp: string): number => {
     const [minutes, seconds] = timestamp.split(':').map(Number);
     return minutes * 60 + seconds;
   };
 
-  // ?æ¿¾ç­†è?
+  // ?ï¿½æ¿¾ç­†ï¿½?
   const filteredNotes = notes.filter(note => {
     const matchesSearch = note.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          note.codeSnippet?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -57,7 +57,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
     return matchesSearch && matchesFilter;
   });
 
-  // ?²å?é¡å??–æ?
+  // ?ï¿½ï¿½?é¡ï¿½??ï¿½ï¿½?
   const getTypeIcon = (type: Note['type']) => {
     switch (type) {
       case 'concept':
@@ -73,7 +73,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
     }
   };
 
-  // ?²å?é¡å?é¡è‰²
+  // ?ï¿½ï¿½?é¡ï¿½?é¡è‰²
   const getTypeColor = (type: Note['type']) => {
     switch (type) {
       case 'concept':
@@ -89,52 +89,52 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
     }
   };
 
-  // ?²å?é¡å?æ¨™ç±¤
+  // ?ï¿½ï¿½?é¡ï¿½?æ¨™ç±¤
   const getTypeLabel = (type: Note['type']) => {
     switch (type) {
       case 'concept':
         return 'æ¦‚å¿µ';
       case 'example':
-        return 'ç¯„ä?';
+        return 'ç¯„ï¿½?';
       case 'tip':
-        return '?ç¤º';
+        return '?ï¿½ç¤º';
       case 'warning':
-        return 'è­¦å?';
+        return 'è­¦ï¿½?';
       default:
-        return 'ç­†è?';
+        return 'ç­†ï¿½?';
     }
   };
 
-  // è¤‡è£½?§å®¹
+  // è¤‡è£½?ï¿½å®¹
   const copyNote = (note: Note) => {
     const content = `[${note.timestamp}] ${note.content}${note.codeSnippet ? `\n\n${note.codeSnippet}` : ''}`;
     navigator.clipboard.writeText(content);
   };
 
-  // ?•ç?ç·¨è¼¯
+  // ?ï¿½ï¿½?ç·¨è¼¯
   const handleEdit = (noteId: string, content: string) => {
     setIsEditing(noteId);
     setEditContent(content);
   };
 
-  // ä¿å?ç·¨è¼¯
+  // ä¿ï¿½?ç·¨è¼¯
   const handleSaveEdit = (noteId: string) => {
-    // ?¨å¯¦?›æ??¨ä¸­ï¼Œé€™è£¡?ƒæ›´?°ç?è¨?
+    // ?ï¿½å¯¦?ï¿½ï¿½??ï¿½ä¸­ï¼Œé€™è£¡?ï¿½æ›´?ï¿½ï¿½?ï¿½?
     console.log('Save edit for note:', noteId, 'New content:', editContent);
     setIsEditing(null);
     setEditContent('');
   };
 
-  // å¦‚æ?æ²’æ?ç­†è?ï¼Œé¡¯ç¤ºç©º?€??
+  // å¦‚ï¿½?æ²’ï¿½?ç­†ï¿½?ï¼Œé¡¯ç¤ºç©º?ï¿½??
   if (notes.length === 0) {
     return (
       <div className="p-4 h-full flex items-center justify-center">
         <div className="text-center">
           <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-300 mb-2">?„æ??‰ç?è¨?/h3>
+          <h3 className="text-lg font-semibold text-gray-300 mb-2">æ™ºæ…§ç­†è¨˜</h3>
           <p className="text-sm text-gray-500">
-            ?¨å­¸ç¿’é?ç¨‹ä¸­ï¼Œç³»çµ±æ??ªå??ºæ‚¨?Ÿæ??ºèƒ½ç­†è?ï¼?
-            ?…å«?è?æ¦‚å¿µ?ä»£ç¢¼ç?ä¾‹å?å­¸ç??ç¤º??
+            åœ¨å­¸ç¿’éç¨‹ä¸­ï¼Œç³»çµ±æœƒè‡ªå‹•ç‚ºæ‚¨å»ºç«‹æ™ºæ…§ç­†è¨˜ï¼Œ
+            åŒ…å«é‡è¦æ¦‚å¿µã€ç¨‹å¼ç¢¼ç¯„ä¾‹ã€å­¸ç¿’é‡é»ç­‰ã€‚
           </p>
         </div>
       </div>
@@ -143,12 +143,12 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
 
   return (
     <div className="h-full flex flex-col">
-      {/* ?œç´¢?Œé?æ¿¾æ§??*/}
+      {/* æœç´¢å’Œç¯©é¸æ§åˆ¶ */}
       <div className="p-4 border-b border-gray-700 space-y-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
-            placeholder="?œç´¢ç­†è?..."
+            placeholder="?ï¿½ç´¢ç­†ï¿½?..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 bg-gray-700 border-gray-600 text-white"
@@ -159,11 +159,11 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
           <Filter className="w-4 h-4 text-gray-400" />
           <div className="flex space-x-2">
             {[
-              { value: 'all', label: '?¨éƒ¨' },
+              { value: 'all', label: '?ï¿½éƒ¨' },
               { value: 'concept', label: 'æ¦‚å¿µ' },
-              { value: 'example', label: 'ç¯„ä?' },
-              { value: 'tip', label: '?ç¤º' },
-              { value: 'warning', label: 'è­¦å?' }
+              { value: 'example', label: 'ç¯„ï¿½?' },
+              { value: 'tip', label: '?ï¿½ç¤º' },
+              { value: 'warning', label: 'è­¦ï¿½?' }
             ].map(({ value, label }) => (
               <Button
                 key={value}
@@ -183,14 +183,14 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
         </div>
       </div>
 
-      {/* ç­†è??—è¡¨ */}
+      {/* ç­†ï¿½??ï¿½è¡¨ */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="p-4 space-y-4">
             {filteredNotes.length === 0 ? (
               <div className="text-center py-8">
                 <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-400">æ²’æ??¾åˆ°?¸é?ç­†è?</p>
+                <p className="text-gray-400">æ²’ï¿½??ï¿½åˆ°?ï¿½ï¿½?ç­†ï¿½?</p>
               </div>
             ) : (
               filteredNotes.map((note) => (
@@ -203,13 +203,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                   <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-3">
-                        {/* é¡å??–æ? */}
+                        {/* é¡ï¿½??ï¿½ï¿½? */}
                         <div className={`p-2 rounded-lg ${getTypeColor(note.type)}`}>
                           {getTypeIcon(note.type)}
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          {/* ?­éƒ¨è³‡è? */}
+                          {/* ?ï¿½éƒ¨è³‡ï¿½? */}
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center space-x-2">
                               <Button
@@ -246,7 +246,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                             </div>
                           </div>
                           
-                          {/* ç­†è??§å®¹ */}
+                          {/* ç­†ï¿½??ï¿½å®¹ */}
                           <div className="space-y-2">
                             {isEditing === note.id ? (
                               <div className="space-y-2">
@@ -262,7 +262,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                                     className="bg-green-600 hover:bg-green-700"
                                   >
                                     <CheckCircle className="w-3 h-3 mr-1" />
-                                    ä¿å?
+                                    ä¿ï¿½?
                                   </Button>
                                   <Button
                                     size="sm"
@@ -270,7 +270,7 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                                     onClick={() => setIsEditing(null)}
                                     className="text-gray-400 border-gray-600"
                                   >
-                                    ?–æ?
+                                    ?ï¿½ï¿½?
                                   </Button>
                                 </div>
                               </div>
@@ -280,13 +280,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
                               </p>
                             )}
                             
-                            {/* ä»?¢¼?‡æ®µ */}
+                            {/* ï¿½?ï¿½ï¿½?ï¿½æ®µ */}
                             {note.codeSnippet && (
                               <div className="bg-gray-900 rounded-lg p-3 border border-gray-700">
                                 <div className="flex items-center justify-between mb-2">
                                   <div className="flex items-center space-x-2">
                                     <Code className="w-3 h-3 text-green-400" />
-                                    <span className="text-xs text-gray-400">ä»?¢¼?‡æ®µ</span>
+                                    <span className="text-xs text-gray-400">ï¿½?ï¿½ï¿½?ï¿½æ®µ</span>
                                   </div>
                                   <Button
                                     variant="ghost"
@@ -314,13 +314,13 @@ export const SmartNotes: React.FC<SmartNotesProps> = ({ notes, onTimestampClick 
         </ScrollArea>
       </div>
 
-      {/* åº•éƒ¨çµ±è? */}
+      {/* åº•éƒ¨çµ±ï¿½? */}
       <div className="p-4 border-t border-gray-700">
         <div className="flex items-center justify-between text-sm text-gray-400">
           <span>
-            ??{filteredNotes.length} æ¢ç?è¨?
-            {searchTerm && ` ???œç´¢: "${searchTerm}"`}
-            {filterType !== 'all' && ` ??é¡å?: ${getTypeLabel(filterType)}`}
+            ??{filteredNotes.length} æ¢ï¿½?ï¿½?
+            {searchTerm && ` ???ï¿½ç´¢: "${searchTerm}"`}
+            {filterType !== 'all' && ` ??é¡ï¿½?: ${getTypeLabel(filterType)}`}
           </span>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">

@@ -32,175 +32,175 @@ const ChatGPTMasteryOutline: React.FC = () => {
   const { language } = useLanguage();
   const isZhTW = language === 'zh-HK';
 
-  // èª²ç??ºæœ¬ä¿¡æ¯
+  // èª²ï¿½??ï¿½æœ¬ä¿¡æ¯
   const courseInfo = {
-    badge: isZhTW ? "ChatGPT ç²¾é€šç­" : "ChatGPT Mastery Class",
-    title: isZhTW ? "?ChatGPT ç²¾é€šç­??å°æ? ?Œæ¡AIå°è©±?è??ç‚º?ç?æ­??å®¶ã€ï?" : "'ChatGPT Mastery Class' 5 Hours Master AI Conversation Art to Become a 'True Expert'!",
-    subtitle: isZhTW ? "5å°æ?æ·±åº¦?Œæ¡ChatGPTï¼Œå?å°è©±?°æ??°AIå°ˆå®¶ï¼æ¶µ?‹æ?ç¤ºå·¥ç¨‹ã€å‰µ?å¯«ä½œã€å?æ¥­æ??¨ã€API?´å?ï¼Œå…¨?¹ä??å?ä½ ç?AI?‹ç”¨?½å?ï¼Œè?ä½ æ??ºè·?´AI?”äºº?? : "Master ChatGPT in 5 hours, from conversation novice to AI expert! Covering prompt engineering, creative writing, business applications, API integration.",
-    instructor: "David | AI ?ªå??–å?å®?,
+    badge: isZhTW ? "æˆç‚ºè·å ´AIé”äºº" : "Master ChatGPT in 5 hours, from complete beginner to workplace AI expert",
+    title: isZhTW ? "?ChatGPT ç²¾é€šç­??å°ï¿½? ?ï¿½æ¡AIå°è©±?ï¿½ï¿½??ï¿½ç‚º?ï¿½ï¿½?ï¿½??å®¶ã€ï¿½?" : "'ChatGPT Mastery Class' 5 Hours Master AI Conversation Art to Become a 'True Expert'!",
+    subtitle: isZhTW ? "5å°ï¿½?æ·±åº¦?ï¿½æ¡ChatGPTï¼Œï¿½?å°è©±?ï¿½ï¿½??ï¿½AIå°ˆå®¶ï¼æ¶µ?ï¿½ï¿½?ç¤ºå·¥ç¨‹ã€å‰µ?ï¿½å¯«ä½œã€ï¿½?æ¥­ï¿½??ï¿½ã€API?ï¿½ï¿½?ï¼Œå…¨?ï¿½ï¿½??ï¿½ï¿½?ä½ ï¿½?AI?ï¿½ç”¨?ï¿½ï¿½?ï¼Œï¿½?ä½ ï¿½??ï¿½è·?ï¿½AI?ï¿½äºº?? : "Master ChatGPT in 5 hours, from conversation novice to AI expert! Covering prompt engineering, creative writing, business applications, API integration.",
+    instructor: "David | AI ?ï¿½ï¿½??ï¿½ï¿½?ï¿½?,
     instructorTitle: isZhTW ? "è³‡æ·±å°å¸«" : "Senior Instructor"
   };
 
-  // èª²ç?çµ±è?
+  // èª²ï¿½?çµ±ï¿½?
   const courseStats = [
     {
       icon: <Clock className="w-6 h-6 text-purple-400" />,
-      label: isZhTW ? "å­¸ç??‚æ•¸" : "Learning Hours",
-      value: isZhTW ? "5å°æ?" : "5 Hours"
+      label: isZhTW ? "å­¸ï¿½??ï¿½æ•¸" : "Learning Hours",
+      value: isZhTW ? "5å°ï¿½?" : "5 Hours"
     },
     {
       icon: <MessageSquare className="w-6 h-6 text-purple-400" />,
-      label: isZhTW ? "èª²ç??¸é?" : "Course Modules",
+      label: isZhTW ? "èª²ï¿½??ï¿½ï¿½?" : "Course Modules",
       value: isZhTW ? "4?? : "4 Modules"
     },
     {
       icon: <Repeat className="w-6 h-6 text-purple-400" />,
-      label: isZhTW ? "å­¸ç?ç¦åˆ©" : "Learning Benefits",
-      value: isZhTW ? "çµ‚èº«?ƒå“¡ï¼‹AIå·¥å…·?…ï?å°ˆå®¶ç¤¾ç¾¤" : "Lifetime membership + AI toolkit + expert community"
+      label: isZhTW ? "å­¸ï¿½?ç¦åˆ©" : "Learning Benefits",
+      value: isZhTW ? "çµ‚èº«?ï¿½å“¡ï¼‹AIå·¥å…·?ï¿½ï¿½?å°ˆå®¶ç¤¾ç¾¤" : "Lifetime membership + AI toolkit + expert community"
     }
   ];
 
-  // èª²ç?è³‡è?æ¨™ç±¤
+  // èª²ï¿½?è³‡ï¿½?æ¨™ç±¤
   const courseInfoTags = [
-    { name: isZhTW ? "?¶åŸºç¤å¯å­? : "Zero Experience OK", icon: <Star className="w-4 h-4 text-green-400" />, status: 'available' as const },
-    { name: isZhTW ? "?™è??ˆèª²" : "Bilingual Teaching", icon: <Globe className="w-4 h-4 text-blue-400" />, status: 'available' as const },
-    { name: isZhTW ? "?µæ?å¯«ä?" : "Creative Writing", icon: <Wand2 className="w-4 h-4 text-purple-400" />, status: 'featured' as const },
-    { name: isZhTW ? "?†æ¥­?‰ç”¨" : "Business Applications", icon: <Briefcase className="w-4 h-4 text-yellow-400" />, status: 'available' as const },
-    { name: isZhTW ? "API?´å?" : "API Integration", icon: <Code className="w-4 h-4 text-orange-400" />, status: 'available' as const },
-    { name: isZhTW ? "æ¨¡æ¿åº? : "Template Library", icon: <Database className="w-4 h-4 text-cyan-400" />, status: 'available' as const },
-    { name: isZhTW ? "å°ˆå®¶èªè?" : "Expert Certification", icon: <Award className="w-4 h-4 text-indigo-400" />, status: 'coming-soon' as const },
-    { name: isZhTW ? "?²é??Ÿèƒ½" : "Advanced Features", icon: <Brain className="w-4 h-4 text-pink-400" />, status: 'available' as const },
-    { name: isZhTW ? "?ç??´æ–°" : "Continuous Updates", icon: <TrendingUp className="w-4 h-4 text-red-400" />, status: 'available' as const }
+    { name: isZhTW ? "?ï¿½åŸºç¤å¯ï¿½? : "Zero Experience OK", icon: <Star className="w-4 h-4 text-green-400" />, status: 'available' as const },
+    { name: isZhTW ? "?ï¿½ï¿½??ï¿½èª²" : "Bilingual Teaching", icon: <Globe className="w-4 h-4 text-blue-400" />, status: 'available' as const },
+    { name: isZhTW ? "?ï¿½ï¿½?å¯«ï¿½?" : "Creative Writing", icon: <Wand2 className="w-4 h-4 text-purple-400" />, status: 'featured' as const },
+    { name: isZhTW ? "?ï¿½æ¥­?ï¿½ç”¨" : "Business Applications", icon: <Briefcase className="w-4 h-4 text-yellow-400" />, status: 'available' as const },
+    { name: isZhTW ? "API?ï¿½ï¿½?" : "API Integration", icon: <Code className="w-4 h-4 text-orange-400" />, status: 'available' as const },
+    { name: isZhTW ? "æ¨¡æ¿ï¿½? : "Template Library", icon: <Database className="w-4 h-4 text-cyan-400" />, status: 'available' as const },
+    { name: isZhTW ? "å°ˆå®¶èªï¿½?" : "Expert Certification", icon: <Award className="w-4 h-4 text-indigo-400" />, status: 'coming-soon' as const },
+    { name: isZhTW ? "?ï¿½ï¿½??ï¿½èƒ½" : "Advanced Features", icon: <Brain className="w-4 h-4 text-pink-400" />, status: 'available' as const },
+    { name: isZhTW ? "?ï¿½ï¿½??ï¿½æ–°" : "Continuous Updates", icon: <TrendingUp className="w-4 h-4 text-red-400" />, status: 'available' as const }
   ];
 
-  // ?¯é¸èª²ç?
+  // ?ï¿½é¸èª²ï¿½?
   const availableCourses = [
     {
-      title: isZhTW ? "?AI ä¸»é??­ã€?å°æ? ?‹æ??‹æ?ä½ ä?æ­¥æ­¥?šå‡º?ç?æ­?”¨å¾—ã€æ?æ©?AI Appï¼? : "'AI Master Class' 3 Hours Step-by-Step Guide to Building a 'Truly Useful' Mobile AI App!",
-      description: isZhTW ? "å­¸ç?å»ºæ?å¯¦ç”¨?„AI?‹æ??‰ç”¨ç¨‹å?" : "Learn to build practical AI mobile applications",
+      title: isZhTW ? "?ï¿½AI ä¸»ï¿½??ï¿½ï¿½?å°ï¿½? ?ï¿½ï¿½??ï¿½ï¿½?ä½ ï¿½?æ­¥æ­¥?ï¿½å‡º?ï¿½ï¿½?ï¿½?ï¿½ï¿½å¾—ã€ï¿½?ï¿½?AI Appï¿½? : "'AI Master Class' 3 Hours Step-by-Step Guide to Building a 'Truly Useful' Mobile AI App!",
+      description: isZhTW ? "å­¸ï¿½?å»ºï¿½?å¯¦ç”¨?ï¿½AI?ï¿½ï¿½??ï¿½ç”¨ç¨‹ï¿½?" : "Learn to build practical AI mobile applications",
       color: "green" as const,
       available: true
     },
     {
-      title: isZhTW ? "?Perplexity å·¥å…·?­ã€?å°æ? ?ç‚ºAI?œå??”ç©¶?è?ç´šå?å®¶ã€ï?" : "'Perplexity Tools Class' 3 Hours Become AI Search Research 'Super Expert'!",
-      description: isZhTW ? "?Œæ¡AI?œå?å·¥å…·?„å?æ¥­æ??? : "Master professional skills of AI search tools",
+      title: isZhTW ? "?ï¿½Perplexity å·¥å…·?ï¿½ï¿½?å°ï¿½? ?ï¿½ç‚ºAI?ï¿½ï¿½??ï¿½ç©¶?ï¿½ï¿½?ç´šï¿½?å®¶ã€ï¿½?" : "'Perplexity Tools Class' 3 Hours Become AI Search Research 'Super Expert'!",
+      description: isZhTW ? "?ï¿½æ¡AI?ï¿½ï¿½?å·¥å…·?ï¿½ï¿½?æ¥­ï¿½??? : "Master professional skills of AI search tools",
       color: "orange" as const,
       available: true
     }
   ];
 
-  // ?€?°æ???  const latestNews = {
-    date: "2025å¹???5??,
-    title: isZhTW ? "9???¥ChatGPTç²¾é€šç­?‹èª²ï¼Œæ—©é³¥å„ª? é€²è?ä¸? : "September 1st ChatGPT Mastery Class, Early Bird Offer Available",
+  // ?ï¿½?ï¿½ï¿½???  const latestNews = {
+    date: "2025ï¿½???5??,
+    title: isZhTW ? "9???ï¿½ChatGPTç²¾é€šç­?ï¿½èª²ï¼Œæ—©é³¥å„ª?ï¿½é€²ï¿½?ï¿½? : "September 1st ChatGPT Mastery Class, Early Bird Offer Available",
     details: [
-      { icon: "??", text: isZhTW ? "?¥æ?ï¼?025å¹?????(?Ÿæ?ä¸€)" : "Date: September 1, 2025 (Monday)" },
-      { icon: "??", text: isZhTW ? "?‚é?ï¼šä???9:00 - ä¸‹å? 2:00 (5å°æ?)" : "Time: 9:00 AM - 2:00 PM (5 hours)" },
-      { icon: "?¯", text: isZhTW ? "å¯¦é?ï¼‹ç?ä¸Šå?æ­¥æ?å­? : "Physical + Online Sync Teaching" },
-      { icon: "?‘¥", text: isZhTW ? "å°ç­?™å­¸ï½œå???20 ä½? : "Small Class Teaching | Limited to 20 seats" },
-      { icon: "??, text: isZhTW ? "å°ˆå®¶ç´šæ?ç¤ºå·¥ç¨‹æ?å·§å‚³?? : "Expert-level prompt engineering techniques" },
-      { icon: "??", text: isZhTW ? "?©é³¥?¹ï?$3,800 (?Ÿåƒ¹ $4,500)" : "Early Bird Price: $3,800 (Original $4,500)" }
+      { icon: "??", text: isZhTW ? "?ï¿½ï¿½?ï¿½?025ï¿½?????(?ï¿½ï¿½?ä¸€)" : "Date: September 1, 2025 (Monday)" },
+      { icon: "??", text: isZhTW ? "?ï¿½ï¿½?ï¼šï¿½???9:00 - ä¸‹ï¿½? 2:00 (5å°ï¿½?)" : "Time: 9:00 AM - 2:00 PM (5 hours)" },
+      { icon: "?ï¿½ï¿½", text: isZhTW ? "å¯¦ï¿½?ï¼‹ï¿½?ä¸Šï¿½?æ­¥ï¿½?ï¿½? : "Physical + Online Sync Teaching" },
+      { icon: "?ï¿½ï¿½", text: isZhTW ? "å°ç­?ï¿½å­¸ï½œï¿½???20 ï¿½? : "Small Class Teaching | Limited to 20 seats" },
+      { icon: "??, text: isZhTW ? "å°ˆå®¶ç´šï¿½?ç¤ºå·¥ç¨‹ï¿½?å·§å‚³?? : "Expert-level prompt engineering techniques" },
+      { icon: "??", text: isZhTW ? "?ï¿½é³¥?ï¿½ï¿½?$3,800 (?ï¿½åƒ¹ $4,500)" : "Early Bird Price: $3,800 (Original $4,500)" }
     ],
-    note: isZhTW ? "?é??‰é?ï¼Œç??³å ±?? : "Limited seats, register now"
+    note: isZhTW ? "?ï¿½ï¿½??ï¿½ï¿½?ï¼Œï¿½??ï¿½å ±?? : "Limited seats, register now"
   };
 
-  // ?¹æ ¼ä¿¡æ¯
+  // ?ï¿½æ ¼ä¿¡æ¯
   const pricingInfo = {
     series: isZhTW ? "ChatGPTå°ˆç²¾?? : "ChatGPT Specialty Price",
     price: "$3,800",
     originalPrice: "$4,500",
     aiInOne: isZhTW ? "AI in one å­¸å“¡?? : "AI in one Student Price",
     studentPrice: "$2,800",
-    enterprise: isZhTW ? "ä¼æ¥­?˜é??¹è??¦æ??ªæ?" : "Corporate group training discounts available"
+    enterprise: isZhTW ? "ä¼æ¥­?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?" : "Corporate group training discounts available"
   };
 
-  // èª²ç??¹è‰²
+  // èª²ï¿½??ï¿½è‰²
   const courseFeatures = [
     {
       icon: <MessageSquare className="w-12 h-12 text-blue-400 mx-auto" />,
-      title: isZhTW ? "å°è©±?è?ç²¾é€? : "Conversation Art Mastery",
-      description: isZhTW ? "?Œæ¡?‡AI?²è?é«˜æ?å°è©±?„æ?å·§å??¹æ?" : "Master techniques and methods for efficient AI conversations",
-      highlight: isZhTW ? "å°è©±?€å·? : "Conversation Skills"
+      title: isZhTW ? "å°è©±?ï¿½ï¿½?ç²¾ï¿½? : "Conversation Art Mastery",
+      description: isZhTW ? "?ï¿½æ¡?ï¿½AI?ï¿½ï¿½?é«˜ï¿½?å°è©±?ï¿½ï¿½?å·§ï¿½??ï¿½ï¿½?" : "Master techniques and methods for efficient AI conversations",
+      highlight: isZhTW ? "å°è©±?ï¿½ï¿½? : "Conversation Skills"
     },
     {
       icon: <Wand2 className="w-12 h-12 text-purple-400 mx-auto" />,
-      title: isZhTW ? "?µæ?å¯«ä??©æ?" : "Creative Writing Assistant",
-      description: isZhTW ? "å­¸æ?ä½¿ç”¨ChatGPT?²è??µæ?å¯«ä??Œå…§å®¹å‰µä½? : "Learn to use ChatGPT for creative writing and content creation",
-      highlight: isZhTW ? "?µæ?å¯«ä?" : "Creative Writing"
+      title: isZhTW ? "?ï¿½ï¿½?å¯«ï¿½??ï¿½ï¿½?" : "Creative Writing Assistant",
+      description: isZhTW ? "å­¸ï¿½?ä½¿ç”¨ChatGPT?ï¿½ï¿½??ï¿½ï¿½?å¯«ï¿½??ï¿½å…§å®¹å‰µï¿½? : "Learn to use ChatGPT for creative writing and content creation",
+      highlight: isZhTW ? "?ï¿½ï¿½?å¯«ï¿½?" : "Creative Writing"
     },
     {
       icon: <TrendingUp className="w-12 h-12 text-green-400 mx-auto" />,
-      title: isZhTW ? "?†æ¥­?‰ç”¨å¯¦æˆ°" : "Business Application Practice",
-      description: isZhTW ? "å°‡ChatGPT?´å??°æ—¥å¸¸å?æ¥­å·¥ä½œæ?ç¨‹ä¸­" : "Integrate ChatGPT into daily business workflows",
-      highlight: isZhTW ? "?†æ¥­?´å?" : "Business Integration"
+      title: isZhTW ? "?ï¿½æ¥­?ï¿½ç”¨å¯¦æˆ°" : "Business Application Practice",
+      description: isZhTW ? "å°‡ChatGPT?ï¿½ï¿½??ï¿½æ—¥å¸¸ï¿½?æ¥­å·¥ä½œï¿½?ç¨‹ä¸­" : "Integrate ChatGPT into daily business workflows",
+      highlight: isZhTW ? "?ï¿½æ¥­?ï¿½ï¿½?" : "Business Integration"
     },
     {
       icon: <Code className="w-12 h-12 text-orange-400 mx-auto" />,
-      title: isZhTW ? "API é«˜ç??‰ç”¨" : "Advanced API Applications",
-      description: isZhTW ? "å­¸ç?ChatGPT API?„é?ç´šä½¿?¨æ?å·? : "Learn advanced ChatGPT API usage techniques",
-      highlight: isZhTW ? "API?´å?" : "API Integration"
+      title: isZhTW ? "API é«˜ï¿½??ï¿½ç”¨" : "Advanced API Applications",
+      description: isZhTW ? "å­¸ï¿½?ChatGPT API?ï¿½ï¿½?ç´šä½¿?ï¿½ï¿½?ï¿½? : "Learn advanced ChatGPT API usage techniques",
+      highlight: isZhTW ? "API?ï¿½ï¿½?" : "API Integration"
     }
   ];
 
-  // ?®æ?å­¸å“¡
+  // ?ï¿½ï¿½?å­¸å“¡
   const targetAudience = {
-    title: isZhTW ? "?ªä?äººé©?ˆå­¸ç¿’ChatGPTç²¾é€šèª²ç¨‹ï?" : "Who Should Take This ChatGPT Mastery Course?",
-    description: isZhTW ? "?¡è?ä½ æ˜¯?å­¸?…é??¯æ?ç¶“é??„ç”¨?¶ï??¬èª²ç¨‹å?å¹«åŠ©ä½ å??ºç??°é?ç´šå…¨?¢æ??¡ChatGPTï¼Œæ??ºç?æ­??AIå°è©±å°ˆå®¶?? : "Whether you're a beginner or experienced user, this course will help you master ChatGPT from basics to advanced levels, becoming a true AI conversation expert.",
+    title: isZhTW ? "?ï¿½ï¿½?äººé©?ï¿½å­¸ç¿’ChatGPTç²¾é€šèª²ç¨‹ï¿½?" : "Who Should Take This ChatGPT Mastery Course?",
+    description: isZhTW ? "?ï¿½ï¿½?ä½ æ˜¯?ï¿½å­¸?ï¿½ï¿½??ï¿½ï¿½?ç¶“ï¿½??ï¿½ç”¨?ï¿½ï¿½??ï¿½èª²ç¨‹ï¿½?å¹«åŠ©ä½ ï¿½??ï¿½ï¿½??ï¿½ï¿½?ç´šå…¨?ï¿½ï¿½??ï¿½ChatGPTï¼Œï¿½??ï¿½ï¿½?ï¿½??AIå°è©±å°ˆå®¶?? : "Whether you're a beginner or experienced user, this course will help you master ChatGPT from basics to advanced levels, becoming a true AI conversation expert.",
     audiences: [
       {
         icon: <Sparkles className="w-8 h-8 text-purple-400" />,
-        title: isZhTW ? "?§å®¹?µä??? : "Content Creators",
-        description: isZhTW ? "?¨è½å®¢ã€è‡ªåª’é?å·¥ä??…ã€ç¤¾ç¾¤ç??Ÿè€…ç??€è¦å¤§?å…§å®¹ç”¢?ºç??µä??? : "Bloggers, social media workers, community managers who need massive content output"
+        title: isZhTW ? "?ï¿½å®¹?ï¿½ï¿½??? : "Content Creators",
+        description: isZhTW ? "?ï¿½è½å®¢ã€è‡ªåª’ï¿½?å·¥ï¿½??ï¿½ã€ç¤¾ç¾¤ï¿½??ï¿½è€…ï¿½??ï¿½è¦å¤§?ï¿½å…§å®¹ç”¢?ï¿½ï¿½??ï¿½ï¿½??? : "Bloggers, social media workers, community managers who need massive content output"
       },
       {
         icon: <Briefcase className="w-8 h-8 text-blue-400" />,
         title: isZhTW ? "ä¼æ¥­å°ˆæ¥­äººå£«" : "Business Professionals",
-        description: isZhTW ? "å¸Œæ??å?å·¥ä??ˆç??è‡ª?•å??¥å¸¸ä»»å??„ä?æ¥­å“¡å·¥å?ç®¡ç??? : "Business employees and managers who want to improve work efficiency and automate daily tasks"
+        description: isZhTW ? "å¸Œï¿½??ï¿½ï¿½?å·¥ï¿½??ï¿½ï¿½??ï¿½è‡ª?ï¿½ï¿½??ï¿½å¸¸ä»»ï¿½??ï¿½ï¿½?æ¥­å“¡å·¥ï¿½?ç®¡ï¿½??? : "Business employees and managers who want to improve work efficiency and automate daily tasks"
       },
       {
         icon: <Lightbulb className="w-8 h-8 text-yellow-400" />,
-        title: isZhTW ? "?µæ?å·¥ä??? : "Creative Workers",
-        description: isZhTW ? "è¨­è?å¸«ã€å»£?Šäºº?ç??·å??¡ç??€è¦å‰µ?é??Ÿå?è§?±º?¹æ??„å?æ¥­äººå£? : "Designers, advertisers, marketing specialists who need creative inspiration and solutions"
+        title: isZhTW ? "?ï¿½ï¿½?å·¥ï¿½??? : "Creative Workers",
+        description: isZhTW ? "è¨­ï¿½?å¸«ã€å»£?ï¿½äºº?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½è¦å‰µ?ï¿½ï¿½??ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?æ¥­äººï¿½? : "Designers, advertisers, marketing specialists who need creative inspiration and solutions"
       },
       {
         icon: <Users className="w-8 h-8 text-green-400" />,
-        title: isZhTW ? "å­¸ç??‡ç?ç©¶è€? : "Students & Researchers",
-        description: isZhTW ? "?€è¦ç?ç©¶è??©ã€å­¸ç¿’æ”¯?´å??¥è??´ç??„å­¸?Ÿå??”ç©¶äººå“¡" : "Students and researchers who need research assistance, learning support, and knowledge organization"
+        title: isZhTW ? "å­¸ï¿½??ï¿½ï¿½?ç©¶ï¿½? : "Students & Researchers",
+        description: isZhTW ? "?ï¿½è¦ï¿½?ç©¶ï¿½??ï¿½ã€å­¸ç¿’æ”¯?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½å­¸?ï¿½ï¿½??ï¿½ç©¶äººå“¡" : "Students and researchers who need research assistance, learning support, and knowledge organization"
       }
     ]
   };
 
-  // FAQ?¸æ?
+  // FAQ?ï¿½ï¿½?
   const faqData = [
     {
-      question: isZhTW ? "?‘å??¨æ??‰ä½¿?¨é?ChatGPTï¼Œèƒ½è·Ÿå?ä¸Šå?ï¼? : "I've never used ChatGPT before, can I keep up?",
-      answer: isZhTW ? "?¶ç„¶?¯ä»¥ï¼æ??‘ç?èª²ç?å¾æ??ºç??„æ?å¿µé?å§‹ï??æ­¥å¼•å?ä½ æ??¡ChatGPT?„å?ç¨®å??½ã€‚å³ä½¿æ˜¯?¶åŸºç¤ç?å­¸å“¡ä¹Ÿèƒ½?†åˆ©å­¸æ??? : "Absolutely! Our course starts with the most basic concepts and gradually guides you to master various ChatGPT functions. Even zero-experience students can learn successfully."
+      question: isZhTW ? "?ï¿½ï¿½??ï¿½ï¿½??ï¿½ä½¿?ï¿½ï¿½?ChatGPTï¼Œèƒ½è·Ÿï¿½?ä¸Šï¿½?ï¿½? : "I've never used ChatGPT before, can I keep up?",
+      answer: isZhTW ? "?ï¿½ç„¶?ï¿½ä»¥ï¼ï¿½??ï¿½ï¿½?èª²ï¿½?å¾ï¿½??ï¿½ï¿½??ï¿½ï¿½?å¿µï¿½?å§‹ï¿½??ï¿½æ­¥å¼•ï¿½?ä½ ï¿½??ï¿½ChatGPT?ï¿½ï¿½?ç¨®ï¿½??ï¿½ã€‚å³ä½¿æ˜¯?ï¿½åŸºç¤ï¿½?å­¸å“¡ä¹Ÿèƒ½?ï¿½åˆ©å­¸ï¿½??? : "Absolutely! Our course starts with the most basic concepts and gradually guides you to master various ChatGPT functions. Even zero-experience students can learn successfully."
     },
     {
-      question: isZhTW ? "?™å€‹èª²ç¨‹è??è²»ä½¿ç”¨ChatGPT?‰ä?éº¼ä??Œï?" : "How is this course different from using ChatGPT for free?",
-      answer: isZhTW ? "?‘å€‘ä??…æ?ä½ å?ä½•ä½¿?¨ChatGPTï¼Œæ›´?è??„æ˜¯?™ä?å¦‚ä??¨å??´å¥½?æ›´?‰æ??‡ã€‚å??¬é?ç´šæ?ç¤ºæ?å·§ã€API?´å??å?æ¥­æ??¨ç?æ·±åº¦?§å®¹?? : "We don't just teach you how to use ChatGPT, but more importantly, how to use it better and more efficiently. Including advanced prompting techniques, API integration, and business applications."
+      question: isZhTW ? "?ï¿½å€‹èª²ç¨‹ï¿½??ï¿½è²»ä½¿ç”¨ChatGPT?ï¿½ï¿½?éº¼ï¿½??ï¿½ï¿½?" : "How is this course different from using ChatGPT for free?",
+      answer: isZhTW ? "?ï¿½å€‘ï¿½??ï¿½ï¿½?ä½ ï¿½?ä½•ä½¿?ï¿½ChatGPTï¼Œæ›´?ï¿½ï¿½??ï¿½æ˜¯?ï¿½ï¿½?å¦‚ï¿½??ï¿½ï¿½??ï¿½å¥½?ï¿½æ›´?ï¿½ï¿½??ï¿½ã€‚ï¿½??ï¿½ï¿½?ç´šï¿½?ç¤ºï¿½?å·§ã€API?ï¿½ï¿½??ï¿½ï¿½?æ¥­ï¿½??ï¿½ï¿½?æ·±åº¦?ï¿½å®¹?? : "We don't just teach you how to use ChatGPT, but more importantly, how to use it better and more efficiently. Including advanced prompting techniques, API integration, and business applications."
     },
     {
-      question: isZhTW ? "å®Œæ?èª²ç?å¾Œæ??½é??°ä?éº¼æ°´æº–ï?" : "What level can I achieve after completing the course?",
-      answer: isZhTW ? "å®Œæ?èª²ç?å¾Œï?ä½ å??½å??Ÿç·´?‹ç”¨ChatGPT?²è??„ç¨®ä»»å?ï¼Œå??¬å‰µ?å¯«ä½œã€å?æ¥­å??ã€ç?å¼å??©ç?ï¼Œç?æ­???ºAIå°è©±å°ˆå®¶?? : "After completing the course, you'll be able to skillfully use ChatGPT for various tasks including creative writing, business analysis, programming assistance, truly becoming an AI conversation expert."
+      question: isZhTW ? "å®Œï¿½?èª²ï¿½?å¾Œï¿½??ï¿½ï¿½??ï¿½ï¿½?éº¼æ°´æº–ï¿½?" : "What level can I achieve after completing the course?",
+      answer: isZhTW ? "å®Œï¿½?èª²ï¿½?å¾Œï¿½?ä½ ï¿½??ï¿½ï¿½??ï¿½ç·´?ï¿½ç”¨ChatGPT?ï¿½ï¿½??ï¿½ç¨®ä»»ï¿½?ï¼Œï¿½??ï¿½å‰µ?ï¿½å¯«ä½œã€ï¿½?æ¥­ï¿½??ï¿½ã€ï¿½?å¼ï¿½??ï¿½ï¿½?ï¼Œï¿½?ï¿½???ï¿½AIå°è©±å°ˆå®¶?? : "After completing the course, you'll be able to skillfully use ChatGPT for various tasks including creative writing, business analysis, programming assistance, truly becoming an AI conversation expert."
     },
     {
-      question: isZhTW ? "èª²ç??¯å¦æ¶µè??€?°ç?ChatGPT?Ÿèƒ½ï¼? : "Does the course cover the latest ChatGPT features?",
-      answer: isZhTW ? "?¯ç?ï¼æ??‘æ?çºŒæ›´?°èª²ç¨‹å…§å®¹ï?ç¢ºä?æ¶µè?ChatGPT?„æ??°å??½å??€ä½³å¯¦è¸ï?è®“ä?å§‹ç??Œæ¡?€?æ²¿?„AI?€è¡“ã€? : "Yes! We continuously update course content to ensure it covers the latest ChatGPT features and best practices, keeping you at the forefront of AI technology."
+      question: isZhTW ? "èª²ï¿½??ï¿½å¦æ¶µï¿½??ï¿½?ï¿½ï¿½?ChatGPT?ï¿½èƒ½ï¿½? : "Does the course cover the latest ChatGPT features?",
+      answer: isZhTW ? "?ï¿½ï¿½?ï¼ï¿½??ï¿½ï¿½?çºŒæ›´?ï¿½èª²ç¨‹å…§å®¹ï¿½?ç¢ºï¿½?æ¶µï¿½?ChatGPT?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ä½³å¯¦è¸ï¿½?è®“ï¿½?å§‹ï¿½??ï¿½æ¡?ï¿½?ï¿½æ²¿?ï¿½AI?ï¿½è¡“ï¿½? : "Yes! We continuously update course content to ensure it covers the latest ChatGPT features and best practices, keeping you at the forefront of AI technology."
     }
   ];
 
-  // ?èª¿?½æ•¸
+  // ?ï¿½èª¿?ï¿½æ•¸
   const handleStartLearning = () => {
     navigate('/courses/free-plan');
   };
 
   const handleRegister = () => {
-    // å°èˆª?°èª²ç¨‹å­¸ç¿’é???    navigate('/courses/free-plan');
+    // å°èˆª?ï¿½èª²ç¨‹å­¸ç¿’ï¿½???    navigate('/courses/free-plan');
   };
 
   const handleWhatsApp = () => {
-    // ?“é?WhatsApp?¯çµ¡
-    window.open('https://wa.me/85298765432?text=?‘æƒ³äº†è§£ChatGPT Masteryèª²ç?', '_blank');
+    // ?ï¿½ï¿½?WhatsApp?ï¿½çµ¡
+    window.open('https://wa.me/85298765432?text=?ï¿½æƒ³äº†è§£ChatGPT Masteryèª²ï¿½?', '_blank');
   };
 
   return (

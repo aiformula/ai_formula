@@ -56,13 +56,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'prompt-engineering',
       title: 'Prompt Engineering Mastery',
-      titleZh: '?ç¤ºå·¥ç?ç²¾é€?,
+      titleZh: 'æç¤ºå·¥ç¨‹ç²¾è¯',
       description: 'Master the art of crafting effective prompts for AI systems',
-      descriptionZh: '?Œæ¡?ºAIç³»çµ±è£½ä??‰æ??ç¤º?„è?è¡?,
+      descriptionZh: '?ï¿½æ¡?ï¿½AIç³»çµ±è£½ï¿½??ï¿½ï¿½??ï¿½ç¤º?ï¿½ï¿½?,
       category: 'course',
       difficulty: 'intermediate',
       duration: '6 hours',
-      durationZh: '6å°æ?',
+      durationZh: '6å°ï¿½?',
       rating: 4.8,
       students: 1234,
       instructor: 'Kenneth',
@@ -70,18 +70,18 @@ const LearningMaterials: React.FC = () => {
       price: 99,
       originalPrice: 149,
       tags: ['AI', 'Prompt Engineering', 'Machine Learning'],
-      tagsZh: ['AI', '?ç¤ºå·¥ç?', 'æ©Ÿå™¨å­¸ç?'],
+      tagsZh: ['AI', '?ï¿½ç¤ºå·¥ï¿½?', 'æ©Ÿå™¨å­¸ï¿½?'],
       features: [
-        '?¯ ?°æ??‹å¥½ï¼šé›¶?ºç?ä¹Ÿèƒ½å¿«é€Ÿä???,
-        '?’¬ ?ç¤ºå·¥ç?ï¼šæ??¡AIå°è©±?€å·?,
-        '?? AI?‰ç”¨ï¼šå¯¦?›å?æ¥­æ?ä¾‹æ?ç·?,
-        '?? ?©å?å­¸ç?ï¼šç³»çµ±å?å­¸ç?è·¯å?'
+        '?ï¿½ï¿½ ?ï¿½ï¿½??ï¿½å¥½ï¼šé›¶?ï¿½ï¿½?ä¹Ÿèƒ½å¿«é€Ÿï¿½???,
+        '?ï¿½ï¿½ ?ï¿½ç¤ºå·¥ï¿½?ï¼šï¿½??ï¿½AIå°è©±?ï¿½ï¿½?,
+        '?? AI?ï¿½ç”¨ï¼šå¯¦?ï¿½ï¿½?æ¥­ï¿½?ä¾‹ï¿½?ï¿½?,
+        '?? ?ï¿½ï¿½?å­¸ï¿½?ï¼šç³»çµ±ï¿½?å­¸ï¿½?è·¯ï¿½?'
       ],
       featuresZh: [
-        '?¯ ?°æ??‹å¥½ï¼šé›¶?ºç?ä¹Ÿèƒ½å¿«é€Ÿä???,
-        '?’¬ ?ç¤ºå·¥ç?ï¼šæ??¡AIå°è©±?€å·?,
-        '?? AI?‰ç”¨ï¼šå¯¦?›å?æ¥­æ?ä¾‹æ?ç·?,
-        '?? ?©å?å­¸ç?ï¼šç³»çµ±å?å­¸ç?è·¯å?'
+        '?ï¿½ï¿½ ?ï¿½ï¿½??ï¿½å¥½ï¼šé›¶?ï¿½ï¿½?ä¹Ÿèƒ½å¿«é€Ÿï¿½???,
+        '?ï¿½ï¿½ ?ï¿½ç¤ºå·¥ï¿½?ï¼šï¿½??ï¿½AIå°è©±?ï¿½ï¿½?,
+        '?? AI?ï¿½ç”¨ï¼šå¯¦?ï¿½ï¿½?æ¥­ï¿½?ä¾‹ï¿½?ï¿½?,
+        '?? ?ï¿½ï¿½?å­¸ï¿½?ï¼šç³»çµ±ï¿½?å­¸ï¿½?è·¯ï¿½?'
       ],
       lessons: 25,
       progress: 65,
@@ -90,13 +90,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'ai-fundamentals',
       title: 'AI Fundamentals for Beginners',
-      titleZh: 'AI?ºç??¥é?',
+      titleZh: 'AI?ï¿½ï¿½??ï¿½ï¿½?',
       description: 'Learn the basics of artificial intelligence and machine learning',
-      descriptionZh: 'å­¸ç?äººå·¥?ºæ…§?Œæ??¨å­¸ç¿’ç??ºç??¥è?',
+      descriptionZh: 'å­¸ï¿½?äººå·¥?ï¿½æ…§?ï¿½ï¿½??ï¿½å­¸ç¿’ï¿½??ï¿½ï¿½??ï¿½ï¿½?',
       category: 'course',
       difficulty: 'beginner',
       duration: '4 hours',
-      durationZh: '4å°æ?',
+      durationZh: '4å°ï¿½?',
       rating: 4.6,
       students: 2156,
       instructor: 'David',
@@ -104,18 +104,18 @@ const LearningMaterials: React.FC = () => {
       price: 79,
       originalPrice: 129,
       tags: ['AI', 'Machine Learning', 'Beginner'],
-      tagsZh: ['AI', 'æ©Ÿå™¨å­¸ç?', '?¥é?'],
+      tagsZh: ['AI', 'æ©Ÿå™¨å­¸ï¿½?', '?ï¿½ï¿½?'],
       features: [
-        '?? å­¸ç?å°ˆå±¬ï¼šå??ºå?å­¸è€…è¨­è¨?,
-        '?? ?°æ?èµ·æ­¥ï¼šé›¶?ºç??‹å¥½?¥é?',
-        '?? AI?‰ç”¨ï¼šç?æ´»å?å¯¦ä??™å­¸',
-        '?’¡ ?ºç?æ¦‚å¿µï¼šæ·±?¥æ·º?ºè§£??
+        '?? å­¸ï¿½?å°ˆå±¬ï¼šï¿½??ï¿½ï¿½?å­¸è€…è¨­ï¿½?,
+        '?? ?ï¿½ï¿½?èµ·æ­¥ï¼šé›¶?ï¿½ï¿½??ï¿½å¥½?ï¿½ï¿½?',
+        '?? AI?ï¿½ç”¨ï¼šï¿½?æ´»ï¿½?å¯¦ï¿½??ï¿½å­¸',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?æ¦‚å¿µï¼šæ·±?ï¿½æ·º?ï¿½è§£??
       ],
       featuresZh: [
-        '?? å­¸ç?å°ˆå±¬ï¼šå??ºå?å­¸è€…è¨­è¨?,
-        '?? ?°æ?èµ·æ­¥ï¼šé›¶?ºç??‹å¥½?¥é?',
-        '?? AI?‰ç”¨ï¼šç?æ´»å?å¯¦ä??™å­¸',
-        '?’¡ ?ºç?æ¦‚å¿µï¼šæ·±?¥æ·º?ºè§£??
+        '?? å­¸ï¿½?å°ˆå±¬ï¼šï¿½??ï¿½ï¿½?å­¸è€…è¨­ï¿½?,
+        '?? ?ï¿½ï¿½?èµ·æ­¥ï¼šé›¶?ï¿½ï¿½??ï¿½å¥½?ï¿½ï¿½?',
+        '?? AI?ï¿½ç”¨ï¼šï¿½?æ´»ï¿½?å¯¦ï¿½??ï¿½å­¸',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?æ¦‚å¿µï¼šæ·±?ï¿½æ·º?ï¿½è§£??
       ],
       lessons: 18,
       progress: 100,
@@ -124,13 +124,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'advanced-ml-techniques',
       title: 'Advanced Machine Learning Techniques',
-      titleZh: '?²é?æ©Ÿå™¨å­¸ç??€è¡?,
+      titleZh: '?ï¿½ï¿½?æ©Ÿå™¨å­¸ï¿½??ï¿½ï¿½?,
       description: 'Deep dive into advanced ML algorithms and techniques',
-      descriptionZh: 'æ·±å…¥?¢è??²é?MLæ¼”ç?æ³•å??€è¡?,
+      descriptionZh: 'æ·±å…¥?ï¿½ï¿½??ï¿½ï¿½?MLæ¼”ï¿½?æ³•ï¿½??ï¿½ï¿½?,
       category: 'workshop',
       difficulty: 'advanced',
       duration: '8 hours',
-      durationZh: '8å°æ?',
+      durationZh: '8å°ï¿½?',
       rating: 4.9,
       students: 876,
       instructor: 'Ken',
@@ -138,18 +138,18 @@ const LearningMaterials: React.FC = () => {
       price: 199,
       originalPrice: 299,
       tags: ['Machine Learning', 'Deep Learning', 'Advanced'],
-      tagsZh: ['æ©Ÿå™¨å­¸ç?', 'æ·±åº¦å­¸ç?', '?²é?'],
+      tagsZh: ['æ©Ÿå™¨å­¸ï¿½?', 'æ·±åº¦å­¸ï¿½?', '?ï¿½ï¿½?'],
       features: [
-        '?”¬ ?²é?ç®—æ?ï¼šæ·±åº¦å­¸ç¿’æ ¸å¿ƒæ?è¡?,
-        '?? ?¸æ??†æ?ï¼šå¤§?¸æ??•ç??€å·?,
-        '?’» ç¨‹å?è¨­è?ï¼šPythonå¯¦æˆ°æ¼”ç·´',
-        '?¢ ä¼æ¥­?‰ç”¨ï¼šå¯¦?›æ¥­?™å ´??
+        '?ï¿½ï¿½ ?ï¿½ï¿½?ç®—ï¿½?ï¼šæ·±åº¦å­¸ç¿’æ ¸å¿ƒï¿½?ï¿½?,
+        '?? ?ï¿½ï¿½??ï¿½ï¿½?ï¼šå¤§?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?,
+        '?ï¿½ï¿½ ç¨‹ï¿½?è¨­ï¿½?ï¼šPythonå¯¦æˆ°æ¼”ç·´',
+        '?ï¿½ï¿½ ä¼æ¥­?ï¿½ç”¨ï¼šå¯¦?ï¿½æ¥­?ï¿½å ´??
       ],
       featuresZh: [
-        '?”¬ ?²é?ç®—æ?ï¼šæ·±åº¦å­¸ç¿’æ ¸å¿ƒæ?è¡?,
-        '?? ?¸æ??†æ?ï¼šå¤§?¸æ??•ç??€å·?,
-        '?’» ç¨‹å?è¨­è?ï¼šPythonå¯¦æˆ°æ¼”ç·´',
-        '?¢ ä¼æ¥­?‰ç”¨ï¼šå¯¦?›æ¥­?™å ´??
+        '?ï¿½ï¿½ ?ï¿½ï¿½?ç®—ï¿½?ï¼šæ·±åº¦å­¸ç¿’æ ¸å¿ƒï¿½?ï¿½?,
+        '?? ?ï¿½ï¿½??ï¿½ï¿½?ï¼šå¤§?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?,
+        '?ï¿½ï¿½ ç¨‹ï¿½?è¨­ï¿½?ï¼šPythonå¯¦æˆ°æ¼”ç·´',
+        '?ï¿½ï¿½ ä¼æ¥­?ï¿½ç”¨ï¼šå¯¦?ï¿½æ¥­?ï¿½å ´??
       ],
       lessons: 32,
       progress: 0,
@@ -158,13 +158,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'business-automation',
       title: 'Business Automation with AI',
-      titleZh: '?†æ¥­AI?ªå???,
+      titleZh: '?ï¿½æ¥­AI?ï¿½ï¿½???,
       description: 'Automate business processes using AI tools and workflows',
-      descriptionZh: 'ä½¿ç”¨AIå·¥å…·?Œå·¥ä½œæ?ç¨‹è‡ª?•å??†æ¥­æµç?',
+      descriptionZh: 'ä½¿ç”¨AIå·¥å…·?ï¿½å·¥ä½œï¿½?ç¨‹è‡ª?ï¿½ï¿½??ï¿½æ¥­æµï¿½?',
       category: 'course',
       difficulty: 'intermediate',
       duration: '5 hours',
-      durationZh: '5å°æ?',
+      durationZh: '5å°ï¿½?',
       rating: 4.7,
       students: 1567,
       instructor: 'Jason',
@@ -172,18 +172,18 @@ const LearningMaterials: React.FC = () => {
       price: 129,
       originalPrice: 199,
       tags: ['Automation', 'Business', 'AI Tools'],
-      tagsZh: ['?ªå???, '?†æ¥­', 'AIå·¥å…·'],
+      tagsZh: ['?ï¿½ï¿½???, '?ï¿½æ¥­', 'AIå·¥å…·'],
       features: [
-        '???ªå??–ï??å?å·¥ä??ˆç?',
-        '?’° ?‘è?æ¥­ï??€è¡Œä??ªæ???,
-        '??ï¸??¶å”®æ¥­ï??»å??Ÿé??ªå?',
-        '?¥ ?«ç?æ¥­ï?æµç??¸ä?è½‰å?'
+        '???ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?å·¥ï¿½??ï¿½ï¿½?',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?æ¥­ï¿½??ï¿½è¡Œï¿½??ï¿½ï¿½???,
+        '??ï¿½??ï¿½å”®æ¥­ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?æ¥­ï¿½?æµï¿½??ï¿½ï¿½?è½‰ï¿½?'
       ],
       featuresZh: [
-        '???ªå??–ï??å?å·¥ä??ˆç?',
-        '?’° ?‘è?æ¥­ï??€è¡Œä??ªæ???,
-        '??ï¸??¶å”®æ¥­ï??»å??Ÿé??ªå?',
-        '?¥ ?«ç?æ¥­ï?æµç??¸ä?è½‰å?'
+        '???ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?å·¥ï¿½??ï¿½ï¿½?',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?æ¥­ï¿½??ï¿½è¡Œï¿½??ï¿½ï¿½???,
+        '??ï¿½??ï¿½å”®æ¥­ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?æ¥­ï¿½?æµï¿½??ï¿½ï¿½?è½‰ï¿½?'
       ],
       lessons: 22,
       progress: 30,
@@ -192,13 +192,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'creative-ai-design',
       title: 'Creative AI Design',
-      titleZh: '?µæ?AIè¨­è?',
+      titleZh: '?ï¿½ï¿½?AIè¨­ï¿½?',
       description: 'Create stunning designs using AI-powered tools',
-      descriptionZh: 'ä½¿ç”¨AIå·¥å…·?µä??ºè‰²?„è¨­è¨ˆä???,
+      descriptionZh: 'ä½¿ç”¨AIå·¥å…·?ï¿½ï¿½??ï¿½è‰²?ï¿½è¨­è¨ˆï¿½???,
       category: 'workshop',
       difficulty: 'intermediate',
       duration: '6 hours',
-      durationZh: '6å°æ?',
+      durationZh: '6å°ï¿½?',
       rating: 4.5,
       students: 892,
       instructor: 'Kenneth',
@@ -206,18 +206,18 @@ const LearningMaterials: React.FC = () => {
       price: 89,
       originalPrice: 149,
       tags: ['Design', 'Creative', 'AI Tools'],
-      tagsZh: ['è¨­è?', '?µæ?', 'AIå·¥å…·'],
+      tagsZh: ['è¨­ï¿½?', '?ï¿½ï¿½?', 'AIå·¥å…·'],
       features: [
-        '?¨ ?µæ?è¨­è?ï¼šè?è¦ºè?è¡“å‰µä½?,
-        '?–¼ï¸??–å??Ÿæ?ï¼šAIç¹ªå??€è¡?,
-        '?? ?¥å¸¸?Ÿæ´»ï¼šå€‹äºº?µä??‰ç”¨',
-        '?­ ?è?è¡¨ç¾ï¼šé¢¨?¼å?è¨­è?'
+        '?ï¿½ï¿½ ?ï¿½ï¿½?è¨­ï¿½?ï¼šï¿½?è¦ºï¿½?è¡“å‰µï¿½?,
+        '?ï¿½ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼šAIç¹ªï¿½??ï¿½ï¿½?,
+        '?? ?ï¿½å¸¸?ï¿½æ´»ï¼šå€‹äºº?ï¿½ï¿½??ï¿½ç”¨',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?è¡¨ç¾ï¼šé¢¨?ï¿½ï¿½?è¨­ï¿½?'
       ],
       featuresZh: [
-        '?¨ ?µæ?è¨­è?ï¼šè?è¦ºè?è¡“å‰µä½?,
-        '?–¼ï¸??–å??Ÿæ?ï¼šAIç¹ªå??€è¡?,
-        '?? ?¥å¸¸?Ÿæ´»ï¼šå€‹äºº?µä??‰ç”¨',
-        '?­ ?è?è¡¨ç¾ï¼šé¢¨?¼å?è¨­è?'
+        '?ï¿½ï¿½ ?ï¿½ï¿½?è¨­ï¿½?ï¼šï¿½?è¦ºï¿½?è¡“å‰µï¿½?,
+        '?ï¿½ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼šAIç¹ªï¿½??ï¿½ï¿½?,
+        '?? ?ï¿½å¸¸?ï¿½æ´»ï¼šå€‹äºº?ï¿½ï¿½??ï¿½ç”¨',
+        '?ï¿½ï¿½ ?ï¿½ï¿½?è¡¨ç¾ï¼šé¢¨?ï¿½ï¿½?è¨­ï¿½?'
       ],
       lessons: 20,
       progress: 0,
@@ -226,13 +226,13 @@ const LearningMaterials: React.FC = () => {
     {
       id: 'ai-for-education',
       title: 'AI for Education',
-      titleZh: 'AI?™è‚²?‰ç”¨',
+      titleZh: 'AI?ï¿½è‚²?ï¿½ç”¨',
       description: 'Transform education with AI-powered learning tools',
-      descriptionZh: 'ä½¿ç”¨AIå·¥å…·?©æ–°?™è‚²å­¸ç??¹å?',
+      descriptionZh: 'ä½¿ç”¨AIå·¥å…·?ï¿½æ–°?ï¿½è‚²å­¸ï¿½??ï¿½ï¿½?',
       category: 'course',
       difficulty: 'beginner',
       duration: '4 hours',
-      durationZh: '4å°æ?',
+      durationZh: '4å°ï¿½?',
       rating: 4.4,
       students: 1345,
       instructor: 'David',
@@ -240,18 +240,18 @@ const LearningMaterials: React.FC = () => {
       price: 69,
       originalPrice: 129,
       tags: ['Education', 'AI', 'Learning'],
-      tagsZh: ['?™è‚²', 'AI', 'å­¸ç?'],
+      tagsZh: ['?ï¿½è‚²', 'AI', 'å­¸ï¿½?'],
       features: [
-        '?? ?™è‚²æ¥­ï?å¸«ç?äº’å??ªå?',
-        '?? ?‹äºº?–å­¸ç¿’ï?? æ??½æ?',
-        '?? AI?‰ç”¨ï¼šæ™º?½æ?å­¸åŠ©??,
-        '?‘¨?ğ??å­¸ç??©ç”¨ï¼šæ??‡å­¸ç¿’æ???
+        '?? ?ï¿½è‚²æ¥­ï¿½?å¸«ï¿½?äº’ï¿½??ï¿½ï¿½?',
+        '?? ?ï¿½äºº?ï¿½å­¸ç¿’ï¿½??ï¿½ï¿½??ï¿½ï¿½?',
+        '?? AI?ï¿½ç”¨ï¼šæ™º?ï¿½ï¿½?å­¸åŠ©??,
+        '?ï¿½ï¿½?ï¿½ï¿½??å­¸ï¿½??ï¿½ç”¨ï¼šï¿½??ï¿½å­¸ç¿’ï¿½???
       ],
       featuresZh: [
-        '?? ?™è‚²æ¥­ï?å¸«ç?äº’å??ªå?',
-        '?? ?‹äºº?–å­¸ç¿’ï?? æ??½æ?',
-        '?? AI?‰ç”¨ï¼šæ™º?½æ?å­¸åŠ©??,
-        '?‘¨?ğ??å­¸ç??©ç”¨ï¼šæ??‡å­¸ç¿’æ???
+        '?? ?ï¿½è‚²æ¥­ï¿½?å¸«ï¿½?äº’ï¿½??ï¿½ï¿½?',
+        '?? ?ï¿½äºº?ï¿½å­¸ç¿’ï¿½??ï¿½ï¿½??ï¿½ï¿½?',
+        '?? AI?ï¿½ç”¨ï¼šæ™º?ï¿½ï¿½?å­¸åŠ©??,
+        '?ï¿½ï¿½?ï¿½ï¿½??å­¸ï¿½??ï¿½ç”¨ï¼šï¿½??ï¿½å­¸ç¿’ï¿½???
       ],
       lessons: 15,
       progress: 0,
@@ -260,18 +260,18 @@ const LearningMaterials: React.FC = () => {
   ]
 
   const categories = [
-    { id: 'all', label: 'All Categories', labelZh: '?€?‰é??? },
-    { id: 'course', label: 'Courses', labelZh: 'èª²ç?' },
-    { id: 'tutorial', label: 'Tutorials', labelZh: '?™å­¸' },
-    { id: 'workshop', label: 'Workshops', labelZh: 'å·¥ä??? },
-    { id: 'webinar', label: 'Webinars', labelZh: 'ç¶²è·¯?”è??? }
+    { id: 'all', label: 'All Categories', labelZh: '?ï¿½?ï¿½ï¿½??? },
+    { id: 'course', label: 'Courses', labelZh: 'èª²ï¿½?' },
+    { id: 'tutorial', label: 'Tutorials', labelZh: '?ï¿½å­¸' },
+    { id: 'workshop', label: 'Workshops', labelZh: 'å·¥ï¿½??? },
+    { id: 'webinar', label: 'Webinars', labelZh: 'ç¶²è·¯?ï¿½ï¿½??? }
   ]
 
   const difficulties = [
-    { id: 'all', label: 'All Levels', labelZh: '?€?‰ç?åº? },
-    { id: 'beginner', label: 'Beginner', labelZh: '?ç?' },
-    { id: 'intermediate', label: 'Intermediate', labelZh: 'ä¸­ç?' },
-    { id: 'advanced', label: 'Advanced', labelZh: '?²é?' }
+    { id: 'all', label: 'All Levels', labelZh: '?ï¿½?ï¿½ï¿½?ï¿½? },
+    { id: 'beginner', label: 'Beginner', labelZh: '?ï¿½ï¿½?' },
+    { id: 'intermediate', label: 'Intermediate', labelZh: 'ä¸­ï¿½?' },
+    { id: 'advanced', label: 'Advanced', labelZh: '?ï¿½ï¿½?' }
   ]
 
   const filteredMaterials = materials.filter(material => {
@@ -321,19 +321,19 @@ const LearningMaterials: React.FC = () => {
 
   const getCategoryName = (category: string) => {
     switch (category) {
-      case 'course': return language === 'zh-HK' ? 'èª²ç?' : 'Course'
-      case 'tutorial': return language === 'zh-HK' ? '?™å­¸' : 'Tutorial'
-      case 'workshop': return language === 'zh-HK' ? 'å·¥ä??? : 'Workshop'
-      case 'webinar': return language === 'zh-HK' ? 'ç¶²è·¯?”è??? : 'Webinar'
+      case 'course': return language === 'zh-HK' ? 'èª²ï¿½?' : 'Course'
+      case 'tutorial': return language === 'zh-HK' ? '?ï¿½å­¸' : 'Tutorial'
+      case 'workshop': return language === 'zh-HK' ? 'å·¥ï¿½??? : 'Workshop'
+      case 'webinar': return language === 'zh-HK' ? 'ç¶²è·¯?ï¿½ï¿½??? : 'Webinar'
       default: return category
     }
   }
 
   const getDifficultyName = (difficulty: string) => {
     switch (difficulty) {
-      case 'beginner': return language === 'zh-HK' ? '?ç?' : 'Beginner'
-      case 'intermediate': return language === 'zh-HK' ? 'ä¸­ç?' : 'Intermediate'
-      case 'advanced': return language === 'zh-HK' ? '?²é?' : 'Advanced'
+      case 'beginner': return language === 'zh-HK' ? '?ï¿½ï¿½?' : 'Beginner'
+      case 'intermediate': return language === 'zh-HK' ? 'ä¸­ï¿½?' : 'Intermediate'
+      case 'advanced': return language === 'zh-HK' ? '?ï¿½ï¿½?' : 'Advanced'
       default: return difficulty
     }
   }
@@ -372,19 +372,19 @@ const LearningMaterials: React.FC = () => {
     const specialties = {
       'Kenneth': {
         en: 'AI Marketing & Prompt Engineering',
-        zh: 'AIè¡ŒéŠ·?‡æ?ç¤ºå·¥ç¨‹å?å®?
+        zh: 'AIè¡ŒéŠ·?ï¿½ï¿½?ç¤ºå·¥ç¨‹ï¿½?ï¿½?
       },
       'David': {
         en: 'Business Automation Expert',
-        zh: '?†æ¥­?ªå??–å?å®?
+        zh: '?ï¿½æ¥­?ï¿½ï¿½??ï¿½ï¿½?ï¿½?
       },
       'Ken': {
         en: 'Custom Development & Advanced ML',
-        zh: 'å®¢åˆ¶?‹ç™¼?‡é€²é?æ©Ÿå™¨å­¸ç?'
+        zh: 'å®¢åˆ¶?ï¿½ç™¼?ï¿½é€²ï¿½?æ©Ÿå™¨å­¸ï¿½?'
       },
       'Jason': {
         en: 'Professional Developer & AI Integration',
-        zh: 'å°ˆæ¥­?‹ç™¼?…è?AI?´å?'
+        zh: 'å°ˆæ¥­?ï¿½ç™¼?ï¿½ï¿½?AI?ï¿½ï¿½?'
       }
     }
     
@@ -405,13 +405,13 @@ const LearningMaterials: React.FC = () => {
           className="text-center mb-12"
         >
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-6">
-            {language === 'zh-HK' ? '?è²»è³‡æ? ' : 'Free Resources / Trial Offers'}
+            {language === 'zh-HK' ? '?ï¿½è²»è³‡ï¿½? ' : 'Free Resources / Trial Offers'}
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             {language === 'zh-HK' 
               ? <>
-                  ?è²»ä¸‹è?ï¼?025å¹´å?å¤§å?å­¸AIå·¥å…·?¶äºº??<br />
-                  ç«‹å³?»è?ï¼šå?è²»è©¦?‡æ??‹ç??Œèª²ç¨‹å?ç¬¬ä??‹å–®?ƒï?
+                  ?ï¿½è²»ä¸‹ï¿½?ï¿½?025å¹´ï¿½?å¤§ï¿½?å­¸AIå·¥å…·?ï¿½äºº??<br />
+                  ç«‹å³?ï¿½ï¿½?ï¼šï¿½?è²»è©¦?ï¿½ï¿½??ï¿½ï¿½??ï¿½èª²ç¨‹ï¿½?ç¬¬ï¿½??ï¿½å–®?ï¿½ï¿½?
                 </>
               : 'Free Download: Top 10 AI Tools Cheat Sheet 2025 + Register Now for Free Trial of Our Premium Course First Module!'
             }
@@ -433,7 +433,7 @@ const LearningMaterials: React.FC = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                   <input
                     type="text"
-                    placeholder={language === 'zh-HK' ? '?œå?èª²ç?...' : 'Search courses...'}
+                    placeholder={language === 'zh-HK' ? '?ï¿½ï¿½?èª²ï¿½?...' : 'Search courses...'}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -526,7 +526,7 @@ const LearningMaterials: React.FC = () => {
                       <div className="mb-4">
                         <div className="flex justify-between text-sm mb-1">
                           <span className="text-gray-400">
-                            {language === 'zh-HK' ? '?²åº¦' : 'Progress'}
+                            {language === 'zh-HK' ? '?ï¿½åº¦' : 'Progress'}
                           </span>
                           <span className="text-gray-400">{material.progress}%</span>
                         </div>
@@ -582,7 +582,7 @@ const LearningMaterials: React.FC = () => {
                     {/* Features */}
                     <div className="mb-6">
                       <h4 className="text-sm font-medium text-gray-300 mb-3">
-                        {language === 'zh-HK' ? 'èª²ç??¹è‰²' : 'Course Features'}
+                        {language === 'zh-HK' ? 'èª²ï¿½??ï¿½è‰²' : 'Course Features'}
                       </h4>
                       <div className="grid grid-cols-1 gap-2">
                         {(language === 'zh-HK' ? material.featuresZh : material.features).map((feature, idx) => (
@@ -606,7 +606,7 @@ const LearningMaterials: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Badge className="bg-green-500/20 text-green-300 border-green-500/50 text-lg px-3 py-1">
-                          {language === 'zh-HK' ? '?è²»' : 'FREE'}
+                          {language === 'zh-HK' ? '?ï¿½è²»' : 'FREE'}
                         </Badge>
                         <span className="text-sm text-gray-400 line-through">
                           HK${material.originalPrice || material.price}
@@ -621,16 +621,16 @@ const LearningMaterials: React.FC = () => {
                         {material.completed ? (
                           <>
                             <CheckCircle className="h-4 w-4 mr-2" />
-                            {language === 'zh-HK' ? 'å·²å??? : 'Completed'}
+                            {language === 'zh-HK' ? 'å·²ï¿½??? : 'Completed'}
                           </>
                         ) : material.progress ? (
                           <>
-                            {language === 'zh-HK' ? 'ç¹¼ç?å­¸ç?' : 'Continue Learning'}
+                            {language === 'zh-HK' ? 'ç¹¼ï¿½?å­¸ï¿½?' : 'Continue Learning'}
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </>
                         ) : (
                           <>
-                            {language === 'zh-HK' ? '?è²»?‹å?' : 'Start Free'}
+                            {language === 'zh-HK' ? '?ï¿½è²»?ï¿½ï¿½?' : 'Start Free'}
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </>
                         )}
@@ -657,7 +657,7 @@ const LearningMaterials: React.FC = () => {
               className="flex items-center px-6 py-3 rounded-lg text-sm font-medium transition-all bg-gray-700 text-gray-300 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
             >
               <ChevronLeft className="h-4 w-4 mr-2" />
-              {language === 'zh-HK' ? 'ä¸Šä??? : 'Previous'}
+              {language === 'zh-HK' ? 'ä¸Šï¿½??? : 'Previous'}
             </button>
             
             <div className="flex items-center gap-2">
@@ -675,7 +675,7 @@ const LearningMaterials: React.FC = () => {
               disabled={currentIndex + itemsPerPage >= filteredMaterials.length}
               className="flex items-center px-6 py-3 rounded-lg text-sm font-medium transition-all bg-gray-700 text-gray-300 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
             >
-              {language === 'zh-HK' ? 'ä¸‹ä??? : 'Next'}
+              {language === 'zh-HK' ? 'ä¸‹ï¿½??? : 'Next'}
               <ChevronRight className="h-4 w-4 ml-2" />
             </button>
           </motion.div>
@@ -690,10 +690,10 @@ const LearningMaterials: React.FC = () => {
             className="text-center py-16"
           >
             <div className="text-gray-400 text-lg">
-              {language === 'zh-HK' ? '?¾ä??°ç¬¦?ˆæ?ä»¶ç?èª²ç?' : 'No courses found matching your criteria'}
+              {language === 'zh-HK' ? '?ï¿½ï¿½??ï¿½ç¬¦?ï¿½ï¿½?ä»¶ï¿½?èª²ï¿½?' : 'No courses found matching your criteria'}
             </div>
             <p className="text-gray-500 mt-2">
-              {language === 'zh-HK' ? 'è«‹å?è©¦èª¿?´æ?å°‹æ?ä»? : 'Try adjusting your search criteria'}
+              {language === 'zh-HK' ? 'è«‹ï¿½?è©¦èª¿?ï¿½ï¿½?å°‹ï¿½?ï¿½? : 'Try adjusting your search criteria'}
             </p>
           </motion.div>
         )}

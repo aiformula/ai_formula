@@ -29,7 +29,7 @@ import {
   Award
 } from 'lucide-react';
 
-// ?é?é¡å?å®šç¾©
+// ?ï¿½ï¿½?é¡ï¿½?å®šç¾©
 interface BaseQuestion {
   id: string;
   type: 'multiple-choice' | 'code-analysis' | 'prompt-writing' | 'concept-matching' | 'interactive-choice';
@@ -37,10 +37,10 @@ interface BaseQuestion {
   questionZh: string;
   difficulty: 'easy' | 'medium' | 'hard';
   points: number;
-  timeLimit?: number; // ç§?
+  timeLimit?: number; // ï¿½?
   explanation: string;
   explanationZh: string;
-  videoTimestamp?: string; // ?¼å?: "12:34"
+  videoTimestamp?: string; // ?ï¿½ï¿½?: "12:34"
 }
 
 interface MultipleChoiceQuestion extends BaseQuestion {
@@ -135,7 +135,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<QuizResult[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(300); // 5 ?†é?
+  const [timeLeft, setTimeLeft] = useState(300); // 5 ?ï¿½ï¿½?
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [isFinished, setIsFinished] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -143,51 +143,51 @@ export const QuizModal: React.FC<QuizModalProps> = ({
   const [matchedPairs, setMatchedPairs] = useState<{[key: string]: string}>({});
   const [score, setScore] = useState(0);
 
-  // æ¨¡æ“¬?é??¸æ?
+  // æ¨¡æ“¬?ï¿½ï¿½??ï¿½ï¿½?
   const questions: Question[] = [
     {
       id: '1',
       type: 'multiple-choice',
       question: 'What is the main purpose of prompt engineering?',
-      questionZh: 'Prompt Engineering ?„ä¸»è¦ç›®?„æ˜¯ä»€éº¼ï?',
+      questionZh: 'Prompt Engineering çš„ä¸»è¦ç›®æ¨™æ˜¯ä»€éº¼ï¼Ÿ',
       difficulty: 'easy',
       points: 10,
       timeLimit: 60,
       explanation: 'Prompt engineering is the process of designing and optimizing prompts to get better responses from AI models.',
-      explanationZh: 'Prompt Engineering ?¯è¨­è¨ˆå??ªå??ç¤ºè©ä»¥å¾?AI æ¨¡å??²å??´å¥½?æ??„é?ç¨‹ã€?,
+      explanationZh: 'Prompt Engineering æ˜¯è¨­è¨ˆå’Œå„ªåŒ–æç¤ºè©ä»¥å¾AI æ¨¡å‹ç²å¾—æ›´å¥½å›æ‡‰çš„éç¨‹ã€‚',
       videoTimestamp: '05:32',
       options: [
         {
           id: 'a',
           text: 'To make AI models faster',
-          textZh: 'è®?AI æ¨¡å??´å¿«',
+          textZh: 'ï¿½?AI æ¨¡ï¿½??ï¿½å¿«',
           isCorrect: false,
           feedback: 'Speed is not the primary goal of prompt engineering.',
-          feedbackZh: '?Ÿåº¦ä¸æ˜¯ Prompt Engineering ?„ä¸»è¦ç›®æ¨™ã€?
+          feedbackZh: '?ï¿½åº¦ä¸æ˜¯ Prompt Engineering ?ï¿½ä¸»è¦ç›®æ¨™ï¿½?
         },
         {
           id: 'b',
           text: 'To get better and more accurate responses from AI',
-          textZh: 'å¾?AI ?²å??´å¥½?´æ?ç¢ºç??æ?',
+          textZh: 'ï¿½?AI ?ï¿½ï¿½??ï¿½å¥½?ï¿½ï¿½?ç¢ºï¿½??ï¿½ï¿½?',
           isCorrect: true,
           feedback: 'Correct! Prompt engineering focuses on crafting prompts that elicit the desired response.',
-          feedbackZh: 'æ­?¢ºï¼Prompt Engineering å°ˆæ³¨?¼è£½ä½œèƒ½å¼•å‡º?€?€?æ??„æ?ç¤ºè???
+          feedbackZh: 'ï¿½?ï¿½ï¿½ï¼Prompt Engineering å°ˆæ³¨?ï¿½è£½ä½œèƒ½å¼•å‡º?ï¿½?ï¿½?ï¿½ï¿½??ï¿½ï¿½?ç¤ºï¿½???
         },
         {
           id: 'c',
           text: 'To reduce the cost of AI usage',
-          textZh: '?ä? AI ä½¿ç”¨?æœ¬',
+          textZh: '?ï¿½ï¿½? AI ä½¿ç”¨?ï¿½æœ¬',
           isCorrect: false,
           feedback: 'While good prompts can be more efficient, cost reduction is not the primary purpose.',
-          feedbackZh: '?–ç„¶å¥½ç??ç¤ºè©å¯ä»¥æ›´?‰æ??‡ï?ä½†æ??¬å?æ¸›ä??¯ä¸»è¦ç›®?„ã€?
+          feedbackZh: '?ï¿½ç„¶å¥½ï¿½??ï¿½ç¤ºè©å¯ä»¥æ›´?ï¿½ï¿½??ï¿½ï¿½?ä½†ï¿½??ï¿½ï¿½?æ¸›ï¿½??ï¿½ä¸»è¦ç›®?ï¿½ï¿½?
         },
         {
           id: 'd',
           text: 'To train new AI models',
-          textZh: 'è¨“ç·´?°ç? AI æ¨¡å?',
+          textZh: 'è¨“ç·´?ï¿½ï¿½? AI æ¨¡ï¿½?',
           isCorrect: false,
           feedback: 'Prompt engineering works with existing models, not training new ones.',
-          feedbackZh: 'Prompt Engineering ?¯è??¾æ?æ¨¡å??ˆä?ï¼Œè€Œä??¯è?ç·´æ–°æ¨¡å???
+          feedbackZh: 'Prompt Engineering ?ï¿½ï¿½??ï¿½ï¿½?æ¨¡ï¿½??ï¿½ï¿½?ï¼Œè€Œï¿½??ï¿½ï¿½?ç·´æ–°æ¨¡ï¿½???
         }
       ]
     },
@@ -195,12 +195,12 @@ export const QuizModal: React.FC<QuizModalProps> = ({
       id: '2',
       type: 'code-analysis',
       question: 'What will be the output of this Python code?',
-      questionZh: '?™æ®µ Python ä»?¢¼?„è¼¸?ºæ˜¯ä»€éº¼ï?',
+      questionZh: '?ï¿½æ®µ Python ï¿½?ï¿½ï¿½?ï¿½è¼¸?ï¿½æ˜¯ä»€éº¼ï¿½?',
       difficulty: 'medium',
       points: 15,
       timeLimit: 90,
       explanation: 'The code creates a list comprehension that filters even numbers and squares them.',
-      explanationZh: '?™æ®µä»?¢¼?µå»ºäº†ä??‹å?è¡¨æ¨å°ï??æ¿¾?¶æ•¸ä¸¦å??¶å¹³?¹ã€?,
+      explanationZh: '?ï¿½æ®µï¿½?ï¿½ï¿½?ï¿½å»ºäº†ï¿½??ï¿½ï¿½?è¡¨æ¨å°ï¿½??ï¿½æ¿¾?ï¿½æ•¸ä¸¦ï¿½??ï¿½å¹³?ï¿½ï¿½?,
       videoTimestamp: '12:45',
       codeSnippet: `numbers = [1, 2, 3, 4, 5, 6]
 result = [x**2 for x in numbers if x % 2 == 0]
@@ -228,7 +228,7 @@ print(result)`,
         {
           id: 'd',
           text: 'Error',
-          textZh: '?¯èª¤',
+          textZh: '?ï¿½èª¤',
           isCorrect: false
         }
       ]
@@ -237,15 +237,15 @@ print(result)`,
       id: '3',
       type: 'prompt-writing',
       question: 'Write a prompt to generate a marketing email for a new coffee machine.',
-      questionZh: 'å¯«ä??‹æ?ç¤ºè?ä¾†ç??æ–°?–å•¡æ©Ÿç??ŸéŠ·?»å??µä»¶??,
+      questionZh: 'å¯«ï¿½??ï¿½ï¿½?ç¤ºï¿½?ä¾†ï¿½??ï¿½æ–°?ï¿½å•¡æ©Ÿï¿½??ï¿½éŠ·?ï¿½ï¿½??ï¿½ä»¶??,
       difficulty: 'hard',
       points: 20,
       timeLimit: 180,
       explanation: 'A good prompt should be specific, include context, and specify the desired tone and format.',
-      explanationZh: 'å¥½ç??ç¤ºè©æ?è©²å…·é«”ï??…å«ä¸Šä??‡ï?ä¸¦æ?å®šæ??€?„è?èª¿å??¼å???,
+      explanationZh: 'å¥½ï¿½??ï¿½ç¤ºè©ï¿½?è©²å…·é«”ï¿½??ï¿½å«ä¸Šï¿½??ï¿½ï¿½?ä¸¦ï¿½?å®šï¿½??ï¿½?ï¿½ï¿½?èª¿ï¿½??ï¿½ï¿½???,
       videoTimestamp: '18:20',
       scenario: 'You are a marketing manager at a coffee equipment company. You need to create an email to promote your new premium coffee machine to existing customers.',
-      scenarioZh: '?¨æ˜¯ä¸€å®¶å??¡è¨­?™å…¬?¸ç??ŸéŠ·ç¶“ç??‚æ‚¨?€è¦å‰µå»ºä?å°é›»å­éƒµä»¶å??¾æ?å®¢æˆ¶?¨å»£?°ç??ªè³ª?–å•¡æ©Ÿã€?,
+      scenarioZh: '?ï¿½æ˜¯ä¸€å®¶ï¿½??ï¿½è¨­?ï¿½å…¬?ï¿½ï¿½??ï¿½éŠ·ç¶“ï¿½??ï¿½æ‚¨?ï¿½è¦å‰µå»ºï¿½?å°é›»å­éƒµä»¶ï¿½??ï¿½ï¿½?å®¢æˆ¶?ï¿½å»£?ï¿½ï¿½??ï¿½è³ª?ï¿½å•¡æ©Ÿï¿½?,
       targetOutput: 'A compelling marketing email with subject line, personalized greeting, product benefits, and call-to-action.',
       evaluationCriteria: [
         'Includes specific role and context',
@@ -255,23 +255,23 @@ print(result)`,
         'Includes key elements (benefits, call-to-action)'
       ],
       evaluationCriteriaZh: [
-        '?…å«?¹å?è§’è‰²?Œä?ä¸‹æ?',
-        '?å??®æ??—çœ¾ï¼ˆç¾?‰å®¢?¶ï?',
-        'è«‹æ??¹å??¼å?ï¼ˆå¸¶ä¸»é?è¡Œç??»å??µä»¶ï¼?,
-        '?‡å?èªèª¿ï¼ˆå?æ¥­ã€ç†±?…ï?',
-        '?…å«?œéµ?ƒç?ï¼ˆå„ª?¢ã€è??•å‘¼ç±²ï?'
+        '?ï¿½å«?ï¿½ï¿½?è§’è‰²?ï¿½ï¿½?ä¸‹ï¿½?',
+        '?ï¿½ï¿½??ï¿½ï¿½??ï¿½çœ¾ï¼ˆç¾?ï¿½å®¢?ï¿½ï¿½?',
+        'è«‹ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼ˆå¸¶ä¸»ï¿½?è¡Œï¿½??ï¿½ï¿½??ï¿½ä»¶ï¿½?,
+        '?ï¿½ï¿½?èªèª¿ï¼ˆï¿½?æ¥­ã€ç†±?ï¿½ï¿½?',
+        '?ï¿½å«?ï¿½éµ?ï¿½ï¿½?ï¼ˆå„ª?ï¿½ã€ï¿½??ï¿½å‘¼ç±²ï¿½?'
       ]
     },
     {
       id: '4',
       type: 'concept-matching',
       question: 'Match the AI concepts with their definitions.',
-      questionZh: 'å°?AI æ¦‚å¿µ?‡å…¶å®šç¾©?¹é???,
+      questionZh: 'ï¿½?AI æ¦‚å¿µ?ï¿½å…¶å®šç¾©?ï¿½ï¿½???,
       difficulty: 'medium',
       points: 15,
       timeLimit: 120,
       explanation: 'Understanding key AI terminology is essential for effective prompt engineering.',
-      explanationZh: '?†è§£?œéµ AI è¡“è?å°æ–¼?‰æ???Prompt Engineering ?³é??è???,
+      explanationZh: '?ï¿½è§£?ï¿½éµ AI è¡“ï¿½?å°æ–¼?ï¿½ï¿½???Prompt Engineering ?ï¿½ï¿½??ï¿½ï¿½???,
       videoTimestamp: '25:10',
       concepts: [
         { id: 'transformer', term: 'Transformer', termZh: 'Transformer' },
@@ -283,25 +283,25 @@ print(result)`,
         {
           id: 'def1',
           definition: 'A neural network architecture that uses attention mechanisms',
-          definitionZh: 'ä½¿ç”¨æ³¨æ??›æ??¶ç?ç¥ç?ç¶²çµ¡?¶æ?',
+          definitionZh: 'ä½¿ç”¨æ³¨ï¿½??ï¿½ï¿½??ï¿½ï¿½?ç¥ï¿½?ç¶²çµ¡?ï¿½ï¿½?',
           matchesTerm: 'transformer'
         },
         {
           id: 'def2',
           definition: 'Retrieval-Augmented Generation',
-          definitionZh: 'æª¢ç´¢å¢å¼·?Ÿæ?',
+          definitionZh: 'æª¢ç´¢å¢å¼·?ï¿½ï¿½?',
           matchesTerm: 'rag'
         },
         {
           id: 'def3',
           definition: 'Low-Rank Adaptation for efficient model training',
-          definitionZh: '?¨æ–¼é«˜æ?æ¨¡å?è¨“ç·´?„ä?ç§©é©??,
+          definitionZh: '?ï¿½æ–¼é«˜ï¿½?æ¨¡ï¿½?è¨“ç·´?ï¿½ï¿½?ç§©é©??,
           matchesTerm: 'lora'
         },
         {
           id: 'def4',
           definition: 'Training a pre-trained model on specific data',
-          definitionZh: '?¨ç‰¹å®šæ•¸?šä?è¨“ç·´?è?ç·´æ¨¡??,
+          definitionZh: '?ï¿½ç‰¹å®šæ•¸?ï¿½ï¿½?è¨“ç·´?ï¿½ï¿½?ç·´æ¨¡??,
           matchesTerm: 'finetuning'
         }
       ]
@@ -310,7 +310,7 @@ print(result)`,
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  // ?’è???
+  // ?ï¿½ï¿½???
   useEffect(() => {
     if (isOpen && !isFinished) {
       const timer = setInterval(() => {
@@ -327,21 +327,21 @@ print(result)`,
     }
   }, [isOpen, isFinished]);
 
-  // ?‹å?è¨ˆæ?
+  // ?ï¿½ï¿½?è¨ˆï¿½?
   useEffect(() => {
     if (isOpen && !startTime) {
       setStartTime(new Date());
     }
   }, [isOpen, startTime]);
 
-  // ?¼å??–æ???
+  // ?ï¿½ï¿½??ï¿½ï¿½???
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // ?äº¤ç­”æ?
+  // ?ï¿½äº¤ç­”ï¿½?
   const handleSubmitAnswer = () => {
     if (!currentAnswer) return;
 
@@ -351,7 +351,7 @@ print(result)`,
     let isCorrect = false;
     let points = 0;
 
-    // è©•ä¼°ç­”æ?
+    // è©•ä¼°ç­”ï¿½?
     switch (currentQuestion.type) {
       case 'multiple-choice':
       case 'code-analysis':
@@ -367,7 +367,7 @@ print(result)`,
         const criteria = currentQuestion.evaluationCriteria;
         let score = 0;
         
-        // ç°¡å–®?„é??µè?æª¢æŸ¥
+        // ç°¡å–®?ï¿½ï¿½??ï¿½ï¿½?æª¢æŸ¥
         if (prompt.toLowerCase().includes('marketing') || prompt.toLowerCase().includes('email')) score += 2;
         if (prompt.toLowerCase().includes('coffee') || prompt.toLowerCase().includes('machine')) score += 2;
         if (prompt.toLowerCase().includes('customer') || prompt.toLowerCase().includes('existing')) score += 1;
@@ -407,7 +407,7 @@ print(result)`,
     setAnswers(prev => [...prev, result]);
     setShowFeedback(true);
     
-    // å»¶é²é¡¯ç¤ºä¸‹ä?é¡Œæ?å®Œæ?
+    // å»¶é²é¡¯ç¤ºä¸‹ï¿½?é¡Œï¿½?å®Œï¿½?
     setTimeout(() => {
       setShowFeedback(false);
       setCurrentAnswer('');
@@ -421,7 +421,7 @@ print(result)`,
     }, 3000);
   };
 
-  // å®Œæ?æ¸¬é?
+  // å®Œï¿½?æ¸¬ï¿½?
   const handleFinishQuiz = () => {
     setIsFinished(true);
     const totalScore = answers.reduce((sum, answer) => sum + answer.points, 0);
@@ -433,7 +433,7 @@ print(result)`,
     onComplete(percentage);
   };
 
-  // ?æ–°?‹å?
+  // ?ï¿½æ–°?ï¿½ï¿½?
   const handleRestart = () => {
     setCurrentQuestionIndex(0);
     setAnswers([]);
@@ -447,7 +447,7 @@ print(result)`,
     setScore(0);
   };
 
-  // æ¸²æ??é?
+  // æ¸²ï¿½??ï¿½ï¿½?
   const renderQuestion = () => {
     switch (currentQuestion.type) {
       case 'multiple-choice':
@@ -510,22 +510,22 @@ print(result)`,
         return (
           <div className="space-y-4">
             <div className="bg-gray-700 rounded-lg p-4">
-              <h4 className="font-semibold mb-2">?…å??è¿°ï¼?/h4>
+              <h4 className="font-semibold mb-2">?ï¿½ï¿½??ï¿½è¿°ï¿½?/h4>
               <p className="text-sm">{currentQuestion.scenarioZh}</p>
             </div>
             
             <div className="space-y-2">
-              <label className="text-sm font-medium">?¨ç? Promptï¼?/label>
+              <label className="text-sm font-medium">?ï¿½ï¿½? Promptï¿½?/label>
               <Textarea
                 value={currentAnswer as string}
                 onChange={(e) => setCurrentAnswer(e.target.value)}
-                placeholder="?¨é€™è£¡å¯«ä??¨ç? prompt..."
+                placeholder="?ï¿½é€™è£¡å¯«ï¿½??ï¿½ï¿½? prompt..."
                 className="min-h-[150px] bg-gray-700 border-gray-600"
               />
             </div>
             
             <div className="bg-gray-700 rounded-lg p-4">
-              <h4 className="font-semibold mb-2">è©•ä¼°æ¨™æ?ï¼?/h4>
+              <h4 className="font-semibold mb-2">è©•ä¼°æ¨™ï¿½?ï¿½?/h4>
               <ul className="text-sm space-y-1">
                 {currentQuestion.evaluationCriteriaZh.map((criteria, index) => (
                   <li key={index} className="flex items-center space-x-2">
@@ -543,7 +543,7 @@ print(result)`,
           <div className="space-y-4">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold mb-3">æ¦‚å¿µï¼?/h4>
+                <h4 className="font-semibold mb-3">æ¦‚å¿µï¿½?/h4>
                 <div className="space-y-2">
                   {currentQuestion.concepts.map((concept) => (
                     <Card key={concept.id} className="bg-gray-700 border-gray-600">
@@ -551,7 +551,7 @@ print(result)`,
                         <div className="flex items-center justify-between">
                           <span className="font-medium">{concept.termZh}</span>
                           <Badge variant="outline" className="text-xs">
-                            {matchedPairs[concept.id] ? 'å·²åŒ¹?? : '?ªåŒ¹??}
+                            {matchedPairs[concept.id] ? 'å·²åŒ¹?? : '?ï¿½åŒ¹??}
                           </Badge>
                         </div>
                       </CardContent>
@@ -561,7 +561,7 @@ print(result)`,
               </div>
               
               <div>
-                <h4 className="font-semibold mb-3">å®šç¾©ï¼?/h4>
+                <h4 className="font-semibold mb-3">å®šç¾©ï¿½?/h4>
                 <div className="space-y-2">
                   {currentQuestion.definitions.map((definition) => (
                     <Card
@@ -572,7 +572,7 @@ print(result)`,
                           : 'bg-gray-700 border-gray-600 hover:bg-gray-600'
                       }`}
                       onClick={() => {
-                        // ç°¡å??„åŒ¹?é?è¼?
+                        // ç°¡ï¿½??ï¿½åŒ¹?ï¿½ï¿½?ï¿½?
                         const newPairs = { ...matchedPairs };
                         const concept = currentQuestion.concepts.find(c => c.id === definition.matchesTerm);
                         if (concept) {
@@ -616,12 +616,12 @@ print(result)`,
         >
           {!showResult ? (
             <div className="flex flex-col h-full">
-              {/* ?‚éƒ¨?²åº¦æ¢?*/}
+              {/* ?ï¿½éƒ¨?ï¿½åº¦ï¿½?*/}
               <div className="bg-gray-700 p-4 border-b border-gray-600">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     <Brain className="w-6 h-6 text-blue-400" />
-                    <h2 className="text-xl font-bold text-white">?ºèƒ½æ¸¬é?</h2>
+                    <h2 className="text-xl font-bold text-white">?ï¿½èƒ½æ¸¬ï¿½?</h2>
                     <Badge variant="outline" className="text-blue-400 border-blue-400">
                       {currentQuestionIndex + 1} / {questions.length}
                     </Badge>
@@ -649,7 +649,7 @@ print(result)`,
                 />
               </div>
 
-              {/* ?é??§å®¹ */}
+              {/* ?ï¿½ï¿½??ï¿½å®¹ */}
               <div className="flex-1 overflow-y-auto p-6">
                 <div className="max-w-3xl mx-auto">
                   {showFeedback ? (
@@ -665,7 +665,7 @@ print(result)`,
                           <XCircle className="w-8 h-8 text-red-400" />
                         )}
                         <h3 className="text-xl font-bold">
-                          {answers[answers.length - 1]?.isCorrect ? 'ç­”å?äº†ï?' : 'ç­”éŒ¯äº?}
+                          {answers[answers.length - 1]?.isCorrect ? 'ç­”ï¿½?äº†ï¿½?' : 'ç­”éŒ¯ï¿½?}
                         </h3>
                       </div>
                       
@@ -681,7 +681,7 @@ print(result)`,
                             className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-white"
                           >
                             <Play className="w-4 h-4 mr-2" />
-                            ?æº«?¸é??§å®¹ ({currentQuestion.videoTimestamp})
+                            ?ï¿½æº«?ï¿½ï¿½??ï¿½å®¹ ({currentQuestion.videoTimestamp})
                           </Button>
                         )}
                       </div>
@@ -696,7 +696,7 @@ print(result)`,
                             'bg-red-600'
                           }`}>
                             {currentQuestion.difficulty === 'easy' ? 'ç°¡å–®' :
-                             currentQuestion.difficulty === 'medium' ? 'ä¸­ç?' : '?°é›£'}
+                             currentQuestion.difficulty === 'medium' ? 'ä¸­ï¿½?' : '?ï¿½é›£'}
                           </Badge>
                           <span className="text-sm text-gray-400">
                             {currentQuestion.points} ??
@@ -706,7 +706,7 @@ print(result)`,
                         {currentQuestion.timeLimit && (
                           <div className="flex items-center space-x-2 text-sm text-gray-400">
                             <Clock className="w-4 h-4" />
-                            <span>å»ºè­°?‚é?: {currentQuestion.timeLimit}ç§?/span>
+                            <span>å»ºè­°?ï¿½ï¿½?: {currentQuestion.timeLimit}ï¿½?/span>
                           </div>
                         )}
                       </div>
@@ -727,7 +727,7 @@ print(result)`,
                           className="text-gray-400"
                         >
                           <ArrowLeft className="w-4 h-4 mr-2" />
-                          ä¸Šä?é¡?
+                          ä¸Šï¿½?ï¿½?
                         </Button>
                         
                         <Button
@@ -735,7 +735,7 @@ print(result)`,
                           disabled={!currentAnswer}
                           className="bg-blue-600 hover:bg-blue-700 text-white px-8"
                         >
-                          {currentQuestionIndex === questions.length - 1 ? 'å®Œæ?æ¸¬é?' : 'ä¸‹ä?é¡?}
+                          {currentQuestionIndex === questions.length - 1 ? 'å®Œï¿½?æ¸¬ï¿½?' : 'ä¸‹ï¿½?ï¿½?}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                       </div>
@@ -745,12 +745,12 @@ print(result)`,
               </div>
             </div>
           ) : (
-            // çµæ??é¢
+            // çµï¿½??ï¿½é¢
             <div className="p-8 text-center">
               <div className="max-w-2xl mx-auto space-y-6">
                 <div className="flex items-center justify-center space-x-3">
                   <Trophy className="w-12 h-12 text-yellow-400" />
-                  <h2 className="text-3xl font-bold text-white">æ¸¬é?å®Œæ?ï¼?/h2>
+                  <h2 className="text-3xl font-bold text-white">æ¸¬ï¿½?å®Œï¿½?ï¿½?/h2>
                 </div>
                 
                 <div className="bg-gray-700 rounded-lg p-6">
@@ -758,7 +758,7 @@ print(result)`,
                     {score}%
                   </div>
                   <p className="text-gray-300">
-                    ?¨ç?å°ä? {answers.filter(a => a.isCorrect).length} / {questions.length} é¡?
+                    ?ï¿½ï¿½?å°ï¿½? {answers.filter(a => a.isCorrect).length} / {questions.length} ï¿½?
                   </p>
                 </div>
                 
@@ -767,19 +767,19 @@ print(result)`,
                     <div className="text-2xl font-bold text-green-400">
                       {answers.reduce((sum, a) => sum + a.points, 0)}
                     </div>
-                    <p className="text-sm text-gray-400">ç¸½å?</p>
+                    <p className="text-sm text-gray-400">ç¸½ï¿½?</p>
                   </div>
                   <div className="bg-gray-700 rounded-lg p-4">
                     <div className="text-2xl font-bold text-blue-400">
                       {Math.round(answers.reduce((sum, a) => sum + a.timeSpent, 0) / 60)}
                     </div>
-                    <p className="text-sm text-gray-400">?¨æ?(?†é?)</p>
+                    <p className="text-sm text-gray-400">?ï¿½ï¿½?(?ï¿½ï¿½?)</p>
                   </div>
                   <div className="bg-gray-700 rounded-lg p-4">
                     <div className="text-2xl font-bold text-purple-400">
                       {score >= 80 ? 'A' : score >= 60 ? 'B' : 'C'}
                     </div>
-                    <p className="text-sm text-gray-400">ç­‰ç?</p>
+                    <p className="text-sm text-gray-400">ç­‰ï¿½?</p>
                   </div>
                 </div>
                 
@@ -790,7 +790,7 @@ print(result)`,
                       <span className="font-semibold text-orange-400">å»ºè­°</span>
                     </div>
                     <p className="text-sm text-gray-300">
-                      ?¨ä¼¼ä¹åœ¨?™å€‹ç?ç¯€?‡åˆ°ä¸€äº›å›°??€‚æ??‘ç? AI ?©æ?å·²ç?æº–å?å¥½ä?ä»½å€‹äºº?–ç?è¤‡ç?ç­†è?çµ¦æ‚¨ï¼Œæ‚¨?³ç¾?¨æŸ¥?‹å?ï¼?
+                      ?ï¿½ä¼¼ä¹åœ¨?ï¿½å€‹ï¿½?ç¯€?ï¿½åˆ°ä¸€äº›å›°??ï¿½ï¿½ï¿½??ï¿½ï¿½? AI ?ï¿½ï¿½?å·²ï¿½?æº–ï¿½?å¥½ï¿½?ä»½å€‹äºº?ï¿½ï¿½?è¤‡ï¿½?ç­†ï¿½?çµ¦æ‚¨ï¼Œæ‚¨?ï¿½ç¾?ï¿½æŸ¥?ï¿½ï¿½?ï¿½?
                     </p>
                   </div>
                 )}
@@ -802,14 +802,14 @@ print(result)`,
                     className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-white"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
-                    ?æ–°æ¸¬é?
+                    ?ï¿½æ–°æ¸¬ï¿½?
                   </Button>
                   <Button
                     onClick={onClose}
                     className="bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
-                    å®Œæ?
+                    å®Œï¿½?
                   </Button>
                 </div>
               </div>

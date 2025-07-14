@@ -74,68 +74,68 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // ?å??–æ­¡è¿è???
+  // ?ï¿½ï¿½??ï¿½æ­¡è¿ï¿½???
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       const welcomeMessage: ChatMessage = {
         id: 'welcome',
         type: 'ai',
-        content: `?? ?¨å¥½ï¼æ??¯æ‚¨?„å?å±?AI ?©æ??‚æ?å·²ç?å­¸ç?äº†é€™å€‹èª²ç¨‹ç??€?‰å…§å®¹ï??…æ‹¬è¬›ç¾©?é€å?ç¨¿å?å¸¸è??é???
+        content: `?? ?ï¿½å¥½ï¼ï¿½??ï¿½æ‚¨?ï¿½ï¿½?ï¿½?AI ?ï¿½ï¿½??ï¿½ï¿½?å·²ï¿½?å­¸ï¿½?äº†é€™å€‹èª²ç¨‹ï¿½??ï¿½?ï¿½å…§å®¹ï¿½??ï¿½æ‹¬è¬›ç¾©?ï¿½é€ï¿½?ç¨¿ï¿½?å¸¸ï¿½??ï¿½ï¿½???
 
-?‘å¯ä»¥å¹«?¨ï?
-??è§??è¤‡é??„æ?å¿?
-???¤éŒ¯?¨ç?ä»?¢¼
-???ä?å­¸ç?å»ºè­°
-???ç?èª²ç??¸é??é?
-???ºæ‚¨ç¸½ç??é?
+?ï¿½å¯ä»¥å¹«?ï¿½ï¿½?
+??ï¿½??è¤‡ï¿½??ï¿½ï¿½?ï¿½?
+???ï¿½éŒ¯?ï¿½ï¿½?ï¿½?ï¿½ï¿½
+???ï¿½ï¿½?å­¸ï¿½?å»ºè­°
+???ï¿½ï¿½?èª²ï¿½??ï¿½ï¿½??ï¿½ï¿½?
+???ï¿½æ‚¨ç¸½ï¿½??ï¿½ï¿½?
 
-è«‹å?è¨´æ??¨é?è¦ä?éº¼å¹«?©ï?`,
+è«‹ï¿½?è¨´ï¿½??ï¿½ï¿½?è¦ï¿½?éº¼å¹«?ï¿½ï¿½?`,
         timestamp: new Date(),
         messageType: 'text',
         suggestions: [
-          'è§???¶å?ç« ç??„é?é»?,
-          'æª¢æŸ¥?‘ç?ä»?¢¼',
-          'çµ¦æ?ä¸€äº›ç·´ç¿’å»ºè­?,
-          'ç¸½ç??°ç›®?ç‚ºæ­¢ç?å­¸ç??§å®¹'
+          'è§£é‡‹é€™å€‹ç« ç¯€çš„å…§å®¹',
+          'æª¢æŸ¥æˆ‘çš„ç­”æ¡ˆ',
+          'çµ¦æˆ‘ä¸€äº›ç·´ç¿’å»ºè­°',
+          'ç¸½çµåˆ°ç›®å‰ç‚ºæ­¢çš„å­¸ç¿’å…§å®¹'
         ]
       };
       setMessages([welcomeMessage]);
     }
   }, [isOpen, messages.length]);
 
-  // å¿«é€Ÿæ?ä½œæ???
+  // å¿«é€Ÿï¿½?ä½œï¿½???
   const quickActions: QuickAction[] = [
     {
       id: 'explain-current',
-      label: 'è§???¶å??§å®¹',
+      label: 'è§£é‡‹å…§å®¹',
       icon: <Lightbulb className="w-4 h-4" />,
-      action: () => handleQuickAction('è«‹è§£?‹ç•¶?ç?ç¯€?„é?é»æ?å¿?),
+      action: () => handleQuickAction('è«‹è§£é‡‹ç•¶å‰ç« ç¯€çš„é‡é»'),
       category: 'explain'
     },
     {
       id: 'debug-code',
-      label: '?¤éŒ¯ä»?¢¼',
+      label: 'é™¤éŒ¯å”åŠ©',
       icon: <Code className="w-4 h-4" />,
-      action: () => handleQuickAction('å¹«æ?æª¢æŸ¥ä»?¢¼?‰æ??‰å?é¡?),
+      action: () => handleQuickAction('å¹«æˆ‘æª¢æŸ¥ä»£ç¢¼ä¸­çš„å•é¡Œ'),
       category: 'debug'
     },
     {
       id: 'practice-suggestions',
-      label: 'ç·´ç?å»ºè­°',
+      label: 'ç·´ç¿’å»ºè­°',
       icon: <Target className="w-4 h-4" />,
-      action: () => handleQuickAction('çµ¦æ?ä¸€äº›ç·´ç¿’å»ºè­?),
+      action: () => handleQuickAction('çµ¦æˆ‘ä¸€äº›ç·´ç¿’å»ºè­°'),
       category: 'practice'
     },
     {
       id: 'review-summary',
-      label: 'ç¸½ç??é?',
+      label: 'ç¸½ï¿½??ï¿½ï¿½?',
       icon: <BookOpen className="w-4 h-4" />,
-      action: () => handleQuickAction('ç¸½ç??°ç›®?ç‚ºæ­¢ç??é?'),
+      action: () => handleQuickAction('ç¸½ï¿½??ï¿½ç›®?ï¿½ç‚ºæ­¢ï¿½??ï¿½ï¿½?'),
       category: 'review'
     }
   ];
 
-  // ?¼é€è???
+  // ?ï¿½é€ï¿½???
   const handleSendMessage = async (message: string = inputValue) => {
     if (!message.trim()) return;
 
@@ -151,7 +151,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
     setInputValue('');
     setIsTyping(true);
 
-    // æ¨¡æ“¬ AI ?æ?
+    // æ¨¡æ“¬ AI ?ï¿½ï¿½?
     setTimeout(() => {
       const aiResponse = generateAIResponse(message);
       setMessages(prev => [...prev, aiResponse]);
@@ -159,167 +159,167 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
     }, 1500);
   };
 
-  // å¿«é€Ÿæ?ä½?
+  // å¿«é€Ÿï¿½?ï¿½?
   const handleQuickAction = (action: string) => {
     handleSendMessage(action);
   };
 
-  // ?Ÿæ? AI ?æ?
+  // ?ï¿½ï¿½? AI ?ï¿½ï¿½?
   const generateAIResponse = (userMessage: string): ChatMessage => {
     const lowerMessage = userMessage.toLowerCase();
     
-    // ä»?¢¼?¸é??é?
-    if (lowerMessage.includes('ä»?¢¼') || lowerMessage.includes('code') || lowerMessage.includes('?¤éŒ¯') || lowerMessage.includes('bug')) {
+    // ï¿½?ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?
+    if (lowerMessage.includes('ï¿½?ï¿½ï¿½') || lowerMessage.includes('code') || lowerMessage.includes('?ï¿½éŒ¯') || lowerMessage.includes('bug')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `?‘ä?å¹«æ‚¨æª¢æŸ¥ä»?¢¼ï¼è??Šæ‚¨?„ä»£ç¢¼è²¼ä¸Šä?ï¼Œæ??ƒï?
+        content: `?ï¿½ï¿½?å¹«æ‚¨æª¢æŸ¥ï¿½?ï¿½ï¿½ï¼ï¿½??ï¿½æ‚¨?ï¿½ä»£ç¢¼è²¼ä¸Šï¿½?ï¼Œï¿½??ï¿½ï¿½?
 
-1. ?? æª¢æŸ¥èªæ??¯èª¤
-2. ?¯ ?†æ??è¼¯?é?
-3. ?’¡ ?ä??¹é€²å»ºè­?
-4. ?? è§???¸é?æ¦‚å¿µ
+1. ?? æª¢æŸ¥èªï¿½??ï¿½èª¤
+2. ?ï¿½ï¿½ ?ï¿½ï¿½??ï¿½è¼¯?ï¿½ï¿½?
+3. ?ï¿½ï¿½ ?ï¿½ï¿½??ï¿½é€²å»ºï¿½?
+4. ?? ï¿½???ï¿½ï¿½?æ¦‚å¿µ
 
-?¨ä??¯ä»¥?´æ¥å¾?AI Playground è¤‡è£½ä»?¢¼?ä?ï¼`,
+?ï¿½ï¿½??ï¿½ä»¥?ï¿½æ¥ï¿½?AI Playground è¤‡è£½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¼`,
         timestamp: new Date(),
         messageType: 'code',
         codeLanguage: 'python',
         suggestions: [
-          'æª¢æŸ¥ Python ä»?¢¼',
-          'è§???™æ®µä»?¢¼?„é?è¼?,
-          '?ªå?ä»?¢¼?ˆèƒ½',
-          'ä¿®å¾©?¯èª¤'
+          'æª¢æŸ¥ Python ï¿½?ï¿½ï¿½',
+          'ï¿½???ï¿½æ®µï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½?,
+          '?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½èƒ½',
+          'ä¿®å¾©?ï¿½èª¤'
         ]
       };
     }
 
-    // è§??æ¦‚å¿µ
-    if (lowerMessage.includes('è§??') || lowerMessage.includes('ä»€éº¼æ˜¯') || lowerMessage.includes('æ¦‚å¿µ')) {
+    // ï¿½??æ¦‚å¿µ
+    if (lowerMessage.includes('ï¿½??') || lowerMessage.includes('ä»€éº¼æ˜¯') || lowerMessage.includes('æ¦‚å¿µ')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `è®“æ??ºæ‚¨è§???è?æ¦‚å¿µï¼?
+        content: `è®“ï¿½??ï¿½æ‚¨ï¿½???ï¿½ï¿½?æ¦‚å¿µï¿½?
 
-**Prompt Engineering ?¸å??Ÿå?ï¼?*
+**Prompt Engineering ?ï¿½ï¿½??ï¿½ï¿½?ï¿½?*
 
-1. **?ç¢º??* - æ¸…æ™°?è¿°?¨ç??€æ±?
-2. **ä¸Šä???* - ?ä?è¶³å??„è??¯ä¿¡??
-3. **?¼å???* - ?‡å?è¼¸å‡º?¼å?
-4. **ç¯„ä?** - ?ä??·é?ä¾‹å?
+1. **?ï¿½ç¢º??* - æ¸…æ™°?ï¿½è¿°?ï¿½ï¿½??ï¿½ï¿½?
+2. **ä¸Šï¿½???* - ?ï¿½ï¿½?è¶³ï¿½??ï¿½ï¿½??ï¿½ä¿¡??
+3. **?ï¿½ï¿½???* - ?ï¿½ï¿½?è¼¸å‡º?ï¿½ï¿½?
+4. **ç¯„ï¿½?** - ?ï¿½ï¿½??ï¿½ï¿½?ä¾‹ï¿½?
 
-**å¯¦ç”¨?€å·§ï?**
-- ä½¿ç”¨è§’è‰²è¨­å? ("ä½ æ˜¯ä¸€??..")
-- ?‡å?æ­¥é? ("è«‹æ??§ä»¥ä¸‹æ­¥é©?..")
-- è¨­å??åˆ¶ ("??00å­—å…§...")
+**å¯¦ç”¨?ï¿½å·§ï¿½?**
+- ä½¿ç”¨è§’è‰²è¨­ï¿½? ("ä½ æ˜¯ä¸€??..")
+- ?ï¿½ï¿½?æ­¥ï¿½? ("è«‹ï¿½??ï¿½ä»¥ä¸‹æ­¥ï¿½?..")
+- è¨­ï¿½??ï¿½åˆ¶ ("??00å­—å…§...")
 
-?³ä?è§?›´å¤šç´°ç¯€?ï??‘å¯ä»¥æ·±?¥è§£?‹ä»»ä½•æ?å¿µï?`,
+?ï¿½ï¿½?ï¿½?ï¿½ï¿½å¤šç´°ç¯€?ï¿½ï¿½??ï¿½å¯ä»¥æ·±?ï¿½è§£?ï¿½ä»»ä½•ï¿½?å¿µï¿½?`,
         timestamp: new Date(),
         messageType: 'explanation',
         relatedTimestamp: '08:15',
         suggestions: [
-          'ä»€éº¼æ˜¯ Temperature ?ƒæ•¸ï¼?,
-          'å¦‚ä?å¯«å¥½??System Promptï¼?,
-          '?¶æ¨£?¬å?å°‘æ¨£?¬ç?å·®åˆ¥',
-          '?ˆå??ç¶­?ç¤º?€å·?
+          'ä»€éº¼æ˜¯ Temperature ?ï¿½æ•¸ï¿½?,
+          'å¦‚ï¿½?å¯«å¥½??System Promptï¿½?,
+          '?ï¿½æ¨£?ï¿½ï¿½?å°‘æ¨£?ï¿½ï¿½?å·®åˆ¥',
+          '?ï¿½ï¿½??ï¿½ç¶­?ï¿½ç¤º?ï¿½ï¿½?
         ]
       };
     }
 
-    // ç·´ç?å»ºè­°
-    if (lowerMessage.includes('ç·´ç?') || lowerMessage.includes('å»ºè­°') || lowerMessage.includes('å¦‚ä??å?')) {
+    // ç·´ï¿½?å»ºè­°
+    if (lowerMessage.includes('ç·´ï¿½?') || lowerMessage.includes('å»ºè­°') || lowerMessage.includes('å¦‚ï¿½??ï¿½ï¿½?')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `?¹æ??¨ç?å­¸ç??²åº¦ï¼Œæ?å»ºè­°ä»¥ä?ç·´ç?ï¼?
+        content: `?ï¿½ï¿½??ï¿½ï¿½?å­¸ï¿½??ï¿½åº¦ï¼Œï¿½?å»ºè­°ä»¥ï¿½?ç·´ï¿½?ï¿½?
 
-**?¯ ç«‹å³?¯å??„ç·´ç¿’ï?**
-1. ?—è©¦å¯«ä??‹ç”¢?æ?è¿°ç? prompt
-2. ç·´ç?èª¿æ•´ Temperature ?ƒæ•¸
-3. æ¯”è?ä¸å?æ¨¡å??„å???
+**?ï¿½ï¿½ ç«‹å³?ï¿½ï¿½??ï¿½ç·´ç¿’ï¿½?**
+1. ?ï¿½è©¦å¯«ï¿½??ï¿½ç”¢?ï¿½ï¿½?è¿°ï¿½? prompt
+2. ç·´ï¿½?èª¿æ•´ Temperature ?ï¿½æ•¸
+3. æ¯”ï¿½?ä¸ï¿½?æ¨¡ï¿½??ï¿½ï¿½???
 
-**?’ª ?²é??‘æˆ°ï¼?*
-- è¨­è?ä¸€?‹å?æ­¥é??„æ¨?†ä»»??
-- ?µå»º?ªå·±??prompt æ¨¡æ¿
-- å¯¦ç¾?ˆå??ç¶­?ç¤º
+**?ï¿½ï¿½ ?ï¿½ï¿½??ï¿½æˆ°ï¿½?*
+- è¨­ï¿½?ä¸€?ï¿½ï¿½?æ­¥ï¿½??ï¿½æ¨?ï¿½ä»»??
+- ?ï¿½å»º?ï¿½å·±??prompt æ¨¡æ¿
+- å¯¦ç¾?ï¿½ï¿½??ï¿½ç¶­?ï¿½ç¤º
 
-**?? è©•ä¼°?¹å?ï¼?*
-- ?‡é??Ÿè¼¸?ºæ?è¼?
-- æ¸¬è©¦ä¸å??…æ?
-- ?¶é??¨æˆ¶?é?
+**?? è©•ä¼°?ï¿½ï¿½?ï¿½?*
+- ?ï¿½ï¿½??ï¿½è¼¸?ï¿½ï¿½?ï¿½?
+- æ¸¬è©¦ä¸ï¿½??ï¿½ï¿½?
+- ?ï¿½ï¿½??ï¿½æˆ¶?ï¿½ï¿½?
 
-?¨æƒ³?ˆå??ªå€‹ç·´ç¿’é?å§‹ï?`,
+?ï¿½æƒ³?ï¿½ï¿½??ï¿½å€‹ç·´ç¿’ï¿½?å§‹ï¿½?`,
         timestamp: new Date(),
         messageType: 'suggestion',
         suggestions: [
-          '?‹å?ç¬¬ä??‹ç·´ç¿?,
-          '?‹ç??´å?ç¯„ä?',
-          'æ¸¬è©¦?‘ç? prompt',
-          '?²å??‹äºº?–å»ºè­?
+          '?ï¿½ï¿½?ç¬¬ï¿½??ï¿½ç·´ï¿½?,
+          '?ï¿½ï¿½??ï¿½ï¿½?ç¯„ï¿½?',
+          'æ¸¬è©¦?ï¿½ï¿½? prompt',
+          '?ï¿½ï¿½??ï¿½äºº?ï¿½å»ºï¿½?
         ]
       };
     }
 
-    // ç¸½ç?
-    if (lowerMessage.includes('ç¸½ç?') || lowerMessage.includes('?é?') || lowerMessage.includes('è¤‡ç?')) {
+    // ç¸½ï¿½?
+    if (lowerMessage.includes('ç¸½ï¿½?') || lowerMessage.includes('?ï¿½ï¿½?') || lowerMessage.includes('è¤‡ï¿½?')) {
       return {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: `?? **å­¸ç??é?ç¸½ç?**
+        content: `?? **å­¸ï¿½??ï¿½ï¿½?ç¸½ï¿½?**
 
-**å·²å??å…§å®¹ï?**
-??Prompt Engineering ?ºç?æ¦‚å¿µ
-???ƒæ•¸èª¿æ•´?€å·?
-??å¯¦é?æ¡ˆä??†æ?
+**å·²ï¿½??ï¿½å…§å®¹ï¿½?**
+??Prompt Engineering ?ï¿½ï¿½?æ¦‚å¿µ
+???ï¿½æ•¸èª¿æ•´?ï¿½ï¿½?
+??å¯¦ï¿½?æ¡ˆï¿½??ï¿½ï¿½?
 
-**?¸å?è¦é?ï¼?*
-?¯ **?ç¢º?„æ?ä»?* - è¶Šå…·é«”è?å¥?
-?¯ **?©ç•¶?„ä?ä¸‹æ?** - ?ä?å¿…è??Œæ™¯
-?¯ **?¼å??–è¼¸??* - ?‡å??Ÿæ??¼å?
-?¯ **è¿­ä»£?ªå?** - ä¸æ–·?¹é€?prompt
+**?ï¿½ï¿½?è¦ï¿½?ï¿½?*
+?ï¿½ï¿½ **?ï¿½ç¢º?ï¿½ï¿½?ï¿½?* - è¶Šå…·é«”ï¿½?ï¿½?
+?ï¿½ï¿½ **?ï¿½ç•¶?ï¿½ï¿½?ä¸‹ï¿½?** - ?ï¿½ï¿½?å¿…ï¿½??ï¿½æ™¯
+?ï¿½ï¿½ **?ï¿½ï¿½??ï¿½è¼¸??* - ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?
+?ï¿½ï¿½ **è¿­ä»£?ï¿½ï¿½?** - ä¸æ–·?ï¿½ï¿½?prompt
 
-**ä¸‹ä?æ­¥å»ºè­°ï?**
-??å®Œæ??¬ç?ç¯€æ¸¬é?
-???—è©¦?´è??œç? prompt è¨­è?
-??å­¸ç?é«˜é??€å·?
+**ä¸‹ï¿½?æ­¥å»ºè­°ï¿½?**
+??å®Œï¿½??ï¿½ï¿½?ç¯€æ¸¬ï¿½?
+???ï¿½è©¦?ï¿½ï¿½??ï¿½ï¿½? prompt è¨­ï¿½?
+??å­¸ï¿½?é«˜ï¿½??ï¿½ï¿½?
 
-?¨å??ªå€‹éƒ¨?†é??‰ç??ï?`,
+?ï¿½ï¿½??ï¿½å€‹éƒ¨?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?`,
         timestamp: new Date(),
         messageType: 'explanation',
         relatedTimestamp: currentTimestamp,
         suggestions: [
-          'æ¸¬è©¦?‘ç??†è§£',
-          '?‹ç?å¯¦é?ä¾‹å?',
-          '?²å…¥ä¸‹ä?ç« ç?',
-          'è¤‡ç??è?æ¦‚å¿µ'
+          'æ¸¬è©¦?ï¿½ï¿½??ï¿½è§£',
+          '?ï¿½ï¿½?å¯¦ï¿½?ä¾‹ï¿½?',
+          '?ï¿½å…¥ä¸‹ï¿½?ç« ï¿½?',
+          'è¤‡ï¿½??ï¿½ï¿½?æ¦‚å¿µ'
         ]
       };
     }
 
-    // ?è¨­?æ?
+    // ?ï¿½è¨­?ï¿½ï¿½?
     return {
       id: (Date.now() + 1).toString(),
       type: 'ai',
-      content: `?‘ç?è§?‚¨?„å?é¡Œï?è®“æ??ºæ‚¨?ä?å¹«åŠ©??
+      content: `?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?é¡Œï¿½?è®“ï¿½??ï¿½æ‚¨?ï¿½ï¿½?å¹«åŠ©??
 
-?¹æ??¨ç??å?ï¼Œæ?å»ºè­°ï¼?
+?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼Œï¿½?å»ºè­°ï¿½?
 
-1. **æª¢æŸ¥?¶å?å­¸ç??²åº¦** - ç¢ºä??†è§£?ºç?æ¦‚å¿µ
-2. **?ƒè€ƒç›¸?œè???* - ?‘å¯ä»¥æ??‘å…·é«”ç?èª²ç??§å®¹
-3. **å¯¦é?ç·´ç?** - ?•æ??—è©¦?¯æ?å¥½ç?å­¸ç??¹å?
+1. **æª¢æŸ¥?ï¿½ï¿½?å­¸ï¿½??ï¿½åº¦** - ç¢ºï¿½??ï¿½è§£?ï¿½ï¿½?æ¦‚å¿µ
+2. **?ï¿½è€ƒç›¸?ï¿½ï¿½???* - ?ï¿½å¯ä»¥ï¿½??ï¿½å…·é«”ï¿½?èª²ï¿½??ï¿½å®¹
+3. **å¯¦ï¿½?ç·´ï¿½?** - ?ï¿½ï¿½??ï¿½è©¦?ï¿½ï¿½?å¥½ï¿½?å­¸ï¿½??ï¿½ï¿½?
 
-?¨èƒ½?´å…·é«”åœ°?è¿°?¨é??°ç??é??ï??™æ¨£?‘å¯ä»¥æ?ä¾›æ›´ç²¾ç¢º?„å¹«?©ï?`,
+?ï¿½èƒ½?ï¿½å…·é«”åœ°?ï¿½è¿°?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½æ¨£?ï¿½å¯ä»¥ï¿½?ä¾›æ›´ç²¾ç¢º?ï¿½å¹«?ï¿½ï¿½?`,
       timestamp: new Date(),
       messageType: 'text',
       suggestions: [
-        '?‘åœ¨?™å€‹æ­¥é©Ÿå¡ä½ä?',
-        '?™å€‹æ?å¿µä?å¤ªç?è§?,
-        '?€è¦æ›´å¤šç·´ç¿?,
-        '?³ç?å¯¦é?ä¾‹å?'
+        '?ï¿½åœ¨?ï¿½å€‹æ­¥é©Ÿå¡ä½ï¿½?',
+        '?ï¿½å€‹ï¿½?å¿µï¿½?å¤ªï¿½?ï¿½?,
+        '?ï¿½è¦æ›´å¤šç·´ï¿½?,
+        '?ï¿½ï¿½?å¯¦ï¿½?ä¾‹ï¿½?'
       ]
     };
   };
 
-  // è¨Šæ¯è©•å?
+  // è¨Šæ¯è©•ï¿½?
   const handleRateMessage = (messageId: string, rating: 'positive' | 'negative') => {
     setMessages(prev => 
       prev.map(msg => 
@@ -330,12 +330,12 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
     );
   };
 
-  // è¤‡è£½?§å®¹
+  // è¤‡è£½?ï¿½å®¹
   const handleCopyMessage = (content: string) => {
     navigator.clipboard.writeText(content);
   };
 
-  // æ¸²æ?è¨Šæ¯
+  // æ¸²ï¿½?è¨Šæ¯
   const renderMessage = (message: ChatMessage) => {
     return (
       <motion.div
@@ -366,7 +366,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
                 className="mt-2 text-xs text-blue-400 hover:text-blue-300"
               >
                 <Play className="w-3 h-3 mr-1" />
-                è·³è???{message.relatedTimestamp}
+                è·³ï¿½???{message.relatedTimestamp}
               </Button>
             )}
           </div>
@@ -449,15 +449,15 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
           exit={{ scale: 0.9, opacity: 0 }}
           className="bg-gray-800 rounded-xl shadow-2xl w-full max-w-4xl h-[600px] flex flex-col"
         >
-          {/* ?‚éƒ¨æ¨™é???*/}
+          {/* ?ï¿½éƒ¨æ¨™ï¿½???*/}
           <div className="flex items-center justify-between p-4 border-b border-gray-700">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-white">AI ?©æ?</h2>
-                <p className="text-sm text-gray-400">?¨æ??ºæ‚¨è§???‘å?</p>
+                <h2 className="text-lg font-semibold text-white">AI ?ï¿½ï¿½?</h2>
+                <p className="text-sm text-gray-400">?ï¿½ï¿½??ï¿½æ‚¨ï¿½???ï¿½ï¿½?</p>
               </div>
             </div>
             
@@ -471,7 +471,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             </Button>
           </div>
 
-          {/* å¿«é€Ÿæ?ä½œæ? */}
+          {/* å¿«é€Ÿï¿½?ä½œï¿½? */}
           <div className="p-4 border-b border-gray-700">
             <div className="flex flex-wrap gap-2">
               {quickActions.map((action) => (
@@ -489,7 +489,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             </div>
           </div>
 
-          {/* è¨Šæ¯?€??*/}
+          {/* è¨Šæ¯?ï¿½??*/}
           <div className="flex-1 overflow-hidden">
             <ScrollArea className="h-full">
               <div className="p-4 space-y-6">
@@ -511,7 +511,7 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
                     <div className="bg-gray-700 rounded-lg p-4">
                       <div className="flex items-center space-x-2">
                         <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
-                        <span className="text-sm text-gray-400">AI ?©æ?æ­?œ¨?è€?..</span>
+                        <span className="text-sm text-gray-400">AI ?ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½ï¿½?..</span>
                       </div>
                     </div>
                   </motion.div>
@@ -520,14 +520,14 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             </ScrollArea>
           </div>
 
-          {/* è¼¸å…¥?€??*/}
+          {/* è¼¸å…¥?ï¿½??*/}
           <div className="p-4 border-t border-gray-700">
             <div className="flex gap-2">
               <Input
                 ref={inputRef}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="è¼¸å…¥?¨ç??é?..."
+                placeholder="è¼¸å…¥?ï¿½ï¿½??ï¿½ï¿½?..."
                 className="flex-1 bg-gray-700 border-gray-600 text-white placeholder-gray-400"
                 onKeyPress={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
@@ -547,14 +547,14 @@ export const AITutorChat: React.FC<AITutorChatProps> = ({
             
             <div className="flex items-center justify-between mt-2">
               <span className="text-xs text-gray-500">
-                ??Enter ?¼é€???Shift+Enter ?›è?
+                ??Enter ?ï¿½ï¿½???Shift+Enter ?ï¿½ï¿½?
               </span>
               <div className="flex items-center space-x-2">
                 <Badge variant="outline" className="text-xs text-green-400 border-green-400">
-                  ?¨ç?
+                  ?ï¿½ï¿½?
                 </Badge>
                 <span className="text-xs text-gray-500">
-                  ?‚é?: {currentTimestamp}
+                  ?ï¿½ï¿½?: {currentTimestamp}
                 </span>
               </div>
             </div>

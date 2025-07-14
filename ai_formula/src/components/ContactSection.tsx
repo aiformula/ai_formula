@@ -177,41 +177,41 @@ const ContactSection = () => {
                     {language === 'zh-HK' ? t('contact.form.message') : 'How can we help you?'}
                   </Label>
                   
-                  {/* 建議?��? */}
+                  {/* 建議?��? */}
                   <div className="mb-4">
                     <p className="text-sm text-gray-400 mb-3">
-                      {language === 'zh-HK' ? '快速選?�常見�?題�?' : 'Quick select common questions:'}
+                      {language === 'zh-HK' ? '快速選?�常見�?題�?' : 'Quick select common questions:'}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {[
                         {
-                          label: language === 'zh-HK' ? '?�想?�詢課�??�容' : 'Course Content Inquiry',
+                          label: language === 'zh-HK' ? '想要詢問課程內容' : 'Course Content Inquiry',
                           text: language === 'zh-HK' 
-                            ? '你好，�??��?�?��多�???[請填寫課程�?稱] ?�內容�?例�?上�??��??��?學大綱�???
+                            ? '你好，我想要了解更多關於[請填寫課程名稱]的內容，例如上課時間、課程大綱等。'
                             : 'Hello, I would like to know more about [please specify course name] content, such as class schedule, curriculum, etc.'
                         },
                         {
-                          label: language === 'zh-HK' ? '?��??��??�個課程好' : 'Course Selection Help',
+                          label: language === 'zh-HK' ? '不知道哪個課程好' : 'Course Selection Help',
                           text: language === 'zh-HK'
-                            ? '你好，�??��??��? [請填寫�??�職業�??�景]，學習目標�??��???[請填寫�??�目標]，�??��??�個課程�?較適?��?�?
+                            ? '你好，我的背景是[請填寫您的職業或背景]，我的學習目標是[請填寫您的目標]，哪個課程比較適合我？'
                             : 'Hello, my background is [please fill in your profession or background], and my learning goal is [please fill in your goal]. Which course would be most suitable for me?'
                         },
                         {
-                          label: language === 'zh-HK' ? '?�想了解企業?��??��?' : 'Corporate Training',
+                          label: language === 'zh-HK' ? '想要了解企業????' : 'Corporate Training',
                           text: language === 'zh-HK'
-                            ? '你好，�??�公?��??�趣?�員工�?供AI?��?，想了解一下�??��?企業?��??�報?��?
+                            ? '你好，我們公司有興趣為員工提供AI培訓，想要了解一下您的企業包裝和報價。'
                             : 'Hello, our company is interested in providing AI training for employees. We would like to know more about your corporate packages and pricing.'
                         },
                         {
-                          label: language === 'zh-HK' ? '?��??��?�??�術�?�? : 'Payment/Technical Issues',
+                          label: language === 'zh-HK' ? '付款/技術問題' : 'Payment/Technical Issues',
                           text: language === 'zh-HK'
-                            ? '你好，�???[付款/?�入/?��?] ?��??��?題�??��??�以幫�??��?�?
+                            ? '你好，我遇到[付款/登入/影片觀看]等問題，請問您可以幫我解決嗎？'
                             : 'Hello, I encountered issues with [payment/login/video viewing]. Could you please help me with this?'
                         },
                         {
-                          label: language === 'zh-HK' ? '?�想?�詢?��?機�?' : 'Partnership Opportunities',
+                          label: language === 'zh-HK' ? '想要詢問合作機會' : 'Partnership Opportunities',
                           text: language === 'zh-HK'
-                            ? '你好，�??�想?��??�傾下�?作�?請�??�該?�絡?�個部?��?
+                            ? '你好，我們想要討論合作機會，請問我們應該聯絡哪個部門？'
                             : 'Hello, we would like to discuss partnership opportunities. Which department should we contact?'
                         }
                       ].map((suggestion, index) => (
@@ -237,7 +237,7 @@ const ContactSection = () => {
                     rows={6}
                     className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-yellow-500 focus:ring-yellow-500 resize-none"
                     placeholder={language === 'zh-HK' 
-                      ? '?�以詳細話�??�知你�??�景?�學習目標�?等�??�幫你�??�?��?課�??��?如�??��?一?�平?�設計師，想學AI繪�?，�?該由?�個課程�?始�?'
+                      ? '?�以詳細話�??�知你�??�景?�學習目標�?等�??�幫你�??�?��?課�??��?如�??��?一?�平?�設計師，想學AI繪�?，�?該由?�個課程�?始�?'
                       : 'Please tell us about your background and learning goals so we can help you choose the most suitable course. For example: I am a graphic designer wanting to learn AI drawing, which course should I start with?'
                     }
                     required

@@ -33,7 +33,7 @@ import {
   Eye
 } from 'lucide-react';
 
-// ?¸æ?çµæ?
+// ?çµ?
 interface LessonModule {
   id: string;
   title: string;
@@ -60,7 +60,7 @@ interface Discussion {
   likes: number;
 }
 
-// å­¸ç?çµ±è?çµ„ä»¶
+// å­¸ç¿’çµ±è¨ˆçµ„ä»¶
 const StatsCard: React.FC<{
   title: string;
   value: string;
@@ -78,7 +78,7 @@ const StatsCard: React.FC<{
   </div>
 );
 
-// å½±ç??­æ”¾?¨ç?ä»?
+// å½±ï¿½??ï¿½æ”¾?ï¿½ï¿½?ï¿½?
 const VideoPlayer: React.FC<{
   title: string;
   duration: string;
@@ -108,7 +108,7 @@ const VideoPlayer: React.FC<{
   </div>
 );
 
-// äº’å?ç·´ç?çµ„ä»¶
+// äº’ï¿½?ç·´ï¿½?çµ„ä»¶
 const InteractivePractice: React.FC<{
   title: string;
   description: string;
@@ -121,38 +121,38 @@ const InteractivePractice: React.FC<{
         <p className="text-gray-400 text-sm">{description}</p>
       </div>
       <Badge variant="outline" className="text-blue-400 border-blue-400">
-        å¯¦ä?
+        å¯¦ï¿½?
       </Badge>
     </div>
     <div className="space-y-3">
       <Textarea
-        placeholder="?¨æ­¤è¼¸å…¥?¨ç? Perplexity ?œç´¢?¥è©¢..."
+        placeholder="?ï¿½æ­¤è¼¸å…¥?ï¿½ï¿½? Perplexity ?ï¿½ç´¢?ï¿½è©¢..."
         className="bg-gray-900/50 border-gray-600 min-h-[80px]"
       />
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 text-sm text-gray-400">
           <Target className="w-4 h-4" />
-          <span>ç·´ç??®æ?: ç²¾ç¢º?œç´¢</span>
+          <span>ç·´ï¿½??ï¿½ï¿½?: ç²¾ç¢º?ï¿½ç´¢</span>
         </div>
         <Button onClick={onStart} size="sm" className="bg-blue-600 hover:bg-blue-700">
-          ?‹å?ç·´ç?
+          ?ï¿½ï¿½?ç·´ï¿½?
         </Button>
       </div>
     </div>
   </div>
 );
 
-// ç­†è?ç·¨è¼¯?¨ç?ä»?
+// ç­†ï¿½?ç·¨è¼¯?ï¿½ï¿½?ï¿½?
 const NotesEditor: React.FC<{
   notes: string;
   onNotesChange: (notes: string) => void;
 }> = ({ notes, onNotesChange }) => (
   <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
     <div className="flex items-center justify-between mb-4">
-      <h4 className="font-semibold text-white">?‹äººç­†è?</h4>
+      <h4 className="font-semibold text-white">?ï¿½äººç­†ï¿½?</h4>
       <div className="flex items-center gap-2">
         <Badge variant="outline" className="text-xs">
-          ?ªå?ä¿å?
+          ?ï¿½ï¿½?ä¿ï¿½?
         </Badge>
         <Button size="sm" variant="outline">
           <Download className="w-4 h-4 mr-1" />
@@ -163,22 +163,22 @@ const NotesEditor: React.FC<{
     <Textarea
       value={notes}
       onChange={(e) => onNotesChange(e.target.value)}
-      placeholder="è¨˜é??¨ç?å­¸ç??é??æƒ³æ³•å??é?..."
+      placeholder="è¨˜ï¿½??ï¿½ï¿½?å­¸ï¿½??ï¿½ï¿½??ï¿½æƒ³æ³•ï¿½??ï¿½ï¿½?..."
       className="bg-gray-900/50 border-gray-600 min-h-[200px] resize-none"
     />
     <div className="flex items-center justify-between mt-3 text-sm text-gray-400">
-      <span>?€å¾Œæ›´?? 2 ?†é???/span>
+      <span>æœ€å¾Œæ›´æ–° 2 åˆ†é˜å‰</span>
       <span>{notes.length}/1000 å­—ç¬¦</span>
     </div>
   </div>
 );
 
-// ä¸»è?èª²ç??¸æ?
+// ä¸»è¦èª²ç¨‹æ¨¡çµ„
 const lessonModules: LessonModule[] = [
   {
     id: 'search',
     title: 'Search',
-    titleZh: '?œç´¢',
+    titleZh: '?ï¿½ç´¢',
     icon: <Search className="w-5 h-5" />,
     status: 'current',
     progress: 75
@@ -186,7 +186,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'writing',
     title: 'Writing',
-    titleZh: 'å¯«ä?',
+    titleZh: 'å¯«ï¿½?',
     icon: <Edit className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -194,7 +194,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'analysis',
     title: 'Analysis',
-    titleZh: '?†æ?',
+    titleZh: '?ï¿½ï¿½?',
     icon: <BarChart3 className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -202,7 +202,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'optimization',
     title: 'Optimization',
-    titleZh: '?ªå?',
+    titleZh: '?ï¿½ï¿½?',
     icon: <Target className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -210,7 +210,7 @@ const lessonModules: LessonModule[] = [
   {
     id: 'reporting',
     title: 'Reporting',
-    titleZh: '?±å?',
+    titleZh: '?ï¿½ï¿½?',
     icon: <TrendingUp className="w-5 h-5" />,
     status: 'locked',
     progress: 0
@@ -223,7 +223,7 @@ const discussions: Discussion[] = [
     type: 'instructor',
     author: 'Dr. Chen',
     content: 'Remember to use specific keywords when searching with Perplexity for better results.',
-    contentZh: 'è¨˜ä??¨ä½¿??Perplexity ?œç´¢?‚ä½¿?¨å…·é«”é??µè?ä»¥ç²å¾—æ›´å¥½ç?çµæ???,
+    contentZh: 'è¨˜ï¿½??ï¿½ä½¿??Perplexity ?ï¿½ç´¢?ï¿½ä½¿?ï¿½å…·é«”ï¿½??ï¿½ï¿½?ä»¥ç²å¾—æ›´å¥½ï¿½?çµï¿½???,
     time: '2 hours ago',
     likes: 12
   },
@@ -232,7 +232,7 @@ const discussions: Discussion[] = [
     type: 'student',
     author: 'Alex Wang',
     content: 'How do I search for academic papers using Perplexity?',
-    contentZh: 'å¦‚ä?ä½¿ç”¨ Perplexity ?œç´¢å­¸è?è«–æ?ï¼?,
+    contentZh: 'å¦‚ï¿½?ä½¿ç”¨ Perplexity ?ï¿½ç´¢å­¸ï¿½?è«–ï¿½?ï¿½?,
     time: '3 hours ago',
     likes: 8
   },
@@ -241,7 +241,7 @@ const discussions: Discussion[] = [
     type: 'faq',
     author: 'FAQ Bot',
     content: 'Common search operators: quotation marks for exact phrases, AND/OR for logical operations.',
-    contentZh: 'å¸¸è??œç´¢?ä?ç¬¦ï?å¼•è??¨æ–¼ç²¾ç¢º?­è?ï¼ŒAND/OR?¨æ–¼?è¼¯?‹ç???,
+    contentZh: 'å¸¸ï¿½??ï¿½ç´¢?ï¿½ï¿½?ç¬¦ï¿½?å¼•ï¿½??ï¿½æ–¼ç²¾ç¢º?ï¿½ï¿½?ï¼ŒAND/OR?ï¿½æ–¼?ï¿½è¼¯?ï¿½ï¿½???,
     time: '1 day ago',
     likes: 15
   }
@@ -287,7 +287,7 @@ const PerplexityToolsLesson: React.FC = () => {
       <Navigation />
       
       <div className="container mx-auto px-4 pt-24 pb-8">
-        {/* ?‚éƒ¨?€è¡¨æ¿ */}
+        {/* ?éƒ¨?è¡¨æ¿ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -297,18 +297,18 @@ const PerplexityToolsLesson: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                ?? {isZhTW ? 'Perplexity å·¥å…·?Œæ¡' : 'Perplexity Tools Mastery'}
+                ?? {isZhTW ? 'Perplexity å·¥å…·?ï¿½æ¡' : 'Perplexity Tools Mastery'}
               </h1>
               <p className="text-gray-300 mt-2">
-                {isZhTW ? '?¶å?: ?œç´¢?€å·? : 'Current: Search Techniques'}
+                {isZhTW ? '?ï¿½ï¿½?: ?ï¿½ç´¢?ï¿½ï¿½? : 'Current: Search Techniques'}
               </p>
             </div>
             <div className="text-right">
               <div className="text-2xl font-bold text-blue-400">
-                ?±ï? {isZhTW ? '?©é?: 12?? : 'Remaining: 12 min'}
+                ?ï¿½ï¿½? {isZhTW ? '?ï¿½ï¿½?: 12?? : 'Remaining: 12 min'}
               </div>
               <div className="text-sm text-gray-400">
-                {isZhTW ? 'ç¬?2 èª?/ ??5 èª? : 'Lesson 2 / 5'}
+                {isZhTW ? 'ï¿½?2 ï¿½?/ ??5 ï¿½? : 'Lesson 2 / 5'}
               </div>
             </div>
           </div>
@@ -323,7 +323,7 @@ const PerplexityToolsLesson: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* æ¨¡ç??¸æ?æ¨™ç±¤ */}
+        {/* æ¨¡ï¿½??ï¿½ï¿½?æ¨™ç±¤ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -360,45 +360,45 @@ const PerplexityToolsLesson: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* ä¸»è?å­¸ç??€??- ä¸‰æ?ä½ˆå? */}
+        {/* ä¸»ï¿½?å­¸ï¿½??ï¿½??- ä¸‰ï¿½?ä½ˆï¿½? */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8"
         >
-          {/* å·¦æ? - ?†è?å­¸ç? */}
+          {/* å·¦ï¿½? - ?ï¿½ï¿½?å­¸ï¿½? */}
           <div className="lg:col-span-1">
             <Card className="bg-gray-800/50 border-gray-700 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <BookOpen className="w-5 h-5 text-blue-400" />
-                  {isZhTW ? '?? ?†è?' : '?? Theory'}
+                  {isZhTW ? '?? ?ï¿½ï¿½?' : '?? Theory'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-white mb-2">?œç´¢?€å·?/h4>
+                    <h4 className="font-semibold text-white mb-2">?ï¿½ç´¢?ï¿½ï¿½?/h4>
                     <p className="text-gray-400 text-sm mb-3">
-                      ?Œæ¡ Perplexity ?„é?ç´šæ?ç´¢å??½ï??…æ‹¬èªç¾©?œç´¢?å??¨è¿½è¹¤å?å¤šè?è¨€?¯æ???
+                      ?ï¿½æ¡ Perplexity ?ï¿½ï¿½?ç´šï¿½?ç´¢ï¿½??ï¿½ï¿½??ï¿½æ‹¬èªç¾©?ï¿½ç´¢?ï¿½ï¿½??ï¿½è¿½è¹¤ï¿½?å¤šï¿½?è¨€?ï¿½ï¿½???
                     </p>
                   </div>
                   
                   <VideoPlayer
-                    title="Perplexity ?œç´¢?ºç?"
+                    title="Perplexity ?ï¿½ç´¢?ï¿½ï¿½?"
                     duration="8:45"
                     isPlaying={isVideoPlaying}
                     onToggle={() => setIsVideoPlaying(!isVideoPlaying)}
                   />
                   
                   <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
-                    <h5 className="font-semibold text-blue-400 mb-2">???¸å?æ¦‚å¿µ</h5>
+                    <h5 className="font-semibold text-blue-400 mb-2">???ï¿½ï¿½?æ¦‚å¿µ</h5>
                     <ul className="text-sm text-gray-300 space-y-1">
-                      <li>??èªç¾©?œç´¢ vs ?œéµè©æ?ç´?/li>
-                      <li>??å¼•ç”¨ä¾†æ?é©—è?</li>
-                      <li>???œç´¢çµæ??ªå?</li>
-                      <li>??å¤šè?è¨€?¥è©¢?€å·?/li>
+                      <li>??èªç¾©?ï¿½ç´¢ vs ?ï¿½éµè©ï¿½?ï¿½?/li>
+                      <li>??å¼•ç”¨ä¾†ï¿½?é©—ï¿½?</li>
+                      <li>???ï¿½ç´¢çµï¿½??ï¿½ï¿½?</li>
+                      <li>??å¤šï¿½?è¨€?ï¿½è©¢?ï¿½ï¿½?/li>
                     </ul>
                   </div>
                 </div>
@@ -406,36 +406,36 @@ const PerplexityToolsLesson: React.FC = () => {
             </Card>
           </div>
 
-          {/* ä¸­æ? - å¯¦ä?ç·´ç? */}
+          {/* ä¸­ï¿½? - å¯¦ï¿½?ç·´ï¿½? */}
           <div className="lg:col-span-1">
             <Card className="bg-gray-800/50 border-gray-700 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Target className="w-5 h-5 text-orange-400" />
-                  {isZhTW ? '??ï¸?å¯¦ä?' : '??ï¸?Practice'}
+                  {isZhTW ? '??ï¿½?å¯¦ï¿½?' : '??ï¿½?Practice'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <InteractivePractice
-                    title="?³æ??œç´¢ç·´ç?"
-                    description="ä½¿ç”¨ Perplexity ?²è?å¯¦æ??œç´¢ç·´ç?ï¼Œå­¸ç¿’å?ä½•æ?å»ºæ??ˆç??¥è©¢??
+                    title="?ï¿½ï¿½??ï¿½ç´¢ç·´ï¿½?"
+                    description="ä½¿ç”¨ Perplexity ?ï¿½ï¿½?å¯¦ï¿½??ï¿½ç´¢ç·´ï¿½?ï¼Œå­¸ç¿’ï¿½?ä½•ï¿½?å»ºï¿½??ï¿½ï¿½??ï¿½è©¢??
                     onStart={() => {}}
                   />
                   
                   <div className="bg-orange-900/20 p-4 rounded-lg border border-orange-500/30">
-                    <h5 className="font-semibold text-orange-400 mb-2">?¯ ç·´ç??®æ?</h5>
+                    <h5 className="font-semibold text-orange-400 mb-2">?ï¿½ï¿½ ç·´ï¿½??ï¿½ï¿½?</h5>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-300">?œç´¢æº–ç¢º??/span>
+                        <span className="text-gray-300">?ï¿½ç´¢æº–ç¢º??/span>
                         <span className="text-orange-400">85%</span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-300">?¥è©¢?ªå?</span>
+                        <span className="text-gray-300">?ï¿½è©¢?ï¿½ï¿½?</span>
                         <span className="text-orange-400">92%</span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-300">å¼•ç”¨é©—è?</span>
+                        <span className="text-gray-300">å¼•ç”¨é©—ï¿½?</span>
                         <span className="text-orange-400">78%</span>
                       </div>
                     </div>
@@ -444,11 +444,11 @@ const PerplexityToolsLesson: React.FC = () => {
                   <div className="grid grid-cols-2 gap-2">
                     <Button size="sm" variant="outline" className="flex items-center gap-1">
                       <Play className="w-4 h-4" />
-                      ?‹å?
+                      ?ï¿½ï¿½?
                     </Button>
                     <Button size="sm" variant="outline" className="flex items-center gap-1">
                       <Settings className="w-4 h-4" />
-                      è¨­å?
+                      è¨­ï¿½?
                     </Button>
                   </div>
                 </div>
@@ -456,13 +456,13 @@ const PerplexityToolsLesson: React.FC = () => {
             </Card>
           </div>
 
-          {/* ?³æ? - ç­†è? */}
+          {/* ?ï¿½ï¿½? - ç­†ï¿½? */}
           <div className="lg:col-span-1">
             <Card className="bg-gray-800/50 border-gray-700 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <FileText className="w-5 h-5 text-green-400" />
-                  {isZhTW ? '?? ç­†è?' : '?? Notes'}
+                  {isZhTW ? '?? ç­†ï¿½?' : '?? Notes'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -475,19 +475,19 @@ const PerplexityToolsLesson: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* è¨è??€?Œå­¸ç¿’çµ±è¨?*/}
+        {/* è¨ï¿½??ï¿½?ï¿½å­¸ç¿’çµ±ï¿½?*/}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8"
         >
-          {/* è¨è??€ */}
+          {/* è¨ï¿½??ï¿½ */}
           <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <MessageSquare className="w-5 h-5 text-purple-400" />
-                {isZhTW ? '?’¬ è¨è??€' : '?’¬ Discussion'}
+                {isZhTW ? '?ï¿½ï¿½ è¨ï¿½??ï¿½' : '?ï¿½ï¿½ Discussion'}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -504,8 +504,8 @@ const PerplexityToolsLesson: React.FC = () => {
                           {discussion.author}
                         </span>
                         <Badge variant="outline" className="text-xs">
-                          {discussion.type === 'instructor' ? '???ğ??å°å¸«' : 
-                           discussion.type === 'student' ? '?‘¥ å­¸å“¡' : '?’¡ FAQ'}
+                          {discussion.type === 'instructor' ? '???ï¿½ï¿½??å°å¸«' : 
+                           discussion.type === 'student' ? '?ï¿½ï¿½ å­¸å“¡' : '?ï¿½ï¿½ FAQ'}
                         </Badge>
                       </div>
                       <span className="text-xs text-gray-500">{discussion.time}</span>
@@ -514,8 +514,8 @@ const PerplexityToolsLesson: React.FC = () => {
                       {isZhTW ? discussion.contentZh : discussion.content}
                     </p>
                     <div className="flex items-center gap-2 text-xs text-gray-400">
-                      <button className="hover:text-red-400">?¤ï? {discussion.likes}</button>
-                      <button className="hover:text-blue-400">?è?</button>
+                      <button className="hover:text-red-400">?ï¿½ï¿½? {discussion.likes}</button>
+                      <button className="hover:text-blue-400">?ï¿½ï¿½?</button>
                     </div>
                   </div>
                 ))}
@@ -523,82 +523,34 @@ const PerplexityToolsLesson: React.FC = () => {
             </CardContent>
           </Card>
 
-          {/* å­¸ç?çµ±è? */}
+          {/* å­¸ç¿’çµ±è¨ˆ */}
           <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <BarChart3 className="w-5 h-5 text-blue-400" />
-                {isZhTW ? '?? å­¸ç?çµ±è?' : '?? Learning Stats'}
+                {isZhTW ? '?? å­¸ç¿’çµ±è¨ˆ' : '?? Learning Stats'}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-4">
                 <StatsCard
-                  title={isZhTW ? '?¬èª²?‚é?' : 'Session Time'}
-                  value={`${learningStats.timeSpent}?†`}
+                  title={isZhTW ? '?ï¿½èª²?ï¿½ï¿½?' : 'Session Time'}
+                  value={`${learningStats.timeSpent}?ï¿½`}
                   icon={<Clock className="w-5 h-5" />}
                   color="from-blue-500/20 to-blue-600/20"
                 />
                 <StatsCard
-                  title={isZhTW ? 'å®Œæ??? : 'Completion'}
+                  title={isZhTW ? 'å®Œæˆç‡ : 'Completion'}
                   value={`${learningStats.completionRate}%`}
                   icon={<TrendingUp className="w-5 h-5" />}
                   color="from-green-500/20 to-green-600/20"
                 />
                 <StatsCard
-                  title={isZhTW ? 'æ­?¢º?? : 'Accuracy'}
+                  title={isZhTW ? 'æº–ç¢ºç‡ : 'Accuracy'}
                   value={`${learningStats.accuracy}%`}
                   icon={<Target className="w-5 h-5" />}
                   color="from-orange-500/20 to-orange-600/20"
                 />
                 <StatsCard
-                  title={isZhTW ? '???å¤©æ•¸' : 'Streak'}
-                  value={`${learningStats.streak}å¤©`}
-                  icon={<Award className="w-5 h-5" />}
-                  color="from-purple-500/20 to-purple-600/20"
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        {/* åº•éƒ¨å°èˆª */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50"
-        >
-          <div className="flex items-center justify-between">
-            <Button variant="outline" className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              {isZhTW ? 'ä¸Šä?èª? : 'Previous'}
-            </Button>
-            
-            <div className="flex items-center gap-4">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Pause className="w-4 h-4" />
-                {isZhTW ? '?«å?' : 'Pause'}
-              </Button>
-              <Button className="flex items-center gap-2 bg-green-600 hover:bg-green-700">
-                <CheckCircle className="w-4 h-4" />
-                {isZhTW ? 'å®Œæ?' : 'Complete'}
-              </Button>
-              <Button variant="outline" className="flex items-center gap-2">
-                <Share2 className="w-4 h-4" />
-                {isZhTW ? '?†äº«' : 'Share'}
-              </Button>
-            </div>
-            
-            <Button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700">
-              {isZhTW ? 'ä¸‹ä?èª? : 'Next'}
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
-export default PerplexityToolsLesson; 
+                  title={isZhTW ? 'é€£çºŒå¤©æ•¸' : 'Streak'}
+                  value={`

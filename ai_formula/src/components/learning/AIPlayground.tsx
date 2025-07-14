@@ -25,7 +25,7 @@ import {
   Share2
 } from 'lucide-react';
 
-// é¡å?å®šç¾©
+// é¡ï¿½?å®šç¾©
 interface AIPlaygroundProps {
   type: 'prompt-engineering' | 'image-generation' | 'code-editor';
   expectedOutput: string;
@@ -75,22 +75,22 @@ export const AIPlayground: React.FC<AIPlaygroundProps> = ({
   const [currentInput, setCurrentInput] = useState('');
   const [results, setResults] = useState<(PromptResult | ImageResult | CodeResult)[]>([]);
   
-  // Prompt Engineering ?€??
+  // Prompt Engineering ?ï¿½??
   const [temperature, setTemperature] = useState(0.7);
   const [maxTokens, setMaxTokens] = useState(1000);
   const [selectedModel, setSelectedModel] = useState('gpt-4');
   
-  // Image Generation ?€??
+  // Image Generation ?ï¿½??
   const [imageWidth, setImageWidth] = useState(512);
   const [imageHeight, setImageHeight] = useState(512);
   const [steps, setSteps] = useState(50);
   const [guidance, setGuidance] = useState(7.5);
   
-  // Code Editor ?€??
+  // Code Editor ?ï¿½??
   const [selectedLanguage, setSelectedLanguage] = useState('python');
-  const [code, setCode] = useState('# ?¨é€™è£¡å¯«æ‚¨?„ä»£ç¢¼\nprint("Hello, AI!")');
+  const [code, setCode] = useState('# ?ï¿½é€™è£¡å¯«æ‚¨?ï¿½ä»£ç¢¼\nprint("Hello, AI!")');
 
-  // ?•ç??äº¤
+  // ?ï¿½ï¿½??ï¿½äº¤
   const handleSubmit = async () => {
     if (!currentInput.trim() && type !== 'code-editor') return;
     
@@ -127,16 +127,16 @@ export const AIPlayground: React.FC<AIPlaygroundProps> = ({
     // æ¨¡æ“¬ API å»¶é²
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    const mockResponse = `?™æ˜¯å°æ‚¨??prompt "${currentInput}" ?„å??‰ã€?
+    const mockResponse = `?ï¿½æ˜¯å°æ‚¨??prompt "${currentInput}" ?ï¿½ï¿½??ï¿½ï¿½?
     
-?¨ç?å¯¦ç?å¯¦ç¾ä¸­ï??™è£¡?ƒèª¿?¨å¯¦?›ç? AI API (å¦?OpenAI GPT-4)??
+?ï¿½ï¿½?å¯¦ï¿½?å¯¦ç¾ä¸­ï¿½??ï¿½è£¡?ï¿½èª¿?ï¿½å¯¦?ï¿½ï¿½? AI API (ï¿½?OpenAI GPT-4)??
     
-?ƒæ•¸è¨­ç½®ï¼?
+?ï¿½æ•¸è¨­ç½®ï¿½?
 - Temperature: ${temperature}
 - Max Tokens: ${maxTokens}
 - Model: ${selectedModel}
 
-?™å€‹å??‰æ??¹æ??¨ç??·é? prompt ?Œè??–ã€‚`;
+?ï¿½å€‹ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½? prompt ?ï¿½ï¿½??ï¿½ã€‚`;
 
     return {
       id: Date.now().toString(),
@@ -173,12 +173,12 @@ export const AIPlayground: React.FC<AIPlaygroundProps> = ({
   const handleCodeExecution = async (): Promise<CodeResult> => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    const mockOutput = `?·è?çµæ?ï¼?
+    const mockOutput = `?ï¿½ï¿½?çµï¿½?ï¿½?
     
 Hello, AI!
     
-ä»?¢¼?·è??å?ï¼?
-?¨ç?å¯¦ç?å¯¦ç¾ä¸­ï??™è£¡?ƒåœ¨å®‰å…¨?„æ??’ç’°å¢ƒä¸­?·è??¨ç?ä»?¢¼?‚`;
+ï¿½?ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?ï¿½?
+?ï¿½ï¿½?å¯¦ï¿½?å¯¦ç¾ä¸­ï¿½??ï¿½è£¡?ï¿½åœ¨å®‰å…¨?ï¿½ï¿½??ï¿½ç’°å¢ƒä¸­?ï¿½ï¿½??ï¿½ï¿½?ï¿½?ï¿½ï¿½?ï¿½`;
 
     return {
       id: Date.now().toString(),
@@ -190,17 +190,17 @@ Hello, AI!
     };
   };
 
-  // æ¸…é™¤çµæ?
+  // æ¸…é™¤çµï¿½?
   const clearResults = () => {
     setResults([]);
   };
 
-  // è¤‡è£½?°å‰ªè²¼æ¿
+  // è¤‡è£½?ï¿½å‰ªè²¼æ¿
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
   };
 
-  // æ¸²æ? Prompt Engineering ?Œé¢
+  // æ¸²ï¿½? Prompt Engineering ?ï¿½é¢
   const renderPromptEngineering = () => (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -209,7 +209,7 @@ Hello, AI!
           id="prompt"
           value={currentInput}
           onChange={(e) => setCurrentInput(e.target.value)}
-          placeholder="è«‹è¼¸?¥æ‚¨??prompt..."
+          placeholder="è«‹è¼¸?ï¿½æ‚¨??prompt..."
           className="min-h-[100px] bg-gray-700 border-gray-600 text-white"
         />
       </div>
@@ -255,7 +255,7 @@ Hello, AI!
     </div>
   );
 
-  // æ¸²æ? Image Generation ?Œé¢
+  // æ¸²ï¿½? Image Generation ?ï¿½é¢
   const renderImageGeneration = () => (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -264,7 +264,7 @@ Hello, AI!
           id="image-prompt"
           value={currentInput}
           onChange={(e) => setCurrentInput(e.target.value)}
-          placeholder="?è¿°?¨æƒ³è¦ç??ç??–å?..."
+          placeholder="?ï¿½è¿°?ï¿½æƒ³è¦ï¿½??ï¿½ï¿½??ï¿½ï¿½?..."
           className="min-h-[100px] bg-gray-700 border-gray-600 text-white"
         />
       </div>
@@ -323,7 +323,7 @@ Hello, AI!
     </div>
   );
 
-  // æ¸²æ? Code Editor ?Œé¢
+  // æ¸²ï¿½? Code Editor ?ï¿½é¢
   const renderCodeEditor = () => (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -347,7 +347,7 @@ Hello, AI!
           id="code-editor"
           value={code}
           onChange={(e) => setCode(e.target.value)}
-          placeholder="?¨é€™è£¡å¯«æ‚¨?„ä»£ç¢?.."
+          placeholder="?ï¿½é€™è£¡å¯«æ‚¨?ï¿½ä»£ï¿½?.."
           className="min-h-[200px] bg-gray-900 border-gray-600 text-white font-mono text-sm"
         />
       </div>
@@ -356,7 +356,7 @@ Hello, AI!
 
   return (
     <div className="h-full flex flex-col bg-gray-900 text-white">
-      {/* ?‚éƒ¨?§åˆ¶?€ */}
+      {/* ?ï¿½éƒ¨?ï¿½åˆ¶?ï¿½ */}
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
@@ -383,12 +383,12 @@ Hello, AI!
           </div>
         </div>
         
-        {/* è¼¸å…¥?Œé¢ */}
+        {/* è¼¸å…¥?ï¿½é¢ */}
         {type === 'prompt-engineering' && renderPromptEngineering()}
         {type === 'image-generation' && renderImageGeneration()}
         {type === 'code-editor' && renderCodeEditor()}
         
-        {/* ?äº¤?‰é? */}
+        {/* ?ï¿½äº¤?ï¿½ï¿½? */}
         <Button
           onClick={handleSubmit}
           disabled={isLoading || (!currentInput.trim() && type !== 'code-editor')}
@@ -397,22 +397,22 @@ Hello, AI!
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              {type === 'prompt-engineering' && '?Ÿæ?ä¸?..'}
-              {type === 'image-generation' && '?Ÿæ??–å?ä¸?..'}
-              {type === 'code-editor' && '?·è?ä¸?..'}
+              {type === 'prompt-engineering' && 'ç”Ÿæˆä¸­...'}
+              {type === 'image-generation' && 'ç”Ÿæˆåœ–ç‰‡ä¸­...'}
+              {type === 'code-editor' && 'åŸ·è¡Œä¸­...'}
             </>
           ) : (
             <>
               <Send className="w-4 h-4 mr-2" />
-              {type === 'prompt-engineering' && '?¼é€?}
-              {type === 'image-generation' && '?Ÿæ??–å?'}
-              {type === 'code-editor' && '?·è?ä»?¢¼'}
+              {type === 'prompt-engineering' && 'ç™¼é€'}
+              {type === 'image-generation' && 'ç”Ÿæˆåœ–ç‰‡'}
+              {type === 'code-editor' && 'åŸ·è¡Œä»£ç¢¼'}
             </>
           )}
         </Button>
       </div>
       
-      {/* çµæ?å±•ç¤º?€ */}
+      {/* çµï¿½?å±•ç¤º?ï¿½ */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="p-4 space-y-4">
@@ -424,9 +424,9 @@ Hello, AI!
                   {type === 'code-editor' && <Code className="w-12 h-12 mx-auto mb-4 text-green-400" />}
                 </div>
                 <p className="text-gray-400">
-                  {type === 'prompt-engineering' && '?‹å?è¼¸å…¥?¨ç? prompt...'}
-                  {type === 'image-generation' && '?è¿°?¨æƒ³è¦ç??ç??–å?...'}
-                  {type === 'code-editor' && 'å¯«ä??¨ç?ä»?¢¼ä¸¦åŸ·è¡?..'}
+                  {type === 'prompt-engineering' && '?ï¿½ï¿½?è¼¸å…¥?ï¿½ï¿½? prompt...'}
+                  {type === 'image-generation' && '?ï¿½è¿°?ï¿½æƒ³è¦ï¿½??ï¿½ï¿½??ï¿½ï¿½?...'}
+                  {type === 'code-editor' && 'å¯«ï¿½??ï¿½ï¿½?ï¿½?ï¿½ï¿½ä¸¦åŸ·ï¿½?..'}
                 </p>
               </div>
             ) : (
