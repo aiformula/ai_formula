@@ -19,7 +19,7 @@ import {
   Users
 } from 'lucide-react'
 
-// é¡å?å®šç¾© / Type Definitions
+// é¡ï¿½?å®šç¾© / Type Definitions
 interface NotFoundProps {
   statusCode?: number
   customMessage?: string
@@ -62,87 +62,87 @@ interface NotFoundTexts {
 const suggestedRoutes: SuggestedRoute[] = [
   {
     path: '/',
-    name: { en: 'Home', zh: 'é¦–é?' },
+    name: { en: 'Home', zh: 'é¦–ï¿½?' },
     icon: <Home className="h-5 w-5" />,
-    description: { en: 'Return to homepage', zh: 'è¿”å?é¦–é?' }
+    description: { en: 'Return to homepage', zh: 'è¿”ï¿½?é¦–ï¿½?' }
   },
   {
     path: '/course',
-    name: { en: 'Courses', zh: 'èª²ç?' },
+    name: { en: 'Courses', zh: 'èª²ï¿½?' },
     icon: <BookOpen className="h-5 w-5" />,
-    description: { en: 'Browse our courses', zh: '?è¦½?‘å€‘ç?èª²ç?' }
+    description: { en: 'Browse our courses', zh: '?ï¿½è¦½?ï¿½å€‘ï¿½?èª²ï¿½?' }
   },
   {
     path: '/blog',
-    name: { en: 'Blog', zh: 'ç¶²è?' },
+    name: { en: 'Blog', zh: 'ç¶²ï¿½?' },
     icon: <BookOpen className="h-5 w-5" />,
-    description: { en: 'Read our articles', zh: '?±è??‘å€‘ç??‡ç?' }
+    description: { en: 'Read our articles', zh: '?ï¿½ï¿½??ï¿½å€‘ï¿½??ï¿½ï¿½?' }
   },
   {
     path: '/about',
-    name: { en: 'About', zh: '?œæ–¼?‘å€? },
+    name: { en: 'About', zh: 'é—œæ–¼æˆ‘å€‘' },
     icon: <HelpCircle className="h-5 w-5" />,
-    description: { en: 'Learn about us', zh: 'äº†è§£?‘å€? }
+    description: { en: 'Learn about us', zh: 'äº†è§£æˆ‘å€‘' }
   }
 ]
 
-// ?¯èª¤?±å??½æ•¸ / Error Reporting Function
+// ?ï¿½èª¤?ï¿½ï¿½??ï¿½æ•¸ / Error Reporting Function
 const reportError = (errorData: ErrorReport): void => {
-  // ?¨ç??¢ç’°å¢ƒä¸­ï¼Œé€™è£¡?ƒç™¼?åˆ°?¯èª¤è¿½è¹¤?å?
+  // ?ï¿½ï¿½??ï¿½ç’°å¢ƒä¸­ï¼Œé€™è£¡?ï¿½ç™¼?ï¿½åˆ°?ï¿½èª¤è¿½è¹¤?ï¿½ï¿½?
   // In production, this would send to error tracking service
   if (process.env.NODE_ENV === 'development') {
     console.warn('404 Error Report:', errorData)
   }
   
-  // ?¯ä»¥?†æ??°å??å·¥??
+  // ?ï¿½ä»¥?ï¿½ï¿½??ï¿½ï¿½??ï¿½å·¥??
   // Could integrate with analytics tools
   try {
-    // ä¾‹å?: analytics.track('404_error', errorData)
+    // ä¾‹ï¿½?: analytics.track('404_error', errorData)
   } catch (error) {
-    // ?œé??•ç??†æ??¯èª¤
+    // ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½èª¤
     // Silently handle analytics errors
   }
 }
 
-// å¿«é€Ÿé€???ç½® / Quick Links Configuration
+// å¿«é€Ÿï¿½???ï¿½ç½® / Quick Links Configuration
 const quickLinks: QuickLink[] = [
   {
     href: '/',
     icon: Home,
-    name: { en: 'Home', 'zh-HK': 'é¦–é?' },
+    name: { en: 'Home', 'zh-HK': 'é¦–ï¿½?' },
     badge: { text: 'Popular', variant: 'default' },
-    description: { en: 'Return to homepage', 'zh-HK': 'è¿”å?é¦–é?' }
+    description: { en: 'Return to homepage', 'zh-HK': 'è¿”ï¿½?é¦–ï¿½?' }
   },
   {
     href: '/courses',
     icon: BookOpen,
-    name: { en: 'Courses', 'zh-HK': 'èª²ç?' },
+    name: { en: 'Courses', 'zh-HK': 'èª²ï¿½?' },
     badge: { text: 'New', variant: 'secondary' },
-    description: { en: 'Browse our courses', 'zh-HK': '?è¦½?‘å€‘ç?èª²ç?' }
+    description: { en: 'Browse our courses', 'zh-HK': '?ï¿½è¦½?ï¿½å€‘ï¿½?èª²ï¿½?' }
   },
   {
     href: '/blog',
     icon: FileText,
-    name: { en: 'Blog', 'zh-HK': 'ç¶²è?' },
+    name: { en: 'Blog', 'zh-HK': 'ç¶²ï¿½?' },
     badge: { text: 'Updated', variant: 'outline' },
-    description: { en: 'Read our articles', 'zh-HK': '?±è??‘å€‘ç??‡ç?' }
+    description: { en: 'Read our articles', 'zh-HK': '?ï¿½ï¿½??ï¿½å€‘ï¿½??ï¿½ï¿½?' }
   },
   {
     href: '/about',
     icon: Users,
-    name: { en: 'About', 'zh-HK': '?œæ–¼?‘å€? },
+    name: { en: 'About', 'zh-HK': 'é—œæ–¼æˆ‘å€‘' },
     badge: { text: 'Team', variant: 'secondary' },
-    description: { en: 'Learn about us', 'zh-HK': 'äº†è§£?‘å€? }
+    description: { en: 'Learn about us', 'zh-HK': 'äº†è§£æˆ‘å€‘' }
   }
 ]
 
-// ä¸»è? NotFound çµ„ä»¶ / Main NotFound Component
+// ä¸»ï¿½? NotFound çµ„ä»¶ / Main NotFound Component
 const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { language } = useLanguage()
   
-  // ?€?‹ç®¡??/ State Management
+  // ?ï¿½?ï¿½ç®¡??/ State Management
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
   const [showSuggestions, setShowSuggestions] = useState(true)
@@ -159,30 +159,30 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
       pageNotFound: 'Page Not Found'
     },
     'zh-HK': {
-      title: 'ç³Ÿç?ï¼æ‰¾ä¸åˆ°?é¢',
-      subtitle: '?¨è??¾ç??é¢ä¸å??¨ã€?,
-      description: '?¥æ?å¿ƒï??™ç¨®?…æ??‚æ??¼ç??‚é??¢å¯?½å·²ç§»å??åˆª?¤ï??–æ‚¨?¯èƒ½è¼¸å…¥?¯èª¤?„ç¶²?€??,
-      quickLinks: 'å¿«é€Ÿé€??',
-      backToHome: 'è¿”å?é¦–é?',
-      contactSupport: '?¯ç¹«?¯æ´',
+      title: 'ç³Ÿç³•ï¼æ‰¾ä¸åˆ°é é¢',
+      subtitle: 'æ‚¨æ‰€å°‹æ‰¾çš„é é¢ä¸å­˜åœ¨',
+      description: 'å¾ˆæŠ±æ­‰ï¼Œé€™ç¨®æƒ…æ³å¯èƒ½ç™¼ç”Ÿã€‚é é¢å¯èƒ½å·²ç§»å‹•æˆ–åˆªé™¤ï¼Œæˆ–æ‚¨å¯èƒ½è¼¸å…¥äº†éŒ¯èª¤çš„ç¶²å€ã€‚',
+      quickLinks: 'å¿«é€Ÿé€£çµ',
+      backToHome: 'è¿”å›é¦–é ',
+      contactSupport: 'è¯ç¹«æ”¯æ´',
       error404: '404',
-      pageNotFound: '?¾ä??°é???
+      pageNotFound: 'é é¢æœªæ‰¾åˆ°'
     }
   }
 
   const t = notFoundTexts[language] || notFoundTexts.en
 
-  // è¨­ç½®?é¢æ¨™é??Œç??‹ç¢¼ / Set page title and status code
+  // è¨­ç½®?ï¿½é¢æ¨™ï¿½??ï¿½ï¿½??ï¿½ç¢¼ / Set page title and status code
   useEffect(() => {
     document.title = `${statusCode} - ${t.title} | AI Formula`
     
-    // è¨­ç½® meta ?è¿° / Set meta description
+    // è¨­ç½® meta ?ï¿½è¿° / Set meta description
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
       metaDescription.setAttribute('content', t.description)
     }
     
-    // ?¯èª¤?±å? / Error reporting
+    // ?ï¿½èª¤?ï¿½ï¿½? / Error reporting
     const errorData: ErrorReport = {
       path: location.pathname,
       timestamp: new Date().toISOString(),
@@ -193,20 +193,20 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
     reportError(errorData)
   }, [statusCode, t.title, t.description, location.pathname])
 
-  // ?œç´¢?•ç? / Search handling
+  // ?ï¿½ç´¢?ï¿½ï¿½? / Search handling
   const handleSearch = useCallback(async (query: string) => {
     if (!query.trim()) return
     
     setIsSearching(true)
     
     try {
-      // æ¨¡æ“¬?œç´¢å»¶é² / Simulate search delay
+      // æ¨¡æ“¬?ï¿½ç´¢å»¶é² / Simulate search delay
       await new Promise(resolve => setTimeout(resolve, 800))
       
-      // ?¨å¯¦?›æ??¨ä¸­ï¼Œé€™è£¡?ƒèª¿?¨æ?ç´?API
+      // ?ï¿½å¯¦?ï¿½ï¿½??ï¿½ä¸­ï¼Œé€™è£¡?ï¿½èª¿?ï¿½ï¿½?ï¿½?API
       // In real application, this would call search API
       
-      // ?ºæ–¼?¥è©¢?„ç°¡?®è·¯?±å»ºè­?/ Simple route suggestions based on query
+      // ?ï¿½æ–¼?ï¿½è©¢?ï¿½ç°¡?ï¿½è·¯?ï¿½å»ºï¿½?/ Simple route suggestions based on query
       const query_lower = query.toLowerCase()
       const matchingRoutes = suggestedRoutes.filter(route => 
         route.name.en.toLowerCase().includes(query_lower) ||
@@ -225,14 +225,14 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
     }
   }, [])
 
-  // ?µç›¤äº‹ä»¶?•ç? / Keyboard event handling
+  // ?ï¿½ç›¤äº‹ä»¶?ï¿½ï¿½? / Keyboard event handling
   const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSearch(searchQuery)
     }
   }, [searchQuery, handleSearch])
 
-  // è¿”å?ä¸Šä???/ Go back
+  // è¿”ï¿½?ä¸Šï¿½???/ Go back
   const handleGoBack = useCallback(() => {
     if (window.history.length > 1) {
       navigate(-1)
@@ -241,7 +241,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
     }
   }, [navigate])
 
-  // ?•ç•«è®Šé? / Animation variants
+  // ?ï¿½ç•«è®Šï¿½? / Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -261,7 +261,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
-      {/* ?Œæ™¯è£é£¾ / Background decoration */}
+      {/* ?ï¿½æ™¯è£é£¾ / Background decoration */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%)`
@@ -274,7 +274,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
         animate="visible"
         className="max-w-4xl w-full relative z-10"
       >
-        {/* ä¸»è??¯èª¤?¡ç? / Main error card */}
+        {/* ä¸»ï¿½??ï¿½èª¤?ï¿½ï¿½? / Main error card */}
         <motion.div variants={itemVariants}>
           <Card className="bg-gray-900 border-gray-700 mb-8">
             <CardHeader className="text-center pb-4">
@@ -298,17 +298,17 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 {t.description}
               </p>
               
-              {/* ?¯èª¤è©³æ? / Error details */}
+              {/* ?ï¿½èª¤è©³ï¿½? / Error details */}
               <div className="bg-gray-800 rounded-lg p-4 mb-6 text-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <span className="text-gray-400">?ªæ‰¾?°æ–¼:</span>
+                    <span className="text-gray-400">?ï¿½æ‰¾?ï¿½æ–¼:</span>
                     <code className="ml-2 text-red-300 bg-gray-700 px-2 py-1 rounded">
                       {location.pathname}
                     </code>
                   </div>
                   <div>
-                    <span className="text-gray-400">?‚é???</span>
+                    <span className="text-gray-400">?ï¿½ï¿½???</span>
                     <span className="ml-2 text-gray-300">
                       {new Date().toLocaleString()}
                     </span>
@@ -316,12 +316,12 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 </div>
               </div>
 
-              {/* ?œç´¢?€??/ Search area */}
+              {/* ?ï¿½ç´¢?ï¿½??/ Search area */}
               <div className="max-w-md mx-auto mb-6">
                 <div className="flex gap-2">
                   <Input
                     type="text"
-                    placeholder="?œç´¢?é¢..."
+                    placeholder="?ï¿½ç´¢?ï¿½é¢..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={handleKeyPress}
@@ -336,19 +336,19 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                     {isSearching ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                        ?œç´¢ä¸?..
+                        ?ï¿½ç´¢ï¿½?..
                       </>
                     ) : (
                       <>
                         <Search className="h-4 w-4 mr-2" />
-                        ?œç´¢
+                        ?ï¿½ç´¢
                       </>
                     )}
                   </Button>
                 </div>
               </div>
 
-              {/* ?•ä??‰é? / Action buttons */}
+              {/* ?ï¿½ï¿½??ï¿½ï¿½? / Action buttons */}
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button
                   onClick={handleGoBack}
@@ -356,7 +356,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                   className="border-gray-600 text-gray-300 hover:bg-gray-800"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  è¿”å?
+                  è¿”ï¿½?
                 </Button>
                 <Button
                   asChild
@@ -364,7 +364,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 >
                   <Link to="/">
                     <Home className="h-4 w-4 mr-2" />
-                    è¿”å?é¦–é?
+                    è¿”ï¿½?é¦–ï¿½?
                   </Link>
                 </Button>
               </div>
@@ -372,7 +372,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
           </Card>
         </motion.div>
 
-        {/* å»ºè­°?é¢ / Suggested pages */}
+        {/* å»ºè­°?ï¿½é¢ / Suggested pages */}
         <AnimatePresence>
           {showSuggestions && (
             <motion.div
@@ -385,10 +385,10 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 <CardHeader>
                   <CardTitle className="flex items-center text-white">
                     <Navigation className="h-5 w-5 mr-2 text-blue-400" />
-                    å»ºè­°?é¢
+                    å»ºè­°?ï¿½é¢
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    ?¨å¯?½æ­£?¨å??¾ä»¥ä¸‹é??¢ä?ä¸€
+                    ?ï¿½å¯?ï¿½æ­£?ï¿½ï¿½??ï¿½ä»¥ä¸‹ï¿½??ï¿½ï¿½?ä¸€
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -430,7 +430,7 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
           )}
         </AnimatePresence>
 
-        {/* ?¯æ´?€??/ Support area */}
+        {/* ?ï¿½æ´?ï¿½??/ Support area */}
         <motion.div variants={itemVariants}>
           <Card className="bg-gray-900 border-gray-700">
             <CardContent className="p-6 text-center">
@@ -438,32 +438,32 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
                 <Mail className="h-8 w-8 text-green-400" />
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">
-                ?€è¦å¹«?©ï?
+                ?ï¿½è¦å¹«?ï¿½ï¿½?
               </h3>
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button
                   variant="outline"
                   className="border-green-600 text-green-400 hover:bg-green-900/20"
                   onClick={() => {
-                    // ?¨å¯¦?›æ??¨ä¸­ï¼Œé€™æ??‹å??±å?è¡¨å–®
+                    // åœ¨å¯¦éš›æ‡‰ç”¨ä¸­ï¼Œé€™å°‡æœƒé–‹å•Ÿå ±å‘Šè¡¨å–®
                     // In real application, this would open a report form
-                    alert('?±å??Ÿèƒ½å°‡åœ¨æ­¤å¯¦??)
+                    alert('å ±å‘ŠåŠŸèƒ½å°‡åœ¨æ­¤å¯¦ç¾')
                   }}
                 >
                   <AlertTriangle className="h-4 w-4 mr-2" />
-                  ?±å??é?
+                  å ±å‘Šå•é¡Œ
                 </Button>
                 <Button
                   variant="outline"
                   className="border-blue-600 text-blue-400 hover:bg-blue-900/20"
                   onClick={() => {
-                    // ?¨å¯¦?›æ??¨ä¸­ï¼Œé€™æ??‹å??¯ç¹«è¡¨å–®
+                    // åœ¨å¯¦éš›æ‡‰ç”¨ä¸­ï¼Œé€™å°‡æœƒé–‹å•Ÿè¯ç¹«è¡¨å–®
                     // In real application, this would open contact form
                     window.location.href = 'mailto:support@aiformula.com'
                   }}
                 >
                   <Mail className="h-4 w-4 mr-2" />
-                  ?¯ç¹«?¯æ´
+                  ?ï¿½ç¹«?ï¿½æ´
                 </Button>
               </div>
             </CardContent>
@@ -474,5 +474,5 @@ const NotFound: React.FC<NotFoundProps> = ({ statusCode = 404, customMessage }) 
   )
 }
 
-// è¨˜æ†¶?–ç?ä»?/ Memoized component
+// è¨˜æ†¶?ï¿½ï¿½?ï¿½?/ Memoized component
 export default NotFound;

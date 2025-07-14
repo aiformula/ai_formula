@@ -11,6 +11,7 @@ const CourseDetail: React.FC = () => {
   const { language } = useLanguage();
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'pro'>('free');
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
+  const isZhHK = language === 'zh-HK';
 
   const course = courseId ? courseDetails[courseId as keyof typeof courseDetails] : null;
 
@@ -19,250 +20,244 @@ const CourseDetail: React.FC = () => {
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">
-            {language === 'en' ? 'Course Not Found' : '課�??�找??}
+            {isZhHK ? '找不到課程' : 'Course Not Found'}
           </h1>
           <button
             onClick={() => navigate('/courses')}
             className="px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all"
           >
-            {language === 'en' ? 'Back to Courses' : '返�?課�?'}
+            {isZhHK ? '返回課程' : 'Back to Courses'}
           </button>
         </div>
       </div>
     );
   }
 
-  const currentModules = selectedPlan === 'free' ? course.freeModules : course.proModules;
-  const currentBonuses = selectedPlan === 'free' ? course.freeBonuses : course.proBonuses;
-  const currentBonusesCht = selectedPlan === 'free' ? course.freeBonusesCht : course.proBonusesCht;
-
   const handleEnrollFree = () => {
-    navigate(`/course/${courseId}/free`);
+    navigate('/auth');
   };
 
   const handleUpgradePro = () => {
-    navigate(`/course/${courseId}/pro`);
+    navigate('/auth');
   };
 
   const handleLessonClick = (lesson: any) => {
     if (lesson.isLocked && selectedPlan === 'free') {
-      alert(language === 'en' ? 'This lesson is available in Pro plan only.' : '?��?課只?��?業�??��???);
+      alert(isZhHK ? '此課程只在專業版中提供' : 'This lesson is available in Pro plan only.');
       return;
     }
     
     if (lesson.videoUrl) {
-      alert(language === 'en' ? `Playing: ${lesson.title}` : `?�放中�?${lesson.titleCht}`);
+      alert(isZhHK ? `播放中：${lesson.titleCht}` : `Playing: ${lesson.title}`);
     }
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Binary background pattern */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ctext x='10' y='20' font-family='monospace' font-size='12'%3E1%3C/text%3E%3Ctext x='30' y='40' font-family='monospace' font-size='12'%3E0%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
-      {/* Navigation */}
+    <div className="min-h-screen bg-black text-white">
       <Navigation />
       
-      {/* Header */}
-      <div className="container mx-auto px-6 py-8 pt-24 relative z-10">
+      <div className="pt-20 px-4 max-w-7xl mx-auto">
+        {/* Back Button */}
         <button
           onClick={() => navigate('/courses')}
-          className="flex items-center text-gray-300 hover:text-white mb-6 transition-colors"
+          className="flex items-center gap-2 text-gray-300 hover:text-white mb-6 transition-colors"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          {language === 'en' ? 'Back to Courses' : '返�?課�?'}
+          <ArrowLeft size={20} />
+          {isZhHK ? '返回課程' : 'Back to Courses'}
         </button>
 
         {/* Course Header */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="md:col-span-2">
-            <h1 className="text-4xl font-bold mb-4">
-              {language === 'en' ? course.title : course.titleCht}
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+          <div className="lg:col-span-2">
+            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              {isZhHK ? course.titleCht : course.title}
             </h1>
-            <p className="text-xl text-gray-300 mb-6">
-              {language === 'en' ? course.description : course.descriptionCht}
+            <p className="text-gray-300 text-lg mb-6">
+              {isZhHK ? course.descriptionCht : course.description}
             </p>
             
             {/* Course Stats */}
-            <div className="flex flex-wrap gap-6 mb-6">
-              <div className="flex items-center">
-                <Star className="w-5 h-5 text-yellow-400 mr-2" />
-                <span>{course.rating} ({course.reviews} {language === 'en' ? 'reviews' : '評價'})</span>
+            <div className="flex flex-wrap gap-6 mb-8">
+              <div className="flex items-center gap-2">
+                <Star className="text-yellow-400" size={20} />
+                <span>{course.rating} ({course.reviews} {isZhHK ? '評價' : 'reviews'})</span>
               </div>
-              <div className="flex items-center">
-                <Users className="w-5 h-5 text-blue-400 mr-2" />
-                <span>{course.enrollmentCount.toLocaleString()} {language === 'en' ? 'students' : '學�?'}</span>
+              <div className="flex items-center gap-2">
+                <Users className="text-blue-400" size={20} />
+                <span>{course.enrollmentCount.toLocaleString()} {isZhHK ? '學生' : 'students'}</span>
               </div>
-              <div className="flex items-center">
-                <Clock className="w-5 h-5 text-green-400 mr-2" />
-                <span>{language === 'en' ? course.totalDuration : course.totalDurationCht}</span>
+              <div className="flex items-center gap-2">
+                <Clock className="text-green-400" size={20} />
+                <span>{isZhHK ? course.totalDurationCht : course.totalDuration}</span>
               </div>
-              <div className="flex items-center">
-                <Globe className="w-5 h-5 text-purple-400 mr-2" />
-                <span>{(language === 'en' ? course.language : course.languageCht).join(', ')}</span>
+              <div className="flex items-center gap-2">
+                <Globe className="text-purple-400" size={20} />
+                <span>{(isZhHK ? course.languageCht : course.language).join(', ')}</span>
               </div>
             </div>
 
-            {/* Learning Outcomes */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold mb-4">
-                {language === 'en' ? 'What You\'ll Learn' : '你�?學到'}
+            {/* What You'll Learn */}
+            <div className="bg-gray-900 rounded-lg p-6 mb-8">
+              <h3 className="text-2xl font-bold mb-4 text-yellow-400">
+                {isZhHK ? '你將學到' : 'What You\'ll Learn'}
               </h3>
-              <div className="grid md:grid-cols-2 gap-3">
-                {(language === 'en' ? course.learningOutcomes : course.learningOutcomesCht).map((outcome, index) => (
-                  <div key={index} className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+              <ul className="space-y-3">
+                {(isZhHK ? course.learningOutcomesCht : course.learningOutcomes).map((outcome, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle className="text-green-400 mt-1 flex-shrink-0" size={20} />
                     <span className="text-gray-300">{outcome}</span>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
 
-          {/* Plan Selection Card */}
-          <div className="bg-gray-900 rounded-xl p-6 h-fit">
-            <div className="flex gap-2 mb-6">
+          {/* Pricing Card */}
+          <div className="bg-gray-900 rounded-lg p-6 h-fit">
+            <div className="flex gap-4 mb-6">
               <button
                 onClick={() => setSelectedPlan('free')}
-                className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all ${
+                className={`flex-1 py-2 px-4 rounded-lg font-semibold transition-all ${
                   selectedPlan === 'free'
-                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
+                    ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
-                {language === 'en' ? 'Free Plan' : '?�費??}
+                {isZhHK ? '免費版' : 'Free Plan'}
               </button>
               <button
                 onClick={() => setSelectedPlan('pro')}
-                className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all ${
+                className={`flex-1 py-2 px-4 rounded-lg font-semibold transition-all ${
                   selectedPlan === 'pro'
                     ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
-                {language === 'en' ? 'Pro Plan' : '專業??}
+                {isZhHK ? '專業版' : 'Pro Plan'}
               </button>
             </div>
 
             {selectedPlan === 'free' ? (
-              <div>
-                <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-green-400 mb-2">
-                    {course.freePrice}
-                  </div>
-                  <div className="text-gray-400">
-                    {language === 'en' ? 'Get started for free' : '?�費?��?學�?'}
-                  </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold mb-2 text-green-400">
+                  {isZhHK ? '免費' : 'Free'}
                 </div>
+                <p className="text-gray-400 mb-6">
+                  {isZhHK ? '免費開始學習' : 'Get started for free'}
+                </p>
                 <button
                   onClick={handleEnrollFree}
-                  className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all mb-4"
+                  className="w-full py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold rounded-lg hover:from-green-600 hover:to-blue-600 transition-all mb-4"
                 >
-                  {language === 'en' ? 'Start Free' : '?��??�費學�?'}
+                  {isZhHK ? '開始免費學習' : 'Start Free'}
                 </button>
               </div>
             ) : (
-              <div>
-                <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-yellow-400 mb-2">
-                    {course.proPrice}
-                  </div>
-                  <div className="flex items-center justify-center gap-2 text-gray-400">
-                    <span className="line-through">{course.originalPrice}</span>
-                    <span className="text-green-400 font-medium">
-                      {language === 'en' ? `Save ${course.savings}` : `節??{course.savings}`}
-                    </span>
-                  </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold mb-2 text-yellow-400">
+                  {course.proPricing}
                 </div>
+                <div className="text-sm text-gray-400 mb-2">
+                  <span className="line-through">{course.originalPricing}</span>
+                  <span className="ml-2 text-green-400">
+                    {isZhHK ? `節省 ${course.savings}` : `Save ${course.savings}`}
+                  </span>
+                </div>
+                <p className="text-gray-400 mb-6">
+                  {isZhHK ? '一次性付費，終身使用' : 'One-time payment, lifetime access'}
+                </p>
                 <button
                   onClick={handleUpgradePro}
                   className="w-full py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all mb-4"
                 >
-                  {language === 'en' ? 'Upgrade to Pro' : '?��??��?業�?'}
+                  {isZhHK ? '升級到專業版' : 'Upgrade to Pro'}
                 </button>
               </div>
             )}
 
-            {/* Bonuses */}
-            <div className="border-t border-gray-700 pt-4">
-              <h4 className="font-bold mb-3">
-                {language === 'en' ? 'Included Bonuses:' : '?�含?�勵�?}
+            {/* Included Bonuses */}
+            <div className="mt-6 pt-6 border-t border-gray-700">
+              <h4 className="font-semibold mb-3 text-yellow-400">
+                {isZhHK ? '包含獎勵內容：' : 'Included Bonuses:'}
               </h4>
-              <div className="space-y-2">
-                {(language === 'en' ? currentBonuses : currentBonusesCht).map((bonus, index) => (
-                  <div key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-gray-300">{bonus}</span>
-                  </div>
+              <ul className="space-y-2">
+                {(selectedPlan === 'free' 
+                  ? (isZhHK ? course.freeBonusesCht : course.freeBonuses)
+                  : (isZhHK ? course.proBonusesCht : course.proBonuses)
+                ).map((bonus, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <CheckCircle className="text-green-400 mt-1 flex-shrink-0" size={16} />
+                    <span className="text-gray-300 text-sm">{bonus}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
 
         {/* Course Content */}
-        <div className="max-w-4xl">
-          <h2 className="text-2xl font-bold mb-6">
-            {language === 'en' ? 'Course Content' : '課�??�容'}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-6 text-yellow-400">
+            {isZhHK ? '課程內容' : 'Course Content'}
           </h2>
-          
           <div className="space-y-4">
-            {currentModules.map((module) => (
+            {(selectedPlan === 'free' ? course.freeModules : course.proModules).map((module, index) => (
               <div key={module.id} className="bg-gray-900 rounded-lg overflow-hidden">
                 <button
                   onClick={() => setExpandedModule(expandedModule === module.id ? null : module.id)}
-                  className="w-full p-6 text-left hover:bg-gray-800 transition-colors"
+                  className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-800 transition-colors"
                 >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">
-                        {language === 'en' ? module.title : module.titleCht}
+                  <div className="flex items-center gap-4">
+                    <span className="text-yellow-400 font-bold text-lg">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className="text-left">
+                      <h3 className="font-semibold text-white">
+                        {isZhHK ? module.titleCht : module.title}
                       </h3>
-                      <p className="text-gray-400">
-                        {language === 'en' ? module.description : module.descriptionCht}
+                      <p className="text-gray-400 text-sm">
+                        {module.lessons.length} {isZhHK ? '節課' : 'lessons'}
                       </p>
                     </div>
-                    <div className="text-gray-400">
-                      {module.lessons.length} {language === 'en' ? 'lessons' : '?�課'}
-                    </div>
+                  </div>
+                  <div className="text-gray-400">
+                    {expandedModule === module.id ? '−' : '+'}
                   </div>
                 </button>
                 
                 {expandedModule === module.id && (
-                  <div className="border-t border-gray-700 bg-gray-850">
-                    {module.lessons.map((lesson) => (
-                      <div
-                        key={lesson.id}
-                        className={`p-4 border-b border-gray-700 last:border-b-0 flex items-center justify-between hover:bg-gray-800 transition-colors ${
-                          !lesson.isLocked || selectedPlan === 'pro' ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'
-                        }`}
-                        onClick={() => handleLessonClick(lesson)}
-                      >
-                        <div className="flex items-center">
-                          {lesson.isLocked && selectedPlan === 'free' ? (
-                            <Lock className="w-5 h-5 text-gray-500 mr-3" />
-                          ) : (
-                            <Play className="w-5 h-5 text-green-400 mr-3" />
-                          )}
-                          <div>
-                            <h4 className="font-medium">
-                              {language === 'en' ? lesson.title : lesson.titleCht}
-                            </h4>
-                            <p className="text-sm text-gray-400">
-                              {language === 'en' ? lesson.description : lesson.descriptionCht}
-                            </p>
+                  <div className="px-6 pb-4">
+                    <div className="space-y-2">
+                      {module.lessons.map((lesson, lessonIndex) => (
+                        <div
+                          key={lessonIndex}
+                          onClick={() => handleLessonClick(lesson)}
+                          className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
+                            !lesson.isLocked || selectedPlan === 'pro' ? 'cursor-pointer hover:bg-gray-800' : 'cursor-not-allowed opacity-60'
+                          }`}
+                        >
+                          <div className="flex-shrink-0">
+                            {lesson.isLocked && selectedPlan === 'free' ? (
+                              <Lock className="text-gray-500" size={16} />
+                            ) : lesson.type === 'video' ? (
+                              <Play className="text-green-400" size={16} />
+                            ) : (
+                              <Download className="text-blue-400" size={16} />
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <span className="text-gray-300">
+                                {isZhHK ? lesson.titleCht : lesson.title}
+                              </span>
+                              <span className="text-gray-500 text-sm">
+                                {lesson.duration}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center text-sm text-gray-400">
-                          <Clock className="w-4 h-4 mr-1" />
-                          {language === 'en' ? lesson.duration : lesson.durationCht}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
@@ -271,20 +266,18 @@ const CourseDetail: React.FC = () => {
         </div>
 
         {/* Requirements */}
-        <div className="mt-12 max-w-4xl">
-          <h2 className="text-2xl font-bold mb-6">
-            {language === 'en' ? 'Requirements' : '要�?'}
-          </h2>
-          <div className="bg-gray-900 rounded-lg p-6">
-            <div className="space-y-3">
-              {(language === 'en' ? course.requirements : course.requirementsCht).map((requirement, index) => (
-                <div key={index} className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-blue-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{requirement}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="bg-gray-900 rounded-lg p-6">
+          <h3 className="text-2xl font-bold mb-4 text-yellow-400">
+            {isZhHK ? '要求' : 'Requirements'}
+          </h3>
+          <ul className="space-y-2">
+            {(isZhHK ? course.requirementsCht : course.requirements).map((requirement, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <CheckCircle className="text-green-400 mt-1 flex-shrink-0" size={20} />
+                <span className="text-gray-300">{requirement}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

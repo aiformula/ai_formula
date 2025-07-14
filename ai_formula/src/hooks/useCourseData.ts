@@ -27,7 +27,7 @@ import {
 } from '@/data/courseData';
 
 // Custom hook for course data management
-export const useCourseData = (isZhTW: boolean) => {
+export const useCourseData = (isZhHK: boolean) => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
   const [error, setError] = useState<string | null>(null);
@@ -67,7 +67,7 @@ export const useCourseData = (isZhTW: boolean) => {
         }
       } else {
         // For other plans, show coming soon message
-        const message = isZhTW ? '此課程即將推?��?' : 'This course is coming soon!';
+        const message = isZhHK ? '此課程即將推?��?' : 'This course is coming soon!';
         alert(message);
       }
     } catch (err) {
@@ -75,7 +75,7 @@ export const useCourseData = (isZhTW: boolean) => {
     } finally {
       setIsLoading(false);
     }
-  }, [navigate, isZhTW]);
+  }, [navigate, isZhHK]);
 
   // Optimized product click handler
   const handleProductClick = useCallback<ProductClickHandler>((product: DigitalProduct) => {

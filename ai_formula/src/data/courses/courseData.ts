@@ -57,7 +57,7 @@ export type CategoryType = 'all' | 'design' | 'ai' | 'automation' | 'analytics' 
 // Component Props Types
 export interface ProductGridProps {
   products: DigitalProduct[];
-  isZhTW: boolean;
+  isZhHK: boolean;
   selectedCategory: CategoryType;
   onCategoryChange: (category: CategoryType) => void;
   onProductClick: (product: DigitalProduct) => void;
@@ -65,7 +65,7 @@ export interface ProductGridProps {
 
 export interface ProductCardProps {
   product: DigitalProduct;
-  isZhTW: boolean;
+  isZhHK: boolean;
   onProductClick: (product: DigitalProduct) => void;
   index: number;
 }

@@ -1,9 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-// 語�?類�?定義
+// 支援語言類型
 export type Language = 'en' | 'zh-HK'
 
-// 翻譯?�口
 interface Translations {
   [key: string]: string
 }
@@ -16,467 +15,409 @@ interface LanguageContextType {
   translations: Translations;
 }
 
-// ?��?翻譯
+// 英文翻譯
 const enTranslations: Translations = {
   // 導航
   'nav.home': 'Home',
-  'nav.about': 'About',
+  'nav.about': 'About Us',
   'nav.courses': 'Courses',
   'nav.blog': 'Blog',
-  'nav.signup': 'Sign up',
+  'nav.signup': 'Sign Up',
   
   // Hero Section
   'hero.badge': 'AI in Business',
-  'hero.title': 'AI: The Future of Learning',
+  'hero.title': 'AI: The Future of',
   'hero.title1': 'AI: The Future of',
   'hero.titleHighlight': 'Learning',
-  'hero.title2': 'Business Automation',
-  'hero.subtitle': 'How artificial intelligence is personalizing and transforming business automation.',
-  'hero.cta1': 'Start Learning',
-  'hero.cta2': 'Learn More',
-  'hero.chooseProgram': 'Choose program',
-  'hero.partners': 'Partners',
-  'hero.students': 'Students',
-  'hero.instructors': 'Instructors',
+  'hero.subtitle': 'Practical AI training designed for Hong Kong professionals',
+  'hero.description': 'Learn AI skills that immediately help you save time and boost efficiency',
+  'hero.cta1': 'Start Free Trial',
+  'hero.cta2': 'View Courses',
   
-  // Services Section
-  'services.title': 'Our Services',
-  'services.subtitle': 'Choose your path to AI mastery and business automation excellence',
-  'services.training.title': 'Expert-Led AI Training',
-  'services.training.description': 'Comprehensive learning materials designed by industry experts',
-  'services.training.benefit1': 'Actionable Courses',
-  'services.training.benefit2': 'Practical Frameworks',
-  'services.training.benefit3': 'Team Upskilling',
-  'services.training.button': 'View Courses',
-  'services.automation.title': 'Bespoke Automation Solutions',
-  'services.automation.description': 'Custom-built automation systems tailored to your business needs',
-  'services.automation.benefit1': 'Increase Efficiency',
-  'services.automation.benefit2': 'Reduce Errors',
-  'services.automation.benefit3': 'Scale Operations',
-  'services.automation.button': 'Get Free Consultation',
+  // Features
+  'features.title': 'Why Choose AI Formula?',
+  'features.subtitle': 'Professional AI training designed for Hong Kong market',
+  'features.practical.title': 'Practical Applications',
+  'features.practical.desc': 'Real business scenarios and hands-on projects',
+  'features.expert.title': 'Expert Instructors',
+  'features.expert.desc': 'Industry professionals with proven track records',
+  'features.support.title': 'Ongoing Support',
+  'features.support.desc': 'Continuous learning support and community',
+  'features.local.title': 'Local Focus',
+  'features.local.desc': 'Designed specifically for Hong Kong business environment',
   
-  // Technology Section
-  'tech.title': 'Powered by Leading Technologies',
-  'tech.subtitle': 'We master the tools that drive modern business automation',
-  'tech.n8n': 'Workflow Automation',
-  'tech.make': 'Integration Platform',
-  'tech.zapier': 'App Connections',
-  'tech.python': 'Data Processing',
-  'tech.javascript': 'Web Development',
-  'tech.openai': 'AI Integration',
-  
-  // Journey Section
-  'journey.title': 'Your Automation Journey',
-  'journey.subtitle': 'Our proven 4-step process ensures successful automation implementation',
-  'journey.step1.title': 'Discovery Call',
-  'journey.step1.description': 'We understand your needs and identify automation opportunities',
-  'journey.step2.title': 'Strategy & Design',
-  'journey.step2.description': 'Create a detailed blueprint tailored to your business processes',
-  'journey.step3.title': 'Build & Integrate',
-  'journey.step3.description': 'Develop and seamlessly integrate your custom automation solution',
-  'journey.step4.title': 'Launch & Support',
-  'journey.step4.description': 'Deploy your solution and provide ongoing support and optimization',
-  
-  // Learning Materials
-  'learning.title': 'Featured Learning Materials',
-  'learning.subtitle': 'Expert-crafted courses designed to accelerate your AI and automation journey',
-  'learning.startLearning': 'Start Learning',
-  'learning.beginner': 'Beginner',
-  'learning.intermediate': 'Intermediate',
-  'learning.advanced': 'Advanced',
-  'learning.marketing': 'Marketing',
-  'learning.development': 'Development',
-  'learning.ai': 'AI',
-  'learning.migration': 'Migration',
-  'learning.course1.title': 'Introduction to n8n for Marketers',
-  'learning.course1.description': 'Learn how to automate your marketing workflows with n8n\'s powerful visual interface',
-  'learning.course2.title': 'Advanced Python Automation',
-  'learning.course2.description': 'Master Python scripting for complex business process automation',
-  'learning.course3.title': 'AI Integration Masterclass',
-  'learning.course3.description': 'Integrate AI capabilities into your existing business workflows',
-  'learning.course4.title': 'Zapier to Make Migration',
-  'learning.course4.description': 'Seamlessly transition from Zapier to Make for enhanced automation capabilities',
-  'learning.duration.hours': 'hours',
-  'learning.program.title': 'Complete AI Mastery Program',
-  'learning.program.description': 'Master all aspects of AI and automation with our comprehensive program designed for professionals',
-  'learning.program.hours': '50+ Hours',
-  'learning.program.access': 'Lifetime Access',
-  'learning.program.button': 'Explore Full Program',
-  
-  // Instructors
-  'instructors.title': 'About the',
-  'instructors.titleHighlight': 'Instructors',
-  'instructors.subtitle': 'Meet our world-class instructors who combine deep technical expertise with real-world business experience. Learn from industry leaders who have built and scaled AI solutions across marketing and development.',
-  'instructors.cta': 'Ready to learn from industry experts who\'ve built real AI solutions?',
-  'instructors.ctaButton': 'Meet Our Full Teaching Team',
-  'instructors.professionalJourney': 'Professional Journey',
-  'instructors.teachingPhilosophy': 'Teaching Philosophy',
-  'instructors.keyQualifications': 'AI Transformation Impact:',
-  'instructors.viewProfile': 'View Full Profile',
-  'instructors.experience': 'Experience',
-  'instructors.more': 'more...',
-  
-  // Instructor 1 - Kenneth
-  'instructors.sarah.name': 'Kenneth',
-  'instructors.sarah.title': 'AI Marketing Developer & Automation Specialist',
-  'instructors.sarah.specialty': 'AI Tools & Marketing Automation',
-  'instructors.sarah.experience': '4+ years',
-  'instructors.sarah.biography': 'Kenneth is a pioneering AI marketing developer who specializes in cutting-edge AI tools, automation systems, and strategic implementation. Over 4 years of intensive AI learning, he has mastered the art of transforming traditional marketing approaches through artificial intelligence and automation technologies.',
-  'instructors.sarah.philosophy': 'AI is fundamentally transforming how we live and work. The future belongs to those who embrace AI today. I help individuals and businesses get ahead of the curve by mastering AI tools and automation before the masses catch up. Now is the perfect time to gain that competitive advantage.',
-  'instructors.sarah.qual1': 'AI Marketing Automation Expert',
-  'instructors.sarah.qual2': 'Advanced AI Tools Implementation',
-  'instructors.sarah.qual3': 'Strategic AI Business Integration',
-  'instructors.sarah.qual4': 'Future-Ready Marketing Systems',
-  
-  // Instructor 2 - David
-  'instructors.david.name': 'David',
-  'instructors.david.title': 'Business Automation & AI Integration Specialist',
-  'instructors.david.specialty': 'Automation & AI Solutions',
-  'instructors.david.experience': '7+ years',
-  'instructors.david.biography': 'David is a business automation expert who has spent 7+ years helping companies eliminate overwork and streamline operations. He specializes in creating powerful automation workflows using Make.com, n8n, and AI tools to handle posts, content management, and complex business processes.',
-  'instructors.david.philosophy': 'Automation should solve real business problems and reduce overwork. I help businesses implement all-in-one AI and automation solutions that transform how they operate, allowing teams to focus on what truly matters while technology handles the repetitive tasks.',
-  'instructors.david.qual1': 'Make.com & n8n Automation Expert',
-  'instructors.david.qual2': 'Business Process Optimization',
-  'instructors.david.qual3': 'AI-Powered Content Management',
-  'instructors.david.qual4': 'All-in-One Business Solutions',
-  
-  // Instructor 3 - Ken
-  'instructors.emily.name': 'Ken',
-  'instructors.emily.title': 'Custom Business Developer & AI Automation Specialist',
-  'instructors.emily.specialty': 'Custom Coding & AI Automation',
-  'instructors.emily.experience': '5+ years',
-  'instructors.emily.biography': 'Ken is a skilled custom business developer with 5+ years of coding experience, specializing in creating tailored business solutions and AI automation systems. He builds custom applications that help businesses work faster and run more efficiently through intelligent automation.',
-  'instructors.emily.philosophy': 'Code should make work faster and businesses run smoother. I create custom solutions that integrate AI automation to eliminate bottlenecks and accelerate business processes. Every line of code should serve a purpose: making work faster and more efficient.',
-  'instructors.emily.qual1': 'Custom Business Application Development',
-  'instructors.emily.qual2': 'AI Automation Integration Expert',
-  'instructors.emily.qual3': 'Performance Optimization Specialist',
-  'instructors.emily.qual4': 'Rapid Development Solutions',
-  
-  // Instructor 4 - Jason
-  'instructors.michael.name': 'Jason',
-  'instructors.michael.title': 'Professional Developer & Custom Automation Specialist',
-  'instructors.michael.specialty': 'Coding & Custom Automation',
-  'instructors.michael.experience': '8+ years',
-  'instructors.michael.biography': 'Jason is a professional developer with 8+ years of coding experience, specializing in LLM chatbox development, MCP integration, and web applications. For the past 2 years, he has been intensively learning AI to uplevel his coding skills and help companies integrate cutting-edge AI solutions.',
-  'instructors.michael.philosophy': 'No AI, no life! AI can change more than you think. I believe that integrating AI into development work transforms not just how we code, but what we can achieve. Every developer needs to embrace AI to stay relevant and create extraordinary solutions.',
-  'instructors.michael.qual1': 'LLM Chatbox Development Expert',
-  'instructors.michael.qual2': 'MCP Integration Specialist',
-  'instructors.michael.qual3': 'Full-Stack Web Development',
-  'instructors.michael.qual4': 'AI-Enhanced Coding Solutions',
+  // Courses
+  'courses.title': 'Featured Courses',
+  'courses.subtitle': 'Comprehensive AI training programs',
+  'courses.beginner': 'Beginner',
+  'courses.intermediate': 'Intermediate',
+  'courses.advanced': 'Advanced',
+  'courses.hours': 'hours',
+  'courses.students': 'students',
+  'courses.rating': 'rating',
+  'courses.enroll': 'Enroll Now',
+  'courses.learnMore': 'Learn More',
   
   // Testimonials
-  'testimonials.title': 'What Our Clients Say',
-  'testimonials.subtitle': 'Real feedback from businesses using our custom AI automation solutions',
-  'testimonials.testimonial1.quote': 'We got a custom WhatsApp automation system that handles customer inquiries 24/7. No more missed messages and our response time improved dramatically.',
-  'testimonials.testimonial1.author': 'Wong Ka Ming',
-  'testimonials.testimonial1.service': 'Custom Automation Solution',
-  'testimonials.testimonial1.company': 'Local Trading Company',
-  'testimonials.testimonial2.quote': 'Their team built us a custom business automation system that connects our inventory, orders, and accounting. Everything runs smoothly now.',
-  'testimonials.testimonial2.author': 'Chan Siu Fung',
-  'testimonials.testimonial2.service': '?�業?��???(Business Automation)',
-  'testimonials.testimonial2.company': 'Small Manufacturing Business',
-  'testimonials.testimonial3.quote': 'The custom AI chatbot they created for our restaurant handles reservations and orders perfectly. It understands Cantonese and English!',
-  'testimonials.testimonial3.author': 'Lam Mei Ling',
-  'testimonials.testimonial3.service': 'Custom AI Chatbot',
-  'testimonials.testimonial3.company': 'Family Restaurant',
+  'testimonials.title': 'What Our Students Say',
+  'testimonials.subtitle': 'Real feedback from professionals using our AI training',
   
-  // Contact Section
-  'contact.title': 'Ready to Transform Your Business?',
-  'contact.subtitle': "Let's discuss how AI Formula can help you master AI and automate your business processes",
-  'contact.form.title': 'Get In Touch',
-  'contact.form.name': 'Full Name',
-  'contact.form.email': 'Email Address',
-  'contact.form.message': 'How can we help?',
-  'contact.form.messagePlaceholder': 'Tell us about your automation needs or learning goals...',
-  'contact.form.send': 'Send Message',
-  'contact.form.description': 'Fill out the form below and we\'ll get back to you within 24 hours',
-  'contact.brainstorm.title': 'Not sure what you need? Try these ideas:',
-  'contact.brainstorm.option1': 'AI Chatbot',
-  'contact.brainstorm.option2': 'Automation',
-  'contact.brainstorm.option3': 'Business Process',
-  'contact.brainstorm.option4': 'Custom Solution',
-  'contact.brainstorm.suggestion1': 'I want to create an AI chatbot that can handle customer inquiries and support in multiple languages for my business.',
-  'contact.brainstorm.suggestion2': 'I need automation solutions to streamline repetitive tasks like data entry, email responses, and workflow management.',
-  'contact.brainstorm.suggestion3': 'I want to optimize my business processes by integrating AI to improve efficiency and reduce manual work.',
-  'contact.brainstorm.suggestion4': 'I need a custom AI solution tailored specifically for my industry and business requirements.',
-  'contact.info.title': 'Contact Information',
-  'contact.info.email': 'Email',
-  'contact.info.phone': 'Phone',
-  'contact.info.emailUs': 'Email Us',
-  'contact.info.callUs': 'Call Us',
-  'contact.info.visitUs': 'Visit Us',
-  'contact.info.emailDescription': 'Get quick responses to your questions',
-  'contact.info.phoneDescription': 'Mon-Fri 9AM-6PM HKT',
-  'contact.info.visitDescription': 'Schedule an appointment',
-  'contact.why.title': 'Why You Need AI Formula',
-  'contact.why.benefit1': 'AI is transforming every industry - stay ahead or get left behind',
-  'contact.why.benefit2': 'Your competitors are already using AI - don\'t let them gain the advantage',
-  'contact.why.benefit3': 'Manual processes are becoming obsolete - automate now or struggle later',
-  'contact.why.benefit4': 'The AI revolution is happening now - join it or watch from the sidelines',
+  // Footer
+  'footer.company': 'AI Formula',
+  'footer.description': 'Professional AI training for Hong Kong businesses',
+  'footer.links': 'Quick Links',
+  'footer.courses': 'Courses',
+  'footer.about': 'About',
+  'footer.contact': 'Contact',
+  'footer.support': 'Support',
+  'footer.legal': 'Legal',
+  'footer.privacy': 'Privacy Policy',
+  'footer.terms': 'Terms of Service',
+  'footer.newsletter': 'Newsletter',
+  'footer.newsletter.desc': 'Get the latest AI updates and course announcements',
+  'footer.newsletter.placeholder': 'Enter your email',
+  'footer.newsletter.button': 'Subscribe',
+  'footer.social': 'Follow Us',
+  'footer.rights': 'All rights reserved',
   
-  // 404 Page
-  'notFound.title': '404',
-  'notFound.message': 'Oops! Page not found',
-  'notFound.returnHome': 'Return to Home',
+  // Course Details
+  'course.duration': 'Duration',
+  'course.level': 'Level',
+  'course.language': 'Language',
+  'course.certificate': 'Certificate',
+  'course.overview': 'Course Overview',
+  'course.curriculum': 'Curriculum',
+  'course.instructor': 'Instructor',
+  'course.reviews': 'Reviews',
+  'course.whatYouLearn': 'What You\'ll Learn',
+  'course.requirements': 'Requirements',
+  'course.includes': 'This course includes',
+  'course.enroll': 'Enroll Course',
+  'course.preview': 'Preview Course',
   
-  // Toast Messages
-  'toast.messageSent': 'Message Sent!',
-  'toast.messageDescription': "Thank you for your interest. We'll get back to you within 24 hours.",
+  // Learning
+  'learning.progress': 'Progress',
+  'learning.completed': 'Completed',
+  'learning.continue': 'Continue Learning',
+  'learning.start': 'Start Learning',
+  'learning.next': 'Next Lesson',
+  'learning.previous': 'Previous Lesson',
+  'learning.notes': 'Notes',
+  'learning.resources': 'Resources',
+  'learning.quiz': 'Quiz',
+  'learning.exercise': 'Exercise',
+  'learning.download': 'Download',
+  
+  // Blog
+  'blog.title': 'Latest Insights',
+  'blog.subtitle': 'AI Formula Expert Insights',
+  'blog.readMore': 'Read More',
+  'blog.category': 'Category',
+  'blog.tags': 'Tags',
+  'blog.author': 'Author',
+  'blog.date': 'Date',
+  'blog.readTime': 'read time',
+  'blog.share': 'Share',
+  'blog.like': 'Like',
+  'blog.comment': 'Comment',
+  
+  // Contact
+  'contact.title': 'Get in Touch',
+  'contact.subtitle': 'Ready to transform your business with AI?',
+  'contact.name': 'Name',
+  'contact.email': 'Email',
+  'contact.subject': 'Subject',
+  'contact.message': 'Message',
+  'contact.send': 'Send Message',
+  'contact.phone': 'Phone',
+  'contact.address': 'Address',
+  'contact.hours': 'Business Hours',
+  
+  // Auth
+  'auth.login': 'Login',
+  'auth.signup': 'Sign Up',
+  'auth.email': 'Email',
+  'auth.password': 'Password',
+  'auth.confirmPassword': 'Confirm Password',
+  'auth.forgotPassword': 'Forgot Password?',
+  'auth.rememberMe': 'Remember Me',
+  'auth.loginButton': 'Login',
+  'auth.signupButton': 'Sign Up',
+  'auth.or': 'Or',
+  'auth.googleLogin': 'Continue with Google',
+  'auth.facebookLogin': 'Continue with Facebook',
+  'auth.hasAccount': 'Already have an account?',
+  'auth.noAccount': 'Don\'t have an account?',
+  
+  // Dashboard
+  'dashboard.welcome': 'Welcome back',
+  'dashboard.overview': 'Overview',
+  'dashboard.myCourses': 'My Courses',
+  'dashboard.progress': 'Progress',
+  'dashboard.achievements': 'Achievements',
+  'dashboard.settings': 'Settings',
+  'dashboard.profile': 'Profile',
+  'dashboard.notifications': 'Notifications',
+  'dashboard.billing': 'Billing',
+  'dashboard.support': 'Support',
+  
+  // Common
+  'common.loading': 'Loading...',
+  'common.error': 'Error',
+  'common.success': 'Success',
+  'common.warning': 'Warning',
+  'common.info': 'Info',
+  'common.save': 'Save',
+  'common.cancel': 'Cancel',
+  'common.delete': 'Delete',
+  'common.edit': 'Edit',
+  'common.view': 'View',
+  'common.download': 'Download',
+  'common.upload': 'Upload',
+  'common.search': 'Search',
+  'common.filter': 'Filter',
+  'common.sort': 'Sort',
+  'common.reset': 'Reset',
+  'common.apply': 'Apply',
+  'common.close': 'Close',
+  'common.open': 'Open',
+  'common.yes': 'Yes',
+  'common.no': 'No',
+  'common.ok': 'OK',
+  'common.back': 'Back',
+  'common.next': 'Next',
+  'common.previous': 'Previous',
+  'common.submit': 'Submit',
+  'common.confirm': 'Confirm',
+  'common.more': 'More',
+  'common.less': 'Less',
+  'common.show': 'Show',
+  'common.hide': 'Hide',
+  'common.expand': 'Expand',
+  'common.collapse': 'Collapse',
 }
 
-// 中�?翻譯
+// 中文翻譯
 const zhTranslations: Translations = {
   // 導航
-  'nav.home': '首�?',
-  'nav.about': '?�於?��?,
-  'nav.courses': '課�?',
-  'nav.blog': '?�落??,
-  'nav.signup': '註�?',
+  'nav.home': '首頁',
+  'nav.about': '關於我們',
+  'nav.courses': '課程',
+  'nav.blog': '部落格',
+  'nav.signup': '註冊',
   
   // Hero Section
-  'hero.badge': '?�業AI',
-  'hero.title': 'AI：未來�?學�?',
-  'hero.title1': 'AI：未來�?',
-  'hero.titleHighlight': '學�?',
-  'hero.title2': '?�業?��???,
-  'hero.subtitle': '人工?�慧如�??�人?�並轉�??�業?��??��?,
-  'hero.cta1': '?��?學�?',
-  'hero.cta2': '了解?��?',
-  'hero.chooseProgram': '?��?課�?',
-  'hero.partners': '?��?夥伴',
-  'hero.students': '學員',
-  'hero.instructors': '講師',
+  'hero.badge': '商業AI',
+  'hero.title': 'AI：未來的學習',
+  'hero.title1': 'AI：未來的',
+  'hero.titleHighlight': '學習',
+  'hero.subtitle': '專為香港專業人士設計的實用AI培訓',
+  'hero.description': '學習能立即幫助您節省時間和提高效率的AI技能',
+  'hero.cta1': '開始免費試用',
+  'hero.cta2': '查看課程',
   
-  // Services Section
-  'services.title': '?�們�??��?',
-  'services.subtitle': '?��??�通�?AI精通�??�業?��??��?越�??�路',
-  'services.training.title': '專家主�??�AI?��?',
-  'services.training.description': '?��?業�?家設計�??�面學�??��?',
-  'services.training.benefit1': '實用課�?',
-  'services.training.benefit2': '實�?框架',
-  'services.training.benefit3': '?��??�?��???,
-  'services.training.button': '?��?課�?',
-  'services.automation.title': '客製?�自?��?�?��?��?',
-  'services.automation.description': '?�您?�業?��?求�?身�??��??��??�系�?,
-  'services.automation.benefit1': '?��??��?',
-  'services.automation.benefit2': '減�??�誤',
-  'services.automation.benefit3': '?�大?��?',
-  'services.automation.button': '?��??�費諮詢',
+  // Features
+  'features.title': '為什麼選擇AI Formula？',
+  'features.subtitle': '專為香港市場設計的專業AI培訓',
+  'features.practical.title': '實用應用',
+  'features.practical.desc': '真實商業場景和實踐項目',
+  'features.expert.title': '專業講師',
+  'features.expert.desc': '具有豐富經驗的行業專業人士',
+  'features.support.title': '持續支持',
+  'features.support.desc': '持續學習支持和社群',
+  'features.local.title': '本地專注',
+  'features.local.desc': '專為香港商業環境設計',
   
-  // Technology Section
-  'tech.title': '?��??��?術�???,
-  'tech.subtitle': '?�們精?�推?�現�??業自?��??�工??,
-  'tech.n8n': '工�?流�??��???,
-  'tech.make': '?��?平台',
-  'tech.zapier': '?�用程�???��',
-  'tech.python': '?��??��?',
-  'tech.javascript': '網�??�發',
-  'tech.openai': 'AI?��?',
+  // Courses
+  'courses.title': '精選課程',
+  'courses.subtitle': '全面的AI培訓課程',
+  'courses.beginner': '初級',
+  'courses.intermediate': '中級',
+  'courses.advanced': '進階',
+  'courses.hours': '小時',
+  'courses.students': '學生',
+  'courses.rating': '評分',
+  'courses.enroll': '立即註冊',
+  'courses.learnMore': '了解更多',
   
-  // Journey Section
-  'journey.title': '?��??��??��???,
-  'journey.subtitle': '?�們�??��?證�?4步�?流�?確�??��??�自?��?實施',
-  'journey.step1.title': '?�索?�議',
-  'journey.step1.description': '?�們�?�?��?��?求並識別?��??��???,
-  'journey.step2.title': '策略?�設�?,
-  'journey.step2.description': '?�建?��??�業?��?程�?詳細?��?',
-  'journey.step3.title': '建�??�整??,
-  'journey.step3.description': '?�發並無縫整?�您?�客製自?��?�?��?��?',
-  'journey.step4.title': '?��??�支??,
-  'journey.step4.description': '?�署?��?�?��?��?並�?供�?續�??�援?�優??,
+  // Testimonials
+  'testimonials.title': '學員怎麼說',
+  'testimonials.subtitle': '來自使用我們AI培訓的專業人士的真實反饋',
   
-  // Learning Materials
-  'learning.title': '精選學�??��?',
-  'learning.subtitle': '專家製�??�課程�??�在?�速您?�AI?�自?��?之�?',
-  'learning.startLearning': '?��?學�?',
-  'learning.beginner': '?��?',
-  'learning.intermediate': '中�?',
-  'learning.advanced': '高�?',
-  'learning.marketing': '行銷',
-  'learning.development': '?�發',
-  'learning.ai': 'AI',
-  'learning.migration': '?�移',
-  'learning.course1.title': '行銷人員?�n8n?��?',
-  'learning.course1.description': '學�?如�?使用n8n強大?��?覺�?介面?��??�您?��??�工作�?�?,
-  'learning.course2.title': '?��?Python?��???,
-  'learning.course2.description': '?�握Python?�本以實?��??��?業�?流�??��???,
-  'learning.course3.title': 'AI?��?大師??,
-  'learning.course3.description': '將AI?�能?��??�您?��??�業?�工作�?程中',
-  'learning.course4.title': 'Zapier?�Make?�遷�?,
-  'learning.course4.description': '從Zapier?�縫?�渡?�Make，獲得�?強�??��??�能??,
-  'learning.duration.hours': '小�?',
-  'learning.program.title': '完整AI精通課�?,
-  'learning.program.description': '?��??�們為專業人士設�??��??�課程�??�握AI?�自?��??��??�方??,
-  'learning.program.hours': '50+ 小�?',
-  'learning.program.access': '終身使用',
-  'learning.program.button': '?�索完整課�?',
+  // Footer
+  'footer.company': 'AI Formula',
+  'footer.description': '香港企業的專業AI培訓',
+  'footer.links': '快速連結',
+  'footer.courses': '課程',
+  'footer.about': '關於',
+  'footer.contact': '聯絡',
+  'footer.support': '支援',
+  'footer.legal': '法律',
+  'footer.privacy': '隱私政策',
+  'footer.terms': '服務條款',
+  'footer.newsletter': '電子報',
+  'footer.newsletter.desc': '獲取最新的AI更新和課程公告',
+  'footer.newsletter.placeholder': '輸入您的電子郵件',
+  'footer.newsletter.button': '訂閱',
+  'footer.social': '關注我們',
+  'footer.rights': '版權所有',
   
-  // Instructors
-  'instructors.title': '?�於',
-  'instructors.titleHighlight': '導師',
-  'instructors.subtitle': '認�??�們�??��??��?師�?他們�??�深?��??�術�??��?實�??��?業�?驗。�?已�??��??��??��??�發?��?建�??�擴展AI�?��?��??��?業�?袖身上學習�?,
-  'instructors.cta': '準�?好�?已�?建�??�正AI�?��?��??��?業�?家學習�?�?,
-  'instructors.ctaButton': '認�??�們�??��??�學?��?',
-  'instructors.professionalJourney': '專業歷�?',
-  'instructors.teachingPhilosophy': '?�學?�念',
-  'instructors.keyQualifications': 'AI轉�?影響�?,
-  'instructors.viewProfile': '?��?完整檔�?',
-  'instructors.experience': '經�?',
-  'instructors.more': '?��?...',
+  // Course Details
+  'course.duration': '課程時長',
+  'course.level': '難度等級',
+  'course.language': '語言',
+  'course.certificate': '證書',
+  'course.overview': '課程概述',
+  'course.curriculum': '課程大綱',
+  'course.instructor': '講師',
+  'course.reviews': '評價',
+  'course.whatYouLearn': '你將學到',
+  'course.requirements': '要求',
+  'course.includes': '本課程包含',
+  'course.enroll': '註冊課程',
+  'course.preview': '預覽課程',
   
-  // Instructor 1 - Kenneth
-  'instructors.sarah.name': 'Kenneth',
-  'instructors.sarah.title': 'AI行銷?�發?��??��??��?�?,
-  'instructors.sarah.specialty': 'AI工具?��??�自?��?',
-  'instructors.sarah.experience': '4�?',
-  'instructors.sarah.biography': 'Kenneth?��?位�??�AI行銷?�發?��?專精?��?沿AI工具?�自?��?系統?��??�實?�。�???年深度AI學�?，�?已�??�透�?人工?�能?�自?��??�術�??�傳統�??�方法�??��???,
-  'instructors.sarah.philosophy': 'AI�?��?�本?�地?��??�們�??�活?�工作方式。未來屬?��?天就?�抱AI?�人?��?幫助?�人?��?業在大眾趕�?之�?，通�??�握AI工具?�自?��?來�??��?步。現?�正?�獲得競?�優?��?絕佳?��???,
-  'instructors.sarah.qual1': 'AI行銷?��??��?�?,
-  'instructors.sarah.qual2': '?��?AI工具實施',
-  'instructors.sarah.qual3': '策略?�AI?�業?��?',
-  'instructors.sarah.qual4': '?��?就�?行銷系統',
+  // Learning
+  'learning.progress': '進度',
+  'learning.completed': '已完成',
+  'learning.continue': '繼續學習',
+  'learning.start': '開始學習',
+  'learning.next': '下一課',
+  'learning.previous': '上一課',
+  'learning.notes': '筆記',
+  'learning.resources': '資源',
+  'learning.quiz': '測驗',
+  'learning.exercise': '練習',
+  'learning.download': '下載',
   
-  // Instructor 2 - David
-  'instructors.david.name': 'David',
-  'instructors.david.title': '?�業?��??��?AI?��?專家',
-  'instructors.david.specialty': '?��??��?AI�?��?��?',
-  'instructors.david.experience': '7�?',
-  'instructors.david.biography': 'David?��?位�?業自?��?專家，�???年以上幫?��?業�??��??��?簡�??��??��?驗。�?專精?�使?�Make.com?�n8n?�AI工具?�建強大?�自?��?工�?流�?，�??�貼?�、內容管?��?複�??��?業�?程�?,
-  'instructors.david.philosophy': '?��??��?該解決�?�???�業?��?並�?少�??�。�?幫助企業實施一體�?AI?�自?��?�?��?��?，�??��??��??��??��?，�??��?專注?��?�??要�?事�?，而�??�術�??��?複性工作�?,
-  'instructors.david.qual1': 'Make.com?�n8n?��??��?�?,
-  'instructors.david.qual2': '?�業流�??��?',
-  'instructors.david.qual3': 'AI驅�??�容管�?',
-  'instructors.david.qual4': '一體�??�業�?��?��?',
+  // Blog
+  'blog.title': '最新見解',
+  'blog.subtitle': 'AI Formula 專家見解',
+  'blog.readMore': '閱讀更多',
+  'blog.category': '類別',
+  'blog.tags': '標籤',
+  'blog.author': '作者',
+  'blog.date': '日期',
+  'blog.readTime': '閱讀時間',
+  'blog.share': '分享',
+  'blog.like': '喜歡',
+  'blog.comment': '評論',
   
-  // Instructor 3 - Ken
-  'instructors.emily.name': 'Ken',
-  'instructors.emily.title': '客製?��?業�??�者�?AI?��??��?�?,
-  'instructors.emily.specialty': '客製?�編程�?AI?��???,
-  'instructors.emily.experience': '5�?',
-  'instructors.emily.biography': 'Ken?��?位�?練�?客製?��?業�??�者�??��?5年以上�?編�?經�?，�?精於?�建客製?��?業解決方案�?AI?��??�系統。�?構建客製?��??��?式�?幫助企業?��??�能?��??�更快工作�??��??��?行�?,
-  'instructors.emily.philosophy': '程�?碼�?該�?工�??�快?��?讓�?業�?行更?�暢?��??�建?��?AI?��??��?客製?�解決方案�?消除?�頸並�??��?業�?程。�?一行�?式碼?��?該�??��?：�?工�??�快?��??��???,
-  'instructors.emily.qual1': '客製?��?業�??��?式�???,
-  'instructors.emily.qual2': 'AI?��??�整?��?�?,
-  'instructors.emily.qual3': '?�能?��?專家',
-  'instructors.emily.qual4': '快速�??�解決方�?,
+  // Contact
+  'contact.title': '聯絡我們',
+  'contact.subtitle': '準備好用AI轉型您的業務嗎？',
+  'contact.name': '姓名',
+  'contact.email': '電子郵件',
+  'contact.subject': '主題',
+  'contact.message': '訊息',
+  'contact.send': '發送訊息',
+  'contact.phone': '電話',
+  'contact.address': '地址',
+  'contact.hours': '營業時間',
   
-  // Instructor 4 - Jason
-  'instructors.michael.name': 'Jason',
-  'instructors.michael.title': '專業?�發?��?客製?�自?��?專家',
-  'instructors.michael.specialty': '編�??�客製�??��???,
-  'instructors.michael.experience': '8�?',
-  'instructors.michael.biography': 'Jason?��?位�?業�??�者�??��?8年以上�?編�?經�?，�?精於LLM?�天機器人�??�、MCP?��??�網?��??��?式。在?�去2年中，�?一?�在深度學�?AI以�??��??�編程�??��?並幫?�公?�整?��?端AI�?��?��???,
-  'instructors.michael.philosophy': '沒�?AI，就沒�??�活！AI?�改變�?比�??��??�更多。�??�信將AI?��??��??�工作中，�??�改變�??�編程�??��?，更?��??�們能實現?�目標。�??��??�者都?�要�??�AI?�能保�??��??�並?�造�??��?�?��?��???,
-  'instructors.michael.qual1': 'LLM?�天機器人�??��?�?,
-  'instructors.michael.qual2': 'MCP?��?專家',
-  'instructors.michael.qual3': '?�端網�??�發',
-  'instructors.michael.qual4': 'AI增強編�?�?��?��?',
+  // Auth
+  'auth.login': '登入',
+  'auth.signup': '註冊',
+  'auth.email': '電子郵件',
+  'auth.password': '密碼',
+  'auth.confirmPassword': '確認密碼',
+  'auth.forgotPassword': '忘記密碼？',
+  'auth.rememberMe': '記住我',
+  'auth.loginButton': '登入',
+  'auth.signupButton': '註冊',
+  'auth.or': '或',
+  'auth.googleLogin': '使用Google繼續',
+  'auth.facebookLogin': '使用Facebook繼續',
+  'auth.hasAccount': '已有帳戶？',
+  'auth.noAccount': '沒有帳戶？',
   
-  // Testimonials - ?�改人�??�英?��?�?  'testimonials.title': '客戶見�?',
-  'testimonials.subtitle': '已使?��??�客製�?AI?��??�解決方案�?企業?�實?��?',
-  'testimonials.testimonial1.quote': '?�們�?了個WhatsApp?��??�系統�?24小�??��?客戶?�詢?��??��?漏�?訊息，�?覆速度快�?很�???,
-  'testimonials.testimonial1.author': 'Louis Liu',
-  'testimonials.testimonial1.service': '客製?�自?��?�?��?��?',
-  'testimonials.testimonial1.company': '?�地貿�??�司',
-  'testimonials.testimonial2.quote': '他們幫?�們整了個�?業自?��?系統，�?庫�??��??��??��??�部??��一起。現?��?作�??�暢??,
-  'testimonials.testimonial2.author': 'Sarah Chen',
-  'testimonials.testimonial2.service': '?�業?��???,
-  'testimonials.testimonial2.company': '小�?製造業',
-  'testimonials.testimonial3.quote': '他們為?�們�?廳�?了個AI?�天機器人�??��?訂座?�落?�都很�?確。�?識聽�?��話�??��?�?,
-  'testimonials.testimonial3.author': 'Mike Wong',
-  'testimonials.testimonial3.service': '客製?�AI?�天機器�?,
-  'testimonials.testimonial3.company': '家庭式�?�?,
+  // Dashboard
+  'dashboard.welcome': '歡迎回來',
+  'dashboard.overview': '概述',
+  'dashboard.myCourses': '我的課程',
+  'dashboard.progress': '進度',
+  'dashboard.achievements': '成就',
+  'dashboard.settings': '設定',
+  'dashboard.profile': '個人資料',
+  'dashboard.notifications': '通知',
+  'dashboard.billing': '帳單',
+  'dashboard.support': '支援',
   
-  // Contact Section
-  'contact.title': '準�?好�??�您?�業?��??��?',
-  'contact.subtitle': '讓�??��?論AI Formula如�?幫助?�精?�AI並自?��??��?業�?流�?',
-  'contact.form.title': '?�絡?��?,
-  'contact.form.name': '姓�?',
-  'contact.form.email': '?��??�件?��?',
-  'contact.form.message': '?�們�?何幫?�您�?,
-  'contact.form.messagePlaceholder': '?�訴?�們您?�自?��??�求�?學�??��?...',
-  'contact.form.send': '?�送�???,
-  'contact.form.description': '填寫下方表格，�??��???4小�??��?覆您',
-  'contact.brainstorm.title': '?�知要咩？試下呢?�想法�?',
-  'contact.brainstorm.option1': 'AI?�天機器�?,
-  'contact.brainstorm.option2': '?��???,
-  'contact.brainstorm.option3': '?�業流�?',
-  'contact.brainstorm.option4': '客製?�方�?,
-  'contact.brainstorm.suggestion1': '?�想?�個AI?�天機器人�??�以?��?客戶?�詢?��?語�??�援??,
-  'contact.brainstorm.suggestion2': '?��?要自?��??��??�簡?��?複工作�?好似資�?輸入?�電?��?覆�?工�?流�?管�???,
-  'contact.brainstorm.suggestion3': '?�想?��??�業流�?，用AI?��??��??��?少人?�工作�?,
-  'contact.brainstorm.suggestion4': '?��?要為?��?業�?業�??�求度身�??��?AI�?��?��???,
-  'contact.info.title': '?�絡資�?',
-  'contact.info.email': '?��??�件',
-  'contact.info.phone': '?�話',
-  'contact.info.emailUs': '?�郵?��?,
-  'contact.info.callUs': '?�電?��?,
-  'contact.info.visitUs': '?�訪?��?,
-  'contact.info.emailDescription': '快速�??�您?��?�?,
-  'contact.info.phoneDescription': '?��??�週�? 9AM-6PM HKT',
-  'contact.info.visitDescription': '?��??�面',
-  'contact.why.title': '點解你�?要AI Formula',
-  'contact.why.benefit1': 'AI�?��?��?每個�?�?- ?��?上就?�被淘汰',
-  'contact.why.benefit2': '你競?��??�已經用緊AI - ?�好俾佢?�搶??,
-  'contact.why.benefit3': '人�?流�?已�??��? - ?�在?��??��??��?後�???,
-  'contact.why.benefit4': 'AI?�命?�在?��?�?- ?�入?�是站在一?��?',
-  
-  // 404 Page
-  'notFound.title': '404',
-  'notFound.message': '糟�?！找不到?�面',
-  'notFound.returnHome': '返�?首�?',
-  
-  // Toast Messages
-  'toast.messageSent': '訊息已發?��?',
-  'toast.messageDescription': '?��??��??�注?��??��???4小�??��?覆您??,
+  // Common
+  'common.loading': '載入中...',
+  'common.error': '錯誤',
+  'common.success': '成功',
+  'common.warning': '警告',
+  'common.info': '資訊',
+  'common.save': '儲存',
+  'common.cancel': '取消',
+  'common.delete': '刪除',
+  'common.edit': '編輯',
+  'common.view': '查看',
+  'common.download': '下載',
+  'common.upload': '上傳',
+  'common.search': '搜尋',
+  'common.filter': '篩選',
+  'common.sort': '排序',
+  'common.reset': '重置',
+  'common.apply': '套用',
+  'common.close': '關閉',
+  'common.open': '開啟',
+  'common.yes': '是',
+  'common.no': '否',
+  'common.ok': '確定',
+  'common.back': '返回',
+  'common.next': '下一步',
+  'common.previous': '上一步',
+  'common.submit': '提交',
+  'common.confirm': '確認',
+  'common.more': '更多',
+  'common.less': '更少',
+  'common.show': '顯示',
+  'common.hide': '隱藏',
+  'common.expand': '展開',
+  'common.collapse': '收合',
 }
 
-// ?�建語�?上�???const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+// 創建語言上下文
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// 語�??��??��?�?export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(() => {
-    // �?localStorage 讀?��?言設�?，�?設為中�?
-    const savedLanguage = localStorage.getItem('language')
-    return (savedLanguage as Language) || 'zh-HK'
-  })
+// 語言提供者組件
+interface LanguageProviderProps {
+  children: ReactNode;
+}
 
-  // 保�?語�?設�???localStorage
-  useEffect(() => {
-    localStorage.setItem('language', language)
-  }, [language])
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>('zh-HK');
 
-  // ?��?翻譯?�本
   const getTranslations = (lang: Language): Translations => {
-    return lang === 'zh-HK' ? zhTranslations : enTranslations
-  }
+    return lang === 'zh-HK' ? zhTranslations : enTranslations;
+  };
 
-  // 翻譯?�數
   const t = (key: string): string => {
-    const translations = getTranslations(language)
-    return translations[key] || key
-  }
+    const translations = getTranslations(language);
+    return translations[key] || key;
+  };
 
   const value: LanguageContextType = {
     language,
     setLanguage,
     t,
-    translations: getTranslations(language)
-  }
+    translations: getTranslations(language),
+  };
 
   return (
     <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
-  )
-}
+  );
+};
 
-// 使用語�?上�??��? Hook
+// 自訂鉤子
 export const useLanguage = (): LanguageContextType => {
-  const context = useContext(LanguageContext)
+  const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider')
+    throw new Error('useLanguage must be used within a LanguageProvider');
   }
-  return context
-}
-
-export default LanguageContext
+  return context;
+};

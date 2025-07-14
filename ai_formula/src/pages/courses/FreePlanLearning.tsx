@@ -48,42 +48,42 @@ const FreePlanLearning: React.FC = () => {
     const examples = {
       1: {
         en: '"a peaceful mountain lake at sunrise, landscape photography, misty atmosphere"',
-        cht: '"?¥å‡º?‚å¯§?œç?å±±æ?ï¼Œé¢¨?¯æ?å½±ï??§æ?æ¿›æ°£æ°?',
+        cht: '"?ï¿½å‡º?ï¿½å¯§?ï¿½ï¿½?å±±ï¿½?ï¼Œé¢¨?ï¿½ï¿½?å½±ï¿½??ï¿½ï¿½?æ¿›æ°£ï¿½?',
         video: {
           en: '"time-lapse video of mountain lake sunrise, gentle mist movement, peaceful nature scene"',
-          cht: '"å±±æ??¥å‡ºå»¶æ??å½±ï¼Œè??”éœ§æ°?§»?•ï?å¯§é??ªç„¶?´æ™¯"'
+          cht: '"å±±ï¿½??ï¿½å‡ºå»¶ï¿½??ï¿½å½±ï¼Œï¿½??ï¿½éœ§ï¿½?ï¿½ï¿½?ï¿½ï¿½?å¯§ï¿½??ï¿½ç„¶?ï¿½æ™¯"'
         }
       },
       2: {
         en: '"a cozy coffee shop interior, warm lighting, vintage aesthetic"',
-        cht: '"?’é©?„å??¡å?å®¤å…§ï¼Œæº«?–å?ç·šï?å¾©å¤ç¾å­¸"',
+        cht: '"?ï¿½é©?ï¿½ï¿½??ï¿½ï¿½?å®¤å…§ï¼Œæº«?ï¿½ï¿½?ç·šï¿½?å¾©å¤ç¾å­¸"',
         video: {
           en: '"coffee shop ambiance video, steam rising from cup, warm cozy atmosphere"',
-          cht: '"?–å•¡åº—æ??å½±?‡ï??¯ä¸­?¸æ±½?‡èµ·ï¼Œæº«?–è??©æ°£æ°?'
+          cht: '"?ï¿½å•¡åº—ï¿½??ï¿½å½±?ï¿½ï¿½??ï¿½ä¸­?ï¿½æ±½?ï¿½èµ·ï¼Œæº«?ï¿½ï¿½??ï¿½æ°£ï¿½?'
         }
       },
       3: {
         en: '"a cute cat sitting by a window, watercolor painting style"',
-        cht: '"ä¸€?»å¯?›ç?è²“å??¨ç??Šï?æ°´å½©?«é¢¨??',
+        cht: '"ä¸€?ï¿½å¯?ï¿½ï¿½?è²“ï¿½??ï¿½ï¿½??ï¿½ï¿½?æ°´å½©?ï¿½é¢¨??',
         video: {
           en: '"cat by window video, gentle movements, soft natural lighting, peaceful moment"',
-          cht: '"çª—é?è²“å’ªå½±ç?ï¼Œè??”å?ä½œï??”å??ªç„¶?‰ç?ï¼Œå¯§?œæ???'
+          cht: '"çª—ï¿½?è²“å’ªå½±ï¿½?ï¼Œï¿½??ï¿½ï¿½?ä½œï¿½??ï¿½ï¿½??ï¿½ç„¶?ï¿½ï¿½?ï¼Œå¯§?ï¿½ï¿½???'
         }
       },
       4: {
         en: '"a majestic eagle soaring over mountains, dramatic lighting, wildlife photography"',
-        cht: '"ä¸€?»å?æ­¦ç??é·¹é£›è?å±±è?ï¼Œæˆ²?‡æ€§å?ç·šï??ç??•ç‰©?å½±"',
+        cht: '"ä¸€?ï¿½ï¿½?æ­¦ï¿½??ï¿½é·¹é£›ï¿½?å±±ï¿½?ï¼Œæˆ²?ï¿½æ€§ï¿½?ç·šï¿½??ï¿½ï¿½??ï¿½ç‰©?ï¿½å½±"',
         video: {
           en: '"eagle soaring video, majestic flight over mountains, dramatic sky, wildlife cinematography"',
-          cht: '"?é·¹ç¿±ç?å½±ç?ï¼Œå?æ­¦é?è¶Šå±±?ˆï??²å??§å¤©ç©ºï??ç??•ç‰©?»å½±?å½±"'
+          cht: '"?ï¿½é·¹ç¿±ï¿½?å½±ï¿½?ï¼Œï¿½?æ­¦ï¿½?è¶Šå±±?ï¿½ï¿½??ï¿½ï¿½??ï¿½å¤©ç©ºï¿½??ï¿½ï¿½??ï¿½ç‰©?ï¿½å½±?ï¿½å½±"'
         }
       },
       5: {
         en: '"a futuristic city skyline, neon lights, cyberpunk style, night scene"',
-        cht: '"?ªä?ä¸»ç¾©?å?å¤©é?ç·šï??“è™¹?ˆï?è³½å??‹å?é¢¨æ ¼ï¼Œå???',
+        cht: '"?ï¿½ï¿½?ä¸»ç¾©?ï¿½ï¿½?å¤©ï¿½?ç·šï¿½??ï¿½è™¹?ï¿½ï¿½?è³½ï¿½??ï¿½ï¿½?é¢¨æ ¼ï¼Œï¿½???',
         video: {
           en: '"cyberpunk city video, neon lights flickering, futuristic atmosphere, night urban scene"',
-          cht: '"è³½å??‹å??å?å½±ç?ï¼Œé??¹ç??ƒç?ï¼Œæœªä¾†ä¸»ç¾©æ??ï?å¤œæ??å??´æ™¯"'
+          cht: '"è³½ï¿½??ï¿½ï¿½??ï¿½ï¿½?å½±ï¿½?ï¼Œï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼Œæœªä¾†ä¸»ç¾©ï¿½??ï¿½ï¿½?å¤œï¿½??ï¿½ï¿½??ï¿½æ™¯"'
         }
       }
     };
@@ -97,7 +97,7 @@ const FreePlanLearning: React.FC = () => {
         <div className="text-center py-8">
           <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
           <p className="text-gray-300">
-            {language === 'en' ? 'Content coming soon...' : '?§å®¹?³å??¨å‡º...'}
+            {language === 'en' ? 'Content coming soon...' : '?ï¿½å®¹?ï¿½ï¿½??ï¿½å‡º...'}
           </p>
         </div>
       );
@@ -120,11 +120,11 @@ const FreePlanLearning: React.FC = () => {
             return <li key={index} className="text-gray-100 ml-6 list-decimal mb-2 leading-relaxed text-base">{line}</li>;
           } else if (line.trim() === '') {
             return <div key={index} className="h-4"></div>;
-          } else if (line.startsWith('??)) {
+          } else if (line.startsWith('âœ“')) {
             return <p key={index} className="text-green-200 leading-relaxed bg-green-900/20 p-3 rounded-lg border-l-4 border-green-500/50 my-2">{line}</p>;
-          } else if (line.startsWith('??)) {
+          } else if (line.startsWith('âœ—')) {
             return <p key={index} className="text-red-200 leading-relaxed bg-red-900/20 p-3 rounded-lg border-l-4 border-red-500/50 my-2">{line}</p>;
-          } else if (line.includes('"') && (line.includes('photography') || line.includes('art') || line.includes('?å½±') || line.includes('?è?'))) {
+          } else if (line.includes('"') && (line.includes('photography') || line.includes('art') || line.includes('æ”å½±') || line.includes('è—è¡“'))) {
             return <p key={index} className="text-blue-200 leading-relaxed bg-blue-900/20 p-3 rounded-lg font-mono text-sm border border-blue-500/30 my-2">{line}</p>;
           } else {
             return <p key={index} className="text-gray-100 leading-relaxed text-base mb-2">{line}</p>;
@@ -150,17 +150,17 @@ const FreePlanLearning: React.FC = () => {
               className="text-gray-300 border-gray-600 hover:bg-gray-800"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              {language === 'en' ? 'Back to Course' : 'è¿”å?èª²ç?'}
+              {language === 'en' ? 'Back to Course' : 'è¿”ï¿½?èª²ï¿½?'}
             </Button>
             <Badge variant="outline" className="text-yellow-400 border-yellow-400">
-              {language === 'en' ? 'Free Plan' : '?è²»??}
+              {language === 'en' ? 'Free Plan' : '?ï¿½è²»??}
             </Badge>
           </div>
           <Button 
             onClick={handleUpgrade}
             className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold hover:from-yellow-500 hover:to-orange-600"
           >
-            {language === 'en' ? 'Upgrade to Pro' : '?‡ç??°å?æ¥­ç?'}
+            {language === 'en' ? 'Upgrade to Pro' : '?ï¿½ï¿½??ï¿½ï¿½?æ¥­ï¿½?'}
           </Button>
         </div>
 
@@ -169,7 +169,7 @@ const FreePlanLearning: React.FC = () => {
             {language === 'en' ? course.title : course.titleCht}
           </h1>
           <p className="text-xl text-gray-300">
-            {language === 'en' ? 'Free Plan - Learn the fundamentals with text-based lessons' : '?è²»??- ?é??‡å?èª²ç?å­¸ç??ºç??¥è?'}
+            {language === 'en' ? 'Free Plan - Learn the fundamentals with text-based lessons' : '?ï¿½è²»??- ?ï¿½ï¿½??ï¿½ï¿½?èª²ï¿½?å­¸ï¿½??ï¿½ï¿½??ï¿½ï¿½?'}
           </p>
         </div>
 
@@ -178,14 +178,14 @@ const FreePlanLearning: React.FC = () => {
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-blue-400" />
-              {language === 'en' ? 'Your Progress' : 'ä½ ç??²åº¦'}
+              {language === 'en' ? 'Your Progress' : 'ä½ ï¿½??ï¿½åº¦'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-white font-medium">
-                  {completedLessons.length} / {totalFreeLessons} {language === 'en' ? 'lessons completed' : '?‚èª²å·²å???}
+                  {completedLessons.length} / {totalFreeLessons} {language === 'en' ? 'lessons completed' : '?ï¿½èª²å·²ï¿½???}
                 </span>
                 <span className="text-green-400 font-semibold text-lg">{Math.round(progress)}%</span>
               </div>
@@ -210,10 +210,10 @@ const FreePlanLearning: React.FC = () => {
                     </h2>
                     <div className="flex items-center gap-2">
                       <Badge className="bg-blue-500/20 text-blue-200 border border-blue-500/30">
-                        {language === 'en' ? 'Free Module' : '?è²»æ¨¡ç?'}
+                        {language === 'en' ? 'Free Module' : '?ï¿½è²»æ¨¡ï¿½?'}
                       </Badge>
                       <Badge className="bg-green-500/20 text-green-200 border border-green-500/30">
-                        {language === 'en' ? `${module.lessons.length} Lessons` : `${module.lessons.length}?‚èª²`}
+                        {language === 'en' ? `${module.lessons.length} Lessons` : `${module.lessons.length}?ï¿½èª²`}
                       </Badge>
                     </div>
                   </div>
@@ -261,7 +261,7 @@ const FreePlanLearning: React.FC = () => {
                       <div className="mt-8 pt-6 border-t border-gray-600 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-white font-medium">
-                            {language === 'en' ? 'Rate this lesson:' : '?ºå‘¢?‚èª²è©•å?ï¼?}
+                            {language === 'en' ? 'Rate this lesson:' : '?ï¿½å‘¢?ï¿½èª²è©•ï¿½?ï¿½?}
                           </span>
                         </div>
                         <Button
@@ -286,7 +286,7 @@ const FreePlanLearning: React.FC = () => {
                           }} />
                           {completedLessons.includes(lesson.id) 
                             ? (language === 'en' ? 'Starred' : 'å·²æ”¶??)
-                            : (language === 'en' ? 'Star This' : '?¶è?')
+                            : (language === 'en' ? 'Star This' : '?ï¿½ï¿½?')
                           }
                         </Button>
                       </div>
@@ -296,7 +296,7 @@ const FreePlanLearning: React.FC = () => {
                         <div className="flex items-center gap-2 mb-3">
                           <Crown className="w-5 h-5 text-yellow-400" />
                           <h4 className="text-yellow-400 font-semibold">
-                            {language === 'en' ? 'Advanced Tips' : 'é«˜ç?è²¼å£«'}
+                            {language === 'en' ? 'Advanced Tips' : 'é«˜ï¿½?è²¼å£«'}
                           </h4>
                           <span className="bg-yellow-500 text-black text-xs px-2 py-1 rounded-full font-bold">
                             PRO
@@ -305,28 +305,28 @@ const FreePlanLearning: React.FC = () => {
                         <p className="text-gray-300 mb-4">
                           {language === 'en' 
                             ? 'Unlock professional techniques, advanced prompt strategies, and exclusive tips from industry experts.'
-                            : 'è§??å°ˆæ¥­?€å·§ã€é€²é??ç¤ºç­–ç•¥ï¼Œå?è¡Œæ¥­å°ˆå®¶?„ç¨å®¶è²¼å£«ã€?
+                            : 'ï¿½??å°ˆæ¥­?ï¿½å·§ã€é€²ï¿½??ï¿½ç¤ºç­–ç•¥ï¼Œï¿½?è¡Œæ¥­å°ˆå®¶?ï¿½ç¨å®¶è²¼å£«ï¿½?
                           }
                         </p>
                         <div className="bg-gray-800/50 rounded-lg p-4 border border-yellow-500/30">
                           <div className="flex items-center gap-2 mb-2">
                             <Lock className="w-4 h-4 text-yellow-400" />
                             <span className="text-yellow-400 font-medium">
-                              {language === 'en' ? 'Pro Content Preview:' : 'Pro ?§å®¹?è¦½ï¼?}
+                              {language === 'en' ? 'Pro Content Preview:' : 'Pro ?ï¿½å®¹?ï¿½è¦½ï¿½?}
                             </span>
                           </div>
                           <ul className="text-gray-400 text-sm space-y-1 blur-sm select-none">
-                            <li>??{language === 'en' ? 'Advanced lighting techniques for professional results' : 'å°ˆæ¥­?ˆæ??„é€²é??ˆå??€å·?}</li>
-                            <li>??{language === 'en' ? 'Color theory applications in AI image generation' : 'AI ?–å??Ÿæ?ä¸­ç??²å½©?†è??‰ç”¨'}</li>
-                            <li>??{language === 'en' ? 'Composition secrets from award-winning artists' : '?²ç??è?å®¶ç?æ§‹å?ç§˜è¨£'}</li>
-                            <li>??{language === 'en' ? 'Style mixing techniques for unique results' : '?¨ç‰¹?ˆæ??„é¢¨?¼æ··?ˆæ?å·?}</li>
+                            <li>??{language === 'en' ? 'Advanced lighting techniques for professional results' : 'å°ˆæ¥­?ï¿½ï¿½??ï¿½é€²ï¿½??ï¿½ï¿½??ï¿½ï¿½?}</li>
+                            <li>??{language === 'en' ? 'Color theory applications in AI image generation' : 'AI ?ï¿½ï¿½??ï¿½ï¿½?ä¸­ï¿½??ï¿½å½©?ï¿½ï¿½??ï¿½ç”¨'}</li>
+                            <li>??{language === 'en' ? 'Composition secrets from award-winning artists' : '?ï¿½ï¿½??ï¿½ï¿½?å®¶ï¿½?æ§‹ï¿½?ç§˜è¨£'}</li>
+                            <li>??{language === 'en' ? 'Style mixing techniques for unique results' : '?ï¿½ç‰¹?ï¿½ï¿½??ï¿½é¢¨?ï¿½æ··?ï¿½ï¿½?ï¿½?}</li>
                           </ul>
                         </div>
                         <Button 
                           onClick={handleUpgrade}
                           className="w-full mt-4 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black font-bold"
                         >
-                          {language === 'en' ? 'Upgrade to Pro' : '?‡ç???Pro'}
+                          {language === 'en' ? 'Upgrade to Pro' : '?ï¿½ï¿½???Pro'}
                         </Button>
                       </div>
                     </CardContent>
@@ -349,7 +349,7 @@ const FreePlanLearning: React.FC = () => {
               <div className="p-2 bg-yellow-400/20 rounded-full border border-yellow-500/30">
                 <Lock className="w-6 h-6 text-yellow-600" />
               </div>
-              {language === 'en' ? 'Ready for More?' : 'æº–å?å¥½å­¸?´å?ï¼?}
+              {language === 'en' ? 'Ready for More?' : 'æº–ï¿½?å¥½å­¸?ï¿½ï¿½?ï¿½?}
             </CardTitle>
           </CardHeader>
           <CardContent className="relative z-10">
@@ -358,7 +358,7 @@ const FreePlanLearning: React.FC = () => {
                 <p className="text-gray-700 mb-6 text-lg font-medium">
                   {language === 'en' 
                     ? 'Unlock the complete learning experience with Pro:'
-                    : '?¨å?æ¥­ç?è§??å®Œæ•´å­¸ç?é«”é?ï¼?
+                    : '?ï¿½ï¿½?æ¥­ï¿½?ï¿½??å®Œæ•´å­¸ï¿½?é«”ï¿½?ï¿½?
                   }
                 </p>
                 <ul className="space-y-4">
@@ -366,25 +366,25 @@ const FreePlanLearning: React.FC = () => {
                     <div className="p-1.5 bg-green-100 rounded-full group-hover:bg-green-200 transition-all duration-300 border border-green-300/50">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                     </div>
-                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'HD Video Lessons' : 'é«˜æ?å½±ç?èª²ç?'}</span>
+                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'HD Video Lessons' : 'é«˜ï¿½?å½±ï¿½?èª²ï¿½?'}</span>
                   </li>
                   <li className="flex items-center gap-3 group cursor-pointer">
                     <div className="p-1.5 bg-green-100 rounded-full group-hover:bg-green-200 transition-all duration-300 border border-green-300/50">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                     </div>
-                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'Advanced Techniques' : '?²é??€å·?}</span>
+                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'Advanced Techniques' : '?ï¿½ï¿½??ï¿½ï¿½?}</span>
                   </li>
                   <li className="flex items-center gap-3 group cursor-pointer">
                     <div className="p-1.5 bg-green-100 rounded-full group-hover:bg-green-200 transition-all duration-300 border border-green-300/50">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                     </div>
-                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'Practical Projects' : 'å¯¦æˆ°?…ç›®'}</span>
+                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'Practical Projects' : 'å¯¦æˆ°?ï¿½ç›®'}</span>
                   </li>
                   <li className="flex items-center gap-3 group cursor-pointer">
                     <div className="p-1.5 bg-green-100 rounded-full group-hover:bg-green-200 transition-all duration-300 border border-green-300/50">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                     </div>
-                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'Community Support' : 'ç¤¾ç¾¤?¯æ´'}</span>
+                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{language === 'en' ? 'Community Support' : 'ç¤¾ç¾¤?ï¿½æ´'}</span>
                   </li>
                 </ul>
               </div>
@@ -394,7 +394,7 @@ const FreePlanLearning: React.FC = () => {
                   size="lg"
                   className="bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold hover:from-yellow-600 hover:to-amber-600 text-lg px-10 py-4 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-yellow-500/40 border border-yellow-600/50 rounded-xl"
                 >
-                  ??{language === 'en' ? 'Upgrade Now' : 'ç«‹å³?‡ç?'} ??                </Button>
+                  ??{language === 'en' ? 'Upgrade Now' : 'ç«‹å³?ï¿½ï¿½?'} ??                </Button>
               </div>
             </div>
           </CardContent>

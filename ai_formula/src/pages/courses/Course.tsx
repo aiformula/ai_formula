@@ -17,17 +17,17 @@ const Course = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   
   const categories = [
-    { id: 'all', name: 'All', nameCht: '?¨éƒ¨', label: '?¨éƒ¨' },
-    { id: 'ai', name: 'AI', nameCht: 'AI?‰ç”¨', label: 'AI?‰ç”¨' },
-    { id: 'automation', name: 'Automation', nameCht: '?ªå???, label: '?ªå??? },
+    { id: 'all', name: 'All', nameCht: 'å…¨éƒ¨', label: 'å…¨éƒ¨' },
+    { id: 'ai', name: 'AI', nameCht: 'AIæ‡‰ç”¨', label: 'AIæ‡‰ç”¨' },
+    { id: 'automation', name: 'Automation', nameCht: 'è‡ªå‹•åŒ–', label: 'è‡ªå‹•åŒ–' },
   ];
 
   // Handle course navigation to outline pages
   const handleCourseClick = (courseId: string) => {
     const routeMap = {
-      'ai-app-development': '/courses/free-plan',  // ?‡å??è²»è¨ˆå??é¢
-      'ai-formula-advertising': '/courses/free-plan',   // ?‡å??è²»è¨ˆå??é¢
-      'shopify-automation': '/courses/free-plan',   // ?‡å??è²»è¨ˆå??é¢
+      'ai-app-development': '/courses/free-plan',  // å°å‘å…è²»è¨ˆåŠƒé é¢
+      'ai-formula-advertising': '/courses/free-plan',   // å°å‘å…è²»è¨ˆåŠƒé é¢
+      'shopify-automation': '/courses/free-plan',   // å°å‘å…è²»è¨ˆåŠƒé é¢
       'prompt-engineering': '/courses/prompt-engineering-outline',
       'chatgpt-mastery': '/courses/chatgpt-mastery-outline',
       'perplexity-tools': '/courses/perplexity-tools-outline',
@@ -39,7 +39,7 @@ const Course = () => {
     if (route) {
       navigate(route);
     } else {
-      // ?«æ?å°å??è²»è¨ˆå??é¢ä½œç‚ºfallback
+      // ?ï¿½ï¿½?å°ï¿½??ï¿½è²»è¨ˆï¿½??ï¿½é¢ä½œç‚ºfallback
       navigate('/courses/free-plan');
     }
   };
@@ -62,26 +62,26 @@ const Course = () => {
     }
   };
 
-  // 3?‹ç‰¹?²èª²ç¨‹ï??–ç?2?„å…§å®¹ï?
+  // 3å€‹ç‰¹è‰²èª²ç¨‹åŠ ä¸Š2å€‹å…§å®¹èª²ç¨‹
   const availableCourses = [
     {
       id: 'ai-app-development',
       title: "AI App Development Masterclass",
-      titleCht: "?AIä¸»é??­ã€?å°æ??‹æ??‹æ?ä½ ä?æ­¥æ­¥?šå‡º?Œç?æ­?¥½?¨ã€æ?æ©ŸAI Appï¼?,
+      titleCht: "ç”¨AIä¸»å°çš„å°ç¨‹å¼é–‹ç™¼ï¼šæ•™ä½ ä¸€æ­¥æ­¥å¯«å‡ºã€Œä¸–ç•Œç¬¬ä¸€ã€çš„æ‰‹æ©ŸAI App",
       description: "Learn to build practical AI mobile apps step by step in just 3 hours.",
-      descriptionCht: "3å°æ?å®Œæ?2?‹æ?æ©ŸAppï¼æœ¬èª²ç??±å…¨?·å·¥ç¨‹å¸«?™ä?å¯¦é??‹ç™¼?€?½ã€?,
+      descriptionCht: "3å°æ™‚å®Œæˆ2å€‹æ‰‹æ©ŸAppï¼æœ¬èª²ç¨‹ç”±å…¨ç«¯å·¥ç¨‹å¸«å¯¦æˆ°é–‹ç™¼ç¶“é©—",
       duration: "3 hours",
-      durationCht: "3å°æ?",
+      durationCht: "3å°æ™‚",
       students: 1847,
       rating: 4.8,
       level: "Beginner",
-      levelCht: "?ç?",
-      image: "?“±",
+      levelCht: "åˆç´š",
+      image: "default",
       type: "AI Development",
-      typeCht: "AI?‹ç™¼",
+      typeCht: "AIé–‹ç™¼",
       category: "ai",
       featured: true,
-      badge: "?³å??‹ç­ï¼?,
+      badge: "?ï¿½ï¿½??ï¿½ç­ï¿½?,
       includes: [
         "3 Hour Complete Course",
         "2 Mobile App Projects",
@@ -89,30 +89,30 @@ const Course = () => {
         "Hands-on Development"
       ],
       includesCht: [
-        "3å°æ?å®Œæ•´èª²ç?",
-        "2?‹æ?æ©ŸAppå°ˆæ?",
-        "å°ˆæ¥­è¬›å¸«?‡å?",
-        "å¯¦é??‹ç™¼ç·´ç?"
+        "3å°ï¿½?å®Œæ•´èª²ï¿½?",
+        "2?ï¿½ï¿½?æ©ŸAppå°ˆï¿½?",
+        "å°ˆæ¥­è¬›å¸«?ï¿½ï¿½?",
+        "å¯¦ï¿½??ï¿½ç™¼ç·´ï¿½?"
       ]
     },
     {
       id: 'ai-formula-advertising',
       title: "AI Formula Advertising Masterclass Vol.1",
-      titleCht: "?AIå»??è£½ä??­Vol.1?‘æ?è§£AI Formulaå»???‡å…¨æµç?ï¼šã€ŒCup Noodleç´šã€AI??,
+      titleCht: "?ï¿½AIï¿½??è£½ï¿½??ï¿½Vol.1?ï¿½ï¿½?è§£AI Formulaï¿½???ï¿½å…¨æµï¿½?ï¼šã€ŒCup Noodleç´šã€AI??,
       description: "Master AI advertising creation with AI Formula platform and create professional video ads.",
-      descriptionCht: "?Œæ¡AIå»??è£½ä?ï¼ŒAI Formula?˜é??‹æ??‹æ?ä½ å‰µ? å?æ¥­ç?å»???‡ã€?,
+      descriptionCht: "?ï¿½æ¡AIï¿½??è£½ï¿½?ï¼ŒAI Formula?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ä½ å‰µ?ï¿½ï¿½?æ¥­ï¿½?ï¿½???ï¿½ï¿½?,
       duration: "4 hours",
-      durationCht: "4å°æ?",
+      durationCht: "4å°ï¿½?",
       students: 923,
       rating: 4.9,
       level: "Intermediate",
-      levelCht: "ä¸­ç?",
-      image: "?¬",
+      levelCht: "ä¸­ï¿½?",
+      image: "?ï¿½ï¿½",
       type: "AI Advertising",
-      typeCht: "AIå»??",
+      typeCht: "AIç‡ŸéŠ·",
       category: "ai",
       featured: true,
-      badge: "?³å??‹ç­ï¼?,
+      badge: "?ï¿½ï¿½??ï¿½ç­ï¿½?,
       includes: [
         "AI Formula Platform Training",
         "Professional Video Creation",
@@ -121,29 +121,29 @@ const Course = () => {
       ],
       includesCht: [
         "AI Formulaå¹³å°è¨“ç·´",
-        "å°ˆæ¥­å½±ç?è£½ä?",
-        "?ç??´å??‰ç”¨",
-        "?²é?è£½ä??€å·?
+        "å°ˆæ¥­å½±ï¿½?è£½ï¿½?",
+        "?ï¿½ï¿½??ï¿½ï¿½??ï¿½ç”¨",
+        "?ï¿½ï¿½?è£½ï¿½??ï¿½ï¿½?
       ]
     },
     {
       id: 'shopify-automation',
       title: "AI ? Make Automation: Shopify Store Express",
-      titleCht: "AI ? Make?ªå??–ï?Shopifyç¶²å??Ÿé??Ÿæ???,
+      titleCht: "AI ? Make?ï¿½ï¿½??ï¿½ï¿½?Shopifyç¶²ï¿½??ï¿½ï¿½??ï¿½ï¿½???,
       description: "Build automated Shopify systems that can be profitable even for beginners.",
-      descriptionCht: "å»ºç??¡é?è«‹äººä¹Ÿèƒ½?ˆåˆ©?‹ä??„Shopify?ªå??–ç³»çµ±ï??©å??°æ???,
+      descriptionCht: "å»ºï¿½??ï¿½ï¿½?è«‹äººä¹Ÿèƒ½?ï¿½åˆ©?ï¿½ï¿½??ï¿½Shopify?ï¿½ï¿½??ï¿½ç³»çµ±ï¿½??ï¿½ï¿½??ï¿½ï¿½???,
       duration: "9 hours",
-      durationCht: "9å°æ?",
+      durationCht: "9å°ï¿½?",
       students: 1234,
       rating: 4.7,
       level: "Beginner",
-      levelCht: "?ç?",
+      levelCht: "?ï¿½ï¿½?",
       image: "??",
       type: "E-commerce Automation",
-      typeCht: "?»å??ªå???,
+      typeCht: "é›»å•†è‡ªå‹•åŒ–",
       category: "automation",
       featured: true,
-      badge: "äº†è§£?´å?",
+      badge: "äº†è§£?ï¿½ï¿½?",
       includes: [
         "Shopify Store Setup",
         "Make.com Automation",
@@ -151,34 +151,34 @@ const Course = () => {
         "Profit Optimization"
       ],
       includesCht: [
-        "Shopify?†å?å»ºç½®",
-        "Make.com?ªå???,
-        "AI?´å??‰ç”¨",
-        "?ˆåˆ©?ªå?ç­–ç•¥"
+        "Shopify?ï¿½ï¿½?å»ºç½®",
+        "Make.com?ï¿½ï¿½???,
+        "AI?ï¿½ï¿½??ï¿½ç”¨",
+        "?ï¿½åˆ©?ï¿½ï¿½?ç­–ç•¥"
       ]
     }
   ];
 
-  // 5?‹ç?æ­???¨ç?èª²ç?
+  // 5?ï¿½ï¿½?ï¿½???ï¿½ï¿½?èª²ï¿½?
   const realCourses = [
     {
       id: 'prompt-engineering',
       title: "Prompt Engineering Mastery",
-      titleCht: "?ç¤ºå·¥ç?ç²¾é€šèª²ç¨?,
+      titleCht: "?ï¿½ç¤ºå·¥ï¿½?ç²¾é€šèª²ï¿½?,
       description: "Master the art of AI prompt engineering for better results.",
-      descriptionCht: "?Œæ¡AI?ç¤ºå·¥ç??€å·§ï??²å??´å¥½?„ç??œã€?,
+      descriptionCht: "?ï¿½æ¡AI?ï¿½ç¤ºå·¥ï¿½??ï¿½å·§ï¿½??ï¿½ï¿½??ï¿½å¥½?ï¿½ï¿½??ï¿½ï¿½?,
       duration: "6 hours",
-      durationCht: "6å°æ?",
+      durationCht: "6å°ï¿½?",
       students: 2341,
       rating: 4.9,
       level: "All Levels",
-      levelCht: "?€?‰ç???,
+      levelCht: "?ï¿½?ï¿½ï¿½???,
       image: "??",
       type: "AI Fundamentals",
-      typeCht: "AI?ºç?",
+      typeCht: "AI?ï¿½ï¿½?",
       category: "ai",
       featured: true,
-      badge: "?è²»",
+      badge: "?ï¿½è²»",
       includes: [
         "Complete Prompt Guide",
         "Practical Examples",
@@ -186,30 +186,30 @@ const Course = () => {
         "Real-world Applications"
       ],
       includesCht: [
-        "å®Œæ•´?ç¤º?‡å?",
-        "å¯¦ç”¨ç¯„ä?",
-        "?²é??€å·?,
-        "å¯¦é??‰ç”¨"
+        "å®Œæ•´?ï¿½ç¤º?ï¿½ï¿½?",
+        "å¯¦ç”¨ç¯„ï¿½?",
+        "?ï¿½ï¿½??ï¿½ï¿½?,
+        "å¯¦ï¿½??ï¿½ç”¨"
       ]
     },
     {
       id: 'chatgpt-mastery',
       title: "ChatGPT Mastery Course",
-      titleCht: "ChatGPTç²¾é€šèª²ç¨?,
+      titleCht: "ChatGPTç²¾é€šèª²ï¿½?,
       description: "Complete guide to mastering ChatGPT for productivity and creativity.",
-      descriptionCht: "å®Œæ•´?„ChatGPTç²¾é€šæ??—ï??å??Ÿç”¢?›å??µé€ å???,
+      descriptionCht: "å®Œæ•´?ï¿½ChatGPTç²¾é€šï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ç”¢?ï¿½ï¿½??ï¿½é€ ï¿½???,
       duration: "4 hours",
-      durationCht: "4å°æ?",
+      durationCht: "4å°ï¿½?",
       students: 1876,
       rating: 4.8,
       level: "Beginner",
-      levelCht: "?ç?",
-      image: "?’¬",
+      levelCht: "?ï¿½ï¿½?",
+      image: "?ï¿½ï¿½",
       type: "AI Tools",
       typeCht: "AIå·¥å…·",
       category: "ai",
       featured: true,
-      badge: "?è²»",
+      badge: "?ï¿½è²»",
       includes: [
         "ChatGPT Fundamentals",
         "Advanced Prompting",
@@ -217,30 +217,30 @@ const Course = () => {
         "Productivity Tips"
       ],
       includesCht: [
-        "ChatGPT?ºç?",
-        "?²é??ç¤º?€å·?,
-        "ä½¿ç”¨æ¡ˆä?",
-        "?Ÿç”¢?›æ?å·?
+        "ChatGPT?ï¿½ï¿½?",
+        "?ï¿½ï¿½??ï¿½ç¤º?ï¿½ï¿½?,
+        "ä½¿ç”¨æ¡ˆï¿½?",
+        "?ï¿½ç”¢?ï¿½ï¿½?ï¿½?
       ]
     },
     {
       id: 'perplexity-tools',
       title: "Perplexity Tools Mastery",
-      titleCht: "Perplexityå·¥å…·ç²¾é€?,
+      titleCht: "Perplexityå·¥å…·ç²¾ï¿½?,
       description: "Master Perplexity AI for research and information gathering.",
-      descriptionCht: "?Œæ¡Perplexity AI?²è??”ç©¶?Œè?è¨Šæ”¶?†ã€?,
+      descriptionCht: "?ï¿½æ¡Perplexity AI?ï¿½ï¿½??ï¿½ç©¶?ï¿½ï¿½?è¨Šæ”¶?ï¿½ï¿½?,
       duration: "3 hours",
-      durationCht: "3å°æ?",
+      durationCht: "3å°ï¿½?",
       students: 1234,
       rating: 4.7,
       level: "Intermediate",
-      levelCht: "ä¸­ç?",
+      levelCht: "ä¸­ï¿½?",
       image: "??",
       type: "AI Research",
-      typeCht: "AI?”ç©¶",
+      typeCht: "AI?ï¿½ç©¶",
       category: "ai",
       featured: true,
-      badge: "?è²»",
+      badge: "?ï¿½è²»",
       includes: [
         "Perplexity Basics",
         "Research Techniques",
@@ -248,30 +248,30 @@ const Course = () => {
         "Advanced Queries"
       ],
       includesCht: [
-        "Perplexity?ºç?",
-        "?”ç©¶?€å·?,
-        "è³‡è?é©—è?",
-        "?²é??¥è©¢"
+        "Perplexity?ï¿½ï¿½?",
+        "?ï¿½ç©¶?ï¿½ï¿½?,
+        "è³‡ï¿½?é©—ï¿½?",
+        "?ï¿½ï¿½??ï¿½è©¢"
       ]
     },
     {
       id: 'coding-basics',
       title: "Coding Basics with AI",
-      titleCht: "AIè¼”åŠ©ç·¨ç??ºç?",
+      titleCht: "AIè¼”åŠ©ç·¨ï¿½??ï¿½ï¿½?",
       description: "Learn programming fundamentals with AI assistance.",
-      descriptionCht: "ä½¿ç”¨AIè¼”åŠ©å­¸ç?ç·¨ç??ºç???,
+      descriptionCht: "ä½¿ç”¨AIè¼”åŠ©å­¸ï¿½?ç·¨ï¿½??ï¿½ï¿½???,
       duration: "8 hours",
-      durationCht: "8å°æ?",
+      durationCht: "8å°ï¿½?",
       students: 987,
       rating: 4.6,
       level: "Beginner",
-      levelCht: "?ç?",
-      image: "?’»",
+      levelCht: "?ï¿½ï¿½?",
+      image: "?ï¿½ï¿½",
       type: "Programming",
-      typeCht: "ç·¨ç?",
+      typeCht: "ç·¨ï¿½?",
       category: "ai",
       featured: true,
-      badge: "?è²»",
+      badge: "?ï¿½è²»",
       includes: [
         "Programming Fundamentals",
         "AI-Assisted Coding",
@@ -279,30 +279,30 @@ const Course = () => {
         "Best Practices"
       ],
       includesCht: [
-        "ç·¨ç??ºç?",
+        "ç·¨ï¿½??ï¿½ï¿½?",
         "AIè¼”åŠ©ç·¨ç¢¼",
-        "å°ˆæ?å»ºæ?",
-        "?€ä½³å¯¦è¸?
+        "å°ˆï¿½?å»ºï¿½?",
+        "?ï¿½ä½³å¯¦ï¿½?
       ]
     },
     {
       id: 'midjourney-ai',
       title: "Midjourney AI Image Creation",
-      titleCht: "Midjourney AI?–å??µä?",
+      titleCht: "Midjourney AI?ï¿½ï¿½??ï¿½ï¿½?",
       description: "Create stunning AI-generated images with Midjourney.",
-      descriptionCht: "ä½¿ç”¨Midjourney?µé€ ä»¤äººé??†ç?AI?Ÿæ??–å???,
+      descriptionCht: "ä½¿ç”¨Midjourney?ï¿½é€ ä»¤äººï¿½??ï¿½ï¿½?AI?ï¿½ï¿½??ï¿½ï¿½???,
       duration: "5 hours",
-      durationCht: "5å°æ?",
+      durationCht: "5å°ï¿½?",
       students: 2156,
       rating: 4.8,
       level: "All Levels",
-      levelCht: "?€?‰ç???,
-      image: "?¨",
+      levelCht: "?ï¿½?ï¿½ï¿½???,
+      image: "?ï¿½ï¿½",
       type: "AI Art",
-      typeCht: "AI?è?",
+      typeCht: "AI?ï¿½ï¿½?",
       category: "ai",
       featured: true,
-      badge: "?è²»",
+      badge: "?ï¿½è²»",
       includes: [
         "Midjourney Basics",
         "Advanced Prompting",
@@ -310,10 +310,10 @@ const Course = () => {
         "Commercial Usage"
       ],
       includesCht: [
-        "Midjourney?ºç?",
-        "?²é??ç¤º?€å·?,
-        "é¢¨æ ¼?€æ³?,
-        "?†æ¥­?‰ç”¨"
+        "Midjourney?ï¿½ï¿½?",
+        "?ï¿½ï¿½??ï¿½ç¤º?ï¿½ï¿½?,
+        "é¢¨æ ¼?ï¿½ï¿½?,
+        "?ï¿½æ¥­?ï¿½ç”¨"
       ]
     }
   ];
@@ -340,7 +340,7 @@ const Course = () => {
         />
       </div>
 
-      {/* Part 1: Main Title - ?è²»å­¸ç?èª²ç? */}
+      {/* Part 1: Main Title - ?ï¿½è²»å­¸ï¿½?èª²ï¿½? */}
       <section className="relative py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -351,18 +351,18 @@ const Course = () => {
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  {isZhTW ? '?è²»å­¸ç?èª²ç?' : 'Free Learning Courses'}
+                  {isZhTW ? '?ï¿½è²»å­¸ï¿½?èª²ï¿½?' : 'Free Learning Courses'}
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-                {isZhTW ? 'ç²¾å?è£½ä??…å?è²»èª²ç¨‹ï?å¹«åŠ©ä½ å¿«?Ÿæ??‡AI?€?½ä¸¦å¯¦ç¾?†æ¥­?®æ?' : 'Carefully crafted free courses to help you quickly improve AI skills and achieve business goals'}
+                {isZhTW ? 'ç²¾ï¿½?è£½ï¿½??ï¿½ï¿½?è²»èª²ç¨‹ï¿½?å¹«åŠ©ä½ å¿«?ï¿½ï¿½??ï¿½AI?ï¿½?ï¿½ä¸¦å¯¦ç¾?ï¿½æ¥­?ï¿½ï¿½?' : 'Carefully crafted free courses to help you quickly improve AI skills and achieve business goals'}
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Part 2: Featured Courses (3?‹ç‰¹?²èª²ç¨? */}
+      {/* Part 2: Featured Courses (3?ï¿½ç‰¹?ï¿½èª²ï¿½? */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -410,7 +410,7 @@ const Course = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?…å«?§å®¹ï¼? : 'Includes:'}</h4>
+                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?ï¿½å«?ï¿½å®¹ï¿½? : 'Includes:'}</h4>
                         <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
                           {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
                             <li key={idx} className="flex items-center gap-2">
@@ -426,7 +426,7 @@ const Course = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-xl font-bold text-blue-400">
-                            {course.badge || (isZhTW ? '?è²»' : 'FREE')}
+                            {course.badge || (isZhTW ? '?ï¿½è²»' : 'FREE')}
                           </span>
                         </div>
                         <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
@@ -439,9 +439,9 @@ const Course = () => {
                         className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
                         onClick={() => handleCourseClick(course.id)}
                       >
-                        {course.id === 'ai-app-development' ? (isZhTW ? '?³å??‹ç­' : 'Coming Soon') : 
-                         course.id === 'ai-formula-advertising' ? (isZhTW ? '?³å??‹ç­' : 'Coming Soon') : 
-                         (isZhTW ? 'äº†è§£?´å?' : 'Learn More')}
+                        {course.id === 'ai-app-development' ? (isZhTW ? '?ï¿½ï¿½??ï¿½ç­' : 'Coming Soon') : 
+                         course.id === 'ai-formula-advertising' ? (isZhTW ? '?ï¿½ï¿½??ï¿½ç­' : 'Coming Soon') : 
+                         (isZhTW ? 'äº†è§£?ï¿½ï¿½?' : 'Learn More')}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>
@@ -453,15 +453,15 @@ const Course = () => {
         </div>
       </section>
 
-      {/* Part 3: ç²¾é¸?è²»èª²ç? Title and Description */}
+      {/* Part 3: ç²¾é¸?ï¿½è²»èª²ï¿½? Title and Description */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {isZhTW ? 'ç²¾é¸?è²»èª²ç?' : 'Featured Free Courses'}
+              {isZhTW ? 'ç²¾é¸?ï¿½è²»èª²ï¿½?' : 'Featured Free Courses'}
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              {isZhTW ? 'ç²¾å?è£½ä??…æ•¸ä½èª²ç¨‹ï?å¹«åŠ©ä½ å¿«?Ÿæ??‡æ??½ä¸¦å¯¦ç¾?†æ¥­?®æ?' : 'Carefully crafted digital courses to help you quickly improve skills and achieve business goals'}
+              {isZhTW ? 'ç²¾ï¿½?è£½ï¿½??ï¿½æ•¸ä½èª²ç¨‹ï¿½?å¹«åŠ©ä½ å¿«?ï¿½ï¿½??ï¿½ï¿½??ï¿½ä¸¦å¯¦ç¾?ï¿½æ¥­?ï¿½ï¿½?' : 'Carefully crafted digital courses to help you quickly improve skills and achieve business goals'}
             </p>
           </div>
 
@@ -482,7 +482,7 @@ const Course = () => {
             </div>
           </div>
 
-          {/* Part 4: Real Courses (5?‹ç?å¯¦èª²ç¨? */}
+          {/* Part 4: Real Courses (5?ï¿½ï¿½?å¯¦èª²ï¿½? */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCourses.map((course, index) => (
               <motion.div
@@ -528,7 +528,7 @@ const Course = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?…å«?§å®¹ï¼? : 'Includes:'}</h4>
+                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?ï¿½å«?ï¿½å®¹ï¿½? : 'Includes:'}</h4>
                         <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
                           {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
                             <li key={idx} className="flex items-center gap-2">
@@ -544,7 +544,7 @@ const Course = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-xl font-bold text-green-400">
-                            {course.badge || (isZhTW ? '?è²»' : 'FREE')}
+                            {course.badge || (isZhTW ? '?ï¿½è²»' : 'FREE')}
                           </span>
                         </div>
                         <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
@@ -557,7 +557,7 @@ const Course = () => {
                         className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
                         onClick={() => handleRealCourseClick(course.id)}
                       >
-                        {isZhTW ? '?¥ç?èª²ç?å¤§ç¶±' : 'View Course Outline'}
+                        {isZhTW ? '?ï¿½ï¿½?èª²ï¿½?å¤§ç¶±' : 'View Course Outline'}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>
