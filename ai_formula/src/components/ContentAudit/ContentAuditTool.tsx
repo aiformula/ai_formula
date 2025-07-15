@@ -55,7 +55,7 @@ const ContentAuditTool: React.FC = () => {
   const mockContentItems: ContentAuditItem[] = [
     {
       id: '1',
-      title: 'AI Formula ä¸»é?',
+      title: 'AI Formula ä¸»ï¿½?',
       url: '/',
       type: 'page',
       language: 'zh-HK',
@@ -66,16 +66,16 @@ const ContentAuditTool: React.FC = () => {
         {
           type: 'warning',
           category: 'seo',
-          message: 'ç¼ºå?çµæ??–æ•¸?šæ?è¨?,
+          message: 'ç¼ºï¿½?çµï¿½ï¿½æ•¸?ï¿½ï¿½?ï¿½?,
           severity: 'medium',
-          recommendation: 'æ·»å? JSON-LD çµæ??–æ•¸?šä»¥?é??œç´¢å¼•æ??†è§£'
+          recommendation: 'æ·»ï¿½? JSON-LD çµï¿½ï¿½æ•¸?ï¿½ä»¥?ï¿½ï¿½ï¿½ç´¢å¼•ï¿½ï¿½è§£'
         },
         {
           type: 'error',
           category: 'performance',
-          message: '?–ç??ªå„ª??,
+          message: '?ï¿½ï¿½ï¿½å„ª,
           severity: 'high',
-          recommendation: 'å£“ç¸®?–ç?ä¸¦ä½¿??WebP ?¼å?'
+          recommendation: 'å£“ç¸®?ï¿½ï¿½?ä¸¦ä½¿WebP ?ï¿½ï¿½?'
         }
       ],
       lastUpdated: new Date('2024-01-15')
@@ -109,7 +109,7 @@ const ContentAuditTool: React.FC = () => {
     },
     {
       id: '3',
-      title: 'AI å·¥å…·?™å­¸?šå®¢',
+      title: 'AI å·¥å…·?ï¿½å­¸?ï¿½å®¢',
       url: '/blog/ai-tools-guide',
       type: 'blog',
       language: 'zh-HK',
@@ -120,9 +120,9 @@ const ContentAuditTool: React.FC = () => {
         {
           type: 'info',
           category: 'ux',
-          message: '?¯è??§å¯ä»¥æ”¹??,
+          message: '?ï¿½ï¿½ï¿½å¯ä»¥æ”¹,
           severity: 'low',
-          recommendation: 'å¢žå?æ®µè½?“è??Œä½¿?¨æ›´å¤šå?æ¨™é?'
+          recommendation: 'å¢žï¿½?æ®µè½?ï¿½ï¿½ï¿½ä½¿?ï¿½æ›´å¤šï¿½?æ¨™ï¿½?'
         }
       ],
       lastUpdated: new Date('2024-01-20')
@@ -201,7 +201,7 @@ const ContentAuditTool: React.FC = () => {
             className="px-3 py-2 border border-gray-300 rounded-md"
           >
             <option value="all">All Languages</option>
-            <option value="zh-HK">ä¸­æ? (é¦™æ¸¯)</option>
+            <option value="zh-HK">ä¸­ï¿½? (é¦™æ¸¯)</option>
             <option value="en">English</option>
           </select>
           

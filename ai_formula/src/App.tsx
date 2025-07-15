@@ -22,25 +22,13 @@ import BlogListing from '@/pages/blog/BlogListing';
 import BlogPost from '@/pages/blog/BlogPost';
 
 // Course Pages
-import Course from '@/pages/courses/Course';
+import CourseListing from '@/pages/courses/CourseListing';
 import CourseDetail from '@/pages/courses/CourseDetail';
-import FreePlanLearning from '@/pages/courses/FreePlanLearning';
-import ProPlanLearning from '@/pages/courses/ProPlanLearning';
-import ChatGPTMasteryOutline from '@/pages/courses/ChatGPTMasteryOutline';
-import PerplexityToolsOutline from '@/pages/courses/PerplexityToolsOutline';
-import PromptEngineeringOutline from '@/pages/courses/PromptEngineeringOutline';
-import CodingBasicsOutline from '@/pages/courses/CodingBasicsOutline';
-import CourseRegistration from '@/pages/courses/CourseRegistration';
+import AIBusinessAutomationOutline from '@/pages/courses/AIBusinessAutomationOutline';
+import AIBusinessAutomationLearning from '@/pages/courses/AIBusinessAutomationLearning';
 
-// Lesson Pages
-import PromptEngineeringLesson1 from '@/pages/courses/PromptEngineeringLesson1';
-import PromptEngineeringLesson2 from '@/pages/courses/PromptEngineeringLesson2';
-import ChatGPTMasteryLesson from '@/pages/courses/ChatGPTMasteryLesson';
-import PerplexityToolsLesson from '@/pages/courses/PerplexityToolsLesson';
-import PromptEngineeringCourse from '@/pages/courses/PromptEngineeringCourse';
-import AILearningOSPage from '@/components/learning/AILearningOSPage';
-import CourseDashboardPage from '@/components/learning/CourseDashboardPage';
-import LessonViewer from '@/components/learning/LessonViewer';
+// Tools Page
+import Tools from '@/pages/Tools';
 
 import './App.css';
 
@@ -65,84 +53,14 @@ function App() {
                   <Route path="/blog/:id" element={<BlogPost />} />
                   
                   {/* Course Routes */}
-                  <Route path="/courses" element={<Course />} />
+                  <Route path="/courses" element={<CourseListing />} />
                   <Route path="/courses/:courseId" element={<CourseDetail />} />
-                  <Route path="/courses/free-plan" element={<FreePlanLearning />} />
-                  <Route path="/courses/pro-plan" element={<ProPlanLearning />} />
+                  <Route path="/courses/business-automation" element={<AIBusinessAutomationOutline />} />
+                  <Route path="/courses/ai-business-automation" element={<AIBusinessAutomationOutline />} />
+                  <Route path="/courses/ai-business-automation/learning" element={<AIBusinessAutomationLearning />} />
                   
-                  {/* Course Outlines */}
-                  <Route path="/courses/chatgpt-mastery-outline" element={<ChatGPTMasteryOutline />} />
-                  <Route path="/courses/perplexity-tools-outline" element={<PerplexityToolsOutline />} />
-                  <Route path="/courses/prompt-engineering-outline" element={<PromptEngineeringOutline />} />
-                  <Route path="/courses/coding-basics-outline" element={<CodingBasicsOutline />} />
-                  <Route path="/courses/registration" element={<CourseRegistration />} />
-                  
-                  {/* Course Lessons */}
-                  <Route path="/courses/prompt-engineering-lesson-1" element={<PromptEngineeringLesson1 />} />
-                  <Route path="/courses/prompt-engineering-lesson-2" element={<PromptEngineeringLesson2 />} />
-                  <Route path="/courses/chatgpt-mastery-lesson" element={<ChatGPTMasteryLesson />} />
-                  <Route path="/courses/perplexity-tools-lesson" element={<PerplexityToolsLesson />} />
-                  <Route path="/courses/prompt-engineering-course" element={<PromptEngineeringCourse />} />
-                  <Route path="/courses/prompt-engineering-learning" element={
-                    <AILearningOSPage 
-                      courseId="prompt-engineering"
-                      modules={[
-                        {
-                          id: 'module-1',
-                          title: 'Foundations of Prompt Engineering',
-                          titleZh: '?�示工�??��?',
-                          duration: '25:00',
-                          videoUrl: '/api/placeholder/video/lesson1.mp4',
-                          transcript: 'Welcome to the foundations of prompt engineering...',
-                          completed: false,
-                          playgroundType: 'prompt-engineering',
-                          expectedOutput: 'A well-structured prompt that follows best practices',
-                          notes: [],
-                          resources: [
-                            {
-                              id: 'res-1',
-                              name: 'Prompt Engineering Cheat Sheet',
-                              type: 'pdf',
-                              url: '/resources/prompt-cheat-sheet.pdf',
-                              size: '2.5MB'
-                            },
-                            {
-                              id: 'res-2',
-                              name: 'Sample Prompts',
-                              type: 'code',
-                              url: '/resources/sample-prompts.txt',
-                              size: '856KB'
-                            }
-                          ]
-                        },
-                        {
-                          id: 'module-2',
-                          title: 'Advanced Prompt Techniques',
-                          titleZh: '進階提示技巧',
-                          duration: '18:00',
-                          videoUrl: '/api/placeholder/video/lesson2.mp4',
-                          transcript: 'In this lesson, we will explore advanced prompt techniques...',
-                          completed: false,
-                          playgroundType: 'prompt-engineering',
-                          expectedOutput: 'Complex prompts using chain-of-thought and few-shot learning',
-                          notes: [],
-                          resources: [
-                            {
-                              id: 'res-3',
-                              name: 'Advanced Techniques Guide',
-                              type: 'pdf',
-                              url: '/resources/advanced-guide.pdf',
-                              size: '3.2MB'
-                            }
-                          ]
-                        }
-                      ]}
-                    />
-                  } />
-                  <Route path="/courses/dashboard" element={
-                    <CourseDashboardPage courseId="prompt-engineering" />
-                  } />
-                  <Route path="/courses/lesson-viewer" element={<LessonViewer />} />
+                  {/* Tools Page */}
+                  <Route path="/tools" element={<Tools />} />
                   
                   {/* 404 Page */}
                   <Route path="*" element={<NotFound />} />

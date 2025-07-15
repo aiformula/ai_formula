@@ -68,8 +68,8 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ section, isZhTW, inde
           className="grid md:grid-cols-2 gap-6 mb-8"
         >
           {items.map((item, idx) => {
-            const [title, ...description] = item.split('ï¼?);
-            const desc = description.join('ï¼?);
+            const [title, ...description] = item.split('ï¿½?);
+            const desc = description.join('ï¿½?);
             const iconMatch = title.match(/^(\S+)\s+(.+)/);
             const icon = iconMatch ? iconMatch[1] : '';
             const cleanTitle = iconMatch ? iconMatch[2] : title;
@@ -185,7 +185,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ section, isZhTW, inde
               transition={{ duration: 0.6, delay: baseDelay + idx * 0.05 }}
               className="flex items-start gap-2 text-gray-300"
             >
-              <span className="text-blue-400 mt-1">??/span>
+              <span className="text-blue-400 mt-1">/span>
               <span>{item}</span>
             </motion.li>
           ))}
@@ -212,11 +212,11 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ section, isZhTW, inde
             ))}
             
             <div className="flex items-center justify-center gap-4 mt-8 pt-6 border-t border-gray-600">
-              <span className="text-2xl">??</span>
+              <span className="text-2xl"></span>
               <span className="text-lg font-semibold text-white">
-                {isZhTW ? 'ç§‘æ??¹è??ªä?ï¼Œæ??‘æ??™å¥½äº†å?ï¼? : 'Technology is changing the future, are we ready?'}
+                {isZhTW ? 'ç§‘ï¿½ï¿½ï¿½ï¿½ï¿½?ï¼Œï¿½ï¿½ï¿½ï¿½å¥½äº†ï¿½?ï¿½? : 'Technology is changing the future, are we ready?'}
               </span>
-              <span className="text-2xl">??</span>
+              <span className="text-2xl"></span>
             </div>
           </div>
         </motion.div>
@@ -248,7 +248,7 @@ const ArticleContentRenderer: React.FC<ArticleContentRendererProps> = ({ section
       >
         <p className="text-gray-300">
           {isZhTW ? 
-            <>?³ä?è§?›´å¤šé??¼AI?Œç??€?¼å??„æ??°è?è¨Šï??œæ³¨?‘å€‘ç? Instagram <strong className="text-blue-300">@ai_formula_</strong> ?²å??´å?æ·±åº¦?†æ??Œè?è§?€?/> :
+            <>?ï¿½ï¿½?ï¿½?ï¿½ï¿½å¤šï¿½ï¿½AI?ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?è¨Šï¿½ï¿½æ³¨?ï¿½å€‘ï¿½? Instagram <strong className="text-blue-300">@ai_formula_</strong> ?ï¿½ï¿½ï¿½ï¿½?æ·±åº¦?ï¿½ï¿½ï¿½ï¿½?ï¿½?ï¿½?/> :
             <>Want to learn more about the latest information on AI and technology development? Follow our Instagram <strong className="text-blue-300">@ai_formula_</strong> for more in-depth analysis and insights.</>
           }
         </p>

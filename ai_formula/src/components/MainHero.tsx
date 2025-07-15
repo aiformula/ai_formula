@@ -66,8 +66,8 @@ const MainHero = () => {
             >
               {language === 'zh-HK' ? (
                 <>
-                  AI Formula：�?港�?實戰<br />
-                  <span className="text-yellow-500">AI ?�用課�?</span>
+                  AI Formula：香港實戰<br />
+                  <span className="text-yellow-500">AI 應用課程</span>
                 </>
               ) : (
                 <>
@@ -84,7 +84,7 @@ const MainHero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              {language === 'zh-HK' ? '?�學?�用，�??��?港職?�而設' : 'Practical AI training designed for Hong Kong professionals'}
+              {language === 'zh-HK' ? '實學實用，專為香港職場而設' : 'Practical AI training designed for Hong Kong professionals'}
             </motion.h2>
             
             {/* Subtitle - Mobile Friendly */}
@@ -94,7 +94,7 @@ const MainHero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {language === 'zh-HK' ? '學�??�刻幫到你慳?��??��??��??��? AI 課�?' : 'Learn AI skills that immediately help you save time and boost efficiency'}
+              {language === 'zh-HK' ? '學會立刻幫到你慳時間慳成本的實戰 AI 課程' : 'Learn AI skills that immediately help you save time and boost efficiency'}
             </motion.p>
             
             {/* Improved CTA Buttons */}
@@ -108,7 +108,7 @@ const MainHero = () => {
                 className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
                 onClick={() => navigate('/course')}
               >
-                {language === 'zh-HK' ? '?�費試學' : 'Start Free Trial'}
+                {language === 'zh-HK' ? '免費試學' : 'Start Free Trial'}
               </Button>
               
               <Button 
@@ -116,7 +116,7 @@ const MainHero = () => {
                 className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300"
                 onClick={() => navigate('/course')}
               >
-                {language === 'zh-HK' ? '了解?��?' : 'Learn More'}
+                {language === 'zh-HK' ? '了解更多' : 'Learn More'}
               </Button>
             </motion.div>
 

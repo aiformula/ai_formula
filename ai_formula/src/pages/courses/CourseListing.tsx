@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+// 移除 Footer 導入，因為 App.tsx 已經有全局 Footer
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCourseData } from "@/hooks/useCourseData";
 import CourseErrorBoundary from "@/components/course/ErrorBoundary";
 import LearningPlansSection from "@/components/course/LearningPlansSection";
-import ProductGrid from "@/components/course/ProductGrid";
+import { ProductGrid } from "@/components/course";
 import CTASection from "@/components/course/CTASection";
 import { Alert, AlertDescription, PageLoadingSpinner } from "@/components/ui";
 import { AlertTriangle } from "lucide-react";
@@ -26,7 +26,7 @@ const ErrorDisplay: React.FC<{ error: string; onRetry: () => void; isZhTW: boole
           onClick={onRetry}
           className="ml-2 text-blue-400 hover:text-blue-300 underline"
         >
-          {isZhTW ? '?�試' : 'Retry'}
+          {isZhTW ? '重試' : 'Retry'}
         </button>
       </AlertDescription>
     </Alert>
@@ -63,7 +63,7 @@ const Course: React.FC = () => {
 
   // Loading state
   if (isLoading) {
-    return <PageLoadingSpinner message={isZhTW ? '載入課�??�容�?..' : 'Loading course content...'} />;
+    return <PageLoadingSpinner message={isZhTW ? '載入課程內容中..' : 'Loading course content...'} />;
   }
 
   return (
@@ -83,8 +83,8 @@ const Course: React.FC = () => {
         <Navigation />
 
         {/* Main Content with Suspense */}
-        <Suspense fallback={<PageLoadingSpinner message={isZhTW ? '載入組件�?..' : 'Loading components...'} />}>
-          <main role="main" aria-label={isZhTW ? "課�??�面主�??�容" : "Course page main content"}>
+        <Suspense fallback={<PageLoadingSpinner message={isZhTW ? '載入組件中..' : 'Loading components...'} />}>
+          <main role="main" aria-label={isZhTW ? "課程頁面主要內容" : "Course page main content"}>
             {/* Learning Plans Section */}
             <LearningPlansSection 
               plans={learningPlans}
@@ -106,7 +106,7 @@ const Course: React.FC = () => {
           </main>
         </Suspense>
         
-        <Footer />
+        {/* 移除這裡的 Footer，因為 App.tsx 已經有全局 Footer */}
       </div>
     </CourseErrorBoundary>
   );

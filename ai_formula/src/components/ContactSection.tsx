@@ -177,10 +177,10 @@ const ContactSection = () => {
                     {language === 'zh-HK' ? t('contact.form.message') : 'How can we help you?'}
                   </Label>
                   
-                  {/* 建議?��? */}
+                  {/* 建議選項 */}
                   <div className="mb-4">
                     <p className="text-sm text-gray-400 mb-3">
-                      {language === 'zh-HK' ? '快速選?�常見�?題�?' : 'Quick select common questions:'}
+                      {language === 'zh-HK' ? '快速選擇常見問題：' : 'Quick select common questions:'}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {[
@@ -197,7 +197,7 @@ const ContactSection = () => {
                             : 'Hello, my background is [please fill in your profession or background], and my learning goal is [please fill in your goal]. Which course would be most suitable for me?'
                         },
                         {
-                          label: language === 'zh-HK' ? '想要了解企業????' : 'Corporate Training',
+                          label: language === 'zh-HK' ? '想要了解企業培訓' : 'Corporate Training',
                           text: language === 'zh-HK'
                             ? '你好，我們公司有興趣為員工提供AI培訓，想要了解一下您的企業包裝和報價。'
                             : 'Hello, our company is interested in providing AI training for employees. We would like to know more about your corporate packages and pricing.'
@@ -237,7 +237,7 @@ const ContactSection = () => {
                     rows={6}
                     className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-yellow-500 focus:ring-yellow-500 resize-none"
                     placeholder={language === 'zh-HK' 
-                      ? '?�以詳細話�??�知你�??�景?�學習目標�?等�??�幫你�??�?��?課�??��?如�??��?一?�平?�設計師，想學AI繪�?，�?該由?�個課程�?始�?'
+                      ? '可以詳細話知你的背景和學習目標等，幫你選擇最適合的課程。例如：我是一位平面設計師，想學AI繪圖，應該由哪個課程開始？'
                       : 'Please tell us about your background and learning goals so we can help you choose the most suitable course. For example: I am a graphic designer wanting to learn AI drawing, which course should I start with?'
                     }
                     required

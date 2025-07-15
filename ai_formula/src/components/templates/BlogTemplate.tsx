@@ -73,13 +73,13 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({
 }) => {
   const getCategoryColor = (category: string) => {
     const colorMap: { [key: string]: string } = {
-      'AI?€è¡?: 'bg-blue-500/20 text-blue-300 border-blue-500/50',
+      'AIç§‘æŠ€': 'bg-blue-500/20 text-blue-300 border-blue-500/50',
       'AI Technology': 'bg-blue-500/20 text-blue-300 border-blue-500/50',
-      'å·¥å…·?‡å?': 'bg-green-500/20 text-green-300 border-green-500/50',
+      'å·¥å…·æŒ‡å—': 'bg-green-500/20 text-green-300 border-green-500/50',
       'Tool Guide': 'bg-green-500/20 text-green-300 border-green-500/50',
-      '?ºç??¥è?': 'bg-purple-500/20 text-purple-300 border-purple-500/50',
+      'åŸºç¤æ•™å­¸': 'bg-purple-500/20 text-purple-300 border-purple-500/50',
       'Fundamentals': 'bg-purple-500/20 text-purple-300 border-purple-500/50',
-      'ç§‘æ??ç»': 'bg-orange-500/20 text-orange-300 border-orange-500/50',
+      'ç§‘æŠ€å‰ç»': 'bg-orange-500/20 text-orange-300 border-orange-500/50',
       'Tech Innovation': 'bg-orange-500/20 text-orange-300 border-orange-500/50',
     };
     return colorMap[category] || 'bg-gray-500/20 text-gray-300 border-gray-500/50';
@@ -103,7 +103,7 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({
                 className="text-gray-300 hover:text-white hover:bg-gray-700"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                {titleZh ? 'è¿”å?' : 'Back'}
+                {titleZh ? 'è¿”ï¿½?' : 'Back'}
               </Button>
             )}
             <div className="flex items-center gap-2">
@@ -239,7 +239,7 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({
                     onClick={onLike}
                     className="border-gray-600 text-gray-300 hover:bg-gray-700"
                   >
-                    ?¤ï? {likeCount ? `${likeCount}` : '0'}
+                    ?ï¿½ï¿½? {likeCount ? `${likeCount}` : '0'}
                   </Button>
                 )}
                 {showShare && (
@@ -249,7 +249,7 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({
                     className="border-gray-600 text-gray-300 hover:bg-gray-700"
                   >
                     <Share2 className="w-4 h-4 mr-2" />
-                    {titleZh ? '?†äº«' : 'Share'}
+                    {titleZh ? '?ï¿½äº«' : 'Share'}
                   </Button>
                 )}
                 {showBookmark && (
@@ -259,7 +259,7 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({
                     className="border-gray-600 text-gray-300 hover:bg-gray-700"
                   >
                     <Bookmark className="w-4 h-4 mr-2" />
-                    {titleZh ? '?¶è?' : 'Bookmark'}
+                    {titleZh ? '?ï¿½ï¿½?' : 'Bookmark'}
                   </Button>
                 )}
               </div>

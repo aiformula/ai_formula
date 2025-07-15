@@ -33,12 +33,12 @@ import {
   Flame
 } from 'lucide-react'
 
-// ?��?載�?�?
+// 懶加載組件
 const ProgressTracker = React.lazy(() => import('@/components/course/ProgressTracker'))
 const LearningNotes = React.lazy(() => import('@/components/course/LearningNotes'))
 const LearningRecommendations = React.lazy(() => import('@/components/course/LearningRecommendations'))
 
-// 類�?定義 / Type Definitions
+// 類型定義 / Type Definitions
 interface Lesson {
   id: number
   title: string
@@ -58,19 +58,26 @@ interface Module {
   title: string
   titleZh: string
   lessons: Lesson[]
-  estimatedTime: string
-  estimatedTimeZh: string
-  difficulty: 'beginner' | 'intermediate' | 'advanced'
+  estimatedTime?: string
+  estimatedTimeZh?: string
+  difficulty?: 'beginner' | 'intermediate' | 'advanced'
 }
 
-interface Grade {
-  id: string
+interface GradeData {
   item: string
   itemZh: string
-  due: string
-  weight: string
   grade: string
-  status: 'completed' | 'pending' | 'overdue'
+  date: string
+  status: 'completed' | 'pending' | 'in-progress'
+}
+
+interface TimelineItem {
+  date: string
+  label: string
+  labelZh: string
+  status: 'completed' | 'current' | 'upcoming'
+  description?: string
+  descriptionZh?: string
 }
 
 interface CourseInfo {
@@ -78,327 +85,278 @@ interface CourseInfo {
   titleZh: string
   instructor: string
   instructorZh: string
-  level: string
-  levelZh: string
   duration: string
   durationZh: string
-  language: string
-  languageZh: string
   description: string
   descriptionZh: string
-  rating: number
-  totalStudents: number
-
-}
-
-interface TimelineItem {
-  label: string
-  labelZh: string
-  value: string
-  type: 'start' | 'due' | 'end'
-  status: 'completed' | 'current' | 'upcoming'
 }
 
 interface NavigationItem {
-  type: 'module' | 'grades' | 'notes' | 'messages' | 'info' | 'progress' | 'recommendations'
+  type: string
   label: string
   labelZh: string
   icon: React.ReactNode
   badge?: number
 }
 
-interface LearningProgress {
-  totalLessons: number
-  completedLessons: number
-  percentage: number
-  currentModule: number
-  currentLesson: number
-  timeSpent: number // in minutes
-  lastAccessed: string
+// 常數定義 / Constants
+const STORAGE_KEY = 'promptEngineeringProgress'
+
+// 輔助函數：根據localStorage檢查課程項目是否完成
+const isLessonItemCompleted = (moduleKey: string, itemKey: string): boolean => {
+  const progressKey = `promptEngineering_${moduleKey}_${itemKey}_completed`
+  return localStorage.getItem(progressKey) === 'true'
 }
 
-// 常�?定義 / Constants
-const STORAGE_KEY = 'prompt_engineering_progress'
-
-// 輔助?�數：根?�localStorage檢查課�??�目?�否完�?
-const isLessonItemCompleted = (lessonId: string, itemKey: string): boolean => {
-  try {
-    const stored = localStorage.getItem(`pe_${lessonId}_completed`)
-    if (!stored) return false
-    const completed = JSON.parse(stored)
-    return Array.isArray(completed) && completed.includes(itemKey)
-  } catch {
-    return false
+// 輔助函數：獲取課程類型中文名稱
+const getLessonTypeLabel = (type: string, isZhTW: boolean): string => {
+  const labels: Record<string, { en: string; zh: string }> = {
+    reading: { en: 'Reading', zh: '閱讀' },
+    practice: { en: 'Practice', zh: '練習' },
+    quiz: { en: 'Quiz', zh: '測驗' },
+    video: { en: 'Video', zh: '影片' }
   }
-}
-
-// 輔助?�數：獲?�課程�??��?中�??�稱
-const getTypeDisplayName = (type: Lesson['type'], isZhTW: boolean): string => {
-  if (!isZhTW) return type
   
-  switch (type) {
-    case 'reading':
-      return '?��?'
-    case 'practice':
-      return '練�?'
-    case 'quiz':
-      return '測�?'
-    case 'video':
-      return '影�?'
-    default:
-      return type
+  if (isZhTW) {
+    return labels[type]?.zh || '其他'
   }
+  return labels[type]?.en || 'Other'
 }
 
-// 課�??��? / Course Data - ?��?實�?lesson 1?�lesson 2?��??�更??
+// 課程數據 / Course Data - 基於實際lesson 1和lesson 2內容更新
 const getModuleData = (): Module[] => [
   {
     id: 1,
     title: 'Lesson 1: Foundations of Prompt Engineering',
-    titleZh: '第�?課�??�示工�??��?',
+    titleZh: '第一課：提示工程基礎',
     estimatedTime: '25 minutes',
-    estimatedTimeZh: '25?��?',
+    estimatedTimeZh: '25分鐘',
     difficulty: 'beginner',
     lessons: [
       {
         id: 1,
         title: 'What is Prompt Engineering?',
-        titleZh: '什麼是?�示工�?�?,
+        titleZh: '什麼是提示工程？',
         type: 'reading',
         duration: '4 min',
-        durationZh: '4?��?',
+        durationZh: '4分鐘',
         content: 'Introduction to the concept and importance of prompt engineering.',
-        contentZh: '?�示工�?概念?��?要性�?紹�?,
+        contentZh: '提示工程概念和重要性介紹。',
         completed: isLessonItemCompleted('lesson1', 'what-is-prompt-engineering')
       },
       {
         id: 2,
         title: 'Core Principles',
-        titleZh: '?��??��?',
+        titleZh: '核心原則',
         type: 'reading',
         duration: '5 min',
-        durationZh: '5?��?',
+        durationZh: '5分鐘',
         content: 'Essential principles that make prompts effective.',
-        contentZh: '讓�?示�??��??�本?��???,
+        contentZh: '讓提示有效的基本原則。',
         completed: isLessonItemCompleted('lesson1', 'core-principles')
       },
       {
         id: 3,
         title: 'Types of Prompts',
-        titleZh: '?�示類�?',
+        titleZh: '提示類型',
         type: 'reading',
         duration: '4 min',
-        durationZh: '4?��?',
+        durationZh: '4分鐘',
         content: 'Different categories of prompts and their applications.',
-        contentZh: '不�?類別?��?示�??��??��?,
+        contentZh: '不同類別的提示及其應用。',
         completed: isLessonItemCompleted('lesson1', 'types-of-prompts')
       },
       {
         id: 4,
         title: 'Best Practices',
-        titleZh: '?�佳實�?,
+        titleZh: '最佳實踐',
         type: 'reading',
         duration: '5 min',
-        durationZh: '5?��?',
-        content: 'Proven strategies for crafting effective prompts.',
-        contentZh: '?��??��??�示?��?驗�?策略??,
+        durationZh: '5分鐘',
+        content: 'Proven strategies for creating effective prompts.',
+        contentZh: '創建有效提示的驗證策略。',
         completed: isLessonItemCompleted('lesson1', 'best-practices')
       },
       {
         id: 5,
         title: 'Common Mistakes',
-        titleZh: '常�??�誤',
+        titleZh: '常見錯誤',
         type: 'reading',
         duration: '3 min',
-        durationZh: '3?��?',
-        content: 'Typical pitfalls in prompt engineering and how to avoid them.',
-        contentZh: '?�示工�?中�??��??�阱?��?何避?��?,
+        durationZh: '3分鐘',
+        content: 'Common pitfalls in prompt engineering and how to avoid them.',
+        contentZh: '提示工程中的常見陷阱及如何避免。',
         completed: isLessonItemCompleted('lesson1', 'common-mistakes')
       },
       {
         id: 6,
         title: 'Practice Quiz',
-        titleZh: '練�?測�?',
+        titleZh: '練習測驗',
         type: 'quiz',
         duration: '4 min',
-        durationZh: '4?��?',
-        content: 'Test your understanding of prompt engineering fundamentals.',
-        contentZh: '測試?��??�示工�??��??��?�?�?,
-        completed: isLessonItemCompleted('lesson1', 'quiz')
+        durationZh: '4分鐘',
+        content: 'Test your understanding of prompt engineering basics.',
+        contentZh: '測試您對提示工程基礎的理解。',
+        completed: isLessonItemCompleted('lesson1', 'practice-quiz')
       }
     ]
   },
   {
     id: 2,
-    title: 'Lesson 2: Prompt Structure & Components',
-    titleZh: '第�?課�??�質?�示?��?�?,
+    title: 'Lesson 2: Advanced Prompt Techniques',
+    titleZh: '第二課：高質量提示技巧',
     estimatedTime: '18 minutes',
-    estimatedTimeZh: '18?��?',
+    estimatedTimeZh: '18分鐘',
     difficulty: 'intermediate',
     lessons: [
       {
-        id: 1,
-        title: 'Instruction',
-        titleZh: '?�令',
+        id: 7,
+        title: 'Clear Instructions',
+        titleZh: '清晰指令',
         type: 'reading',
         duration: '3 min',
-        durationZh: '3?��?',
-        description: 'Tell the AI what to do, clearly define action requirements and goals.',
-        descriptionZh: '?�訴AI要�?什麼�?清晰定義?��?要�??�目標�?,
-        completed: isLessonItemCompleted('lesson2', 'instruction')
+        durationZh: '3分鐘',
+        description: 'Tell the AI what you want clearly and define your objectives.',
+        descriptionZh: '告訴AI要做什麼，清晰定義您要達成的目標。',
+        completed: isLessonItemCompleted('lesson2', 'clear-instructions')
       },
       {
-        id: 2,
+        id: 8,
         title: 'Context',
-        titleZh: '?�景',
+        titleZh: '背景',
         type: 'reading',
         duration: '2 min',
-        durationZh: '2?��?',
+        durationZh: '2分鐘',
         description: 'Provide background information to help the AI understand the situation.',
-        descriptionZh: '?��??�景資�?以幫?�AI?�解?��???,
+        descriptionZh: '提供背景資訊以幫助AI理解情況。',
         completed: isLessonItemCompleted('lesson2', 'context')
       },
       {
-        id: 3,
+        id: 9,
         title: 'Input Data',
-        titleZh: '輸入?��?',
+        titleZh: '輸入數據',
         type: 'reading',
         duration: '2 min',
-        durationZh: '2?��?',
+        durationZh: '2分鐘',
         description: 'Provide specific information or data to help the AI generate more precise content.',
-        descriptionZh: '?��??��?資�??�數?�以幫助AI?��??�精確�??�容??,
+        descriptionZh: '提供具體資訊或數據以幫助AI生成更精確的內容。',
         completed: isLessonItemCompleted('lesson2', 'input-data')
       },
       {
-        id: 4,
+        id: 10,
         title: 'Output Indicator',
-        titleZh: '輸出?��?',
+        titleZh: '輸出指示',
         type: 'reading',
         duration: '2 min',
-        durationZh: '2?��?',
+        durationZh: '2分鐘',
         description: 'Define the format, tone, length, and other requirements for the answer.',
-        descriptionZh: '定義答�??�格式、�?調、長度�??��?要�???,
+        descriptionZh: '定義答案的格式、語調、長度及其他要求。',
         completed: isLessonItemCompleted('lesson2', 'output-indicator')
       },
       {
-        id: 5,
+        id: 11,
         title: 'Complete Example',
-        titleZh: '綜�?範�?',
+        titleZh: '綜合範例',
         type: 'reading',
         duration: '2 min',
-        durationZh: '2?��?',
+        durationZh: '2分鐘',
         description: 'Analyze a comprehensive prompt example incorporating all elements.',
-        descriptionZh: '?��?一?��??��??��?素�??�面?�示範�???,
+        descriptionZh: '分析一個包含所有元素的綜合提示範例。',
         completed: isLessonItemCompleted('lesson2', 'complete-example')
       },
       {
-        id: 6,
+        id: 12,
         title: 'Advanced Techniques',
-        titleZh: '?��??��?,
+        titleZh: '高級技巧',
         type: 'reading',
         duration: '2 min',
-        durationZh: '2?��?',
+        durationZh: '2分鐘',
         description: 'Explore advanced prompting techniques for complex scenarios.',
-        descriptionZh: '?�索複�??�景?�進�??�示?�巧�?,
+        descriptionZh: '探索複雜情境的高級提示技巧。',
         completed: isLessonItemCompleted('lesson2', 'advanced-techniques')
       },
       {
-        id: 7,
+        id: 13,
         title: 'Assessment Quiz',
-        titleZh: '評估測�?',
+        titleZh: '評估測驗',
         type: 'quiz',
         duration: '5 min',
-        durationZh: '5?��?',
+        durationZh: '5分鐘',
         description: 'Test your understanding of prompt structure and components.',
-        descriptionZh: '測試?��??�示結�??��?件�??�解??,
+        descriptionZh: '測試您對提示結構和組件的理解。',
         completed: isLessonItemCompleted('lesson2', 'quiz')
       }
     ]
   }
 ]
 
-// 課�??�績?��? / Course Grades Data
-const gradesData: Grade[] = [
+// 課程成績數據 / Course Grades Data
+const gradesData: GradeData[] = [
   {
-    id: '1',
     item: 'Quiz 1: Prompt Basics',
-    itemZh: '測�? 1：�?示基�?,
-    due: 'Mar 20, 2024',
-    weight: '15%',
+    itemZh: '測驗 1：提示基礎',
     grade: '92%',
+    date: 'Mar 20, 2024',
     status: 'completed'
   },
   {
-    id: '2',
     item: 'Assignment: Prompt Structure',
-    itemZh: '作業：�?示�?�?,
-    due: 'Mar 30, 2024',
-    weight: '25%',
+    itemZh: '作業：提示結構',
     grade: '--',
+    date: 'Mar 30, 2024',
     status: 'pending'
   },
   {
-    id: '3',
     item: 'Final Project',
-    itemZh: '?�末專�?',
-    due: 'Apr 10, 2024',
-    weight: '40%',
+    itemZh: '最終專案',
     grade: '--',
+    date: 'Apr 10, 2024',
     status: 'pending'
   }
 ]
 
-// 課�??��?線數??/ Course Timeline Data - ?��??�實課�??��??�新
+// 課程時間線數據 / Course Timeline Data - 基於實際課程結束日期更新
 const courseTimeline: TimelineItem[] = [
   {
+    date: 'Mar 15, 2024',
     label: 'Course Start',
-    labelZh: '課�??��?',
-    value: 'Mar 15, 2024',
-    type: 'start',
+    labelZh: '課程開始',
     status: 'completed'
   },
   {
+    date: 'Mar 30, 2024',
     label: 'Assignment Due',
-    labelZh: '作業?�止',
-    value: 'Mar 30, 2024',
-    type: 'due',
+    labelZh: '作業截止',
     status: 'current'
   },
   {
+    date: 'Apr 15, 2024',
     label: 'Course End',
-    labelZh: '課�?結�?',
-    value: 'Apr 15, 2024',
-    type: 'end',
+    labelZh: '課程結束',
     status: 'upcoming'
   }
 ]
 
 const courseInfo: CourseInfo = {
   title: 'Prompt Engineering Mastery - AI Communication Skills',
-  titleZh: '?�示工�?精�?- AI溝通�?�?,
+  titleZh: '提示工程精通 - AI溝通技巧',
   instructor: 'AI Formula Expert Team',
-  instructorZh: 'AI Formula 專家?��?',
-  level: 'Intermediate',
-  levelZh: '中�?',
+  instructorZh: 'AI Formula 專家團隊',
   duration: '43 minutes total, 2 lessons',
-  durationZh: '總共43?��?�??�課�?,
-  language: 'English / Traditional Chinese',
-  languageZh: '?��? / 繁�?中�?',
+  durationZh: '總共43分鐘，2課',
   description: 'Master the art and science of prompt engineering to effectively communicate with AI models and achieve consistent, high-quality results across various applications.',
-  descriptionZh: '精通�?示工程�??��??��?學�??��??��?AI模�?溝通�??��?種�??�中?��?一?�、�?質�??��??��?,
-  rating: 4.9,
-  totalStudents: 1247,
+  descriptionZh: '精通提示工程學，有效與AI模型溝通，在各種應用中實現一致且高質量的結果。',
 }
 
 // Custom Hooks
 const useProgressTracking = () => {
-  const [progress, setProgress] = useState<LearningProgress>({
+  const [progress, setProgress] = useState({
     totalLessons: 0,
     completedLessons: 0,
     percentage: 0,
     currentModule: 1,
     currentLesson: 1,
-    timeSpent: 0,
+    timeSpent: 0, // in minutes
     lastAccessed: new Date().toISOString()
   })
 
@@ -414,7 +372,7 @@ const useProgressTracking = () => {
         const parsed = JSON.parse(stored)
         setProgress(parsed)
       } else {
-        // 計�?總課程數 / Calculate total lessons
+        // 計算總課程數 / Calculate total lessons
         const moduleData = getModuleData()
         const totalLessons = moduleData.reduce((sum, module) => sum + module.lessons.length, 0)
         setProgress(prev => ({ ...prev, totalLessons }))
@@ -427,7 +385,7 @@ const useProgressTracking = () => {
     }
   }, [])
 
-  const updateProgress = useCallback((newProgress: Partial<LearningProgress>) => {
+  const updateProgress = useCallback((newProgress: Partial<any>) => {
     try {
       setProgress(prev => {
         const updated = { ...prev, ...newProgress, lastAccessed: new Date().toISOString() }
@@ -457,7 +415,7 @@ const ErrorMessage: React.FC<{ message: string; onRetry?: () => void }> = memo((
       <p className="text-gray-300 text-center mb-4">{message}</p>
       {onRetry && (
         <Button onClick={onRetry} variant="outline">
-          {language === 'zh-HK' ? '?�試' : 'Retry'}
+          {language === 'zh-HK' ? '?�試' : 'Retry'}
         </Button>
       )}
     </div>
@@ -521,7 +479,7 @@ const LessonCard: React.FC<{ lesson: Lesson; moduleId: number; onStart: () => vo
                 </CardTitle>
                 <div className="flex items-center space-x-2 mt-1">
                   <Badge variant="outline" className="text-xs">
-                    {getTypeDisplayName(lesson.type, isZhTW)}
+                    {getLessonTypeLabel(lesson.type, isZhTW)}
                   </Badge>
                   <span className="text-gray-400 text-xs flex items-center">
                     <Clock className="h-3 w-3 mr-1" />
@@ -544,10 +502,10 @@ const LessonCard: React.FC<{ lesson: Lesson; moduleId: number; onStart: () => vo
             className="w-full bg-blue-600 hover:bg-blue-700 text-white"
             size="sm"
           >
-            {lesson.completed ? 
-              (isZhTW ? '?�新學�?' : 'Review') : 
-              (isZhTW ? '?��?學�?' : 'Start Learning')
-            }
+                          {lesson.completed ? 
+               (isZhTW ? '重新學習' : 'Review') : 
+               (isZhTW ? '開始學習' : 'Start Learning')
+              }
             <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
         </CardContent>
@@ -583,11 +541,11 @@ const ModuleCard: React.FC<{ module: Module; onLessonStart: (moduleId: number, l
     
     switch (difficulty) {
       case 'beginner':
-        return '?��?'
+        return '?��?'
       case 'intermediate':
-        return '中�?'
+        return '中�?'
       case 'advanced':
-        return '高�?'
+        return '高�?'
       default:
         return difficulty
     }
@@ -616,7 +574,7 @@ const ModuleCard: React.FC<{ module: Module; onLessonStart: (moduleId: number, l
                   {isZhTW ? module.estimatedTimeZh : module.estimatedTime}
                 </span>
                 <span className="text-gray-400 text-sm">
-                  {completedLessons}/{module.lessons.length} {isZhTW ? '已�??? : 'completed'}
+                  {completedLessons}/{module.lessons.length} {isZhTW ? '已完成' : 'completed'}
                 </span>
               </div>
             </div>
@@ -647,18 +605,18 @@ const ModuleCard: React.FC<{ module: Module; onLessonStart: (moduleId: number, l
 
 ModuleCard.displayName = 'ModuleCard'
 
-const GradesTable: React.FC<{ grades: Grade[] }> = memo(({ grades }) => {
+const GradesTable: React.FC<{ grades: GradeData[] }> = memo(({ grades }) => {
   const { language } = useLanguage()
   const isZhTW = language === 'zh-HK'
   
-  const getStatusColor = (status: Grade['status']) => {
+  const getStatusColor = (status: GradeData['status']) => {
     switch (status) {
       case 'completed':
         return 'bg-green-500/20 text-green-400'
       case 'pending':
         return 'bg-yellow-500/20 text-yellow-400'
-      case 'overdue':
-        return 'bg-red-500/20 text-red-400'
+      case 'in-progress':
+        return 'bg-blue-500/20 text-blue-400'
       default:
         return 'bg-gray-500/20 text-gray-400'
     }
@@ -670,36 +628,34 @@ const GradesTable: React.FC<{ grades: Grade[] }> = memo(({ grades }) => {
         <thead>
           <tr className="border-b border-gray-700">
             <th className="text-left py-3 px-4 text-gray-300">
-              {isZhTW ? '?�目' : 'Item'}
+              {isZhTW ? '?目' : 'Item'}
             </th>
             <th className="text-left py-3 px-4 text-gray-300">
-              {isZhTW ? '?�止?��?' : 'Due Date'}
+              {isZhTW ? '?止??' : 'Due Date'}
             </th>
             <th className="text-left py-3 px-4 text-gray-300">
-              {isZhTW ? '權�?' : 'Weight'}
+              {isZhTW ? '成績' : 'Grade'}
             </th>
             <th className="text-left py-3 px-4 text-gray-300">
-              {isZhTW ? '?�績' : 'Grade'}
-            </th>
-            <th className="text-left py-3 px-4 text-gray-300">
-              {isZhTW ? '?�?? : 'Status'}
+              {isZhTW ? '狀態' : 'Status'}
             </th>
           </tr>
         </thead>
         <tbody>
           {grades.map((grade) => (
-            <tr key={grade.id} className="border-b border-gray-800">
+            <tr key={grade.item} className="border-b border-gray-800">
               <td className="py-3 px-4 text-white">
                 {isZhTW ? grade.itemZh : grade.item}
               </td>
-              <td className="py-3 px-4 text-gray-300">{grade.due}</td>
-              <td className="py-3 px-4 text-gray-300">{grade.weight}</td>
+              <td className="py-3 px-4 text-gray-300">{grade.date}</td>
               <td className="py-3 px-4 text-white font-semibold">{grade.grade}</td>
               <td className="py-3 px-4">
                 <Badge variant="outline" className={getStatusColor(grade.status)}>
                   {isZhTW ? (
-                    grade.status === 'completed' ? '已�??? : 
-                    grade.status === 'pending' ? '待�??? : '?��?'
+                    grade.status === 'completed' ? '已??? : '
+                    : grade.status === 'pending' ? '待??? : '
+                    : grade.status === 'in-progress' ? '進行中 : '
+                    : '其他'
                   ) : grade.status}
                 </Badge>
               </td>
@@ -735,7 +691,7 @@ const TimelineCard: React.FC<{ timeline: TimelineItem[] }> = memo(({ timeline })
       <CardHeader>
         <CardTitle className="text-white flex items-center">
           <Calendar className="h-5 w-5 mr-2 text-blue-400" />
-          {isZhTW ? '課�??��?�? : 'Course Timeline'}
+          {isZhTW ? '課程時間線' : 'Course Timeline'}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -747,7 +703,7 @@ const TimelineCard: React.FC<{ timeline: TimelineItem[] }> = memo(({ timeline })
                 <div className="text-white font-medium">
                   {isZhTW ? item.labelZh : item.label}
                 </div>
-                <div className="text-gray-400 text-sm">{item.value}</div>
+                <div className="text-gray-400 text-sm">{item.date}</div>
               </div>
             </div>
           ))}
@@ -768,7 +724,7 @@ const CourseInfoCard: React.FC<{ courseInfo: CourseInfo }> = memo(({ courseInfo 
       <CardHeader>
         <CardTitle className="text-white flex items-center">
           <Info className="h-5 w-5 mr-2 text-blue-400" />
-          {isZhTW ? '課�?資�?' : 'Course Information'}
+          {isZhTW ? '課程資訊' : 'Course Information'}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -788,15 +744,15 @@ const CourseInfoCard: React.FC<{ courseInfo: CourseInfo }> = memo(({ courseInfo 
               <div className="text-white">{isZhTW ? courseInfo.instructorZh : courseInfo.instructor}</div>
             </div>
             <div>
-              <div className="text-gray-400 text-sm">{isZhTW ? '??��' : 'Level'}</div>
-              <div className="text-white">{isZhTW ? courseInfo.levelZh : courseInfo.level}</div>
-            </div>
-            <div>
-              <div className="text-gray-400 text-sm">{isZhTW ? '課�??�度' : 'Duration'}</div>
+              <div className="text-gray-400 text-sm">{isZhTW ? '??��' : 'Level'}</div>
               <div className="text-white">{isZhTW ? courseInfo.durationZh : courseInfo.duration}</div>
             </div>
             <div>
-              <div className="text-gray-400 text-sm">{isZhTW ? '語�?' : 'Language'}</div>
+              <div className="text-gray-400 text-sm">{isZhTW ? '課程長度' : 'Duration'}</div>
+              <div className="text-white">{isZhTW ? courseInfo.durationZh : courseInfo.duration}</div>
+            </div>
+            <div>
+              <div className="text-gray-400 text-sm">{isZhTW ? '語言' : 'Language'}</div>
               <div className="text-white">{isZhTW ? courseInfo.languageZh : courseInfo.language}</div>
             </div>
           </div>
@@ -808,7 +764,7 @@ const CourseInfoCard: React.FC<{ courseInfo: CourseInfo }> = memo(({ courseInfo 
             </div>
             <div className="flex items-center space-x-1">
               <Users className="h-4 w-4 text-blue-400" />
-              <span className="text-white">{courseInfo.totalStudents.toLocaleString()} {isZhTW ? '學�?' : 'students'}</span>
+              <span className="text-white">{courseInfo.totalStudents.toLocaleString()} {isZhTW ? '學生' : 'students'}</span>
             </div>
           </div>
         </div>
@@ -825,12 +781,12 @@ const PromptEngineeringLearning: React.FC = () => {
   const isZhTW = language === 'zh-HK'
   
   const { progress, updateProgress, loading, error } = useProgressTracking()
-  const [activeTab, setActiveTab] = useState('課�?')
+  const [activeTab, setActiveTab] = useState('課程')
   
-  // 使用 useState 來強?��??�渲?��???localStorage ?�新??
+  // 使用 useState 來強制重新渲染 localStorage 更新
   const [refreshKey, setRefreshKey] = useState(0)
   
-  // ??�� localStorage 變�?
+  // 監聽 localStorage 變化
   useEffect(() => {
     const handleStorageChange = () => {
       setRefreshKey(prev => prev + 1)
@@ -838,7 +794,7 @@ const PromptEngineeringLearning: React.FC = () => {
     
     window.addEventListener('storage', handleStorageChange)
     
-    // 也監?��?一?�面?��? localStorage 變�?
+    // 也監聽 localStorage 變化
     const originalSetItem = localStorage.setItem
     localStorage.setItem = function(key: string, value: string) {
       originalSetItem.call(this, key, value)
@@ -853,10 +809,10 @@ const PromptEngineeringLearning: React.FC = () => {
     }
   }, [])
   
-  // ?��?實�?模�??��?
+  // 實際課程數據
   const moduleData = useMemo(() => getModuleData(), [refreshKey])
   
-  // 計�?總進度
+  // 計算總進度
   const totalProgress = useMemo(() => {
     const allLessons = moduleData.flatMap(module => module.lessons)
     const completedLessons = allLessons.filter(lesson => lesson.completed).length
@@ -877,7 +833,7 @@ const PromptEngineeringLearning: React.FC = () => {
       timeSpent: progress.timeSpent + 1
     })
     
-    // 導航?�相?��?課�??�面
+    // 導航到課程頁面
     if (moduleId === 1) {
       navigate('/prompt-engineering/lesson/1')
     } else if (moduleId === 2) {
@@ -889,20 +845,20 @@ const PromptEngineeringLearning: React.FC = () => {
     {
       type: 'module',
       label: 'Modules',
-      labelZh: '課�?',
+      labelZh: '課程',
       icon: <BookOpen className="h-4 w-4" />,
     },
     {
       type: 'progress',
       label: 'Progress',
-      labelZh: '?�績',
+      labelZh: '進度',
       icon: <TrendingUp className="h-4 w-4" />,
       badge: 2
     },
     {
       type: 'notes',
       label: 'Notes',
-      labelZh: '筆�?',
+      labelZh: '筆記',
       icon: <BookMarked className="h-4 w-4" />,
       badge: 2
     },
@@ -916,7 +872,7 @@ const PromptEngineeringLearning: React.FC = () => {
     {
       type: 'info',
       label: 'Course Info',
-      labelZh: '課�?資�?',
+      labelZh: '課程資訊',
       icon: <Info className="h-4 w-4" />,
     },
   ], [])
@@ -948,7 +904,7 @@ const PromptEngineeringLearning: React.FC = () => {
       <Navigation />
       
       <div className="container mx-auto px-4 pt-24 pb-8">
-        {/* 標�??�進度概覽 */}
+        {/* 標題進度概覽 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -956,10 +912,10 @@ const PromptEngineeringLearning: React.FC = () => {
           className="text-center mb-8"
         >
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-            {isZhTW ? '?�示工�?精�? : 'Prompt Engineering Mastery'}
+            {isZhTW ? '提示工程精通' : 'Prompt Engineering Mastery'}
           </h1>
           <p className="text-gray-300 text-lg mb-6">
-            {isZhTW ? 'AI溝通�?巧課�? : 'AI Communication Skills'}
+            {isZhTW ? 'AI溝通技巧課程' : 'AI Communication Skills'}
           </p>
           
           {/* 總進度 */}
@@ -970,12 +926,12 @@ const PromptEngineeringLearning: React.FC = () => {
             </div>
             <Progress value={totalProgress.percentage} className="h-3" />
             <p className="text-xs text-gray-500 mt-1">
-              {totalProgress.completedLessons} / {totalProgress.totalLessons} {isZhTW ? '課�?已�??? : 'lessons completed'}
+              {totalProgress.completedLessons} / {totalProgress.totalLessons} {isZhTW ? '課程已學習' : 'lessons completed'}
             </p>
           </div>
         </motion.div>
 
-        {/* 主�??�容 */}
+        {/* 主內容 */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-5 bg-gray-800 mb-8">
             {navigationItems.map((item) => (
@@ -995,7 +951,7 @@ const PromptEngineeringLearning: React.FC = () => {
             ))}
           </TabsList>
 
-          <TabsContent value="課�?" className="space-y-6">
+          <TabsContent value="課程" className="space-y-6">
             <div className="space-y-6">
               {moduleData.map((module) => (
                 <ModuleCard
@@ -1007,13 +963,13 @@ const PromptEngineeringLearning: React.FC = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="?�績" className="space-y-6">
+          <TabsContent value="進度" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-gray-800/50 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white flex items-center">
                     <Award className="h-5 w-5 mr-2 text-yellow-400" />
-                    {isZhTW ? '?�績�? : 'Grade Book'}
+                    {isZhTW ? '課程成績' : 'Grade Book'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -1025,7 +981,7 @@ const PromptEngineeringLearning: React.FC = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="筆�?" className="space-y-6">
+          <TabsContent value="筆記" className="space-y-6">
             <Suspense fallback={<CardLoadingSpinner />}>
               <LearningNotes />
             </Suspense>
@@ -1037,7 +993,7 @@ const PromptEngineeringLearning: React.FC = () => {
             </Suspense>
           </TabsContent>
 
-          <TabsContent value="課�?資�?" className="space-y-6">
+          <TabsContent value="課程資訊" className="space-y-6">
             <CourseInfoCard courseInfo={courseInfo} />
           </TabsContent>
         </Tabs>

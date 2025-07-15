@@ -8,44 +8,43 @@
 // Re-export types for convenience
 export * from '../../types/courseTypes';
 
-// Re-export course manager
-export { courseManager } from './courseManager';
-
-// Individual course exports
-export { aiImageVideoCreationCourse, getCourseData as getAIImageVideoCreationCourseData } from './aiImageVideoCreation';
-export { promptEngineeringCourse, getCourseData as getPromptEngineeringCourseData } from './promptEngineering';
+// Import the clean course
+import { promptEngineeringLeungMingCourse } from './promptEngineeringLeungMing';
 
 // Course registry for easy access
 export const ALL_COURSES = {
-  'ai-image-video-creation': () => import('./aiImageVideoCreation').then(m => m.aiImageVideoCreationCourse),
-  'prompt-engineering': () => import('./promptEngineering').then(m => m.promptEngineeringCourse),
+  'prompt-engineering-learning': () => Promise.resolve(promptEngineeringLeungMingCourse),
+  'ai-business-automation': async () => {
+    const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
+    return aiBusinessAutomationCourse;
+  },
 } as const;
 
 // Course metadata
 export const COURSE_METADATA = {
-  'ai-image-video-creation': {
-    id: 'ai-image-video-creation',
+  'prompt-engineering-learning': {
+    id: 'prompt-engineering-learning',
     title: {
-      en: 'AI Image & Video Creation Mastery',
-      'zh-HK': 'AI?��?影�??��?精通課�?
-    },
-    category: 'Creative Design',
-    difficulty: 'Beginner',
-    estimatedDuration: '8 hours',
-    moduleCount: 7,
-    lessonCount: 24
-  },
-  'prompt-engineering': {
-    id: 'prompt-engineering',
-    title: {
-      en: 'Prompt Engineering Mastery - AI Communication Skills',
-      'zh-HK': '?�示工�?精�?- AI溝通�?�?
+      en: 'Prompt Engineering Learning with Leung Ming',
+      'zh-HK': 'Leung Ming 的提示工程學習課程'
     },
     category: 'Prompt Engineering',
+    difficulty: 'Beginner',
+    estimatedDuration: '1 hour',
+    moduleCount: 1,
+    lessonCount: 1
+  },
+  'ai-business-automation': {
+    id: 'ai-business-automation',
+    title: {
+      en: 'AI Business Automation Practice',
+      'zh-HK': 'AI 商業自動化實戰課程'
+    },
+    category: 'Business Automation',
     difficulty: 'Intermediate',
-    estimatedDuration: '6 hours',
-    moduleCount: 2,
-    lessonCount: 4
+    estimatedDuration: '4.2 hours',
+    moduleCount: 3,
+    lessonCount: 5
   }
 } as const;
 
@@ -54,21 +53,34 @@ export function getCourseIds(): string[] {
   return Object.keys(ALL_COURSES);
 }
 
+/**
+ * Get a specific course metadata by ID
+ */
 export function getCourseMetadata(courseId: string) {
   return COURSE_METADATA[courseId as keyof typeof COURSE_METADATA];
 }
 
+/**
+ * Get all course metadata
+ */
 export function getAllCourseMetadata() {
   return Object.values(COURSE_METADATA);
 }
 
 /**
- * Load course by ID with error handling
+ * Check if a course exists
  */
-export async function loadCourseById(courseId: string) {
+export function courseExists(courseId: string): boolean {
+  return courseId in ALL_COURSES;
+}
+
+/**
+ * Get course by ID
+ */
+export async function getCourseById(courseId: string) {
   const loader = ALL_COURSES[courseId as keyof typeof ALL_COURSES];
   if (!loader) {
-    throw new Error(`Course "${courseId}" not found`);
+    return null;
   }
   return await loader();
 }
@@ -99,4 +111,12 @@ export async function loadAllCourses() {
     .map(result => result.value);
 
   return { successful, failed };
+}
+
+/**
+ * Get featured courses (all available courses for now)
+ */
+export async function getFeaturedCourses() {
+  const { successful } = await loadAllCourses();
+  return successful.map(item => item.course);
 } 

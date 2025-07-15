@@ -52,159 +52,128 @@ export interface CategoryFilter {
   color: string;
 }
 
-export type CategoryType = 'all' | 'design' | 'ai' | 'automation' | 'analytics' | 'prompt-engineering' | 'programming';
-
-// Component Props Types
 export interface ProductGridProps {
   products: DigitalProduct[];
-  isZhHK: boolean;
-  selectedCategory: CategoryType;
-  onCategoryChange: (category: CategoryType) => void;
+  isZhTW: boolean;
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
   onProductClick: (product: DigitalProduct) => void;
 }
 
-export interface ProductCardProps {
-  product: DigitalProduct;
-  isZhHK: boolean;
-  onProductClick: (product: DigitalProduct) => void;
-  index: number;
-}
-
-// Digital Products Data
+// Featured Courses Data - High-quality learning content
 export const digitalProducts: DigitalProduct[] = [
-  // Programming Category
   {
-    id: 10,
-    title: "Coding Basics - Introduction to Programming",
-    titleCht: "ç·¨ç??ºç? - ç¨‹å?è¨­è??¥é?",
-    description: "Learn programming fundamentals with hands-on examples and interactive coding exercises.",
-    descriptionCht: "?é?å¯¦è?ä¾‹å??Œä??•ç·¨ç¨‹ç·´ç¿’å­¸ç¿’ç?å¼è¨­è¨ˆåŸºç¤ã€?,
-    duration: "4 lessons + code examples",
-    durationCht: "4?‹èª²ç¨?+ ç¨‹å?ç¢¼ç?ä¾?,
-    downloads: 234,
-    rating: 4.8,
+    id: 1,
+    title: "Prompt Engineering Learning with Leung Ming",
+    titleCht: "Leung Ming çš„æç¤ºå·¥ç¨‹å­¸ç¿’èª²ç¨‹",
+    description: "Learn the fundamentals of AI communication and prompt engineering through this comprehensive free course.",
+    descriptionCht: "é€šéé€™é–€ç¶œåˆå…è²»èª²ç¨‹ï¼Œå­¸ç¿’ AI æºé€šå’Œæç¤ºå·¥ç¨‹çš„åŸºç¤çŸ¥è­˜ã€‚",
+    duration: "1 hour comprehensive lesson",
+    durationCht: "1 å°æ™‚ç¶œåˆèª²ç¨‹",
+    downloads: 2847,
+    rating: 4.9,
     level: "Beginner",
-    levelCht: "?°æ?",
-    price: "HK$199",
-    originalPrice: "HK$299",
-    image: "?’»",
-    type: "Programming",
-    typeCht: "ç¨‹å?è¨­è?",
-    category: "programming",
+    levelCht: "åˆç´š",
+    price: "å…è²»",
+    originalPrice: "å…è²»",
+    image: "ğŸ¯",
+    type: "AI Learning",
+    typeCht: "AI å­¸ç¿’",
+    category: "prompt-engineering",
     newProduct: true,
     featured: true,
+    bestseller: false,
     includes: [
-      "4 Interactive Lessons",
-      "Code Examples & Exercises",
-      "JavaScript Fundamentals",
-      "HTML & CSS Basics",
-      "Simple Calculator Project",
-      "Progress Tracking"
+      "1 Comprehensive Lesson",
+      "Basic Prompt Template Library", 
+      "Quick Start Guide",
+      "Community Access",
+      "Beginner-Friendly Content",
+      "Free Forever"
     ],
     includesCht: [
-      "4?‹ä??•èª²ç¨?,
-      "ç¨‹å?ç¢¼ç?ä¾‹å?ç·´ç?",
-      "JavaScript?ºç?",
-      "HTML?ŒCSS?ºç?",
-      "ç°¡å–®è¨ˆç??¨é???,
-      "?²åº¦è¿½è¹¤"
+      "1 å ‚ç¶œåˆèª²ç¨‹",
+      "åŸºç¤æç¤ºæ¨¡æ¿åº«",
+      "å¿«é€Ÿå…¥é–€æŒ‡å—", 
+      "ç¤¾ç¾¤è¨ªå•æ¬Šé™",
+      "åˆå­¸è€…å‹å¥½å…§å®¹",
+      "æ°¸ä¹…å…è²»"
     ]
   },
-  // AI Tools Category - Perplexity Tools
   {
-    id: 12,
-    title: "Perplexity Tools Mastery",
-    titleCht: "Perplexity å·¥å…·ç²¾é€?,
-    description: "Professional research and analysis with Perplexity AI tools",
-    descriptionCht: "ä½¿ç”¨ Perplexity AI å·¥å…·?²è?å°ˆæ¥­?”ç©¶?‡å???,
-    duration: "5 modules + practice dashboard",
-    durationCht: "5?‹æ¨¡çµ?+ ç·´ç??€è¡¨æ¿",
-    downloads: 1456,
-    rating: 4.7,
+    id: 2,
+    title: "AI Business Automation Practice",
+    titleCht: "AI å•†æ¥­è‡ªå‹•åŒ–å¯¦æˆ°èª²ç¨‹",
+    description: "Master practical AI automation techniques to transform your business operations and drive growth through intelligent automation solutions.",
+    descriptionCht: "æŒæ¡å¯¦ç”¨çš„ AI è‡ªå‹•åŒ–æŠ€è¡“ï¼Œé€šéæ™ºèƒ½è‡ªå‹•åŒ–è§£æ±ºæ–¹æ¡ˆè½‰å‹æ‚¨çš„å•†æ¥­ç‡Ÿé‹ä¸¦æ¨å‹•å¢é•·ã€‚",
+    duration: "4.2 hours comprehensive training",
+    durationCht: "4.2 å°æ™‚ç¶œåˆåŸ¹è¨“",
+    downloads: 1247,
+    rating: 4.8,
     level: "Intermediate",
-    levelCht: "ä¸­ç?",
-    price: "HK$249",
-    originalPrice: "HK$349",
-    image: "??",
-    type: "AI Tools",
-    typeCht: "AIå·¥å…·",
-    category: "ai",
+    levelCht: "ä¸­ç´š",
+    price: "å…è²»",
+    originalPrice: "HK$4,980",
+    image: "ğŸ¤–",
+    type: "Business Automation",
+    typeCht: "å•†æ¥­è‡ªå‹•åŒ–",
+    category: "business-automation",
     newProduct: true,
     featured: true,
+    bestseller: true,
+    hotSelling: true,
     includes: [
-      "5 Professional Modules",
-      "Dashboard-style Learning Interface",
-      "Advanced Search Techniques",
-      "Research Methodology Training",
-      "Real-time Practice Environment",
-      "Learning Analytics & Stats"
+      "5 Comprehensive Modules",
+      "Automation Implementation Playbook",
+      "AI Tool Integration Guides",
+      "1-on-1 Strategy Consultation",
+      "Private Community Access",
+      "Monthly Live Q&A Sessions",
+      "Advanced Templates & Scripts"
     ],
     includesCht: [
-      "5?‹å?æ¥­æ¨¡çµ?,
-      "?€è¡¨æ¿å¼å­¸ç¿’ä???,
-      "é«˜ç??œç´¢?€å·?,
-      "?”ç©¶?¹æ?è«–åŸ¹è¨?,
-      "å¯¦æ?ç·´ç??°å?",
-      "å­¸ç??†æ??Œçµ±è¨?
+      "5 å€‹ç¶œåˆæ¨¡çµ„",
+      "è‡ªå‹•åŒ–å¯¦æ–½æ‰‹å†Š",
+      "AI å·¥å…·æ•´åˆæŒ‡å—",
+      "ä¸€å°ä¸€ç­–ç•¥è«®è©¢",
+      "ç§äººç¤¾ç¾¤è¨ªå•",
+      "æ¯æœˆå¯¦æ™‚å•ç­”",
+      "é«˜ç´šæ¨¡æ¿å’Œè…³æœ¬"
     ]
   }
 ];
 
-// Learning Plans Data
+// Learning Plans Data - Focused on Prompt Engineering Learning
 export const learningPlans: LearningPlan[] = [
   {
-    id: "ai-image-video-creation",
-    title: "AI Image & Video Creation",
-    titleCht: "AI?–å?å½±ç??µä?",
-    description: "Master AI tools for creating stunning visuals and videos for your business",
-    descriptionCht: "å­¸è??¨AIå·¥å…·?ºä??„ç??è£½ä½œæ?äº®ç??–ç??Œå½±??,
-    freeIncludes: ["Basic Midjourney Guide", "5 Video Templates", "Getting Started Tutorial"],
-    freeIncludesCht: ["?ºç?Midjourney?‡å?", "5?‹å½±?‡æ¨¡??, "?°æ??™å­¸"],
-    proIncludes: ["Midjourney Pro Techniques", "Runway ML Video Creation", "Stable Diffusion Workflows", "Commercial Usage Rights Guide"],
-    proIncludesCht: ["Midjourneyå°ˆæ¥­?€å·?, "Runway MLå½±ç??µä?", "Stable Diffusionå·¥ä?æµç?", "?†æ¥­ä½¿ç”¨æ¬Šæ???],
-    freePrice: "?è²»",
+    id: "prompt-engineering-learning",
+    title: "Prompt Engineering Learning",
+    titleCht: "æç¤ºå·¥ç¨‹å­¸ç¿’",
+    description: "Learn AI communication fundamentals with expert guidance from Leung Ming",
+    descriptionCht: "åœ¨ Leung Ming å°ˆå®¶æŒ‡å°ä¸‹å­¸ç¿’ AI æºé€šåŸºç¤çŸ¥è­˜",
+    freeIncludes: [
+      "1 Comprehensive Lesson", 
+      "Basic Prompt Templates", 
+      "Quick Start Guide",
+      "Community Access",
+      "Beginner-Friendly Content"
+    ],
+    freeIncludesCht: [
+      "1 å ‚ç¶œåˆèª²ç¨‹", 
+      "åŸºç¤æç¤ºæ¨¡æ¿", 
+      "å¿«é€Ÿå…¥é–€æŒ‡å—",
+      "ç¤¾ç¾¤è¨ªå•æ¬Šé™",
+      "åˆå­¸è€…å‹å¥½å…§å®¹"
+    ],
+    proIncludes: [],
+    proIncludesCht: [],
+    freePrice: "å…è²»",
     freePriceEn: "Free",
-    proPrice: "HK$699",
-    originalPrice: "HK$1,299",
-    savings: "46%",
-    icon: "?¨",
-    gradient: "from-purple-500 to-pink-500"
-  },
-  {
-    id: "ai-llm-chatgpt-business",
-    title: "AI LLM & ChatGPT Business",
-    titleCht: "AIå¤§è?è¨€æ¨¡å??ŒChatGPT?†æ¥­?‰ç”¨",
-    description: "Comprehensive training on leveraging LLMs for business automation and growth",
-    descriptionCht: "?¨é¢?™ä?é»æ¨£?¨å¤§èªè?æ¨¡å??Ÿå??Ÿæ??ªå??–å?å¢é•·",
-    freeIncludes: ["Basic Prompt Templates", "ChatGPT Quick Start", "10 Business Prompts"],
-    freeIncludesCht: ["?ºç??ç¤ºæ¨¡æ¿", "ChatGPTå¿«é€Ÿå…¥?€", "10?‹å?æ¥­æ?ç¤?],
-    proIncludes: ["Advanced Prompt Engineering", "Custom GPT Development", "API Integration Guide", "Business Case Studies"],
-    proIncludesCht: ["é«˜ç??ç¤ºå·¥ç?", "?ªå?ç¾©GPT?‹ç™¼", "API?´å??‡å?", "?†æ¥­æ¡ˆä??”ç©¶"],
-    freePrice: "?è²»",
-    freePriceEn: "Free",
-    proPrice: "HK$899",
-    originalPrice: "HK$1,599",
-    savings: "44%",
-    icon: "??",
-    gradient: "from-blue-500 to-cyan-500"
-  },
-  {
-    id: "business-automation-suite",
-    title: "Business Automation Suite",
-    titleCht: "?†æ¥­?ªå??–å?ä»?,
-    description: "End-to-end automation solutions using Make.com, n8n, and Zapier",
-    descriptionCht: "?¨Make.com?n8n?ŒZapier?Ÿå??¨æ–¹ä½è‡ª?•å?è§?±º?¹æ?",
-    freeIncludes: ["Basic Automation Guide", "3 Workflow Templates", "Setup Instructions"],
-    freeIncludesCht: ["?ºç??ªå??–æ???, "3?‹å·¥ä½œæ?ç¨‹æ¨¡??, "è¨­ç½®èªªæ?"],
-    proIncludes: ["Make.com Advanced Workflows", "n8n Self-hosted Setup", "Zapier Integration", "ROI Tracking Templates"],
-    proIncludesCht: ["Make.comé«˜ç?å·¥ä?æµç?", "n8n?ªä¸»è¨—ç®¡è¨­ç½®", "Zapier?´å?", "?•è??å ±?‡è¿½è¹¤æ¨¡??],
-    freePrice: "?è²»",
-    freePriceEn: "Free",
-    proPrice: "HK$999",
-    originalPrice: "HK$1,799",
-    savings: "44%",
-    icon: "??,
-    gradient: "from-green-500 to-emerald-500"
+    proPrice: "å…è²»",
+    originalPrice: "å…è²»",
+    savings: "0%",
+    icon: "ğŸ¯",
+    gradient: "from-green-500 to-blue-600"
   }
 ];
 
@@ -213,51 +182,23 @@ export const categoryFilters: CategoryFilter[] = [
   {
     key: 'all',
     label: 'All',
-    labelCht: '?¨éƒ¨',
-    emoji: '??',
+    labelCht: 'å…¨éƒ¨',
+    emoji: 'ğŸ“š',
     color: 'bg-blue-500 hover:bg-blue-600'
   },
   {
-    key: 'design',
-    label: 'Creative Design',
-    labelCht: '?µæ?è¨­è?',
-    emoji: '?¨',
+    key: 'prompt-engineering',
+    label: 'Prompt Engineering',
+    labelCht: 'æç¤ºå·¥ç¨‹',
+    emoji: 'ğŸ¯',
     color: 'bg-purple-500 hover:bg-purple-600'
   },
   {
     key: 'ai',
     label: 'AI Applications',
-    labelCht: 'AI?‰ç”¨',
-    emoji: '??',
+    labelCht: 'AI æ‡‰ç”¨',
+    emoji: 'ğŸ¤–',
     color: 'bg-blue-500 hover:bg-blue-600'
-  },
-  {
-    key: 'automation',
-    label: 'Automation',
-    labelCht: '?ªå???,
-    emoji: '??,
-    color: 'bg-green-500 hover:bg-green-600'
-  },
-  {
-    key: 'analytics',
-    label: 'Data Analytics',
-    labelCht: '?¸æ??†æ?',
-    emoji: '??',
-    color: 'bg-yellow-500 hover:bg-yellow-600'
-  },
-  {
-    key: 'prompt-engineering',
-    label: 'Prompt Engineering',
-    labelCht: '?ç¤ºå·¥ç?',
-    emoji: '?’¬',
-    color: 'bg-pink-500 hover:bg-pink-600'
-  },
-  {
-    key: 'programming',
-    label: 'Programming',
-    labelCht: 'ç¨‹å?è¨­è?',
-    emoji: '?’»',
-    color: 'bg-indigo-500 hover:bg-indigo-600'
   }
 ];
 
@@ -271,21 +212,15 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   return shuffled;
 };
 
-export const filterProductsByCategory = (products: DigitalProduct[], category: CategoryType): DigitalProduct[] => {
-  return category === 'all' ? products : products.filter(product => product.category === category);
+export const getProductsByCategory = (category: string): DigitalProduct[] => {
+  if (category === 'all') return digitalProducts;
+  return digitalProducts.filter(product => product.category === category);
 };
 
-export const calculateSavingsPercentage = (originalPrice: string, currentPrice: string): number => {
-  const original = parseInt(originalPrice.replace(/[^0-9]/g, ''));
-  const current = parseInt(currentPrice.replace(/[^0-9]/g, ''));
-  return Math.round(((original - current) / original) * 100);
+export const getFeaturedProducts = (): DigitalProduct[] => {
+  return digitalProducts.filter(product => product.featured);
 };
 
-export const getTotalDownloads = (products: DigitalProduct[]): number => {
-  return products.reduce((total, product) => total + product.downloads, 0);
-};
-
-export const getAverageRating = (products: DigitalProduct[]): number => {
-  const totalRating = products.reduce((total, product) => total + product.rating, 0);
-  return Math.round((totalRating / products.length) * 10) / 10;
+export const getBestsellerProducts = (): DigitalProduct[] => {
+  return digitalProducts.filter(product => product.bestseller);
 }; 

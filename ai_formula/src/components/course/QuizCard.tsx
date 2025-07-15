@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { Trophy, Award, Check, XCircle } from 'lucide-react';
 
-// TypeScript ?¥å£å®šç¾©
+// TypeScript ?ï¿½å£å®šç¾©
 interface QuizQuestion {
   q: string;
   options: string[];
@@ -20,13 +20,13 @@ interface InteractiveQuizProps {
   isZhTW: boolean;
 }
 
-// Hook: ç®¡ç? Quiz ?²åº¦?Œç???
+// Hook: ç®¡ï¿½? Quiz ?ï¿½åº¦?ï¿½ï¿½???
 const useQuizProgress = (isZhTW: boolean) => {
   const ATTEMPT_LIMIT = 5;
   const attemptKey = isZhTW ? 'pe_lesson2_quiz_attempts_zh' : 'pe_lesson2_quiz_attempts_en';
   const scoreKey = isZhTW ? 'pe_lesson2_quiz_score_zh' : 'pe_lesson2_quiz_score_en';
 
-  // å®‰å…¨??localStorage ?ä?
+  // å®‰å…¨??localStorage ?ï¿½ï¿½?
   const getStoredValue = useCallback((key: string, defaultValue: any) => {
     try {
       const item = localStorage.getItem(key);
@@ -154,17 +154,17 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
                 />
                 <span>{opt}</span>
                 {submitted && q.answer === j && (
-                  <span className="ml-2 text-green-400 font-bold">{isZhTW ? 'æ­?¢ºç­”æ?' : 'Correct'}</span>
+                  <span className="ml-2 text-green-400 font-bold">{isZhTW ? 'ï¿½?ï¿½ï¿½ç­”ï¿½?' : 'Correct'}</span>
                 )}
                 {submitted && answers[i] === j && answers[i] !== q.answer && (
-                  <span className="ml-2 text-red-400 font-bold">{isZhTW ? 'ä½ ç??¸æ?' : 'Your choice'}</span>
+                  <span className="ml-2 text-red-400 font-bold">{isZhTW ? 'ä½ ï¿½??ï¿½ï¿½?' : 'Your choice'}</span>
                 )}
               </label>
             ))}
           </div>
           {submitted && answers[i] !== q.answer && (
             <div className="mt-2 text-sm text-yellow-300">
-              {isZhTW ? 'æ­?¢ºç­”æ?ï¼? : 'Correct answer: '}
+              {isZhTW ? 'æ­£ç¢ºç­”æ¡ˆï¼š' : 'Correct answer: '}
               <b>{q.options[q.answer]}</b>
             </div>
           )}
@@ -177,17 +177,17 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
           onClick={handleSubmit}
           disabled={answers.some(a => a === null)}
         >
-          {isZhTW ? '?äº¤ç­”æ?' : 'Submit Answers'}
+          {isZhTW ? '?ï¿½äº¤ç­”ï¿½?' : 'Submit Answers'}
         </button>
       )}
       
       {submitted && (
         <div className="flex flex-col gap-4 mt-6">
           <div className="text-xl font-bold text-blue-400">
-            {isZhTW ? 'ä½ ç??†æ•¸ï¼? : 'Your Score: '}{percent}%
+            {isZhTW ? 'ä½ ï¿½??ï¿½æ•¸ï¿½? : 'Your Score: '}{percent}%
           </div>
           <div className={`mt-2 font-semibold ${pass ? 'text-green-400' : 'text-red-400'}`}>
-            {pass ? (isZhTW ? '?ˆæ ¼' : 'Passed') : (isZhTW ? '?ªå??? : 'Not passed')}
+            {pass ? (isZhTW ? '?ï¿½æ ¼' : 'Passed') : (isZhTW ? '?ï¿½ï¿½??? : 'Not passed')}
           </div>
           <div className="flex gap-4">
             {score === questions.length ? (
@@ -195,7 +195,7 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
                 className="px-8 py-3 rounded-lg font-bold text-lg bg-blue-600 hover:bg-blue-700 text-white"
                 onClick={onBack}
               >
-                {isZhTW ? 'è¿”å?å°æ¸¬é©? : 'Back to Quiz'}
+                {isZhTW ? 'è¿”ï¿½?å°æ¸¬ï¿½? : 'Back to Quiz'}
               </button>
             ) : (
               <>
@@ -203,13 +203,13 @@ const InteractiveQuiz: React.FC<InteractiveQuizProps> = memo(({ questions, onSub
                   className="px-8 py-3 rounded-lg font-bold text-lg bg-yellow-600 hover:bg-yellow-700 text-white"
                   onClick={handleRedo}
                 >
-                  {isZhTW ? '?å?' : 'Redo'}
+                  {isZhTW ? '?ï¿½ï¿½?' : 'Redo'}
                 </button>
                 <button
                   className="px-8 py-3 rounded-lg font-bold text-lg bg-blue-600 hover:bg-blue-700 text-white"
                   onClick={onBack}
                 >
-                  {isZhTW ? 'è¿”å?å°æ¸¬é©? : 'Back to Quiz'}
+                  {isZhTW ? 'è¿”ï¿½?å°æ¸¬ï¿½? : 'Back to Quiz'}
                 </button>
               </>
             )}
@@ -250,22 +250,22 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
   }, [quizProgress]);
 
   const attemptsMsg = isZhTW
-    ? `å·²å?è©?${quizProgress.attempts} æ¬¡`
+    ? `å·²ï¿½?ï¿½?${quizProgress.attempts} æ¬¡`
     : `${quizProgress.attempts} attempt${quizProgress.attempts !== 1 ? 's' : ''} made`;
 
   if (!started) {
     return (
       <div className="max-w-xl mx-auto bg-gray-900 rounded-2xl p-8 shadow-xl flex flex-col gap-8">
         <div>
-          <h2 className="text-2xl font-bold mb-2 text-blue-300">{isZhTW ? 'å°æ¸¬é©? : 'Quiz'}</h2>
-          <div className="text-blue-400 font-semibold mb-4">{isZhTW ? '?ªè³ª?ç¤ºçµæ?' : 'Prompt Structure'}</div>
+          <h2 className="text-2xl font-bold mb-2 text-blue-300">{isZhTW ? 'å°æ¸¬ï¿½? : 'Quiz'}</h2>
+          <div className="text-blue-400 font-semibold mb-4">{isZhTW ? '?ï¿½è³ª?ï¿½ç¤ºçµï¿½?' : 'Prompt Structure'}</div>
         </div>
         <div className="bg-gray-800 rounded-xl p-6 mb-4 shadow-xl animate-fade-in">
-          <div className="font-bold mb-2">{isZhTW ? 'ä½œæ¥­è©³æ?' : 'Assignment details'}</div>
+          <div className="font-bold mb-2">{isZhTW ? 'ä½œæ¥­è©³ï¿½?' : 'Assignment details'}</div>
           <div className="flex items-center gap-8">
             <div className="text-sm text-gray-300">
-              <div className="font-semibold">{isZhTW ? '?—è©¦æ¬¡æ•¸' : 'Attempts'}</div>
-              <div>{isZhTW ? '?€å¤?5 æ¬? : 'Max 5 times'}</div>
+              <div className="font-semibold">{isZhTW ? '?ï¿½è©¦æ¬¡æ•¸' : 'Attempts'}</div>
+              <div>{isZhTW ? '?ï¿½ï¿½?5 ï¿½? : 'Max 5 times'}</div>
               <div className="mt-1 text-xs text-yellow-300">{attemptsMsg}</div>
             </div>
           </div>
@@ -278,7 +278,7 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
             onClick={handleStart}
             disabled={!quizProgress.canAttempt}
           >
-            {!quizProgress.canAttempt ? (isZhTW ? 'å·²é?ä¸Šé?' : 'No more attempts') : (isZhTW ? '?‹å?' : 'Start')}
+            {!quizProgress.canAttempt ? (isZhTW ? 'å·²ï¿½?ä¸Šï¿½?' : 'No more attempts') : (isZhTW ? '?ï¿½ï¿½?' : 'Start')}
           </button>
         </div>
         <div className="bg-gray-800 rounded-xl p-6 shadow-xl animate-fade-in">
@@ -288,10 +288,10 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
             ) : (
               <Award className="inline-block w-6 h-6 text-gray-400 mr-1" />
             )}
-            {isZhTW ? 'ä½ ç??†æ•¸' : 'Your grade'}
+            {isZhTW ? 'ä½ ï¿½??ï¿½æ•¸' : 'Your grade'}
           </div>
           <div className="text-gray-400 text-sm mb-2">
-            {isZhTW ? 'ä½ æœª?äº¤?ç?æ¡ˆã€‚æ??‘æ?è¨˜é?ä½ æ?é«˜å??? : "You haven't submitted this yet. We keep your highest score."}
+            {isZhTW ? 'ä½ æœª?ï¿½äº¤?ï¿½ï¿½?æ¡ˆã€‚ï¿½??ï¿½ï¿½?è¨˜ï¿½?ä½ ï¿½?é«˜ï¿½??? : "You haven't submitted this yet. We keep your highest score."}
           </div>
           <div className="text-3xl font-extrabold flex items-center justify-center gap-2 mb-2">
             {quizProgress.percent !== null ? (
@@ -306,7 +306,7 @@ const QuizCard: React.FC<QuizCardProps> = memo(({ questions, isZhTW }) => {
               ) : (
                 <XCircle className="w-5 h-5 text-red-400" />
               )}
-              {quizProgress.passed ? (isZhTW ? '?ˆæ ¼' : 'Passed') : (isZhTW ? '?ªå??? : 'Not passed')}
+              {quizProgress.passed ? (isZhTW ? '?ï¿½æ ¼' : 'Passed') : (isZhTW ? '?ï¿½ï¿½??? : 'Not passed')}
             </div>
           )}
         </div>

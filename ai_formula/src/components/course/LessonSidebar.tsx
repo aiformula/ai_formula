@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import { Menu, X, CheckCircle } from 'lucide-react';
 
-// TypeScript ?¥å£å®šç¾©
+// TypeScript ?ï¿½å£å®šç¾©
 interface LessonItem {
   key: string;
   title: string;
@@ -26,7 +26,7 @@ interface LessonSidebarProps {
   isCompleted: (key: string) => boolean;
 }
 
-// Hook: ç®¡ç??¿æ?å¼å´?Šæ?
+// Hook: ç®¡ï¿½??ï¿½ï¿½?å¼å´?ï¿½ï¿½?
 const useResponsiveSidebar = () => {
   const [drawerOpen, setDrawerOpen] = useState(() => window.innerWidth >= 768);
 
@@ -41,7 +41,7 @@ const useResponsiveSidebar = () => {
 
     window.addEventListener('resize', handleResize);
     
-    // ?å??–æª¢??
+    // ?ï¿½ï¿½??ï¿½æª¢??
     handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
@@ -63,7 +63,7 @@ const useResponsiveSidebar = () => {
   };
 };
 
-// ?´é?æ¬„å??ªç?ä»?
+// ?ï¿½ï¿½?æ¬„ï¿½??ï¿½ï¿½?ï¿½?
 const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({ 
   sections, 
   selectedKey, 
@@ -77,11 +77,11 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
 
   return (
     <>
-      {/* ?œå–®icon+ä¸»ç›®?„é?å­?*/}
-      <div className="flex items-center gap-3 mb-6 px-2">
+      {/* ?ï¿½å–®icon+ä¸»ç›®?ï¿½ï¿½?ï¿½?*/}
+      <div className="flex items-center gap-3 mb-6">
         <Menu className="w-7 h-7 ai-text-primary" />
         <span className="text-lg font-bold ai-text-primary tracking-wide">
-          {isZhTW ? 'ä¸»ç›®?? : 'Main'}
+          {isZhTW ? 'ä¸»ç›®éŒ„' : 'Main'}
         </span>
       </div>
       
@@ -124,7 +124,7 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
                   </span>
                   <span className="flex-1">{item.title}</span>
                   <span className="ml-2 text-xs text-gray-400 group-hover:text-blue-300">
-                    {item.type === 'reading' ? (isZhTW ? '?±è?' : 'Reading') : item.type === 'quiz' ? (isZhTW ? 'æ¸¬é?' : 'Quiz') : ''}
+                    {item.type === 'reading' ? (isZhTW ? '?ï¿½ï¿½?' : 'Reading') : item.type === 'quiz' ? (isZhTW ? 'æ¸¬ï¿½?' : 'Quiz') : ''}
                   </span>
                   <span className="ml-4 text-xs text-gray-500 group-hover:text-blue-200">{item.duration}</span>
                 </div>
@@ -144,7 +144,7 @@ const SidebarNavigation: React.FC<LessonSidebarProps> = memo(({
 
 SidebarNavigation.displayName = 'SidebarNavigation';
 
-// ä¸»å´?Šæ?çµ„ä»¶
+// ä¸»å´?ï¿½ï¿½?çµ„ä»¶
 const LessonSidebar: React.FC<LessonSidebarProps> = memo(({ 
   sections, 
   selectedKey, 
@@ -161,7 +161,7 @@ const LessonSidebar: React.FC<LessonSidebarProps> = memo(({
 
   return (
     <>
-      {/* æ¡Œé¢ sidebarï¼šmd ä»¥ä?æ°¸é?é¡¯ç¤ºï¼Œmobile ?±è? */}
+      {/* æ¡Œé¢ sidebarï¼šmd ä»¥ï¿½?æ°¸ï¿½?é¡¯ç¤ºï¼Œmobile ?ï¿½ï¿½? */}
       <div className="hidden md:flex w-72 bg-gray-950 border-r border-gray-800 flex-col py-8 px-4 gap-2 min-h-screen">
         <SidebarNavigation
           sections={sections}
@@ -172,7 +172,7 @@ const LessonSidebar: React.FC<LessonSidebarProps> = memo(({
         />
       </div>
       
-      {/* Drawer for mobileï¼šç´°å±æ??ªå??“é?ï¼Œå¯?œé? */}
+      {/* Drawer for mobileï¼šç´°å±ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼Œå¯?ï¿½ï¿½? */}
       {sidebarState.drawerOpen && sidebarState.isMobile && (
         <div className="fixed inset-0 z-50 flex">
           {/* Overlay */}

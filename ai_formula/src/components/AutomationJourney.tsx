@@ -11,25 +11,25 @@ const AutomationJourney = () => {
       number: '01',
       title: language === 'zh-HK' ? t('journey.step1.title') : 'Discovery Call',
       description: language === 'zh-HK' ? t('journey.step1.description') : 'We understand your needs and identify automation opportunities',
-      icon: '?¯'
+      icon: 'ğŸ”'
     },
     {
       number: '02',
       title: language === 'zh-HK' ? t('journey.step2.title') : 'Strategy & Design',
       description: language === 'zh-HK' ? t('journey.step2.description') : 'Create a detailed blueprint tailored to your business processes',
-      icon: '??'
+      icon: 'ğŸ“‹'
     },
     {
       number: '03',
       title: language === 'zh-HK' ? t('journey.step3.title') : 'Build & Integrate',
       description: language === 'zh-HK' ? t('journey.step3.description') : 'Develop and seamlessly integrate your custom automation solution',
-      icon: '?”§'
+      icon: 'âš™ï¸'
     },
     {
       number: '04',
       title: language === 'zh-HK' ? t('journey.step4.title') : 'Launch & Support',
       description: language === 'zh-HK' ? t('journey.step4.description') : 'Deploy your solution and provide ongoing support and optimization',
-      icon: '??'
+      icon: 'ğŸš€'
     }
   ];
 

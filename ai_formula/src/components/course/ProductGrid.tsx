@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ProductGridProps } from '@/data/courses/courseData';
-import ProductCard from './ProductCard';
+import { ProductGridProps, DigitalProduct } from '@/data/courses/courseData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Star, TrendingUp, Users, Mail } from 'lucide-react';
+import { Star, TrendingUp, Users, Mail, Clock, Download, ArrowRight } from 'lucide-react';
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
@@ -16,406 +15,216 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   onCategoryChange,
   onProductClick
 }) => {
-  const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [leadForm, setLeadForm] = useState({ email: '', interest: '' });
 
-  // Popular courses for cross-promotion - only real available courses
-  const popularCourses = [
-    {
-      id: 'coding-basics',
-      title: 'Coding Basics Class',
-      titleCht: 'ç·¨ç??ºç???,
-      description: '4 Hours Learn Truly Practical Programming from Zero!',
-      descriptionCht: '4å°æ? ?¶åŸºç¤å­¸?ƒã€ç?æ­?¯¦?¨ã€ç?ç¨‹å?è¨­è?ï¼?,
-      price: 'HK$3,800',
-      originalPrice: 'HK$4,800',
-      rating: 5.0,
-      students: 234,
-      icon: '?’»',
-      category: 'programming'
-    },
-    {
-      id: 'perplexity-tools',
-      title: 'Perplexity Tools Class',
-      titleCht: 'Perplexity å·¥å…·??, 
-      description: '3 Hours Become AI Search Research Super Expert!',
-      descriptionCht: '3å°æ? ?ç‚ºAI?œå??”ç©¶?è?ç´šå?å®¶ã€ï?',
-      price: 'HK$1,980',
-      originalPrice: 'HK$2,800',
-      rating: 5.0,
-      students: 156,
-      icon: '??',
-      category: 'ai'
-    }
+  // Category filters - matching image design
+  const categoryFilters = [
+    { key: 'all', label: 'All', labelCht: 'å…¨éƒ¨' },
+    { key: 'free', label: 'Free', labelCht: 'å…è²»' },
   ];
 
-  // Combined filter tags - categories and industries in one unified system
-  const allFilterTags = [
-    // Category filters
-    { key: 'all', label: 'All', labelCht: '?¨éƒ¨', emoji: '??', type: 'category' },
-    { key: 'design', label: 'Creative Design', labelCht: '?µæ?è¨­è?', emoji: '?¨', type: 'category' },
-    { key: 'ai', label: 'AI Applications', labelCht: 'AI?‰ç”¨', emoji: '??', type: 'category' },
-    { key: 'automation', label: 'Automation', labelCht: '?ªå???, emoji: '??, type: 'category' },
-    { key: 'analytics', label: 'Data Analytics', labelCht: '?¸æ??†æ?', emoji: '??', type: 'category' },
-    { key: 'prompt-engineering', label: 'Prompt Engineering', labelCht: '?ç¤ºå·¥ç?', emoji: '?’¬', type: 'category' },
-    { key: 'programming', label: 'Programming', labelCht: 'ç¨‹å?è¨­è?', emoji: '?’»', type: 'category' },
-    // Industry filters
-    { key: 'daily-life', label: 'Daily Life', labelCht: '?¥å¸¸?Ÿæ´»', emoji: '??', type: 'industry' },
-    { key: 'insurance', label: 'Insurance', labelCht: 'ä¿éšªæ¥?, emoji: '?›¡ï¸?, type: 'industry' },
-    { key: 'retail', label: 'Retail', labelCht: '?¶å”®æ¥?, emoji: '??ï¸?, type: 'industry' },
-    { key: 'finance', label: 'Finance', labelCht: '?‘è?æ¥?, emoji: '?’°', type: 'industry' },
-    { key: 'education', label: 'Education', labelCht: '?™è‚²æ¥?, emoji: '??', type: 'industry' },
-    { key: 'healthcare', label: 'Healthcare', labelCht: '?«ç?æ¥?, emoji: '?¥', type: 'industry' }
-  ];
-
-  // Get button color based on unified selection
-  const getButtonColor = (tag: any) => {
-    const isSelected = selectedFilter === tag.key;
-    
-    if (isSelected) {
-      return tag.type === 'category' 
-        ? 'bg-blue-500 hover:bg-blue-600 text-white'
-        : 'bg-emerald-500 hover:bg-emerald-600 text-white';
-    }
-    return 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white';
-  };
-
-  const handleFilterClick = (tag: any) => {
-    setSelectedFilter(tag.key);
-    
-    // Update the category for compatibility with existing system
-    if (tag.type === 'category') {
-      onCategoryChange(tag.key);
-    } else {
-      // For industry filters, set category to 'all' to show all categories for that industry
-      onCategoryChange('all');
-    }
+  const handleFilterClick = (category: string) => {
+    onCategoryChange(category);
   };
 
   const handleLeadSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the lead data to your backend
     console.log('Lead collected:', leadForm);
-    alert(isZhTW ? 'å¤šè?ä½ å??ˆè¶£ï¼æ??‹æ??¡å¿«?¯çµ¡ä½ ã€? : 'Thanks for your interest! We\'ll contact you soon.');
+    alert(isZhTW ? 'å¤šè¬ä½ çš„èˆˆè¶£ï¼æˆ‘å€‘æœƒç›¡å¿«è¯çµ¡ä½ ã€‚' : 'Thanks for your interest! We\'ll contact you soon.');
     setLeadForm({ email: '', interest: '' });
   };
 
-  // Filter products based on unified selection
-  const filteredProducts = products.filter(product => {
-    const currentTag = allFilterTags.find(tag => tag.key === selectedFilter);
+  const handleCourseClick = (product: DigitalProduct) => {
+    if (onProductClick) {
+      onProductClick(product);
+    }
     
-    if (!currentTag) return false;
-    
-    if (currentTag.type === 'category') {
-      // Category filter logic
-      return selectedFilter === 'all' || product.category === selectedFilter;
+    // Navigate to the appropriate course outline page
+    if (product.category === 'business-automation') {
+      window.location.href = '/courses/business-automation';
+    } else if (product.category === 'prompt-engineering') {
+      window.location.href = '/courses/prompt-engineering-outline';
     } else {
-      // Industry filter logic - only 'daily-life' has products
-      return selectedFilter === 'daily-life';
+      // Default behavior for other courses
+      window.location.href = `/courses/${product.category}`;
     }
-  });
-
-  // Get current selected tag info
-  const getCurrentTag = () => {
-    return allFilterTags.find(tag => tag.key === selectedFilter);
-  };
-
-  // Determine lead collection message based on selected filter
-  const getLeadCollectionContent = () => {
-    const currentTag = getCurrentTag();
-    
-    // Get the category name for the title
-    const getCategoryName = (key: string) => {
-      const tagInfo = allFilterTags.find(tag => tag.key === key);
-      return isZhTW ? tagInfo?.labelCht : tagInfo?.label;
-    };
-    
-    // Handle special case for 'all' category
-    if (currentTag?.key === 'all') {
-      return {
-        title: isZhTW ? '?µå??°æƒ³è¦å?èª²ç?ï¼? : 'Can\'t find what you\'re looking for?',
-        description: isZhTW 
-          ? 'è©±ä¿¾?‘å??¥ä??³å­¸?©ï??‘å??ƒç‚ºä½ åº¦èº«è?? èª²ç¨‹ï?'
-          : 'Tell us what you want to learn, and we\'ll create a course just for you!',
-        emailPlaceholder: isZhTW ? 'ä½ å??»éƒµ?°å?' : 'Your email address',
-        textareaPlaceholder: isZhTW ? 'ä½ æƒ³å­¸å’©èª²ç?ï¼Ÿä?å¦‚ï?Excel?²é??€å·§ã€Python?¸æ??†æ??æ•¸ä½ç??·ç??¥ç?...' : 'What course would you like? e.g., Advanced Excel, Python Data Analysis, Digital Marketing...',
-        buttonText: isZhTW ? '?äº¤èª²ç??€æ±? : 'Submit Course Request',
-        footerText: isZhTW ? '?‘å??ƒåœ¨24å°æ??§å?è¦†ä??…é?æ±? : 'We\'ll respond to your request within 24 hours'
-      };
-    }
-    
-    // For all other categories, show the specific "coming soon" message
-    const categoryName = getCategoryName(currentTag?.key || '');
-    
-    return {
-      title: isZhTW ? `??{categoryName}?å?èª²ç??‘å?æº–å?ç·Šå?ï¼` : `"${categoryName}" course is coming soon!`,
-      description: isZhTW 
-        ? '?§å®¹å¥½å¿«å°±åˆ°?‚æƒ³?ç‚ºç¬¬ä??¹å­¸?¡ï??™ä?ä½ å??»éƒµï¼Œæ–°èª²ç?ä¸€ä¸Šæ¶?³åˆ»?šçŸ¥ä½ ï?'
-        : 'Content coming soon. Want to be in the first batch? Leave your email and we\'ll notify you when the new course launches!',
-      emailPlaceholder: isZhTW ? 'ä½ å??»éƒµ?°å?' : 'Your email address',
-      textareaPlaceholder: isZhTW ? `ä½ å?${categoryName}?‰å’©?¹åˆ¥?³å­¸?…ï?ï¼ˆé¸å¡«ï?` : `What specifically do you want to learn about ${categoryName}? (Optional)`,
-      buttonText: isZhTW ? '?šçŸ¥?‘æ–°èª²ç?ä¸Šæ¶' : 'Notify me when available',
-      footerText: isZhTW ? '?°èª²ç¨‹ä?ä¸Šæ¶?³åˆ»?šçŸ¥ä½? : 'We\'ll notify you as soon as the course is available'
-    };
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            {isZhTW ? 'ç²¾é¸?¸ä??¢å?é¡åˆ¥' : 'Featured Digital Product Categories'}
+    <section className="py-20 bg-slate-900">
+      <div className="container mx-auto px-6">
+        {/* Section Header - matching image design */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            {isZhTW ? 'ç²¾é¸å…è²»èª²ç¨‹' : 'Featured Free Courses'}
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             {isZhTW 
-              ? 'é«˜è³ªç´ ç?è¨˜å?å½±ç??™å­¸ï¼Œå³?»ä?è¼‰å°±?¨å???
-              : 'High-quality notes and video tutorials, instant download and access.'
+              ? 'ç²¾å¿ƒè£½ä½œæ•¸ä½èª²ç¨‹ï¼Œå¹«åŠ©ä½ å¿«é€Ÿæå‡æŠ€èƒ½ä¸¦å¯¦ç¾å•†æ¥­ç›®æ¨™'
+              : 'Carefully crafted digital courses to help you quickly improve skills and achieve business goals'
             }
           </p>
           
-          {/* Unified Filter Tags */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-8"
-          >
-            <div className="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto">
-              {allFilterTags.map((tag) => (
-                <Button
-                  key={tag.key}
-                  onClick={() => handleFilterClick(tag)}
-                  className={`${getButtonColor(tag)} transition-all duration-200 text-sm px-3 py-2 h-auto min-h-0`}
-                  aria-label={`${isZhTW ? tag.labelCht : tag.label}`}
-                >
-                  <span className="text-base mr-1">{tag.emoji}</span>
-                  <span className="text-sm">{isZhTW ? tag.labelCht : tag.label}</span>
-                </Button>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
+          {/* Filter Buttons - matching image design */}
+          <div className="flex justify-center gap-4 mt-8">
+            {categoryFilters.map((filter) => (
+              <Button
+                key={filter.key}
+                onClick={() => handleFilterClick(filter.key)}
+                className={`${
+                  selectedCategory === filter.key
+                    ? 'bg-white text-slate-900 hover:bg-gray-100'
+                    : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+                } px-8 py-3 rounded-full font-medium transition-all duration-300`}
+              >
+                {isZhTW ? filter.labelCht : filter.label}
+              </Button>
+            ))}
+          </div>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {filteredProducts.map((product, index) => (
-            <ProductCard
+        {/* Course Cards Grid - matching image design */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product, index) => (
+            <motion.div
               key={product.id}
-              product={product}
-              isZhTW={isZhTW}
-              onProductClick={onProductClick}
-              index={index}
-            />
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group cursor-pointer"
+              onClick={() => handleCourseClick(product)}
+            >
+              <Card className="bg-slate-800 border-slate-700 hover:border-slate-600 transition-all duration-300 h-full flex flex-col">
+                <CardHeader className="pb-4">
+                  {/* Course Category Badge */}
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge className="bg-green-600 text-white font-medium">
+                      {isZhTW ? 'å…è²»' : 'Free'}
+                    </Badge>
+                    <div className="text-2xl">{product.image}</div>
+                  </div>
+                  
+                  {/* Course Title */}
+                  <CardTitle className="text-white text-xl font-bold line-clamp-2 mb-2">
+                    {isZhTW ? product.titleCht : product.title}
+                  </CardTitle>
+                  
+                  {/* Course Description */}
+                  <CardDescription className="text-slate-300 line-clamp-3">
+                    {isZhTW ? product.descriptionCht : product.description}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent className="flex-1 flex flex-col">
+                  {/* Course Stats */}
+                  <div className="flex items-center gap-4 text-sm text-slate-400 mb-6">
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{isZhTW ? product.durationCht : product.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Users className="w-4 h-4" />
+                      <span>{product.downloads.toLocaleString()}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span>{product.rating}</span>
+                    </div>
+                  </div>
+
+                  {/* Course Features */}
+                  <div className="mb-6 flex-1">
+                    <p className="text-slate-300 text-sm font-medium mb-3">
+                      {isZhTW ? 'åŒ…å«å…§å®¹ï¼š' : 'Includes:'}
+                    </p>
+                    <ul className="space-y-2">
+                      {(isZhTW ? product.includesCht : product.includes).slice(0, 4).map((item, idx) => (
+                        <li key={idx} className="text-slate-400 text-sm flex items-start gap-2">
+                          <span className="text-green-400 mt-1">â€¢</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Price and CTA */}
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-700">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-bold text-white">{product.price}</span>
+                      {product.originalPrice && product.originalPrice !== product.price && (
+                        <span className="text-sm text-slate-400 line-through">{product.originalPrice}</span>
+                      )}
+                    </div>
+                    <Button 
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 group-hover:bg-blue-500 transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCourseClick(product);
+                      }}
+                    >
+                      <span className="mr-2">{isZhTW ? 'ç™»éŒ„èª²ç¨‹å¤§ç¶±' : 'Course Outline'}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
 
-        {/* Cross-promotion Section when no products */}
-        {filteredProducts.length === 0 && (
+        {/* No Products Message */}
+        {products.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-12"
+            className="text-center"
           >
-            {/* Lead Collection Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mb-16"
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                whileHover={{ scale: 1.02 }}
-                className="relative"
-              >
-                                  {/* Animated background glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-lg blur-xl animate-pulse" />
-                  
-                  {/* Gradient border effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/50 via-orange-400/50 to-amber-500/50 rounded-lg p-[2px]">
-                    <div className="h-full w-full rounded-lg bg-gradient-to-br from-yellow-900/80 via-orange-900/60 to-amber-900/40" />
-                  </div>
-                  
-                  <Card className="relative bg-gradient-to-br from-yellow-900/80 via-orange-900/60 to-amber-900/40 border-0 shadow-2xl backdrop-blur-sm">
-                    <CardHeader className="text-center relative">
-                      {/* Decorative elements */}
-                      <div className="absolute top-4 left-4 w-2 h-2 bg-yellow-400 rounded-full animate-ping" />
-                      <div className="absolute top-4 right-4 w-2 h-2 bg-orange-400 rounded-full animate-ping delay-[2000ms]" />
-                      <div className="absolute top-8 left-8 w-1 h-1 bg-amber-400 rounded-full animate-ping delay-[3000ms]" />
-                      <div className="absolute top-8 right-8 w-1 h-1 bg-yellow-300 rounded-full animate-ping delay-[4000ms]" />
-                    
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.8 }}
-                    >
-                      <CardTitle className="text-white text-2xl md:text-3xl flex items-center justify-center gap-3 mb-4">
-                                                 <motion.div
-                           animate={{ 
-                             rotate: [0, 10, -10, 0],
-                             scale: [1, 1.1, 1]
-                           }}
-                           transition={{ 
-                             duration: 2, 
-                             repeat: Infinity, 
-                             repeatType: "reverse",
-                             ease: "easeInOut"
-                           }}
-                         >
-                           <Mail className="w-7 h-7 text-yellow-400" />
-                         </motion.div>
-                         <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                          {getLeadCollectionContent().title}
-                        </span>
-                      </CardTitle>
-                      <CardDescription className="text-gray-200 text-lg leading-relaxed">
-                        {getLeadCollectionContent().description}
-                      </CardDescription>
-                    </motion.div>
-                  </CardHeader>
-                  <CardContent className="relative">
-                    <form onSubmit={handleLeadSubmit} className="max-w-md mx-auto space-y-6">
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 1.0 }}
-                      >
-                                                 <Input
-                           type="email"
-                           placeholder={getLeadCollectionContent().emailPlaceholder}
-                           value={leadForm.email}
-                           onChange={(e) => setLeadForm({...leadForm, email: e.target.value})}
-                           required
-                           className="bg-gray-800/70 border-2 border-gray-600 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 text-white placeholder-gray-300 h-12 text-lg transition-all duration-300 hover:bg-gray-700/70 backdrop-blur-sm"
-                         />
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 1.2 }}
-                      >
-                                                 <Textarea
-                           placeholder={getLeadCollectionContent().textareaPlaceholder}
-                           value={leadForm.interest}
-                           onChange={(e) => setLeadForm({...leadForm, interest: e.target.value})}
-                           required={selectedFilter === 'all'}
-                           rows={4}
-                           className="bg-gray-800/70 border-2 border-gray-600 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 text-white placeholder-gray-300 text-lg transition-all duration-300 hover:bg-gray-700/70 backdrop-blur-sm resize-none"
-                         />
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 1.4 }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                                                 <Button 
-                           type="submit" 
-                           className="w-full bg-gradient-to-r from-yellow-600 via-orange-600 to-amber-600 hover:from-yellow-700 hover:via-orange-700 hover:to-amber-700 text-white font-bold py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                         >
-                          {/* Button shine effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                          <span className="relative z-10">{getLeadCollectionContent().buttonText}</span>
-                        </Button>
-                      </motion.div>
-                    </form>
-                    <motion.p 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 1.6 }}
-                      className="text-center text-gray-300 text-sm mt-6 bg-gray-800/30 rounded-lg p-3 backdrop-blur-sm"
-                    >
-                      {getLeadCollectionContent().footerText}
-                    </motion.p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-
-            {/* Popular Courses Section */}
-            <div>
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
-                  <TrendingUp className="w-6 h-6 text-yellow-400" />
-                  {isZhTW ? '?±é??¨è–¦èª²ç?' : 'Popular Recommended Courses'}
-                </h3>
-                <p className="text-gray-300">
-                  {isZhTW ? '?¼æ??¶ä?å­¸å“¡?½å??›å?èª²ç?' : 'Discover courses loved by other students'}
-                </p>
-              </div>
+            <Card className="bg-gradient-to-br from-yellow-900/60 via-orange-900/40 to-amber-900/30 border-yellow-500/30 max-w-2xl mx-auto">
+              <CardHeader className="text-center">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <Mail className="w-7 h-7 text-yellow-400" />
+                  <CardTitle className="text-2xl text-yellow-300">
+                    {isZhTW ? 'æƒ³è¦æ–°èª²ç¨‹ï¼Ÿ' : 'Want new courses?'}
+                  </CardTitle>
+                </div>
+                <CardDescription className="text-gray-200 text-lg leading-relaxed">
+                  {isZhTW 
+                    ? 'è©±ä¿¾æˆ‘å€‘çŸ¥ä½ æƒ³å­¸å’©ï¼Œæˆ‘å€‘æœƒç‚ºä½ åº¦èº«è¨‚é€ èª²ç¨‹ï¼'
+                    : 'Tell us what you want to learn, and we\'ll create a course just for you!'
+                  }
+                </CardDescription>
+              </CardHeader>
               
-              <div className="grid md:grid-cols-2 gap-6 justify-center max-w-4xl mx-auto">
-                {popularCourses.map((course, index) => (
-                  <motion.div
-                    key={course.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+              <CardContent>
+                <form onSubmit={handleLeadSubmit} className="space-y-4">
+                  <Input
+                    type="email"
+                    placeholder={isZhTW ? 'ä½ çš„é›»éƒµåœ°å€' : 'Your email address'}
+                    value={leadForm.email}
+                    onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                    required
+                    className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-400"
+                  />
+                  <Textarea
+                    placeholder={isZhTW ? 'ä½ æƒ³å­¸å’©èª²ç¨‹ï¼Ÿä¾‹å¦‚Excelé€²éšæŠ€å·§ã€Pythonæ•¸æ“šåˆ†æã€æ•¸ä½ç‡ŸéŠ·ç­‰...' : 'What course would you like? e.g., Advanced Excel, Python Data Analysis, Digital Marketing...'}
+                    value={leadForm.interest}
+                    onChange={(e) => setLeadForm({ ...leadForm, interest: e.target.value })}
+                    className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-400"
+                    rows={3}
+                  />
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-yellow-600 via-orange-600 to-amber-600 hover:from-yellow-700 hover:via-orange-700 hover:to-amber-700 text-white font-bold py-4 text-lg"
                   >
-                    <Card className="bg-gray-800/50 border-gray-700 hover:border-blue-500/50 transition-all duration-300 h-full">
-                      <CardHeader className="pb-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-3xl">{course.icon}</span>
-                          <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
-                            {isZhTW ? '?±é?' : 'Popular'}
-                          </Badge>
-                        </div>
-                        <CardTitle className="text-white text-lg">
-                          {isZhTW ? course.titleCht : course.title}
-                        </CardTitle>
-                        <CardDescription className="text-gray-300">
-                          {isZhTW ? course.descriptionCht : course.description}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="flex items-center gap-4 mb-3 text-sm text-gray-400">
-                          <div className="flex items-center gap-1">
-                            <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                            <span>{course.rating}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Users className="w-4 h-4" />
-                            <span>{course.students} {isZhTW ? 'å­¸ç?' : 'students'}</span>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between mb-4">
-                          <div>
-                            <span className="text-xl font-bold text-white">{course.price}</span>
-                            <span className="text-sm text-gray-500 line-through ml-2">{course.originalPrice}</span>
-                          </div>
-                        </div>
-                        <Button 
-                          className="w-full bg-blue-600 hover:bg-blue-700"
-                          onClick={() => {
-                            // Navigate to course or handle course selection
-                            if (course.category === 'programming') {
-                              setSelectedFilter('programming');
-                              onCategoryChange('programming');
-                            } else if (course.category === 'ai') {
-                              setSelectedFilter('ai');
-                              onCategoryChange('ai');
-                            } else {
-                              setSelectedFilter('design');
-                              onCategoryChange('design');
-                            }
-                          }}
-                        >
-                          {isZhTW ? '?¥ç?èª²ç?' : 'View Course'}
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+                    {isZhTW ? 'æäº¤èª²ç¨‹è¦æ±‚' : 'Submit Course Request'}
+                  </Button>
+                </form>
+                <p className="text-center text-gray-300 text-sm mt-6">
+                  {isZhTW ? 'æˆ‘å€‘æœƒç›¡å¿«å›è¦†ä½ çš„è¦æ±‚' : 'We\'ll respond to your request as soon as possible'}
+                </p>
+              </CardContent>
+            </Card>
           </motion.div>
         )}
       </div>

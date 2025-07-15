@@ -21,6 +21,7 @@ const enTranslations: Translations = {
   'nav.home': 'Home',
   'nav.about': 'About Us',
   'nav.courses': 'Courses',
+  'nav.tools': 'Tools',
   'nav.blog': 'Blog',
   'nav.signup': 'Sign Up',
   
@@ -33,6 +34,123 @@ const enTranslations: Translations = {
   'hero.description': 'Learn AI skills that immediately help you save time and boost efficiency',
   'hero.cta1': 'Start Free Trial',
   'hero.cta2': 'View Courses',
+  'hero.chooseProgram': 'Choose Your Program',
+  
+  // Technology Showcase
+  'tech.title': 'Powered by Leading Technologies',
+  'tech.subtitle': 'We master the tools that drive modern business automation',
+  'tech.n8n': 'Workflow Automation',
+  'tech.make': 'Integration Platform',
+  'tech.zapier': 'App Connections',
+  'tech.python': 'Data Processing',
+  'tech.javascript': 'Web Development',
+  'tech.openai': 'AI Integration',
+  
+  // Testimonials
+  'testimonials.title': 'What Our Clients Say',
+  'testimonials.subtitle': 'Real feedback from businesses using our AI automation solutions',
+  'testimonials.testimonial1.quote': 'AI Formula helped us build a custom WhatsApp automation system that handles customer inquiries 24/7. No more missed messages and our response time improved dramatically.',
+  'testimonials.testimonial1.author': 'Wong Ka Ming',
+  'testimonials.testimonial1.service': 'Custom Automation Solution',
+  'testimonials.testimonial1.company': 'Local Trading Company',
+  'testimonials.testimonial2.quote': 'Their team built us a custom business automation system that connects our inventory, orders, and accounting. Everything runs smoothly now.',
+  'testimonials.testimonial2.author': 'Chan Siu Fung',
+  'testimonials.testimonial2.service': 'Business Automation',
+  'testimonials.testimonial2.company': 'Small Manufacturing Business',
+  'testimonials.testimonial3.quote': 'The custom AI chatbot they created for our restaurant handles reservations and orders perfectly. It understands Cantonese and English!',
+  'testimonials.testimonial3.author': 'Lam Mei Ling',
+  'testimonials.testimonial3.service': 'Custom AI Chatbot',
+  'testimonials.testimonial3.company': 'Family Restaurant',
+  
+  // Automation Journey
+  'journey.title': 'Your Automation Journey',
+  'journey.subtitle': 'Our proven 4-step process ensures successful automation implementation',
+  'journey.step1.title': 'Discovery Call',
+  'journey.step1.description': 'We understand your needs and identify automation opportunities',
+  'journey.step2.title': 'Strategy & Design',
+  'journey.step2.description': 'Create a detailed blueprint tailored to your business processes',
+  'journey.step3.title': 'Build & Integrate',
+  'journey.step3.description': 'Develop and seamlessly integrate your custom automation solution',
+  'journey.step4.title': 'Launch & Support',
+  'journey.step4.description': 'Deploy your solution and provide ongoing support and optimization',
+  
+  // Instructors
+  'instructors.title': 'Meet Our',
+  'instructors.titleHighlight': 'Expert Instructors',
+  'instructors.subtitle': 'Learn from industry leaders who combine deep technical expertise with real-world business experience in AI and automation.',
+  'instructors.experience': 'Experience',
+  'instructors.professionalJourney': 'Professional Journey',
+  'instructors.teachingPhilosophy': 'Teaching Philosophy',
+  'instructors.keyQualifications': 'Key Qualifications',
+  'instructors.viewProfile': 'View Full Profile',
+  
+  // Kenneth - First Instructor
+  'instructors.sarah.name': 'Kenneth',
+  'instructors.sarah.title': 'AI Marketing Developer & Automation Specialist',
+  'instructors.sarah.specialty': 'AI Tools & Marketing Automation',
+  'instructors.sarah.experience': '4+ years',
+  'instructors.sarah.biography': 'Kenneth is a pioneering AI marketing developer who specializes in cutting-edge AI tools, automation systems, and strategic implementation. Over 4 years of intensive AI learning, he has mastered the art of transforming traditional marketing approaches through artificial intelligence and automation technologies.',
+  'instructors.sarah.philosophy': 'AI is fundamentally transforming how we live and work. The future belongs to those who embrace AI today. I help individuals and businesses get ahead of the curve by mastering AI tools and automation before the masses catch up.',
+  'instructors.sarah.qual1': 'AI Marketing Automation Expert',
+  'instructors.sarah.qual2': 'Advanced AI Tools Implementation',
+  'instructors.sarah.qual3': 'Strategic AI Business Integration',
+  'instructors.sarah.qual4': 'Future-Ready Marketing Systems',
+  
+  // David - Second Instructor
+  'instructors.david.name': 'David',
+  'instructors.david.title': 'Business Automation & AI Integration Specialist',
+  'instructors.david.specialty': 'Automation & AI Solutions',
+  'instructors.david.experience': '7+ years',
+  'instructors.david.biography': 'David is a business automation expert who has spent 7+ years helping companies eliminate overwork and streamline operations. He specializes in creating powerful automation workflows using Make.com, n8n, and AI tools.',
+  'instructors.david.philosophy': 'Automation should solve real business problems and reduce overwork. I help businesses implement all-in-one AI solutions that transform operations.',
+  'instructors.david.qual1': 'Make.com & n8n Automation Expert',
+  'instructors.david.qual2': 'Business Process Optimization',
+  'instructors.david.qual3': 'AI-Powered Content Management',
+  'instructors.david.qual4': 'All-in-One Business Solutions',
+  
+  // Ken - Third Instructor
+  'instructors.emily.name': 'Ken',
+  'instructors.emily.title': 'Custom Business Developer & AI Automation Specialist',
+  'instructors.emily.specialty': 'Custom Coding & AI Automation',
+  'instructors.emily.experience': '5+ years',
+  'instructors.emily.biography': 'Ken is a skilled custom business developer with 5+ years of coding experience, specializing in creating tailored business solutions and AI automation systems that help businesses work faster and run more efficiently.',
+  'instructors.emily.philosophy': 'Code should make work faster and businesses run smoother. I create custom solutions that integrate AI automation to eliminate bottlenecks and accelerate business processes.',
+  'instructors.emily.qual1': 'Custom Business Application Development',
+  'instructors.emily.qual2': 'AI Automation Integration Expert',
+  'instructors.emily.qual3': 'Performance Optimization Specialist',
+  'instructors.emily.qual4': 'Rapid Development Solutions',
+  
+  // Jason - Fourth Instructor
+  'instructors.michael.name': 'Jason',
+  'instructors.michael.title': 'Professional Developer & Custom Automation Specialist',
+  'instructors.michael.specialty': 'Coding & Custom Automation',
+  'instructors.michael.experience': '8+ years',
+  'instructors.michael.biography': 'Jason is a professional developer with 8+ years of coding experience, specializing in LLM chatbox development, MCP integration, and web applications. He has been intensively learning AI to uplevel coding skills.',
+  'instructors.michael.philosophy': 'No AI, no life! AI can change more than you think. Every developer needs to embrace AI to stay relevant and create extraordinary solutions.',
+  'instructors.michael.qual1': 'LLM Chatbox Development Expert',
+  'instructors.michael.qual2': 'MCP Integration Specialist',
+  'instructors.michael.qual3': 'Full-Stack Web Development',
+  'instructors.michael.qual4': 'AI-Enhanced Coding Solutions',
+  
+  // Contact
+  'contact.title': 'Get In Touch',
+  'contact.subtitle': 'Ready to transform your business with AI?',
+  'contact.form.title': 'Send Us a Message',
+  'contact.form.description': 'Fill out the form below and we\'ll get back to you within 24 hours',
+  'contact.form.name': 'Full Name',
+  'contact.form.email': 'Email Address',
+  'contact.form.message': 'How can we help you?',
+  'contact.form.send': 'Send Message',
+  'contact.info.emailUs': 'Email Us',
+  'contact.info.emailDescription': 'Get quick responses to your questions',
+  'contact.info.callUs': 'Call Us',
+  'contact.info.phoneDescription': 'Mon-Fri 9AM-6PM HKT',
+  'contact.info.visitUs': 'Visit Us',
+  'contact.info.visitDescription': 'Schedule an appointment',
+  
+  // Toast Messages
+  'toast.messageSent': 'Message Sent!',
+  'toast.messageDescription': 'Thank you for your interest. We\'ll get back to you within 24 hours.',
   
   // Features
   'features.title': 'Why Choose AI Formula?',
@@ -57,10 +175,6 @@ const enTranslations: Translations = {
   'courses.rating': 'rating',
   'courses.enroll': 'Enroll Now',
   'courses.learnMore': 'Learn More',
-  
-  // Testimonials
-  'testimonials.title': 'What Our Students Say',
-  'testimonials.subtitle': 'Real feedback from professionals using our AI training',
   
   // Footer
   'footer.company': 'AI Formula',
@@ -120,18 +234,6 @@ const enTranslations: Translations = {
   'blog.share': 'Share',
   'blog.like': 'Like',
   'blog.comment': 'Comment',
-  
-  // Contact
-  'contact.title': 'Get in Touch',
-  'contact.subtitle': 'Ready to transform your business with AI?',
-  'contact.name': 'Name',
-  'contact.email': 'Email',
-  'contact.subject': 'Subject',
-  'contact.message': 'Message',
-  'contact.send': 'Send Message',
-  'contact.phone': 'Phone',
-  'contact.address': 'Address',
-  'contact.hours': 'Business Hours',
   
   // Auth
   'auth.login': 'Login',
@@ -195,6 +297,77 @@ const enTranslations: Translations = {
   'common.hide': 'Hide',
   'common.expand': 'Expand',
   'common.collapse': 'Collapse',
+  
+  // Tools Page
+  'tools.title': 'Useful Tools',
+  'tools.subtitle': 'Discover powerful tools to enhance your productivity and creativity',
+  'tools.categories.aiVideo': 'AI Video Tools',
+  'tools.categories.dataTools': 'Data Tools',
+  'tools.categories.designTools': 'Design Tools', 
+  'tools.categories.marketingTools': 'AI Marketing Tools',
+  
+  // Design Tools
+  'tools.freepik.title': 'Freepik - Free Design Resources',
+  'tools.freepik.description': 'Access millions of free vectors, photos, and graphics for your projects. Create stunning visuals without breaking the budget.',
+  'tools.freepik.tag': 'Free Design',
+  'tools.freepik.visitSite': 'Visit Freepik',
+  
+  // Data Tools
+  'tools.mem0.title': 'Mem0 - OpenMemory MCP',
+  'tools.mem0.description': 'Advanced memory management and conversation persistence for AI applications. Build smarter AI systems with contextual memory.',
+  'tools.mem0.tag': 'AI Memory',
+  'tools.mem0.visitSite': 'Visit Mem0',
+  
+  'tools.chat4data.title': 'Chat4Data - AI Web Data Extraction',
+  'tools.chat4data.description': 'Extract structured data from any website through natural conversation. No coding required - AI automatically detects and extracts valuable data.',
+  'tools.chat4data.tag': 'Data Extraction',
+  'tools.chat4data.visitSite': 'Visit Chat4Data',
+  
+  // AI Video Tools
+  'tools.hailuo.title': 'Hailuo AI - Top AI Video Generation',
+  'tools.hailuo.description': 'Try Hailuo 02 by Minimax for free, a top-performing AI video tool that transforms images into stunning HD videos in minutes.',
+  'tools.hailuo.tag': 'AI Video',
+  'tools.hailuo.visitSite': 'Visit Hailuo AI',
+  
+  'tools.higgsfield.title': 'Higgsfield AI - Visual Effects',
+  'tools.higgsfield.description': 'AI-powered camera controls and visual effects tools. From explosions to surreal transformations, create cinematic visual effects.',
+  'tools.higgsfield.tag': 'Visual Effects',
+  'tools.higgsfield.visitSite': 'Visit Higgsfield',
+  
+  'tools.unstableml.title': 'UnstableML - AI Avatars',
+  'tools.unstableml.description': 'Personalized AI avatars for product demos, tutorials, and UGC content creation. Clone your face and voice for authentic content.',
+  'tools.unstableml.tag': 'AI Avatars',
+  'tools.unstableml.visitSite': 'Visit UnstableML',
+  
+  'tools.4dv.title': '4DV.AI - AI Video Platform',
+  'tools.4dv.description': 'Advanced AI video generation and editing platform with professional-grade video creation tools and effects.',
+  'tools.4dv.tag': 'AI Video',
+  'tools.4dv.visitSite': 'Visit 4DV.AI',
+  
+  'tools.seaweedapt.title': 'Seaweed APT2 - Real-Time Video',
+  'tools.seaweedapt.description': 'Autoregressive adversarial post-training for real-time interactive video generation. Stream high-quality videos at 24fps with minimal latency.',
+  'tools.seaweedapt.tag': 'Real-Time Video',
+  'tools.seaweedapt.visitSite': 'Visit Seaweed APT',
+  
+  // Marketing Tools  
+  'tools.headai.title': 'Head AI - World\'s First AI Marketer',
+  'tools.headai.description': 'Professional AI taking over your influencer & affiliate marketing. Not a tool, but a complete AI marketing team that handles campaigns end-to-end.',
+  'tools.headai.tag': 'AI Marketing',
+  'tools.headai.visitSite': 'Visit Head AI',
+  
+  // 404 Page
+  'notFound.title': 'Oops! Page Not Found',
+  'notFound.subtitle': 'The page you\'re looking for doesn\'t exist',
+  'notFound.description': 'Don\'t worry, it happens to the best of us. The page might have been moved, deleted, or you might have mistyped the URL.',
+  'notFound.error404': '404',
+  'notFound.pageNotFound': 'Page Not Found',
+  'notFound.quickLinks': 'Quick Links',
+  'notFound.backToHome': 'Back to Home',
+  'notFound.contactSupport': 'Contact Support',
+  'notFound.reportProblem': 'Report Problem',
+  'notFound.currentPath': 'Looking for',
+  'notFound.timestamp': 'Time',
+  'notFound.needHelp': 'Need Help?',
 }
 
 // 中文翻譯
@@ -203,6 +376,7 @@ const zhTranslations: Translations = {
   'nav.home': '首頁',
   'nav.about': '關於我們',
   'nav.courses': '課程',
+  'nav.tools': '工具',
   'nav.blog': '部落格',
   'nav.signup': '註冊',
   
@@ -215,6 +389,123 @@ const zhTranslations: Translations = {
   'hero.description': '學習能立即幫助您節省時間和提高效率的AI技能',
   'hero.cta1': '開始免費試用',
   'hero.cta2': '查看課程',
+  'hero.chooseProgram': '選擇您的課程',
+  
+  // Technology Showcase
+  'tech.title': '採用領先技術',
+  'tech.subtitle': '我們精通驅動現代商業自動化的工具',
+  'tech.n8n': '工作流程自動化',
+  'tech.make': '整合平台',
+  'tech.zapier': '應用程式連接',
+  'tech.python': '數據處理',
+  'tech.javascript': '網頁開發',
+  'tech.openai': 'AI 整合',
+  
+  // Testimonials
+  'testimonials.title': '客戶怎麼說',
+  'testimonials.subtitle': '來自使用我們AI自動化解決方案的企業真實反饋',
+  'testimonials.testimonial1.quote': 'AI Formula 幫助我們建立了一個自定義 WhatsApp 自動化系統，可以24/7處理客戶查詢。再也不會錯過訊息，我們的回應時間顯著改善。',
+  'testimonials.testimonial1.author': '黃家明',
+  'testimonials.testimonial1.service': '自定義自動化解決方案',
+  'testimonials.testimonial1.company': '本地貿易公司',
+  'testimonials.testimonial2.quote': '他們的團隊為我們建立了一個自定義商業自動化系統，連接我們的庫存、訂單和會計。現在一切運行順暢。',
+  'testimonials.testimonial2.author': '陳小鳳',
+  'testimonials.testimonial2.service': '商業自動化',
+  'testimonials.testimonial2.company': '小型製造企業',
+  'testimonials.testimonial3.quote': '他們為我們餐廳創建的自定義AI聊天機器人完美處理預訂和訂單。它懂廣東話和英語！',
+  'testimonials.testimonial3.author': '林美玲',
+  'testimonials.testimonial3.service': '自定義AI聊天機器人',
+  'testimonials.testimonial3.company': '家庭餐廳',
+  
+  // Automation Journey
+  'journey.title': '您的自動化之旅',
+  'journey.subtitle': '我們經過驗證的4步流程確保成功實施自動化',
+  'journey.step1.title': '發現諮詢',
+  'journey.step1.description': '了解您的需求並識別自動化機會',
+  'journey.step2.title': '策略設計',
+  'journey.step2.description': '創建針對您業務流程的詳細藍圖',
+  'journey.step3.title': '建構整合',
+  'journey.step3.description': '開發並無縫整合您的自定義自動化解決方案',
+  'journey.step4.title': '上線支援',
+  'journey.step4.description': '部署您的解決方案並提供持續支援和優化',
+  
+  // Instructors
+  'instructors.title': '認識我們的',
+  'instructors.titleHighlight': '專家講師',
+  'instructors.subtitle': '向結合深厚技術專長與真實商業經驗的行業領導者學習AI和自動化。',
+  'instructors.experience': '經驗',
+  'instructors.professionalJourney': '專業經歷',
+  'instructors.teachingPhilosophy': '教學理念',
+  'instructors.keyQualifications': '主要資格',
+  'instructors.viewProfile': '查看完整檔案',
+  
+  // Kenneth - 第一位講師
+  'instructors.sarah.name': 'Kenneth',
+  'instructors.sarah.title': 'AI 行銷開發者與自動化專家',
+  'instructors.sarah.specialty': 'AI 工具與行銷自動化',
+  'instructors.sarah.experience': '4+ 年',
+  'instructors.sarah.biography': 'Kenneth 是一位先驅性的AI行銷開發者，專精於尖端AI工具、自動化系統和策略實施。經過4年深入的AI學習，他已經掌握了通過人工智能和自動化技術轉變傳統行銷方法的藝術。',
+  'instructors.sarah.philosophy': 'AI正在根本性地改變我們的生活和工作方式。未來屬於今天就擁抱AI的人。我幫助個人和企業在大眾跟上之前，通過掌握AI工具和自動化來搶得先機。',
+  'instructors.sarah.qual1': 'AI 行銷自動化專家',
+  'instructors.sarah.qual2': '高級AI工具實施',
+  'instructors.sarah.qual3': '策略性AI業務整合',
+  'instructors.sarah.qual4': '面向未來的行銷系統',
+  
+  // David - 第二位講師
+  'instructors.david.name': 'David',
+  'instructors.david.title': '商業自動化與AI整合專家',
+  'instructors.david.specialty': '自動化與AI解決方案',
+  'instructors.david.experience': '7+ 年',
+  'instructors.david.biography': 'David是一位商業自動化專家，花了7年以上時間幫助公司消除過度工作並簡化營運。他專精於使用Make.com、n8n和AI工具創建強大的自動化工作流程。',
+  'instructors.david.philosophy': '自動化應該解決真正的商業問題並減少過度工作。我幫助企業實施一體化AI解決方案來轉變營運。',
+  'instructors.david.qual1': 'Make.com 與 n8n 自動化專家',
+  'instructors.david.qual2': '業務流程優化',
+  'instructors.david.qual3': 'AI驅動的內容管理',
+  'instructors.david.qual4': '一體化業務解決方案',
+  
+  // Ken - 第三位講師
+  'instructors.emily.name': 'Ken',
+  'instructors.emily.title': '自定義業務開發者與AI自動化專家',
+  'instructors.emily.specialty': '自定義編程與AI自動化',
+  'instructors.emily.experience': '5+ 年',
+  'instructors.emily.biography': 'Ken是一位熟練的自定義業務開發者，擁有5年以上的編程經驗，專精於創建量身定制的業務解決方案和AI自動化系統，幫助企業更快工作、更高效運行。',
+  'instructors.emily.philosophy': '程式碼應該讓工作更快，讓企業運行更順暢。我創建整合AI自動化的自定義解決方案，消除瓶頸並加速業務流程。',
+  'instructors.emily.qual1': '自定義業務應用程式開發',
+  'instructors.emily.qual2': 'AI自動化整合專家',
+  'instructors.emily.qual3': '性能優化專家',
+  'instructors.emily.qual4': '快速開發解決方案',
+  
+  // Jason - 第四位講師
+  'instructors.michael.name': 'Jason',
+  'instructors.michael.title': '專業開發者與自定義自動化專家',
+  'instructors.michael.specialty': '編程與自定義自動化',
+  'instructors.michael.experience': '8+ 年',
+  'instructors.michael.biography': 'Jason是一位專業開發者，擁有8年以上的編程經驗，專精於LLM聊天機器人開發、MCP整合和網頁應用程式。他一直在深入學習AI來提升編程技能。',
+  'instructors.michael.philosophy': '沒有AI，就沒有生活！AI能改變的比你想像的更多。每個開發者都需要擁抱AI來保持相關性並創建非凡的解決方案。',
+  'instructors.michael.qual1': 'LLM 聊天機器人開發專家',
+  'instructors.michael.qual2': 'MCP 整合專家',
+  'instructors.michael.qual3': '全端網頁開發',
+  'instructors.michael.qual4': 'AI增強編程解決方案',
+  
+  // Contact
+  'contact.title': '聯絡我們',
+  'contact.subtitle': '準備好用AI轉型您的業務嗎？',
+  'contact.form.title': '發送訊息給我們',
+  'contact.form.description': '填寫下面的表格，我們將在24小時內回覆您',
+  'contact.form.name': '全名',
+  'contact.form.email': '電子郵件地址',
+  'contact.form.message': '我們如何幫助您？',
+  'contact.form.send': '發送訊息',
+  'contact.info.emailUs': '電郵我們',
+  'contact.info.emailDescription': '快速獲得問題回覆',
+  'contact.info.callUs': '致電我們',
+  'contact.info.phoneDescription': '星期一至五 上午9時至下午6時 香港時間',
+  'contact.info.visitUs': '造訪我們',
+  'contact.info.visitDescription': '預約會面',
+  
+  // Toast Messages
+  'toast.messageSent': '訊息已發送！',
+  'toast.messageDescription': '感謝您的關注。我們將在24小時內回覆您。',
   
   // Features
   'features.title': '為什麼選擇AI Formula？',
@@ -239,10 +530,6 @@ const zhTranslations: Translations = {
   'courses.rating': '評分',
   'courses.enroll': '立即註冊',
   'courses.learnMore': '了解更多',
-  
-  // Testimonials
-  'testimonials.title': '學員怎麼說',
-  'testimonials.subtitle': '來自使用我們AI培訓的專業人士的真實反饋',
   
   // Footer
   'footer.company': 'AI Formula',
@@ -302,18 +589,6 @@ const zhTranslations: Translations = {
   'blog.share': '分享',
   'blog.like': '喜歡',
   'blog.comment': '評論',
-  
-  // Contact
-  'contact.title': '聯絡我們',
-  'contact.subtitle': '準備好用AI轉型您的業務嗎？',
-  'contact.name': '姓名',
-  'contact.email': '電子郵件',
-  'contact.subject': '主題',
-  'contact.message': '訊息',
-  'contact.send': '發送訊息',
-  'contact.phone': '電話',
-  'contact.address': '地址',
-  'contact.hours': '營業時間',
   
   // Auth
   'auth.login': '登入',
@@ -377,6 +652,77 @@ const zhTranslations: Translations = {
   'common.hide': '隱藏',
   'common.expand': '展開',
   'common.collapse': '收合',
+  
+  // 工具頁面
+  'tools.title': '實用工具',
+  'tools.subtitle': '發現強大工具，提升您的生產力和創造力',
+  'tools.categories.aiVideo': 'AI 影片工具',
+  'tools.categories.dataTools': '數據工具', 
+  'tools.categories.designTools': '設計工具',
+  'tools.categories.marketingTools': 'AI 行銷工具',
+  
+  // Design Tools
+  'tools.freepik.title': 'Freepik - 免費設計資源',
+  'tools.freepik.description': '獲取數百萬免費向量圖、照片和圖形素材。不花大錢也能創造驚人視覺效果。',
+  'tools.freepik.tag': '免費設計',
+  'tools.freepik.visitSite': '訪問 Freepik',
+  
+  // Data Tools
+  'tools.mem0.title': 'Mem0 - OpenMemory MCP',
+  'tools.mem0.description': 'AI應用的高級記憶管理和對話持久化。構建具有上下文記憶的智能AI系統。',
+  'tools.mem0.tag': 'AI記憶',
+  'tools.mem0.visitSite': '訪問 Mem0',
+  
+  'tools.chat4data.title': 'Chat4Data - AI 網頁數據提取',
+  'tools.chat4data.description': '通過聊天方式從任何網站提取結構化數據。無需編程，AI自動檢測並提取最有價值的數據。',
+  'tools.chat4data.tag': '數據提取',
+  'tools.chat4data.visitSite': '訪問 Chat4Data',
+  
+  // AI Video Tools
+  'tools.hailuo.title': 'Hailuo AI - 頂級AI影片生成',
+  'tools.hailuo.description': '免費使用Minimax的Hailuo 02，頂級AI影片工具，幾分鐘內將圖片轉換為驚艷HD影片。',
+  'tools.hailuo.tag': 'AI影片',
+  'tools.hailuo.visitSite': '訪問 Hailuo AI',
+  
+  'tools.higgsfield.title': 'Higgsfield AI - 視覺特效',
+  'tools.higgsfield.description': 'AI驅動的攝影機控制和視覺特效工具。從爆炸到超現實轉換，創造電影級視覺效果。',
+  'tools.higgsfield.tag': '視覺特效',
+  'tools.higgsfield.visitSite': '訪問 Higgsfield',
+  
+  'tools.unstableml.title': 'UnstableML - AI 虛擬人',
+  'tools.unstableml.description': '個性化AI虛擬人，用於產品展示、教程和UGC內容創作。克隆您的臉部和聲音。',
+  'tools.unstableml.tag': 'AI虛擬人',
+  'tools.unstableml.visitSite': '訪問 UnstableML',
+  
+  'tools.4dv.title': '4DV.AI - AI 影片平台',
+  'tools.4dv.description': '先進的AI影片生成和編輯平台，提供專業級影片創作工具和效果。',
+  'tools.4dv.tag': 'AI影片',
+  'tools.4dv.visitSite': '訪問 4DV.AI',
+  
+  'tools.seaweedapt.title': 'Seaweed APT2 - 實時影片生成',
+  'tools.seaweedapt.description': '自回歸對抗性後訓練，用於實時互動影片生成。以最小延遲串流高質量24fps影片。',
+  'tools.seaweedapt.tag': '實時影片',
+  'tools.seaweedapt.visitSite': '訪問 Seaweed APT',
+  
+  // 行銷工具
+  'tools.headai.title': 'Head AI - 全球首個AI行銷專家',
+  'tools.headai.description': '專業AI全面接管您的網紅和聯盟行銷。不只是工具，而是完整的AI行銷團隊，端到端處理營銷活動。',
+  'tools.headai.tag': 'AI行銷',
+  'tools.headai.visitSite': '訪問 Head AI',
+  
+  // 404 Page
+  'notFound.title': '糟糕！找不到頁面',
+  'notFound.subtitle': '您所尋找的頁面不存在',
+  'notFound.description': '很抱歉，這種情況可能發生。頁面可能已移動或刪除，或您可能輸入了錯誤的網址。',
+  'notFound.error404': '404',
+  'notFound.pageNotFound': '頁面未找到',
+  'notFound.quickLinks': '快速連結',
+  'notFound.backToHome': '返回首頁',
+  'notFound.contactSupport': '聯繫支援',
+  'notFound.reportProblem': '報告問題',
+  'notFound.currentPath': '尋找路於',
+  'notFound.timestamp': '時間',
+  'notFound.needHelp': '需要幫助？',
 }
 
 // 創建語言上下文

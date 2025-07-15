@@ -1,12 +1,12 @@
-# ?? SEO æ¨¡æ¿?´å??‡å? / SEO Template Integration Guide
+# ?? SEO æ¨¡æ¿?ï¿½ï¿½??ï¿½ï¿½? / SEO Template Integration Guide
 
 ## æ¦‚è¿° / Overview
 
-?¬æ??—å?ç¤ºå?ä½•å? SEO ç³»çµ±?‡ç¾?‰ç? CourseTemplate ??BlogTemplate ?´å?ï¼Œå¯¦?¾å??´ç? SEO ?ªå???
+?ï¿½ï¿½??ï¿½ï¿½?ç¤ºï¿½?ä½•ï¿½? SEO ç³»çµ±?ï¿½ç¾?ï¿½ï¿½? CourseTemplate ??BlogTemplate ?ï¿½ï¿½?ï¼Œå¯¦?ï¿½ï¿½??ï¿½ï¿½? SEO ?ï¿½ï¿½???
 
 This guide shows how to integrate the SEO system with existing CourseTemplate and BlogTemplate for complete SEO optimization.
 
-## ?¯ ?´å? CourseTemplate ??SEO / Integrating CourseTemplate with SEO
+## ?ï¿½ï¿½ ?ï¿½ï¿½? CourseTemplate ??SEO / Integrating CourseTemplate with SEO
 
 ### 1. å¢å¼·??CourseTemplate
 
@@ -31,7 +31,7 @@ interface EnhancedCourseTemplateProps {
   showQuiz?: boolean;
   currentLesson?: number;
   highlightModule?: number;
-  // SEO ?¸é?å±¬æ€?
+  // SEO ?ï¿½ï¿½?å±¬ï¿½?
   seoData?: {
     customTitle?: string;
     customDescription?: string;
@@ -39,7 +39,7 @@ interface EnhancedCourseTemplateProps {
     customImage?: string;
     faqs?: Array<{ question: string; answer: string }>;
   };
-  // ?†æ?è¿½è¹¤
+  // ?ï¿½ï¿½?è¿½è¹¤
   trackingEvents?: {
     onView?: string;
     onEnroll?: string;
@@ -63,7 +63,7 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
   const { language } = useLanguage();
   const { trackEvent, trackPageView } = useAnalytics();
 
-  // ?Ÿæ? SEO ?¸æ?
+  // ?ï¿½ï¿½? SEO ?ï¿½ï¿½?
   const generateSEOData = () => {
     const baseTitle = language === 'zh-HK' ? course.title.zh : course.title.en;
     const baseDescription = language === 'zh-HK' ? course.description.zh : course.description.en;
@@ -71,7 +71,7 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     return {
       title: seoData?.customTitle || `${baseTitle} | AI Formula`,
       description: seoData?.customDescription || baseDescription,
-      keywords: seoData?.customKeywords || `${course.category}, AIèª²ç?, ${course.level}`,
+      keywords: seoData?.customKeywords || `${course.category}, AIèª²ï¿½?, ${course.level}`,
       image: seoData?.customImage || course.thumbnail,
       url: `/courses/${course.id}`,
       type: 'course' as const,
@@ -90,10 +90,10 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     };
   };
 
-  // ?Ÿæ?éºµå?å±?
+  // ?ï¿½ï¿½?éºµï¿½?ï¿½?
   const generateBreadcrumbs = () => {
-    const homeLabel = language === 'zh-HK' ? 'é¦–é?' : 'Home';
-    const coursesLabel = language === 'zh-HK' ? 'èª²ç?' : 'Courses';
+    const homeLabel = language === 'zh-HK' ? 'é¦–ï¿½?' : 'Home';
+    const coursesLabel = language === 'zh-HK' ? 'èª²ï¿½?' : 'Courses';
     const courseTitle = language === 'zh-HK' ? course.title.zh : course.title.en;
     
     return [
@@ -103,23 +103,23 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     ];
   };
 
-  // ?Ÿæ? FAQ ?¸æ?
+  // ?ï¿½ï¿½? FAQ ?ï¿½ï¿½?
   const generateFAQs = () => {
     if (seoData?.faqs) return seoData.faqs;
     
-    // ?è¨­ FAQï¼ˆæ ¹?šè?è¨€ï¼?
+    // ?ï¿½è¨­ FAQï¼ˆæ ¹?ï¿½ï¿½?è¨€ï¿½?
     return language === 'zh-HK' ? [
       {
-        question: '?™å€‹èª²ç¨‹é©?ˆå?å­¸è€…å?ï¼?,
-        answer: '?¯ç?ï¼Œæ??‘ç?èª²ç?å¾åŸºç¤é?å§‹æ?å­¸ï??©å??„ç¨®æ°´å¹³?„å­¸ç¿’è€…ã€?
+        question: '?ï¿½å€‹èª²ç¨‹é©?ï¿½ï¿½?å­¸è€…ï¿½?ï¿½?,
+        answer: '?ï¿½ï¿½?ï¼Œï¿½??ï¿½ï¿½?èª²ï¿½?å¾åŸºç¤ï¿½?å§‹ï¿½?å­¸ï¿½??ï¿½ï¿½??ï¿½ç¨®æ°´å¹³?ï¿½å­¸ç¿’è€…ï¿½?
       },
       {
-        question: 'å®Œæ?èª²ç?å¾Œæ??²å?è­‰æ›¸?ï?',
-        answer: 'å®Œæ??€?‰èª²ç¨‹å…§å®¹å?è©•ä¼°å¾Œï??¨å??²å? AI Formula ?„å??è??¸ã€?
+        question: 'å®Œï¿½?èª²ï¿½?å¾Œï¿½??ï¿½ï¿½?è­‰æ›¸?ï¿½ï¿½?',
+        answer: 'å®Œï¿½??ï¿½?ï¿½èª²ç¨‹å…§å®¹ï¿½?è©•ä¼°å¾Œï¿½??ï¿½ï¿½??ï¿½ï¿½? AI Formula ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?
       },
       {
-        question: 'èª²ç??§å®¹?ƒå??Ÿæ›´?°å?ï¼?,
-        answer: '?¯ç?ï¼Œæ??‘æ??¹æ??€?°ç?AI?€è¡“ç™¼å±•å??Ÿæ›´?°èª²ç¨‹å…§å®¹ã€?
+        question: 'èª²ï¿½??ï¿½å®¹?ï¿½ï¿½??ï¿½æ›´?ï¿½ï¿½?ï¿½?,
+        answer: '?ï¿½ï¿½?ï¼Œï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½?ï¿½ï¿½?AI?ï¿½è¡“ç™¼å±•ï¿½??ï¿½æ›´?ï¿½èª²ç¨‹å…§å®¹ï¿½?
       }
     ] : [
       {
@@ -137,12 +137,12 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     ];
   };
 
-  // è¿½è¹¤?é¢?è¦½
+  // è¿½è¹¤?ï¿½é¢?ï¿½è¦½
   useEffect(() => {
     const title = language === 'zh-HK' ? course.title.zh : course.title.en;
     trackPageView(`/courses/${course.id}`, title);
     
-    // è¿½è¹¤èª²ç??è¦½äº‹ä»¶
+    // è¿½è¹¤èª²ï¿½??ï¿½è¦½äº‹ä»¶
     if (trackingEvents?.onView) {
       trackEvent(trackingEvents.onView, {
         course_id: course.id,
@@ -153,7 +153,7 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
     }
   }, [course.id, displayMode, language]);
 
-  // ?•ç?è¨»å?äº‹ä»¶
+  // ?ï¿½ï¿½?è¨»ï¿½?äº‹ä»¶
   const handleEnrollClick = () => {
     if (trackingEvents?.onEnroll) {
       trackEvent(trackingEvents.onEnroll, {
@@ -164,13 +164,13 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
       });
     }
     
-    // ?·è?è¨»å??è¼¯
+    // ?ï¿½ï¿½?è¨»ï¿½??ï¿½è¼¯
     if (props.onEnroll) {
       props.onEnroll(course.id);
     }
   };
 
-  // ?•ç?å®Œæ?äº‹ä»¶
+  // ?ï¿½ï¿½?å®Œï¿½?äº‹ä»¶
   const handleCourseComplete = () => {
     if (trackingEvents?.onComplete) {
       trackEvent(trackingEvents.onComplete, {
@@ -192,17 +192,17 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
 
   return (
     <>
-      {/* SEO ?­éƒ¨æ¨™ç±¤ */}
+      {/* SEO ?ï¿½éƒ¨æ¨™ç±¤ */}
       <SEOHead {...seoData} />
       
-      {/* çµæ??–æ•¸??*/}
+      {/* çµï¿½??ï¿½æ•¸??*/}
       <CourseSchema data={seoData.course} />
       <BreadcrumbSchema breadcrumbs={breadcrumbs} />
       <FAQSchema faqs={faqs} />
       
-      {/* èª²ç??§å®¹ */}
+      {/* èª²ï¿½??ï¿½å®¹ */}
       <div className="course-template">
-        {/* ?Ÿæ??„èª²ç¨‹æ¨¡?¿å…§å®?*/}
+        {/* ?ï¿½ï¿½??ï¿½èª²ç¨‹æ¨¡?ï¿½å…§ï¿½?*/}
         <div className="course-header">
           <h1>{language === 'zh-HK' ? course.title.zh : course.title.en}</h1>
           <p>{language === 'zh-HK' ? course.description.zh : course.description.en}</p>
@@ -212,33 +212,33 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
               onClick={handleEnrollClick}
               className="enroll-button"
             >
-              {language === 'zh-HK' ? 'ç«‹å³?±å?' : 'Enroll Now'}
+              {language === 'zh-HK' ? 'ç«‹å³?ï¿½ï¿½?' : 'Enroll Now'}
             </button>
           )}
         </div>
         
-        {/* èª²ç??§å®¹?¹æ? displayMode æ¸²æ? */}
+        {/* èª²ï¿½??ï¿½å®¹?ï¿½ï¿½? displayMode æ¸²ï¿½? */}
         {displayMode === 'course' && (
           <div className="course-overview">
-            {/* èª²ç?æ¦‚è¦½?§å®¹ */}
+            {/* èª²ï¿½?æ¦‚è¦½?ï¿½å®¹ */}
           </div>
         )}
         
         {displayMode === 'outline' && (
           <div className="course-outline">
-            {/* èª²ç?å¤§ç¶±?§å®¹ */}
+            {/* èª²ï¿½?å¤§ç¶±?ï¿½å®¹ */}
           </div>
         )}
         
         {displayMode === 'learning' && (
           <div className="course-learning">
-            {/* å­¸ç??Œé¢?§å®¹ */}
+            {/* å­¸ï¿½??ï¿½é¢?ï¿½å®¹ */}
           </div>
         )}
         
-        {/* FAQ ?¨å? */}
+        {/* FAQ ?ï¿½ï¿½? */}
         <div className="faq-section">
-          <h2>{language === 'zh-HK' ? 'å¸¸è??é?' : 'FAQ'}</h2>
+          <h2>{language === 'zh-HK' ? 'å¸¸ï¿½??ï¿½ï¿½?' : 'FAQ'}</h2>
           {faqs.map((faq, index) => (
             <div key={index} className="faq-item">
               <h3>{faq.question}</h3>
@@ -252,7 +252,7 @@ export const CourseTemplate: React.FC<EnhancedCourseTemplateProps> = ({
 };
 ```
 
-### 2. ä½¿ç”¨ç¯„ä? / Usage Example
+### 2. ä½¿ç”¨ç¯„ï¿½? / Usage Example
 
 ```typescript
 // src/pages/courses/AIWritingAssistantCourse.tsx
@@ -268,24 +268,24 @@ export default function AIWritingAssistantCourse() {
       showProgress={true}
       showEnrollment={true}
       showNotes={true}
-      // SEO ?ªå?ç¾©è¨­ç½?
+      // SEO ?ï¿½ï¿½?ç¾©è¨­ï¿½?
       seoData={{
-        customTitle: 'AIå¯«ä??©æ?ç²¾é€šèª²ç¨?- å­¸ç?ChatGPTå¯«ä??€å·?,
-        customDescription: '?Œæ¡AIå¯«ä?å·¥å…·?„ä½¿?¨æ?å·§ï??å?å¯«ä??ˆç??Œè³ª?ã€‚å??«ChatGPT?Claudeç­‰å·¥?·ç?å¯¦æˆ°?‰ç”¨??,
-        customKeywords: 'AIå¯«ä?, ChatGPTå¯«ä?, äººå·¥?ºèƒ½å¯«ä?, å¯«ä??ˆç?, ?§å®¹?µä?',
+        customTitle: 'AIå¯«ï¿½??ï¿½ï¿½?ç²¾é€šèª²ï¿½?- å­¸ï¿½?ChatGPTå¯«ï¿½??ï¿½ï¿½?,
+        customDescription: '?ï¿½æ¡AIå¯«ï¿½?å·¥å…·?ï¿½ä½¿?ï¿½ï¿½?å·§ï¿½??ï¿½ï¿½?å¯«ï¿½??ï¿½ï¿½??ï¿½è³ª?ï¿½ã€‚ï¿½??ï¿½ChatGPT?ï¿½Claudeç­‰å·¥?ï¿½ï¿½?å¯¦æˆ°?ï¿½ç”¨??,
+        customKeywords: 'AIå¯«ï¿½?, ChatGPTå¯«ï¿½?, äººå·¥?ï¿½èƒ½å¯«ï¿½?, å¯«ï¿½??ï¿½ï¿½?, ?ï¿½å®¹?ï¿½ï¿½?',
         customImage: '/assets/images/courses/ai-writing-assistant-seo.jpg',
         faqs: [
           {
-            question: 'å­¸ç?AIå¯«ä??€è¦ç·¨ç¨‹è??¯å?ï¼?,
-            answer: 'ä¸é?è¦ï??¬èª²ç¨‹å?æ³¨æ–¼å·¥å…·ä½¿ç”¨?Œå¯«ä½œæ?å·§ï??¡é?ç·¨ç??ºç???
+            question: 'å­¸ï¿½?AIå¯«ï¿½??ï¿½è¦ç·¨ç¨‹ï¿½??ï¿½ï¿½?ï¿½?,
+            answer: 'ä¸ï¿½?è¦ï¿½??ï¿½èª²ç¨‹ï¿½?æ³¨æ–¼å·¥å…·ä½¿ç”¨?ï¿½å¯«ä½œï¿½?å·§ï¿½??ï¿½ï¿½?ç·¨ï¿½??ï¿½ï¿½???
           },
           {
-            question: 'èª²ç??…å«?ªä?AIå¯«ä?å·¥å…·ï¼?,
-            answer: '?…å«ChatGPT?Claude?Jasper?Copy.aiç­‰ä¸»æµAIå¯«ä?å·¥å…·?„ä½¿?¨æ–¹æ³•ã€?
+            question: 'èª²ï¿½??ï¿½å«?ï¿½ï¿½?AIå¯«ï¿½?å·¥å…·ï¿½?,
+            answer: '?ï¿½å«ChatGPT?ï¿½Claude?ï¿½Jasper?ï¿½Copy.aiç­‰ä¸»æµAIå¯«ï¿½?å·¥å…·?ï¿½ä½¿?ï¿½æ–¹æ³•ï¿½?
           }
         ]
       }}
-      // ?†æ?è¿½è¹¤è¨­ç½®
+      // ?ï¿½ï¿½?è¿½è¹¤è¨­ç½®
       trackingEvents={{
         onView: 'course_view',
         onEnroll: 'course_enrollment',
@@ -293,18 +293,18 @@ export default function AIWritingAssistantCourse() {
       }}
       onEnroll={(courseId) => {
         console.log('Enrolled in course:', courseId);
-        // ?•ç?è¨»å??è¼¯
+        // ?ï¿½ï¿½?è¨»ï¿½??ï¿½è¼¯
       }}
       onComplete={(courseId) => {
         console.log('Course completed:', courseId);
-        // ?•ç?å®Œæ??è¼¯
+        // ?ï¿½ï¿½?å®Œï¿½??ï¿½è¼¯
       }}
     />
   );
 }
 ```
 
-## ?¯ ?´å? BlogTemplate ??SEO / Integrating BlogTemplate with SEO
+## ?ï¿½ï¿½ ?ï¿½ï¿½? BlogTemplate ??SEO / Integrating BlogTemplate with SEO
 
 ### 1. å¢å¼·??BlogTemplate
 
@@ -326,14 +326,14 @@ interface EnhancedBlogTemplateProps {
   showTags?: boolean;
   showSharing?: boolean;
   showRelated?: boolean;
-  // SEO ?¸é?å±¬æ€?
+  // SEO ?ï¿½ï¿½?å±¬ï¿½?
   seoData?: {
     customTitle?: string;
     customDescription?: string;
     customKeywords?: string;
     customImage?: string;
   };
-  // ?†æ?è¿½è¹¤
+  // ?ï¿½ï¿½?è¿½è¹¤
   trackingEvents?: {
     onView?: string;
     onShare?: string;
@@ -355,7 +355,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
   const { language } = useLanguage();
   const { trackEvent, trackPageView } = useAnalytics();
 
-  // ?Ÿæ? SEO ?¸æ?
+  // ?ï¿½ï¿½? SEO ?ï¿½ï¿½?
   const generateSEOData = () => {
     const baseTitle = language === 'zh-HK' ? post.title.zh : post.title.en;
     const baseDescription = language === 'zh-HK' ? post.description.zh : post.description.en;
@@ -387,10 +387,10 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
     };
   };
 
-  // ?Ÿæ?éºµå?å±?
+  // ?ï¿½ï¿½?éºµï¿½?ï¿½?
   const generateBreadcrumbs = () => {
-    const homeLabel = language === 'zh-HK' ? 'é¦–é?' : 'Home';
-    const blogLabel = language === 'zh-HK' ? '?šå®¢' : 'Blog';
+    const homeLabel = language === 'zh-HK' ? 'é¦–ï¿½?' : 'Home';
+    const blogLabel = language === 'zh-HK' ? '?ï¿½å®¢' : 'Blog';
     const postTitle = language === 'zh-HK' ? post.title.zh : post.title.en;
     
     return [
@@ -400,13 +400,13 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
     ];
   };
 
-  // è¿½è¹¤?é¢?è¦½
+  // è¿½è¹¤?ï¿½é¢?ï¿½è¦½
   useEffect(() => {
     if (displayMode === 'detail') {
       const title = language === 'zh-HK' ? post.title.zh : post.title.en;
       trackPageView(`/blog/${post.id}`, title);
       
-      // è¿½è¹¤?‡ç??è¦½äº‹ä»¶
+      // è¿½è¹¤?ï¿½ï¿½??ï¿½è¦½äº‹ä»¶
       if (trackingEvents?.onView) {
         trackEvent(trackingEvents.onView, {
           post_id: post.id,
@@ -419,7 +419,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
     }
   }, [post.id, displayMode, language]);
 
-  // ?•ç??†äº«äº‹ä»¶
+  // ?ï¿½ï¿½??ï¿½äº«äº‹ä»¶
   const handleShare = (platform: string) => {
     if (trackingEvents?.onShare) {
       trackEvent(trackingEvents.onShare, {
@@ -431,7 +431,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
     }
   };
 
-  // ?•ç??¶è?äº‹ä»¶
+  // ?ï¿½ï¿½??ï¿½ï¿½?äº‹ä»¶
   const handleBookmark = () => {
     if (trackingEvents?.onBookmark) {
       trackEvent(trackingEvents.onBookmark, {
@@ -447,7 +447,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
 
   return (
     <>
-      {/* ?ªåœ¨è©³æ??é¢é¡¯ç¤º SEO æ¨™ç±¤ */}
+      {/* ?ï¿½åœ¨è©³ï¿½??ï¿½é¢é¡¯ç¤º SEO æ¨™ç±¤ */}
       {displayMode === 'detail' && (
         <>
           <SEOHead {...seoData} />
@@ -456,11 +456,11 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
         </>
       )}
       
-      {/* ?šå®¢?§å®¹ */}
+      {/* ?ï¿½å®¢?ï¿½å®¹ */}
       <div className="blog-template">
         {displayMode === 'list' && (
           <div className="blog-list-item">
-            {/* ?—è¡¨?…ç›®?§å®¹ */}
+            {/* ?ï¿½è¡¨?ï¿½ç›®?ï¿½å®¹ */}
           </div>
         )}
         
@@ -471,9 +471,9 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
               
               {showAuthor && (
                 <div className="blog-meta">
-                  <span>{language === 'zh-HK' ? 'ä½œè€…ï?' : 'By '}{post.author}</span>
-                  <span>{language === 'zh-HK' ? '?¼å??‚é?ï¼? : 'Published: '}{post.publishedTime}</span>
-                  <span>{language === 'zh-HK' ? '?†é?ï¼? : 'Category: '}{post.category}</span>
+                  <span>{language === 'zh-HK' ? 'ä½œè€…ï¿½?' : 'By '}{post.author}</span>
+                  <span>{language === 'zh-HK' ? '?ï¿½ï¿½??ï¿½ï¿½?ï¿½? : 'Published: '}{post.publishedTime}</span>
+                  <span>{language === 'zh-HK' ? '?ï¿½ï¿½?ï¿½? : 'Category: '}{post.category}</span>
                 </div>
               )}
             </header>
@@ -484,7 +484,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
             
             {showTags && (
               <div className="blog-tags">
-                <h3>{language === 'zh-HK' ? 'æ¨™ç±¤ï¼? : 'Tags:'}</h3>
+                <h3>{language === 'zh-HK' ? 'æ¨™ç±¤ï¿½? : 'Tags:'}</h3>
                 {post.tags.map(tag => (
                   <span key={tag} className="tag">{tag}</span>
                 ))}
@@ -493,12 +493,12 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
             
             {showSharing && (
               <div className="blog-sharing">
-                <h3>{language === 'zh-HK' ? '?†äº«?‡ç?ï¼? : 'Share:'}</h3>
+                <h3>{language === 'zh-HK' ? '?ï¿½äº«?ï¿½ï¿½?ï¿½? : 'Share:'}</h3>
                 <button onClick={() => handleShare('facebook')}>Facebook</button>
                 <button onClick={() => handleShare('twitter')}>Twitter</button>
                 <button onClick={() => handleShare('linkedin')}>LinkedIn</button>
                 <button onClick={handleBookmark}>
-                  {language === 'zh-HK' ? '?¶è?' : 'Bookmark'}
+                  {language === 'zh-HK' ? '?ï¿½ï¿½?' : 'Bookmark'}
                 </button>
               </div>
             )}
@@ -510,7 +510,7 @@ export const BlogTemplate: React.FC<EnhancedBlogTemplateProps> = ({
 };
 ```
 
-### 2. ä½¿ç”¨ç¯„ä? / Usage Example
+### 2. ä½¿ç”¨ç¯„ï¿½? / Usage Example
 
 ```typescript
 // src/pages/blog/BlogPost.tsx
@@ -524,7 +524,7 @@ export default function BlogPost() {
   const post = blogPosts.find(p => p.id === id);
 
   if (!post) {
-    return <div>?‡ç?ä¸å???/div>;
+    return <div>?ï¿½ï¿½?ä¸ï¿½???/div>;
   }
 
   return (
@@ -535,14 +535,14 @@ export default function BlogPost() {
       showTags={true}
       showSharing={true}
       showRelated={true}
-      // SEO ?ªå?ç¾©è¨­ç½?
+      // SEO ?ï¿½ï¿½?ç¾©è¨­ï¿½?
       seoData={{
-        customTitle: `${post.title.zh} - AI Formula å°ˆæ¥­AI?€è¡“å?å®¢`,
-        customDescription: `${post.description.zh} äº†è§£?´å?AI?€è¡“æ??¨å??€?°è¶¨?¢ã€‚`,
-        customKeywords: `${post.tags.join(', ')}, AI?€è¡? äººå·¥?ºèƒ½, ?€è¡“å?å®¢`,
+        customTitle: `${post.title.zh} - AI Formula å°ˆæ¥­AI?ï¿½è¡“ï¿½?å®¢`,
+        customDescription: `${post.description.zh} äº†è§£?ï¿½ï¿½?AI?ï¿½è¡“ï¿½??ï¿½ï¿½??ï¿½?ï¿½è¶¨?ï¿½ã€‚`,
+        customKeywords: `${post.tags.join(', ')}, AI?ï¿½ï¿½? äººå·¥?ï¿½èƒ½, ?ï¿½è¡“ï¿½?å®¢`,
         customImage: `/assets/images/blog/${post.id}-seo.jpg`
       }}
-      // ?†æ?è¿½è¹¤è¨­ç½®
+      // ?ï¿½ï¿½?è¿½è¹¤è¨­ç½®
       trackingEvents={{
         onView: 'blog_post_view',
         onShare: 'blog_post_share',
@@ -553,9 +553,9 @@ export default function BlogPost() {
 }
 ```
 
-## ?¯ ?¨å? SEO è¨­ç½® / Global SEO Setup
+## ?ï¿½ï¿½ ?ï¿½ï¿½? SEO è¨­ç½® / Global SEO Setup
 
-### 1. ?´æ–° App.tsx
+### 1. ?ï¿½æ–° App.tsx
 
 ```typescript
 // src/App.tsx
@@ -566,7 +566,7 @@ import { AnalyticsProvider, PerformanceOptimizer } from '@/components/SEO';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 
-// ?é¢çµ„ä»¶
+// ?ï¿½é¢çµ„ä»¶
 import HomePage from '@/pages/general/HomePage';
 import CourseDetail from '@/pages/courses/CourseDetail';
 import BlogPost from '@/pages/blog/BlogPost';
@@ -596,7 +596,7 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/courses/:id" element={<CourseDetail />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
-                  {/* ?¶ä?è·¯ç”± */}
+                  {/* ?ï¿½ï¿½?è·¯ç”± */}
                 </Routes>
               </Router>
             </AuthProvider>
@@ -610,7 +610,7 @@ function App() {
 export default App;
 ```
 
-### 2. ?µå»º SEO ç®¡ç??é¢
+### 2. ?ï¿½å»º SEO ç®¡ï¿½??ï¿½é¢
 
 ```typescript
 // src/pages/admin/SEOManager.tsx
@@ -623,7 +623,7 @@ export default function SEOManager() {
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
-    // ?Ÿæ??€?‰é??¢ç? sitemap ?¸æ?
+    // ?ï¿½ï¿½??ï¿½?ï¿½ï¿½??ï¿½ï¿½? sitemap ?ï¿½ï¿½?
     const generatePages = () => {
       const staticPages = [
         { url: '/', priority: 1.0, changefreq: 'weekly', lastmod: new Date().toISOString() },
@@ -654,7 +654,7 @@ export default function SEOManager() {
 
   return (
     <div className="seo-manager">
-      <h1>SEO ç®¡ç??¢æ¿</h1>
+      <h1>SEO ç®¡ï¿½??ï¿½æ¿</h1>
       
       <SitemapGenerator
         baseUrl="https://ai-formula.com"
@@ -663,18 +663,18 @@ export default function SEOManager() {
       />
       
       <div className="seo-metrics">
-        <h2>SEO ?‡æ?</h2>
+        <h2>SEO ?ï¿½ï¿½?</h2>
         <div className="metrics-grid">
           <div className="metric-card">
-            <h3>ç¸½é??¢æ•¸</h3>
+            <h3>ç¸½ï¿½??ï¿½æ•¸</h3>
             <p>{pages.length}</p>
           </div>
           <div className="metric-card">
-            <h3>èª²ç??é¢</h3>
+            <h3>èª²ï¿½??ï¿½é¢</h3>
             <p>{courseData.length}</p>
           </div>
           <div className="metric-card">
-            <h3>?šå®¢?‡ç?</h3>
+            <h3>?ï¿½å®¢?ï¿½ï¿½?</h3>
             <p>{blogPosts.length}</p>
           </div>
         </div>
@@ -684,12 +684,12 @@ export default function SEOManager() {
 }
 ```
 
-## ?¯ ?°å?è®Šæ•¸è¨­ç½® / Environment Variables Setup
+## ?ï¿½ï¿½ ?ï¿½ï¿½?è®Šæ•¸è¨­ç½® / Environment Variables Setup
 
-### .env ?‡ä»¶è¨­ç½®
+### .env ?ï¿½ä»¶è¨­ç½®
 
 ```env
-# ç¶²ç??ºæœ¬è¨­ç½®
+# ç¶²ï¿½??ï¿½æœ¬è¨­ç½®
 VITE_SITE_URL=https://ai-formula.com
 VITE_SITE_NAME=AI Formula
 
@@ -705,41 +705,41 @@ VITE_FACEBOOK_PIXEL_ID=123456789
 # Hotjar
 VITE_HOTJAR_ID=1234567
 
-# ?‹ç™¼æ¨¡å?è¨­ç½®
+# ?ï¿½ç™¼æ¨¡ï¿½?è¨­ç½®
 VITE_ENABLE_SEO_DEBUG=true
 VITE_ENABLE_PERFORMANCE_METRICS=true
 ```
 
-## ?¯ ?€ä½³å¯¦è¸ç¸½çµ?/ Best Practices Summary
+## ?ï¿½ï¿½ ?ï¿½ä½³å¯¦è¸ç¸½ï¿½?/ Best Practices Summary
 
-### 1. æ¨¡æ¿ä½¿ç”¨?€ä½³å¯¦è¸?
+### 1. æ¨¡æ¿ä½¿ç”¨?ï¿½ä½³å¯¦ï¿½?
 
-- **çµ±ä? SEO è¨­ç½®ï¼?* ?€?‰æ¨¡?¿éƒ½?…å«?ºæœ¬??SEO çµ„ä»¶
-- **?ªå?ç¾©é?æ´»æ€§ï?** ?è¨±æ¯å€‹é??¢è‡ªå®šç¾© SEO ?¸æ?
-- **?†æ?è¿½è¹¤ï¼?* ?§å»º?†æ?äº‹ä»¶è¿½è¹¤?Ÿèƒ½
-- **å¤šè?è¨€?¯æ?ï¼?* ?¹æ?èªè??ªå??Ÿæ?å°æ???SEO ?§å®¹
+- **çµ±ï¿½? SEO è¨­ç½®ï¿½?* ?ï¿½?ï¿½æ¨¡?ï¿½éƒ½?ï¿½å«?ï¿½æœ¬??SEO çµ„ä»¶
+- **?ï¿½ï¿½?ç¾©ï¿½?æ´»æ€§ï¿½?** ?ï¿½è¨±æ¯å€‹ï¿½??ï¿½è‡ªå®šç¾© SEO ?ï¿½ï¿½?
+- **?ï¿½ï¿½?è¿½è¹¤ï¿½?* ?ï¿½å»º?ï¿½ï¿½?äº‹ä»¶è¿½è¹¤?ï¿½èƒ½
+- **å¤šï¿½?è¨€?ï¿½ï¿½?ï¿½?* ?ï¿½ï¿½?èªï¿½??ï¿½ï¿½??ï¿½ï¿½?å°ï¿½???SEO ?ï¿½å®¹
 
-### 2. ?§èƒ½?ªå??€ä½³å¯¦è¸?
+### 2. ?ï¿½èƒ½?ï¿½ï¿½??ï¿½ä½³å¯¦ï¿½?
 
-- **å»¶é²? è?ï¼?* ?–ç??Œé??œéµè³‡æ?å»¶é²? è?
-- **?å?è¼‰ï?** ?œéµè³‡æ??å?? è?
-- **ä»?¢¼?†å‰²ï¼?* ?‰é?? è?çµ„ä»¶
-- **å¿«å?ç­–ç•¥ï¼?* ?©ç•¶?„å¿«?–è¨­ç½?
+- **å»¶é²?ï¿½ï¿½?ï¿½?* ?ï¿½ï¿½??ï¿½ï¿½??ï¿½éµè³‡ï¿½?å»¶é²?ï¿½ï¿½?
+- **?ï¿½ï¿½?è¼‰ï¿½?** ?ï¿½éµè³‡ï¿½??ï¿½ï¿½??ï¿½ï¿½?
+- **ï¿½?ï¿½ï¿½?ï¿½å‰²ï¿½?* ?ï¿½ï¿½??ï¿½ï¿½?çµ„ä»¶
+- **å¿«ï¿½?ç­–ç•¥ï¿½?* ?ï¿½ç•¶?ï¿½å¿«?ï¿½è¨­ï¿½?
 
-### 3. ?†æ?è¿½è¹¤?€ä½³å¯¦è¸?
+### 3. ?ï¿½ï¿½?è¿½è¹¤?ï¿½ä½³å¯¦ï¿½?
 
-- **äº‹ä»¶?½å?ï¼?* ä½¿ç”¨çµ±ä??„ä?ä»¶å‘½?è?ç¯?
-- **?¨æˆ¶?±ç?ï¼?* å¯¦ç¾ GDPR ?¸å®¹?„å??ç®¡??
-- **å¤šå¹³?°è¿½è¹¤ï?** ?¯æ´å¤šå€‹å??å¹³??
-- **è½‰æ?è¿½è¹¤ï¼?* è¿½è¹¤?è??„æ¥­?™æ?æ¨?
+- **äº‹ä»¶?ï¿½ï¿½?ï¿½?* ä½¿ç”¨çµ±ï¿½??ï¿½ï¿½?ä»¶å‘½?ï¿½ï¿½?ï¿½?
+- **?ï¿½æˆ¶?ï¿½ï¿½?ï¿½?* å¯¦ç¾ GDPR ?ï¿½å®¹?ï¿½ï¿½??ï¿½ç®¡??
+- **å¤šå¹³?ï¿½è¿½è¹¤ï¿½?** ?ï¿½æ´å¤šå€‹ï¿½??ï¿½å¹³??
+- **è½‰ï¿½?è¿½è¹¤ï¿½?* è¿½è¹¤?ï¿½ï¿½??ï¿½æ¥­?ï¿½ï¿½?ï¿½?
 
-### 4. SEO ?§å®¹?€ä½³å¯¦è¸?
+### 4. SEO ?ï¿½å®¹?ï¿½ä½³å¯¦ï¿½?
 
-- **?¨ç‰¹?§ï?** æ¯å€‹é??¢éƒ½?‰ç¨?¹ç?æ¨™é??Œæ?è¿?
-- **?œéµè©ï?** ?ˆç?ä½¿ç”¨?œéµè©ï??¿å??åº¦?ªå?
-- **çµæ??–æ•¸?šï?** ä½¿ç”¨?©ç•¶??Schema.org æ¨™è?
-- **?§éƒ¨???ï¼?* ?¯å¥½?„å…§?¨é€??çµæ?
+- **?ï¿½ç‰¹?ï¿½ï¿½?** æ¯å€‹ï¿½??ï¿½éƒ½?ï¿½ç¨?ï¿½ï¿½?æ¨™ï¿½??ï¿½ï¿½?ï¿½?
+- **?ï¿½éµè©ï¿½?** ?ï¿½ï¿½?ä½¿ç”¨?ï¿½éµè©ï¿½??ï¿½ï¿½??ï¿½åº¦?ï¿½ï¿½?
+- **çµï¿½??ï¿½æ•¸?ï¿½ï¿½?** ä½¿ç”¨?ï¿½ç•¶??Schema.org æ¨™ï¿½?
+- **?ï¿½éƒ¨???ï¿½?* ?ï¿½å¥½?ï¿½å…§?ï¿½ï¿½??çµï¿½?
 
-?é??™å€‹æ•´?ˆæ??—ï??¨å¯ä»¥å? SEO ç³»çµ±?¡ç¸«?†æ??°ç¾?‰ç?æ¨¡æ¿ä¸­ï?å¯¦ç¾?¨é¢?„æ?ç´¢å??å„ª?–ã€?
+?ï¿½ï¿½??ï¿½å€‹æ•´?ï¿½ï¿½??ï¿½ï¿½??ï¿½å¯ä»¥ï¿½? SEO ç³»çµ±?ï¿½ç¸«?ï¿½ï¿½??ï¿½ç¾?ï¿½ï¿½?æ¨¡æ¿ä¸­ï¿½?å¯¦ç¾?ï¿½é¢?ï¿½ï¿½?ç´¢ï¿½??ï¿½å„ª?ï¿½ï¿½?
 
 Through this integration guide, you can seamlessly integrate the SEO system into existing templates for comprehensive search engine optimization. 

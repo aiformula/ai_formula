@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,567 +7,468 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, Clock, Users, Star, Play, BookOpen, Code, Brain, Award, TrendingUp, Search, Sparkles, Wand2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import Atropos from 'atropos/react';
-import 'atropos/css';
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
-const Course = () => {
-  const { language } = useLanguage();
+// Types
+interface CourseData {
+  id: string;
+  title: string;
+  titleCht: string;
+  description: string;
+  descriptionCht: string;
+  duration: string;
+  durationCht: string;
+  level: string;
+  levelCht: string;
+  price: string;
+  originalPrice?: string;
+  image: string;
+  instructor: string;
+  instructorCht: string;
+  rating: number;
+  students: number;
+  category: string;
+  categoryCht: string;
+  featured: boolean;
+  bestseller: boolean;
+  newCourse: boolean;
+  includes: string[];
+  includesCht: string[];
+  modules: CourseModule[];
+}
+
+interface CourseModule {
+  id: number;
+  title: string;
+  titleCht: string;
+  description: string;
+  descriptionCht: string;
+  duration: string;
+  videoCount: number;
+  completed: boolean;
+}
+
+// Sample course data
+const sampleCourses: CourseData[] = [
+  {
+    id: 'ai-fundamentals',
+    title: "AI Fundamentals for Hong Kong Business",
+    titleCht: "香港企業AI基礎課程",
+    description: "Learn the essential AI concepts and how to apply them in Hong Kong business context.",
+    descriptionCht: "學習AI基本概念，了解如何在香港商業環境中應用人工智能技術",
+    duration: "8 weeks",
+    durationCht: "8週",
+    level: "Beginner",
+    levelCht: "初級",
+    price: "HK$2,999",
+    originalPrice: "HK$3,999",
+    image: "/images/courses/ai-fundamentals.jpg",
+    instructor: "Kenneth Wong",
+    instructorCht: "黃志明",
+    rating: 4.8,
+    students: 1247,
+    category: "AI Fundamentals",
+    categoryCht: "AI基礎",
+    featured: true,
+    bestseller: true,
+    newCourse: false,
+    includes: [
+      "8 weeks of comprehensive content",
+      "Live Q&A sessions",
+      "Certificate of completion",
+      "Business implementation guide"
+    ],
+    includesCht: [
+      "8週全面內容",
+      "直播問答環節",
+      "完成證書",
+      "商業實施指南"
+    ],
+    modules: [
+      {
+        id: 1,
+        title: "Introduction to AI for Business",
+        titleCht: "商業AI基礎",
+        description: "Understanding AI basics and business applications",
+        descriptionCht: "了解AI基礎知識和商業應用",
+        duration: "2 hours",
+        videoCount: 8,
+        completed: false
+      },
+      {
+        id: 2,
+        title: "AI Tools and Platforms",
+        titleCht: "AI工具與平台",
+        description: "Overview of popular AI tools and how to choose the right ones",
+        descriptionCht: "熱門AI工具概覽以及如何選擇適合工具",
+        duration: "3 hours",
+        videoCount: 12,
+        completed: false
+      }
+    ]
+  },
+  {
+    id: 'automation-advanced',
+    title: "Advanced Automation with Make.com & n8n",
+    titleCht: "Make.com與n8n高級自動化",
+    description: "Master advanced automation techniques using Make.com and n8n platforms.",
+    descriptionCht: "掌握使用Make.com和n8n平台的高級自動化技術",
+    duration: "12 weeks",
+    durationCht: "12週",
+    level: "Advanced",
+    levelCht: "高級",
+    price: "HK$4,999",
+    originalPrice: "HK$6,999",
+    image: "/images/courses/automation-advanced.jpg",
+    instructor: "David Chen",
+    instructorCht: "陳大偉",
+    rating: 4.9,
+    students: 856,
+    category: "Automation",
+    categoryCht: "自動化",
+    featured: true,
+    bestseller: false,
+    newCourse: true,
+    includes: [
+      "12 weeks advanced training",
+      "Hands-on projects",
+      "Community access",
+      "Advanced certification"
+    ],
+    includesCht: [
+      "12週高級培訓",
+      "實作專案",
+      "社群訪問",
+      "高級認證"
+    ],
+    modules: [
+      {
+        id: 1,
+        title: "Make.com Advanced Features",
+        titleCht: "Make.com高級功能",
+        description: "Deep dive into Make.com's advanced capabilities",
+        descriptionCht: "深入了解Make.com的高級功能",
+        duration: "4 hours",
+        videoCount: 16,
+        completed: false
+      },
+      {
+        id: 2,
+        title: "n8n Self-hosted Setup & Management",
+        titleCht: "n8n自主託管設置與管理",
+        description: "Learn to set up and manage your own n8n instance",
+        descriptionCht: "學習設置和管理自己的n8n實例",
+        duration: "3 hours",
+        videoCount: 12,
+        completed: false
+      }
+    ]
+  },
+  {
+    id: 'ai-image-video-creation',
+    title: "AI Image & Video Creation Mastery",
+    titleCht: "AI圖像影片創作精通課程",
+    description: "Transform your business data into actionable insights using AI and machine learning techniques.",
+    descriptionCht: "使用AI和機器學習技術將企業數據轉化為可操作的洞察",
+    duration: "10 weeks",
+    durationCht: "10週",
+    level: "Intermediate",
+    levelCht: "中級",
+    price: "HK$3,999",
+    originalPrice: "HK$4,999",
+    image: "/images/courses/ai-data-analytics.jpg",
+    instructor: "Sarah Lam",
+    instructorCht: "林小莎",
+    rating: 4.7,
+    students: 1563,
+    category: "Creative Design",
+    categoryCht: "創意設計",
+    featured: true,
+    bestseller: true,
+    newCourse: false,
+    includes: [
+      "10 weeks comprehensive training",
+      "AI tool access",
+      "Portfolio development",
+      "Creative certification"
+    ],
+    includesCht: [
+      "10週全面培訓",
+      "AI工具使用權",
+      "作品集開發",
+      "創意認證"
+    ],
+    modules: [
+      {
+        id: 1,
+        title: "AI Image Generation Basics",
+        titleCht: "AI圖像生成基礎",
+        description: "Learn to create stunning images with AI tools",
+        descriptionCht: "學習使用AI工具創建精美圖像",
+        duration: "3 hours",
+        videoCount: 12,
+        completed: false
+      },
+      {
+        id: 2,
+        title: "Video Creation with AI",
+        titleCht: "AI影片創作",
+        description: "Master AI-powered video creation techniques",
+        descriptionCht: "掌握AI驅動的影片創作技術",
+        duration: "4 hours",
+        videoCount: 16,
+        completed: false
+      }
+    ]
+  }
+];
+
+// Components
+const CourseCard: React.FC<{ course: CourseData; isZhTW: boolean }> = ({ course, isZhTW }) => {
   const navigate = useNavigate();
-  const isZhTW = language === 'zh-HK';
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  
-  const categories = [
-    { id: 'all', name: 'All', nameCht: '全部', label: '全部' },
-    { id: 'ai', name: 'AI', nameCht: 'AI應用', label: 'AI應用' },
-    { id: 'automation', name: 'Automation', nameCht: '自動化', label: '自動化' },
-  ];
 
-  // Handle course navigation to outline pages
-  const handleCourseClick = (courseId: string) => {
-    const routeMap = {
-      'ai-app-development': '/courses/free-plan',  // 導向免費計劃頁面
-      'ai-formula-advertising': '/courses/free-plan',   // 導向免費計劃頁面
-      'shopify-automation': '/courses/free-plan',   // 導向免費計劃頁面
-      'prompt-engineering': '/courses/prompt-engineering-outline',
-      'chatgpt-mastery': '/courses/chatgpt-mastery-outline',
-      'perplexity-tools': '/courses/perplexity-tools-outline',
-      'coding-basics': '/courses/coding-basics-outline',
-      'midjourney-ai': '/courses/free-plan'
-    };
-    
-    const route = routeMap[courseId];
-    if (route) {
-      navigate(route);
-    } else {
-      // ?��?導�??�費計�??�面作為fallback
-      navigate('/courses/free-plan');
-    }
+  const handleClick = () => {
+    navigate(`/courses/${course.id}`);
   };
-
-  // Handle real course navigation
-  const handleRealCourseClick = (courseId: string) => {
-    const routeMap = {
-      'prompt-engineering': '/courses/prompt-engineering-outline',
-      'chatgpt-mastery': '/courses/chatgpt-mastery-outline',
-      'perplexity-tools': '/courses/perplexity-tools-outline',
-      'coding-basics': '/courses/coding-basics-outline',
-      'midjourney-ai': '/courses/free-plan'
-    };
-    
-    const route = routeMap[courseId];
-    if (route) {
-      navigate(route);
-    } else {
-      navigate('/courses/free-plan');
-    }
-  };
-
-  // 3個特色課程加上2個內容課程
-  const availableCourses = [
-    {
-      id: 'ai-app-development',
-      title: "AI App Development Masterclass",
-      titleCht: "用AI主導的小程式開發：教你一步步寫出「世界第一」的手機AI App",
-      description: "Learn to build practical AI mobile apps step by step in just 3 hours.",
-      descriptionCht: "3小時完成2個手機App！本課程由全端工程師實戰開發經驗",
-      duration: "3 hours",
-      durationCht: "3小時",
-      students: 1847,
-      rating: 4.8,
-      level: "Beginner",
-      levelCht: "初級",
-      image: "default",
-      type: "AI Development",
-      typeCht: "AI開發",
-      category: "ai",
-      featured: true,
-      badge: "?��??�班�?,
-      includes: [
-        "3 Hour Complete Course",
-        "2 Mobile App Projects",
-        "Professional Instructor",
-        "Hands-on Development"
-      ],
-      includesCht: [
-        "3小�?完整課�?",
-        "2?��?機App專�?",
-        "專業講師?��?",
-        "實�??�發練�?"
-      ]
-    },
-    {
-      id: 'ai-formula-advertising',
-      title: "AI Formula Advertising Masterclass Vol.1",
-      titleCht: "?�AI�??製�??�Vol.1?��?解AI Formula�???�全流�?：「Cup Noodle級」AI??,
-      description: "Master AI advertising creation with AI Formula platform and create professional video ads.",
-      descriptionCht: "?�握AI�??製�?，AI Formula?��??��??��?你創?��?業�?�???��?,
-      duration: "4 hours",
-      durationCht: "4小�?",
-      students: 923,
-      rating: 4.9,
-      level: "Intermediate",
-      levelCht: "中�?",
-      image: "?��",
-      type: "AI Advertising",
-      typeCht: "AI營銷",
-      category: "ai",
-      featured: true,
-      badge: "?��??�班�?,
-      includes: [
-        "AI Formula Platform Training",
-        "Professional Video Creation",
-        "Brand Integration",
-        "Advanced Techniques"
-      ],
-      includesCht: [
-        "AI Formula平台訓練",
-        "專業影�?製�?",
-        "?��??��??�用",
-        "?��?製�??��?
-      ]
-    },
-    {
-      id: 'shopify-automation',
-      title: "AI ? Make Automation: Shopify Store Express",
-      titleCht: "AI ? Make?��??��?Shopify網�??��??��???,
-      description: "Build automated Shopify systems that can be profitable even for beginners.",
-      descriptionCht: "建�??��?請人也能?�利?��??�Shopify?��??�系統�??��??��???,
-      duration: "9 hours",
-      durationCht: "9小�?",
-      students: 1234,
-      rating: 4.7,
-      level: "Beginner",
-      levelCht: "?��?",
-      image: "??",
-      type: "E-commerce Automation",
-      typeCht: "電商自動化",
-      category: "automation",
-      featured: true,
-      badge: "了解?��?",
-      includes: [
-        "Shopify Store Setup",
-        "Make.com Automation",
-        "AI Integration",
-        "Profit Optimization"
-      ],
-      includesCht: [
-        "Shopify?��?建置",
-        "Make.com?��???,
-        "AI?��??�用",
-        "?�利?��?策略"
-      ]
-    }
-  ];
-
-  // 5?��?�???��?課�?
-  const realCourses = [
-    {
-      id: 'prompt-engineering',
-      title: "Prompt Engineering Mastery",
-      titleCht: "?�示工�?精通課�?,
-      description: "Master the art of AI prompt engineering for better results.",
-      descriptionCht: "?�握AI?�示工�??�巧�??��??�好?��??��?,
-      duration: "6 hours",
-      durationCht: "6小�?",
-      students: 2341,
-      rating: 4.9,
-      level: "All Levels",
-      levelCht: "?�?��???,
-      image: "??",
-      type: "AI Fundamentals",
-      typeCht: "AI?��?",
-      category: "ai",
-      featured: true,
-      badge: "?�費",
-      includes: [
-        "Complete Prompt Guide",
-        "Practical Examples",
-        "Advanced Techniques",
-        "Real-world Applications"
-      ],
-      includesCht: [
-        "完整?�示?��?",
-        "實用範�?",
-        "?��??��?,
-        "實�??�用"
-      ]
-    },
-    {
-      id: 'chatgpt-mastery',
-      title: "ChatGPT Mastery Course",
-      titleCht: "ChatGPT精通課�?,
-      description: "Complete guide to mastering ChatGPT for productivity and creativity.",
-      descriptionCht: "完整?�ChatGPT精通�??��??��??�產?��??�造�???,
-      duration: "4 hours",
-      durationCht: "4小�?",
-      students: 1876,
-      rating: 4.8,
-      level: "Beginner",
-      levelCht: "?��?",
-      image: "?��",
-      type: "AI Tools",
-      typeCht: "AI工具",
-      category: "ai",
-      featured: true,
-      badge: "?�費",
-      includes: [
-        "ChatGPT Fundamentals",
-        "Advanced Prompting",
-        "Use Cases",
-        "Productivity Tips"
-      ],
-      includesCht: [
-        "ChatGPT?��?",
-        "?��??�示?��?,
-        "使用案�?",
-        "?�產?��?�?
-      ]
-    },
-    {
-      id: 'perplexity-tools',
-      title: "Perplexity Tools Mastery",
-      titleCht: "Perplexity工具精�?,
-      description: "Master Perplexity AI for research and information gathering.",
-      descriptionCht: "?�握Perplexity AI?��??�究?��?訊收?��?,
-      duration: "3 hours",
-      durationCht: "3小�?",
-      students: 1234,
-      rating: 4.7,
-      level: "Intermediate",
-      levelCht: "中�?",
-      image: "??",
-      type: "AI Research",
-      typeCht: "AI?�究",
-      category: "ai",
-      featured: true,
-      badge: "?�費",
-      includes: [
-        "Perplexity Basics",
-        "Research Techniques",
-        "Information Validation",
-        "Advanced Queries"
-      ],
-      includesCht: [
-        "Perplexity?��?",
-        "?�究?��?,
-        "資�?驗�?",
-        "?��??�詢"
-      ]
-    },
-    {
-      id: 'coding-basics',
-      title: "Coding Basics with AI",
-      titleCht: "AI輔助編�??��?",
-      description: "Learn programming fundamentals with AI assistance.",
-      descriptionCht: "使用AI輔助學�?編�??��???,
-      duration: "8 hours",
-      durationCht: "8小�?",
-      students: 987,
-      rating: 4.6,
-      level: "Beginner",
-      levelCht: "?��?",
-      image: "?��",
-      type: "Programming",
-      typeCht: "編�?",
-      category: "ai",
-      featured: true,
-      badge: "?�費",
-      includes: [
-        "Programming Fundamentals",
-        "AI-Assisted Coding",
-        "Project Building",
-        "Best Practices"
-      ],
-      includesCht: [
-        "編�??��?",
-        "AI輔助編碼",
-        "專�?建�?",
-        "?�佳實�?
-      ]
-    },
-    {
-      id: 'midjourney-ai',
-      title: "Midjourney AI Image Creation",
-      titleCht: "Midjourney AI?��??��?",
-      description: "Create stunning AI-generated images with Midjourney.",
-      descriptionCht: "使用Midjourney?�造令人�??��?AI?��??��???,
-      duration: "5 hours",
-      durationCht: "5小�?",
-      students: 2156,
-      rating: 4.8,
-      level: "All Levels",
-      levelCht: "?�?��???,
-      image: "?��",
-      type: "AI Art",
-      typeCht: "AI?��?",
-      category: "ai",
-      featured: true,
-      badge: "?�費",
-      includes: [
-        "Midjourney Basics",
-        "Advanced Prompting",
-        "Style Techniques",
-        "Commercial Usage"
-      ],
-      includesCht: [
-        "Midjourney?��?",
-        "?��??�示?��?,
-        "風格?��?,
-        "?�業?�用"
-      ]
-    }
-  ];
-
-  // Filter courses based on selected category
-  const filteredCourses = selectedCategory === 'all' 
-    ? realCourses 
-    : realCourses.filter(course => course.category === selectedCategory);
-
-  // Filter available courses based on selected category
-  const filteredAvailableCourses = selectedCategory === 'all' 
-    ? availableCourses 
-    : availableCourses.filter(course => course.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Binary background pattern */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div 
-          className="absolute inset-0" 
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ctext x='10' y='20' font-family='monospace' font-size='12'%3E1%3C/text%3E%3Ctext x='30' y='40' font-family='monospace' font-size='12'%3E0%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} 
-        />
-      </div>
-
-      {/* Part 1: Main Title - ?�費學�?課�? */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  {isZhTW ? '?�費學�?課�?' : 'Free Learning Courses'}
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-                {isZhTW ? '精�?製�??��?費課程�?幫助你快?��??�AI?�?�並實現?�業?��?' : 'Carefully crafted free courses to help you quickly improve AI skills and achieve business goals'}
-              </p>
-            </motion.div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      onClick={handleClick}
+      className="cursor-pointer"
+    >
+      <Card className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-300 h-full">
+        <div className="relative overflow-hidden">
+          <img
+            src={course.image || "/placeholder.svg"}
+            alt={isZhTW ? course.titleCht : course.title}
+            className="w-full h-48 object-cover"
+          />
+          <div className="absolute top-4 left-4 flex gap-2">
+            {course.featured && (
+              <Badge className="bg-blue-600 text-white">
+                {isZhTW ? "精選" : "Featured"}
+              </Badge>
+            )}
+            {course.bestseller && (
+              <Badge className="bg-orange-600 text-white">
+                {isZhTW ? "熱銷" : "Bestseller"}
+              </Badge>
+            )}
+            {course.newCourse && (
+              <Badge className="bg-green-600 text-white">
+                {isZhTW ? "新課程" : "New"}
+              </Badge>
+            )}
           </div>
         </div>
-      </section>
-
-      {/* Part 2: Featured Courses (3?�特?�課�? */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {availableCourses.map((course, index) => (
-              <motion.div
-                key={course.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-              >
-                <Card className="h-[520px] flex flex-col overflow-hidden bg-slate-800/50 backdrop-blur-sm border-slate-600/50 hover:border-blue-500/50 transition-all duration-300">
-                  <CardHeader className="pb-4 flex-shrink-0">
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="text-4xl flex-shrink-0">{course.image}</div>
-                      <div className="flex-1 min-w-0">
-                        <Badge variant="secondary" className="mb-2 bg-blue-500/20 text-blue-300 border-blue-500/30">
-                          {course.badge}
-                        </Badge>
-                        <CardTitle className="text-lg leading-tight text-white line-clamp-3 h-[4.5rem]">
-                          {isZhTW ? course.titleCht : course.title}
-                        </CardTitle>
-                      </div>
-                    </div>
-                    <CardDescription className="text-gray-300 text-sm line-clamp-2 h-[2.5rem]">
-                      {isZhTW ? course.descriptionCht : course.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4 text-sm text-gray-300">
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4 text-blue-400" />
-                          <span className="text-gray-200">{isZhTW ? course.durationCht : course.duration}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4 text-blue-400" />
-                          <span className="text-gray-200">{course.students.toLocaleString()}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-gray-200">{course.rating}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?�含?�容�? : 'Includes:'}</h4>
-                        <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
-                          {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
-                            <li key={idx} className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
-                              <span className="truncate">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div className="flex flex-col gap-3 pt-4 mt-auto">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xl font-bold text-blue-400">
-                            {course.badge || (isZhTW ? '?�費' : 'FREE')}
-                          </span>
-                        </div>
-                        <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
-                          {isZhTW ? course.typeCht : course.type}
-                        </Badge>
-                      </div>
-                      
-                      <Button 
-                        size="sm"
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
-                        onClick={() => handleCourseClick(course.id)}
-                      >
-                        {course.id === 'ai-app-development' ? (isZhTW ? '?��??�班' : 'Coming Soon') : 
-                         course.id === 'ai-formula-advertising' ? (isZhTW ? '?��??�班' : 'Coming Soon') : 
-                         (isZhTW ? '了解?��?' : 'Learn More')}
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+        
+        <CardContent className="p-6">
+          <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
+            <Badge variant="outline" className="text-blue-400 border-blue-400">
+              {isZhTW ? course.categoryCht : course.category}
+            </Badge>
+            <Badge variant="outline" className="text-green-400 border-green-400">
+              {isZhTW ? course.levelCht : course.level}
+            </Badge>
           </div>
-        </div>
-      </section>
-
-      {/* Part 3: 精選?�費課�? Title and Description */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {isZhTW ? '精選?�費課�?' : 'Featured Free Courses'}
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              {isZhTW ? '精�?製�??�數位課程�?幫助你快?��??��??�並實現?�業?��?' : 'Carefully crafted digital courses to help you quickly improve skills and achieve business goals'}
-            </p>
-          </div>
-
-          {/* Course Categories */}
-          <div className="mb-12">
-            <div className="flex flex-wrap gap-2 justify-center">
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.id)}
-                  className="rounded-full"
-                >
-                  {isZhTW ? category.nameCht : category.name}
-                </Button>
-              ))}
+          
+          <h3 className="font-bold text-white mb-3 text-xl line-clamp-2">
+            {isZhTW ? course.titleCht : course.title}
+          </h3>
+          
+          <p className="text-gray-300 mb-4 line-clamp-3">
+            {isZhTW ? course.descriptionCht : course.description}
+          </p>
+          
+          <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
+            <div className="flex items-center">
+              <Clock className="h-4 w-4 mr-1" />
+              <span>{isZhTW ? course.durationCht : course.duration}</span>
+            </div>
+            <div className="flex items-center">
+              <Users className="h-4 w-4 mr-1" />
+              <span>{course.students.toLocaleString()}</span>
+            </div>
+            <div className="flex items-center">
+              <Star className="h-4 w-4 mr-1 text-yellow-400" />
+              <span>{course.rating}</span>
             </div>
           </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl font-bold text-white">{course.price}</span>
+              {course.originalPrice && (
+                <span className="text-sm text-gray-400 line-through">{course.originalPrice}</span>
+              )}
+            </div>
+            <Button className="bg-blue-600 hover:bg-blue-700">
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
 
-          {/* Part 4: Real Courses (5?��?實課�? */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCourses.map((course, index) => (
-              <motion.div
-                key={course.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-              >
-                <Card className="h-[520px] flex flex-col overflow-hidden bg-slate-800/50 backdrop-blur-sm border-slate-600/50 hover:border-blue-500/50 transition-all duration-300">
-                  <CardHeader className="pb-4 flex-shrink-0">
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="text-4xl flex-shrink-0">{course.image}</div>
-                      <div className="flex-1 min-w-0">
-                        <Badge variant="secondary" className="mb-2 bg-green-500/20 text-green-300 border-green-500/30">
-                          {course.badge}
-                        </Badge>
-                        <CardTitle className="text-lg leading-tight text-white line-clamp-3 h-[4.5rem]">
-                          {isZhTW ? course.titleCht : course.title}
-                        </CardTitle>
-                      </div>
-                    </div>
-                    <CardDescription className="text-gray-300 text-sm line-clamp-2 h-[2.5rem]">
-                      {isZhTW ? course.descriptionCht : course.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4 text-sm text-gray-300">
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4 text-blue-400" />
-                          <span className="text-gray-200">{isZhTW ? course.durationCht : course.duration}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4 text-blue-400" />
-                          <span className="text-gray-200">{course.students.toLocaleString()}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-gray-200">{course.rating}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-white">{isZhTW ? '?�含?�容�? : 'Includes:'}</h4>
-                        <ul className="text-sm text-gray-300 space-y-1 h-[6rem] overflow-hidden">
-                          {(isZhTW ? course.includesCht : course.includes).slice(0, 4).map((item, idx) => (
-                            <li key={idx} className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
-                              <span className="truncate">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div className="flex flex-col gap-3 pt-4 mt-auto">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xl font-bold text-green-400">
-                            {course.badge || (isZhTW ? '?�費' : 'FREE')}
-                          </span>
-                        </div>
-                        <Badge variant="secondary" className="text-xs bg-slate-600/50 text-gray-200 border-slate-500/30">
-                          {isZhTW ? course.typeCht : course.type}
-                        </Badge>
-                      </div>
-                      
-                      <Button 
-                        size="sm"
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
-                        onClick={() => handleRealCourseClick(course.id)}
-                      >
-                        {isZhTW ? '?��?課�?大綱' : 'View Course Outline'}
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+const CourseGrid: React.FC<{ courses: CourseData[]; isZhTW: boolean }> = ({ courses, isZhTW }) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {courses.map((course) => (
+        <CourseCard key={course.id} course={course} isZhTW={isZhTW} />
+      ))}
+    </div>
+  );
+};
+
+const HeroSection: React.FC<{ isZhTW: boolean }> = ({ isZhTW }) => {
+  return (
+    <section className="pt-20 pb-16 bg-gradient-to-r from-blue-900 to-purple-900">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-5xl md:text-6xl font-bold text-white mb-6"
+          >
+            {isZhTW ? 'AI Formula 課程' : 'AI Formula Courses'}
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-300 mb-8"
+          >
+            {isZhTW ? '掌握AI技術，提升商業競爭力' : 'Master AI technology and enhance business competitiveness'}
+          </motion.p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const FilterSection: React.FC<{ 
+  selectedCategory: string; 
+  onCategoryChange: (category: string) => void; 
+  isZhTW: boolean 
+}> = ({ selectedCategory, onCategoryChange, isZhTW }) => {
+  const categories = [
+    { id: 'all', name: isZhTW ? '全部' : 'All', nameCht: '全部' },
+    { id: 'ai-fundamentals', name: 'AI Fundamentals', nameCht: 'AI基礎' },
+    { id: 'automation', name: 'Automation', nameCht: '自動化' },
+    { id: 'creative-design', name: 'Creative Design', nameCht: '創意設計' }
+  ];
+
+  return (
+    <div className="flex flex-wrap gap-2 mb-8">
+      {categories.map((category) => (
+        <Button
+          key={category.id}
+          variant={selectedCategory === category.id ? 'default' : 'outline'}
+          onClick={() => onCategoryChange(category.id)}
+          className={`${selectedCategory === category.id
+            ? 'bg-blue-600 text-white'
+            : 'bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700'
+          }`}
+        >
+          {isZhTW ? category.nameCht : category.name}
+        </Button>
+      ))}
+    </div>
+  );
+};
+
+const Course: React.FC = () => {
+  const { language } = useLanguage();
+  const isZhTW = language === 'zh-HK';
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const filteredCourses = sampleCourses.filter(course => {
+    const matchesCategory = selectedCategory === 'all' || 
+      course.category.toLowerCase().replace(' ', '-') === selectedCategory ||
+      course.categoryCht === selectedCategory;
+    
+    const matchesSearch = searchQuery === '' ||
+      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.titleCht.includes(searchQuery) ||
+      course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.descriptionCht.includes(searchQuery);
+    
+    return matchesCategory && matchesSearch;
+  });
+
+  const featuredCourses = filteredCourses.filter(course => course.featured);
+  const otherCourses = filteredCourses.filter(course => !course.featured);
+
+  return (
+    <div className="min-h-screen bg-gray-900">
+      <Navigation />
+      
+      <HeroSection isZhTW={isZhTW} />
+      
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            {/* Search and Filter */}
+            <div className="mb-12">
+              <div className="relative max-w-md mx-auto mb-8">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={isZhTW ? "搜尋課程..." : "Search courses..."}
+                  className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+              
+              <FilterSection 
+                selectedCategory={selectedCategory}
+                onCategoryChange={setSelectedCategory}
+                isZhTW={isZhTW}
+              />
+            </div>
+
+            {/* Featured Courses */}
+            {featuredCourses.length > 0 && (
+              <div className="mb-16">
+                <h2 className="text-3xl font-bold text-white mb-8">
+                  {isZhTW ? '精選課程' : 'Featured Courses'}
+                </h2>
+                <CourseGrid courses={featuredCourses} isZhTW={isZhTW} />
+              </div>
+            )}
+            
+            {/* Other Courses */}
+            {otherCourses.length > 0 && (
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-8">
+                  {isZhTW ? '所有課程' : 'All Courses'}
+                </h2>
+                <CourseGrid courses={otherCourses} isZhTW={isZhTW} />
+              </div>
+            )}
+            
+            {/* No Results */}
+            {filteredCourses.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-400 text-lg">
+                  {isZhTW ? '沒有找到符合條件的課程' : 'No courses found matching your criteria'}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };

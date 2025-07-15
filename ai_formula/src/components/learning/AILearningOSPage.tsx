@@ -45,7 +45,7 @@ import {
   Video
 } from 'lucide-react';
 
-// å­ç?ä»¶å???
+// å­ï¿½?ä»¶ï¿½
 import AIPlayground from './AIPlayground';
 import QuizModal from './QuizModal';
 import AITutorChat from './AITutorChat';
@@ -55,7 +55,7 @@ import ResourceDownloads from './ResourceDownloads';
 import InteractiveArticle from './InteractiveArticle';
 import { promptEngineeringCourseData, CourseLesson } from '@/data/courseData/promptEngineeringComplete';
 
-// é¡å?å®šç¾©
+// é¡ï¿½?å®šç¾©
 interface CourseModule {
   id: string;
   title: string;
@@ -113,7 +113,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
   modules,
   initialProgress
 }) => {
-  // ?€?‹ç®¡??
+  // ?ï¿½?ï¿½ç®¡
   const [currentModule, setCurrentModule] = useState<CourseModule>(modules[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
@@ -123,13 +123,13 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPictureInPicture, setIsPictureInPicture] = useState(false);
   
-  // äº’å??€?Ÿç???
+  // äº’ï¿½ï¿½?ï¿½ï¿½
   const [isBottomPanelExpanded, setIsBottomPanelExpanded] = useState(true);
   const [activeTab, setActiveTab] = useState('notes');
   const [showQuizModal, setShowQuizModal] = useState(false);
   const [showAITutor, setShowAITutor] = useState(false);
   
-  // å­¸ç??²åº¦?€??
+  // å­¸ï¿½ï¿½åº¦?ï¿½
   const [progress, setProgress] = useState<LearningProgress>(
     initialProgress || {
       currentModule: modules[0].id,
@@ -144,7 +144,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // å½±ç??§åˆ¶?½æ•¸
+  // å½±ï¿½ï¿½åˆ¶?ï¿½æ•¸
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -186,7 +186,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     }
   };
 
-  // å­¸ç??²åº¦?´æ–°
+  // å­¸ï¿½ï¿½åº¦?ï¿½æ–°
   const updateProgress = (moduleId: string, completed: boolean) => {
     setProgress(prev => ({
       ...prev,
@@ -197,7 +197,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     }));
   };
 
-  // æª¢æŸ¥?¯å¦?¯ä»¥?‹å?æ¸¬é?
+  // æª¢æŸ¥?ï¿½å¦?ï¿½ä»¥?ï¿½ï¿½?æ¸¬ï¿½?
   const canStartQuiz = () => {
     const currentIndex = modules.findIndex(m => m.id === currentModule.id);
     const currentChapterModules = modules.slice(0, currentIndex + 1);
@@ -206,7 +206,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     );
   };
 
-  // ?µç›¤å¿«æ·??
+  // ?ï¿½ç›¤å¿«æ·
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
@@ -241,7 +241,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [currentTime, duration, isFullscreen, isPlaying]);
 
-  // ?‚é??¼å???
+  // ?ï¿½ï¿½ï¿½ï¿½
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
@@ -250,7 +250,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
 
   return (
     <div ref={containerRef} className="h-screen bg-slate-900 text-slate-50 overflow-hidden">
-      {/* ?‚éƒ¨å°èˆªæ¬?*/}
+      {/* ?ï¿½éƒ¨å°èˆªï¿½?*/}
       <div className="h-16 bg-slate-800 border-b border-slate-600 flex items-center justify-between px-6">
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
@@ -265,7 +265,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <Trophy className="w-5 h-5 text-yellow-400" />
-            <span className="text-sm text-slate-200">?²åº¦: {progress.totalProgress}%</span>
+            <span className="text-sm text-slate-200">?ï¿½åº¦: {progress.totalProgress}%</span>
           </div>
           <Progress value={progress.totalProgress} className="w-32" />
           <Button
@@ -276,18 +276,18 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
             className="text-green-300 hover:text-green-200 hover:bg-green-900/20"
           >
             <Target className="w-4 h-4 mr-2" />
-            ?‹å?æ¸¬é?
+            ?ï¿½ï¿½?æ¸¬ï¿½?
           </Button>
         </div>
       </div>
 
-      {/* ä¸»è??§å®¹?€??*/}
+      {/* ä¸»ï¿½ï¿½å®¹?ï¿½*/}
       <div className="h-[calc(100vh-4rem)]">
         <PanelGroup direction="horizontal" className="h-full">
-          {/* A?€ï¼šå½±?‡æ’­?¾å™¨ (å·?ä¸? */}
+          {/* A?ï¿½ï¼šå½±?ï¿½æ’­?ï¿½å™¨ (ï¿½?ï¿½? */}
           <Panel defaultSize={60} minSize={40}>
             <div className="h-full flex flex-col">
-              {/* å½±ç??­æ”¾??*/}
+              {/* å½±ï¿½ï¿½æ”¾*/}
               <div className="flex-1 relative bg-black">
                 <video
                   ref={videoRef}
@@ -301,7 +301,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   }}
                 />
                 
-                {/* å½±ç??§åˆ¶è¦†è?å±?*/}
+                {/* å½±ï¿½ï¿½åˆ¶è¦†ï¿½?ï¿½?*/}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                   <div className="flex items-center space-x-4">
                     <Button
@@ -379,7 +379,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
 
            <PanelResizeHandle />
 
-           {/* B?€ï¼šAI Playground (?? */}
+           {/* B?ï¿½ï¼šAI Playground ( */}
            <Panel defaultSize={40} minSize={30}>
             <div className="h-full flex flex-col">
               <div className="bg-gray-800 border-b border-gray-700 p-4">
@@ -388,7 +388,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   AI Playground
                 </h3>
                 <p className="text-sm text-gray-400 mt-1">
-                  ?¨é€™è£¡å¯¦è??¨å­¸?°ç?æ¦‚å¿µ
+                  ?ï¿½é€™è£¡å¯¦ï¿½ï¿½å­¸?ï¿½ï¿½?æ¦‚å¿µ
                 </p>
               </div>
               
@@ -397,7 +397,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   type={currentModule.playgroundType}
                   expectedOutput={currentModule.expectedOutput}
                   onOutputGenerated={(output) => {
-                    // ?•ç??Ÿæ??„è¼¸??
+                    // ?ï¿½ï¿½ï¿½ï¿½ï¿½è¼¸
                     console.log('Generated output:', output);
                   }}
                 />
@@ -407,7 +407,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
          </PanelGroup>
       </div>
 
-      {/* C?€ï¼šå??ƒè?äº’å??€ (ä¸??¯æ”¶?? */}
+      {/* C?ï¿½ï¼šï¿½ï¿½ï¿½?äº’ï¿½ï¿½ (ï¿½ï¿½æ”¶ */}
       <AnimatePresence>
         {isBottomPanelExpanded && (
           <motion.div
@@ -419,7 +419,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
           >
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-gray-700">
-                <h3 className="text-lg font-semibold">?ƒè€ƒè?äº’å?</h3>
+                <h3 className="text-lg font-semibold">?ï¿½è€ƒï¿½?äº’ï¿½?</h3>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -434,19 +434,19 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                   <TabsList className="grid w-full grid-cols-4 bg-gray-700">
                     <TabsTrigger value="notes" className="flex items-center">
                       <BookOpen className="w-4 h-4 mr-2" />
-                      ?ºèƒ½ç­†è?
+                      ?ï¿½èƒ½ç­†ï¿½?
                     </TabsTrigger>
                     <TabsTrigger value="reference" className="flex items-center">
                       <Target className="w-4 h-4 mr-2" />
-                      ?ƒè€ƒè¼¸??
+                      ?ï¿½è€ƒè¼¸
                     </TabsTrigger>
                     <TabsTrigger value="community" className="flex items-center">
                       <Users className="w-4 h-4 mr-2" />
-                      ç¤¾ç¾¤?ç?
+                      ç¤¾ç¾¤?ï¿½ï¿½?
                     </TabsTrigger>
                     <TabsTrigger value="resources" className="flex items-center">
                       <Download className="w-4 h-4 mr-2" />
-                      è³‡æ?ä¸‹è?
+                      è³‡ï¿½?ä¸‹ï¿½?
                     </TabsTrigger>
                   </TabsList>
                   
@@ -462,7 +462,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
                       <div className="bg-gray-700 rounded-lg p-4">
                         <h4 className="font-semibold mb-2 flex items-center">
                           <Lightbulb className="w-4 h-4 mr-2 text-yellow-400" />
-                          å°å¸«?ƒè€ƒè¼¸??
+                          å°å¸«?ï¿½è€ƒè¼¸
                         </h4>
                         <div className="bg-gray-900 rounded p-3 font-mono text-sm">
                           <pre className="whitespace-pre-wrap">{currentModule.expectedOutput}</pre>
@@ -494,7 +494,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         )}
       </AnimatePresence>
 
-      {/* ?¶å??¢æ¿?‰é? */}
+      {/* ?ï¿½ï¿½ï¿½æ¿?ï¿½ï¿½? */}
       {!isBottomPanelExpanded && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -506,12 +506,12 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full shadow-lg"
           >
             <ChevronUp className="w-4 h-4 mr-2" />
-            é¡¯ç¤º?ƒè€ƒè???
+            é¡¯ç¤º?ï¿½è€ƒï¿½
           </Button>
         </motion.div>
       )}
 
-      {/* AI ?©æ??¸æµ®?‰é? */}
+      {/* AI ?ï¿½ï¿½ï¿½æµ®?ï¿½ï¿½? */}
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -525,7 +525,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         </Button>
       </motion.div>
 
-      {/* ?ºèƒ½æ¸¬é?æ¨¡æ?æ¡?*/}
+      {/* ?ï¿½èƒ½æ¸¬ï¿½?æ¨¡ï¿½?ï¿½?*/}
       <QuizModal
         isOpen={showQuizModal}
         onClose={() => setShowQuizModal(false)}
@@ -537,7 +537,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
         }}
       />
 
-      {/* AI ?©æ??Šå¤© */}
+      {/* AI ?ï¿½ï¿½ï¿½å¤© */}
       <AITutorChat
         isOpen={showAITutor}
         onClose={() => setShowAITutor(false)}

@@ -45,11 +45,11 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
           className="text-center mb-12"
         >
           <h2 id="learning-plans-title" className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            {isZhTW ? '學�?計�?' : 'Learning Plans'}
+            {isZhTW ? '學習計劃' : 'Learning Plans'}
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
             {isZhTW 
-              ? '?��??��?你�?學�?計�?，�?費入?�?��?級至專業?�本??
+              ? '選擇你的學習計劃，免費入門或升級至專業版本。'
               : 'Choose your learning plan - start free or upgrade to professional version.'
             }
           </p>
@@ -86,10 +86,10 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                   <div className="space-y-6">
                     {/* Free Plan */}
                     <div className="border border-gray-700 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="font-semibold text-white">
-                          {isZhTW ? '?�費?? : 'Free Plan'}
-                        </h4>
+                                              <div className="flex items-center justify-between mb-3">
+                          <h4 className="font-semibold text-white">
+                            {isZhTW ? '免費版' : 'Free Plan'}
+                          </h4>
                         <Badge variant="outline" className="text-green-400 border-green-400">
                           {isZhTW ? plan.freePrice : plan.freePriceEn}
                         </Badge>
@@ -110,7 +110,7 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                         onClick={() => onPlanClick(plan.id, 'free')}
                         aria-label={`Start ${isZhTW ? plan.titleCht : plan.title} free plan`}
                       >
-                        {isZhTW ? '?�費?��?' : 'Start Free'}
+                        {isZhTW ? '免費開始' : 'Start Free'}
                       </LearningButton>
                     </div>
 
@@ -118,10 +118,10 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                     <div className="border border-yellow-500/50 rounded-lg p-4 bg-yellow-500/5">
                       <div className="flex items-center justify-between mb-3">
                         <h4 className="font-semibold text-white">
-                          {isZhTW ? '專業?? : 'Pro Plan'}
+                          {isZhTW ? '專業版' : 'Pro Plan'}
                         </h4>
                         <Badge className="bg-yellow-500 text-black">
-                          {isZhTW ? '?�薦' : 'Recommended'}
+                          {isZhTW ? '推薦' : 'Recommended'}
                         </Badge>
                       </div>
                       <ul className="text-sm text-gray-300 space-y-1 mb-4" role="list">
@@ -136,7 +136,7 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                         <span className="text-xl font-bold text-white">{plan.proPrice}</span>
                         <span className="text-sm text-gray-500 line-through">{plan.originalPrice}</span>
                         <Badge variant="outline" className="text-green-400 border-green-400">
-                          {isZhTW ? `節??{plan.savings}` : `Save ${plan.savings}`}
+                          {isZhTW ? `節省${plan.savings}` : `Save ${plan.savings}`}
                         </Badge>
                       </div>
                       <LearningButton 
@@ -147,7 +147,7 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
                         onClick={() => onPlanClick(plan.id, 'pro')}
                         aria-label={`Upgrade to ${isZhTW ? plan.titleCht : plan.title} pro plan`}
                       >
-                        {isZhTW ? '?��??��?業�?' : 'Upgrade to Pro'}
+                        {isZhTW ? '升級到專業版' : 'Upgrade to Pro'}
                         <ArrowRight className="ml-2 h-3 w-3" />
                       </LearningButton>
                     </div>

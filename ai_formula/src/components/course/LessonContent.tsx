@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
-// TypeScript ?�口定義
+// TypeScript ?�口定義
 interface LessonItem {
   key: string;
   title: string;
@@ -26,7 +26,7 @@ interface LessonContentProps {
   isZhTW: boolean;
 }
 
-// Hook: 管�?課�?完�??�??
+// Hook: 管�?課�?完�??�??
 const useLessonCompletion = (lessonId: string = 'lesson2', sections: LessonSection[] = []) => {
   const [completed, setCompleted] = useState<string[]>(() => {
     try {
@@ -36,7 +36,7 @@ const useLessonCompletion = (lessonId: string = 'lesson2', sections: LessonSecti
     }
   });
 
-  // ??��localStorage變�?，實?�實?��?�?
+  // ??��localStorage變�?，實?�實?��?�?
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === `pe_${lessonId}_completed` && e.newValue) {
@@ -48,10 +48,10 @@ const useLessonCompletion = (lessonId: string = 'lesson2', sections: LessonSecti
       }
     };
 
-    // ??��localStorage變�?
+    // ??��localStorage變�?
     window.addEventListener('storage', handleStorageChange);
     
-    // 定�?檢查localStorage變�?（用?��?一?�面?��??�步�?
+    // 定�?檢查localStorage變�?（用?��?一?�面?��??�步�?
     const interval = setInterval(() => {
       try {
         const stored = JSON.parse(localStorage.getItem(`pe_${lessonId}_completed`) || '[]');
@@ -72,7 +72,7 @@ const useLessonCompletion = (lessonId: string = 'lesson2', sections: LessonSecti
   useEffect(() => {
     try {
       localStorage.setItem(`pe_${lessonId}_completed`, JSON.stringify(completed));
-      // 觸發課�??�度?�新
+      // 觸發課�??�度?�新
       const globalProgressEvent = new CustomEvent('courseProgressUpdate', {
         detail: { lessonId, completed }
       });
@@ -87,7 +87,7 @@ const useLessonCompletion = (lessonId: string = 'lesson2', sections: LessonSecti
       if (prev.includes(itemKey)) return prev;
       const newCompleted = [...prev, itemKey];
       
-      // 立即?�新localStorage
+      // 立即?�新localStorage
       try {
         localStorage.setItem(`pe_${lessonId}_completed`, JSON.stringify(newCompleted));
       } catch (error) {
@@ -124,7 +124,7 @@ const useLessonCompletion = (lessonId: string = 'lesson2', sections: LessonSecti
   };
 };
 
-// ?��?輔助?�數：檢?�課程�??�是?��???
+// ?��?輔助?�數：檢?�課程�??�是?��???
 const isLessonItemCompleted = (lessonId: string, itemKey: string): boolean => {
   try {
     const completed = JSON.parse(localStorage.getItem(`pe_${lessonId}_completed`) || '[]');
@@ -134,7 +134,7 @@ const isLessonItemCompleted = (lessonId: string, itemKey: string): boolean => {
   }
 };
 
-// ?��?輔助?�數：�?記課程�??�為完�?
+// ?��?輔助?�數：�?記課程�??�為完�?
 const markLessonItemCompleted = (lessonId: string, itemKey: string): void => {
   try {
     const completed = JSON.parse(localStorage.getItem(`pe_${lessonId}_completed`) || '[]');
@@ -142,7 +142,7 @@ const markLessonItemCompleted = (lessonId: string, itemKey: string): void => {
       const newCompleted = [...completed, itemKey];
       localStorage.setItem(`pe_${lessonId}_completed`, JSON.stringify(newCompleted));
       
-      // 觸發?��??�度?�新事件
+      // 觸發?��??�度?�新事件
       const globalProgressEvent = new CustomEvent('courseProgressUpdate', {
         detail: { lessonId, completed: newCompleted }
       });
@@ -153,7 +153,7 @@ const markLessonItemCompleted = (lessonId: string, itemKey: string): void => {
   }
 };
 
-// ?��?輔助?�數：獲?�課程�??�進度
+// ?��?輔助?�數：獲?�課程�??�進度
 const getLessonProgress = (lessonId: string, totalItems: number): number => {
   try {
     const completed = JSON.parse(localStorage.getItem(`pe_${lessonId}_completed`) || '[]');
@@ -163,7 +163,7 @@ const getLessonProgress = (lessonId: string, totalItems: number): number => {
   }
 };
 
-// Hook: 管�?課�?導航
+// Hook: 管�?課�?導航
 const useLessonNavigation = (sections: LessonSection[], initialKey: string) => {
   const [selected, setSelected] = useState(initialKey);
 
@@ -216,7 +216,7 @@ const useLessonNavigation = (sections: LessonSection[], initialKey: string) => {
   };
 };
 
-// 麵�?屑�??��?�?
+// 麵�?屑�??��?�?
 const BreadcrumbNavigation: React.FC<{
   isZhTW: boolean;
   currentItem: LessonItem | undefined;
@@ -240,11 +240,11 @@ const BreadcrumbNavigation: React.FC<{
     <div className="w-full max-w-5xl mx-auto flex items-center justify-between mb-4 px-4 md:px-0">
       <nav className="flex items-center text-sm text-blue-500 space-x-2">
         <span className="hover:underline cursor-pointer" onClick={onNavigateToHome}>
-          {isZhTW ? '?�示工�?精�? : 'Prompt Engineering Mastery'}
+          {isZhTW ? '提示工程精通' : 'Prompt Engineering Mastery'}
         </span>
         <span>&gt;</span>
         <span className="hover:underline cursor-pointer" onClick={onNavigateToLesson}>
-          {isZhTW ? '課�? 2' : 'Lesson 2'}
+          {isZhTW ? '課�? 2' : 'Lesson 2'}
         </span>
         <span>&gt;</span>
         <span className="font-semibold text-blue-700">{currentItem?.title}</span>
@@ -255,14 +255,14 @@ const BreadcrumbNavigation: React.FC<{
           onClick={onPrevious}
           disabled={!canGoPrevious}
         >
-          &lt; {isZhTW ? '上�??? : 'Previous'}
+          &lt; {isZhTW ? '上一課' : 'Previous'}
         </button>
         <button
           className={`text-blue-500 hover:underline text-sm disabled:text-gray-500 disabled:cursor-not-allowed`}
           onClick={onNext}
           disabled={!canGoNext}
         >
-          {isZhTW ? '下�??? : 'Next'} &gt;
+          {isZhTW ? '下一課' : 'Next'} &gt;
         </button>
       </div>
     </div>
@@ -271,7 +271,7 @@ const BreadcrumbNavigation: React.FC<{
 
 BreadcrumbNavigation.displayName = 'BreadcrumbNavigation';
 
-// 完�??��?組件
+// 完�??��?組件
 const CompletionButton: React.FC<{
   currentItem: LessonItem | undefined;
   isCompleted: (key: string) => boolean;
@@ -320,8 +320,8 @@ const CompletionButton: React.FC<{
         disabled={completedQuiz || !passed}
       >
         {(completedQuiz && passed)
-          ? (isZhTW ? '已�??? : 'Completed')
-          : (isZhTW ? '標�??�已完�?' : 'Mark as completed')}
+          ? (isZhTW ? '已完成' : 'Completed')
+          : (isZhTW ? '標記為已完成' : 'Mark as completed')}
       </Button>
     );
   }
@@ -333,15 +333,15 @@ const CompletionButton: React.FC<{
       disabled={isCompleted(currentItem.key)}
     >
       {isCompleted(currentItem.key)
-        ? (isZhTW ? '已�??? : 'Completed')
-        : (isZhTW ? '標�??�已完�?' : 'Mark as completed')}
+        ? (isZhTW ? '已完成' : 'Completed')
+        : (isZhTW ? '標記為已完成' : 'Mark as completed')}
     </Button>
   );
 });
 
 CompletionButton.displayName = 'CompletionButton';
 
-// 導出?�LessonContent組件
+// 導出?�LessonContent組件
 const LessonContent: React.FC<{
   currentContent: React.ReactNode | null;
   showQuiz: boolean;
@@ -364,7 +364,7 @@ const LessonContent: React.FC<{
             onClick={onComplete}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
           >
-            標�??�已完�?
+            標�??�已完�?
           </button>
         </div>
       )}

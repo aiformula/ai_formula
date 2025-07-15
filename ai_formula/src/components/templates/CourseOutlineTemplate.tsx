@@ -47,7 +47,7 @@ import {
   UserCheck
 } from 'lucide-react';
 
-// å®šç¾©èª²ç??ºæœ¬ä¿¡æ¯?¥å£
+// å®šç¾©èª²ï¿½??ï¿½æœ¬ä¿¡æ¯?ï¿½å£
 interface CourseInfo {
   badge: string;
   title: string;
@@ -56,21 +56,21 @@ interface CourseInfo {
   instructorTitle: string;
 }
 
-// å®šç¾©èª²ç?çµ±è??¥å£
+// å®šç¾©èª²ï¿½?çµ±ï¿½??ï¿½å£
 interface CourseStat {
   icon: React.ReactNode;
   label: string;
   value: string;
 }
 
-// å®šç¾©èª²ç?è³‡è?æ¨™ç±¤?¥å£
+// å®šç¾©èª²ï¿½?è³‡ï¿½?æ¨™ç±¤?ï¿½å£
 interface CourseInfoTag {
   name: string;
   icon: React.ReactNode;
   status: 'available' | 'coming-soon' | 'featured';
 }
 
-// å®šç¾©?¯é¸èª²ç??¥å£
+// å®šç¾©?ï¿½é¸èª²ï¿½??ï¿½å£
 interface AvailableCourse {
   title: string;
   description: string;
@@ -78,7 +78,7 @@ interface AvailableCourse {
   available: boolean;
 }
 
-// å®šç¾©?€?°æ??¯æ¥??interface LatestNews {
+// å®šç¾©?ï¿½?ï¿½ï¿½??ï¿½æ¥??interface LatestNews {
   date: string;
   title: string;
   details: Array<{
@@ -88,7 +88,7 @@ interface AvailableCourse {
   note: string;
 }
 
-// å®šç¾©?¹æ ¼ä¿¡æ¯?¥å£
+// å®šç¾©åƒ¹æ ¼ä¿¡æ¯æ¥å£
 interface PricingInfo {
   series: string;
   price: string;
@@ -98,7 +98,7 @@ interface PricingInfo {
   enterprise: string;
 }
 
-// å®šç¾©èª²ç??¹è‰²?¥å£
+// å®šç¾©èª²ï¿½??ï¿½è‰²?ï¿½å£
 interface CourseFeature {
   icon: React.ReactNode;
   title: string;
@@ -106,13 +106,13 @@ interface CourseFeature {
   highlight: string;
 }
 
-// å®šç¾©FAQ?¥å£
+// å®šç¾©FAQ?ï¿½å£
 interface FAQ {
   question: string;
   answer: string;
 }
 
-// å®šç¾©?®æ?å­¸å“¡?¥å£
+// å®šç¾©?ï¿½ï¿½?å­¸å“¡?ï¿½å£
 interface TargetAudience {
   title: string;
   description: string;
@@ -123,7 +123,7 @@ interface TargetAudience {
   }>;
 }
 
-// å®šç¾©ä¸»æ¨¡?¿Props?¥å£
+// å®šç¾©ä¸»æ¨¡?ï¿½Props?ï¿½å£
 interface CourseOutlineTemplateProps {
   courseInfo: CourseInfo;
   courseStats: CourseStat[];
@@ -162,7 +162,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
 
 
 
-  // ?¹æ?å°å¸«?ç¨±å®šç¾©é¡è‰²ä¸»é?
+  // ?ï¿½ï¿½?å°å¸«?ï¿½ç¨±å®šç¾©é¡è‰²ä¸»ï¿½?
   const getInstructorTheme = (instructorName: string) => {
     const name = instructorName.toLowerCase();
     
@@ -202,7 +202,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
         accent: 'text-orange-400 border-orange-400'
       };
     } else {
-      // ?è¨­ä½¿ç”¨é»ƒè‰²ä¸»é?
+      // ?ï¿½è¨­ä½¿ç”¨é»ƒè‰²ä¸»ï¿½?
       return {
         gradient: 'from-yellow-600 to-yellow-800',
         primary: 'text-yellow-400',
@@ -218,17 +218,17 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   const tabs = [
     {
       id: 'course-intro',
-      label: isZhTW ? 'èª²ç?ä»‹ç´¹' : 'Course Introduction',
+      label: isZhTW ? 'èª²ï¿½?ä»‹ç´¹' : 'Course Introduction',
       icon: <BookOpen className="w-4 h-4" />
     },
     {
       id: 'learning-content',
-      label: isZhTW ? 'å­¸ç??§å®¹' : 'Learning Content',
+      label: isZhTW ? 'å­¸ï¿½??ï¿½å®¹' : 'Learning Content',
       icon: <GraduationCap className="w-4 h-4" />
     },
     {
       id: 'target-audience',
-      label: isZhTW ? '?©å?å°è±¡' : 'Target Audience',
+      label: isZhTW ? '?ï¿½ï¿½?å°è±¡' : 'Target Audience',
       icon: <UserCheck className="w-4 h-4" />
     },
     {
@@ -243,28 +243,28 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
     },
     {
       id: 'faq',
-      label: isZhTW ? 'å¸¸è??é?' : 'FAQ',
+      label: isZhTW ? 'å¸¸ï¿½??ï¿½ï¿½?' : 'FAQ',
       icon: <MessageCircle className="w-4 h-4" />
     }
   ];
 
-  // ?¹æ??¶å?èª²ç?æ¨™ç±¤?•æ??²å??¸é?èª²ç?
+  // ?ï¿½ï¿½??ï¿½ï¿½?èª²ï¿½?æ¨™ç±¤?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?èª²ï¿½?
   const getRelatedCourse = () => {
     const currentCourseBadge = courseInfo.badge;
     
-    // ?œç´¢?¸å?æ¨™ç±¤?„èª²ç¨‹ï??ˆå?è©¦å??¨åŒ¹?ï?
+    // ?ï¿½ç´¢?ï¿½ï¿½?æ¨™ç±¤?ï¿½èª²ç¨‹ï¿½??ï¿½ï¿½?è©¦ï¿½??ï¿½åŒ¹?ï¿½ï¿½?
     let sameCategoryCourses = courses.filter(course => {
       const courseCategory = isZhTW ? course.categoryCht : course.category;
       return courseCategory === currentCourseBadge;
     });
     
-    // å¦‚æ?æ²’æ?å®Œå…¨?¹é?ï¼Œå?è©¦éƒ¨?†åŒ¹?æ?æ¨™ç±¤?¹é?
+    // å¦‚ï¿½?æ²’ï¿½?å®Œå…¨?ï¿½ï¿½?ï¼Œï¿½?è©¦éƒ¨?ï¿½åŒ¹?ï¿½ï¿½?æ¨™ç±¤?ï¿½ï¿½?
     if (sameCategoryCourses.length === 0) {
       sameCategoryCourses = courses.filter(course => {
         const courseTags = isZhTW ? course.tagsCht : course.tags;
         const courseCategory = isZhTW ? course.categoryCht : course.category;
         
-        // æª¢æŸ¥æ¨™ç±¤?¯å¦?…å«èª²ç?æ¨™ç±¤?„é??µå?
+        // æª¢æŸ¥æ¨™ç±¤?ï¿½å¦?ï¿½å«èª²ï¿½?æ¨™ç±¤?ï¿½ï¿½??ï¿½ï¿½?
         const badgeKeywords = currentCourseBadge.toLowerCase();
         
         return courseTags.some(tag => 
@@ -274,11 +274,11 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       });
     }
     
-    // å¦‚æ??¾åˆ°?¸å?æ¨™ç±¤?„èª²ç¨‹ï??‰æ??°æ›´?°æ??“æ?åº?    let relatedCourses = sameCategoryCourses.length > 0 
+    // å¦‚ï¿½??ï¿½åˆ°?ï¿½ï¿½?æ¨™ç±¤?ï¿½èª²ç¨‹ï¿½??ï¿½ï¿½??ï¿½æ›´?ï¿½ï¿½??ï¿½ï¿½?ï¿½?    let relatedCourses = sameCategoryCourses.length > 0 
       ? sameCategoryCourses.sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
       : courses.sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime());
     
-    // ?²å??€?°ç?èª²ç?ï¼ˆæ??¤ç•¶?èª²ç¨‹ï?
+    // ?ï¿½ï¿½??ï¿½?ï¿½ï¿½?èª²ï¿½?ï¼ˆï¿½??ï¿½ç•¶?ï¿½èª²ç¨‹ï¿½?
     return relatedCourses.find(course => {
       const courseTitle = isZhTW ? course.titleCht : course.title;
       return courseTitle !== courseInfo.title;
@@ -287,9 +287,9 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   
   const relatedCourse = getRelatedCourse();
   
-  // ?¹æ??¸é?èª²ç??Ÿæ??•æ??€?°æ???  const getDynamicLatestNews = () => {
+  // ?ï¿½ï¿½??ï¿½ï¿½?èª²ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½?ï¿½ï¿½???  const getDynamicLatestNews = () => {
     if (!relatedCourse) {
-      return latestNews; // å¦‚æ?æ²’æ??¾åˆ°èª²ç?ï¼Œä½¿?¨å?ä¾†ç??€?°æ???    }
+      return latestNews; // å¦‚ï¿½?æ²’ï¿½??ï¿½åˆ°èª²ï¿½?ï¼Œä½¿?ï¿½ï¿½?ä¾†ï¿½??ï¿½?ï¿½ï¿½???    }
     
     const formatDate = (date: Date) => {
       return isZhTW 
@@ -297,53 +297,53 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
         : date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     };
     
-    // è¨ˆç??˜æ‰£?¾å?æ¯?    const discountPercentage = relatedCourse.originalPrice 
+    // è¨ˆï¿½??ï¿½æ‰£?ï¿½ï¿½?ï¿½?    const discountPercentage = relatedCourse.originalPrice 
       ? Math.round((1 - relatedCourse.price / relatedCourse.originalPrice) * 100)
       : 0;
     
     return {
       date: formatDate(relatedCourse.lastUpdated),
       title: isZhTW 
-        ? `${relatedCourse.titleCht} - ?€?°èª²ç¨‹æ›´?°` 
+        ? `${relatedCourse.titleCht} - ?ï¿½?ï¿½èª²ç¨‹æ›´?ï¿½` 
         : `${relatedCourse.title} - Latest Course Update`,
       details: [
         {
           icon: "??",
           text: isZhTW 
-            ? `èª²ç??‚é•·ï¼?{relatedCourse.durationCht}` 
+            ? `èª²ï¿½??ï¿½é•·ï¿½?{relatedCourse.durationCht}` 
             : `Duration: ${relatedCourse.duration}`
         },
         {
-          icon: "?’°",
+          icon: "?ï¿½ï¿½",
           text: isZhTW 
-            ? `èª²ç?è²»ç”¨ï¼?{relatedCourse.currency}$${relatedCourse.price}${relatedCourse.originalPrice ? ` (?Ÿåƒ¹: ${relatedCourse.currency}$${relatedCourse.originalPrice}, ç¯€??${discountPercentage}%)` : ''}`
+            ? `èª²ï¿½?è²»ç”¨ï¿½?{relatedCourse.currency}$${relatedCourse.price}${relatedCourse.originalPrice ? ` (?ï¿½åƒ¹: ${relatedCourse.currency}$${relatedCourse.originalPrice}, ç¯€??${discountPercentage}%)` : ''}`
             : `Price: ${relatedCourse.currency}$${relatedCourse.price}${relatedCourse.originalPrice ? ` (Original: ${relatedCourse.currency}$${relatedCourse.originalPrice}, Save ${discountPercentage}%)` : ''}`
         },
         {
-          icon: "â­?,
+          icon: "ï¿½?,
           text: isZhTW 
-            ? `è©•å?ï¼?{relatedCourse.rating}/5 (${relatedCourse.reviewCount}æ¢è?è«?`
+            ? `è©•ï¿½?ï¿½?{relatedCourse.rating}/5 (${relatedCourse.reviewCount}æ¢ï¿½?ï¿½?`
             : `Rating: ${relatedCourse.rating}/5 (${relatedCourse.reviewCount} reviews)`
         },
         {
-          icon: "?‘¥",
+          icon: "?ï¿½ï¿½",
           text: isZhTW 
-            ? `å·²æ? ${relatedCourse.students} ?å­¸?Ÿå ±?`
+            ? `å·²ï¿½? ${relatedCourse.students} ?ï¿½å­¸?ï¿½å ±?ï¿½`
             : `${relatedCourse.students} students enrolled`
         },
         {
           icon: "??",
           text: isZhTW 
-            ? `èª²ç?ç­‰ç?ï¼?{relatedCourse.levelCht} | ??${relatedCourse.modules.length} ?‹æ¨¡çµ„`
+            ? `èª²ï¿½?ç­‰ï¿½?ï¿½?{relatedCourse.levelCht} | ??${relatedCourse.modules.length} ?ï¿½æ¨¡çµ„`
             : `Level: ${relatedCourse.level} | ${relatedCourse.modules.length} modules`
         },
         ...(relatedCourse.featured || relatedCourse.bestseller || relatedCourse.newCourse ? [{
           icon: "??",
           text: isZhTW 
-            ? `?¹è‰²æ¨™ç±¤ï¼?{[
-                relatedCourse.featured ? 'ç²¾é¸èª²ç?' : '',
-                relatedCourse.bestseller ? '?€?—æ­¡è¿? : '',
-                relatedCourse.newCourse ? '?°èª²ç¨? : ''
+            ? `?ï¿½è‰²æ¨™ç±¤ï¿½?{[
+                relatedCourse.featured ? 'ç²¾é¸èª²ï¿½?' : '',
+                relatedCourse.bestseller ? '?ï¿½?ï¿½æ­¡ï¿½? : '',
+                relatedCourse.newCourse ? '?ï¿½èª²ï¿½? : ''
               ].filter(Boolean).join(', ')}`
             : `Highlights: ${[
                 relatedCourse.featured ? 'Featured' : '',
@@ -353,7 +353,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
         }] : [])
       ],
       note: isZhTW 
-        ? `?™æ˜¯?‡ã€?{courseInfo.badge}?ç›¸?œç??€?°èª²ç¨‹æ›´?°ã€‚èª²ç¨‹å…§å®¹æ??¹æ?å­¸å“¡?é??Œå??´é?æ±‚æ?çºŒå„ª?–ã€‚é??ŠæŸ¥?‹æ›´å¤šèª²ç¨‹è©³?…ã€‚`
+        ? `?ï¿½æ˜¯?ï¿½ï¿½?{courseInfo.badge}?ï¿½ç›¸?ï¿½ï¿½??ï¿½?ï¿½èª²ç¨‹æ›´?ï¿½ã€‚èª²ç¨‹å…§å®¹ï¿½??ï¿½ï¿½?å­¸å“¡?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?æ±‚ï¿½?çºŒå„ª?ï¿½ã€‚ï¿½??ï¿½æŸ¥?ï¿½æ›´å¤šèª²ç¨‹è©³?ï¿½ã€‚`
         : `This is the latest course update related to "${courseInfo.badge}". Course content is continuously optimized based on student feedback and market demand. Click to view more course details.`
     };
   };
@@ -384,14 +384,14 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
     }
   };
 
-  // æ¸²æ?ä¸å?tab?„å…§å®?  const renderTabContent = () => {
+  // æ¸²ï¿½?ä¸ï¿½?tab?ï¿½å…§ï¿½?  const renderTabContent = () => {
     switch (activeTab) {
       case 'course-intro':
         return (
           <div className="space-y-8">
             {/* Course Overview - Enhanced */}
             <div className="space-y-6">
-              {/* ä¸»è?èª²ç?ä¿¡æ¯?¡ç? */}
+              {/* ä¸»ï¿½?èª²ï¿½?ä¿¡æ¯?ï¿½ï¿½? */}
               <Card className="bg-gray-800 border-gray-700 overflow-hidden">
                 <div className={`h-2 bg-gradient-to-r ${instructorTheme.gradient}`}></div>
                 <CardContent className="p-8">
@@ -400,53 +400,53 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                       <Rocket className="w-6 h-6 text-white" />
                     </div>
                     <h2 className="text-2xl font-bold text-white">
-                      {isZhTW ? "èª²ç?ç¸½è¦½" : "Course Overview"}
+                      {isZhTW ? "èª²ï¿½?ç¸½è¦½" : "Course Overview"}
                     </h2>
                   </div>
 
-                  {/* ?¸å?çµ±è??¸æ? */}
+                  {/* ?ï¿½ï¿½?çµ±ï¿½??ï¿½ï¿½? */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                     <div className="text-center">
                       <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>12</div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "?±èª²ç¨? : "Weeks"}</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "?ï¿½èª²ï¿½? : "Weeks"}</div>
                     </div>
                     <div className="text-center">
                       <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>24</div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "å°æ??§å®¹" : "Hours"}</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "å°ï¿½??ï¿½å®¹" : "Hours"}</div>
                     </div>
                     <div className="text-center">
                       <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>6</div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "?‹å?æ¡? : "Projects"}</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "?ï¿½ï¿½?ï¿½? : "Projects"}</div>
                     </div>
                     <div className="text-center">
                       <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>??/div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "æ°¸ä?è§€?? : "Lifetime"}</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "æ°¸ï¿½?è§€?? : "Lifetime"}</div>
                     </div>
                   </div>
 
-                  {/* è©³ç´°èª²ç??¹è‰² */}
+                  {/* è©³ç´°èª²ï¿½??ï¿½è‰² */}
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                         <Clock className={`w-5 h-5 ${instructorTheme.primary}`} />
-                        {isZhTW ? "å­¸ç??‚ç?" : "Learning Schedule"}
+                        {isZhTW ? "å­¸ï¿½??ï¿½ï¿½?" : "Learning Schedule"}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "èª²ç?ç¸½é•·åº? : "Total Duration"}</span>
+                          <span className="text-gray-300">{isZhTW ? "èª²ï¿½?ç¸½é•·ï¿½? : "Total Duration"}</span>
                           <span className="text-white font-semibold">{isZhTW ? "12 ?? : "12 Weeks"}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "æ¯é€±å­¸ç¿’æ??? : "Weekly Commitment"}</span>
-                          <span className="text-white font-semibold">{isZhTW ? "2-3 å°æ?" : "2-3 Hours"}</span>
+                          <span className="text-gray-300">{isZhTW ? "æ¯é€±å­¸ç¿’ï¿½??? : "Weekly Commitment"}</span>
+                          <span className="text-white font-semibold">{isZhTW ? "2-3 å°ï¿½?" : "2-3 Hours"}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "å­¸ç?æ¨¡å?" : "Learning Mode"}</span>
-                          <span className="text-white font-semibold">{isZhTW ? "ç·šä??ªå­¸" : "Self-Paced"}</span>
+                          <span className="text-gray-300">{isZhTW ? "å­¸ï¿½?æ¨¡ï¿½?" : "Learning Mode"}</span>
+                          <span className="text-white font-semibold">{isZhTW ? "ç·šï¿½??ï¿½å­¸" : "Self-Paced"}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "èªè?" : "Language"}</span>
-                          <span className="text-white font-semibold">{isZhTW ? "ç¹é?ä¸­æ?" : "Traditional Chinese"}</span>
+                          <span className="text-gray-300">{isZhTW ? "èªï¿½?" : "Language"}</span>
+                          <span className="text-white font-semibold">{isZhTW ? "ç¹ï¿½?ä¸­ï¿½?" : "Traditional Chinese"}</span>
                         </div>
                       </div>
                     </div>
@@ -454,24 +454,24 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                         <Award className={`w-5 h-5 ${instructorTheme.primary}`} />
-                        {isZhTW ? "èª²ç??¹è‰²" : "Course Features"}
+                        {isZhTW ? "èª²ï¿½??ï¿½è‰²" : "Course Features"}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "å¯¦æˆ°?…ç›®å°å?" : "Project-Based Learning"}</span>
+                          <span className="text-gray-300">{isZhTW ? "å¯¦æˆ°?ï¿½ç›®å°ï¿½?" : "Project-Based Learning"}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "ä¸€å°ä?å°å¸«?‡å?" : "1-on-1 Mentorship"}</span>
+                          <span className="text-gray-300">{isZhTW ? "ä¸€å°ï¿½?å°å¸«?ï¿½ï¿½?" : "1-on-1 Mentorship"}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "æ¥­ç??€?°å·¥?? : "Latest Industry Tools"}</span>
+                          <span className="text-gray-300">{isZhTW ? "æ¥­ï¿½??ï¿½?ï¿½å·¥?? : "Latest Industry Tools"}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "å®Œæ?è­‰æ›¸?’ç™¼" : "Certificate of Completion"}</span>
+                          <span className="text-gray-300">{isZhTW ? "å®Œï¿½?è­‰æ›¸?ï¿½ç™¼" : "Certificate of Completion"}</span>
                         </div>
                       </div>
                     </div>
@@ -479,39 +479,39 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 </CardContent>
               </Card>
 
-              {/* å­¸ç?è·¯å?å±•ç¤º */}
+              {/* å­¸ï¿½?è·¯ï¿½?å±•ç¤º */}
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <TrendingUp className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "å­¸ç?è·¯å?" : "Learning Path"}
+                    {isZhTW ? "å­¸ï¿½?è·¯ï¿½?" : "Learning Path"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     {[
                       {
-                        phase: isZhTW ? "ç¬?-3?? : "Week 1-3",
-                        title: isZhTW ? "AI ?ºç??‡å‰µ?ç™¼?? : "AI Fundamentals & Creative Ideation",
-                        description: isZhTW ? "å­¸ç? ChatGPT 4o ?„åŸº?¬æ?ä½œï??Œæ¡?µæ? Prompt è¨­è?" : "Learn ChatGPT 4o basics and master creative prompt design",
+                        phase: isZhTW ? "ï¿½?-3?? : "Week 1-3",
+                        title: isZhTW ? "AI ?ï¿½ï¿½??ï¿½å‰µ?ï¿½ç™¼?? : "AI Fundamentals & Creative Ideation",
+                        description: isZhTW ? "å­¸ï¿½? ChatGPT 4o ?ï¿½åŸº?ï¿½ï¿½?ä½œï¿½??ï¿½æ¡?ï¿½ï¿½? Prompt è¨­ï¿½?" : "Learn ChatGPT 4o basics and master creative prompt design",
                         icon: <Lightbulb className="w-6 h-6" />
                       },
                       {
-                        phase: isZhTW ? "ç¬?-6?? : "Week 4-6", 
-                        title: isZhTW ? "è¦–è¦ºè¨­è??‡å??æ?å·? : "Visual Design & Composition",
-                        description: isZhTW ? "?Œæ¡ Photoshop ?ˆæ??€è¡“ï?è£½ä?å°ˆæ¥­?¢å?å±•ç¤º?? : "Master Photoshop composition for professional product visuals",
+                        phase: isZhTW ? "ï¿½?-6?? : "Week 4-6", 
+                        title: isZhTW ? "è¦–è¦ºè¨­ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½? : "Visual Design & Composition",
+                        description: isZhTW ? "?ï¿½æ¡ Photoshop ?ï¿½ï¿½??ï¿½è¡“ï¿½?è£½ï¿½?å°ˆæ¥­?ï¿½ï¿½?å±•ç¤º?? : "Master Photoshop composition for professional product visuals",
                         icon: <Monitor className="w-6 h-6" />
                       },
                       {
-                        phase: isZhTW ? "ç¬?-9?? : "Week 7-9",
-                        title: isZhTW ? "AI ?•æ??¹æ?è£½ä?" : "AI Motion Effects",
-                        description: isZhTW ? "ä½¿ç”¨ Kling AI ?µä??•æ??¹æ?ï¼Œå­¸ç¿?Minimax èªéŸ³?€è¡? : "Create motion effects with Kling AI and learn Minimax voice technology",
+                        phase: isZhTW ? "ï¿½?-9?? : "Week 7-9",
+                        title: isZhTW ? "AI ?ï¿½ï¿½??ï¿½ï¿½?è£½ï¿½?" : "AI Motion Effects",
+                        description: isZhTW ? "ä½¿ç”¨ Kling AI ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¼Œå­¸ï¿½?Minimax èªéŸ³?ï¿½ï¿½? : "Create motion effects with Kling AI and learn Minimax voice technology",
                         icon: <PlayCircle className="w-6 h-6" />
                       },
                       {
-                        phase: isZhTW ? "ç¬?0-12?? : "Week 10-12",
-                        title: isZhTW ? "å°ˆæ¥­å½±ç?è£½ä?" : "Professional Video Production",
-                        description: isZhTW ? "?´å??€?‰æ??½ï?å®Œæ?å®Œæ•´?„å?æ¥­ç?å½±ç??…ç›®" : "Integrate all skills to complete commercial-grade video projects",
+                        phase: isZhTW ? "ï¿½?0-12?? : "Week 10-12",
+                        title: isZhTW ? "å°ˆæ¥­å½±ï¿½?è£½ï¿½?" : "Professional Video Production",
+                        description: isZhTW ? "?ï¿½ï¿½??ï¿½?ï¿½ï¿½??ï¿½ï¿½?å®Œï¿½?å®Œæ•´?ï¿½ï¿½?æ¥­ï¿½?å½±ï¿½??ï¿½ç›®" : "Integrate all skills to complete commercial-grade video projects",
                         icon: <Rocket className="w-6 h-6" />
                       }
                     ].map((item, index) => (
@@ -534,25 +534,25 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 </CardContent>
               </Card>
 
-              {/* å·¥å…·?‡æ?è¡?*/}
+              {/* å·¥å…·?ï¿½ï¿½?ï¿½?*/}
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Database className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "ä½¿ç”¨å·¥å…·?‡æ?è¡? : "Tools & Technologies"}
+                    {isZhTW ? "ä½¿ç”¨å·¥å…·?ï¿½ï¿½?ï¿½? : "Tools & Technologies"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
                       { name: "ChatGPT 4o", category: isZhTW ? "AI å°è©±" : "AI Chat" },
-                      { name: "Kling AI", category: isZhTW ? "?•æ??¹æ?" : "Motion FX" },
-                      { name: "Minimax AI", category: isZhTW ? "èªéŸ³?ˆæ?" : "Voice AI" },
-                      { name: "Photoshop", category: isZhTW ? "?–å??•ç?" : "Image Edit" },
-                      { name: "CapCut", category: isZhTW ? "å½±ç??ªè¼¯" : "Video Edit" },
-                      { name: "AI å­—å?", category: isZhTW ? "?‡å??ªå??? : "Auto Subtitle" },
-                      { name: "Figma", category: isZhTW ? "è¨­è??”ä?" : "Design" },
-                      { name: "Canva", category: isZhTW ? "å¿«é€Ÿè¨­è¨? : "Quick Design" }
+                      { name: "Kling AI", category: isZhTW ? "?ï¿½ï¿½??ï¿½ï¿½?" : "Motion FX" },
+                      { name: "Minimax AI", category: isZhTW ? "èªéŸ³?ï¿½ï¿½?" : "Voice AI" },
+                      { name: "Photoshop", category: isZhTW ? "?ï¿½ï¿½??ï¿½ï¿½?" : "Image Edit" },
+                      { name: "CapCut", category: isZhTW ? "å½±ï¿½??ï¿½è¼¯" : "Video Edit" },
+                      { name: "AI å­—ï¿½?", category: isZhTW ? "?ï¿½ï¿½??ï¿½ï¿½??? : "Auto Subtitle" },
+                      { name: "Figma", category: isZhTW ? "è¨­ï¿½??ï¿½ï¿½?" : "Design" },
+                      { name: "Canva", category: isZhTW ? "å¿«é€Ÿè¨­ï¿½? : "Quick Design" }
                     ].map((tool, index) => (
                       <div key={index} className="text-center p-4 bg-gray-700 rounded-lg">
                         <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center`}>
@@ -572,7 +572,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Tag className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "èª²ç?è³‡è?" : "Course Information"}
+                  {isZhTW ? "èª²ï¿½?è³‡ï¿½?" : "Course Information"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -600,14 +600,14 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             {/* Latest News */}
             <Card className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer" 
                   onClick={() => {
-                    // å°èˆª?°ç›¸?œèª²ç¨‹è©³?…é???                    if (relatedCourse) {
+                    // å°èˆª?ï¿½ç›¸?ï¿½èª²ç¨‹è©³?ï¿½ï¿½???                    if (relatedCourse) {
                       navigate(`/courses/${relatedCourse.id}`);
                     }
                   }}>
               <CardHeader>
                 <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
                   <AlertCircle className="w-4 h-4" />
-                  <span>{isZhTW ? "?€?°æ??? : "Latest News"}</span>
+                  <span>{isZhTW ? "?ï¿½?ï¿½ï¿½??? : "Latest News"}</span>
                   <span>{dynamicLatestNews.date}</span>
                 </div>
                 <CardTitle className="text-xl text-white flex items-center justify-between">
@@ -638,73 +638,73 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             {/* Course Features */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "?¯ ä½ æ?å­¸åˆ°ä»€éº¼ï?" : "?¯ What You'll Learn"}
+                {isZhTW ? "?ï¿½ï¿½ ä½ ï¿½?å­¸åˆ°ä»€éº¼ï¿½?" : "?ï¿½ï¿½ What You'll Learn"}
               </h3>
               
               {/* Detailed Learning Content - Accordion Format */}
               <div className="space-y-4 mb-8">
                 {[
                   {
-                    title: "AI å»???µæ?è¦å?",
+                    title: "AI ï¿½???ï¿½ï¿½?è¦ï¿½?",
                     sections: [
                       {
-                        title: "AI ?¢å??ªå‹¢?†æ??‡å‰µ?ç™¼?³æ?å·?,
+                        title: "AI ?ï¿½ï¿½??ï¿½å‹¢?ï¿½ï¿½??ï¿½å‰µ?ï¿½ç™¼?ï¿½ï¿½?ï¿½?,
                         points: [
-                          "å­¸è??©ç”¨ ChatGPT 4o å¿«é€Ÿå??ç¶²ä¸Šç”¢?è?è¨Šï?ç²¾æ?æ­¸ç??¢å??¨ç‰¹è³????,
-                          "?Œæ¡å¦‚ä?å°‡ç”¢?å„ª?¢è??–ç‚º?µæ??†é¡ï¼Œå¿«?Ÿç”¢?ºæ?èªªæ??›ç?å»???µæ???
+                          "å­¸ï¿½??ï¿½ç”¨ ChatGPT 4o å¿«é€Ÿï¿½??ï¿½ç¶²ä¸Šç”¢?ï¿½ï¿½?è¨Šï¿½?ç²¾ï¿½?æ­¸ï¿½??ï¿½ï¿½??ï¿½ç‰¹ï¿½????,
+                          "?ï¿½æ¡å¦‚ï¿½?å°‡ç”¢?ï¿½å„ª?ï¿½ï¿½??ï¿½ç‚º?ï¿½ï¿½??ï¿½é¡ï¼Œå¿«?ï¿½ç”¢?ï¿½ï¿½?èªªï¿½??ï¿½ï¿½?ï¿½???ï¿½ï¿½???
                         ]
                       },
                       {
-                        title: "ChatGPT 4o å»???µæ??‡å??¡è£½ä½?,
+                        title: "ChatGPT 4o ï¿½???ï¿½ï¿½??ï¿½ï¿½??ï¿½è£½ï¿½?,
                         points: [
-                          "å­¸æ??©ç”¨ ChatGPT ?Ÿæ?ç²¾æ??„å‰µ??Promptï¼Œå¿«?Ÿç”¢?ºå¸?›ç”¢?å»£?Šè…³?¬ã€?,
-                          "?Œæ¡?­ç??†é¡?è¼¯ï¼Œè¨­è¨ˆé?è½‰å??‡ç?è¦–è¦º?˜ä?çµæ???
+                          "å­¸ï¿½??ï¿½ç”¨ ChatGPT ?ï¿½ï¿½?ç²¾ï¿½??ï¿½å‰µ??Promptï¼Œå¿«?ï¿½ç”¢?ï¿½å¸?ï¿½ç”¢?ï¿½å»£?ï¿½è…³?ï¿½ï¿½?,
+                          "?ï¿½æ¡?ï¿½ï¿½??ï¿½é¡?ï¿½è¼¯ï¼Œè¨­è¨ˆï¿½?è½‰ï¿½??ï¿½ï¿½?è¦–è¦º?ï¿½ï¿½?çµï¿½???
                         ]
                       },
                       {
-                        title: "Photoshop å°ˆæ¥­?¢å??ˆæ??€å·?,
+                        title: "Photoshop å°ˆæ¥­?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?,
                         points: [
-                          "?Ÿç·´ä½¿ç”¨ Photoshop ?„é®ç½©ï?Maskï¼‰è??–å±¤?€è¡“ï?å®Œç??å??¢å??‡è??¯å???,
-                          "å­¸è?å¾Œæ??•ç?ç´°ç?ï¼ˆä?å¦‚é™°å½±èª¿?´ã€å?æºçµ±ä¸€ï¼‰ï?é¡¯è??å??¢å?è¦–è¦º?Ÿå¯¦?Ÿã€?
+                          "?ï¿½ç·´ä½¿ç”¨ Photoshop ?ï¿½é®ç½©ï¿½?Maskï¼‰ï¿½??ï¿½å±¤?ï¿½è¡“ï¿½?å®Œï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½???,
+                          "å­¸ï¿½?å¾Œï¿½??ï¿½ï¿½?ç´°ï¿½?ï¼ˆï¿½?å¦‚é™°å½±èª¿?ï¿½ã€ï¿½?æºçµ±ä¸€ï¼‰ï¿½?é¡¯ï¿½??ï¿½ï¿½??ï¿½ï¿½?è¦–è¦º?ï¿½å¯¦?ï¿½ï¿½?
                         ]
                       }
                     ]
                   },
                   {
-                    title: "AI ?•æ??¹æ?è£½ä???AI ?éŸ³?‰ç”¨",
+                    title: "AI ?ï¿½ï¿½??ï¿½ï¿½?è£½ï¿½???AI ?ï¿½éŸ³?ï¿½ç”¨",
                     sections: [
                       {
-                        title: "Kling AI å°ˆæ¥­?•æ??¹æ?å®Œæ•´è£½ä?æµç?",
+                        title: "Kling AI å°ˆæ¥­?ï¿½ï¿½??ï¿½ï¿½?å®Œæ•´è£½ï¿½?æµï¿½?",
                         points: [
-                          "æ·±å…¥?Œæ¡ Kling AI é¦–å°¾å¹€è¨­å?ï¼Œè£½ä½œç”¢?å??‹å?ç¤ºã€æµª?±å??¸æ°£ç­‰é?è³ªç??•æ??¹æ???,
-                          "å­¸ç?å¦‚ä?è¨­è?é«˜æ? Promptï¼Œç²¾ç¢ºæ§?¶ç‰¹?ˆå??¾æ??œï??“é€ å?æ¥­ç?è¦–è¦º?¸å??›ã€?,
-                          "?Œæ¡ AI ?•æ??¹æ?è£½ä??„å¸¸è¦‹æ?å·§è?æ³¨æ?äº‹é?ï¼Œå¿«?Ÿæ??‡å½±?‡å?æ¥­æ???
+                          "æ·±å…¥?ï¿½æ¡ Kling AI é¦–å°¾å¹€è¨­ï¿½?ï¼Œè£½ä½œç”¢?ï¿½ï¿½??ï¿½ï¿½?ç¤ºã€æµª?ï¿½ï¿½??ï¿½æ°£ç­‰ï¿½?è³ªï¿½??ï¿½ï¿½??ï¿½ï¿½???,
+                          "å­¸ï¿½?å¦‚ï¿½?è¨­ï¿½?é«˜ï¿½? Promptï¼Œç²¾ç¢ºæ§?ï¿½ç‰¹?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½é€ ï¿½?æ¥­ï¿½?è¦–è¦º?ï¿½ï¿½??ï¿½ï¿½?,
+                          "?ï¿½æ¡ AI ?ï¿½ï¿½??ï¿½ï¿½?è£½ï¿½??ï¿½å¸¸è¦‹ï¿½?å·§ï¿½?æ³¨ï¿½?äº‹ï¿½?ï¼Œå¿«?ï¿½ï¿½??ï¿½å½±?ï¿½ï¿½?æ¥­ï¿½???
                         ]
                       },
                       {
-                        title: "Minimax AI èªéŸ³è¤‡è£½?Šæ•¸å­—äºº?éŸ³?€å·?,
+                        title: "Minimax AI èªéŸ³è¤‡è£½?ï¿½æ•¸å­—äºº?ï¿½éŸ³?ï¿½ï¿½?,
                         points: [
-                          "å­¸æ?ä½¿ç”¨ Minimax å¿«é€Ÿã€ç²¾ç¢ºè?è£½ä??„è²?³ï?è£½ä??ªç„¶æµæš¢å»?±è©±æ??½ã€?,
-                          "?Œæ¡èªéŸ³?‡æ?è¨­è??€å·§ï??å??ç?å»??å°ˆæ¥­?Ÿå?èªªæ??›ã€?
+                          "å­¸ï¿½?ä½¿ç”¨ Minimax å¿«é€Ÿã€ç²¾ç¢ºï¿½?è£½ï¿½??ï¿½è²?ï¿½ï¿½?è£½ï¿½??ï¿½ç„¶æµæš¢ï¿½?ï¿½ï¿½è©±ï¿½??ï¿½ï¿½?,
+                          "?ï¿½æ¡èªéŸ³?ï¿½ï¿½?è¨­ï¿½??ï¿½å·§ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½??å°ˆæ¥­?ï¿½ï¿½?èªªï¿½??ï¿½ï¿½?
                         ]
                       }
                     ]
                   },
                   {
-                    title: "å½±ç??ªè¼¯?€è¡“è? AI å­—å??ªå???,
+                    title: "å½±ï¿½??ï¿½è¼¯?ï¿½è¡“ï¿½? AI å­—ï¿½??ï¿½ï¿½???,
                     sections: [
                       {
-                        title: "CapCut å°ˆæ¥­å½±ç??ªè¼¯?‡ç?å¥æ??§æ?å·?,
+                        title: "CapCut å°ˆæ¥­å½±ï¿½??ï¿½è¼¯?ï¿½ï¿½?å¥ï¿½??ï¿½ï¿½?ï¿½?,
                         points: [
-                          "å­¸ç? CapCut å¿«é??ªè¼¯?‡é??´ç‰¹?ˆæ??¨ï??å?å½±ç?æµæš¢åº¦è?è¦–è¦ºå°ˆæ¥­?Ÿã€?,
-                          "?Œæ¡å½±ç?ç¯€å¥æ§?¶æ–¹æ³•ï?ä¾‹å??³ç•«?Œæ­¥ï¼‰ï?ç²¾æ?èª¿æ•´å½±ç??¸å?è§€?¾æ³¨?å???
+                          "å­¸ï¿½? CapCut å¿«ï¿½??ï¿½è¼¯?ï¿½ï¿½??ï¿½ç‰¹?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?å½±ï¿½?æµæš¢åº¦ï¿½?è¦–è¦ºå°ˆæ¥­?ï¿½ï¿½?,
+                          "?ï¿½æ¡å½±ï¿½?ç¯€å¥æ§?ï¿½æ–¹æ³•ï¿½?ä¾‹ï¿½??ï¿½ç•«?ï¿½æ­¥ï¼‰ï¿½?ç²¾ï¿½?èª¿æ•´å½±ï¿½??ï¿½ï¿½?è§€?ï¿½æ³¨?ï¿½ï¿½???
                         ]
                       },
                       {
-                        title: "AI ?ºèƒ½ç¹é?å­—å??Ÿæ??‡è??½ç‰¹?ˆè£½ä½?,
+                        title: "AI ?ï¿½èƒ½ç¹ï¿½?å­—ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ç‰¹?ï¿½è£½ï¿½?,
                         points: [
-                          "?Ÿç·´ AI ?ªå??Ÿæ?ç¹é?å­—å??„æ?ä½œæ?ç¨‹è?ç²¾æ??¡æ­£?¹æ?ï¼Œæ?å°‘å?å¹•è£½ä½œæ??“ã€?,
-                          "?Œæ¡å­—å??¹æ?æ¨??è¨­è?ï¼ˆå??•æ?å­—å??ç‰¹?ˆå…¥?´ï?ï¼Œæ??‡çŸ­?‡å?æ¥­è?è¦ºæ??œã€?
+                          "?ï¿½ç·´ AI ?ï¿½ï¿½??ï¿½ï¿½?ç¹ï¿½?å­—ï¿½??ï¿½ï¿½?ä½œï¿½?ç¨‹ï¿½?ç²¾ï¿½??ï¿½æ­£?ï¿½ï¿½?ï¼Œï¿½?å°‘ï¿½?å¹•è£½ä½œï¿½??ï¿½ï¿½?,
+                          "?ï¿½æ¡å­—ï¿½??ï¿½ï¿½?ï¿½??è¨­ï¿½?ï¼ˆï¿½??ï¿½ï¿½?å­—ï¿½??ï¿½ç‰¹?ï¿½å…¥?ï¿½ï¿½?ï¼Œï¿½??ï¿½çŸ­?ï¿½ï¿½?æ¥­ï¿½?è¦ºï¿½??ï¿½ï¿½?
                         ]
                       }
                     ]
@@ -775,7 +775,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <BookOpen className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "?¯é¸èª²ç?" : "Available Courses"}
+                  {isZhTW ? "?ï¿½é¸èª²ï¿½?" : "Available Courses"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -834,7 +834,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       case 'instructor-profile':
         return (
           <div className="space-y-8">
-            {/* å°å¸«?­å??ŒåŸº?¬ä¿¡??*/}
+            {/* å°å¸«?ï¿½ï¿½??ï¿½åŸº?ï¿½ä¿¡??*/}
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -855,12 +855,12 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         {isZhTW ? "è³‡æ·±å°å¸«" : "Senior Instructor"}
                       </Badge>
                       <Badge className={`${instructorTheme.secondary} text-white`}>
-                        {isZhTW ? "æ¥­ç?é¡§å?" : "Industry Consultant"}
+                        {isZhTW ? "æ¥­ï¿½?é¡§ï¿½?" : "Industry Consultant"}
                       </Badge>
                     </div>
                     <p className="text-gray-300 leading-relaxed">
                       {isZhTW 
-                        ? `?æ?è¶…é? 8 å¹?AI ?€è¡“æ??¨ç?é©—ï?å°ˆç²¾??AI å·¥å…·?¨å‰µ?ç”¢æ¥­ç?å¯¦é??‰ç”¨?‚æ›¾?”åŠ©è¶…é? 200 å®¶ä?æ¥­æ??Ÿå???AI ?ªå??–æ?ç¨‹ï?å­¸å“¡?ä??¨ç?ï¼Œç´¯è¨ˆåŸ¹é¤Šè???3,000 ??AI ?‰ç”¨å°ˆæ??‚`
+                        ? `?ï¿½ï¿½?è¶…ï¿½? 8 ï¿½?AI ?ï¿½è¡“ï¿½??ï¿½ï¿½?é©—ï¿½?å°ˆç²¾??AI å·¥å…·?ï¿½å‰µ?ï¿½ç”¢æ¥­ï¿½?å¯¦ï¿½??ï¿½ç”¨?ï¿½æ›¾?ï¿½åŠ©è¶…ï¿½? 200 å®¶ï¿½?æ¥­ï¿½??ï¿½ï¿½???AI ?ï¿½ï¿½??ï¿½ï¿½?ç¨‹ï¿½?å­¸å“¡?ï¿½ï¿½??ï¿½ï¿½?ï¼Œç´¯è¨ˆåŸ¹é¤Šï¿½???3,000 ??AI ?ï¿½ç”¨å°ˆï¿½??ï¿½`
                         : `With over 8 years of AI technology application experience, specializing in practical AI tool applications in creative industries. Has successfully helped over 200 companies implement AI automation processes, with students worldwide and over 3,000 AI application specialists trained.`
                       }
                     </p>
@@ -869,32 +869,32 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
 
-            {/* å°ˆæ¥­?Œæ™¯?‡ç?é©?*/}
+            {/* å°ˆæ¥­?ï¿½æ™¯?ï¿½ï¿½?ï¿½?*/}
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Briefcase className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "å°ˆæ¥­ç¶“é?" : "Professional Experience"}
+                    {isZhTW ? "å°ˆæ¥­ç¶“ï¿½?" : "Professional Experience"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "ç§‘æ??¬å¸ AI ?¢å?ç¸½ç›£" : "AI Product Director"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "ç§‘ï¿½??ï¿½å¸ AI ?ï¿½ï¿½?ç¸½ç›£" : "AI Product Director"}</h4>
                     <p className="text-sm text-gray-400 mb-2">2019 - 2024</p>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "?˜å? AI ?¢å??‹ç™¼?˜é?ï¼Œæ??Ÿæ¨?ºå?æ¬¾å?æ¥?AI ?‰ç”¨ï¼Œæ??™è??ç™¾?¬ç”¨?¶ã€?
+                        ? "?ï¿½ï¿½? AI ?ï¿½ï¿½??ï¿½ç™¼?ï¿½ï¿½?ï¼Œï¿½??ï¿½æ¨?ï¿½ï¿½?æ¬¾ï¿½?ï¿½?AI ?ï¿½ç”¨ï¼Œï¿½??ï¿½ï¿½??ï¿½ç™¾?ï¿½ç”¨?ï¿½ï¿½?
                         : "Led AI product development team, successfully launched multiple commercial AI applications serving over one million users."
                       }
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "?µæ?å·¥ä?å®¤å‰µè¾¦äºº" : "Creative Studio Founder"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "?ï¿½ï¿½?å·¥ï¿½?å®¤å‰µè¾¦äºº" : "Creative Studio Founder"}</h4>
                     <p className="text-sm text-gray-400 mb-2">2016 - 2019</p>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "?µè¾¦å°ˆæ¥­?µæ?å·¥ä?å®¤ï??ºå??Œæ?ä¾›å‰µ?°ç??¸ç¢¼?ŸéŠ·è§?±º?¹æ???
+                        ? "?ï¿½è¾¦å°ˆæ¥­?ï¿½ï¿½?å·¥ï¿½?å®¤ï¿½??ï¿½ï¿½??ï¿½ï¿½?ä¾›å‰µ?ï¿½ï¿½??ï¿½ç¢¼?ï¿½éŠ·ï¿½?ï¿½ï¿½?ï¿½ï¿½???
                         : "Founded professional creative studio, providing innovative digital marketing solutions for brands."
                       }
                     </p>
@@ -906,24 +906,24 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Award className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "å°ˆæ¥­èªè?" : "Certifications"}
+                    {isZhTW ? "å°ˆæ¥­èªï¿½?" : "Certifications"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Google AI èªè?å°ˆå®¶" : "Google AI Certified Expert"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Google AI èªï¿½?å°ˆå®¶" : "Google AI Certified Expert"}</h4>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "Google å®˜æ–¹èªè???AI ?€è¡“å?å®¶ï?å°ˆç²¾æ©Ÿå™¨å­¸ç??Œæ·±åº¦å­¸ç¿’æ??¨ã€?
+                        ? "Google å®˜æ–¹èªï¿½???AI ?ï¿½è¡“ï¿½?å®¶ï¿½?å°ˆç²¾æ©Ÿå™¨å­¸ï¿½??ï¿½æ·±åº¦å­¸ç¿’ï¿½??ï¿½ï¿½?
                         : "Google officially certified AI technology expert, specializing in machine learning and deep learning applications."
                       }
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Adobe èªè?å°ˆå®¶" : "Adobe Certified Expert"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Adobe èªï¿½?å°ˆå®¶" : "Adobe Certified Expert"}</h4>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "Adobe Creative Suite ?¨ç³»?—è?è­‰ï??…é•·å°?AI å·¥å…·?‡å‚³çµ±è¨­è¨ˆè?ä»¶ç??ˆã€?
+                        ? "Adobe Creative Suite ?ï¿½ç³»?ï¿½ï¿½?è­‰ï¿½??ï¿½é•·ï¿½?AI å·¥å…·?ï¿½å‚³çµ±è¨­è¨ˆï¿½?ä»¶ï¿½??ï¿½ï¿½?
                         : "Adobe Creative Suite full certification, excelling in combining AI tools with traditional design software."
                       }
                     </p>
@@ -932,23 +932,23 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </Card>
             </div>
 
-            {/* ?™å­¸?†å¿µ */}
+            {/* ?ï¿½å­¸?ï¿½å¿µ */}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Lightbulb className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "?™å­¸?†å¿µ" : "Teaching Philosophy"}
+                  {isZhTW ? "?ï¿½å­¸?ï¿½å¿µ" : "Teaching Philosophy"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-xl font-bold text-white mb-4">
-                      {isZhTW ? '"è®“æ??‹äºº?½èƒ½é§•é¦­ AI ?„å???' : '"Empowering Everyone to Harness the Power of AI"'}
+                      {isZhTW ? '"è®“ï¿½??ï¿½äºº?ï¿½èƒ½é§•é¦­ AI ?ï¿½ï¿½???' : '"Empowering Everyone to Harness the Power of AI"'}
                     </h3>
                     <p className="text-gray-300 leading-relaxed mb-4">
                       {isZhTW 
-                        ? "?‘ç›¸ä¿?AI ä¸æ?è©²æ˜¯å°‘æ•¸?€è¡“å?å®¶ç?å°ˆåˆ©ï¼Œè€Œæ˜¯æ¯å€‹æ??µæ??Œæƒ³æ³•ç?äººéƒ½?½ä½¿?¨ç?å¼·å¤§å·¥å…·?‚é€šé?å¯¦æˆ°?™å­¸?Œç?å¯¦æ?ä¾‹ï??‘è?è®“å­¸?¡ä??ªå­¸?ƒæ?ä½?AI å·¥å…·ï¼Œæ›´è¦ç?è§??ä½•å??™ä?å·¥å…·?å…¥?°å¯¦?›å·¥ä½œä¸­ï¼Œå‰µ? ç?æ­???¹å€¼ã€?
+                        ? "?ï¿½ç›¸ï¿½?AI ä¸ï¿½?è©²æ˜¯å°‘æ•¸?ï¿½è¡“ï¿½?å®¶ï¿½?å°ˆåˆ©ï¼Œè€Œæ˜¯æ¯å€‹ï¿½??ï¿½ï¿½??ï¿½æƒ³æ³•ï¿½?äººéƒ½?ï¿½ä½¿?ï¿½ï¿½?å¼·å¤§å·¥å…·?ï¿½é€šï¿½?å¯¦æˆ°?ï¿½å­¸?ï¿½ï¿½?å¯¦ï¿½?ä¾‹ï¿½??ï¿½ï¿½?è®“å­¸?ï¿½ï¿½??ï¿½å­¸?ï¿½ï¿½?ï¿½?AI å·¥å…·ï¼Œæ›´è¦ï¿½?ï¿½??ä½•ï¿½??ï¿½ï¿½?å·¥å…·?ï¿½å…¥?ï¿½å¯¦?ï¿½å·¥ä½œä¸­ï¼Œå‰µ?ï¿½ï¿½?ï¿½???ï¿½å€¼ï¿½?
                         : "I believe AI should not be the exclusive domain of a few technical experts, but a powerful tool that anyone with creativity and ideas can use. Through hands-on teaching and real case studies, I want students to not only learn to operate AI tools, but also understand how to integrate these tools into actual work to create real value."
                       }
                     </p>
@@ -960,10 +960,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <Target className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="font-semibold text-white mb-2">
-                        {isZhTW ? "å¯¦æˆ°å°å?" : "Practice-Oriented"}
+                        {isZhTW ? "å¯¦æˆ°å°ï¿½?" : "Practice-Oriented"}
                       </h4>
                       <p className="text-sm text-gray-300">
-                        {isZhTW ? "æ¯å€‹èª²ç¨‹éƒ½ä»¥å¯¦?›é??®ç‚º?ºç?ï¼Œå­¸å®Œå³?¯æ??¨åˆ°å·¥ä?ä¸? : "Every course is based on real projects, ready to apply to work immediately after learning"}
+                        {isZhTW ? "æ¯å€‹èª²ç¨‹éƒ½ä»¥å¯¦?ï¿½ï¿½??ï¿½ç‚º?ï¿½ï¿½?ï¼Œå­¸å®Œå³?ï¿½ï¿½??ï¿½åˆ°å·¥ï¿½?ï¿½? : "Every course is based on real projects, ready to apply to work immediately after learning"}
                       </p>
                     </div>
                     <div className="text-center">
@@ -971,10 +971,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <Heart className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="font-semibold text-white mb-2">
-                        {isZhTW ? "è²¼å??‡å?" : "Caring Guidance"}
+                        {isZhTW ? "è²¼ï¿½??ï¿½ï¿½?" : "Caring Guidance"}
                       </h4>
                       <p className="text-sm text-gray-300">
-                        {isZhTW ? "?ä?ä¸€å°ä??‡å?ï¼Œç¢ºä¿æ?ä½å­¸?¡éƒ½?½è?ä¸Šå­¸ç¿’é€²åº¦" : "Provide one-on-one guidance to ensure every student can keep up with the learning progress"}
+                        {isZhTW ? "?ï¿½ï¿½?ä¸€å°ï¿½??ï¿½ï¿½?ï¼Œç¢ºä¿ï¿½?ä½å­¸?ï¿½éƒ½?ï¿½ï¿½?ä¸Šå­¸ç¿’é€²åº¦" : "Provide one-on-one guidance to ensure every student can keep up with the learning progress"}
                       </p>
                     </div>
                     <div className="text-center">
@@ -982,10 +982,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <Rocket className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="font-semibold text-white mb-2">
-                        {isZhTW ? "?ç??µæ–°" : "Continuous Innovation"}
+                        {isZhTW ? "?ï¿½ï¿½??ï¿½æ–°" : "Continuous Innovation"}
                       </h4>
                       <p className="text-sm text-gray-300">
-                        {isZhTW ? "ç·Šè? AI ?€è¡“ç™¼å±•ï?èª²ç??§å®¹?ç??´æ–°" : "Keep up with AI technology development, course content continuously updated"}
+                        {isZhTW ? "ç·Šï¿½? AI ?ï¿½è¡“ç™¼å±•ï¿½?èª²ï¿½??ï¿½å®¹?ï¿½ï¿½??ï¿½æ–°" : "Keep up with AI technology development, course content continuously updated"}
                       </p>
                     </div>
                   </div>
@@ -993,19 +993,19 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
 
-            {/* ?ºä?éº¼é?è¨­é€™å€‹èª²ç¨?*/}
+            {/* ?ï¿½ï¿½?éº¼ï¿½?è¨­é€™å€‹èª²ï¿½?*/}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <MessageCircle className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "?‹èª²?Ÿå?" : "Why This Course"}
+                  {isZhTW ? "?ï¿½èª²?ï¿½ï¿½?" : "Why This Course"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className={`p-6 bg-gradient-to-r ${instructorTheme.gradient} rounded-lg`}>
                   <blockquote className="text-white text-lg leading-relaxed italic">
                     {isZhTW 
-                      ? "?Œåœ¨?å»?©å¹´è£¡ï??‘ç??°å¤ªå¤šäººå°?AI ?…æ»¿å¥½å??»ä??¥é?å¾ä??‹å?ï¼Œä??‹åˆ°å¾ˆå?ä¼æ¥­?³è??‹ç”¨ AI ?»ç¼ºä¹å¯¦?™ç?é©—ã€‚æ??‹è¨­?™å€‹èª²ç¨‹ï?å°±æ˜¯è¦å¡«è£œé€™å€‹ç©º????è®“æ??‹äºº?½èƒ½è¼•é?ä¸Šæ? AI å·¥å…·ï¼Œä¸¦ä¸”ç?æ­???¨åˆ°å·¥ä??Œç?æ´»ä¸­ï¼Œå‰µ? å¯¦?›åƒ¹?¼ã€‚é€™ä??ªæ˜¯ä¸€?€?€è¡“èª²ç¨‹ï??´æ˜¯ä¸€?‹æ”¹è®Šä?å·¥ä??¹å??Œæ€ç¶­æ¨¡å??„æ?ç¨‹ã€‚ã€?
+                      ? "?ï¿½åœ¨?ï¿½å»?ï¿½å¹´è£¡ï¿½??ï¿½ï¿½??ï¿½å¤ªå¤šäººï¿½?AI ?ï¿½æ»¿å¥½ï¿½??ï¿½ï¿½??ï¿½ï¿½?å¾ï¿½??ï¿½ï¿½?ï¼Œï¿½??ï¿½åˆ°å¾ˆï¿½?ä¼æ¥­?ï¿½ï¿½??ï¿½ç”¨ AI ?ï¿½ç¼ºä¹å¯¦?ï¿½ï¿½?é©—ã€‚ï¿½??ï¿½è¨­?ï¿½å€‹èª²ç¨‹ï¿½?å°±æ˜¯è¦å¡«è£œé€™å€‹ç©º????è®“ï¿½??ï¿½äºº?ï¿½èƒ½è¼•ï¿½?ä¸Šï¿½? AI å·¥å…·ï¼Œä¸¦ä¸”ï¿½?ï¿½???ï¿½åˆ°å·¥ï¿½??ï¿½ï¿½?æ´»ä¸­ï¼Œå‰µ?ï¿½å¯¦?ï¿½åƒ¹?ï¿½ã€‚é€™ï¿½??ï¿½æ˜¯ä¸€?ï¿½?ï¿½è¡“èª²ç¨‹ï¿½??ï¿½æ˜¯ä¸€?ï¿½æ”¹è®Šï¿½?å·¥ï¿½??ï¿½ï¿½??ï¿½æ€ç¶­æ¨¡ï¿½??ï¿½ï¿½?ç¨‹ã€‚ï¿½?
                       : "\"In the past two years, I've seen too many people curious about AI but not knowing where to start, and many companies wanting to use AI but lacking practical experience. I created this course to fill this gap ??to make AI tools accessible to everyone and truly applicable to work and life, creating real value. This is not just a technical course, but a journey that will change your way of working and thinking.\""
                     }
                   </blockquote>
@@ -1022,27 +1022,27 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
 
-            {/* ?¯çµ¡?¹å? */}
+            {/* ?ï¿½çµ¡?ï¿½ï¿½? */}
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-6">
                 <div className="text-center">
                   <h3 className="text-xl font-bold text-white mb-4">
-                    {isZhTW ? "?³è?äº†è§£?´å?ï¼? : "Want to Learn More?"}
+                    {isZhTW ? "?ï¿½ï¿½?äº†è§£?ï¿½ï¿½?ï¿½? : "Want to Learn More?"}
                   </h3>
                   <p className="text-gray-300 mb-6">
                     {isZhTW 
-                      ? "?‰ä»»ä½•èª²ç¨‹ç›¸?œå?é¡Œï?æ­¡è??¨æ??¯çµ¡?‘ã€‚æ??ƒè¦ª?ªå?è¦†æ?ä¸€ä½å­¸?¡ç??‘å???
+                      ? "?ï¿½ä»»ä½•èª²ç¨‹ç›¸?ï¿½ï¿½?é¡Œï¿½?æ­¡ï¿½??ï¿½ï¿½??ï¿½çµ¡?ï¿½ã€‚ï¿½??ï¿½è¦ª?ï¿½ï¿½?è¦†ï¿½?ä¸€ä½å­¸?ï¿½ï¿½??ï¿½ï¿½???
                       : "If you have any course-related questions, feel free to contact me anytime. I personally respond to every student's inquiry."
                     }
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button variant="ghost" className={`${instructorTheme.accent} hover:bg-gray-700`} onClick={handleWhatsApp}>
                       <MessageCircle className="w-4 h-4 mr-2" />
-                      {isZhTW ? "WhatsApp ?¯çµ¡" : "WhatsApp Contact"}
+                      {isZhTW ? "WhatsApp ?ï¿½çµ¡" : "WhatsApp Contact"}
                     </Button>
                     <Button className={`${instructorTheme.secondary} text-white`} onClick={handleRegister}>
                       <Calendar className="w-4 h-4 mr-2" />
-                      {isZhTW ? "ç«‹å³?±å?" : "Enroll Now"}
+                      {isZhTW ? "ç«‹å³?ï¿½ï¿½?" : "Enroll Now"}
                     </Button>
                   </div>
                 </div>
@@ -1057,41 +1057,41 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             {/* å­¸å“¡è©•åƒ¹ */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "â­?å­¸å“¡è©•åƒ¹" : "â­?Student Reviews"}
+                {isZhTW ? "ï¿½?å­¸å“¡è©•åƒ¹" : "ï¿½?Student Reviews"}
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
                 {[
                   {
                     name: "Sarah L.",
-                    role: "?¸ç¢¼?ŸéŠ·å°ˆå“¡",
+                    role: "?ï¿½ç¢¼?ï¿½éŠ·å°ˆå“¡",
                     avatar: "S",
                     rating: 5,
-                    comment: "Kenneth å°å¸«?„æ?å­¸æ–¹å¼å?å¯¦ç”¨ï¼Œæ?å­¸æ?äº†ç”¨ AI å·¥å…·è£½ä?å°ˆæ¥­å»???‡ã€‚ç¾?¨æ??„å·¥ä½œæ??‡æ??‡ä? 300%ï¼?,
-                    project: "?ºå…¬?¸è£½ä½œç? AI å»???‡ç²å¾—ä? 50 ?¬è??‹æ¬¡??
+                    comment: "Kenneth å°å¸«?ï¿½ï¿½?å­¸æ–¹å¼ï¿½?å¯¦ç”¨ï¼Œï¿½?å­¸ï¿½?äº†ç”¨ AI å·¥å…·è£½ï¿½?å°ˆæ¥­ï¿½???ï¿½ã€‚ç¾?ï¿½ï¿½??ï¿½å·¥ä½œï¿½??ï¿½ï¿½??ï¿½ï¿½? 300%ï¿½?,
+                    project: "?ï¿½å…¬?ï¿½è£½ä½œï¿½? AI ï¿½???ï¿½ç²å¾—ï¿½? 50 ?ï¿½ï¿½??ï¿½æ¬¡??
                   },
                   {
                     name: "Michael C.",
-                    role: "?ªç”±?µä???,
+                    role: "?ï¿½ç”±?ï¿½ï¿½???,
                     avatar: "M",
                     rating: 5,
-                    comment: "èª²ç??§å®¹å¾ˆå…¨?¢ï?å¾æ??åˆ°è£½ä??½æ?è©³ç´°?™å­¸?‚Kling AI ??Minimax ?„æ??¨è??‘ç??µä??´ä?ä¸€å±¤æ???,
-                    project: "?¨èª²ç¨‹æ?å·§æ¥äº?3 ?‹å?æ¥­é??®ï??¶å…¥å¢å?äº?$15,000"
+                    comment: "èª²ï¿½??ï¿½å®¹å¾ˆå…¨?ï¿½ï¿½?å¾ï¿½??ï¿½åˆ°è£½ï¿½??ï¿½ï¿½?è©³ç´°?ï¿½å­¸?ï¿½Kling AI ??Minimax ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ä¸€å±¤ï¿½???,
+                    project: "?ï¿½èª²ç¨‹ï¿½?å·§æ¥ï¿½?3 ?ï¿½ï¿½?æ¥­ï¿½??ï¿½ï¿½??ï¿½å…¥å¢ï¿½?ï¿½?$15,000"
                   },
                   {
                     name: "Jenny W.",
-                    role: "?§å®¹?µä???,
+                    role: "?ï¿½å®¹?ï¿½ï¿½???,
                     avatar: "J",
                     rating: 5,
-                    comment: "?€?œæ­¡ Photoshop ?ˆæ??€å·§ç??¨å?ï¼å­¸?ƒå??‘å¯ä»¥å¿«?Ÿè£½ä½œå‡ºå°ˆæ¥­ç´šç??¢å?å±•ç¤º?–ã€?,
-                    project: "Instagram ç²‰çµ²å¾?2K å¢é•·??25K"
+                    comment: "?ï¿½?ï¿½æ­¡ Photoshop ?ï¿½ï¿½??ï¿½å·§ï¿½??ï¿½ï¿½?ï¼å­¸?ï¿½ï¿½??ï¿½å¯ä»¥å¿«?ï¿½è£½ä½œå‡ºå°ˆæ¥­ç´šï¿½??ï¿½ï¿½?å±•ç¤º?ï¿½ï¿½?,
+                    project: "Instagram ç²‰çµ²ï¿½?2K å¢é•·??25K"
                   },
                   {
                     name: "David K.",
-                    role: "ä¸­å?ä¼è€é?",
+                    role: "ä¸­ï¿½?ä¼è€ï¿½?",
                     avatar: "D",
                     rating: 5,
-                    comment: "ä»¥å?è¦èŠ± $20,000 è«‹å»£?Šå…¬?¸ï??¾åœ¨?ªå·±å°±èƒ½?šå‡ºé«˜è³ª?ç?å»???‡ã€‚ç??¢å??‰æ?ï¼?,
-                    project: "?ªè£½å»???‡å¸¶ä¾?$100,000 ?·å”®é¡?
+                    comment: "ä»¥ï¿½?è¦èŠ± $20,000 è«‹å»£?ï¿½å…¬?ï¿½ï¿½??ï¿½åœ¨?ï¿½å·±å°±èƒ½?ï¿½å‡ºé«˜è³ª?ï¿½ï¿½?ï¿½???ï¿½ã€‚ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½?,
+                    project: "?ï¿½è£½ï¿½???ï¿½å¸¶ï¿½?$100,000 ?ï¿½å”®ï¿½?
                   }
                 ].map((testimonial, index) => (
                   <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
@@ -1112,7 +1112,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                           </div>
                           <p className="text-gray-300 mb-3 leading-relaxed">"{testimonial.comment}"</p>
                           <div className={`text-sm ${instructorTheme.primary} font-semibold`}>
-                            ?? ?æ?ï¼š{testimonial.project}
+                            ?? ?ï¿½ï¿½?ï¼š{testimonial.project}
                           </div>
                         </div>
                       </div>
@@ -1122,54 +1122,54 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </div>
             </div>
 
-            {/* å­¸å“¡ä½œå???*/}
+            {/* å­¸å“¡ä½œï¿½???*/}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "?¨ å­¸å“¡ä½œå??? : "?¨ Student Showcase"}
+                {isZhTW ? "?ï¿½ï¿½ å­¸å“¡ä½œï¿½??? : "?ï¿½ï¿½ Student Showcase"}
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {[
                   {
-                    title: "AI ?¢å?å»????,
+                    title: "AI ?ï¿½ï¿½?ï¿½????,
                     student: "Sarah L.",
-                    description: "ä½¿ç”¨ Kling AI è£½ä??„è­·?šå?å»??ï¼Œç²å¾?50 ?¬è??‹æ¬¡??,
+                    description: "ä½¿ç”¨ Kling AI è£½ï¿½??ï¿½è­·?ï¿½ï¿½?ï¿½??ï¼Œç²ï¿½?50 ?ï¿½ï¿½??ï¿½æ¬¡??,
                     tech: ["Kling AI", "CapCut", "Photoshop"],
-                    result: "50 ?¬è??‹æ¬¡??
+                    result: "50 ?ï¿½ï¿½??ï¿½æ¬¡??
                   },
                   {
-                    title: "?ºèƒ½å®¶å??¢å?å±•ç¤º",
+                    title: "?ï¿½èƒ½å®¶ï¿½??ï¿½ï¿½?å±•ç¤º",
                     student: "Michael C.",
-                    description: "çµå? AI ?¹æ??Œå?æ¥­é??³ç??ºèƒ½å®¶å??¢å?å®?‚³??,
+                    description: "çµï¿½? AI ?ï¿½ï¿½??ï¿½ï¿½?æ¥­ï¿½??ï¿½ï¿½??ï¿½èƒ½å®¶ï¿½??ï¿½ï¿½?ï¿½?ï¿½ï¿½??,
                     tech: ["Minimax AI", "ChatGPT", "CapCut"],
-                    result: "å®¢æˆ¶æ»¿æ?åº?95%"
+                    result: "å®¢æˆ¶æ»¿ï¿½?ï¿½?95%"
                   },
                   {
-                    title: "ç¾é?é¤å»³?¨å»£??,
+                    title: "ç¾ï¿½?é¤å»³?ï¿½å»£??,
                     student: "Jenny W.",
-                    description: "?‹ç”¨ AI å­—å??Œå??‹ç‰¹?ˆç?ç¾é?é¤å»³å®?‚³?§å®¹",
-                    tech: ["AI å­—å?", "Kling AI", "Photoshop"],
-                    result: "é¤å»³è¨‚åº§å¢å? 40%"
+                    description: "?ï¿½ç”¨ AI å­—ï¿½??ï¿½ï¿½??ï¿½ç‰¹?ï¿½ï¿½?ç¾ï¿½?é¤å»³ï¿½?ï¿½ï¿½?ï¿½å®¹",
+                    tech: ["AI å­—ï¿½?", "Kling AI", "Photoshop"],
+                    result: "é¤å»³è¨‚åº§å¢ï¿½? 40%"
                   },
                   {
-                    title: "?»å??¢å??ˆæ???,
+                    title: "?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½???,
                     student: "David K.",
-                    description: "ä½¿ç”¨ Photoshop ?ˆæ??€å·§è£½ä½œç??»å??¢å?å±•ç¤º??,
-                    tech: ["Photoshop", "AI ?µæ?", "ChatGPT"],
-                    result: "è½‰å??‡æ???25%"
+                    description: "ä½¿ç”¨ Photoshop ?ï¿½ï¿½??ï¿½å·§è£½ä½œï¿½??ï¿½ï¿½??ï¿½ï¿½?å±•ç¤º??,
+                    tech: ["Photoshop", "AI ?ï¿½ï¿½?", "ChatGPT"],
+                    result: "è½‰ï¿½??ï¿½ï¿½???25%"
                   },
                   {
-                    title: "ä¼æ¥­?¹è??­ç?",
+                    title: "ä¼æ¥­?ï¿½ï¿½??ï¿½ï¿½?",
                     student: "Lisa T.",
-                    description: "?ºä?æ¥­è£½ä½œç? AI ?¹è??­ç?ï¼Œç²å¾—ç®¡?†å±¤è®šè?",
-                    tech: ["AI ?éŸ³", "CapCut", "AI å­—å?"],
-                    result: "?²å?é¡å??…ç›®æ©Ÿæ?"
+                    description: "?ï¿½ï¿½?æ¥­è£½ä½œï¿½? AI ?ï¿½ï¿½??ï¿½ï¿½?ï¼Œç²å¾—ç®¡?ï¿½å±¤è®šï¿½?",
+                    tech: ["AI ?ï¿½éŸ³", "CapCut", "AI å­—ï¿½?"],
+                    result: "?ï¿½ï¿½?é¡ï¿½??ï¿½ç›®æ©Ÿï¿½?"
                   },
                   {
-                    title: "?ç??…ä??­ç?",
+                    title: "?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?",
                     student: "Alex R.",
-                    description: "?‹ç”¨èª²ç??€å·§è£½ä½œç??ç??…ä??­ç?",
+                    description: "?ï¿½ç”¨èª²ï¿½??ï¿½å·§è£½ä½œï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?",
                     tech: ["Kling AI", "Minimax", "ChatGPT"],
-                    result: "?ç??¥å?åº¦æ???60%"
+                    result: "?ï¿½ï¿½??ï¿½ï¿½?åº¦ï¿½???60%"
                   }
                 ].map((showcase, index) => (
                   <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
@@ -1177,7 +1177,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                       <div className={`h-32 bg-gradient-to-br ${instructorTheme.gradient} rounded-lg mb-4 flex items-center justify-center`}>
                         <div className="text-white text-center">
                           <PlayCircle className="w-12 h-12 mx-auto mb-2" />
-                          <div className="text-sm font-semibold">ä½œå?å±•ç¤º</div>
+                          <div className="text-sm font-semibold">ä½œï¿½?å±•ç¤º</div>
                         </div>
                       </div>
                       <h4 className="font-semibold text-white mb-2">{showcase.title}</h4>
@@ -1199,28 +1199,28 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </div>
             </div>
 
-            {/* çµ±è??¸æ? */}
+            {/* çµ±ï¿½??ï¿½ï¿½? */}
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-white mb-6 text-center">
-                  {isZhTW ? "?? èª²ç??æ?çµ±è?" : "?? Course Impact Statistics"}
+                  {isZhTW ? "?? èª²ï¿½??ï¿½ï¿½?çµ±ï¿½?" : "?? Course Impact Statistics"}
                 </h3>
                 <div className="grid md:grid-cols-4 gap-6 text-center">
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>500+</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "å®Œæ?å­¸å“¡" : "Graduates"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "å®Œï¿½?å­¸å“¡" : "Graduates"}</div>
                   </div>
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>4.9/5</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "å¹³å?è©•å?" : "Average Rating"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "å¹³ï¿½?è©•ï¿½?" : "Average Rating"}</div>
                   </div>
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>85%</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "å°±æ¥­?å??? : "Career Advancement"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "å°±æ¥­?ï¿½ï¿½??? : "Career Advancement"}</div>
                   </div>
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>300%</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "å¹³å??ˆç??å?" : "Efficiency Improvement"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "å¹³ï¿½??ï¿½ï¿½??ï¿½ï¿½?" : "Efficiency Improvement"}</div>
                   </div>
                 </div>
               </CardContent>
@@ -1314,45 +1314,45 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                     onClick={handleRegister}
                   >
                     <Calendar className="w-4 h-4 mr-2" />
-                    {isZhTW ? "ç«‹å³?±è?" : "Register Now"}
+                    {isZhTW ? "ç«‹å³?ï¿½ï¿½?" : "Register Now"}
                   </Button>
 
 
 
                   <Button variant="ghost" className={`w-full ${instructorTheme.accent} hover:bg-gray-700`} onClick={handleWhatsApp}>
                     <MessageCircle className="w-4 h-4 mr-2" />
-                    {isZhTW ? "?é? WhatsApp ?¥è©¢/?±å?" : "WhatsApp Inquiry"}
+                    {isZhTW ? "?ï¿½ï¿½? WhatsApp ?ï¿½è©¢/?ï¿½ï¿½?" : "WhatsApp Inquiry"}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
 
                   {/* Value Proposition */}
                   <div className="mt-4 pt-4 border-t border-gray-600">
                     <div className="text-sm font-semibold text-white mb-3">
-                      {isZhTW ? "?¯ èª²ç??¹å€? : "?¯ Course Value"}
+                      {isZhTW ? "?ï¿½ï¿½ èª²ï¿½??ï¿½ï¿½? : "?ï¿½ï¿½ Course Value"}
                     </div>
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "æ°¸ä?è§€?‹æ??? : "Lifetime Access"}</span>
+                        <span>{isZhTW ? "æ°¸ï¿½?è§€?ï¿½ï¿½??? : "Lifetime Access"}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "èª²ç?æºä»£ç¢?ç­†è?ä¸‹è?" : "Source Code & Notes Download"}</span>
+                        <span>{isZhTW ? "èª²ï¿½?æºä»£ï¿½?ç­†ï¿½?ä¸‹ï¿½?" : "Source Code & Notes Download"}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "å°å¸«?ç??¯æ´" : "Instructor Q&A Support"}</span>
+                        <span>{isZhTW ? "å°å¸«?ï¿½ï¿½??ï¿½æ´" : "Instructor Q&A Support"}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "è­‰æ›¸?’ç™¼" : "Certificate of Completion"}</span>
+                        <span>{isZhTW ? "è­‰æ›¸?ï¿½ç™¼" : "Certificate of Completion"}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="text-center pt-4 border-t border-gray-600">
                     <div className="text-sm text-gray-400">{pricingInfo.enterprise}</div>
-                    <div className={`text-xs ${instructorTheme.accent} cursor-pointer`}>{isZhTW ? "äº†è§£?´å?" : "Learn More"} ??/div>
+                    <div className={`text-xs ${instructorTheme.accent} cursor-pointer`}>{isZhTW ? "äº†è§£?ï¿½ï¿½?" : "Learn More"} ??/div>
                   </div>
                 </div>
               </CardContent>
@@ -1362,7 +1362,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-lg text-white">
-                  {isZhTW ? "?? ?¸é??‡ç?" : "?? Related Articles"}
+                  {isZhTW ? "?? ?ï¿½ï¿½??ï¿½ï¿½?" : "?? Related Articles"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">

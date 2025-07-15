@@ -4,13 +4,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Star, Users, Clock, ArrowRight, TrendingUp, Award } from 'lucide-react';
-import { getFeaturedCourses } from '@/data/courses/courses';
+import { Star, Users, Clock, ArrowRight, TrendingUp, Award, Download } from 'lucide-react';
+import { getFeaturedProducts } from '@/data/courses/courseData';
 
 const FeaturedCoursesSection = () => {
   const { language } = useLanguage();
   const isZhTW = language === 'zh-HK';
-  const featuredCourses = getFeaturedCourses().slice(0, 3); // Show top 3 featured courses
+  const featuredCourses = getFeaturedProducts().slice(0, 3); // Show top 3 featured courses
 
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-900 relative overflow-hidden">
@@ -39,13 +39,13 @@ const FeaturedCoursesSection = () => {
           >
             <TrendingUp className="w-5 h-5 text-yellow-400" />
             <span className="text-yellow-300 font-medium">
-              {isZhTW ? '?��??�薦' : 'Featured'}
+              {isZhTW ? '推薦' : 'Featured'}
             </span>
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-amber-300 bg-clip-text text-transparent">
-              {isZhTW ? '精選課�??�覽' : 'Featured Course Preview'}
+              {isZhTW ? '精選課程瀏覽' : 'Featured Course Preview'}
             </span>
           </h2>
           
@@ -98,12 +98,17 @@ const FeaturedCoursesSection = () => {
                       {course.bestseller && (
                         <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/50">
                           <Award className="w-3 h-3 mr-1" />
-                          {isZhTW ? '?�銷' : 'Bestseller'}
+                          {isZhTW ? '暢銷' : 'Bestseller'}
                         </Badge>
                       )}
                       {course.featured && (
                         <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/50">
                           {isZhTW ? '精選' : 'Featured'}
+                        </Badge>
+                      )}
+                      {course.newProduct && (
+                        <Badge className="bg-green-500/20 text-green-300 border-green-500/50">
+                          {isZhTW ? '新品' : 'New'}
                         </Badge>
                       )}
                     </div>
@@ -124,11 +129,11 @@ const FeaturedCoursesSection = () => {
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="text-yellow-400">{course.rating}</span>
-                      <span>({course.reviewCount})</span>
+                      <span>(100+)</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      <span>{course.students.toLocaleString()}</span>
+                      <Download className="w-4 h-4" />
+                      <span>{course.downloads.toLocaleString()}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
@@ -152,11 +157,11 @@ const FeaturedCoursesSection = () => {
                   {/* Price */}
                   <div className="flex items-center gap-3 mb-6">
                     <span className="text-2xl font-bold text-white">
-                      HK${course.price.toLocaleString()}
+                      {course.price}
                     </span>
-                    {course.originalPrice && (
+                    {course.originalPrice && course.originalPrice !== course.price && (
                       <span className="text-lg text-gray-500 line-through">
-                        HK${course.originalPrice.toLocaleString()}
+                        {course.originalPrice}
                       </span>
                     )}
                   </div>
@@ -169,7 +174,7 @@ const FeaturedCoursesSection = () => {
                     <Button 
                       className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group"
                     >
-                      {isZhTW ? '立即?��?' : 'Enroll Now'}
+                      {isZhTW ? '立即註冊' : 'Enroll Now'}
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
                   </motion.div>

@@ -1,66 +1,66 @@
-# ?? цибцЭ┐х┐лщАЯх???(Template Quick Reference)
+# ?? цибцЭ┐х┐лщАЯя┐╜???(Template Quick Reference)
 
-## ?? х┐лщАЯщ?хз?
+## ?? х┐лщАЯя┐╜?я┐╜?
 
-### ?? шк▓ч?цибцЭ┐ (CourseTemplate)
+### ?? шк▓я┐╜?цибцЭ┐ (CourseTemplate)
 
 ```tsx
 import { CourseTemplate } from '@/components/templates';
 
 <CourseTemplate
-  title="Course Title"              // ??х┐Ещ?
-  description="Course description"  // ??х┐Ещ?  
-  level="beginner"                 // ??х┐Ещ? (beginner|intermediate|advanced)
-  duration="8 hours"               // ??х┐Ещ?
-  modules={modules}                // ??х┐Ещ? (CourseModule[])
-  onEnroll={() => {}}              // ши╗х??Юшк┐
-  onModuleClick={(id) => {}}       // цибч?щ╗Юц??Юшк┐
+  title="Course Title"              // ??х┐Ея┐╜?
+  description="Course description"  // ??х┐Ея┐╜?  
+  level="beginner"                 // ??х┐Ея┐╜? (beginner|intermediate|advanced)
+  duration="8 hours"               // ??х┐Ея┐╜?
+  modules={modules}                // ??х┐Ея┐╜? (CourseModule[])
+  onEnroll={() => {}}              // ши╗я┐╜??я┐╜шк┐
+  onModuleClick={(id) => {}}       // цибя┐╜?щ╗Юя┐╜??я┐╜шк┐
 />
 ```
 
-### ?У░ ?ЪховцибцЭ┐ (BlogTemplate)
+### ?я┐╜я┐╜ ?я┐╜ховцибцЭ┐ (BlogTemplate)
 
 ```tsx
 import { BlogTemplate } from '@/components/templates';
 
 <BlogTemplate
-  title="Article Title"            // ??х┐Ещ?
-  excerpt="Article excerpt"        // ??х┐Ещ?
-  content={<div>Content</div>}     // ??х┐Ещ? (React.ReactNode)
-  author="Author Name"             // ??х┐Ещ?
-  publishDate="Dec 7, 2024"       // ??х┐Ещ?
-  readTime="5 min read"           // ??х┐Ещ?
-  category="Technology"           // ??х┐Ещ?
-  tags={["AI", "Tech"]}           // ??х┐Ещ? (string[])
-  onBack={() => {}}               // ш┐Фх??Юшк┐
-  onShare={() => {}}              // ?Жф║л?Юшк┐
+  title="Article Title"            // ??х┐Ея┐╜?
+  excerpt="Article excerpt"        // ??х┐Ея┐╜?
+  content={<div>Content</div>}     // ??х┐Ея┐╜? (React.ReactNode)
+  author="Author Name"             // ??х┐Ея┐╜?
+  publishDate="Dec 7, 2024"       // ??х┐Ея┐╜?
+  readTime="5 min read"           // ??х┐Ея┐╜?
+  category="Technology"           // ??х┐Ея┐╜?
+  tags={["AI", "Tech"]}           // ??х┐Ея┐╜? (string[])
+  onBack={() => {}}               // ш┐Фя┐╜??я┐╜шк┐
+  onShare={() => {}}              // ?я┐╜ф║л?я┐╜шк┐
 />
 ```
 
 ---
 
-## ?? ?╕ц?ч╡Рц?цибцЭ┐
+## ?? ?я┐╜я┐╜?ч╡Ря┐╜?цибцЭ┐
 
-### CourseModule ч╡Рц?
+### CourseModule ч╡Ря┐╜?
 
 ```tsx
 const moduleExample = {
-  id: "module-1",                    // string (х┐Ещ?)
-  title: "Module Title",             // string (х┐Ещ?)
-  titleZh: "цибч?циЩщ?",               // string (?пщБ╕)
-  description: "Module description", // string (х┐Ещ?)
-  descriptionZh: "цибч??Пш┐░",         // string (?пщБ╕)
-  duration: "2 hours",              // string (х┐Ещ?)
-  durationZh: "2 х░Пц?",             // string (?пщБ╕)
-  isCompleted: false,               // boolean (?пщБ╕)
-  isLocked: false,                  // boolean (?пщБ╕)
-  lessons: [                        // CourseLesson[] (х┐Ещ?)
+  id: "module-1",                    // string (х┐Ея┐╜?)
+  title: "Module Title",             // string (х┐Ея┐╜?)
+  titleZh: "цибя┐╜?циЩя┐╜?",               // string (?я┐╜щБ╕)
+  description: "Module description", // string (х┐Ея┐╜?)
+  descriptionZh: "цибя┐╜??я┐╜ш┐░",         // string (?я┐╜щБ╕)
+  duration: "2 hours",              // string (х┐Ея┐╜?)
+  durationZh: "2 х░Пя┐╜?",             // string (?я┐╜щБ╕)
+  isCompleted: false,               // boolean (?я┐╜щБ╕)
+  isLocked: false,                  // boolean (?я┐╜щБ╕)
+  lessons: [                        // CourseLesson[] (х┐Ея┐╜?)
     {
       id: "lesson-1",
       title: "Lesson Title",
-      titleZh: "шк▓ч?циЩщ?",
+      titleZh: "шк▓я┐╜?циЩя┐╜?",
       duration: "30 min",
-      durationZh: "30 ?Жщ?",
+      durationZh: "30 ?я┐╜я┐╜?",
       type: "video",                // "video"|"reading"|"quiz"|"exercise"
       isCompleted: false,
       isLocked: false
@@ -71,33 +71,33 @@ const moduleExample = {
 
 ---
 
-## ?Ои х╕╕чФи?Нч╜о
+## ?я┐╜я┐╜ х╕╕чФи?я┐╜ч╜о
 
-### шк▓ч?цибцЭ┐?Нч╜о
+### шк▓я┐╜?цибцЭ┐?я┐╜ч╜о
 
-| ?┤цЩп | ?Нч╜о |
+| ?я┐╜цЩп | ?я┐╜ч╜о |
 |------|------|
-| **?Нш▓╗шк▓ч?** | `showRating={false}`, `isEnrolled={false}` |
-| **ф╗Шш▓╗шк▓ч?** | `rating={4.8}`, `studentCount={1200}` |
-| **хн╕ч?ф╕?* | `isEnrolled={true}`, `progress={75}` |
-| **хоМц?шк▓ч?** | `progress={100}`, `showProgress={true}` |
+| **?я┐╜ш▓╗шк▓я┐╜?** | `showRating={false}`, `isEnrolled={false}` |
+| **ф╗Шш▓╗шк▓я┐╜?** | `rating={4.8}`, `studentCount={1200}` |
+| **хн╕я┐╜?я┐╜?* | `isEnrolled={true}`, `progress={75}` |
+| **хоМя┐╜?шк▓я┐╜?** | `progress={100}`, `showProgress={true}` |
 
-### ?ЪховцибцЭ┐?Нч╜о
+### ?я┐╜ховцибцЭ┐?я┐╜ч╜о
 
-| ?┤цЩп | ?Нч╜о |
+| ?я┐╜цЩп | ?я┐╜ч╜о |
 |------|------|
-| **?АшбУц?чл?* | `showStats={true}`, `showTags={true}` |
-| **?мхП╕?░ш?** | `showBookmark={false}` |
-| **ч░бхЦо?Зч?** | `showStats={false}`, `showBackButton={false}` |
+| **?я┐╜шбУя┐╜?я┐╜?* | `showStats={true}`, `showTags={true}` |
+| **?я┐╜хП╕?я┐╜я┐╜?** | `showBookmark={false}` |
+| **ч░бхЦо?я┐╜я┐╜?** | `showStats={false}`, `showBackButton={false}` |
 
 ---
 
-## ?Фз х╕╕чФиф╗?в╝?Зцо╡
+## ?я┐╜я┐╜ х╕╕чФия┐╜?я┐╜я┐╜?я┐╜цо╡
 
-### 1. ?╕ц??╝х?ш╜Йц?
+### 1. ?я┐╜я┐╜??я┐╜я┐╜?ш╜Йя┐╜?
 
 ```tsx
-// ш╜Йц??╛ц??╕ц??░циб?┐ца╝х╝?
+// ш╜Йя┐╜??я┐╜я┐╜??я┐╜я┐╜??я┐╜циб?я┐╜ца╝я┐╜?
 const convertToTemplateFormat = (courseData) => {
   return courseData.modules.map((module, index) => ({
     id: `module-${index + 1}`,
@@ -123,13 +123,13 @@ const convertToTemplateFormat = (courseData) => {
 };
 ```
 
-### 2. хдЪш?шиА?Хч?
+### 2. хдЪя┐╜?шиА?я┐╜я┐╜?
 
 ```tsx
 const { language } = useLanguage();
 const isZhTW = language === 'zh-HK';
 
-// ?ициб?┐ф╕нф╜┐чФи
+// ?я┐╜циб?я┐╜ф╕нф╜┐чФи
 <CourseTemplate
   title={isZhTW ? course.titleZh : course.title}
   description={isZhTW ? course.descriptionZh : course.description}
@@ -137,7 +137,7 @@ const isZhTW = language === 'zh-HK';
 />
 ```
 
-### 3. ?А?Лчоб??
+### 3. ?я┐╜?я┐╜чоб??
 
 ```tsx
 const [isEnrolled, setIsEnrolled] = useState(false);
@@ -146,18 +146,18 @@ const [completedModules, setCompletedModules] = useState<string[]>([]);
 
 const handleEnroll = () => {
   setIsEnrolled(true);
-  setProgress(5); // ?Лх??▓х║ж
+  setProgress(5); // ?я┐╜я┐╜??я┐╜х║ж
 };
 
 const handleModuleComplete = (moduleId: string) => {
   setCompletedModules(prev => [...prev, moduleId]);
-  // ?┤цЦ░?▓х║ж
+  // ?я┐╜цЦ░?я┐╜х║ж
   const newProgress = ((completedModules.length + 1) / totalModules) * 100;
   setProgress(newProgress);
 };
 ```
 
-### 4. ?Жф║л?ЯшГ╜
+### 4. ?я┐╜ф║л?я┐╜шГ╜
 
 ```tsx
 const handleShare = async () => {
@@ -174,37 +174,37 @@ const handleShare = async () => {
   } else {
     // Fallback
     navigator.clipboard.writeText(window.location.href);
-    alert('?ИцОех╖▓ш?шг╜хИ░?кш▓╝??);
+    alert('?я┐╜цОех╖▓я┐╜?шг╜хИ░?я┐╜ш▓╝??);
   }
 };
 ```
 
-### 5. ?пшкд?Хч?
+### 5. ?я┐╜шкд?я┐╜я┐╜?
 
 ```tsx
-// Loading ?А??
+// Loading ?я┐╜??
 if (loading) {
-  return <LoadingSpinner message="ш╝ЙхЕеф╕?.." />;
+  return <LoadingSpinner message="ш╝ЙхЕея┐╜?.." />;
 }
 
-// Error ?А??
+// Error ?я┐╜??
 if (error) {
   return (
     <div className="text-center text-white">
-      <h2>ш╝ЙхЕе?пшкд</h2>
+      <h2>ш╝ЙхЕе?я┐╜шкд</h2>
       <p>{error}</p>
-      <button onClick={retry}>?Ншйж</button>
+      <button onClick={retry}>?я┐╜шйж</button>
     </div>
   );
 }
 
-// чй║цХ╕?Ъч???
+// чй║цХ╕?я┐╜я┐╜???
 if (!data) {
   return (
     <div className="text-center text-white">
-      <h2>?зхо╣?кцЙ╛??/h2>
+      <h2>?я┐╜хо╣?я┐╜цЙ╛??/h2>
       <button onClick={() => navigate('/courses')}>
-        ш┐Фх?шк▓ч??Чшби
+        ш┐Фя┐╜?шк▓я┐╜??я┐╜шби
       </button>
     </div>
   );
@@ -213,67 +213,67 @@ if (!data) {
 
 ---
 
-## ?Оп ?Аф╜│хпжш╕Рцкв?ец???
+## ?я┐╜я┐╜ ?я┐╜ф╜│хпжш╕Рцкв?я┐╜я┐╜???
 
-### ???ЛчЩ╝?Нцкв??
+### ???я┐╜чЩ╝?я┐╜цкв??
 
-- [ ] чв║ш?ф╜┐чФицн?в║?Дциб?┐я?шк▓ч? vs ?Ъховя╝?
-- [ ] ц║Цх?хе╜ц??Йх??А?ДцХ╕??
-- [ ] шинш?хе╜чФи?╢ф??Хц?чи?
-- [ ] ?ГцЕохдЪш?шиА?пцП┤?Ац▒?
+- [ ] чв║я┐╜?ф╜┐чФия┐╜?я┐╜я┐╜?я┐╜циб?я┐╜я┐╜?шк▓я┐╜? vs ?я┐╜ховя┐╜?
+- [ ] ц║Ця┐╜?хе╜я┐╜??я┐╜я┐╜??я┐╜?я┐╜цХ╕??
+- [ ] шиня┐╜?хе╜чФи?я┐╜я┐╜??я┐╜я┐╜?я┐╜?
+- [ ] ?я┐╜цЕохдЪя┐╜?шиА?я┐╜цП┤?я┐╜я┐╜?
 
-### ??хпжчП╛?Ящ?цквцЯе
+### ??хпжчП╛?я┐╜я┐╜?цквцЯе
 
-- [ ] цн?в║?Хч? loading ?А??
-- [ ] хпжчП╛?йчХ╢?ДщМпшкдш???
-- [ ] ц╖╗х??ицИ╢?Ющ?я╝Иц???хд▒ц?ц╢ИцБпя╝?
-- [ ] ц╕мшйж?А?Йф??Хх???
+- [ ] я┐╜?я┐╜я┐╜?я┐╜я┐╜? loading ?я┐╜??
+- [ ] хпжчП╛?я┐╜чХ╢?я┐╜щМпшкдя┐╜???
+- [ ] ц╖╗я┐╜??я┐╜цИ╢?я┐╜я┐╜?я╝Ия┐╜???хд▒я┐╜?ц╢ИцБпя┐╜?
+- [ ] ц╕мшйж?я┐╜?я┐╜я┐╜??я┐╜я┐╜???
 
-### ??хоМц?х╛Мцкв??
+### ??хоМя┐╜?х╛Мцкв??
 
-- [ ] ц╕мшйж?┐ц?х╝Пшинши?
-- [ ] щйЧш?хдЪш?шиА?Зц?
-- [ ] цквцЯе?зшГ╜я╝Ихдз?ПцХ╕?Ъц?я╝?
-- [ ] чв║ф??пшик?ПцАзя??╡чЫдх░ОшИк?БшЮвх╣ХщЦ▒шоА?ия?
+- [ ] ц╕мшйж?я┐╜я┐╜?х╝Пшиня┐╜?
+- [ ] щйЧя┐╜?хдЪя┐╜?шиА?я┐╜я┐╜?
+- [ ] цквцЯе?я┐╜шГ╜я╝Ихдз?я┐╜цХ╕?я┐╜я┐╜?я┐╜?
+- [ ] чв║я┐╜??я┐╜шик?я┐╜цАзя┐╜??я┐╜чЫдх░ОшИк?я┐╜шЮвх╣ХщЦ▒шоА?я┐╜я┐╜?
 
 ---
 
-## ?Ъи х╕╕ш??пшкд
+## ?я┐╜я┐╜ х╕╕я┐╜??я┐╜шкд
 
-### ??ф╕Нш??Щциг??
+### ??ф╕Ня┐╜??я┐╜циг??
 
 ```tsx
-// ?пшкдя╝Ъх?шиШш??Жчй║?╕ц?
+// ?я┐╜шкдя╝Ъя┐╜?шиШя┐╜??я┐╜чй║?я┐╜я┐╜?
 <CourseTemplate modules={undefined} />
 
-// ?пшкдя╝Ъц╖╖?Иф╜┐?иф??Мциб??
+// ?я┐╜шкдя╝Ъц╖╖?я┐╜ф╜┐?я┐╜я┐╜??я┐╜циб??
 <BlogTemplate title="Course Title" modules={[]} />
 
-// ?пшкдя╝Ъх?шиШх?шк┐хЗ╜??
-<CourseTemplate onEnroll={undefined} /> // ?Йщ??бц?
+// ?я┐╜шкдя╝Ъя┐╜?шиШя┐╜?шк┐хЗ╜??
+<CourseTemplate onEnroll={undefined} /> // ?я┐╜я┐╜??я┐╜я┐╜?
 ```
 
-### ??цн?в║?Ъц?
+### ??я┐╜?я┐╜я┐╜?я┐╜я┐╜?
 
 ```tsx
-// цн?в║я╝Ъцкв?ецХ╕?Ъц??ИцА?
+// я┐╜?я┐╜я┐╜я╝Ъцкв?я┐╜цХ╕?я┐╜я┐╜??я┐╜я┐╜?
 {modules && modules.length > 0 && (
   <CourseTemplate modules={modules} />
 )}
 
-// цн?в║я╝Ъф╜┐?ицнгчв║ч?цибцЭ┐
+// я┐╜?я┐╜я┐╜я╝Ъф╜┐?я┐╜цнгчв║я┐╜?цибцЭ┐
 <CourseTemplate title="Course Title" modules={modules} />
 
-// цн?в║я╝Ъц?ф╛Ых?шк┐хЗ╜??
+// я┐╜?я┐╜я┐╜я╝Ъя┐╜?ф╛Ыя┐╜?шк┐хЗ╜??
 <CourseTemplate onEnroll={handleEnroll} />
 ```
 
 ---
 
-## ?У▒ ?┐ц?х╝ПшиншиИц?чд?
+## ?я┐╜я┐╜ ?я┐╜я┐╜?х╝ПшиншиИя┐╜?я┐╜?
 
 ```css
-/* цибцЭ┐х╖▓х??лщЯ┐?Йх?шинш?я╝Мф??ихПпф╗ешЗкхоЪч╛й */
+/* цибцЭ┐х╖▓я┐╜??я┐╜щЯ┐?я┐╜я┐╜?шиня┐╜?я╝Мя┐╜??я┐╜хПпф╗ешЗкхоЪч╛й */
 @media (max-width: 768px) {
   .course-template-custom {
     padding: 1rem;
@@ -289,12 +289,12 @@ if (!data) {
 
 ---
 
-## ?? шк┐шйж?Ах╖?
+## ?? шк┐шйж?я┐╜я┐╜?
 
-### цквцЯецибцЭ┐х▒мцА?
+### цквцЯецибцЭ┐х▒мя┐╜?
 
 ```tsx
-// ?ищ??╝чТ░хвГф╕нц╖╗х?шк┐шйжф┐бцБп
+// ?я┐╜я┐╜??я┐╜чТ░хвГф╕нц╖╗я┐╜?шк┐шйжф┐бцБп
 {process.env.NODE_ENV === 'development' && (
   <div className="debug-info">
     <p>Modules: {modules?.length || 0}</p>
@@ -306,10 +306,10 @@ if (!data) {
 
 ### React DevTools
 
-- ф╜┐чФи React DevTools цквцЯеч╡Дф╗╢ци?
-- ??Оз props шоКх?
-- ?еч?ц╕▓ц??зшГ╜
+- ф╜┐чФи React DevTools цквцЯеч╡Дф╗╢я┐╜?
+- ??я┐╜я┐╜ props шоКя┐╜?
+- ?я┐╜я┐╜?ц╕▓я┐╜??я┐╜шГ╜
 
 ---
 
-**?Тб шиШф?я╝Ъциб?┐цШп?║ф??Рщ??ЛчЩ╝?Ич??Мф??Бф??┤цАзуАВца╣?ЪхЕ╖щлФщ?ц▒Вщ?ц┤╗ф╜┐?ищАЩф??Нч╜оя╝?* 
+**?я┐╜я┐╜ шиШя┐╜?я╝Ъциб?я┐╜цШп?я┐╜я┐╜??я┐╜я┐╜??я┐╜чЩ╝?я┐╜я┐╜??я┐╜я┐╜??я┐╜я┐╜??я┐╜цАзуАВца╣?я┐╜хЕ╖щлФя┐╜?ц▒Вя┐╜?ц┤╗ф╜┐?я┐╜щАЩя┐╜??я┐╜ч╜оя┐╜?* 

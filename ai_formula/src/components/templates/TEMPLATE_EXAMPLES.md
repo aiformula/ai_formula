@@ -1,16 +1,16 @@
-# ?? æ¨¡æ¿å¯¦é?ä½¿ç”¨ç¯„ä? (Template Implementation Examples)
+# ?? æ¨¡æ¿å¯¦ï¿½?ä½¿ç”¨ç¯„ï¿½? (Template Implementation Examples)
 
 ## ?? æ¦‚è¿°
 
-?™å€‹æ?ä»¶å??«ä?å¯¦é??„ä»£ç¢¼ç?ä¾‹ï?å±•ç¤ºå¦‚ä??¨æ‚¨??AI Formula ?…ç›®ä¸­é??å?ä½¿ç”¨ `CourseTemplate` ??`BlogTemplate`??
+?ï¿½å€‹ï¿½?ä»¶ï¿½??ï¿½ï¿½?å¯¦ï¿½??ï¿½ä»£ç¢¼ï¿½?ä¾‹ï¿½?å±•ç¤ºå¦‚ï¿½??ï¿½æ‚¨??AI Formula ?ï¿½ç›®ä¸­ï¿½??ï¿½ï¿½?ä½¿ç”¨ `CourseTemplate` ??`BlogTemplate`??
 
 ---
 
-## ?? èª²ç?æ¨¡æ¿?´å?ç¯„ä?
+## ?? èª²ï¿½?æ¨¡æ¿?ï¿½ï¿½?ç¯„ï¿½?
 
-### ?”§ ç¯„ä? 1ï¼šè??¾æ?èª²ç??¸æ??´å?
+### ?ï¿½ï¿½ ç¯„ï¿½? 1ï¼šï¿½??ï¿½ï¿½?èª²ï¿½??ï¿½ï¿½??ï¿½ï¿½?
 
-**?‡ä»¶**: `pages/courses/PromptEngineeringWithTemplate.tsx`
+**?ï¿½ä»¶**: `pages/courses/PromptEngineeringWithTemplate.tsx`
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -19,7 +19,7 @@ import { CourseTemplate } from '@/components/templates';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 
-// ä½¿ç”¨?¾æ??„èª²ç¨‹æ•¸??
+// ä½¿ç”¨?ï¿½ï¿½??ï¿½èª²ç¨‹æ•¸??
 import { promptEngineeringCourse } from '@/data/courses/promptEngineering';
 
 const PromptEngineeringWithTemplate: React.FC = () => {
@@ -27,12 +27,12 @@ const PromptEngineeringWithTemplate: React.FC = () => {
   const navigate = useNavigate();
   const isZhTW = language === 'zh-HK';
   
-  // ?€?‹ç®¡??
+  // ?ï¿½?ï¿½ç®¡??
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [completedModules, setCompletedModules] = useState<string[]>([]);
 
-  // è½‰æ??¾æ??¸æ??¼å??°æ¨¡?¿æ ¼å¼?
+  // è½‰ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½æ¨¡?ï¿½æ ¼ï¿½?
   const convertToTemplateFormat = () => {
     return promptEngineeringCourse.modules.map((module, index) => ({
       id: `module-${index + 1}`,
@@ -43,7 +43,7 @@ const PromptEngineeringWithTemplate: React.FC = () => {
       duration: module.duration,
       durationZh: module.durationZh,
       isCompleted: completedModules.includes(`module-${index + 1}`),
-      isLocked: !isEnrolled && index > 0, // ?è²»?¨æˆ¶?ªèƒ½?‹ç¬¬ä¸€?‹æ¨¡çµ?
+      isLocked: !isEnrolled && index > 0, // ?ï¿½è²»?ï¿½æˆ¶?ï¿½èƒ½?ï¿½ç¬¬ä¸€?ï¿½æ¨¡ï¿½?
       lessons: module.lessons.map((lesson, lessonIndex) => ({
         id: `lesson-${index + 1}-${lessonIndex + 1}`,
         title: lesson.title,
@@ -57,23 +57,23 @@ const PromptEngineeringWithTemplate: React.FC = () => {
     }));
   };
 
-  // ?•ç?è¨»å?
+  // ?ï¿½ï¿½?è¨»ï¿½?
   const handleEnroll = () => {
     setIsEnrolled(true);
-    setProgress(5); // ?‹å??‚çµ¦äº?5% ?²åº¦
+    setProgress(5); // ?ï¿½ï¿½??ï¿½çµ¦ï¿½?5% ?ï¿½åº¦
     console.log('User enrolled in Prompt Engineering course');
     
-    // ?™è£¡?¯ä»¥æ·»å?å¯¦é??„è¨»?Šé?è¼?
-    // ä¾‹å?ï¼šAPI èª¿ç”¨?ç”¨?¶è¿½è¹¤ç?
+    // ?ï¿½è£¡?ï¿½ä»¥æ·»ï¿½?å¯¦ï¿½??ï¿½è¨»?ï¿½ï¿½?ï¿½?
+    // ä¾‹ï¿½?ï¼šAPI èª¿ç”¨?ï¿½ç”¨?ï¿½è¿½è¹¤ï¿½?
   };
 
-  // ?•ç?æ¨¡ç?é»æ?
+  // ?ï¿½ï¿½?æ¨¡ï¿½?é»ï¿½?
   const handleModuleClick = (moduleId: string) => {
     if (isEnrolled) {
       navigate(`/prompt-engineering/module/${moduleId}`);
     } else {
-      // ?ç¤º?¨æˆ¶?€è¦è¨»??
-      alert(isZhTW ? 'è«‹å?è¨»å?èª²ç?' : 'Please enroll first');
+      // ?ï¿½ç¤º?ï¿½æˆ¶?ï¿½è¦è¨»??
+      alert(isZhTW ? 'è«‹ï¿½?è¨»ï¿½?èª²ï¿½?' : 'Please enroll first');
     }
   };
 
@@ -81,15 +81,15 @@ const PromptEngineeringWithTemplate: React.FC = () => {
     <div className="min-h-screen bg-gray-900">
       <Navigation />
       
-      <div className="pt-16"> {/* ?ºå??ªç??ºç©º??*/}
+      <div className="pt-16"> {/* ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ç©º??*/}
         <CourseTemplate
           title="Advanced Prompt Engineering"
-          titleZh="?²é??ç¤ºå·¥ç?"
+          titleZh="?ï¿½ï¿½??ï¿½ç¤ºå·¥ï¿½?"
           description="Master the art of AI prompt engineering with practical techniques and real-world applications"
-          descriptionZh="?šé?å¯¦ç”¨?€å·§å??Ÿå¯¦?‰ç”¨æ¡ˆä??Œæ¡ AI ?ç¤ºå·¥ç??„è?è¡?
+          descriptionZh="?ï¿½ï¿½?å¯¦ç”¨?ï¿½å·§ï¿½??ï¿½å¯¦?ï¿½ç”¨æ¡ˆï¿½??ï¿½æ¡ AI ?ï¿½ç¤ºå·¥ï¿½??ï¿½ï¿½?ï¿½?
           level="intermediate"
           duration="12 hours"
-          durationZh="12 å°æ?"
+          durationZh="12 å°ï¿½?"
           rating={4.8}
           studentCount={1543}
           modules={convertToTemplateFormat()}
@@ -109,9 +109,9 @@ const PromptEngineeringWithTemplate: React.FC = () => {
 export default PromptEngineeringWithTemplate;
 ```
 
-### ?”§ ç¯„ä? 2ï¼šå??‹å?è¼‰èª²ç¨‹æ•¸??
+### ?ï¿½ï¿½ ç¯„ï¿½? 2ï¼šï¿½??ï¿½ï¿½?è¼‰èª²ç¨‹æ•¸??
 
-**?‡ä»¶**: `pages/courses/DynamicCourseTemplate.tsx`
+**?ï¿½ä»¶**: `pages/courses/DynamicCourseTemplate.tsx`
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -157,7 +157,7 @@ const DynamicCourseTemplate: React.FC = () => {
         // æ¨¡æ“¬ API å»¶é²
         await new Promise(resolve => setTimeout(resolve, 1000));
         
-        // ?™è£¡?‰è©²?¯å¯¦?›ç? API èª¿ç”¨
+        // ?ï¿½è£¡?ï¿½è©²?ï¿½å¯¦?ï¿½ï¿½? API èª¿ç”¨
         const response = await fetch(`/api/courses/${courseId}`);
         
         if (!response.ok) {
@@ -167,7 +167,7 @@ const DynamicCourseTemplate: React.FC = () => {
         const data = await response.json();
         setCourseData(data);
         
-        // æª¢æŸ¥?¨æˆ¶è¨»å??€??
+        // æª¢æŸ¥?ï¿½æˆ¶è¨»ï¿½??ï¿½??
         const enrollmentResponse = await fetch(`/api/courses/${courseId}/enrollment`);
         if (enrollmentResponse.ok) {
           const enrollment = await enrollmentResponse.json();
@@ -176,7 +176,7 @@ const DynamicCourseTemplate: React.FC = () => {
         
       } catch (error) {
         console.error('Error fetching course data:', error);
-        setError(isZhTW ? 'è¼‰å…¥èª²ç??¸æ?å¤±æ?' : 'Failed to load course data');
+        setError(isZhTW ? 'è¼‰å…¥èª²ï¿½??ï¿½ï¿½?å¤±ï¿½?' : 'Failed to load course data');
       } finally {
         setLoading(false);
       }
@@ -187,7 +187,7 @@ const DynamicCourseTemplate: React.FC = () => {
     }
   }, [courseId, isZhTW]);
 
-  // ?•ç?è¨»å?
+  // ?ï¿½ï¿½?è¨»ï¿½?
   const handleEnroll = async () => {
     try {
       const response = await fetch(`/api/courses/${courseId}/enroll`, {
@@ -200,31 +200,31 @@ const DynamicCourseTemplate: React.FC = () => {
 
       if (response.ok) {
         setUserEnrollment({ isEnrolled: true, progress: 0 });
-        alert(isZhTW ? 'è¨»å??å?ï¼? : 'Enrollment successful!');
+        alert(isZhTW ? 'è¨»ï¿½??ï¿½ï¿½?ï¿½? : 'Enrollment successful!');
       }
     } catch (error) {
       console.error('Enrollment failed:', error);
-      alert(isZhTW ? 'è¨»å?å¤±æ?ï¼Œè??è©¦' : 'Enrollment failed, please try again');
+      alert(isZhTW ? 'è¨»ï¿½?å¤±ï¿½?ï¼Œï¿½??ï¿½è©¦' : 'Enrollment failed, please try again');
     }
   };
 
-  // Loading ?€??
+  // Loading ?ï¿½??
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900">
         <Navigation />
-        <LoadingSpinner message={isZhTW ? 'è¼‰å…¥èª²ç?ä¸?..' : 'Loading course...'} />
+        <LoadingSpinner message={isZhTW ? 'è¼‰å…¥èª²ï¿½?ï¿½?..' : 'Loading course...'} />
       </div>
     );
   }
 
-  // Error ?€??
+  // Error ?ï¿½??
   if (error || !courseData) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">
-            {isZhTW ? 'è¼‰å…¥?¯èª¤' : 'Loading Error'}
+            {isZhTW ? 'è¼‰å…¥?ï¿½èª¤' : 'Loading Error'}
           </h2>
           <p className="text-gray-300">{error}</p>
         </div>
@@ -265,11 +265,11 @@ export default DynamicCourseTemplate;
 
 ---
 
-## ?“° ?šå®¢æ¨¡æ¿?´å?ç¯„ä?
+## ?ï¿½ï¿½ ?ï¿½å®¢æ¨¡æ¿?ï¿½ï¿½?ç¯„ï¿½?
 
-### ?”§ ç¯„ä? 1ï¼šè??¾æ??šå®¢?¸æ??´å?
+### ?ï¿½ï¿½ ç¯„ï¿½? 1ï¼šï¿½??ï¿½ï¿½??ï¿½å®¢?ï¿½ï¿½??ï¿½ï¿½?
 
-**?‡ä»¶**: `pages/blog/BlogPostWithTemplate.tsx`
+**?ï¿½ä»¶**: `pages/blog/BlogPostWithTemplate.tsx`
 
 ```tsx
 import React, { useEffect, useState } from 'react';
@@ -279,7 +279,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 import ArticleContentRenderer from '@/components/ArticleContentRenderer';
 
-// ä½¿ç”¨?¾æ??„å?å®¢æ•¸??
+// ä½¿ç”¨?ï¿½ï¿½??ï¿½ï¿½?å®¢æ•¸??
 import { blogPosts, type BlogPost } from '@/data/blog/blogPosts';
 import { getArticleContent } from '@/data/blog/articleContent';
 
@@ -297,20 +297,20 @@ const BlogPostWithTemplate: React.FC = () => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    // ?¥æ‰¾?‡ç?
+    // ?ï¿½æ‰¾?ï¿½ï¿½?
     const foundPost = blogPosts.find(p => p.id === id);
     if (foundPost) {
       setPost(foundPost);
       
-      // è¼‰å…¥?‡ç??§å®¹
+      // è¼‰å…¥?ï¿½ï¿½??ï¿½å®¹
       const content = getArticleContent(id || '');
       setArticleContent(content);
       
-      // æ¨¡æ“¬è¼‰å…¥çµ±è??¸æ?
+      // æ¨¡æ“¬è¼‰å…¥çµ±ï¿½??ï¿½ï¿½?
       setViewCount(Math.floor(Math.random() * 5000) + 100);
       setLikeCount(Math.floor(Math.random() * 200) + 10);
       
-      // æª¢æŸ¥?¨æˆ¶äº’å??€??
+      // æª¢æŸ¥?ï¿½æˆ¶äº’ï¿½??ï¿½??
       checkUserInteractions(id);
     }
   }, [id]);
@@ -319,7 +319,7 @@ const BlogPostWithTemplate: React.FC = () => {
     if (!postId) return;
     
     try {
-      // ?™è£¡?‰è©²?¯å¯¦?›ç? API èª¿ç”¨
+      // ?ï¿½è£¡?ï¿½è©²?ï¿½å¯¦?ï¿½ï¿½? API èª¿ç”¨
       const response = await fetch(`/api/posts/${postId}/user-interactions`);
       if (response.ok) {
         const data = await response.json();
@@ -331,12 +331,12 @@ const BlogPostWithTemplate: React.FC = () => {
     }
   };
 
-  // ?•ç?è¿”å?
+  // ?ï¿½ï¿½?è¿”ï¿½?
   const handleBack = () => {
     navigate('/blog');
   };
 
-  // ?•ç??†äº«
+  // ?ï¿½ï¿½??ï¿½äº«
   const handleShare = async () => {
     if (navigator.share && post) {
       try {
@@ -349,13 +349,13 @@ const BlogPostWithTemplate: React.FC = () => {
         console.log('Share failed:', error);
       }
     } else {
-      // Fallback: è¤‡è£½?°å‰ªè²¼æ¿
+      // Fallback: è¤‡è£½?ï¿½å‰ªè²¼æ¿
       navigator.clipboard.writeText(window.location.href);
-      alert(isZhTW ? '?ˆæ¥å·²è?è£½åˆ°?ªè²¼?? : 'Link copied to clipboard');
+      alert(isZhTW ? '?ï¿½æ¥å·²ï¿½?è£½åˆ°?ï¿½è²¼?? : 'Link copied to clipboard');
     }
   };
 
-  // ?•ç??¶è?
+  // ?ï¿½ï¿½??ï¿½ï¿½?
   const handleBookmark = async () => {
     try {
       const response = await fetch(`/api/posts/${id}/bookmark`, {
@@ -367,8 +367,8 @@ const BlogPostWithTemplate: React.FC = () => {
       if (response.ok) {
         setIsBookmarked(!isBookmarked);
         const message = isBookmarked 
-          ? (isZhTW ? 'å·²å?æ¶ˆæ”¶?? : 'Removed from bookmarks')
-          : (isZhTW ? 'å·²æ·»? åˆ°?¶è?' : 'Added to bookmarks');
+          ? (isZhTW ? 'å·²ï¿½?æ¶ˆæ”¶?? : 'Removed from bookmarks')
+          : (isZhTW ? 'å·²æ·»?ï¿½åˆ°?ï¿½ï¿½?' : 'Added to bookmarks');
         alert(message);
       }
     } catch (error) {
@@ -376,7 +376,7 @@ const BlogPostWithTemplate: React.FC = () => {
     }
   };
 
-  // ?•ç?é»è?
+  // ?ï¿½ï¿½?é»ï¿½?
   const handleLike = async () => {
     try {
       const response = await fetch(`/api/posts/${id}/like`, {
@@ -399,30 +399,30 @@ const BlogPostWithTemplate: React.FC = () => {
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-2xl font-bold mb-4">
-            {isZhTW ? '?‡ç??ªæ‰¾?? : 'Article Not Found'}
+            {isZhTW ? '?ï¿½ï¿½??ï¿½æ‰¾?? : 'Article Not Found'}
           </h2>
           <button 
             onClick={() => navigate('/blog')}
             className="text-blue-400 hover:text-blue-300"
           >
-            {isZhTW ? 'è¿”å??šå®¢' : 'Back to Blog'}
+            {isZhTW ? 'è¿”ï¿½??ï¿½å®¢' : 'Back to Blog'}
           </button>
         </div>
       </div>
     );
   }
 
-  // æ¸²æ??‡ç??§å®¹
+  // æ¸²ï¿½??ï¿½ï¿½??ï¿½å®¹
   const renderContent = () => {
     if (articleContent) {
       return <ArticleContentRenderer sections={articleContent.sections} />;
     }
     
-    // å¦‚æ?æ²’æ?è©³ç´°?§å®¹ï¼Œä½¿?¨åŸº?¬å…§å®?
+    // å¦‚ï¿½?æ²’ï¿½?è©³ç´°?ï¿½å®¹ï¼Œä½¿?ï¿½åŸº?ï¿½å…§ï¿½?
     return (
       <div className="prose prose-lg prose-invert max-w-none">
         <p>{isZhTW ? post.excerptZh || post.excerpt : post.excerpt}</p>
-        {/* ?™è£¡?¯ä»¥æ·»å??´å??§å®¹ */}
+        {/* ?ï¿½è£¡?ï¿½ä»¥æ·»ï¿½??ï¿½ï¿½??ï¿½å®¹ */}
       </div>
     );
   };
@@ -438,7 +438,7 @@ const BlogPostWithTemplate: React.FC = () => {
         excerptZh={post.excerptZh}
         content={renderContent()}
         author="AI Formula Team"
-        authorZh="AI Formula ?˜é?"
+        authorZh="AI Formula ?ï¿½ï¿½?"
         publishDate={post.date}
         publishDateZh={post.dateZh}
         readTime={post.readTime}
@@ -466,9 +466,9 @@ const BlogPostWithTemplate: React.FC = () => {
 export default BlogPostWithTemplate;
 ```
 
-### ?”§ ç¯„ä? 2ï¼šå‰µå»ºæ–°?‡ç??é¢
+### ?ï¿½ï¿½ ç¯„ï¿½? 2ï¼šå‰µå»ºæ–°?ï¿½ï¿½??ï¿½é¢
 
-**?‡ä»¶**: `pages/blog/CreateBlogPost.tsx`
+**?ï¿½ä»¶**: `pages/blog/CreateBlogPost.tsx`
 
 ```tsx
 import React, { useState } from 'react';
@@ -480,36 +480,36 @@ const CreateBlogPost: React.FC = () => {
   const { language } = useLanguage();
   const isZhTW = language === 'zh-HK';
   
-  // ?‡ç??§å®¹?€??
+  // ?ï¿½ï¿½??ï¿½å®¹?ï¿½??
   const [articleData, setArticleData] = useState({
     title: '',
     titleZh: '',
     excerpt: '',
     excerptZh: '',
     category: 'AI Technology',
-    categoryZh: 'AI?€è¡?,
+    categoryZh: 'AI?ï¿½ï¿½?,
     tags: ['AI', 'Technology'],
-    tagsZh: ['AI', 'ç§‘æ?'],
+    tagsZh: ['AI', 'ç§‘ï¿½?'],
   });
 
-  // ç¤ºç??‡ç??§å®¹
+  // ç¤ºï¿½??ï¿½ï¿½??ï¿½å®¹
   const demoContent = (
     <div className="space-y-6">
       <section>
         <h2 className="text-2xl font-bold text-white mb-4">
-          {isZhTW ? 'ä»€éº¼æ˜¯ AI Formulaï¼? : 'What is AI Formula?'}
+          {isZhTW ? 'ä»€éº¼æ˜¯ AI Formulaï¿½? : 'What is AI Formula?'}
         </h2>
         <p className="text-gray-300 leading-relaxed mb-4">
           {isZhTW 
-            ? 'AI Formula ?¯ä??‹å??€?ºå­¸ç¿’è€…è¨­è¨ˆç?äººå·¥?ºæ…§?™è‚²å¹³å°?‚æ??‘æ?ä¾›å??ºç??°é€²é??„å??´èª²ç¨‹é?ç³»ï?å¹«åŠ©?¨æ???AI ?€è¡“ç??¸å?æ¦‚å¿µ?Œå¯¦?›æ??¨ã€?
+            ? 'AI Formula ?ï¿½ï¿½??ï¿½ï¿½??ï¿½?ï¿½å­¸ç¿’è€…è¨­è¨ˆï¿½?äººå·¥?ï¿½æ…§?ï¿½è‚²å¹³å°?ï¿½ï¿½??ï¿½ï¿½?ä¾›ï¿½??ï¿½ï¿½??ï¿½é€²ï¿½??ï¿½ï¿½??ï¿½èª²ç¨‹ï¿½?ç³»ï¿½?å¹«åŠ©?ï¿½ï¿½???AI ?ï¿½è¡“ï¿½??ï¿½ï¿½?æ¦‚å¿µ?ï¿½å¯¦?ï¿½ï¿½??ï¿½ï¿½?
             : 'AI Formula is an artificial intelligence education platform specifically designed for learners. We provide a comprehensive course system from basic to advanced levels, helping you master core AI concepts and practical applications.'
           }
         </p>
         <div className="bg-blue-900/20 border border-blue-700/50 rounded-lg p-4 mb-4">
           <p className="text-blue-300 text-sm">
             {isZhTW 
-              ? '?’¡ ?ç¤ºï¼šé€™æ˜¯ä¸€?‹ä½¿??BlogTemplate ?µå»º?„ç¤ºç¯„æ?ç« ã€?
-              : '?’¡ Tip: This is a demo article created using BlogTemplate.'
+              ? '?ï¿½ï¿½ ?ï¿½ç¤ºï¼šé€™æ˜¯ä¸€?ï¿½ä½¿??BlogTemplate ?ï¿½å»º?ï¿½ç¤ºç¯„ï¿½?ç« ï¿½?
+              : '?ï¿½ï¿½ Tip: This is a demo article created using BlogTemplate.'
             }
           </p>
         </div>
@@ -517,35 +517,35 @@ const CreateBlogPost: React.FC = () => {
 
       <section>
         <h3 className="text-xl font-semibold text-white mb-3">
-          {isZhTW ? '?¸å??¹è‰²' : 'Core Features'}
+          {isZhTW ? '?ï¿½ï¿½??ï¿½è‰²' : 'Core Features'}
         </h3>
         <ul className="list-disc list-inside text-gray-300 space-y-2">
-          <li>{isZhTW ? 'çµæ??–ç?å­¸ç?è·¯å?' : 'Structured learning paths'}</li>
-          <li>{isZhTW ? 'å¯¦é??…ç›®æ¡ˆä?' : 'Real-world project cases'}</li>
-          <li>{isZhTW ? 'äº’å?å¼å­¸ç¿’é?é©? : 'Interactive learning experience'}</li>
-          <li>{isZhTW ? 'å¤šè?è¨€?¯æ´' : 'Multi-language support'}</li>
+          <li>{isZhTW ? 'çµï¿½??ï¿½ï¿½?å­¸ï¿½?è·¯ï¿½?' : 'Structured learning paths'}</li>
+          <li>{isZhTW ? 'å¯¦ï¿½??ï¿½ç›®æ¡ˆï¿½?' : 'Real-world project cases'}</li>
+          <li>{isZhTW ? 'äº’ï¿½?å¼å­¸ç¿’ï¿½?ï¿½? : 'Interactive learning experience'}</li>
+          <li>{isZhTW ? 'å¤šï¿½?è¨€?ï¿½æ´' : 'Multi-language support'}</li>
         </ul>
       </section>
 
       <section>
         <h3 className="text-xl font-semibold text-white mb-3">
-          {isZhTW ? 'èª²ç??†é?' : 'Course Categories'}
+          {isZhTW ? 'èª²ï¿½??ï¿½ï¿½?' : 'Course Categories'}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-gray-800/50 rounded-lg p-4">
             <h4 className="font-semibold text-green-400 mb-2">
-              {isZhTW ? '?ºç?èª²ç?' : 'Fundamental Courses'}
+              {isZhTW ? '?ï¿½ï¿½?èª²ï¿½?' : 'Fundamental Courses'}
             </h4>
             <p className="text-sm text-gray-300">
-              {isZhTW ? 'AI ?ºç?æ¦‚å¿µ?æ??¨å­¸ç¿’å…¥?€' : 'AI basics, machine learning introduction'}
+              {isZhTW ? 'AI ?ï¿½ï¿½?æ¦‚å¿µ?ï¿½ï¿½??ï¿½å­¸ç¿’å…¥?ï¿½' : 'AI basics, machine learning introduction'}
             </p>
           </div>
           <div className="bg-gray-800/50 rounded-lg p-4">
             <h4 className="font-semibold text-blue-400 mb-2">
-              {isZhTW ? '?²é?èª²ç?' : 'Advanced Courses'}
+              {isZhTW ? '?ï¿½ï¿½?èª²ï¿½?' : 'Advanced Courses'}
             </h4>
             <p className="text-sm text-gray-300">
-              {isZhTW ? 'æ·±åº¦å­¸ç??è‡ª?¶è?è¨€?•ç?' : 'Deep learning, natural language processing'}
+              {isZhTW ? 'æ·±åº¦å­¸ï¿½??ï¿½è‡ª?ï¿½ï¿½?è¨€?ï¿½ï¿½?' : 'Deep learning, natural language processing'}
             </p>
           </div>
         </div>
@@ -554,16 +554,16 @@ const CreateBlogPost: React.FC = () => {
       <section>
         <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-700/50 rounded-lg p-6">
           <h3 className="text-xl font-semibold text-white mb-3">
-            {isZhTW ? '?‹å??¨ç? AI å­¸ç?ä¹‹æ?' : 'Start Your AI Learning Journey'}
+            {isZhTW ? '?ï¿½ï¿½??ï¿½ï¿½? AI å­¸ï¿½?ä¹‹ï¿½?' : 'Start Your AI Learning Journey'}
           </h3>
           <p className="text-gray-300 mb-4">
             {isZhTW 
-              ? 'ç«‹å³è¨»å?ï¼Œæ¢ç´¢äººå·¥æ™º?§ç??¡é??¯èƒ½?‚å??¶åŸºç¤åˆ°å°ˆæ¥­?‰ç”¨ï¼Œæ??‘å??ªä¼´?¨æ?ä¸€æ­¥ã€?
+              ? 'ç«‹å³è¨»ï¿½?ï¼Œæ¢ç´¢äººå·¥æ™º?ï¿½ï¿½??ï¿½ï¿½??ï¿½èƒ½?ï¿½ï¿½??ï¿½åŸºç¤åˆ°å°ˆæ¥­?ï¿½ç”¨ï¼Œï¿½??ï¿½ï¿½??ï¿½ä¼´?ï¿½ï¿½?ä¸€æ­¥ï¿½?
               : 'Register now and explore the infinite possibilities of artificial intelligence. From zero basics to professional applications, we will accompany you every step of the way.'
             }
           </p>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
-            {isZhTW ? 'ç«‹å³?‹å?' : 'Get Started'}
+            {isZhTW ? 'ç«‹å³?ï¿½ï¿½?' : 'Get Started'}
           </button>
         </div>
       </section>
@@ -576,20 +576,20 @@ const CreateBlogPost: React.FC = () => {
       
       <BlogTemplate
         title="Introducing AI Formula: Your Gateway to Artificial Intelligence"
-        titleZh="ä»‹ç´¹ AI Formulaï¼šæ‚¨?„äººå·¥æ™º?§å­¸ç¿’é???
+        titleZh="ä»‹ç´¹ AI Formulaï¼šæ‚¨?ï¿½äººå·¥æ™º?ï¿½å­¸ç¿’ï¿½???
         excerpt="Discover how AI Formula revolutionizes AI education with structured courses, hands-on projects, and comprehensive learning resources."
-        excerptZh="?¢ç´¢ AI Formula å¦‚ä??šé?çµæ??–èª²ç¨‹ã€å¯¦è¸é??®å??¨é¢?„å­¸ç¿’è?æºä??©æ–° AI ?™è‚²??
+        excerptZh="?ï¿½ç´¢ AI Formula å¦‚ï¿½??ï¿½ï¿½?çµï¿½??ï¿½èª²ç¨‹ã€å¯¦è¸ï¿½??ï¿½ï¿½??ï¿½é¢?ï¿½å­¸ç¿’ï¿½?æºï¿½??ï¿½æ–° AI ?ï¿½è‚²??
         content={demoContent}
         author="AI Formula Team"
-        authorZh="AI Formula ?˜é?"
+        authorZh="AI Formula ?ï¿½ï¿½?"
         publishDate="December 7, 2024"
-        publishDateZh="2024å¹?2????
+        publishDateZh="2024ï¿½?2????
         readTime="6 min read"
-        readTimeZh="6 ?†é??±è?"
+        readTimeZh="6 ?ï¿½ï¿½??ï¿½ï¿½?"
         category="Company Introduction"
-        categoryZh="?¬å¸ä»‹ç´¹"
+        categoryZh="?ï¿½å¸ä»‹ç´¹"
         tags={["AI Education", "Learning Platform", "Technology"]}
-        tagsZh={["AI ?™è‚²", "å­¸ç?å¹³å°", "ç§‘æ?"]}
+        tagsZh={["AI ?ï¿½è‚²", "å­¸ï¿½?å¹³å°", "ç§‘ï¿½?"]}
         viewCount={892}
         likeCount={47}
         showStats={true}
@@ -606,14 +606,14 @@ const CreateBlogPost: React.FC = () => {
             });
           } else {
             navigator.clipboard.writeText(window.location.href);
-            alert(isZhTW ? '?ˆæ¥å·²è?è£? : 'Link copied');
+            alert(isZhTW ? '?ï¿½æ¥å·²ï¿½?ï¿½? : 'Link copied');
           }
         }}
         onBookmark={() => {
-          alert(isZhTW ? '?‡ç?å·²æ”¶?? : 'Article bookmarked');
+          alert(isZhTW ? '?ï¿½ï¿½?å·²æ”¶?? : 'Article bookmarked');
         }}
         onLike={() => {
-          alert(isZhTW ? '?Ÿè??¨ç?é»è?ï¼? : 'Thanks for the like!');
+          alert(isZhTW ? '?ï¿½ï¿½??ï¿½ï¿½?é»ï¿½?ï¿½? : 'Thanks for the like!');
         }}
       />
     </div>
@@ -625,12 +625,12 @@ export default CreateBlogPost;
 
 ---
 
-## ?”§ ?¨è·¯?±ä¸­ä½¿ç”¨æ¨¡æ¿
+## ?ï¿½ï¿½ ?ï¿½è·¯?ï¿½ä¸­ä½¿ç”¨æ¨¡æ¿
 
-### ?´æ–° App.tsx è·¯ç”±?ç½®
+### ?ï¿½æ–° App.tsx è·¯ç”±?ï¿½ç½®
 
 ```tsx
-// ??App.tsx ä¸­æ·»? æ–°?„è·¯??
+// ??App.tsx ä¸­æ·»?ï¿½æ–°?ï¿½è·¯??
 const PromptEngineeringWithTemplate = React.lazy(() => import('./pages/courses/PromptEngineeringWithTemplate'));
 const BlogPostWithTemplate = React.lazy(() => import('./pages/blog/BlogPostWithTemplate'));
 const CreateBlogPost = React.lazy(() => import('./pages/blog/CreateBlogPost'));
@@ -643,9 +643,9 @@ const CreateBlogPost = React.lazy(() => import('./pages/blog/CreateBlogPost'));
 
 ---
 
-## ?? ?§èƒ½?ªå?ç¯„ä?
+## ?? ?ï¿½èƒ½?ï¿½ï¿½?ç¯„ï¿½?
 
-### ä½¿ç”¨ React.memo ?ªå?æ¨¡æ¿?§èƒ½
+### ä½¿ç”¨ React.memo ?ï¿½ï¿½?æ¨¡æ¿?ï¿½èƒ½
 
 ```tsx
 // components/templates/OptimizedCourseTemplate.tsx
@@ -665,7 +665,7 @@ const OptimizedCourseTemplate = memo<OptimizedCourseTemplateProps>(({
   onEnroll,
   onModuleClick
 }) => {
-  // ä½¿ç”¨ useMemo ?ªå??¸æ??•ç?
+  // ä½¿ç”¨ useMemo ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?
   const processedModules = useMemo(() => {
     return courseData.modules.map((module: any) => ({
       ...module,
@@ -701,14 +701,14 @@ export default OptimizedCourseTemplate;
 
 ---
 
-## ?¯ ?†æ?å»ºè­°
+## ?ï¿½ï¿½ ?ï¿½ï¿½?å»ºè­°
 
-1. **?æ­¥?·ç§»**: å¾ä??‹é??¢é?å§‹ä½¿?¨æ¨¡?¿ï??¶å??æ­¥?·ç§»?¶ä??é¢
-2. **?¸æ??©é?**: ?µå»º?©é??¨å‡½?¸ä?è½‰æ??¾æ??¸æ??¼å?
-3. **?¨æˆ¶é«”é?**: ä¿æ??‡ç¾?‰è¨­è¨ˆç?ä¸€?´æ€?
-4. **?§èƒ½??§**: ä½¿ç”¨ React DevTools ??§æ¨¡æ¿?§èƒ½
-5. **æ¸¬è©¦**: ?ºæ??‹æ¨¡?¿ç”¨æ³•å‰µå»ºæ¸¬è©¦æ?ä¾?
+1. **?ï¿½æ­¥?ï¿½ç§»**: å¾ï¿½??ï¿½ï¿½??ï¿½ï¿½?å§‹ä½¿?ï¿½æ¨¡?ï¿½ï¿½??ï¿½ï¿½??ï¿½æ­¥?ï¿½ç§»?ï¿½ï¿½??ï¿½é¢
+2. **?ï¿½ï¿½??ï¿½ï¿½?**: ?ï¿½å»º?ï¿½ï¿½??ï¿½å‡½?ï¿½ï¿½?è½‰ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?
+3. **?ï¿½æˆ¶é«”ï¿½?**: ä¿ï¿½??ï¿½ç¾?ï¿½è¨­è¨ˆï¿½?ä¸€?ï¿½ï¿½?
+4. **?ï¿½èƒ½??ï¿½ï¿½**: ä½¿ç”¨ React DevTools ??ï¿½ï¿½æ¨¡æ¿?ï¿½èƒ½
+5. **æ¸¬è©¦**: ?ï¿½ï¿½??ï¿½æ¨¡?ï¿½ç”¨æ³•å‰µå»ºæ¸¬è©¦ï¿½?ï¿½?
 
 ---
 
-**?? ?™ä?ç¯„ä?å±•ç¤ºäº†å?ä½•åœ¨å¯¦é??…ç›®ä¸­æ??ˆåœ°ä½¿ç”¨æ¨¡æ¿ï¼Œè??¨èƒ½å¤ å¿«?Ÿå»ºç«‹å?æ¥­ä?ä¸€?´ç??¨æˆ¶?Œé¢ï¼?* 
+**?? ?ï¿½ï¿½?ç¯„ï¿½?å±•ç¤ºäº†ï¿½?ä½•åœ¨å¯¦ï¿½??ï¿½ç›®ä¸­ï¿½??ï¿½åœ°ä½¿ç”¨æ¨¡æ¿ï¼Œï¿½??ï¿½èƒ½å¤ å¿«?ï¿½å»ºç«‹ï¿½?æ¥­ï¿½?ä¸€?ï¿½ï¿½??ï¿½æˆ¶?ï¿½é¢ï¿½?* 

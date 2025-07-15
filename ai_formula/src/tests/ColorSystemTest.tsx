@@ -12,7 +12,7 @@ const ColorTest: React.FC<ColorTestProps> = ({ name, variable, expectedColor, cl
   const [isValid, setIsValid] = useState<boolean | null>(null);
   
   React.useEffect(() => {
-    // 檢查 CSS 變�??�否�?��定義
+    // 檢查 CSS 變數是否正確定義
     const style = getComputedStyle(document.documentElement);
     const actualColor = style.getPropertyValue(variable).trim();
     const isColorValid = actualColor === expectedColor || actualColor.toLowerCase() === expectedColor.toLowerCase();
@@ -47,7 +47,7 @@ const ColorSystemTest: React.FC = () => {
     total: number;
   }>({ passed: 0, failed: 0, total: 0 });
 
-  // 顏色測試?��?
+  // 顏色測試?
   const colorTests = [
     { name: 'Primary Yellow', variable: '--ai-formula-primary', expectedColor: '#FFD600', className: 'ai-bg-primary' },
     { name: 'Primary Hover', variable: '--ai-formula-primary-hover', expectedColor: '#EAB308', className: 'ai-bg-primary-hover' },
@@ -64,7 +64,7 @@ const ColorSystemTest: React.FC = () => {
     { name: 'Gray 300', variable: '--ai-formula-gray-300', expectedColor: '#d1d5db', className: 'ai-bg-gray-300' }
   ];
 
-  // 組件測試?��?
+  // 組件測試?
   const componentTests = [
     { name: 'Button Primary', component: <button className="ai-bg-primary ai-text-dark px-4 py-2 rounded">Primary Button</button> },
     { name: 'Button Secondary', component: <button className="ai-bg-secondary ai-text-dark px-4 py-2 rounded">Secondary Button</button> },
@@ -104,7 +104,7 @@ const ColorSystemTest: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4 ai-text-primary">AI Formula 顏色系統測試</h1>
-          <p className="text-xl text-gray-300">驗�?主�??��??��?覺�??��?/p>
+          <p className="text-xl text-gray-300">驗證主題和視覺一致性</p>
         </div>
 
         {/* Test Results Summary */}
@@ -112,7 +112,7 @@ const ColorSystemTest: React.FC = () => {
           <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
             <div className="flex items-center gap-3 mb-2">
               <CheckCircle className="w-6 h-6 text-green-400" />
-              <h3 className="text-lg font-semibold">?��?測試</h3>
+              <h3 className="text-lg font-semibold">通過測試</h3>
             </div>
             <p className="text-3xl font-bold text-green-400">{testResults.passed}</p>
           </div>
@@ -120,7 +120,7 @@ const ColorSystemTest: React.FC = () => {
           <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
             <div className="flex items-center gap-3 mb-2">
               <XCircle className="w-6 h-6 text-red-400" />
-              <h3 className="text-lg font-semibold">失�?測試</h3>
+              <h3 className="text-lg font-semibold">失敗測試</h3>
             </div>
             <p className="text-3xl font-bold text-red-400">{testResults.failed}</p>
           </div>
@@ -128,7 +128,7 @@ const ColorSystemTest: React.FC = () => {
           <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
             <div className="flex items-center gap-3 mb-2">
               <Palette className="w-6 h-6 ai-text-info" />
-              <h3 className="text-lg font-semibold">總�?</h3>
+              <h3 className="text-lg font-semibold">總數</h3>
             </div>
             <p className="text-3xl font-bold ai-text-info">{testResults.total}</p>
           </div>
@@ -141,7 +141,7 @@ const ColorSystemTest: React.FC = () => {
             className="flex items-center gap-2 ai-bg-primary ai-text-dark px-6 py-3 rounded-lg font-semibold hover:ai-bg-primary-hover transition-colors"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            ?��???{theme === 'dark' ? '亮色' : '深色'} 主�?
+            切換主題
           </button>
         </div>
 
@@ -149,7 +149,7 @@ const ColorSystemTest: React.FC = () => {
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6 ai-text-primary flex items-center gap-2">
             <Palette className="w-6 h-6" />
-            顏色變�?測試
+            顏色變數測試
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {colorTests.map((test, index) => (
@@ -176,40 +176,40 @@ const ColorSystemTest: React.FC = () => {
 
         {/* Accessibility Tests */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 ai-text-primary">?��?礙性測�?/h2>
+          <h2 className="text-2xl font-bold mb-6 ai-text-primary">無障礙測試</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
-              <h3 className="text-lg font-semibold mb-4">對�?度測�?/h3>
+              <h3 className="text-lg font-semibold mb-4">對比度測試</h3>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="ai-text-primary">主�??��? (Primary)</span>
-                  <span className="text-green-400">???��?</span>
+                  <span className="ai-text-primary">主題色 (Primary)</span>
+                  <span className="text-green-400">通過</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="ai-text-secondary">次�??��? (Secondary)</span>
-                  <span className="text-green-400">???��?</span>
+                  <span className="ai-text-secondary">次要顏色 (Secondary)</span>
+                  <span className="text-green-400">通過</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="ai-text-accent">強調?��? (Accent)</span>
-                  <span className="text-green-400">???��?</span>
+                  <span className="ai-text-accent">強調顏色 (Accent)</span>
+                  <span className="text-green-400">通過</span>
                 </div>
               </div>
             </div>
             
             <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
-              <h3 className="text-lg font-semibold mb-4">?�盲?�好測試</h3>
+              <h3 className="text-lg font-semibold mb-4">色盲測試</h3>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span>紅�??�盲</span>
-                  <span className="text-green-400">???��?</span>
+                  <span>紅色盲</span>
+                  <span className="text-green-400">通過</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>?��??�盲</span>
-                  <span className="text-green-400">???��?</span>
+                  <span>綠色盲</span>
+                  <span className="text-green-400">通過</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>?�色??/span>
-                  <span className="text-green-400">???��?</span>
+                  <span>藍色盲</span>
+                  <span className="text-green-400">通過</span>
                 </div>
               </div>
             </div>
@@ -222,13 +222,13 @@ const ColorSystemTest: React.FC = () => {
             onClick={runFullTest}
             className="ai-bg-info text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
           >
-            ?�新?��?測試
+            重新執行測試
           </button>
           <button
             onClick={() => window.location.reload()}
             className="ai-bg-secondary ai-text-dark px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
           >
-            ?�置測試
+            重置測試
           </button>
         </div>
       </div>

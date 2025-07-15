@@ -23,7 +23,7 @@ const InstructorSection = () => {
         language === 'zh-HK' ? t('instructors.sarah.qual3') : 'Strategic AI Business Integration',
         language === 'zh-HK' ? t('instructors.sarah.qual4') : 'Future-Ready Marketing Systems'
       ],
-      avatar: '/images/instructors/kenneth.jpg',
+      avatar: '👨‍💼',
       gradient: 'from-blue-500 to-purple-600'
     },
     {
@@ -31,15 +31,15 @@ const InstructorSection = () => {
       title: language === 'zh-HK' ? t('instructors.david.title') : 'Business Automation & AI Integration Specialist',
       specialty: language === 'zh-HK' ? t('instructors.david.specialty') : 'Automation & AI Solutions',
       experience: language === 'zh-HK' ? t('instructors.david.experience') : '7+ years',
-      biography: language === 'zh-HK' ? t('instructors.david.biography') : 'David is a business automation expert who has spent 7+ years helping companies eliminate overwork and streamline operations. He specializes in creating powerful automation workflows using Make.com, n8n, and AI tools to handle posts, content management, and complex business processes.',
-      philosophy: language === 'zh-HK' ? t('instructors.david.philosophy') : 'Automation should solve real business problems and reduce overwork. I help businesses implement all-in-one AI and automation solutions that transform how they operate, allowing teams to focus on what truly matters while technology handles the repetitive tasks.',
+      biography: language === 'zh-HK' ? t('instructors.david.biography') : 'David is a business automation expert who has spent 7+ years helping companies eliminate overwork and streamline operations. He specializes in creating powerful automation workflows using Make.com, n8n, and AI tools.',
+      philosophy: language === 'zh-HK' ? t('instructors.david.philosophy') : 'Automation should solve real business problems and reduce overwork. I help businesses implement all-in-one AI solutions that transform operations.',
       qualifications: [
         language === 'zh-HK' ? t('instructors.david.qual1') : 'Make.com & n8n Automation Expert',
         language === 'zh-HK' ? t('instructors.david.qual2') : 'Business Process Optimization',
         language === 'zh-HK' ? t('instructors.david.qual3') : 'AI-Powered Content Management',
         language === 'zh-HK' ? t('instructors.david.qual4') : 'All-in-One Business Solutions'
       ],
-      avatar: '/images/instructors/david.jpg',
+      avatar: '🤖',
       gradient: 'from-green-500 to-teal-600'
     },
     {
@@ -55,7 +55,7 @@ const InstructorSection = () => {
         language === 'zh-HK' ? t('instructors.emily.qual3') : 'Performance Optimization Specialist',
         language === 'zh-HK' ? t('instructors.emily.qual4') : 'Rapid Development Solutions'
       ],
-      avatar: '/images/instructors/ken.jpg',
+      avatar: '💻',
       gradient: 'from-orange-500 to-red-600'
     },
     {
@@ -71,7 +71,7 @@ const InstructorSection = () => {
         language === 'zh-HK' ? t('instructors.michael.qual3') : 'Full-Stack Web Development',
         language === 'zh-HK' ? t('instructors.michael.qual4') : 'AI-Enhanced Coding Solutions'
       ],
-      avatar: '/images/instructors/jason.jpg',
+      avatar: '🧠',
       gradient: 'from-purple-500 to-pink-600'
     }
   ];

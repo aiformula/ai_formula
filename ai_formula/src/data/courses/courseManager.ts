@@ -361,9 +361,9 @@ export class CourseManager {
       
       if (filters.priceRange) {
         if (filters.priceRange === 'free') {
-          filteredCourses = filteredCourses.filter(course => course.pricing.free === '?嶈不');
+          filteredCourses = filteredCourses.filter(course => course.pricing.free === '?锟借不');
         } else if (filters.priceRange === 'paid') {
-          filteredCourses = filteredCourses.filter(course => course.pricing.free !== '?嶈不');
+          filteredCourses = filteredCourses.filter(course => course.pricing.free !== '?锟借不');
         }
       }
       
@@ -396,29 +396,33 @@ export class CourseManager {
    */
   private async loadCourseData(id: string): Promise<CourseDetail | null> {
     // This would typically load from a database or API
-    // For now, we'll load from the separated data files
+    // Currently available courses: prompt engineering and AI business automation
     switch (id) {
-      case 'ai-image-video-creation':
-        return await import('./aiImageVideoCreation').then(m => m.aiImageVideoCreationCourse);
-      case 'prompt-engineering':
-        return await import('./promptEngineering').then(m => m.promptEngineeringCourse);
+      case 'prompt-engineering-learning':
+        // Import dynamically to avoid circular dependencies
+        const { promptEngineeringLeungMingCourse } = await import('./promptEngineeringLeungMing');
+        return promptEngineeringLeungMingCourse;
+      case 'ai-business-automation':
+        // Import dynamically to avoid circular dependencies
+        const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
+        return aiBusinessAutomationCourse;
       default:
         return null;
     }
   }
   
   /**
-   * Get all courses (placeholder)
+   * Get all courses (prompt engineering and AI business automation)
    */
   private async getAllCourses(): Promise<CourseDetail[]> {
     const courses: CourseDetail[] = [];
     
     try {
-      const aiCourse = await this.loadCourseData('ai-image-video-creation');
-      if (aiCourse) courses.push(aiCourse);
-      
-      const promptCourse = await this.loadCourseData('prompt-engineering');
+      const promptCourse = await this.loadCourseData('prompt-engineering-learning');
       if (promptCourse) courses.push(promptCourse);
+      
+      const automationCourse = await this.loadCourseData('ai-business-automation');
+      if (automationCourse) courses.push(automationCourse);
       
       return courses;
     } catch (error) {
