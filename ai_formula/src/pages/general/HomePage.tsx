@@ -1,6 +1,7 @@
 
 import React from 'react'
 import MainHero from '@/components/MainHero'
+import AudiencePathwaysSection from '@/components/AudiencePathwaysSection'
 import FeaturedCoursesSection from '@/components/course/FeaturedCoursesSection'
 import InstructorSection from '@/components/course/InstructorSection'
 import TechnologyShowcase from '@/components/TechnologyShowcase'
@@ -13,6 +14,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       <MainHero />
+      <AudiencePathwaysSection />
       <FeaturedCoursesSection />
       <InstructorSection />
       <TechnologyShowcase />
