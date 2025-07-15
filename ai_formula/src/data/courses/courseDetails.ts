@@ -8,7 +8,6 @@
 
 import { CourseDetail, CourseApiResponse } from '../../types/courseTypes';
 import { courseManager } from './courseManager';
-import { promptEngineeringLeungMingCourse } from './promptEngineeringLeungMing';
 
 /**
  * Course cache for performance optimization
@@ -40,18 +39,6 @@ interface CourseRegistry {
  * Course registry with lazy loading configuration
  */
 const courseRegistry: CourseRegistry = {
-  'prompt-engineering-learning': {
-    loader: () => Promise.resolve(promptEngineeringLeungMingCourse),
-    summary: {
-      id: 'prompt-engineering-learning',
-      title: {
-        en: 'Prompt Engineering Learning with Leung Ming',
-        'zh-HK': 'Leung Ming 的提示工程學習課程'
-      },
-      category: 'Prompt Engineering',
-      difficulty: 'Beginner'
-    }
-  },
   'ai-business-automation': {
     loader: async () => {
       const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
@@ -273,4 +260,4 @@ export async function initializeCourseSystem(): Promise<{
 }
 
 // Export the clean course for direct access
-export { promptEngineeringLeungMingCourse }; 
+ 

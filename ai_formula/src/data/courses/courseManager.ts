@@ -398,10 +398,6 @@ export class CourseManager {
     // This would typically load from a database or API
     // Currently available courses: prompt engineering and AI business automation
     switch (id) {
-      case 'prompt-engineering-learning':
-        // Import dynamically to avoid circular dependencies
-        const { promptEngineeringLeungMingCourse } = await import('./promptEngineeringLeungMing');
-        return promptEngineeringLeungMingCourse;
       case 'ai-business-automation':
         // Import dynamically to avoid circular dependencies
         const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');

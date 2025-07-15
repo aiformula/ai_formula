@@ -62,44 +62,7 @@ export interface ProductGridProps {
 
 // Featured Courses Data - High-quality learning content
 export const digitalProducts: DigitalProduct[] = [
-  {
-    id: 1,
-    title: "Prompt Engineering Learning with Leung Ming",
-    titleCht: "Leung Ming 的提示工程學習課程",
-    description: "Learn the fundamentals of AI communication and prompt engineering through this comprehensive free course.",
-    descriptionCht: "通過這門綜合免費課程，學習 AI 溝通和提示工程的基礎知識。",
-    duration: "1 hour comprehensive lesson",
-    durationCht: "1 小時綜合課程",
-    downloads: 2847,
-    rating: 4.9,
-    level: "Beginner",
-    levelCht: "初級",
-    price: "免費",
-    originalPrice: "免費",
-    image: "🎯",
-    type: "AI Learning",
-    typeCht: "AI 學習",
-    category: "prompt-engineering",
-    newProduct: true,
-    featured: true,
-    bestseller: false,
-    includes: [
-      "1 Comprehensive Lesson",
-      "Basic Prompt Template Library", 
-      "Quick Start Guide",
-      "Community Access",
-      "Beginner-Friendly Content",
-      "Free Forever"
-    ],
-    includesCht: [
-      "1 堂綜合課程",
-      "基礎提示模板庫",
-      "快速入門指南", 
-      "社群訪問權限",
-      "初學者友好內容",
-      "永久免費"
-    ]
-  },
+
   {
     id: 2,
     title: "AI Business Automation Practice",
@@ -143,39 +106,8 @@ export const digitalProducts: DigitalProduct[] = [
   }
 ];
 
-// Learning Plans Data - Focused on Prompt Engineering Learning
-export const learningPlans: LearningPlan[] = [
-  {
-    id: "prompt-engineering-learning",
-    title: "Prompt Engineering Learning",
-    titleCht: "提示工程學習",
-    description: "Learn AI communication fundamentals with expert guidance from Leung Ming",
-    descriptionCht: "在 Leung Ming 專家指導下學習 AI 溝通基礎知識",
-    freeIncludes: [
-      "1 Comprehensive Lesson", 
-      "Basic Prompt Templates", 
-      "Quick Start Guide",
-      "Community Access",
-      "Beginner-Friendly Content"
-    ],
-    freeIncludesCht: [
-      "1 堂綜合課程", 
-      "基礎提示模板", 
-      "快速入門指南",
-      "社群訪問權限",
-      "初學者友好內容"
-    ],
-    proIncludes: [],
-    proIncludesCht: [],
-    freePrice: "免費",
-    freePriceEn: "Free",
-    proPrice: "免費",
-    originalPrice: "免費",
-    savings: "0%",
-    icon: "🎯",
-    gradient: "from-green-500 to-blue-600"
-  }
-];
+// Learning Plans Data
+export const learningPlans: LearningPlan[] = [];
 
 // Category Filters Data
 export const categoryFilters: CategoryFilter[] = [

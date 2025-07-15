@@ -8,12 +8,8 @@
 // Re-export types for convenience
 export * from '../../types/courseTypes';
 
-// Import the clean course
-import { promptEngineeringLeungMingCourse } from './promptEngineeringLeungMing';
-
 // Course registry for easy access
 export const ALL_COURSES = {
-  'prompt-engineering-learning': () => Promise.resolve(promptEngineeringLeungMingCourse),
   'ai-business-automation': async () => {
     const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
     return aiBusinessAutomationCourse;
@@ -22,18 +18,6 @@ export const ALL_COURSES = {
 
 // Course metadata
 export const COURSE_METADATA = {
-  'prompt-engineering-learning': {
-    id: 'prompt-engineering-learning',
-    title: {
-      en: 'Prompt Engineering Learning with Leung Ming',
-      'zh-HK': 'Leung Ming 的提示工程學習課程'
-    },
-    category: 'Prompt Engineering',
-    difficulty: 'Beginner',
-    estimatedDuration: '1 hour',
-    moduleCount: 1,
-    lessonCount: 1
-  },
   'ai-business-automation': {
     id: 'ai-business-automation',
     title: {
