@@ -26,6 +26,8 @@ import CourseListing from '@/pages/courses/CourseListing';
 import CourseDetail from '@/pages/courses/CourseDetail';
 import AIBusinessAutomationOutline from '@/pages/courses/AIBusinessAutomationOutline';
 import AIBusinessAutomationLearning from '@/pages/courses/AIBusinessAutomationLearning';
+import AIBusinessAutomationTheme from '@/pages/courses/AIBusinessAutomationTheme';
+import AIBusinessAutomationUnit from '@/pages/courses/AIBusinessAutomationUnit';
 
 // Tools Page
 import Tools from '@/pages/Tools';
@@ -57,6 +59,8 @@ function App() {
                   <Route path="/courses/:courseId" element={<CourseDetail />} />
                   <Route path="/courses/business-automation" element={<AIBusinessAutomationOutline />} />
                   <Route path="/courses/ai-business-automation" element={<AIBusinessAutomationOutline />} />
+                  <Route path="/courses/ai-business-automation/theme/:themeId" element={<AIBusinessAutomationTheme />} />
+                  <Route path="/courses/ai-business-automation/theme/:themeId/unit/:unitId" element={<AIBusinessAutomationUnit />} />
                   <Route path="/courses/ai-business-automation/learning" element={<AIBusinessAutomationLearning />} />
                   
                   {/* Tools Page */}
