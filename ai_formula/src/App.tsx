@@ -32,6 +32,9 @@ import AIBusinessAutomationUnit from '@/pages/courses/AIBusinessAutomationUnit';
 // Tools Page
 import Tools from '@/pages/Tools';
 
+// Legal Pages
+import TermsOfService from '@/pages/legal/TermsOfService';
+
 import './App.css';
 
 function App() {
@@ -65,6 +68,9 @@ function App() {
                   
                   {/* Tools Page */}
                   <Route path="/tools" element={<Tools />} />
+                  
+                  {/* Legal Pages */}
+                  <Route path="/legal/terms-of-service" element={<TermsOfService />} />
                   
                   {/* 404 Page */}
                   <Route path="*" element={<NotFound />} />

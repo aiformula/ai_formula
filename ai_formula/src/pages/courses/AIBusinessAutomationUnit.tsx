@@ -147,6 +147,7 @@ In the next unit, we'll learn why we must implement AI automation now and its th
         ]
       },
       nextUnit: 2,
+      nextTheme: null,
       completed: true
     },
     '2': {
@@ -368,6 +369,7 @@ In the next unit, we'll learn about specific automation tools, including Zapier,
         ]
       },
       nextUnit: 3,
+      nextTheme: null,
       completed: true
     },
     '3': {
@@ -451,7 +453,7 @@ API（Application Programming Interface）是應用程式之間溝通的橋樑�
 - **Zapier Code**：在 Zapier 中使用程式碼
 
 **簡單範例：**
-```javascript
+\`\`\`javascript
 // 發送 POST 請求到 API
 fetch('https://api.example.com/users', {
   method: 'POST',
@@ -464,7 +466,7 @@ fetch('https://api.example.com/users', {
     email: 'john@example.com'
   })
 })
-```
+\`\`\`
 
 ### 選擇工具的決策框架
 
@@ -573,7 +575,7 @@ API (Application Programming Interface) is a bridge for communication between ap
 - **Zapier Code**: Use code within Zapier
 
 **Simple Example:**
-```javascript
+\`\`\`javascript
 // Send POST request to API
 fetch('https://api.example.com/users', {
   method: 'POST',
@@ -586,7 +588,7 @@ fetch('https://api.example.com/users', {
     email: 'john@example.com'
   })
 })
-```
+\`\`\`
 
 ### Decision Framework for Tool Selection
 
