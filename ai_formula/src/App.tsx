@@ -34,6 +34,7 @@ import Tools from '@/pages/Tools';
 
 // Legal Pages
 import TermsOfService from '@/pages/legal/TermsOfService';
+import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 
 import './App.css';
 
@@ -71,6 +72,7 @@ function App() {
                   
                   {/* Legal Pages */}
                   <Route path="/legal/terms-of-service" element={<TermsOfService />} />
+                  <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
                   
                   {/* 404 Page */}
                   <Route path="*" element={<NotFound />} />
