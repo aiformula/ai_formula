@@ -99,27 +99,29 @@ const AboutCht = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="container mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4">
         {/* Hero Section */}
         <motion.section
-          className="text-center mb-20"
+          className="text-center mb-20 pt-32"
           initial="initial"
           animate="animate"
           variants={fadeIn}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            關於
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 ml-4">
-              AI Formula
-            </span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">
+            關於 AI Formula
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            我們是一個專注於人工智能教育的平台，致力於幫助個人和企業掌握AI技術，
-            提升工作效率和創新能力。
-          </p>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xl mb-4">
+              歡迎嚟到 AI Formula - 你專屬嘅香港AI自動化教室同官方專家！
+            </p>
+            <p className="text-gray-400">
+              喺呢個科技日新月異嘅時代，人工智能 (AI) 已經唔再係遙不可及嘅概念，而係提升工作效率同生活質素嘅實用工具。
+              AI Formula 嘅誕生，源於一個簡單嘅信念：我哋想將強大嘅AI力量，變得簡單易明，帶俾香港每一個想進步嘅你同你嘅企業。
+            </p>
+          </div>
         </motion.section>
 
         {/* Mission Section */}

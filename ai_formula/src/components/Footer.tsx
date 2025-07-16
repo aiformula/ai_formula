@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
   const currentSections = footerSections[language as keyof typeof footerSections];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="text-white" style={{ backgroundColor: '#18181B' }}>
 
       {/* Main footer content */}
       <div className="container mx-auto px-4 py-12">
@@ -253,7 +253,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Newsletter Section - Enhanced */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <h4 className="text-xl font-semibold text-yellow-400 mb-3">
@@ -276,7 +276,7 @@ const Footer: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={isZhHK ? '輸入您的電子郵件地址' : 'Enter your email address'}
-                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white"
+                  className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-white"
                   required
                 />
                 <button
@@ -297,7 +297,7 @@ const Footer: React.FC = () => {
 
 
         {/* Legal Links Section - Enhanced for Trust */}
-        <div className="mt-8 pt-6 border-t border-gray-800">
+        <div className="mt-8 pt-6 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
               {currentSections.legal.links.map((link, index) => (
@@ -319,7 +319,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-6 pt-6 border-t border-gray-800 text-center">
+        <div className="mt-6 pt-6 border-t border-gray-700 text-center">
           <p className="text-gray-400 text-sm">
             © 2025 AI Formula. {isZhHK ? '版權所有' : 'All rights reserved'}.
             <span className="mx-2">|</span>

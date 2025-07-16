@@ -111,7 +111,7 @@ const CourseTemplate: React.FC<CourseTemplateProps> = ({
         transition={{ duration: 0.6 }}
         className="mb-8"
       >
-        <Card className="bg-gradient-to-r from-gray-900 to-gray-800 border-gray-700">
+        <Card className="bg-gray-900/50 border-gray-700">
           <CardHeader className="pb-6">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
               <div className="flex-1">

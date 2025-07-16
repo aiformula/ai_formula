@@ -36,7 +36,7 @@ const LearningPlansSection: React.FC<LearningPlansProps> = ({
   onPlanClick 
 }) => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="learning-plans-title">
+    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8" aria-labelledby="learning-plans-title">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

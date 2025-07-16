@@ -64,7 +64,7 @@ const InteractiveArticle: React.FC<InteractiveArticleProps> = ({
   const [completedElements, setCompletedElements] = useState<Set<string>>(new Set());
   const [isLoading, setIsLoading] = useState(true);
 
-  // æ¨¡æ“¬? è? Markdown ?§å®¹
+  // æ¨¡æ“¬?ï¿½ï¿½? Markdown ?ï¿½å®¹
   useEffect(() => {
     const loadContent = async () => {
       setIsLoading(true);
@@ -72,67 +72,67 @@ const InteractiveArticle: React.FC<InteractiveArticleProps> = ({
       // æ¨¡æ“¬ API èª¿ç”¨
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // ç¤ºä? Markdown ?§å®¹
+      // ç¤ºï¿½? Markdown ?ï¿½å®¹
       const sampleContent = `
 # ${isZhTW ? lesson.titleZh : lesson.title}
 
 ${isZhTW ? lesson.descriptionZh : lesson.description}
 
-## ?¸å?æ¦‚å¿µ
+## ?ï¿½ï¿½?æ¦‚å¿µ
 
-?¨é€™å€‹èª²ç¨‹ä¸­ï¼Œæ??‘å?æ·±å…¥?¢è?ä»¥ä??œéµæ¦‚å¿µï¼?
+?ï¿½é€™å€‹èª²ç¨‹ä¸­ï¼Œï¿½??ï¿½ï¿½?æ·±å…¥?ï¿½ï¿½?ä»¥ï¿½??ï¿½éµæ¦‚å¿µï¿½?
 
-### 1. ?ç¤ºå·¥ç??„å?ç¾?
+### 1. ?ï¿½ç¤ºå·¥ï¿½??ï¿½ï¿½?ï¿½?
 
-?ç¤ºå·¥ç??¯ä??€?è?ï¼Œä??¯ä??€ç§‘å­¸?‚å?æ¶‰å??°å?ä½•ç²¾ç¢ºåœ°è¨­è??Œå„ª?–è¼¸?¥çµ¦ AI ç³»çµ±?„æ?ä»¤ï?ä»¥ç²å¾—æ?ä½³ç?è¼¸å‡ºçµæ???
+?ï¿½ç¤ºå·¥ï¿½??ï¿½ï¿½??ï¿½?ï¿½ï¿½?ï¼Œï¿½??ï¿½ï¿½??ï¿½ç§‘å­¸?ï¿½ï¿½?æ¶‰ï¿½??ï¿½ï¿½?ä½•ç²¾ç¢ºåœ°è¨­ï¿½??ï¿½å„ª?ï¿½è¼¸?ï¿½çµ¦ AI ç³»çµ±?ï¿½ï¿½?ä»¤ï¿½?ä»¥ç²å¾—ï¿½?ä½³ï¿½?è¼¸å‡ºçµï¿½???
 
-[TRY-IT-PROMPT:"è«‹å¹«?‘å¯«ä¸€?‹é??¼æ˜¥å¤©ç?è©?]
+[TRY-IT-PROMPT:"è«‹å¹«?ï¿½å¯«ä¸€?ï¿½ï¿½??ï¿½æ˜¥å¤©ï¿½?ï¿½?]
 
-### 2. ?‰æ??ç¤º?„ç‰¹å¾?
+### 2. ?ï¿½ï¿½??ï¿½ç¤º?ï¿½ç‰¹ï¿½?
 
-ä¸€?‹æ??ˆç??ç¤º?šå¸¸?·å?ä»¥ä??¹å¾µï¼?
-- **æ¸…æ™°??*: ?‡ä»¤?ç¢ºï¼Œä??«æ­§ç¾?
-- **?·é???*: ?ä?è¶³å??„ç´°ç¯€?Œè??¯ä¿¡??
-- **çµæ???*: ä½¿ç”¨?©ç•¶?„æ ¼å¼å?çµ„ç?
+ä¸€?ï¿½ï¿½??ï¿½ï¿½??ï¿½ç¤º?ï¿½å¸¸?ï¿½ï¿½?ä»¥ï¿½??ï¿½å¾µï¿½?
+- **æ¸…æ™°??*: ?ï¿½ä»¤?ï¿½ç¢ºï¼Œï¿½??ï¿½æ­§ï¿½?
+- **?ï¿½ï¿½???*: ?ï¿½ï¿½?è¶³ï¿½??ï¿½ç´°ç¯€?ï¿½ï¿½??ï¿½ä¿¡??
+- **çµï¿½???*: ä½¿ç”¨?ï¿½ç•¶?ï¿½æ ¼å¼ï¿½?çµ„ï¿½?
 
-[CONCEPT-CHECK:"ä»€éº¼æ˜¯?‰æ??ç¤º?„ä??‹ä¸»è¦ç‰¹å¾µï?"]
+[CONCEPT-CHECK:"ä»€éº¼æ˜¯?ï¿½ï¿½??ï¿½ç¤º?ï¿½ï¿½??ï¿½ä¸»è¦ç‰¹å¾µï¿½?"]
 
-### 3. å¯¦ä?æ¼”ç¤º
+### 3. å¯¦ï¿½?æ¼”ç¤º
 
-è®“æ??‘ç?ä¸€?‹å…·é«”ç?ä¾‹å?ï¼?
+è®“ï¿½??ï¿½ï¿½?ä¸€?ï¿½å…·é«”ï¿½?ä¾‹ï¿½?ï¿½?
 
 \`\`\`
-// ä¸è‰¯?ç¤º
-"å¯«ä??‹å‡½??
+// ä¸è‰¯?ï¿½ç¤º
+"å¯«ï¿½??ï¿½å‡½??
 
-// ?¯å¥½?ç¤º
-"è«‹ç”¨ Python å¯«ä??‹å‡½?¸ï??¥å?ä¸€?‹æ•´?¸å?è¡¨ä??ºè¼¸?¥ï?è¿”å??—è¡¨ä¸­æ??‰å¶?¸ç??Œã€‚å??«é©?¶ç?è¨»é??ŒéŒ¯èª¤è??†ã€?
+// ?ï¿½å¥½?ï¿½ç¤º
+"è«‹ç”¨ Python å¯«ï¿½??ï¿½å‡½?ï¿½ï¿½??ï¿½ï¿½?ä¸€?ï¿½æ•´?ï¿½ï¿½?è¡¨ï¿½??ï¿½è¼¸?ï¿½ï¿½?è¿”ï¿½??ï¿½è¡¨ä¸­ï¿½??ï¿½å¶?ï¿½ï¿½??ï¿½ã€‚ï¿½??ï¿½é©?ï¿½ï¿½?è¨»ï¿½??ï¿½éŒ¯èª¤ï¿½??ï¿½ï¿½?
 \`\`\`
 
-[TRY-IT-PROMPT:"è«‹æ ¹?šä??¢ç??¯å¥½?ç¤ºç¯„ä?ï¼Œå¯«ä¸€??Python ?½æ•¸"]
+[TRY-IT-PROMPT:"è«‹æ ¹?ï¿½ï¿½??ï¿½ï¿½??ï¿½å¥½?ï¿½ç¤ºç¯„ï¿½?ï¼Œå¯«ä¸€??Python ?ï¿½æ•¸"]
 
-## ?²é??€å·?
+## ?ï¿½ï¿½??ï¿½ï¿½?
 
-### Chain-of-Thought ?ç¤º
+### Chain-of-Thought ?ï¿½ç¤º
 
-?™æ˜¯ä¸€ç¨®å?å°?AI ?²è??†æ­¥?¨ç??„æ?å·§ï?
+?ï¿½æ˜¯ä¸€ç¨®ï¿½?ï¿½?AI ?ï¿½ï¿½??ï¿½æ­¥?ï¿½ï¿½??ï¿½ï¿½?å·§ï¿½?
 
-[TRY-IT-PROMPT:"è®“æ??‘ä?æ­¥ä?æ­¥æ€è€ƒï?å¦‚ä??ªå?ç¶²ç??„å?è¼‰é€Ÿåº¦ï¼?. ?†æ??¶å??é? 2. è­˜åˆ¥?¶é ¸ 3. ?å‡ºè§?±º?¹æ?"]
+[TRY-IT-PROMPT:"è®“ï¿½??ï¿½ï¿½?æ­¥ï¿½?æ­¥æ€è€ƒï¿½?å¦‚ï¿½??ï¿½ï¿½?ç¶²ï¿½??ï¿½ï¿½?è¼‰é€Ÿåº¦ï¿½?. ?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½? 2. è­˜åˆ¥?ï¿½é ¸ 3. ?ï¿½å‡ºï¿½?ï¿½ï¿½?ï¿½ï¿½?"]
 
-### è§’è‰²?®æ??ç¤º
+### è§’è‰²?ï¿½ï¿½??ï¿½ç¤º
 
-?šé?è¨­å??¹å?è§’è‰²ä¾†ç²å¾—æ›´å°ˆæ¥­?„å?ç­”ï?
+?ï¿½ï¿½?è¨­ï¿½??ï¿½ï¿½?è§’è‰²ä¾†ç²å¾—æ›´å°ˆæ¥­?ï¿½ï¿½?ç­”ï¿½?
 
-[TRY-IT-PROMPT:"ä½ æ˜¯ä¸€ä½ç?é©—è?å¯Œç? UX è¨­è?å¸«ï?è«‹å??é€™å€‹ç§»?•æ??¨ç??¨æˆ¶?Œé¢è¨­è?"]
+[TRY-IT-PROMPT:"ä½ æ˜¯ä¸€ä½ï¿½?é©—ï¿½?å¯Œï¿½? UX è¨­ï¿½?å¸«ï¿½?è«‹ï¿½??ï¿½é€™å€‹ç§»?ï¿½ï¿½??ï¿½ï¿½??ï¿½æˆ¶?ï¿½é¢è¨­ï¿½?"]
 
-## ç¸½ç?
+## ç¸½ï¿½?
 
-?Œæ¡?ç¤ºå·¥ç??€è¦ï?
-1. ?†è§£ AI ç³»çµ±?„å·¥ä½œå???
-2. ç·´ç?ä¸å?é¡å??„æ?ç¤ºæ?å·?
-3. ?ç??ªå??Œæ”¹??
+?ï¿½æ¡?ï¿½ç¤ºå·¥ï¿½??ï¿½è¦ï¿½?
+1. ?ï¿½è§£ AI ç³»çµ±?ï¿½å·¥ä½œï¿½???
+2. ç·´ï¿½?ä¸ï¿½?é¡ï¿½??ï¿½ï¿½?ç¤ºï¿½?ï¿½?
+3. ?ï¿½ï¿½??ï¿½ï¿½??ï¿½æ”¹??
 
-[CONCEPT-CHECK:"?—è??³å?ä¸‰ç¨®ä¸å??„æ?ç¤ºæ?å·?]
+[CONCEPT-CHECK:"?ï¿½ï¿½??ï¿½ï¿½?ä¸‰ç¨®ä¸ï¿½??ï¿½ï¿½?ç¤ºï¿½?ï¿½?]
       `;
       
       setMarkdownContent(sampleContent);
@@ -142,7 +142,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     loadContent();
   }, [lesson, isZhTW]);
 
-  // ?•ç?è¿·ä? Playground ?·è?
+  // ?ï¿½ï¿½?è¿·ï¿½? Playground ?ï¿½ï¿½?
   const handleMiniPlaygroundExecution = async (elementId: string, prompt: string) => {
     setMiniPlaygrounds(prev => ({
       ...prev,
@@ -156,9 +156,9 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     // æ¨¡æ“¬ API èª¿ç”¨
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    const mockResponse = `AI ?æ?: ${prompt}
+    const mockResponse = `AI ?ï¿½ï¿½?: ${prompt}
 
-?™æ˜¯ä¸€?‹æ¨¡?¬ç? AI ?æ?ï¼Œå?ç¤ºä?å¦‚ä??•ç??¨ç??ç¤º?‚åœ¨å¯¦é??‰ç”¨ä¸­ï??™è£¡?ƒé¡¯ç¤ºç?å¯¦ç? AI ?Ÿæ??§å®¹?‚`;
+?ï¿½æ˜¯ä¸€?ï¿½æ¨¡?ï¿½ï¿½? AI ?ï¿½ï¿½?ï¼Œï¿½?ç¤ºï¿½?å¦‚ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ç¤º?ï¿½åœ¨å¯¦ï¿½??ï¿½ç”¨ä¸­ï¿½??ï¿½è£¡?ï¿½é¡¯ç¤ºï¿½?å¯¦ï¿½? AI ?ï¿½ï¿½??ï¿½å®¹?ï¿½`;
 
     setMiniPlaygrounds(prev => ({
       ...prev,
@@ -170,18 +170,18 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
       }
     }));
 
-    // æ¨™è??ºå·²å®Œæ?
+    // æ¨™ï¿½??ï¿½å·²å®Œï¿½?
     setCompletedElements(prev => new Set([...prev, elementId]));
   };
 
-  // ?•ç?æ¦‚å¿µæª¢æŸ¥
+  // ?ï¿½ï¿½?æ¦‚å¿µæª¢æŸ¥
   const handleConceptCheck = (elementId: string, answer: string, expectedAnswer: string) => {
     const isCorrect = answer.toLowerCase().includes(expectedAnswer.toLowerCase()) || 
-                     answer.length > 20; // ç°¡å–®?„æ­£ç¢ºæ€§æª¢??
+                     answer.length > 20; // ç°¡å–®?ï¿½æ­£ç¢ºæ€§æª¢??
 
     const feedback = isCorrect ? 
-      (isZhTW ? '?ç?æ­?¢ºï¼å?å¥½åœ°?†è§£äº†æ?å¿µã€? : 'Correct! Good understanding of the concept.') :
-      (isZhTW ? 'è«‹å?ä»”ç´°?è€ƒä?ä¸‹ï??–è€…æŸ¥?‹ä??¢ç??§å®¹?? : 'Please think more carefully or review the content above.');
+      (isZhTW ? '?ï¿½ï¿½?ï¿½?ï¿½ï¿½ï¼ï¿½?å¥½åœ°?ï¿½è§£äº†ï¿½?å¿µï¿½? : 'Correct! Good understanding of the concept.') :
+      (isZhTW ? 'è«‹ï¿½?ä»”ç´°?ï¿½è€ƒï¿½?ä¸‹ï¿½??ï¿½è€…æŸ¥?ï¿½ï¿½??ï¿½ï¿½??ï¿½å®¹?? : 'Please think more carefully or review the content above.');
 
     setConceptChecks(prev => ({
       ...prev,
@@ -198,17 +198,17 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     }
   };
 
-  // ?¼é€åˆ°ä¸?Playground
+  // ?ï¿½é€åˆ°ï¿½?Playground
   const sendToMainPlayground = (prompt: string) => {
     onSendToMainPlayground(prompt);
   };
 
-  // è¤‡è£½?°å‰ªè²¼æ¿
+  // è¤‡è£½?ï¿½å‰ªè²¼æ¿
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
   };
 
-  // æ¸²æ?è¿·ä? Playground
+  // æ¸²ï¿½?è¿·ï¿½? Playground
   const renderMiniPlayground = (elementId: string, prompt: string) => {
     const state = miniPlaygrounds[elementId] || {
       prompt,
@@ -226,17 +226,17 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         <div className="flex items-center space-x-2 mb-3">
           <Zap className="w-5 h-5 text-yellow-400" />
           <span className="text-sm font-semibold text-slate-200">
-            {isZhTW ? 'è¿·ä?å¯¦é?å®? : 'Mini Playground'}
+            {isZhTW ? 'è¿·ï¿½?å¯¦ï¿½?ï¿½? : 'Mini Playground'}
           </span>
           <Badge variant="outline" className="text-green-300 border-green-500/30 bg-green-500/10">
-            {isZhTW ? 'äº’å?' : 'Interactive'}
+            {isZhTW ? 'äº’ï¿½?' : 'Interactive'}
           </Badge>
         </div>
         
         <div className="space-y-3">
           <div>
             <label className="text-sm text-slate-300 mb-2 block">
-              {isZhTW ? '?ç¤º?§å®¹ï¼? : 'Prompt:'}
+              {isZhTW ? '?ï¿½ç¤º?ï¿½å®¹ï¿½? : 'Prompt:'}
             </label>
             <Textarea
               value={state.prompt}
@@ -244,7 +244,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
                 ...prev,
                 [elementId]: { ...prev[elementId], prompt: e.target.value }
               }))}
-              placeholder={isZhTW ? 'è¼¸å…¥ä½ ç??ç¤º...' : 'Enter your prompt...'}
+              placeholder={isZhTW ? 'è¼¸å…¥ä½ ï¿½??ï¿½ç¤º...' : 'Enter your prompt...'}
               className="bg-slate-700 border-slate-600 text-slate-100 placeholder-slate-400 min-h-[80px]"
             />
           </div>
@@ -261,7 +261,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
               ) : (
                 <Play className="w-4 h-4 mr-2" />
               )}
-              {isZhTW ? '?·è?' : 'Execute'}
+              {isZhTW ? '?ï¿½ï¿½?' : 'Execute'}
             </Button>
             
             <Button
@@ -271,7 +271,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
               className="border-slate-600 text-slate-300 hover:bg-slate-700"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
-              {isZhTW ? '?¼é€åˆ°ä¸»å¯¦é©—å®¤' : 'Send to Main Playground'}
+              {isZhTW ? '?ï¿½é€åˆ°ä¸»å¯¦é©—å®¤' : 'Send to Main Playground'}
             </Button>
           </div>
           
@@ -283,7 +283,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-slate-300 font-medium">
-                  {isZhTW ? '?æ?ï¼? : 'Response:'}
+                  {isZhTW ? '?ï¿½ï¿½?ï¿½? : 'Response:'}
                 </span>
                 <Button
                   onClick={() => copyToClipboard(state.response)}
@@ -304,7 +304,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     );
   };
 
-  // æ¸²æ?æ¦‚å¿µæª¢æŸ¥
+  // æ¸²ï¿½?æ¦‚å¿µæª¢æŸ¥
   const renderConceptCheck = (elementId: string, question: string, expectedAnswer: string) => {
     const state = conceptChecks[elementId] || {
       userAnswer: '',
@@ -325,7 +325,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             {isZhTW ? 'æ¦‚å¿µæª¢æŸ¥' : 'Concept Check'}
           </span>
           <Badge variant="outline" className="text-purple-300 border-purple-500/30 bg-purple-500/10">
-            {isZhTW ? '?è€? : 'Think'}
+            {isZhTW ? '?ï¿½ï¿½? : 'Think'}
           </Badge>
         </div>
         
@@ -338,7 +338,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
                 ...prev,
                 [elementId]: { ...prev[elementId], userAnswer: e.target.value }
               }))}
-              placeholder={isZhTW ? 'è¼¸å…¥ä½ ç?ç­”æ?...' : 'Enter your answer...'}
+              placeholder={isZhTW ? 'è¼¸å…¥ä½ ï¿½?ç­”ï¿½?...' : 'Enter your answer...'}
               className="bg-slate-700 border-slate-600 text-slate-100 placeholder-slate-400 min-h-[80px]"
             />
           </div>
@@ -350,7 +350,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             className="bg-purple-600 hover:bg-purple-700 text-white"
           >
             <CheckCircle className="w-4 h-4 mr-2" />
-            {isZhTW ? 'æª¢æŸ¥ç­”æ?' : 'Check Answer'}
+            {isZhTW ? 'æª¢æŸ¥ç­”ï¿½?' : 'Check Answer'}
           </Button>
           
           {state.hasAnswered && (
@@ -371,8 +371,8 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
                 )}
                 <span className="font-medium">
                   {state.isCorrect ? 
-                    (isZhTW ? 'æ­?¢ºï¼? : 'Correct!') : 
-                    (isZhTW ? '?è©¦ä¸€æ¬? : 'Try Again')
+                    (isZhTW ? 'ï¿½?ï¿½ï¿½ï¿½? : 'Correct!') : 
+                    (isZhTW ? '?ï¿½è©¦ä¸€ï¿½? : 'Try Again')
                   }
                 </span>
               </div>
@@ -384,13 +384,13 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     );
   };
 
-  // ?•ç? Markdown ä¸­ç??¹æ?èªæ?
+  // ?ï¿½ï¿½? Markdown ä¸­ï¿½??ï¿½ï¿½?èªï¿½?
   const processMarkdown = (content: string) => {
     const lines = content.split('\n');
     const processedLines: React.ReactNode[] = [];
     
     lines.forEach((line, index) => {
-      // ?•ç? TRY-IT-PROMPT èªæ?
+      // ?ï¿½ï¿½? TRY-IT-PROMPT èªï¿½?
       const promptMatch = line.match(/\[TRY-IT-PROMPT:"(.+?)"\]/);
       if (promptMatch) {
         const prompt = promptMatch[1];
@@ -403,7 +403,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // ?•ç? CONCEPT-CHECK èªæ?
+      // ?ï¿½ï¿½? CONCEPT-CHECK èªï¿½?
       const checkMatch = line.match(/\[CONCEPT-CHECK:"(.+?)"\]/);
       if (checkMatch) {
         const question = checkMatch[1];
@@ -416,10 +416,10 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // ?•ç??®é€?Markdown èªæ?ï¼ˆç°¡?–ç?ï¼?
+      // ?ï¿½ï¿½??ï¿½ï¿½?Markdown èªï¿½?ï¼ˆç°¡?ï¿½ï¿½?ï¿½?
       let processedLine = line;
       
-      // æ¨™é?
+      // æ¨™ï¿½?
       if (line.startsWith('# ')) {
         processedLines.push(
           <h1 key={index} className="text-2xl font-bold text-white mb-4 mt-6">
@@ -447,7 +447,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // ä»?¢¼å¡?
+      // ï¿½?ï¿½ï¿½ï¿½?
       if (line.startsWith('```')) {
         processedLines.push(
           <div key={index} className="bg-slate-800 p-4 rounded-lg my-4 border border-slate-700">
@@ -459,7 +459,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // ?—è¡¨??
+      // ?ï¿½è¡¨??
       if (line.startsWith('- ')) {
         processedLines.push(
           <li key={index} className="text-slate-300 mb-1 ml-4">
@@ -469,7 +469,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         return;
       }
       
-      // ?®é€šæ®µ??
+      // ?ï¿½é€šæ®µ??
       if (line.trim()) {
         processedLines.push(
           <p key={index} className="text-slate-300 mb-3 leading-relaxed">
@@ -484,7 +484,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
     return processedLines;
   };
 
-  // è¨ˆç?å®Œæ??²åº¦
+  // è¨ˆï¿½?å®Œï¿½??ï¿½åº¦
   const calculateProgress = () => {
     const totalElements = (lesson.interactiveElements || []).length;
     const completedCount = completedElements.size;
@@ -501,20 +501,20 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
       <div className="flex items-center justify-center h-64">
         <div className="flex items-center space-x-2 text-slate-400">
           <RefreshCw className="w-5 h-5 animate-spin" />
-          <span>{isZhTW ? '? è?ä¸?..' : 'Loading...'}</span>
+          <span>{isZhTW ? '?ï¿½ï¿½?ï¿½?..' : 'Loading...'}</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-slate-900 text-slate-100 min-h-screen">
-      {/* ?‡ç??­éƒ¨ */}
+    <div className="max-w-4xl mx-auto p-6 text-slate-100 min-h-screen" style={{ backgroundColor: '#121212' }}>
+      {/* é ‚éƒ¨ */}
       <div className="mb-8 pb-6 border-b border-slate-700">
         <div className="flex items-center space-x-2 mb-4">
           <BookOpen className="w-6 h-6 text-blue-400" />
           <Badge variant="outline" className="text-green-300 border-green-500/30 bg-green-500/10">
-            {isZhTW ? 'äº’å??‡ç?' : 'Interactive Article'}
+            {isZhTW ? 'äº’ï¿½??ï¿½ï¿½?' : 'Interactive Article'}
           </Badge>
         </div>
         <h1 className="text-3xl font-bold text-white mb-3">
@@ -527,7 +527,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
           <div className="flex items-center space-x-2">
             <Sparkles className="w-4 h-4 text-yellow-400" />
             <span className="text-sm text-slate-300">
-              {isZhTW ? '?²åº¦' : 'Progress'}: {calculateProgress()}%
+              {isZhTW ? '?ï¿½åº¦' : 'Progress'}: {calculateProgress()}%
             </span>
           </div>
           <div className="flex items-center space-x-2">
@@ -539,7 +539,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         </div>
       </div>
 
-      {/* ?‡ç??§å®¹ */}
+      {/* å…§å®¹ */}
       <div className="prose prose-invert max-w-none">
         <ScrollArea className="max-h-[80vh]">
           <div className="space-y-4">
@@ -548,13 +548,13 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
         </ScrollArea>
       </div>
 
-      {/* åº•éƒ¨?ä? */}
+      {/* åº•éƒ¨ */}
       <div className="mt-8 pt-6 border-t border-slate-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-5 h-5 text-green-400" />
             <span className="text-sm text-slate-300">
-              {isZhTW ? 'å®Œæ?åº? : 'Completion'}: {calculateProgress()}%
+              {isZhTW ? 'å®Œï¿½?ï¿½? : 'Completion'}: {calculateProgress()}%
             </span>
           </div>
           <Button
@@ -563,7 +563,7 @@ ${isZhTW ? lesson.descriptionZh : lesson.description}
             className="bg-green-600 hover:bg-green-700 text-white"
           >
             <ArrowRight className="w-4 h-4 mr-2" />
-            {isZhTW ? 'å®Œæ?èª²ç?' : 'Complete Lesson'}
+            {isZhTW ? 'å®Œï¿½?èª²ï¿½?' : 'Complete Lesson'}
           </Button>
         </div>
       </div>
