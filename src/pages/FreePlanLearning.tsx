@@ -135,7 +135,7 @@ const FreePlanLearning: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
       <style>{flashStyle}</style>
       <Navigation />
       

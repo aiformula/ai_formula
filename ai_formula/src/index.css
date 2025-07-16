@@ -53,10 +53,10 @@
     --ai-formula-primary-medium: rgba(255, 214, 0, 0.2);
     --ai-formula-primary-strong: rgba(255, 214, 0, 0.35);
     
-    --ai-formula-dark: #0f0f0f;
-    --ai-formula-dark-light: #111111;
-    --ai-formula-dark-medium: #1a1a1a;
-    --ai-formula-dark-card: #1e1e1e;
+    --ai-formula-dark: #121212;
+    --ai-formula-dark-light: #161616;
+    --ai-formula-dark-medium: #1c1c1c;
+    --ai-formula-dark-card: #202020;
     
     --ai-formula-accent-blue: #3B82F6;
     --ai-formula-accent-purple: #8B5CF6;

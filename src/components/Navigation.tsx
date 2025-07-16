@@ -16,6 +16,7 @@ const Navigation = () => {
     { label: t('nav.home'), path: '/' },
     { label: t('nav.about'), path: language === 'zh-HK' ? '/about-cht' : '/about' },
     { label: t('nav.courses'), path: '/course' },
+    { label: t('nav.tools'), path: '/tools' },
     { label: t('nav.blog'), path: '/blog' }
   ];
   

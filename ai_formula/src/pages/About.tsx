@@ -174,7 +174,7 @@ const About: React.FC = () => {
   const memoizedAnimationConfig = useMemo(() => ANIMATION_CONFIG, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
       {/* Hero Section */}

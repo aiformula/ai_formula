@@ -63,7 +63,7 @@ class CourseErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySta
       }
 
       return (
-        <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+        <div className="min-h-screen text-white flex items-center justify-center p-4" style={{ backgroundColor: '#121212' }}>
           <Card className="bg-gray-900/50 border-gray-800 max-w-md w-full">
             <CardHeader className="text-center">
               <div className="flex justify-center mb-4">

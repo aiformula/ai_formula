@@ -17,7 +17,7 @@ const ErrorDisplay: React.FC<{ error: string; onRetry: () => void; isZhTW: boole
   onRetry, 
   isZhTW 
 }) => (
-  <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+      <div className="min-h-screen text-white flex items-center justify-center p-4" style={{ backgroundColor: '#121212' }}>
     <Alert className="bg-red-900/20 border-red-500/50 max-w-md">
       <AlertTriangle className="h-4 w-4 text-red-400" />
       <AlertDescription className="text-red-200">
@@ -68,7 +68,7 @@ const Course: React.FC = () => {
 
   return (
     <CourseErrorBoundary>
-      <div className="min-h-screen bg-black text-white overflow-hidden">
+      <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
         {/* Binary background pattern */}
         <div className="fixed inset-0 opacity-5 pointer-events-none">
           <div 

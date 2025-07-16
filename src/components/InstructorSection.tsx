@@ -148,7 +148,7 @@ const InstructorSection = () => {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: futuristicStyles }} />
-      <section className="py-24 px-6 bg-black relative overflow-hidden">
+      <section className="py-24 px-6 relative overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* Futuristic Background */}
       <div className="absolute inset-0 opacity-40">
         <div 

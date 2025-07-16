@@ -19,7 +19,7 @@ const Auth: React.FC = () => {
     : ['知識', '技能', '視野']
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* Binary background pattern */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{

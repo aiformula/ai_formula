@@ -25,6 +25,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.courses': 'Courses',
+    'nav.tools': 'Tools',
     'nav.blog': 'Blog',
     'nav.signup': 'Sign up',
     
@@ -205,6 +206,18 @@ const translations = {
     'notFound.message': 'Oops! Page not found',
     'notFound.returnHome': 'Return to Home',
     
+    // Tools Page
+    'tools.title': 'Useful Tools',
+    'tools.subtitle': 'Discover powerful tools to enhance your productivity and creativity',
+    'tools.freepik.title': 'Freepik - Free Design Resources',
+    'tools.freepik.description': 'Access millions of free vectors, photos, and graphics for your projects. Create stunning visuals without breaking the budget.',
+    'tools.freepik.tag': 'Free Tools',
+    'tools.freepik.visitSite': 'Visit Freepik',
+    'tools.mem0.title': 'Mem0 - OpenMemory MCP',
+    'tools.mem0.description': 'Advanced memory management and conversation persistence for AI applications. Build smarter AI systems with contextual memory.',
+    'tools.mem0.tag': 'AI Memory',
+    'tools.mem0.visitSite': 'Visit Mem0',
+    
     // Toast Messages
     'toast.messageSent': 'Message Sent!',
     'toast.messageDescription': "Thank you for your interest. We'll get back to you within 24 hours.",
@@ -214,6 +227,7 @@ const translations = {
     'nav.home': '首頁',
     'nav.about': '關於我們',
     'nav.courses': '課程',
+    'nav.tools': '工具',
     'nav.blog': '部落格',
     'nav.signup': '註冊',
     
@@ -393,6 +407,18 @@ const translations = {
     'notFound.title': '404',
     'notFound.message': '糟糕！找不到頁面',
     'notFound.returnHome': '返回首頁',
+    
+    // Tools Page
+    'tools.title': '實用工具',
+    'tools.subtitle': '發現強大工具，提升您的生產力和創造力',
+    'tools.freepik.title': 'Freepik - 免費設計資源',
+    'tools.freepik.description': '獲取數百萬免費向量圖、照片和圖形素材。不花大錢也能創造驚人視覺效果。',
+    'tools.freepik.tag': '免費工具',
+    'tools.freepik.visitSite': '訪問 Freepik',
+    'tools.mem0.title': 'Mem0 - OpenMemory MCP',
+    'tools.mem0.description': 'AI應用的高級記憶管理和對話持久化。構建具有上下文記憶的智能AI系統。',
+    'tools.mem0.tag': 'AI記憶',
+    'tools.mem0.visitSite': '訪問 Mem0',
     
     // Toast Messages
     'toast.messageSent': '訊息已發送！',

@@ -26,7 +26,7 @@ const NotFound: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+    <div className="min-h-screen text-white flex items-center justify-center p-4" style={{ backgroundColor: '#121212' }}>
       {/* Background decoration */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{

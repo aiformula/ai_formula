@@ -102,7 +102,7 @@ const BlogListing = () => {
   const isZhTW = language === 'zh-HK';
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* SEO Meta Tags would go here in a real implementation */}
       <title>{isZhTW ? 'AI Formula 部落格 - 香港AI自動化與商業應用指南' : 'AI Formula Blog - Hong Kong AI Automation & Business Application Guide'}</title>
       

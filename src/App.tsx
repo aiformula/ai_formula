@@ -20,6 +20,7 @@ import Course from "./pages/Course";
 import CourseDetail from "./pages/CourseDetail";
 import FreePlanLearning from "./pages/FreePlanLearning";
 import ProPlanLearning from "./pages/ProPlanLearning";
+import Tools from "./pages/Tools";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
                   <Route path="/course" element={<Course />} />
+                  <Route path="/tools" element={<Tools />} />
                   <Route path="/course/:courseId" element={<CourseDetail />} />
                   <Route path="/course/:courseId/free" element={<FreePlanLearning />} />
                   <Route path="/course/:courseId/pro" element={<ProPlanLearning />} />

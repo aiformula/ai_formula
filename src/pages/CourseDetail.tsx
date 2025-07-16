@@ -16,7 +16,7 @@ const CourseDetail: React.FC = () => {
 
   if (!course) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen text-white flex items-center justify-center" style={{ backgroundColor: '#121212' }}>
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">
             {language === 'en' ? 'Course Not Found' : '課程未找到'}
@@ -56,7 +56,7 @@ const CourseDetail: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* Binary background pattern */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{

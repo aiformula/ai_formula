@@ -17,7 +17,7 @@ const CourseDetail: React.FC = () => {
 
   if (!course) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen text-white flex items-center justify-center" style={{ backgroundColor: '#121212' }}>
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">
             {isZhHK ? '找不到課程' : 'Course Not Found'}
@@ -53,7 +53,7 @@ const CourseDetail: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
       <div className="pt-20 px-4 max-w-7xl mx-auto">
