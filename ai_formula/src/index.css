@@ -421,3 +421,133 @@
     }
   }
 }
+
+/* 背景水印樣式 - 沉浸式品牌氛圍 */
+@layer utilities {
+  .background-watermark {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .background-watermark h1 {
+    color: rgba(255, 255, 255, 0.06);
+    font-size: 10vw;
+    font-weight: 700;
+    line-height: 1.0;
+    text-transform: uppercase;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.05em;
+    
+    /* 技術感 Monospace 字體 */
+    font-family: 'Source Code Pro', 'IBM Plex Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    
+    /* 極簡背景漸變 - 更微妙 */
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.08) 0%, 
+      rgba(255, 214, 0, 0.03) 40%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* 非常微妙的陰影 */
+    text-shadow: 
+      0 0 30px rgba(255, 255, 255, 0.02),
+      0 0 60px rgba(255, 214, 0, 0.01);
+    
+    /* 優化的呼吸感動畫 */
+    animation: subtleBreathing 8s ease-in-out infinite alternate;
+  }
+  
+  @keyframes subtleBreathing {
+    0% {
+      opacity: 0.6;
+      text-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.02),
+        0 0 60px rgba(255, 214, 0, 0.01);
+    }
+    100% {
+      opacity: 1;
+      text-shadow: 
+        0 0 35px rgba(255, 255, 255, 0.025),
+        0 0 70px rgba(255, 214, 0, 0.015);
+    }
+  }
+  
+  /* 平板適配 (768px - 1200px) */
+  @media (max-width: 1200px) and (min-width: 768px) {
+    .background-watermark {
+      left: 5%;
+      top: 45%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 12vw;
+      color: rgba(255, 255, 255, 0.04);
+    }
+  }
+  
+  /* 手機適配 (最佳體驗) */
+  @media (max-width: 767px) {
+    .background-watermark {
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 20vw;
+      color: rgba(255, 255, 255, 0.03);
+      line-height: 0.9;
+      letter-spacing: 0.1em;
+      margin-bottom: -0.2em;
+      animation: mobileSubtleBreathing 10s ease-in-out infinite alternate;
+    }
+  }
+  
+  /* 手機專用呼吸動畫 */
+  @keyframes mobileSubtleBreathing {
+    0% {
+      opacity: 0.4;
+      text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.01),
+        0 0 40px rgba(255, 214, 0, 0.005);
+    }
+    100% {
+      opacity: 0.8;
+      text-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.015),
+        0 0 50px rgba(255, 214, 0, 0.008);
+    }
+  }
+  
+  /* 超大螢幕優化 */
+  @media (min-width: 1400px) {
+    .background-watermark {
+      left: 15%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 8vw;
+    }
+  }
+  
+  /* 超寬螢幕 (21:9 等) */
+  @media (min-width: 1600px) {
+    .background-watermark {
+      left: 20%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 7vw;
+    }
+  }
+}

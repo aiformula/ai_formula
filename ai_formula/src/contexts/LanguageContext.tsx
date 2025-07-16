@@ -23,6 +23,7 @@ const enTranslations: Translations = {
   'nav.courses': 'Courses',
   'nav.tools': 'Tools',
   'nav.blog': 'Blog',
+  'nav.signin': 'Sign In',
   'nav.signup': 'Sign Up',
   
   // Hero Section
@@ -250,6 +251,8 @@ const enTranslations: Translations = {
   'auth.facebookLogin': 'Continue with Facebook',
   'auth.hasAccount': 'Already have an account?',
   'auth.noAccount': 'Don\'t have an account?',
+  'auth.loginDescription': 'Enter your email and password to sign in to your account',
+  'auth.signupDescription': 'Create your account to start learning with AI Formula',
   
   // Dashboard
   'dashboard.welcome': 'Welcome back',
@@ -262,6 +265,13 @@ const enTranslations: Translations = {
   'dashboard.notifications': 'Notifications',
   'dashboard.billing': 'Billing',
   'dashboard.support': 'Support',
+  
+  // User Avatar Dropdown
+  'userMenu.dashboard': 'Dashboard',
+  'userMenu.settings': 'Settings',
+  'userMenu.profile': 'Profile',
+  'userMenu.signOut': 'Sign Out',
+  'userMenu.greeting': 'Hello',
   
   // Common
   'common.loading': 'Loading...',
@@ -378,6 +388,7 @@ const zhTranslations: Translations = {
   'nav.courses': '課程',
   'nav.tools': '工具',
   'nav.blog': '部落格',
+  'nav.signin': '登入',
   'nav.signup': '註冊',
   
   // Hero Section
@@ -605,6 +616,8 @@ const zhTranslations: Translations = {
   'auth.facebookLogin': '使用Facebook繼續',
   'auth.hasAccount': '已有帳戶？',
   'auth.noAccount': '沒有帳戶？',
+  'auth.loginDescription': '輸入您的電子郵件和密碼登入您的帳戶',
+  'auth.signupDescription': '創建您的帳戶，開始與AI Formula一起學習',
   
   // Dashboard
   'dashboard.welcome': '歡迎回來',
@@ -617,6 +630,13 @@ const zhTranslations: Translations = {
   'dashboard.notifications': '通知',
   'dashboard.billing': '帳單',
   'dashboard.support': '支援',
+  
+  // User Avatar Dropdown
+  'userMenu.dashboard': '儀表板',
+  'userMenu.settings': '設定',
+  'userMenu.profile': '個人資料',
+  'userMenu.signOut': '登出',
+  'userMenu.greeting': '你好',
   
   // Common
   'common.loading': '載入中...',

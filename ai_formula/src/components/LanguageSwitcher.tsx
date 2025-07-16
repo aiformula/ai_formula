@@ -52,7 +52,7 @@ const LanguageSwitcher = () => {
               : 'text-gray-300 hover:text-white'
           }`}
         >
-          中�?
+          中文
         </motion.button>
       </div>
     </motion.div>

@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { LogOut, User, Menu, X } from "lucide-react";
+import { LogOut, User, Menu, X, Settings } from "lucide-react";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
@@ -13,6 +21,19 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // 獲取用戶姓名首字母的函數
+  const getUserInitials = (email: string | undefined) => {
+    if (!email) return 'U';
+    const name = email.split('@')[0];
+    return name.charAt(0).toUpperCase();
+  };
+  
+  // 獲取用戶顯示名稱
+  const getUserDisplayName = (email: string | undefined) => {
+    if (!email) return 'User';
+    return email.split('@')[0];
+  };
   
   const navigationItems = [
     { label: t('nav.home'), path: '/' },
@@ -79,24 +100,53 @@ const Navigation = () => {
         >
           <LanguageSwitcher />
           {user ? (
-            <div className="flex items-center space-x-4">
-              <Button 
-                onClick={() => navigate('/dashboard')}
-                variant="outline"
-                className="border-white bg-white text-black hover:bg-yellow-500 hover:text-black hover:border-yellow-500 rounded-full px-6 font-medium transition-all duration-300"
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center space-x-3 p-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black"
+                >
+                  <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                    {getUserInitials(user?.email)}
+                  </div>
+                  <span className="text-white font-medium text-sm hidden lg:block">
+                    {getUserDisplayName(user?.email)}
+                  </span>
+                </motion.button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent 
+                align="end" 
+                className="w-56 bg-gray-900/95 backdrop-blur-sm border-gray-700 text-white"
               >
-                <User className="w-4 h-4 mr-2" />
-                Dashboard
-              </Button>
-              <Button 
-                onClick={signOut}
-                variant="outline"
-                className="border-white bg-white text-black hover:bg-yellow-500 hover:text-black hover:border-yellow-500 rounded-full px-6 font-medium transition-all duration-300"
-              >
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </Button>
-            </div>
+                <DropdownMenuLabel className="text-gray-300">
+                  {t('userMenu.greeting')}, {getUserDisplayName(user?.email)}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-gray-700" />
+                <DropdownMenuItem 
+                  onClick={() => navigate('/dashboard')}
+                  className="hover:bg-gray-800 focus:bg-gray-800 cursor-pointer"
+                >
+                  <User className="w-4 h-4 mr-2" />
+                  {t('userMenu.dashboard')}
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')}
+                  className="hover:bg-gray-800 focus:bg-gray-800 cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 mr-2" />
+                  {t('userMenu.settings')}
+                </DropdownMenuItem>
+                <DropdownMenuSeparator className="bg-gray-700" />
+                <DropdownMenuItem 
+                  onClick={signOut}
+                  className="hover:bg-red-900/50 focus:bg-red-900/50 cursor-pointer text-red-300"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  {t('userMenu.signOut')}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <div className="flex items-center space-x-2">
               <Button 
@@ -104,7 +154,7 @@ const Navigation = () => {
                 variant="outline"
                 className="border-white bg-white text-black hover:bg-yellow-500 hover:text-black hover:border-yellow-500 rounded-full px-6 font-medium transition-all duration-300"
               >
-                Sign In
+                {t('nav.signin')}
               </Button>
               <Button 
                 onClick={() => navigate('/auth')}
@@ -119,6 +169,11 @@ const Navigation = () => {
         {/* Mobile Elements */}
         <div className="md:hidden flex items-center space-x-3">
           <LanguageSwitcher />
+          {user && (
+            <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+              {getUserInitials(user?.email)}
+            </div>
+          )}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-white p-2 hover:bg-gray-700 rounded-lg transition-colors"
@@ -158,6 +213,17 @@ const Navigation = () => {
             <div className="pt-4 space-y-3">
               {user ? (
                 <>
+                  {/* 用戶問候 */}
+                  <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg">
+                    <div className="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold">
+                      {getUserInitials(user?.email)}
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">{t('userMenu.greeting')}</p>
+                      <p className="text-gray-400 text-sm">{getUserDisplayName(user?.email)}</p>
+                    </div>
+                  </div>
+                  
                   <Button 
                     onClick={() => {
                       navigate('/dashboard');
@@ -166,18 +232,31 @@ const Navigation = () => {
                     className="w-full bg-white text-black hover:bg-yellow-500 rounded-lg py-3 text-base"
                   >
                     <User className="w-4 h-4 mr-2" />
-                    Dashboard
+                    {t('userMenu.dashboard')}
                   </Button>
+                  
+                  <Button 
+                    onClick={() => {
+                      navigate('/settings');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    variant="outline"
+                    className="w-full border-white text-white hover:bg-yellow-500 hover:text-black rounded-lg py-3 text-base"
+                  >
+                    <Settings className="w-4 h-4 mr-2" />
+                    {t('userMenu.settings')}
+                  </Button>
+                  
                   <Button 
                     onClick={() => {
                       signOut();
                       setIsMobileMenuOpen(false);
                     }}
                     variant="outline"
-                    className="w-full border-white text-white hover:bg-yellow-500 hover:text-black rounded-lg py-3 text-base"
+                    className="w-full border-red-400 text-red-400 hover:bg-red-500 hover:text-white rounded-lg py-3 text-base"
                   >
                     <LogOut className="w-4 h-4 mr-2" />
-                    Sign Out
+                    {t('userMenu.signOut')}
                   </Button>
                 </>
               ) : (
@@ -190,7 +269,7 @@ const Navigation = () => {
                     variant="outline"
                     className="w-full border-white text-white hover:bg-yellow-500 hover:text-black rounded-lg py-3 text-base"
                   >
-                    Sign In
+                    {t('nav.signin')}
                   </Button>
                   <Button 
                     onClick={() => {
