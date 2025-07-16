@@ -171,7 +171,7 @@ export const aiBusinessAutomationCourse: CourseDetail = {
   ),
   category: "Business Automation",
   difficulty: "Intermediate",
-  instructor: createLocalizedContent("Kenneth Wong - AI Business Strategist", "Kenneth Wong - AI 商業策略師"),
+  instructor: createLocalizedContent("Kenneth - AI Business Strategist", "Kenneth - AI 商業策略師"),
   totalDuration: createLocalizedContent("4.2 hours", "4.2 小時"),
   language: ["English", "Traditional Chinese"],
   requirements: [

@@ -1,0 +1,276 @@
+/* 
+ * AI 商業自動化課程 - 進度追蹤樣式
+ * 專門為課程進度系統設計的 CSS 樣式
+ */
+
+/* ===== 完成狀態樣式 ===== */
+
+/* 已完成的單元卡片 */
+.unit-card.is-completed {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: 2px solid #34d399 !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+.unit-card.is-completed:hover {
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4) !important;
+  transform: scale(1.03);
+}
+
+/* 已完成單元的標題 */
+.unit-card.is-completed .unit-title {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* 已完成單元的描述 */
+.unit-card.is-completed .unit-description {
+  color: #d1fae5 !important;
+}
+
+/* 完成標記圖標 */
+.completion-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* ===== 進度條樣式 ===== */
+
+/* 主進度條容器 */
+.progress-container {
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 12px;
+  padding: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+/* 進度條填充 */
+.progress-fill {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 200% 200%;
+  animation: progressGradient 3s ease-in-out infinite;
+  height: 8px;
+  border-radius: 8px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progressShine 2s infinite;
+}
+
+@keyframes progressGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes progressShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ===== 按鈕樣式增強 ===== */
+
+/* 完成按鈕 */
+.btn-complete {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-complete:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-complete:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* 已完成按鈕（禁用狀態） */
+.btn-completed {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  border: none;
+  color: #d1d5db;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ===== 主題卡片樣式 ===== */
+
+/* 已完成的主題 */
+.theme-card.is-completed {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+  border: 2px solid rgba(52, 211, 153, 0.5);
+}
+
+.theme-card.is-completed .theme-title {
+  color: #10b981;
+}
+
+/* 當前學習的主題 */
+.theme-card.is-current {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  border: 2px solid rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* ===== 統計數據樣式 ===== */
+
+/* 進度統計卡片 */
+.progress-stats {
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.progress-stats .stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.progress-stats .stat-item:last-child {
+  border-bottom: none;
+}
+
+.progress-stats .stat-value {
+  font-weight: 600;
+  color: #10b981;
+}
+
+/* ===== 動畫效果 ===== */
+
+/* 完成動畫 */
+@keyframes completeAnimation {
+  0% {
+    transform: scale(1);
+    background: rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    background: rgba(16, 185, 129, 0.2);
+  }
+  100% {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+  }
+}
+
+/* 應用完成動畫 */
+.unit-card.just-completed {
+  animation: completeAnimation 0.8s ease-in-out;
+}
+
+/* 溫和呼吸燈效果（用於當前學習項目） */
+@keyframes gentle-breathing {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    opacity: 0.9;
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    opacity: 1;
+  }
+}
+
+/* 溫和狀態指示器呼吸效果 */
+@keyframes status-breathing {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.current-learning-item {
+  animation: gentle-breathing 4s ease-in-out infinite;
+}
+
+/* 為進行中狀態添加溫和呼吸效果 */
+.unit-card.is-current .status-indicator,
+.unit-card.is-current [class*="進行中"],
+.unit-card.is-current [class*="current"] {
+  animation: status-breathing 3s ease-in-out infinite;
+}
+
+/* 全局覆蓋：讓所有 pulse 動畫更溫和 */
+.animate-pulse {
+  animation: gentle-breathing 4s ease-in-out infinite !important;
+}
+
+/* 專門為狀態徽章設計的溫和動畫 */
+.status-badge-breathing {
+  animation: status-breathing 3.5s ease-in-out infinite;
+}
+
+/* ===== 響應式設計 ===== */
+
+@media (max-width: 768px) {
+  .unit-card.is-completed {
+    transform: scale(1.01);
+  }
+  
+  .unit-card.is-completed:hover {
+    transform: scale(1.02);
+  }
+  
+  .completion-badge {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  
+  .btn-complete,
+  .btn-completed {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+} 

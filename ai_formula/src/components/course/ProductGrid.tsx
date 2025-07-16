@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ProductGridProps, DigitalProduct } from '@/data/courses/courseData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,6 +17,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   onProductClick
 }) => {
   const [leadForm, setLeadForm] = useState({ email: '', interest: '' });
+  const navigate = useNavigate();
 
   // Category filters - matching image design
   const categoryFilters = [
@@ -39,14 +41,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       onProductClick(product);
     }
     
-    // Navigate to the appropriate course outline page
+    // Navigate to the appropriate course outline page using React Router
     if (product.category === 'business-automation') {
-      window.location.href = '/courses/business-automation';
+      navigate('/courses/business-automation');
     } else if (product.category === 'prompt-engineering') {
-      window.location.href = '/courses/prompt-engineering-outline';
+      navigate('/courses/prompt-engineering-outline');
     } else {
       // Default behavior for other courses
-      window.location.href = `/courses/${product.category}`;
+      navigate(`/courses/${product.category}`);
     }
   };
 
@@ -148,10 +150,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                   </div>
 
                   {/* Price and CTA */}
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-700">
+                  <div className="mt-auto">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-white">{product.price}</span>
-                      {product.originalPrice && product.originalPrice !== product.price && (
+                      <span className="text-2xl font-bold text-white">
+                        {product.price === "免費" ? (isZhTW ? "免費" : "Free") : product.price}
+                      </span>
+                      {product.originalPrice && product.originalPrice !== product.price && product.originalPrice !== "" && (
                         <span className="text-sm text-slate-400 line-through">{product.originalPrice}</span>
                       )}
                     </div>
@@ -162,7 +166,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         handleCourseClick(product);
                       }}
                     >
-                      <span className="mr-2">{isZhTW ? '登錄課程大綱' : 'Course Outline'}</span>
+                      <span className="mr-2">{isZhTW ? '課程大綱' : 'Course Outline'}</span>
                       <ArrowRight className="w-4 h-4" />
                     </Button>
                   </div>

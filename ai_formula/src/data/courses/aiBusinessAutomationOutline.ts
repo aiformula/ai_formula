@@ -26,8 +26,8 @@ export const aiBusinessAutomationCourseInfo = {
   badge: '免費',
   title: 'AI 商業自動化實戰課程',
   subtitle: '掌握實用的 AI 自動化技術，通過智能自動化解決方案轉型您的商業營運並推動增長。',
-  instructor: 'Kenneth Wong',
-  instructorTitle: 'AI 商業策略師',
+  instructor: 'Kenneth',
+  instructorTitle: 'AI 自動化專家',
   rating: 4.8,
   students: 1247,
   duration: '4.2 小時綜合培訓'

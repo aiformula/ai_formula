@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { getRecentPosts } from '@/data/blog/blogPosts';
-import { courses } from '@/data/courses/courses';
+import { courses } from '@/data/courses';
 import { 
   Brain, 
   Users, 
@@ -47,7 +47,7 @@ import {
   UserCheck
 } from 'lucide-react';
 
-// 定義課�??�本信息?�口
+// 定義課程學員介面
 interface CourseInfo {
   badge: string;
   title: string;
@@ -56,21 +56,21 @@ interface CourseInfo {
   instructorTitle: string;
 }
 
-// 定義課�?統�??�口
+// 定義課程統計介面
 interface CourseStat {
   icon: React.ReactNode;
   label: string;
   value: string;
 }
 
-// 定義課�?資�?標籤?�口
+// 定義課程資訊標籤介面
 interface CourseInfoTag {
   name: string;
   icon: React.ReactNode;
   status: 'available' | 'coming-soon' | 'featured';
 }
 
-// 定義?�選課�??�口
+// 定義可選課程介面
 interface AvailableCourse {
   title: string;
   description: string;
@@ -78,7 +78,8 @@ interface AvailableCourse {
   available: boolean;
 }
 
-// 定義?�?��??�接??interface LatestNews {
+// 定義最新消息接口
+interface LatestNews {
   date: string;
   title: string;
   details: Array<{
@@ -98,7 +99,7 @@ interface PricingInfo {
   enterprise: string;
 }
 
-// 定義課�??�色?�口
+// 定義課程特色介面
 interface CourseFeature {
   icon: React.ReactNode;
   title: string;
@@ -106,13 +107,13 @@ interface CourseFeature {
   highlight: string;
 }
 
-// 定義FAQ?�口
+// 定義FAQ介面
 interface FAQ {
   question: string;
   answer: string;
 }
 
-// 定義?��?學員?�口
+// 定義目標對象介面
 interface TargetAudience {
   title: string;
   description: string;
@@ -123,20 +124,26 @@ interface TargetAudience {
   }>;
 }
 
-// 定義主模?�Props?�口
+// 定義主模塊Props介面
 interface CourseOutlineTemplateProps {
-  courseInfo: CourseInfo;
-  courseStats: CourseStat[];
-  courseInfoTags: CourseInfoTag[];
-  availableCourses: AvailableCourse[];
-  latestNews: LatestNews;
-  pricingInfo: PricingInfo;
-  courseFeatures: CourseFeature[];
-  faqData: FAQ[];
-  targetAudience: TargetAudience;
+  courseInfo: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    instructor: string;
+    instructorTitle: string;
+  };
+  courseStats: any;
+  courseInfoTags: any;
+  availableCourses: any;
+  latestNews: any;
+  pricingInfo: any;
+  courseFeatures: any;
+  faqData: any;
+  targetAudience: any;
   onStartLearning: () => void;
-  onRegister?: () => void;
-  onWhatsApp?: () => void;
+  onWhatsApp: () => void;
+  learningPathExtended?: boolean; // 新增：控制學習路徑容器樣式
 }
 
 const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
@@ -151,7 +158,8 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   targetAudience,
   onStartLearning,
   onRegister,
-  onWhatsApp
+  onWhatsApp,
+  learningPathExtended = false // 默認為false
 }) => {
   const { language } = useLanguage();
   const navigate = useNavigate();
@@ -160,15 +168,13 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   const [activeTab, setActiveTab] = useState<string>('course-intro');
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
-
-
-  // ?��?導師?�稱定義顏色主�?
+  // 根據導師名稱定義顏色主題
   const getInstructorTheme = (instructorName: string) => {
     const name = instructorName.toLowerCase();
     
     if (name.includes('kenneth')) {
       return {
-        gradient: 'from-purple-600 to-purple-800',
+        gradient: 'from-blue-500 to-purple-600',
         primary: 'text-purple-400',
         secondary: 'bg-purple-600 hover:bg-purple-700',
         accent: 'text-purple-400 border-purple-400'
@@ -202,7 +208,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
         accent: 'text-orange-400 border-orange-400'
       };
     } else {
-      // ?�設使用黃色主�?
+      // 設定使用黃色主題
       return {
         gradient: 'from-yellow-600 to-yellow-800',
         primary: 'text-yellow-400',
@@ -218,17 +224,17 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   const tabs = [
     {
       id: 'course-intro',
-      label: isZhTW ? '課�?介紹' : 'Course Introduction',
+      label: isZhTW ? '課程介紹' : 'Course Introduction',
       icon: <BookOpen className="w-4 h-4" />
     },
     {
       id: 'learning-content',
-      label: isZhTW ? '學�??�容' : 'Learning Content',
+      label: isZhTW ? '學習內容' : 'Learning Content',
       icon: <GraduationCap className="w-4 h-4" />
     },
     {
       id: 'target-audience',
-      label: isZhTW ? '?��?對象' : 'Target Audience',
+      label: isZhTW ? '適合對象' : 'Target Audience',
       icon: <UserCheck className="w-4 h-4" />
     },
     {
@@ -243,28 +249,28 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
     },
     {
       id: 'faq',
-      label: isZhTW ? '常�??��?' : 'FAQ',
+      label: isZhTW ? '常見問題' : 'FAQ',
       icon: <MessageCircle className="w-4 h-4" />
     }
   ];
 
-  // ?��??��?課�?標籤?��??��??��?課�?
+  // 根據課程標籤尋找相關課程
   const getRelatedCourse = () => {
     const currentCourseBadge = courseInfo.badge;
     
-    // ?�索?��?標籤?�課程�??��?試�??�匹?��?
+    // 搜索標籤包含課程的課程
     let sameCategoryCourses = courses.filter(course => {
       const courseCategory = isZhTW ? course.categoryCht : course.category;
       return courseCategory === currentCourseBadge;
     });
     
-    // 如�?沒�?完全?��?，�?試部?�匹?��?標籤?��?
+    // 如果沒有完全匹配，則搜索包含標籤的課程
     if (sameCategoryCourses.length === 0) {
       sameCategoryCourses = courses.filter(course => {
         const courseTags = isZhTW ? course.tagsCht : course.tags;
         const courseCategory = isZhTW ? course.categoryCht : course.category;
         
-        // 檢查標籤?�否?�含課�?標籤?��??��?
+        // 檢查標籤是否包含課程標籤
         const badgeKeywords = currentCourseBadge.toLowerCase();
         
         return courseTags.some(tag => 
@@ -274,11 +280,12 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       });
     }
     
-    // 如�??�到?��?標籤?�課程�??��??�更?��??��?�?    let relatedCourses = sameCategoryCourses.length > 0 
+    // 如果找到相同標籤的課程，按照更新時間排序
+    let relatedCourses = sameCategoryCourses.length > 0 
       ? sameCategoryCourses.sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
       : courses.sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime());
     
-    // ?��??�?��?課�?（�??�當?�課程�?
+    // 返回第一個相關課程（排除當前課程）
     return relatedCourses.find(course => {
       const courseTitle = isZhTW ? course.titleCht : course.title;
       return courseTitle !== courseInfo.title;
@@ -287,9 +294,11 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   
   const relatedCourse = getRelatedCourse();
   
-  // ?��??��?課�??��??��??�?��???  const getDynamicLatestNews = () => {
+  // 動態生成課程相關最新消息
+  const getDynamicLatestNews = () => {
     if (!relatedCourse) {
-      return latestNews; // 如�?沒�??�到課�?，使?��?來�??�?��???    }
+      return latestNews; // 如果沒有找到課程，使用預設的最新消息
+    }
     
     const formatDate = (date: Date) => {
       return isZhTW 
@@ -297,53 +306,54 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
         : date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     };
     
-    // 計�??�扣?��?�?    const discountPercentage = relatedCourse.originalPrice 
+    // 計算折扣百分比
+    const discountPercentage = relatedCourse.originalPrice 
       ? Math.round((1 - relatedCourse.price / relatedCourse.originalPrice) * 100)
       : 0;
     
     return {
       date: formatDate(relatedCourse.lastUpdated),
       title: isZhTW 
-        ? `${relatedCourse.titleCht} - ?�?�課程更?�` 
+        ? `${relatedCourse.titleCht} - 最新課程更新` 
         : `${relatedCourse.title} - Latest Course Update`,
       details: [
         {
-          icon: "??",
+          icon: "⏱️",
           text: isZhTW 
-            ? `課�??�長�?{relatedCourse.durationCht}` 
+            ? `課程時長：${relatedCourse.durationCht}` 
             : `Duration: ${relatedCourse.duration}`
         },
         {
-          icon: "?��",
+          icon: "💰",
           text: isZhTW 
-            ? `課�?費用�?{relatedCourse.currency}$${relatedCourse.price}${relatedCourse.originalPrice ? ` (?�價: ${relatedCourse.currency}$${relatedCourse.originalPrice}, 節??${discountPercentage}%)` : ''}`
+            ? `課程費用：${relatedCourse.currency}$${relatedCourse.price}${relatedCourse.originalPrice ? ` (原價: ${relatedCourse.currency}$${relatedCourse.originalPrice}, 節省${discountPercentage}%)` : ''}`
             : `Price: ${relatedCourse.currency}$${relatedCourse.price}${relatedCourse.originalPrice ? ` (Original: ${relatedCourse.currency}$${relatedCourse.originalPrice}, Save ${discountPercentage}%)` : ''}`
         },
         {
-          icon: "�?,
+          icon: "⭐",
           text: isZhTW 
-            ? `評�?�?{relatedCourse.rating}/5 (${relatedCourse.reviewCount}條�?�?`
+            ? `評分：${relatedCourse.rating}/5 (${relatedCourse.reviewCount}條評論)`
             : `Rating: ${relatedCourse.rating}/5 (${relatedCourse.reviewCount} reviews)`
         },
         {
-          icon: "?��",
+          icon: "👥",
           text: isZhTW 
-            ? `已�? ${relatedCourse.students} ?�學?�報?�`
+            ? `已有 ${relatedCourse.students} 位學員報名`
             : `${relatedCourse.students} students enrolled`
         },
         {
-          icon: "??",
+          icon: "📚",
           text: isZhTW 
-            ? `課�?等�?�?{relatedCourse.levelCht} | ??${relatedCourse.modules.length} ?�模組`
+            ? `課程等級：${relatedCourse.levelCht} | 共${relatedCourse.modules.length}個模組`
             : `Level: ${relatedCourse.level} | ${relatedCourse.modules.length} modules`
         },
         ...(relatedCourse.featured || relatedCourse.bestseller || relatedCourse.newCourse ? [{
-          icon: "??",
+          icon: "🏆",
           text: isZhTW 
-            ? `?�色標籤�?{[
-                relatedCourse.featured ? '精選課�?' : '',
-                relatedCourse.bestseller ? '?�?�歡�? : '',
-                relatedCourse.newCourse ? '?�課�? : ''
+            ? `特色標籤：${[
+                relatedCourse.featured ? '精選課程' : '',
+                relatedCourse.bestseller ? '最受歡迎' : '',
+                relatedCourse.newCourse ? '新課程' : ''
               ].filter(Boolean).join(', ')}`
             : `Highlights: ${[
                 relatedCourse.featured ? 'Featured' : '',
@@ -353,7 +363,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
         }] : [])
       ],
       note: isZhTW 
-        ? `?�是?��?{courseInfo.badge}?�相?��??�?�課程更?�。課程內容�??��?學員?��??��??��?求�?續優?�。�??�查?�更多課程詳?�。`
+        ? `這是關於${courseInfo.badge}相關的最新課程更新。課程內容會根據學員反饋和市場需求持續優化。點擊查看更多課程詳情。`
         : `This is the latest course update related to "${courseInfo.badge}". Course content is continuously optimized based on student feedback and market demand. Click to view more course details.`
     };
   };
@@ -384,14 +394,15 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
     }
   };
 
-  // 渲�?不�?tab?�內�?  const renderTabContent = () => {
+  // 渲染不同 tab 的內容
+  const renderTabContent = () => {
     switch (activeTab) {
       case 'course-intro':
         return (
           <div className="space-y-8">
             {/* Course Overview - Enhanced */}
             <div className="space-y-6">
-              {/* 主�?課�?信息?��? */}
+              {/* 主課程信息 */}
               <Card className="bg-gray-800 border-gray-700 overflow-hidden">
                 <div className={`h-2 bg-gradient-to-r ${instructorTheme.gradient}`}></div>
                 <CardContent className="p-8">
@@ -400,53 +411,53 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                       <Rocket className="w-6 h-6 text-white" />
                     </div>
                     <h2 className="text-2xl font-bold text-white">
-                      {isZhTW ? "課�?總覽" : "Course Overview"}
+                      {isZhTW ? "課程總覽" : "Course Overview"}
                     </h2>
                   </div>
 
-                  {/* ?��?統�??��? */}
+                  {/* 課程統計數據 */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                     <div className="text-center">
                       <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>12</div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "?�課�? : "Weeks"}</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "週課程" : "Weeks"}</div>
                     </div>
                     <div className="text-center">
                       <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>24</div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "小�??�容" : "Hours"}</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "小時內容" : "Hours"}</div>
                     </div>
                     <div className="text-center">
                       <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>6</div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "?��?�? : "Projects"}</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "實戰項目" : "Projects"}</div>
                     </div>
                     <div className="text-center">
-                      <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>??/div>
-                      <div className="text-sm text-gray-400">{isZhTW ? "永�?觀?? : "Lifetime"}</div>
+                      <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>∞</div>
+                      <div className="text-sm text-gray-400">{isZhTW ? "永久觀看" : "Lifetime"}</div>
                     </div>
                   </div>
 
-                  {/* 詳細課�??�色 */}
+                  {/* 詳細課程特色 */}
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                         <Clock className={`w-5 h-5 ${instructorTheme.primary}`} />
-                        {isZhTW ? "學�??��?" : "Learning Schedule"}
+                        {isZhTW ? "學習時間" : "Learning Schedule"}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "課�?總長�? : "Total Duration"}</span>
-                          <span className="text-white font-semibold">{isZhTW ? "12 ?? : "12 Weeks"}</span>
+                          <span className="text-gray-300">{isZhTW ? "課程總長度" : "Total Duration"}</span>
+                          <span className="text-white font-semibold">{isZhTW ? "12 週" : "12 Weeks"}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "每週學習�??? : "Weekly Commitment"}</span>
-                          <span className="text-white font-semibold">{isZhTW ? "2-3 小�?" : "2-3 Hours"}</span>
+                          <span className="text-gray-300">{isZhTW ? "每週學習時間" : "Weekly Commitment"}</span>
+                          <span className="text-white font-semibold">{isZhTW ? "2-3 小時" : "2-3 Hours"}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "學�?模�?" : "Learning Mode"}</span>
-                          <span className="text-white font-semibold">{isZhTW ? "線�??�學" : "Self-Paced"}</span>
+                          <span className="text-gray-300">{isZhTW ? "學習模式" : "Learning Mode"}</span>
+                          <span className="text-white font-semibold">{isZhTW ? "線上自學" : "Self-Paced"}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-300">{isZhTW ? "語�?" : "Language"}</span>
-                          <span className="text-white font-semibold">{isZhTW ? "繁�?中�?" : "Traditional Chinese"}</span>
+                          <span className="text-gray-300">{isZhTW ? "語言" : "Language"}</span>
+                          <span className="text-white font-semibold">{isZhTW ? "繁體中文" : "Traditional Chinese"}</span>
                         </div>
                       </div>
                     </div>
@@ -454,24 +465,24 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                         <Award className={`w-5 h-5 ${instructorTheme.primary}`} />
-                        {isZhTW ? "課�??�色" : "Course Features"}
+                        {isZhTW ? "課程特色" : "Course Features"}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "實戰?�目導�?" : "Project-Based Learning"}</span>
+                          <span className="text-gray-300">{isZhTW ? "實戰項目導學" : "Project-Based Learning"}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "一對�?導師?��?" : "1-on-1 Mentorship"}</span>
+                          <span className="text-gray-300">{isZhTW ? "一對一導師指導" : "1-on-1 Mentorship"}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "業�??�?�工?? : "Latest Industry Tools"}</span>
+                          <span className="text-gray-300">{isZhTW ? "業界最新工具" : "Latest Industry Tools"}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">{isZhTW ? "完�?證書?�發" : "Certificate of Completion"}</span>
+                          <span className="text-gray-300">{isZhTW ? "完成證書頒發" : "Certificate of Completion"}</span>
                         </div>
                       </div>
                     </div>
@@ -479,80 +490,126 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 </CardContent>
               </Card>
 
-              {/* 學�?路�?展示 */}
-              <Card className="bg-gray-800 border-gray-700">
+              {/* 學習路徑展示 */}
+              <Card className={`bg-gray-800 border-gray-700 ${learningPathExtended ? 'h-full flex flex-col' : ''}`}>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <TrendingUp className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "學�?路�?" : "Learning Path"}
+                    {isZhTW ? "學習路徑" : "Learning Path"}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className={learningPathExtended ? 'flex-1 flex flex-col' : ''}>
+                  <div className={`${learningPathExtended ? 'space-y-6 flex-1' : 'space-y-4'}`}>
                     {[
                       {
-                        phase: isZhTW ? "�?-3?? : "Week 1-3",
-                        title: isZhTW ? "AI ?��??�創?�發?? : "AI Fundamentals & Creative Ideation",
-                        description: isZhTW ? "學�? ChatGPT 4o ?�基?��?作�??�握?��? Prompt 設�?" : "Learn ChatGPT 4o basics and master creative prompt design",
+                        phase: isZhTW ? "第1-2週" : "Week 1-2",
+                        title: isZhTW ? "AI 自動化基礎概念" : "AI Automation Fundamentals",
+                        description: isZhTW ? "理解 AI 驅動的商業自動化核心原理，識別自動化機會與評估框架" : "Understanding AI-driven business automation principles and identifying automation opportunities",
                         icon: <Lightbulb className="w-6 h-6" />
                       },
                       {
-                        phase: isZhTW ? "�?-6?? : "Week 4-6", 
-                        title: isZhTW ? "視覺設�??��??��?�? : "Visual Design & Composition",
-                        description: isZhTW ? "?�握 Photoshop ?��??�術�?製�?專業?��?展示?? : "Master Photoshop composition for professional product visuals",
+                        phase: isZhTW ? "第3-4週" : "Week 3-4", 
+                        title: isZhTW ? "客戶服務自動化" : "Customer Service Automation",
+                        description: isZhTW ? "構建智能聊天機器人和自動化客戶服務系統，實現24小時客戶支援" : "Building intelligent chatbots and automated customer service systems for 24/7 support",
                         icon: <Monitor className="w-6 h-6" />
                       },
                       {
-                        phase: isZhTW ? "�?-9?? : "Week 7-9",
-                        title: isZhTW ? "AI ?��??��?製�?" : "AI Motion Effects",
-                        description: isZhTW ? "使用 Kling AI ?��??��??��?，學�?Minimax 語音?��? : "Create motion effects with Kling AI and learn Minimax voice technology",
+                        phase: isZhTW ? "第5-6週" : "Week 5-6",
+                        title: isZhTW ? "AI 營銷與銷售自動化" : "AI Marketing & Sales Automation",
+                        description: isZhTW ? "自動化營銷活動、內容生成和潛在客戶培育系統" : "Automate marketing campaigns, content generation and lead nurturing systems",
                         icon: <PlayCircle className="w-6 h-6" />
                       },
                       {
-                        phase: isZhTW ? "�?0-12?? : "Week 10-12",
-                        title: isZhTW ? "專業影�?製�?" : "Professional Video Production",
-                        description: isZhTW ? "?��??�?��??��?完�?完整?��?業�?影�??�目" : "Integrate all skills to complete commercial-grade video projects",
+                        phase: isZhTW ? "第7-8週" : "Week 7-8",
+                        title: isZhTW ? "營運與數據分析自動化" : "Operations & Analytics Automation",
+                        description: isZhTW ? "建立自動化報告系統與商業智能儀表板，實現數據驅動決策" : "Build automated reporting systems and business intelligence dashboards for data-driven decisions",
                         icon: <Rocket className="w-6 h-6" />
                       }
                     ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-4 p-4 bg-gray-700 rounded-lg">
-                        <div className={`p-2 rounded-lg bg-gradient-to-br ${instructorTheme.gradient} text-white`}>
+                      <div key={index} className={`flex items-start gap-4 ${learningPathExtended ? 'p-6 bg-gray-700/50 rounded-xl border border-gray-600/30 hover:border-blue-500/30 transition-all duration-300' : 'p-4 bg-gray-700 rounded-lg'}`}>
+                        <div className={`${learningPathExtended ? 'p-3 rounded-xl' : 'p-2 rounded-lg'} bg-gradient-to-br ${instructorTheme.gradient} text-white ${learningPathExtended ? 'shadow-lg' : ''}`}>
                           {item.icon}
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <Badge variant="outline" className={`${instructorTheme.accent} text-xs`}>
+                          <div className={`flex items-center gap-3 ${learningPathExtended ? 'mb-3' : 'mb-2'}`}>
+                            <Badge variant="outline" className={`${instructorTheme.accent} ${learningPathExtended ? 'text-sm px-3 py-1' : 'text-xs'}`}>
                               {item.phase}
                             </Badge>
-                            <h4 className="font-semibold text-white">{item.title}</h4>
+                            {!learningPathExtended && <h4 className="font-semibold text-white">{item.title}</h4>}
                           </div>
-                          <p className="text-gray-300 text-sm">{item.description}</p>
+                          {learningPathExtended && <h4 className="font-bold text-white text-lg mb-3 leading-tight">{item.title}</h4>}
+                          <p className={`text-gray-300 ${learningPathExtended ? 'text-base leading-relaxed' : 'text-sm'}`}>{item.description}</p>
+                          {learningPathExtended && (
+                            <div className="mt-4 pt-3 border-t border-gray-600/30">
+                              <div className="flex items-center gap-2 text-sm text-gray-400">
+                                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                                <span>{isZhTW ? "實戰項目包含" : "Includes hands-on projects"}</span>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
                   </div>
+                  
+                  {learningPathExtended && (
+                    <div className="mt-8 p-6 bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-xl border border-blue-500/20">
+                      <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                        {isZhTW ? "學習成果預期" : "Expected Learning Outcomes"}
+                      </h4>
+                      <div className="space-y-3">
+                        {[
+                          isZhTW ? "掌握AI自動化核心技術" : "Master AI automation core technologies",
+                          isZhTW ? "建立完整自動化工作流程" : "Build complete automation workflows", 
+                          isZhTW ? "提升業務效率300%" : "Improve business efficiency by 300%",
+                          isZhTW ? "獲得實戰項目經驗" : "Gain hands-on project experience"
+                        ].map((outcome, index) => (
+                          <div key={index} className="flex items-center gap-3">
+                            <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+                              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                            </div>
+                            <span className="text-gray-300 text-sm">{outcome}</span>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="mt-6 pt-4 border-t border-gray-600/30">
+                        <div className="grid grid-cols-2 gap-4 text-center">
+                          <div>
+                            <div className="text-2xl font-bold text-blue-400">12</div>
+                            <div className="text-xs text-gray-400">{isZhTW ? "週完整課程" : "Week Course"}</div>
+                          </div>
+                          <div>
+                            <div className="text-2xl font-bold text-green-400">8+</div>
+                            <div className="text-xs text-gray-400">{isZhTW ? "實戰項目" : "Projects"}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
 
-              {/* 工具?��?�?*/}
+              {/* 工具與技術*/}
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Database className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "使用工具?��?�? : "Tools & Technologies"}
+                    {isZhTW ? "使用工具與技術" : "Tools & Technologies"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
-                      { name: "ChatGPT 4o", category: isZhTW ? "AI 對話" : "AI Chat" },
-                      { name: "Kling AI", category: isZhTW ? "?��??��?" : "Motion FX" },
-                      { name: "Minimax AI", category: isZhTW ? "語音?��?" : "Voice AI" },
-                      { name: "Photoshop", category: isZhTW ? "?��??��?" : "Image Edit" },
-                      { name: "CapCut", category: isZhTW ? "影�??�輯" : "Video Edit" },
-                      { name: "AI 字�?", category: isZhTW ? "?��??��??? : "Auto Subtitle" },
-                      { name: "Figma", category: isZhTW ? "設�??��?" : "Design" },
-                      { name: "Canva", category: isZhTW ? "快速設�? : "Quick Design" }
+                      { name: "Zapier", category: isZhTW ? "無代碼自動化" : "No-Code Automation" },
+                      { name: "Make.com", category: isZhTW ? "工作流程整合" : "Workflow Integration" },
+                      { name: "ChatGPT API", category: isZhTW ? "AI 對話系統" : "AI Chat System" },
+                      { name: "n8n", category: isZhTW ? "開源自動化" : "Open Source Automation" },
+                      { name: "Google Sheets", category: isZhTW ? "數據管理" : "Data Management" },
+                      { name: "Slack API", category: isZhTW ? "團隊協作" : "Team Collaboration" },
+                      { name: "Airtable", category: isZhTW ? "智能數據庫" : "Smart Database" },
+                      { name: "Webhooks", category: isZhTW ? "系統整合" : "System Integration" }
                     ].map((tool, index) => (
                       <div key={index} className="text-center p-4 bg-gray-700 rounded-lg">
                         <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center`}>
@@ -572,7 +629,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Tag className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "課�?資�?" : "Course Information"}
+                  {isZhTW ? "課程資訊" : "Course Information"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -600,14 +657,15 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             {/* Latest News */}
             <Card className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer" 
                   onClick={() => {
-                    // 導航?�相?�課程詳?��???                    if (relatedCourse) {
+                    // 導航到相關課程詳情頁面
+                    if (relatedCourse) {
                       navigate(`/courses/${relatedCourse.id}`);
                     }
                   }}>
               <CardHeader>
                 <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
                   <AlertCircle className="w-4 h-4" />
-                  <span>{isZhTW ? "?�?��??? : "Latest News"}</span>
+                  <span>{isZhTW ? "最新消息" : "Latest News"}</span>
                   <span>{dynamicLatestNews.date}</span>
                 </div>
                 <CardTitle className="text-xl text-white flex items-center justify-between">
@@ -638,94 +696,92 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             {/* Course Features */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "?�� 你�?學到什麼�?" : "?�� What You'll Learn"}
+                {isZhTW ? "你將學到什麼？" : "What You'll Learn"}
               </h3>
               
               {/* Detailed Learning Content - Accordion Format */}
               <div className="space-y-4 mb-8">
                 {[
                   {
-                    title: "AI �???��?規�?",
+                    title: "AI 自動化基礎概念",
                     sections: [
                       {
-                        title: "AI ?��??�勢?��??�創?�發?��?�?,
+                        title: "什麼是 AI 商業自動化？",
                         points: [
-                          "學�??�用 ChatGPT 4o 快速�??�網上產?��?訊�?精�?歸�??��??�特�????,
-                          "?�握如�?將產?�優?��??�為?��??�鏡，快?�產?��?說�??��?�???��???
+                          "理解 AI 驅動的商業自動化核心原理",
+                          "學習識別自動化機會和評估框架",
+                          "掌握投資回報率(ROI)計算方法"
                         ]
                       },
                       {
-                        title: "ChatGPT 4o �???��??��??�製�?,
+                        title: "自動化工具入門",
                         points: [
-                          "學�??�用 ChatGPT ?��?精�??�創??Prompt，快?�產?�吸?�產?�廣?�腳?��?,
-                          "?�握?��??�鏡?�輯，設計�?轉�??��?視覺?��?結�???
-                        ]
-                      },
-                      {
-                        title: "Photoshop 專業?��??��??��?,
-                        points: [
-                          "?�練使用 Photoshop ?�遮罩�?Mask）�??�層?�術�?完�??��??��??��??��???,
-                          "學�?後�??��?細�?（�?如陰影調?�、�?源統一）�?顯�??��??��?視覺?�實?��?
+                          "認識 Zapier、Make.com 等無代碼自動化平台",
+                          "學習 API 整合基礎概念",
+                          "實戰：搭建第一個自動化工作流程"
                         ]
                       }
                     ]
                   },
                   {
-                    title: "AI ?��??��?製�???AI ?�音?�用",
+                    title: "客戶服務與營銷自動化",
                     sections: [
                       {
-                        title: "Kling AI 專業?��??��?完整製�?流�?",
+                        title: "智能聊天機器人設計",
                         points: [
-                          "深入?�握 Kling AI 首尾幀設�?，製作產?��??��?示、浪?��??�氣等�?質�??��??��???,
-                          "學�?如�?設�?高�? Prompt，精確控?�特?��??��??��??�造�?業�?視覺?��??��?,
-                          "?�握 AI ?��??��?製�??�常見�?巧�?注�?事�?，快?��??�影?��?業�???
+                          "學習構建24小時智能客服系統",
+                          "掌握自然語言處理技術應用",
+                          "實戰：將FAQ訓練成AI知識庫"
                         ]
                       },
                       {
-                        title: "Minimax AI 語音複製?�數字人?�音?��?,
+                        title: "AI 營銷自動化",
                         points: [
-                          "學�?使用 Minimax 快速、精確�?製�??�聲?��?製�??�然流暢�?��話�??��?,
-                          "?�握語音?��?設�??�巧�??��??��?�??專業?��?說�??��?
+                          "設計個性化營銷活動工作流程",
+                          "學習AI內容生成與社群媒體自動發布",
+                          "掌握潛在客戶評分與培育系統"
                         ]
                       }
                     ]
                   },
                   {
-                    title: "影�??�輯?�術�? AI 字�??��???,
+                    title: "銷售與營運自動化",
                     sections: [
                       {
-                        title: "CapCut 專業影�??�輯?��?奏�??��?�?,
+                        title: "銷售流程自動化",
                         points: [
-                          "學�? CapCut 快�??�輯?��??�特?��??��??��?影�?流暢度�?視覺專業?��?,
-                          "?�握影�?節奏控?�方法�?例�??�畫?�步）�?精�?調整影�??��?觀?�注?��???
+                          "設計自動化銷售漏斗與管道管理",
+                          "學習銷售數據分析與預測技術",
+                          "實戰：建立提案自動生成系統"
                         ]
                       },
                       {
-                        title: "AI ?�能繁�?字�??��??��??�特?�製�?,
+                        title: "營運與數據分析自動化",
                         points: [
-                          "?�練 AI ?��??��?繁�?字�??��?作�?程�?精�??�正?��?，�?少�?幕製作�??��?,
-                          "?�握字�??��?�??設�?（�??��?字�??�特?�入?��?，�??�短?��?業�?覺�??��?
+                          "建立自動化報告與商業智能儀表板",
+                          "掌握預測分析在營運中的實戰應用",
+                          "學習跨系統工作流程整合技巧"
                         ]
                       }
                     ]
                   }
-                ].map((module, index) => (
-                  <Card key={index} className="bg-gray-800 border-gray-700">
+                ].map((module, moduleIndex) => (
+                  <Card key={moduleIndex} className="bg-gray-800 border-gray-700">
                     <CardContent className="p-0">
                       <button
-                        onClick={() => toggleAccordion(index)}
+                        onClick={() => toggleAccordion(moduleIndex)}
                         className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
                       >
                         <div className="flex items-center justify-between">
                           <h3 className="text-xl font-bold text-white">{module.title}</h3>
-                          {openAccordion === index ? (
+                          {openAccordion === moduleIndex ? (
                             <ChevronUp className="w-5 h-5 text-gray-400" />
                           ) : (
                             <ChevronDown className="w-5 h-5 text-gray-400" />
                           )}
                         </div>
                       </button>
-                      {openAccordion === index && (
+                      {openAccordion === moduleIndex && (
                         <div className="px-6 pb-6 space-y-4">
                           {module.sections.map((section, sectionIndex) => (
                             <div key={sectionIndex}>
@@ -733,7 +789,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                               <ul className="space-y-2 text-gray-300">
                                 {section.points.map((point, pointIndex) => (
                                   <li key={pointIndex} className="flex items-start gap-2">
-                                    <span className={`${instructorTheme.primary} mt-1`}>??/span>
+                                    <span className={`${instructorTheme.primary} mt-1`}>•</span>
                                     <span>{point}</span>
                                   </li>
                                 ))}
@@ -775,7 +831,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <BookOpen className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "?�選課�?" : "Available Courses"}
+                  {isZhTW ? "選課" : "Available Courses"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -834,7 +890,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       case 'instructor-profile':
         return (
           <div className="space-y-8">
-            {/* 導師?��??�基?�信??*/}
+            {/* 導師基本信息 */}
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -855,13 +911,13 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         {isZhTW ? "資深導師" : "Senior Instructor"}
                       </Badge>
                       <Badge className={`${instructorTheme.secondary} text-white`}>
-                        {isZhTW ? "業�?顧�?" : "Industry Consultant"}
+                        {isZhTW ? "業界顧問" : "Industry Consultant"}
                       </Badge>
                     </div>
                     <p className="text-gray-300 leading-relaxed">
                       {isZhTW 
-                        ? `?��?超�? 8 �?AI ?�術�??��?驗�?專精??AI 工具?�創?�產業�?實�??�用?�曾?�助超�? 200 家�?業�??��???AI ?��??��?程�?學員?��??��?，累計培養�???3,000 ??AI ?�用專�??�`
-                        : `With over 8 years of AI technology application experience, specializing in practical AI tool applications in creative industries. Has successfully helped over 200 companies implement AI automation processes, with students worldwide and over 3,000 AI application specialists trained.`
+                        ? `擁有超過4年AI技術應用經驗，專精於AI工具在創意產業的實戰應用。曾協助超過200家企業成功實施AI自動化流程，學員遍布全球，累計培養超過3,000名AI應用專家。`
+                        : `With over 4 years of AI technology application experience, specializing in practical AI tool applications in creative industries. Has successfully helped over 200 companies implement AI automation processes, with students worldwide and over 3,000 AI application specialists trained.`
                       }
                     </p>
                   </div>
@@ -869,32 +925,32 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
 
-            {/* 專業?�景?��?�?*/}
+            {/* 專業背景經歷*/}
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Briefcase className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "專業經�?" : "Professional Experience"}
+                    {isZhTW ? "專業經歷" : "Professional Experience"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "科�??�司 AI ?��?總監" : "AI Product Director"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "科技公司 AI 產品總監" : "AI Product Director"}</h4>
                     <p className="text-sm text-gray-400 mb-2">2019 - 2024</p>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "?��? AI ?��??�發?��?，�??�推?��?款�?�?AI ?�用，�??��??�百?�用?��?
+                        ? "領導 AI 產品開發團隊，成功推出多款商業 AI 應用，服務超過百萬用戶"
                         : "Led AI product development team, successfully launched multiple commercial AI applications serving over one million users."
                       }
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "?��?工�?室創辦人" : "Creative Studio Founder"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "創意工作室創辦人" : "Creative Studio Founder"}</h4>
                     <p className="text-sm text-gray-400 mb-2">2016 - 2019</p>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "?�辦專業?��?工�?室�??��??��?供創?��??�碼?�銷�?��?��???
+                        ? "創辦專業創意工作室，為品牌提供創新數碼行銷解決方案"
                         : "Founded professional creative studio, providing innovative digital marketing solutions for brands."
                       }
                     </p>
@@ -906,24 +962,24 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Award className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isZhTW ? "專業認�?" : "Certifications"}
+                    {isZhTW ? "專業認證" : "Certifications"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Google AI 認�?專家" : "Google AI Certified Expert"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Google AI 認證專家" : "Google AI Certified Expert"}</h4>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "Google 官方認�???AI ?�術�?家�?專精機器學�??�深度學習�??��?
+                        ? "Google 官方認證 AI 技術專家，專精機器學習與深度學習應用"
                         : "Google officially certified AI technology expert, specializing in machine learning and deep learning applications."
                       }
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Adobe 認�?專家" : "Adobe Certified Expert"}</h4>
+                    <h4 className="font-semibold text-white mb-2">{isZhTW ? "Adobe 認證專家" : "Adobe Certified Expert"}</h4>
                     <p className="text-gray-300 text-sm">
                       {isZhTW 
-                        ? "Adobe Creative Suite ?�系?��?證�??�長�?AI 工具?�傳統設計�?件�??��?
+                        ? "Adobe Creative Suite 全系列認證，擅長將 AI 工具與傳統設計軟件整合"
                         : "Adobe Creative Suite full certification, excelling in combining AI tools with traditional design software."
                       }
                     </p>
@@ -932,23 +988,23 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </Card>
             </div>
 
-            {/* ?�學?�念 */}
+            {/* 學習理念 */}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Lightbulb className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "?�學?�念" : "Teaching Philosophy"}
+                  {isZhTW ? "學習理念" : "Teaching Philosophy"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-xl font-bold text-white mb-4">
-                      {isZhTW ? '"讓�??�人?�能駕馭 AI ?��???' : '"Empowering Everyone to Harness the Power of AI"'}
+                      {isZhTW ? '"讓每個人都能駕馭 AI 的力量"' : '"Empowering Everyone to Harness the Power of AI"'}
                     </h3>
                     <p className="text-gray-300 leading-relaxed mb-4">
                       {isZhTW 
-                        ? "?�相�?AI 不�?該是少數?�術�?家�?專利，而是每個�??��??�想法�?人都?�使?��?強大工具?�通�?實戰?�學?��?實�?例�??��?讓學?��??�學?��?�?AI 工具，更要�?�??何�??��?工具?�入?�實?�工作中，創?��?�???�值�?
+                        ? "我相信 AI 不應該是少數技術專家的專利，而是每個有創意和想法的人都能使用的強大工具。通過實戰式教學和真實案例分析，讓學員不只學會操作 AI 工具，更要了解如何將這些工具融入實際工作中，創造真正價值。"
                         : "I believe AI should not be the exclusive domain of a few technical experts, but a powerful tool that anyone with creativity and ideas can use. Through hands-on teaching and real case studies, I want students to not only learn to operate AI tools, but also understand how to integrate these tools into actual work to create real value."
                       }
                     </p>
@@ -960,10 +1016,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <Target className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="font-semibold text-white mb-2">
-                        {isZhTW ? "實戰導�?" : "Practice-Oriented"}
+                        {isZhTW ? "實戰導向" : "Practice-Oriented"}
                       </h4>
                       <p className="text-sm text-gray-300">
-                        {isZhTW ? "每個課程都以實?��??�為?��?，學完即?��??�到工�?�? : "Every course is based on real projects, ready to apply to work immediately after learning"}
+                        {isZhTW ? "每個課程都以實戰項目為基礎，學完即可應用到工作上" : "Every course is based on real projects, ready to apply to work immediately after learning"}
                       </p>
                     </div>
                     <div className="text-center">
@@ -971,10 +1027,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <Heart className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="font-semibold text-white mb-2">
-                        {isZhTW ? "貼�??��?" : "Caring Guidance"}
+                        {isZhTW ? "貼心指導" : "Caring Guidance"}
                       </h4>
                       <p className="text-sm text-gray-300">
-                        {isZhTW ? "?��?一對�??��?，確保�?位學?�都?��?上學習進度" : "Provide one-on-one guidance to ensure every student can keep up with the learning progress"}
+                        {isZhTW ? "提供一對一指導，確保每位學員都能跟上學習進度" : "Provide one-on-one guidance to ensure every student can keep up with the learning progress"}
                       </p>
                     </div>
                     <div className="text-center">
@@ -982,10 +1038,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <Rocket className="w-8 h-8 text-white" />
                       </div>
                       <h4 className="font-semibold text-white mb-2">
-                        {isZhTW ? "?��??�新" : "Continuous Innovation"}
+                        {isZhTW ? "持續創新" : "Continuous Innovation"}
                       </h4>
                       <p className="text-sm text-gray-300">
-                        {isZhTW ? "緊�? AI ?�術發展�?課�??�容?��??�新" : "Keep up with AI technology development, course content continuously updated"}
+                        {isZhTW ? "緊跟 AI 技術發展，課程內容持續更新" : "Keep up with AI technology development, course content continuously updated"}
                       </p>
                     </div>
                   </div>
@@ -993,19 +1049,19 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
 
-            {/* ?��?麼�?設這個課�?*/}
+            {/* 為什麼開設這個課程*/}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <MessageCircle className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isZhTW ? "?�課?��?" : "Why This Course"}
+                  {isZhTW ? "開課理念" : "Why This Course"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className={`p-6 bg-gradient-to-r ${instructorTheme.gradient} rounded-lg`}>
                   <blockquote className="text-white text-lg leading-relaxed italic">
                     {isZhTW 
-                      ? "?�在?�去?�年裡�??��??�太多人�?AI ?�滿好�??��??��?從�??��?，�??�到很�?企業?��??�用 AI ?�缺乏實?��?驗。�??�設?�個課程�?就是要填補這個空????讓�??�人?�能輕�?上�? AI 工具，並且�?�???�到工�??��?活中，創?�實?�價?�。這�??�是一?�?�術課程�??�是一?�改變�?工�??��??�思維模�??��?程。�?
+                      ? "「在過去兩年裡，我見過太多人對AI充滿好奇但不知從何開始，也看到很多企業想要使用 AI 但缺乏實戰經驗。我創設這個課程，就是要填補這個空缺——讓每個人都能輕鬆上手 AI 工具，並且真正應用到工作和生活中，創造實際價值。這不只是一個技術課程，而是一個改變你工作和思維模式的旅程。」"
                       : "\"In the past two years, I've seen too many people curious about AI but not knowing where to start, and many companies wanting to use AI but lacking practical experience. I created this course to fill this gap ??to make AI tools accessible to everyone and truly applicable to work and life, creating real value. This is not just a technical course, but a journey that will change your way of working and thinking.\""
                     }
                   </blockquote>
@@ -1022,27 +1078,27 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
 
-            {/* ?�絡?��? */}
+            {/* 聯絡方式 */}
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-6">
                 <div className="text-center">
                   <h3 className="text-xl font-bold text-white mb-4">
-                    {isZhTW ? "?��?了解?��?�? : "Want to Learn More?"}
+                    {isZhTW ? "想要了解更多？" : "Want to Learn More?"}
                   </h3>
                   <p className="text-gray-300 mb-6">
                     {isZhTW 
-                      ? "?�任何課程相?��?題�?歡�??��??�絡?�。�??�親?��?覆�?一位學?��??��???
+                      ? "對任何課程相關問題，歡迎隨時聯絡我。我會親自回覆每一位學員的詢問。"
                       : "If you have any course-related questions, feel free to contact me anytime. I personally respond to every student's inquiry."
                     }
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button variant="ghost" className={`${instructorTheme.accent} hover:bg-gray-700`} onClick={handleWhatsApp}>
                       <MessageCircle className="w-4 h-4 mr-2" />
-                      {isZhTW ? "WhatsApp ?�絡" : "WhatsApp Contact"}
+                      {isZhTW ? "透過 WhatsApp 查詢/報名" : "WhatsApp Inquiry"}
                     </Button>
                     <Button className={`${instructorTheme.secondary} text-white`} onClick={handleRegister}>
                       <Calendar className="w-4 h-4 mr-2" />
-                      {isZhTW ? "立即?��?" : "Enroll Now"}
+                      {isZhTW ? "立即報名" : "Enroll Now"}
                     </Button>
                   </div>
                 </div>
@@ -1057,41 +1113,41 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             {/* 學員評價 */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "�?學員評價" : "�?Student Reviews"}
+                {isZhTW ? "學員評價" : "Student Reviews"}
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
                 {[
                   {
                     name: "Sarah L.",
-                    role: "?�碼?�銷專員",
+                    role: "數碼行銷專員",
                     avatar: "S",
                     rating: 5,
-                    comment: "Kenneth 導師?��?學方式�?實用，�?學�?了用 AI 工具製�?專業�???�。現?��??�工作�??��??��? 300%�?,
-                    project: "?�公?�製作�? AI �???�獲得�? 50 ?��??�次??
+                    comment: "Kenneth 導師的課程讓我學會了用 Zapier 和 ChatGPT API 自動化客戶查詢處理。現在我的工作效率提升了 300%，每天節省3小時重複工作時間。",
+                    project: "建立自動化客服系統，客戶滿意度提升到95%"
                   },
                   {
                     name: "Michael C.",
-                    role: "?�由?��???,
+                    role: "中小企業老闆",
                     avatar: "M",
                     rating: 5,
-                    comment: "課�??�容很全?��?從�??�到製�??��?詳細?�學?�Kling AI ??Minimax ?��??��??��??��??��?一層�???,
-                    project: "?�課程�?巧接�?3 ?��?業�??��??�入增�?�?$15,000"
+                    comment: "課程教會我用 Make.com 整合各種系統，從訂單處理到庫存管理都自動化了。大大減少了人手成本和錯誤率。",
+                    project: "實施全自動化營運流程，成本降低40%"
                   },
                   {
                     name: "Jenny W.",
-                    role: "?�容?��???,
+                    role: "營銷經理",
                     avatar: "J",
                     rating: 5,
-                    comment: "?�?�歡 Photoshop ?��??�巧�??��?！學?��??�可以快?�製作出專業級�??��?展示?��?,
-                    project: "Instagram 粉絲�?2K 增長??25K"
+                    comment: "學會了用 AI 工具自動生成個性化郵件和社媒內容。潛在客戶轉換率從15%提升到35%，營銷效果顯著提升。",
+                    project: "自動化營銷活動帶來300%ROI提升"
                   },
                   {
                     name: "David K.",
-                    role: "中�?企老�?",
+                    role: "IT主管",
                     avatar: "D",
                     rating: 5,
-                    comment: "以�?要花 $20,000 請廣?�公?��??�在?�己就能?�出高質?��?�???�。�??��??��?�?,
-                    project: "?�製�???�帶�?$100,000 ?�售�?
+                    comment: "Kenneth的教學很實用，我用n8n建立了完整的業務自動化工作流程。現在數據報告自動生成，決策速度快了很多。",
+                    project: "建立商業智能系統，決策效率提升200%"
                   }
                 ].map((testimonial, index) => (
                   <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
@@ -1103,7 +1159,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
                             <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                            <span className="text-sm text-gray-400">??{testimonial.role}</span>
+                            <span className="text-sm text-gray-400">— {testimonial.role}</span>
                           </div>
                           <div className="flex items-center gap-1 mb-3">
                             {[...Array(testimonial.rating)].map((_, i) => (
@@ -1112,7 +1168,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                           </div>
                           <p className="text-gray-300 mb-3 leading-relaxed">"{testimonial.comment}"</p>
                           <div className={`text-sm ${instructorTheme.primary} font-semibold`}>
-                            ?? ?��?：{testimonial.project}
+                            ✅ 成果：{testimonial.project}
                           </div>
                         </div>
                       </div>
@@ -1122,54 +1178,40 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </div>
             </div>
 
-            {/* 學員作�???*/}
+            {/* 學員作品展示 */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "?�� 學員作�??? : "?�� Student Showcase"}
+                {isZhTW ? "🎨 學員作品展示" : "🎨 Student Showcase"}
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {[
                   {
-                    title: "AI ?��?�????,
+                    title: "智能客服自動化系統",
                     student: "Sarah L.",
-                    description: "使用 Kling AI 製�??�護?��?�??，獲�?50 ?��??�次??,
-                    tech: ["Kling AI", "CapCut", "Photoshop"],
-                    result: "50 ?��??�次??
+                    description: "使用 Zapier + ChatGPT API 建立24小時智能客服，自動處理常見查詢",
+                    tech: ["Zapier", "ChatGPT API", "Slack"],
+                    result: "客戶滿意度提升至95%"
                   },
                   {
-                    title: "?�能家�??��?展示",
+                    title: "全自動化營運流程",
                     student: "Michael C.",
-                    description: "結�? AI ?��??��?業�??��??�能家�??��?�?��??,
-                    tech: ["Minimax AI", "ChatGPT", "CapCut"],
-                    result: "客戶滿�?�?95%"
+                    description: "使用 Make.com 整合訂單、庫存、會計系統，實現全流程自動化",
+                    tech: ["Make.com", "Google Sheets", "Webhooks"],
+                    result: "營運成本降低40%"
                   },
                   {
-                    title: "美�?餐廳?�廣??,
+                    title: "AI 營銷自動化系統",
                     student: "Jenny W.",
-                    description: "?�用 AI 字�??��??�特?��?美�?餐廳�?��?�容",
-                    tech: ["AI 字�?", "Kling AI", "Photoshop"],
-                    result: "餐廳訂座增�? 40%"
+                    description: "建立個性化郵件營銷和社媒內容自動生成系統",
+                    tech: ["n8n", "ChatGPT API", "Airtable"],
+                    result: "轉換率提升至35%"
                   },
                   {
-                    title: "?��??��??��???,
+                    title: "商業智能報告系統",
                     student: "David K.",
-                    description: "使用 Photoshop ?��??�巧製作�??��??��?展示??,
-                    tech: ["Photoshop", "AI ?��?", "ChatGPT"],
-                    result: "轉�??��???25%"
-                  },
-                  {
-                    title: "企業?��??��?",
-                    student: "Lisa T.",
-                    description: "?��?業製作�? AI ?��??��?，獲得管?�層讚�?",
-                    tech: ["AI ?�音", "CapCut", "AI 字�?"],
-                    result: "?��?額�??�目機�?"
-                  },
-                  {
-                    title: "?��??��??��?",
-                    student: "Alex R.",
-                    description: "?�用課�??�巧製作�??��??��??��?",
-                    tech: ["Kling AI", "Minimax", "ChatGPT"],
-                    result: "?��??��?度�???60%"
+                    description: "使用 n8n 建立自動化數據收集和報告生成系統",
+                    tech: ["n8n", "Google Sheets", "AI 分析"],
+                    result: "決策效率提升200%"
                   }
                 ].map((showcase, index) => (
                   <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
@@ -1177,7 +1219,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                       <div className={`h-32 bg-gradient-to-br ${instructorTheme.gradient} rounded-lg mb-4 flex items-center justify-center`}>
                         <div className="text-white text-center">
                           <PlayCircle className="w-12 h-12 mx-auto mb-2" />
-                          <div className="text-sm font-semibold">作�?展示</div>
+                          <div className="text-sm font-semibold">作品展示</div>
                         </div>
                       </div>
                       <h4 className="font-semibold text-white mb-2">{showcase.title}</h4>
@@ -1191,7 +1233,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         ))}
                       </div>
                       <div className={`text-sm ${instructorTheme.primary} font-semibold`}>
-                        ?? {showcase.result}
+                        ✅ 成果：{showcase.result}
                       </div>
                     </CardContent>
                   </Card>
@@ -1199,28 +1241,28 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </div>
             </div>
 
-            {/* 統�??��? */}
+            {/* 統計數據 */}
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-white mb-6 text-center">
-                  {isZhTW ? "?? 課�??��?統�?" : "?? Course Impact Statistics"}
+                  {isZhTW ? "📊 課程影響統計" : "📊 Course Impact Statistics"}
                 </h3>
                 <div className="grid md:grid-cols-4 gap-6 text-center">
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>500+</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "完�?學員" : "Graduates"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "完課學員" : "Graduates"}</div>
                   </div>
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>4.9/5</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "平�?評�?" : "Average Rating"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "平均評分" : "Average Rating"}</div>
                   </div>
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>85%</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "就業?��??? : "Career Advancement"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "就業提升" : "Career Advancement"}</div>
                   </div>
                   <div>
                     <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>300%</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "平�??��??��?" : "Efficiency Improvement"}</div>
+                    <div className="text-sm text-gray-400">{isZhTW ? "平均效率提升" : "Efficiency Improvement"}</div>
                   </div>
                 </div>
               </CardContent>
@@ -1269,7 +1311,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       
       <div className="container mx-auto px-4 py-8 pt-24">
         {/* Hero Section */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12 lg:items-start">
+        <div className={`grid lg:grid-cols-3 gap-8 mb-12 ${learningPathExtended ? 'lg:items-stretch' : 'lg:items-start'}`}>
           {/* Left Sidebar */}
           <div className="lg:col-span-1 flex flex-col h-fit sticky top-24">
             {/* Instructor Info Card */}
@@ -1314,45 +1356,45 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                     onClick={handleRegister}
                   >
                     <Calendar className="w-4 h-4 mr-2" />
-                    {isZhTW ? "立即?��?" : "Register Now"}
+                    {isZhTW ? "立即報名" : "Register Now"}
                   </Button>
 
 
 
                   <Button variant="ghost" className={`w-full ${instructorTheme.accent} hover:bg-gray-700`} onClick={handleWhatsApp}>
                     <MessageCircle className="w-4 h-4 mr-2" />
-                    {isZhTW ? "?��? WhatsApp ?�詢/?��?" : "WhatsApp Inquiry"}
+                    {isZhTW ? "透過 WhatsApp 查詢/報名" : "WhatsApp Inquiry"}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
 
                   {/* Value Proposition */}
                   <div className="mt-4 pt-4 border-t border-gray-600">
                     <div className="text-sm font-semibold text-white mb-3">
-                      {isZhTW ? "?�� 課�??��? : "?�� Course Value"}
+                      {isZhTW ? "🎁 課程價值" : "🎁 Course Value"}
                     </div>
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "永�?觀?��??? : "Lifetime Access"}</span>
+                        <span>{isZhTW ? "永久觀看" : "Lifetime Access"}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "課�?源代�?筆�?下�?" : "Source Code & Notes Download"}</span>
+                        <span>{isZhTW ? "課程源代碼筆記下載" : "Source Code & Notes Download"}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "導師?��??�援" : "Instructor Q&A Support"}</span>
+                        <span>{isZhTW ? "導師問答支援" : "Instructor Q&A Support"}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>{isZhTW ? "證書?�發" : "Certificate of Completion"}</span>
+                        <span>{isZhTW ? "證書頒發" : "Certificate of Completion"}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="text-center pt-4 border-t border-gray-600">
                     <div className="text-sm text-gray-400">{pricingInfo.enterprise}</div>
-                    <div className={`text-xs ${instructorTheme.accent} cursor-pointer`}>{isZhTW ? "了解?��?" : "Learn More"} ??/div>
+                    <div className={`text-xs ${instructorTheme.accent} cursor-pointer`}>{isZhTW ? "了解更多" : "Learn More"}</div>
                   </div>
                 </div>
               </CardContent>
@@ -1362,7 +1404,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-lg text-white">
-                  {isZhTW ? "?? ?��??��?" : "?? Related Articles"}
+                  {isZhTW ? "相關文章" : "Related Articles"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
@@ -1402,7 +1444,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
           </div>
 
           {/* Right Content */}
-          <div className="lg:col-span-2 flex flex-col">
+          <div className={`lg:col-span-2 flex flex-col ${learningPathExtended ? 'h-full' : ''}`}>
             <div className="mb-6">
               <Badge className={`bg-gray-800 ${instructorTheme.accent} hover:bg-gray-700 mb-4`}>
                 {courseInfo.badge}
@@ -1436,7 +1478,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             </div>
 
             {/* Tab Content */}
-            <div className="flex-1 min-h-[500px] max-h-[calc(100vh-24rem)] overflow-y-auto pl-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-track-gray-800/50">
+            <div className={`flex-1 ${learningPathExtended ? 'min-h-[1200px]' : 'min-h-[500px] max-h-[calc(100vh-24rem)]'} ${learningPathExtended ? '' : 'overflow-y-auto'} pl-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-track-gray-800/50`}>
               {renderTabContent()}
             </div>
           </div>

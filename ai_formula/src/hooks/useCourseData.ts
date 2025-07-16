@@ -76,7 +76,9 @@ export const useCourseData = (isZhHK: boolean) => {
     try {
       setIsLoading(true);
       
-      if (product.category === 'prompt-engineering') {
+      if (product.category === 'business-automation') {
+        navigate('/courses/business-automation');
+      } else if (product.category === 'prompt-engineering') {
         navigate('/prompt-engineering/overview');
       } else if (product.category === 'programming') {
         navigate('/coding-basics/overview');

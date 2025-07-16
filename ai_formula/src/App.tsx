@@ -8,6 +8,7 @@ import { ViewCountProvider } from '@/contexts/ViewCountContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import ScrollToTop from '@/components/ScrollToTop'; // 新增：滾動到頂部組件
 
 // Pages
 import HomePage from '@/pages/general/HomePage';
@@ -28,15 +29,20 @@ import AIBusinessAutomationOutline from '@/pages/courses/AIBusinessAutomationOut
 import AIBusinessAutomationLearning from '@/pages/courses/AIBusinessAutomationLearning';
 import AIBusinessAutomationTheme from '@/pages/courses/AIBusinessAutomationTheme';
 import AIBusinessAutomationUnit from '@/pages/courses/AIBusinessAutomationUnit';
+import AIBusinessAutomationQuiz from '@/pages/courses/AIBusinessAutomationQuiz';
 
 // Tools Page
 import Tools from '@/pages/Tools';
+
+// Design System Demo
+import DesignSystemDemo from '@/pages/DesignSystemDemo';
 
 // Legal Pages
 import TermsOfService from '@/pages/legal/TermsOfService';
 import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 
 import './App.css';
+import './styles/progress-styles.css'; // 新增：進度追蹤樣式
 
 function App() {
   return (
@@ -45,6 +51,8 @@ function App() {
         <AuthProvider>
           <ViewCountProvider>
             <Router>
+              {/* 🎯 重要：ScrollToTop 組件必須放在這裡，在 Router 內部但在 Routes 之前 */}
+              <ScrollToTop />
               <div className="App">
                 <Navigation />
                 <Routes>
@@ -65,7 +73,11 @@ function App() {
                   <Route path="/courses/ai-business-automation" element={<AIBusinessAutomationOutline />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId" element={<AIBusinessAutomationTheme />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId/unit/:unitId" element={<AIBusinessAutomationUnit />} />
+                  <Route path="/courses/ai-business-automation/theme/:themeId/quiz" element={<AIBusinessAutomationQuiz />} />
                   <Route path="/courses/ai-business-automation/learning" element={<AIBusinessAutomationLearning />} />
+                  
+                  {/* Design System Demo */}
+                  <Route path="/design-system" element={<DesignSystemDemo />} />
                   
                   {/* Tools Page */}
                   <Route path="/tools" element={<Tools />} />

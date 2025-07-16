@@ -43,8 +43,8 @@ const AIBusinessAutomationOutline: React.FC = () => {
     badge: isZhHK ? "免費課程總覽" : "Free Course Preview",
     title: isZhHK ? "AI 商業自動化實戰課程" : "AI Business Automation Practice Course",
     subtitle: isZhHK ? "掌握實用的 AI 自動化技術，透過智能自動化解決方案轉型您的業務營運並推動增長。" : "Master practical AI automation techniques to transform your business operations and drive growth through intelligent automation solutions.",
-    instructor: "Kenneth Wong",
-    instructorTitle: isZhHK ? "AI 自動化專家" : "AI Automation Expert"
+    instructor: "Kenneth",
+    instructorTitle: isZhHK ? "AI 行銷開發者與自動化專家" : "AI Marketing Developer & Automation Specialist"
   };
 
   // Step 2: 定義課程統計
@@ -142,9 +142,9 @@ const AIBusinessAutomationOutline: React.FC = () => {
 
   // Step 6: 定義價格信息
   const pricingInfo = {
-    series: isZhHK ? "免費" : "Free",
-    price: isZhHK ? "HK$4,990" : "HK$4,990",
-    originalPrice: "",
+    series: isZhHK ? "免費課程" : "Free Course",
+    price: isZhHK ? "免費" : "Free",
+    originalPrice: "", // 免費課程不顯示原價
     aiInOne: isZhHK ? "完全免費" : "Completely Free",
     studentPrice: "",
     enterprise: isZhHK ? "企業培訓服務請聯繫我們" : "Contact us for enterprise training"
@@ -238,6 +238,7 @@ const AIBusinessAutomationOutline: React.FC = () => {
       targetAudience={targetAudience}
       onStartLearning={handleStartLearning}
       onWhatsApp={handleWhatsApp}
+      learningPathExtended={true} // 啟用拉長的學習路徑容器
     />
   );
 };

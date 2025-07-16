@@ -76,7 +76,7 @@ export const digitalProducts: DigitalProduct[] = [
     level: "Intermediate",
     levelCht: "中級",
     price: "免費",
-    originalPrice: "HK$4,980",
+    originalPrice: "", // 免費課程不顯示原價
     image: "🤖",
     type: "Business Automation",
     typeCht: "商業自動化",

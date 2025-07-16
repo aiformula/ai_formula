@@ -25,7 +25,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
     <div className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-6 border border-gray-700/50 sticky top-24">
       <h3 className="text-2xl font-bold mb-6 text-yellow-400 flex items-center gap-2">
         <Target className="w-6 h-6" />
-        {language === 'en' ? 'Learning Path' : 'å­¸ç?è·¯å?'}
+        {language === 'en' ? 'Learning Path' : 'å­¸ï¿½?è·¯ï¿½?'}
       </h3>
       
       {parts.map((part, index) => (
@@ -96,7 +96,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
       {/* Completion Status */}
       <div className="mt-6 pt-4 border-t border-gray-600">
         <div className="text-sm text-gray-400 mb-2">
-          {language === 'en' ? 'Progress' : '?²åº¦'}
+          {language === 'en' ? 'Progress' : '?ï¿½åº¦'}
         </div>
         <div className="flex items-center gap-2">
           <div className="flex-1 bg-gray-700 rounded-full h-2">
@@ -122,8 +122,8 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
       >
         <CheckCircle className="w-5 h-5" />
         {completedParts.includes(currentPartData.number)
-          ? (language === 'en' ? 'Completed!' : 'å·²å??ï?')
-          : (language === 'en' ? 'Mark Complete' : 'æ¨™è?å®Œæ?')
+          ? (language === 'en' ? 'Completed!' : 'å·²ï¿½??ï¿½ï¿½?')
+          : (language === 'en' ? 'Mark Complete' : 'æ¨™ï¿½?å®Œï¿½?')
         }
       </button>
     </div>

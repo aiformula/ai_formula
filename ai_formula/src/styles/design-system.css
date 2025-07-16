@@ -1,0 +1,285 @@
+/* ====================================
+   AI FORMULA DESIGN SYSTEM
+   統一的設計系統 - 所有UI元素的基礎
+   ==================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ COLOR SYSTEM ============ */
+@layer base {
+  :root {
+    /* Primary Brand Colors */
+    --ai-formula-primary: #FFD600;
+    --ai-formula-primary-hover: #EAB308;
+    --ai-formula-secondary: #FFA500;
+    
+    /* Primary Color Variants */
+    --ai-formula-primary-light: rgba(255, 214, 0, 0.1);
+    --ai-formula-primary-medium: rgba(255, 214, 0, 0.2);
+    --ai-formula-primary-strong: rgba(255, 214, 0, 0.35);
+    
+    /* Dark Theme Colors */
+    --ai-formula-dark: #121212;
+    --ai-formula-dark-light: #161616;
+    --ai-formula-dark-medium: #1c1c1c;
+    --ai-formula-dark-card: #202020;
+    
+    /* Accent Colors */
+    --ai-formula-accent-blue: #3B82F6;
+    --ai-formula-accent-purple: #8B5CF6;
+    --ai-formula-accent-pink: #EC4899;
+    --ai-formula-accent-cyan: #06B6D4;
+    
+    /* Status Colors */
+    --ai-formula-success: #10B981;
+    --ai-formula-warning: #F59E0B;
+    --ai-formula-error: #EF4444;
+    --ai-formula-info: #60A5FA;
+    
+    /* Gray Scale */
+    --ai-formula-gray-50: #F9FAFB;
+    --ai-formula-gray-100: #F3F4F6;
+    --ai-formula-gray-200: #E5E7EB;
+    --ai-formula-gray-300: #D1D5DB;
+    --ai-formula-gray-400: #9CA3AF;
+    --ai-formula-gray-500: #6B7280;
+    --ai-formula-gray-600: #4B5563;
+    --ai-formula-gray-700: #374151;
+    --ai-formula-gray-800: #1F2937;
+    --ai-formula-gray-900: #111827;
+    
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    
+    /* Spacing Scale */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  }
+}
+
+/* ============ TYPOGRAPHY SYSTEM ============ */
+@layer base {
+  h1 {
+    @apply text-4xl font-bold leading-tight text-gray-900;
+    font-size: var(--font-size-4xl);
+    line-height: 1.2;
+  }
+  
+  h2 {
+    @apply text-3xl font-semibold leading-tight text-gray-800;
+    font-size: var(--font-size-3xl);
+    line-height: 1.3;
+  }
+  
+  h3 {
+    @apply text-2xl font-semibold leading-snug text-gray-700;
+    font-size: var(--font-size-2xl);
+    line-height: 1.4;
+  }
+  
+  h4 {
+    @apply text-xl font-medium leading-normal text-gray-700;
+    font-size: var(--font-size-xl);
+    line-height: 1.5;
+  }
+  
+  p {
+    @apply text-base leading-relaxed text-gray-600;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+  }
+}
+
+/* ============ BUTTON SYSTEM ============ */
+@layer components {
+  /* ==========  NAVIGATION BUTTON SYSTEM ========== */
+  
+  /* Base Navigation Button */
+  .nav-button-base {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+    min-height: 44px; /* Touch-friendly size */
+  }
+  
+  /* Primary Navigation - Forward Actions */
+  .nav-button-primary {
+    @apply nav-button-base text-black;
+    background: linear-gradient(135deg, var(--ai-formula-primary) 0%, var(--ai-formula-primary-hover) 100%);
+    box-shadow: 0 4px 12px rgba(255, 199, 0, 0.25);
+  }
+  
+  .nav-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 199, 0, 0.35);
+  }
+  
+  .nav-button-primary:active {
+    transform: translateY(0);
+  }
+  
+  /* Secondary Navigation - Backward Actions */
+  .nav-button-secondary {
+    @apply nav-button-base text-white bg-gray-700/60 border border-gray-600/50;
+  }
+  
+  .nav-button-secondary:hover {
+    @apply bg-gray-600/70 border-gray-500/70;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Success Navigation - Completion Actions */
+  .nav-button-success {
+    @apply nav-button-base text-white;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  }
+  
+  .nav-button-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+  }
+  
+  /* Disabled Navigation */
+  .nav-button-disabled {
+    @apply nav-button-base text-gray-500 bg-gray-800/30 border border-gray-700/30 cursor-not-allowed;
+    pointer-events: none;
+  }
+  
+  /* Context-Aware Navigation Labels */
+  .nav-label-context {
+    @apply flex flex-col items-start;
+  }
+  
+  .nav-label-primary {
+    @apply font-semibold text-sm;
+  }
+  
+  .nav-label-secondary {
+    @apply font-normal text-xs opacity-75;
+  }
+
+  /* Primary Button - 主要動作按鈕 */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-black transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background: linear-gradient(135deg, var(--ai-formula-primary) 0%, var(--ai-formula-primary-hover) 100%);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--ai-formula-primary-hover) 0%, #D4A100 100%);
+  }
+  
+  /* Secondary Button - 次要動作按鈕 */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium text-white bg-gray-700/50 border-2 border-gray-600/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-secondary:hover {
+    @apply border-gray-500/70 text-white bg-gray-600/60;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Accent Button - 突出動作按鈕 */
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background: linear-gradient(135deg, var(--ai-formula-accent-blue) 0%, var(--ai-formula-accent-purple) 100%);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-accent:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ============ PROGRESS BAR SYSTEM ============ */
+@layer components {
+  .progress-bar {
+    @apply w-full h-2 bg-gray-700/50 rounded-full overflow-hidden;
+  }
+  
+  .progress-bar-fill {
+    @apply h-full transition-all duration-500 ease-out rounded-full;
+    background: linear-gradient(90deg, var(--ai-formula-accent-blue) 0%, var(--ai-formula-accent-purple) 100%);
+  }
+  
+  .progress-bar-large {
+    @apply h-3;
+  }
+  
+  .progress-bar-small {
+    @apply h-1;
+  }
+}
+
+/* ============ CARD SYSTEM ============ */
+@layer components {
+  .card-base {
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-white/10 transition-all duration-200;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .card-base:hover {
+    @apply border-white/20;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  
+  .card-interactive {
+    @apply cursor-pointer;
+  }
+  
+  .card-interactive:hover {
+    @apply border-blue-200;
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ============ BADGE SYSTEM ============ */
+@layer components {
+  .badge-success {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    background-color: var(--ai-formula-success);
+    color: white;
+  }
+  
+  .badge-warning {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    background-color: var(--ai-formula-warning);
+    color: white;
+  }
+  
+  .badge-primary {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-black;
+    background-color: var(--ai-formula-primary);
+  }
+} 

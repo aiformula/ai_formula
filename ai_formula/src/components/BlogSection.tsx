@@ -114,20 +114,20 @@ const BlogSection = () => {
   }
 
   return (
-    <section className="py-8" style={{ backgroundColor: '#121212' }}>
-      <div className="container mx-auto px-4">
+    <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#121212' }}>
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-16"
         >
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               {isZhTW ? 'AI 策略資訊' : 'AI Strategy & Information'}
             </h2>
-            <p className="text-xl text-gray-300 lg:text-right">
+            <p className="text-xl text-gray-300 lg:text-right lg:max-w-md">
               {isZhTW ? '各種實用 AI 資訊，一頁看懂所有！' : 'Various useful AI information, all in one page!'}
             </p>
           </div>
@@ -150,7 +150,7 @@ const BlogSection = () => {
               </CardHeader>
               <CardContent className="flex-1">
                 {/* 4篇隨機文章列表 */}
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-5">
                   {randomPosts.map((post, index) => {
                     const CategoryIcon = getCategoryIcon(post.category)
                     return (
@@ -159,7 +159,7 @@ const BlogSection = () => {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
-                        className="flex space-x-3 p-3 rounded-lg bg-gray-700/30 hover:bg-gray-700/50 transition-all duration-300 group cursor-pointer"
+                        className="flex space-x-4 p-4 rounded-lg bg-gray-700/30 hover:bg-gray-700/50 transition-all duration-300 group cursor-pointer border border-gray-600/20 hover:border-blue-500/30"
                       >
                         <div className="flex-shrink-0">
                           <div className={`w-10 h-10 ${getCategoryIconBackground(post.category)} rounded-lg flex items-center justify-center`}>
@@ -206,19 +206,19 @@ const BlogSection = () => {
                     </Badge>
                   </div>
                 </div>
-                <CardContent className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center text-sm text-gray-300 mb-3">
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span className="mr-4">{isZhTW ? featuredPost.date : featuredPost.dateEn}</span>
+                <CardContent className="p-8 flex-1 flex flex-col">
+                  <div className="flex items-center text-sm text-gray-300 mb-4">
+                    <Clock className="h-4 w-4 mr-2" />
+                    <span className="mr-6">{isZhTW ? featuredPost.date : featuredPost.dateEn}</span>
                     <span>{isZhTW ? featuredPost.readTime : featuredPost.readTimeEn}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 group-hover:text-blue-300 transition-colors leading-tight">
                     {isZhTW ? featuredPost.title : featuredPost.titleEn}
                   </h3>
-                  <p className="text-gray-200 text-base leading-relaxed mb-6 flex-1">
+                  <p className="text-gray-200 text-lg leading-relaxed mb-8 flex-1">
                     {isZhTW ? featuredPost.excerpt : featuredPost.excerptEn}
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200 transition-colors mt-auto">
+                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200 transition-colors mt-auto pt-4">
                     <span className="mr-2">{isZhTW ? '閱讀更多' : 'Read More'}</span>
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
