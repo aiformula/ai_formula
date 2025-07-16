@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Clock, Trophy, Users2, Zap } from "lucide-react";
+import { ArrowRight, Clock, Zap, Trophy, Users2, Target } from "lucide-react";
 
 const About = () => {
   const fadeIn = {
@@ -11,62 +11,51 @@ const About = () => {
 
   const features = [
     {
-      icon: (
-        <span className="relative inline-block w-6 h-6">
-          {/* Static clock face */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="absolute top-0 left-0 w-6 h-6">
-            <circle cx="12" cy="12" r="9" stroke="#FACC15" strokeWidth="2" fill="none" />
-          </svg>
-          {/* Rotating clock hand */}
-          <motion.svg
-            width="24" height="24" viewBox="0 0 24 24" fill="none"
-            className="absolute top-0 left-0 w-6 h-6"
-            style={{ originX: "50%", originY: "50%" }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          >
-            <rect x="11.25" y="6" width="1.5" height="7" rx="0.75" fill="#FACC15" />
-          </motion.svg>
-        </span>
-      ),
+      icon: <Clock className="w-6 h-6" />,
       title: "Save Valuable Time",
-      description: "Say goodbye to repetitive tasks and focus your energy on more creative work."
+      description: "Specialized tools to help you focus and concentrate on any platform."
     },
     {
-      icon: (
-        <motion.span
-          className="inline-block w-6 h-6"
-          animate={{ filter: ["brightness(1)", "brightness(2)", "brightness(1)"] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Zap className="w-6 h-6" />
-        </motion.span>
-      ),
-      title: "Boost Work Efficiency",
-      description: "Learn to use the latest AI tools, such as Large Language Models and N8N automation workflows."
+      icon: <Zap className="w-6 h-6" />,
+      title: "Automate Work Processes", 
+      description: "Learn to use various AI tools like Large Language Models and N8N automation workflows to streamline your work."
+    },
+    {
+      icon: <Target className="w-6 h-6" />,
+      title: "Intelligent Learning System",
+      description: "Using the most advanced AI technology to provide you with personalized learning experiences and intelligent guidance."
     },
     {
       icon: <Trophy className="w-6 h-6" />,
-      title: "Increase Competitiveness",
-      description: "Whether you are an individual or a company, mastering AI is your ticket to the future."
+      title: "Results-Oriented",
+      description: "Focus on practical applications and effectiveness, ensuring the knowledge you learn can be directly applied to work."
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
+  const teamMembers = [
+    {
+      name: "Alex Lee",
+      role: "Founder & CEO",
+      bio: "Rich experience in AI and educational technology, committed to providing users with the best learning experience"
+    },
+    {
+      name: "Sarah Wong",
+      role: "Technical Director", 
+      bio: "Expert in machine learning and natural language processing, responsible for platform technical architecture and innovation"
+    },
+    {
+      name: "Michael Chen",
+      role: "Education Director",
+      bio: "PhD in Educational Psychology, focused on designing effective online learning courses and teaching methods"
     }
-  };
+  ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  const stats = [
+    { number: "10,000+", label: "Active Users" },
+    { number: "50+", label: "Professional Courses" },
+    { number: "95%", label: "Satisfaction Rate" },
+    { number: "24/7", label: "Technical Support" }
+  ];
 
   return (
     <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
@@ -113,147 +102,149 @@ const About = () => {
           </div>
         </motion.section>
 
-        {/* Features Grid */}
-        <motion.div 
-          className="grid md:grid-cols-3 gap-8 mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.2 }
-              }}
-              className="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-all cursor-pointer shadow-[0_0_24px_2px_rgba(250,204,21,0.35)]"
-            >
-              <div className="text-yellow-400 mb-4 relative flex items-center justify-center">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Who We Are Section */}
-        <motion.div 
-          className="bg-gray-900 rounded-xl p-8 mb-16 shadow-[0_0_24px_2px_rgba(250,204,21,0.35)]"
-          initial="initial"
-          animate="animate"
-          variants={fadeIn}
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div 
-            className="flex items-center mb-6"
-            whileHover={{ x: 5 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.1, 1],
-                rotate: [0, 5, -5, 0]
-              }}
-              transition={{ 
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="relative"
-            >
-              <Users2 className="w-8 h-8 text-yellow-400 mr-4" />
-            </motion.div>
-            <h2 className="text-2xl font-bold">Who We Are?</h2>
-          </motion.div>
-          <p className="text-gray-400">
-            We are a team of AI enthusiasts and automation technology experts. We don't just teach theory – 
-            we share real-world experience and provide comprehensive application strategies to ensure you can 
-            immediately apply what you learn.
-          </p>
-        </motion.div>
-
-        {/* AI Tools Section */}
-        <motion.div 
-          className="bg-gray-900 rounded-xl p-8 mb-16 shadow-[0_0_24px_2px_rgba(250,204,21,0.35)]"
-          initial="initial"
-          animate="animate"
-          variants={fadeIn}
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div 
-            className="flex items-center mb-6"
-            whileHover={{ x: 5 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="relative">
-              <Brain className="w-8 h-8 text-yellow-400 mr-4" />
-            </div>
-            <h2 className="text-2xl font-bold">How Do We View AI Tools?</h2>
-          </motion.div>
-          <p className="text-gray-400 mb-6">
-            The market is full of AI tools, from Large Language Models (ChatGPT, Gemini), image generation tools (Midjourney), 
-            to automation workflows (N8N, Zapier). We believe there is no absolute "best" or "worst" tool – only the tool 
-            that best fits your current needs.
-          </p>
-          <p className="text-gray-400">
-            Our approach is practical: we teach you how to evaluate and choose the right tools for your specific situation, 
-            and more importantly, how to integrate them seamlessly into your workflow.
-          </p>
-        </motion.div>
-
-        {/* What We Offer Section */}
-        <motion.div 
-          className="text-center mb-20"
+        {/* Features Section */}
+        <motion.section 
+          className="mb-20"
           initial="initial"
           animate="animate"
           variants={fadeIn}
         >
-          <h2 className="text-3xl font-bold mb-8">What Do We Offer?</h2>
-          <motion.div 
-            className="grid md:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                title: "AI Online Courses",
-                description: "From beginner to advanced, covering practical AI tools and concepts."
-              },
-              {
-                title: "Enterprise Solutions",
-                description: "Custom automation solutions for your company."
-              },
-              {
-                title: "One-on-One Consultation",
-                description: "Answers to all your AI application questions."
-              }
-            ].map((service, index) => (
+          <h2 className="text-3xl font-bold text-white text-center mb-12">Why Choose Us</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
               <motion.div
-                key={service.title}
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -5,
-                  transition: { duration: 0.2 }
-                }}
-                className="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-all cursor-pointer shadow-[0_0_24px_2px_rgba(250,204,21,0.35)]"
+                key={index}
+                className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-bold mb-4 text-yellow-400">
-                  {service.title}
-                </h3>
-                <p className="text-gray-400">{service.description}</p>
+                <div className="text-yellow-400 mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                <p className="text-gray-300">{feature.description}</p>
               </motion.div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Stats Section */}
+        <motion.section 
+          className="mb-20"
+          initial="initial"
+          animate="animate"
+          variants={fadeIn}
+        >
+          <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-8 border border-gray-700">
+            <h2 className="text-3xl font-bold text-white text-center mb-12">Our Achievements</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">{stat.number}</div>
+                  <div className="text-gray-300">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Team Section */}
+        <motion.section 
+          className="mb-20"
+          initial="initial"
+          animate="animate"
+          variants={fadeIn}
+        >
+          <h2 className="text-3xl font-bold text-white text-center mb-12">Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Users2 className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">{member.name}</h3>
+                <p className="text-yellow-400 mb-3">{member.role}</p>
+                <p className="text-gray-300">{member.bio}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Vision Section */}
+        <motion.section 
+          className="mb-20"
+          initial="initial"
+          animate="animate"
+          variants={fadeIn}
+        >
+          <div className="bg-gradient-to-r from-yellow-600/10 to-orange-600/10 rounded-lg p-8 border border-yellow-500/20">
+            <h2 className="text-3xl font-bold text-white text-center mb-8">Our Vision</h2>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-lg text-gray-300 leading-relaxed text-center">
+                We aspire to become the world's leading AI education platform, enabling everyone to easily learn and apply 
+                artificial intelligence technology. Through our courses and tools, you will be able to:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <div className="flex items-start">
+                  <ArrowRight className="w-6 h-6 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                  <p className="text-gray-300">Master the latest AI technologies and tools</p>
+                </div>
+                <div className="flex items-start">
+                  <ArrowRight className="w-6 h-6 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                  <p className="text-gray-300">Enhance work efficiency and innovation capabilities</p>
+                </div>
+                <div className="flex items-start">
+                  <ArrowRight className="w-6 h-6 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                  <p className="text-gray-300">Build competitive advantages and meet future challenges</p>
+                </div>
+                <div className="flex items-start">
+                  <ArrowRight className="w-6 h-6 text-yellow-400 mr-3 mt-1 flex-shrink-0" />
+                  <p className="text-gray-300">Become a leader in the AI era</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Contact Section */}
+        <motion.section 
+          className="text-center"
+          initial="initial"
+          animate="animate"
+          variants={fadeIn}
+        >
+          <h2 className="text-3xl font-bold text-white mb-8">Contact Us</h2>
+          <p className="text-lg text-gray-300 mb-8">
+            If you have any questions or suggestions, feel free to contact us anytime.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.button
+              className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Send Email
+            </motion.button>
+            <motion.button
+              className="border border-yellow-600 text-yellow-400 hover:bg-yellow-600 hover:text-white px-8 py-3 rounded-lg font-medium transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Live Chat
+            </motion.button>
+          </div>
+        </motion.section>
       </div>
     </div>
   );
