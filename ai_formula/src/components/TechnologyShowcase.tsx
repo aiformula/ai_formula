@@ -15,7 +15,7 @@ const TechnologyShowcase = () => {
   ];
 
   return (
-    <section className="py-12 px-6 bg-slate-900">
+    <section className="py-12 px-6" style={{ backgroundColor: '#121212' }}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

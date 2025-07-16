@@ -36,7 +36,7 @@ const FeaturedCoursesSection: React.FC = () => {
   const downloadsText = isZhHK ? '下載' : 'downloads';
 
   return (
-    <section className="py-20 bg-slate-900">
+    <section className="py-20" style={{ backgroundColor: '#121212' }}>
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

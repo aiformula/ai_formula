@@ -108,7 +108,7 @@ const AudiencePathwaysSection = () => {
   };
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-900 relative overflow-hidden">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>

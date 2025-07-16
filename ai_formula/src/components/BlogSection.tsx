@@ -114,7 +114,7 @@ const BlogSection = () => {
   }
 
   return (
-    <section className="py-8 bg-slate-900">
+    <section className="py-8" style={{ backgroundColor: '#121212' }}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div

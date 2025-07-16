@@ -537,7 +537,7 @@ const FreeCourseOutlineTemplate: React.FC<FreeCourseOutlineTemplateProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
       <div className="container mx-auto px-4 py-8 pt-24">

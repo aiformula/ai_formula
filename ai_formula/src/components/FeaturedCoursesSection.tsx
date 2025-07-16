@@ -13,7 +13,7 @@ const FeaturedCoursesSection = () => {
   const featuredCourses = getFeaturedProducts().slice(0, 3); // Show top 3 featured courses
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-900 relative overflow-hidden">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>

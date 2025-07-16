@@ -56,7 +56,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section className="py-12 px-6 bg-slate-900 relative overflow-hidden">
+    <section className="py-12 px-6 relative overflow-hidden" style={{ backgroundColor: '#121212' }}>
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

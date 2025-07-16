@@ -155,7 +155,7 @@ const AIBusinessAutomationTheme: React.FC = () => {
 
   if (!currentTheme) {
     return (
-      <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
+      <div className="min-h-screen text-white flex items-center justify-center" style={{ backgroundColor: '#121212' }}>
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">{isZhHK ? '主題未找到' : 'Theme Not Found'}</h1>
           <Button onClick={() => navigate('/courses/ai-business-automation')}>

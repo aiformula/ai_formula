@@ -408,7 +408,7 @@ const Course: React.FC = () => {
   const otherCourses = filteredCourses.filter(course => !course.featured);
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
       <HeroSection isZhTW={isZhTW} />

@@ -249,7 +249,7 @@ export const AILearningOSPage: React.FC<AILearningOSPageProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="h-screen bg-slate-900 text-slate-50 overflow-hidden">
+    <div ref={containerRef} className="h-screen text-slate-50 overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* ?�部導航�?*/}
       <div className="h-16 bg-slate-800 border-b border-slate-600 flex items-center justify-between px-6">
         <div className="flex items-center space-x-4">

@@ -10,7 +10,7 @@ const MainHero = () => {
   const { t, language } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#121212' }}>
       {/* Animated background dots */}
       <div className="absolute inset-0">
         {[...Array(30)].map((_, i) => (

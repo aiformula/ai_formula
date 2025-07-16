@@ -8,7 +8,7 @@ const PrivacyPolicy: React.FC = () => {
   const isZhHK = language === 'zh-HK';
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
       <main className="container mx-auto px-4 py-16">
