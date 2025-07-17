@@ -56,7 +56,7 @@ const CourseDetail: React.FC = () => {
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="pt-20 px-4 max-w-7xl mx-auto">
+      <div className="page-content-with-nav px-4 max-w-7xl mx-auto">
         {/* Back Button */}
         <button
           onClick={() => navigate('/courses')}

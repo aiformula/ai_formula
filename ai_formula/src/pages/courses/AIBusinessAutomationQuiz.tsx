@@ -236,7 +236,7 @@ const AIBusinessAutomationQuiz: React.FC = () => {
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+              <div className="page-content-with-nav pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           
           {/* Back Button */}

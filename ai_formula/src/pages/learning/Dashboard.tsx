@@ -194,7 +194,7 @@ const Dashboard: React.FC = () => {
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 page-content-with-nav pb-8">
         {/* 用戶歡迎區塊 */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">

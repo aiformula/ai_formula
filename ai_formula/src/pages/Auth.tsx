@@ -30,8 +30,8 @@ const Auth: React.FC = () => {
       {/* Navigation */}
       <Navigation />
 
-      {/* Main Auth Content */}
-      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Main Auth Content - 修復導航重疊問題 */}
+      <div className="min-h-screen flex items-center justify-center centered-content-with-nav px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Background gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-transparent to-orange-500/5"></div>
         
