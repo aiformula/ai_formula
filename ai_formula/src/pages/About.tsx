@@ -62,9 +62,9 @@ const About = () => {
       <Navigation />
       
       <div className="max-w-6xl mx-auto px-4">
-        {/* Hero Section */}
+        {/* Hero Section - 🎯 使用統一的頁面內容類 */}
         <motion.section
-          className="text-center mb-20 pt-32"
+          className="text-center mb-20 page-content"
           initial="initial"
           animate="animate"
           variants={fadeIn}

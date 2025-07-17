@@ -1,12 +1,11 @@
 /* ====================================
-   AI FORMULA 統一空間與尺寸系統
-   Unified Spacing & Sizing System
-   基於 8px Grid System 的專業設計規範
+   AI FORMULA 統一間距與尺寸系統
+   基於 8px Grid System 的設計基礎
    ==================================== */
 
 :root {
-  /* ============ 第一步：間距系統 (8px 基礎單位) ============ */
-  /* Spacing System - Based on 8px Grid */
+  /* ============ 第一步：間距系統 ============ */
+  /* 8px Grid-Based Spacing System */
   
   --space-0: 0px;           /* 無間距 */
   --space-1: 4px;           /* xx-small: icon 同文字之間嘅微調 */
@@ -22,6 +21,20 @@
   --space-16: 64px;         /* huge: 主要區域之間 */
   --space-20: 80px;         /* massive: Hero section 間距 */
   --space-24: 96px;         /* gigantic: 頁面級別間距 */
+
+  /* ============ 導航列偏移量系統 ============ */
+  /* Navigation Offset System - 解決固定導航列重疊問題 */
+  
+  --nav-height-mobile: 56px;    /* 移動端導航列高度 (py-4 + 內容) */
+  --nav-height-desktop: 72px;   /* 桌面端導航列高度 (md:py-6 + 內容) */
+  
+  /* 頁面內容偏移量 - 確保內容不被導航列遮住 */
+  --nav-offset-mobile: var(--nav-height-mobile);     /* 56px 移動端偏移 */
+  --nav-offset-desktop: var(--nav-height-desktop);   /* 72px 桌面端偏移 */
+  
+  /* 額外安全邊距 - 提供視覺緩衝 */
+  --nav-safe-mobile: calc(var(--nav-height-mobile) + var(--space-4));    /* 72px = 56px + 16px */
+  --nav-safe-desktop: calc(var(--nav-height-desktop) + var(--space-6));  /* 96px = 72px + 24px */
 
   /* ============ 第二步：字體層級系統 ============ */
   /* Typography Scale - 清晰的資訊層次 */
@@ -119,91 +132,125 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  font-weight: var(--font-medium);
-  border-radius: var(--radius-md);
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
   white-space: nowrap;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-medium);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
-.btn-unified-sm {
+/* 按鈕尺寸變體 */
+.btn-unified.btn-sm {
   height: var(--btn-height-sm);
   padding: 0 var(--btn-padding-x-sm);
   font-size: var(--text-sm);
 }
 
-.btn-unified-md {
+.btn-unified.btn-md {
   height: var(--btn-height-md);
   padding: 0 var(--btn-padding-x-md);
   font-size: var(--text-base);
 }
 
-.btn-unified-lg {
+.btn-unified.btn-lg {
   height: var(--btn-height-lg);
   padding: 0 var(--btn-padding-x-lg);
   font-size: var(--text-lg);
 }
 
-.btn-unified-xl {
-  height: var(--btn-height-xl);
-  padding: 0 var(--btn-padding-x-xl);
-  font-size: var(--text-xl);
-}
-
 /* 🎯 標準化卡片系統 */
 .card-unified {
   border-radius: var(--radius-lg);
-  background: white;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgb(0 0 0 / 0.05);
-  transition: all 0.2s ease;
-}
-
-.card-unified-sm {
-  padding: var(--card-padding-sm);
-}
-
-.card-unified-md {
   padding: var(--card-padding-md);
-}
-
-.card-unified-lg {
-  padding: var(--card-padding-lg);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
 }
 
 .card-unified:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-1px);
 }
 
 /* 🎯 標準化輸入框系統 */
 .input-unified {
-  border-radius: var(--radius-md);
-  border: 1px solid rgb(0 0 0 / 0.1);
-  padding: 0 var(--space-3);
-  font-size: var(--text-base);
-  transition: all 0.2s ease;
-}
-
-.input-unified-sm {
-  height: var(--input-height-sm);
-  font-size: var(--text-sm);
-}
-
-.input-unified-md {
   height: var(--input-height-md);
-}
-
-.input-unified-lg {
-  height: var(--input-height-lg);
-  font-size: var(--text-lg);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  font-size: var(--text-base);
+  transition: all 0.3s ease;
 }
 
 .input-unified:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.1);
+}
+
+/* ============ 第五步：全局頁面佈局系統 ============ */
+/* Global Page Layout System - 解決導航列重疊問題 */
+
+/* 🎯 主要內容容器 - 適用於所有頁面 */
+.page-content {
+  /* 移動端設置 */
+  padding-top: var(--nav-safe-mobile);
+  
+  /* 桌面端響應式設置 */
+  @media (min-width: 768px) {
+    padding-top: var(--nav-safe-desktop);
+  }
+}
+
+/* 🎯 緊湊版頁面內容 - 當需要較少頂部間距時使用 */
+.page-content-compact {
+  /* 移動端設置 */
+  padding-top: var(--nav-offset-mobile);
+  
+  /* 桌面端響應式設置 */
+  @media (min-width: 768px) {
+    padding-top: var(--nav-offset-desktop);
+  }
+}
+
+/* 🎯 特殊頁面內容 - 當需要完全自定義時使用 */
+.page-content-custom {
+  /* 基礎偏移，避免被導航列遮住 */
+  padding-top: var(--nav-height-mobile);
+  
+  @media (min-width: 768px) {
+    padding-top: var(--nav-height-desktop);
+  }
+}
+
+/* 🎯 工具類 - 快速應用導航偏移 */
+.pt-nav-safe {
+  padding-top: var(--nav-safe-mobile) !important;
+  
+  @media (min-width: 768px) {
+    padding-top: var(--nav-safe-desktop) !important;
+  }
+}
+
+.pt-nav-offset {
+  padding-top: var(--nav-offset-mobile) !important;
+  
+  @media (min-width: 768px) {
+    padding-top: var(--nav-offset-desktop) !important;
+  }
+}
+
+/* 🎯 頁面最小高度調整 - 確保頁面內容填滿視窗 */
+.min-h-screen-nav {
+  min-height: calc(100vh - var(--nav-height-mobile));
+  
+  @media (min-width: 768px) {
+    min-height: calc(100vh - var(--nav-height-desktop));
+  }
 }
 
 /* 🎯 字體層級類 */
@@ -273,5 +320,43 @@
     --space-responsive-sm: var(--space-4);  /* 移動端小，桌面端標準 */
     --space-responsive-md: var(--space-6);  /* 移動端標準，桌面端大 */
     --space-responsive-lg: var(--space-8);  /* 移動端大，桌面端超大 */
+  }
+}
+
+/* ============ 導航列重疊修復系統 ============ */
+/* Navigation Overlap Fix System */
+
+/* 🎯 主要內容容器 - 適用於所有頁面 */
+.page-content {
+  /* 移動端：72px (56px 導航高度 + 16px 安全邊距) */
+  padding-top: calc(var(--nav-height-mobile, 56px) + var(--space-4, 16px)) !important;
+}
+
+@media (min-width: 768px) {
+  .page-content {
+    /* 桌面端：96px (72px 導航高度 + 24px 安全邊距) */
+    padding-top: calc(var(--nav-height-desktop, 82px) + var(--space-6, 24px)) !important;
+  }
+}
+
+/* 🎯 緊湊版頁面內容 - 較少間距版本 */
+.page-content-compact {
+  padding-top: var(--nav-height-mobile, 56px) !important;
+}
+
+@media (min-width: 768px) {
+  .page-content-compact {
+    padding-top: var(--nav-height-desktop, 72px) !important;
+  }
+}
+
+/* 🎯 快速修復工具類 */
+.pt-nav-safe {
+  padding-top: 92px !important; /* 移動端安全間距 */
+}
+
+@media (min-width: 868px) {
+  .pt-nav-safe {
+    padding-top: 106px !important; /* 桌面端安全間距 */
   }
 } 

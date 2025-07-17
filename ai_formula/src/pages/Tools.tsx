@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Tools = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const fadeIn = {
@@ -25,11 +25,10 @@ const Tools = () => {
     { id: 'marketing', label: 'AI行銷工具', labelEn: 'AI Marketing Tools' }
   ];
 
-  const allTools = [
+  const tools = [
     // Design Tools
     {
       id: 'freepik',
-      category: 'design',
       title: t('tools.freepik.title'),
       description: t('tools.freepik.description'),
       tag: t('tools.freepik.tag'),
@@ -40,13 +39,13 @@ const Tools = () => {
         className="w-52 h-42 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-blue-100 text-blue-800'
+      tagColor: 'bg-blue-100 text-blue-800',
+      category: 'design'
     },
     
     // Data Tools
     {
       id: 'mem0',
-      category: 'data',
       title: t('tools.mem0.title'),
       description: t('tools.mem0.description'),
       tag: t('tools.mem0.tag'),
@@ -57,11 +56,11 @@ const Tools = () => {
         className="w-52 h-42 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-blue-100 text-blue-800'
+      tagColor: 'bg-blue-100 text-blue-800',
+      category: 'data'
     },
     {
       id: 'chat4data',
-      category: 'data',
       title: t('tools.chat4data.title'),
       description: t('tools.chat4data.description'),
       tag: t('tools.chat4data.tag'),
@@ -72,13 +71,13 @@ const Tools = () => {
         className="w-32 h-32 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-green-100 text-green-800'
+      tagColor: 'bg-green-100 text-green-800',
+      category: 'data'
     },
     
     // AI Video Tools
     {
       id: 'hailuo',
-      category: 'video',
       title: t('tools.hailuo.title'),
       description: t('tools.hailuo.description'),
       tag: t('tools.hailuo.tag'),
@@ -89,11 +88,11 @@ const Tools = () => {
         className="w-40 h-32 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-red-100 text-red-800'
+      tagColor: 'bg-red-100 text-red-800',
+      category: 'video'
     },
     {
       id: 'higgsfield',
-      category: 'video',
       title: t('tools.higgsfield.title'),
       description: t('tools.higgsfield.description'),
       tag: t('tools.higgsfield.tag'),
@@ -104,11 +103,11 @@ const Tools = () => {
         className="w-52 h-42 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-purple-100 text-purple-800'
+      tagColor: 'bg-purple-100 text-purple-800',
+      category: 'video'
     },
     {
       id: 'unstableml',
-      category: 'video',
       title: t('tools.unstableml.title'),
       description: t('tools.unstableml.description'),
       tag: t('tools.unstableml.tag'),
@@ -119,11 +118,11 @@ const Tools = () => {
         className="w-32 h-32 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-cyan-100 text-cyan-800'
+      tagColor: 'bg-cyan-100 text-cyan-800',
+      category: 'video'
     },
     {
       id: '4dv',
-      category: 'video',
       title: t('tools.4dv.title'),
       description: t('tools.4dv.description'),
       tag: t('tools.4dv.tag'),
@@ -134,11 +133,11 @@ const Tools = () => {
         className="w-40 h-32 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-indigo-100 text-indigo-800'
+      tagColor: 'bg-indigo-100 text-indigo-800',
+      category: 'video'
     },
     {
       id: 'seaweedapt',
-      category: 'video',
       title: t('tools.seaweedapt.title'),
       description: t('tools.seaweedapt.description'),
       tag: t('tools.seaweedapt.tag'),
@@ -149,13 +148,13 @@ const Tools = () => {
         className="w-52 h-42 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-teal-100 text-teal-800'
+      tagColor: 'bg-teal-100 text-teal-800',
+      category: 'video'
     },
     
     // Marketing Tools
     {
       id: 'headai',
-      category: 'marketing',
       title: t('tools.headai.title'),
       description: t('tools.headai.description'),
       tag: t('tools.headai.tag'),
@@ -166,99 +165,184 @@ const Tools = () => {
         className="w-52 h-42 object-contain"
       />,
       bgGradient: 'from-transparent to-transparent',
-      tagColor: 'bg-orange-100 text-orange-800'
+      tagColor: 'bg-orange-100 text-orange-800',
+      category: 'marketing'
     }
   ];
 
   const filteredTools = selectedCategory === 'all' 
-    ? allTools 
-    : allTools.filter(tool => tool.category === selectedCategory);
+    ? tools 
+    : tools.filter(tool => tool.category === selectedCategory);
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      {/* Hero Section */}
-      <div className="pt-32 pb-16 px-8 relative">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 via-transparent to-yellow-500/5 opacity-50"></div>
-        <div className="relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+      {/* 🎯 使用統一的頁面內容類替換自定義padding */}
+      <div 
+        className="container mx-auto px-4 py-8 page-content"
+        style={{
+          paddingBottom: 'var(--space-16)', // 64px 頁面底部間距
+          paddingLeft: 'var(--space-4)', // 16px 左右間距
+          paddingRight: 'var(--space-4)'
+        }}
+      >
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+          style={{ marginBottom: 'var(--space-16)' }} // 64px 標題下方間距
+        >
+          <h1 
+            className="font-bold text-white"
+            style={{
+              fontSize: 'var(--text-6xl)', // 60px H2 標題
+              fontWeight: 'var(--font-bold)',
+              lineHeight: 'var(--leading-tight)',
+              marginBottom: 'var(--space-6)' // 24px 標題下間距
+            }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-yellow-200 bg-clip-text text-transparent">
-              {t('tools.title')}
-            </h1>
-            <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              {t('tools.subtitle')}
-            </p>
-          </motion.div>
+            {/* 🎯 修復本地化標題 - 中文顯示"實用工具"，英文顯示"Useful Tools" */}
+            {t('tools.title')}
+          </h1>
+          <p 
+            className="text-gray-300 max-w-3xl mx-auto"
+            style={{
+              fontSize: 'var(--text-xl)', // 20px 副標題
+              fontWeight: 'var(--font-normal)',
+              lineHeight: 'var(--leading-normal)'
+            }}
+          >
+            {language === 'zh-HK' 
+              ? '發現強大的AI工具，提升您的生產力和創造力' 
+              : 'Discover powerful AI tools to boost your productivity and creativity'
+            }
+          </p>
+        </motion.div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {toolCategories.map((category) => (
-              <Button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                variant={selectedCategory === category.id ? "default" : "outline"}
-                className={`px-6 py-2.5 font-medium transition-all duration-300 rounded-full ${
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-yellow-500 to-yellow-400 text-black hover:from-yellow-400 hover:to-yellow-300 border-0 shadow-lg shadow-yellow-500/25'
-                    : 'border-2 border-gray-600 text-gray-200 bg-gray-800/50 hover:border-yellow-500/70 hover:text-yellow-300 hover:bg-yellow-500/10 backdrop-blur-sm'
-                }`}
-              >
-                {category.label}
-              </Button>
-            ))}
-          </div>
+        {/* Category Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center"
+          style={{ 
+            gap: 'var(--space-3)', // 12px 按鈕間距
+            marginBottom: 'var(--space-12)' // 48px 下方間距
+          }}
+        >
+          {toolCategories.map((category) => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedCategory(category.id)}
+              className={`transition-all duration-300 ${
+                selectedCategory === category.id 
+                  ? 'bg-yellow-500 text-black hover:bg-yellow-400' 
+                  : 'border-gray-600 text-gray-300 hover:border-yellow-500 hover:text-yellow-500'
+              }`}
+            >
+              {/* 🎯 修復分類標籤本地化 */}
+              {language === 'zh-HK' ? category.label : category.labelEn}
+            </Button>
+          ))}
+        </motion.div>
 
-          {/* Tools Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {filteredTools.map((tool, index) => (
-              <motion.div
-                key={tool.id}
-                {...fadeIn}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+        {/* Tools Grid */}
+        <div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"
+          style={{ gap: 'var(--space-6)' }} // 24px 卡片間距
+        >
+          {filteredTools.map((tool, index) => (
+            <motion.div
+              key={tool.id}
+              {...fadeIn}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <Card 
+                className="bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 group h-full"
+                style={{
+                  borderRadius: 'var(--radius-lg)', // 12px 統一卡片圓角
+                  backgroundColor: 'rgba(17, 24, 39, 0.5)' // 統一卡片背景
+                }}
               >
-                <Card className="bg-gray-900/80 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 group backdrop-blur-sm overflow-hidden min-h-[400px] flex flex-col">
-                  <CardHeader className="pb-4">
-                    <div className={`w-full ${['freepik', 'mem0', 'chat4data', 'hailuo', 'higgsfield', 'unstableml', '4dv', 'seaweedapt', 'headai'].includes(tool.id) ? 'h-44' : 'h-28'} rounded-lg bg-gradient-to-br ${tool.bgGradient} flex items-center justify-center mb-4 border border-gray-600/30`}>
-                      {tool.icon}
-                    </div>
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <CardTitle className="text-gray-100 text-lg mb-3 group-hover:text-yellow-300 transition-colors line-clamp-2 font-semibold">
-                          {tool.title}
-                        </CardTitle>
-                        <Badge className="bg-gray-700/80 text-gray-200 border border-gray-600/50 mb-3 px-3 py-1">
-                          {tool.tag}
-                        </Badge>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0 flex flex-col flex-1 justify-between">
-                    <CardDescription className="text-gray-300 mb-4 leading-relaxed text-sm">
-                      {tool.description}
-                    </CardDescription>
-                    <div className="mt-auto pt-4">
-                      <Button
-                        onClick={() => window.open(tool.url, '_blank')}
-                        className="w-full bg-gray-800/50 hover:bg-yellow-500 border border-gray-700/50 hover:border-yellow-400 text-gray-200 hover:text-black font-medium transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/25 py-3 rounded-xl group/btn backdrop-blur-sm"
+                <CardHeader style={{ padding: 'var(--card-padding-md) var(--card-padding-md) var(--space-4)' }}>
+                  <div 
+                    className={`w-full h-28 rounded-lg bg-gradient-to-br ${tool.bgGradient} flex items-center justify-center border border-gray-600/30`}
+                    style={{
+                      borderRadius: 'var(--radius-md)', // 8px 圖標容器圓角
+                      marginBottom: 'var(--space-4)', // 16px 下方間距
+                      height: '112px' // 固定高度以保持一致性
+                    }}
+                  >
+                    {tool.icon}
+                  </div>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <CardTitle 
+                        className="text-white group-hover:text-yellow-400 transition-colors line-clamp-2"
+                        style={{
+                          fontSize: 'var(--text-lg)', // 18px 工具標題
+                          fontWeight: 'var(--font-semibold)',
+                          marginBottom: 'var(--space-3)' // 12px 標題下間距
+                        }}
                       >
-                        <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
-                        <span className="transition-colors duration-300">{t(`tools.${tool.id}.visitSite`)}</span>
-                      </Button>
+                        {tool.title}
+                      </CardTitle>
+                      <Badge 
+                        className="bg-gray-700/80 text-gray-200 border border-gray-600/50"
+                        style={{
+                          fontSize: 'var(--text-xs)', // 12px badge 文字
+                          padding: 'var(--space-1) var(--space-3)', // 4px 12px badge 內邊距
+                          marginBottom: 'var(--space-3)' // 12px 下方間距
+                        }}
+                      >
+                        {tool.tag}
+                      </Badge>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                  </div>
+                </CardHeader>
+                <CardContent style={{ paddingTop: '0', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flexGrow: 1 }}>
+                  <CardDescription 
+                    className="text-gray-300 leading-relaxed"
+                    style={{
+                      fontSize: 'var(--text-sm)', // 14px 描述文字
+                      lineHeight: 'var(--leading-relaxed)',
+                      marginBottom: 'var(--space-4)' // 16px 下方間距
+                    }}
+                  >
+                    {tool.description}
+                  </CardDescription>
+                  <div style={{ marginTop: 'auto', paddingTop: 'var(--space-4)' }}>
+                    <Button
+                      onClick={() => window.open(tool.url, '_blank')}
+                      className="w-full bg-gray-800/50 hover:bg-yellow-500 border border-gray-700/50 hover:border-yellow-400 text-gray-200 hover:text-black font-medium transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/25 backdrop-blur-sm"
+                      style={{
+                        height: 'var(--btn-height-md)', // 40px 按鈕高度
+                        fontSize: 'var(--text-sm)', // 14px 按鈕文字
+                        fontWeight: 'var(--font-medium)',
+                        borderRadius: 'var(--radius-xl)' // 16px 按鈕圓角
+                      }}
+                    >
+                      <ExternalLink 
+                        style={{ 
+                          width: 'var(--space-4)', 
+                          height: 'var(--space-4)',
+                          marginRight: 'var(--space-2)' 
+                        }} 
+                      />
+                      <span className="transition-colors duration-300">
+                        {t(`tools.${tool.id}.visitSite`)}
+                      </span>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>

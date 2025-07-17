@@ -1,5 +1,125 @@
 /* 🎯 AI商業自動化課程單元頁面 - 增強樣式 */
 
+/* ============ 按鈕系統樣式 ============ */
+/* AI Button Styles - 確保所有按鈕正確顯示 */
+
+.btn-ai-success {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3) !important;
+}
+
+.btn-ai-success:hover {
+  background: linear-gradient(135deg, #059669, #047857) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-ai-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3) !important;
+}
+
+.btn-ai-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4) !important;
+}
+
+.btn-ai-secondary {
+  background: rgba(75, 85, 99, 0.7) !important;
+  color: #d1d5db !important;
+  border: 1px solid rgba(75, 85, 99, 0.8) !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.btn-ai-secondary:hover {
+  background: rgba(75, 85, 99, 0.9) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-mobile-full {
+  width: 100% !important;
+}
+
+.btn-mobile-compact {
+  padding: 0.5rem 1rem !important;
+  font-size: 0.75rem !important;
+}
+
+/* ============ 動畫效果 ============ */
+.hover-lift:hover {
+  transform: translateY(-2px) !important;
+}
+
+.click-scale:active {
+  transform: scale(0.95) !important;
+}
+
+.focus-ring:focus {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+.focus-visible-enhanced:focus-visible {
+  outline: 2px solid #10b981 !important;
+  outline-offset: 2px !important;
+}
+
+/* ============ 頁面佈局優化 ============ */
+/* 避免內容被固定底部操作欄遮住 */
+
+.main-content-wrapper {
+  padding-bottom: 100px !important; /* 為底部操作欄留出空間 */
+}
+
+/* 底部操作欄樣式優化 */
+.bottom-action-bar {
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border-top: 1px solid rgba(75, 85, 99, 0.3) !important;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+@media (max-width: 640px) {
+  .bottom-action-bar {
+    padding: 1rem !important;
+  }
+  
+  .bottom-action-bar .btn-ai-success,
+  .bottom-action-bar .btn-ai-primary {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
 /* 響應式設計基礎 */
 @media (max-width: 640px) {
   .container {

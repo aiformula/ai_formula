@@ -411,62 +411,65 @@ const Course: React.FC = () => {
     <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <HeroSection isZhTW={isZhTW} />
-      
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            {/* Search and Filter */}
-            <div className="mb-12">
-              <div className="relative max-w-md mx-auto mb-8">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={isZhTW ? "搜尋課程..." : "Search courses..."}
-                  className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+      {/* 🎯 添加 page-content 類修復導航重疊問題 */}
+      <div className="page-content">
+        <HeroSection isZhTW={isZhTW} />
+        
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              {/* Search and Filter */}
+              <div className="mb-12">
+                <div className="relative max-w-md mx-auto mb-8">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder={isZhTW ? "搜尋課程..." : "Search courses..."}
+                    className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+                
+                <FilterSection 
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={setSelectedCategory}
+                  isZhTW={isZhTW}
                 />
               </div>
-              
-              <FilterSection 
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-                isZhTW={isZhTW}
-              />
-            </div>
 
-            {/* Featured Courses */}
-            {featuredCourses.length > 0 && (
-              <div className="mb-16">
-                <h2 className="text-3xl font-bold text-white mb-8">
-                  {isZhTW ? '精選課程' : 'Featured Courses'}
-                </h2>
-                <CourseGrid courses={featuredCourses} isZhTW={isZhTW} />
-              </div>
-            )}
-            
-            {/* Other Courses */}
-            {otherCourses.length > 0 && (
-              <div>
-                <h2 className="text-3xl font-bold text-white mb-8">
-                  {isZhTW ? '所有課程' : 'All Courses'}
-                </h2>
-                <CourseGrid courses={otherCourses} isZhTW={isZhTW} />
-              </div>
-            )}
-            
-            {/* No Results */}
-            {filteredCourses.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-400 text-lg">
-                  {isZhTW ? '沒有找到符合條件的課程' : 'No courses found matching your criteria'}
-                </p>
-              </div>
-            )}
+              {/* Featured Courses */}
+              {featuredCourses.length > 0 && (
+                <div className="mb-16">
+                  <h2 className="text-3xl font-bold text-white mb-8">
+                    {isZhTW ? '精選課程' : 'Featured Courses'}
+                  </h2>
+                  <CourseGrid courses={featuredCourses} isZhTW={isZhTW} />
+                </div>
+              )}
+              
+              {/* Other Courses */}
+              {otherCourses.length > 0 && (
+                <div>
+                  <h2 className="text-3xl font-bold text-white mb-8">
+                    {isZhTW ? '所有課程' : 'All Courses'}
+                  </h2>
+                  <CourseGrid courses={otherCourses} isZhTW={isZhTW} />
+                </div>
+              )}
+              
+              {/* No Results */}
+              {filteredCourses.length === 0 && (
+                <div className="text-center py-12">
+                  <p className="text-gray-400 text-lg">
+                    {isZhTW ? '沒有找到符合條件的課程' : 'No courses found matching your criteria'}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
       
       <Footer />
     </div>

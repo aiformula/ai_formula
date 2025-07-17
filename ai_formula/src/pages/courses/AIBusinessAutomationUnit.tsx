@@ -363,7 +363,7 @@ const AIBusinessAutomationUnit: React.FC = () => {
       
       <Navigation />
       
-      <div className="container mx-auto px-6 py-0" role="main" aria-label="學習頁面主要內容">
+      <div className="container mx-auto px-6 py-0 main-content-wrapper" role="main" aria-label="學習頁面主要內容">
         {/* 🎯 響應式智能Header - 移動端友善設計 */}
         <motion.header 
           className="header-ai-smart mb-6"
@@ -844,6 +844,79 @@ const AIBusinessAutomationUnit: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* 🎯 固定底部操作欄 - 確保按鈕始終可見 */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm border-t border-gray-700/50 p-4 z-40">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* 左側：學習進度信息 */}
+          <div className="flex items-center space-x-4">
+            <div className="text-sm text-gray-300">
+              單元 {unitId} / 9
+            </div>
+            <div className="text-sm text-gray-400">
+              {isCompleted ? '已完成' : '進行中'}
+            </div>
+          </div>
+
+          {/* 右側：操作按鈕 */}
+          <div className="flex items-center space-x-3">
+            {/* 上一課按鈕 */}
+            {navigationConfig.hasPrevUnit && (
+              <Button 
+                onClick={() => handleNavigatePrev(navigationConfig.prevUnitId)}
+                className="btn-ai-secondary px-4 py-2"
+                aria-label={`返回上一課：單元${navigationConfig.prevUnitId}`}
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                上一課
+              </Button>
+            )}
+
+            {/* 主要操作按鈕 */}
+            {!isCompleted ? (
+              // 未完成 - 顯示完成按鈕
+              <Button 
+                onClick={handleMarkComplete}
+                className="btn-ai-success px-6 py-3"
+                aria-label={`標記單元${unitId}為已完成`}
+              >
+                <CheckCircle className="w-4 h-4 mr-2" />
+                完成學習
+              </Button>
+            ) : navigationConfig.isLastUnitOfTheme ? (
+              // 已完成且是主題最後一課 - 顯示測驗按鈕
+              <Button 
+                onClick={handleNavigateQuiz}
+                className="btn-ai-primary px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400"
+                aria-label={`進入主題${themeId}的測驗`}
+              >
+                開始測驗
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            ) : navigationConfig.hasNextUnit ? (
+              // 已完成且有下一課 - 顯示下一課按鈕
+              <Button 
+                onClick={() => handleNavigateNext(navigationConfig.nextUnitId)}
+                className="btn-ai-primary px-6 py-3"
+                aria-label={`前往下一課：單元${navigationConfig.nextUnitId}`}
+              >
+                下一課
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            ) : (
+              // 課程結束 - 返回課程總覽
+              <Button 
+                onClick={handleNavigateBack}
+                className="btn-ai-secondary px-6 py-3"
+                aria-label="返回課程總覽"
+              >
+                課程完成
+                <CheckCircle className="w-4 h-4 ml-2" />
+              </Button>
+            )}
           </div>
         </div>
       </div>

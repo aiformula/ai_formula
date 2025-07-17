@@ -105,7 +105,7 @@ const AboutCht = () => {
       <div className="max-w-6xl mx-auto px-4">
         {/* Hero Section */}
         <motion.section
-          className="text-center mb-20 pt-32"
+          className="text-center mb-20 page-content"
           initial="initial"
           animate="animate"
           variants={fadeIn}
