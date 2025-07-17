@@ -77,24 +77,53 @@ const InstructorSection = () => {
   ];
 
   return (
-    <section className="py-12" style={{ backgroundColor: '#121212' }}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section 
+      className="py-12" 
+      style={{ 
+        backgroundColor: '#121212',
+        padding: 'var(--space-12) 0' // 統一區塊間距
+      }}
+    >
+      <div 
+        className="max-w-7xl mx-auto px-6"
+        style={{ padding: '0 var(--space-6)' }} // 統一容器內邊距
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center"
+          style={{ marginBottom: 'var(--space-16)' }} // 統一標題下方間距
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 
+            className="font-bold text-white"
+            style={{
+              fontSize: 'var(--text-6xl)', // 使用統一 H2 字體大小
+              fontWeight: 'var(--font-bold)',
+              lineHeight: 'var(--leading-tight)',
+              marginBottom: 'var(--space-4)'
+            }}
+          >
             {language === 'zh-HK' ? t('instructors.title') : 'About the'} <span className="text-yellow-500">{language === 'zh-HK' ? t('instructors.titleHighlight') : 'Instructors'}</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+          <p 
+            className="text-gray-300 max-w-4xl mx-auto"
+            style={{
+              fontSize: 'var(--text-xl)', // 統一副標題字體
+              fontWeight: 'var(--font-normal)',
+              lineHeight: 'var(--leading-normal)'
+            }}
+          >
             {language === 'zh-HK' ? t('instructors.subtitle') : 'Meet our world-class instructors who combine deep technical expertise with real-world business experience. Learn from industry leaders who have built and scaled AI solutions across marketing and development.'}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 🎯 統一卡片網格系統 */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          style={{ gap: 'var(--space-8)' }} // 統一卡片間距
+        >
           {instructors.map((instructor, index) => (
             <motion.div
               key={instructor.name}
@@ -103,60 +132,214 @@ const InstructorSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="bg-gray-800 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 overflow-hidden">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4 mb-6">
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${instructor.gradient} flex items-center justify-center text-2xl`}>
+              {/* 🎯 統一卡片設計 */}
+              <Card 
+                className="bg-gray-800 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 overflow-hidden h-full"
+                style={{
+                  borderRadius: 'var(--radius-lg)', // 統一卡片圓角
+                  backgroundColor: 'rgba(31, 41, 55, 1)', // 統一卡片背景
+                  border: '1px solid rgba(75, 85, 99, 1)'
+                }}
+              >
+                <CardContent 
+                  style={{ 
+                    padding: 'var(--card-padding-md)', // 統一卡片內邊距 24px
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'var(--space-6)' // 統一內部元素間距
+                  }}
+                >
+                  {/* 導師頭像和基本信息 */}
+                  <div 
+                    className="flex items-start space-x-4"
+                    style={{ gap: 'var(--space-4)' }} // 統一頭像和信息間距
+                  >
+                    <div 
+                      className={`w-16 h-16 rounded-full bg-gradient-to-br ${instructor.gradient} flex items-center justify-center text-2xl`}
+                      style={{
+                        width: 'var(--space-16)', // 64px 統一頭像大小
+                        height: 'var(--space-16)',
+                        borderRadius: 'var(--radius-full)',
+                        fontSize: 'var(--text-2xl)'
+                      }}
+                    >
                       {instructor.avatar}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-1">{instructor.name}</h3>
-                      <p className="text-yellow-500 text-sm mb-2">{instructor.title}</p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-400">
-                        <div className="flex items-center space-x-1">
-                          <BookOpen className="w-4 h-4" />
-                          <span>{instructor.specialty}</span>
+                      <h3 
+                        className="text-white font-bold"
+                        style={{
+                          fontSize: 'var(--text-xl)', // 統一導師姓名字體
+                          fontWeight: 'var(--font-bold)',
+                          marginBottom: 'var(--space-1)'
+                        }}
+                      >
+                        {instructor.name}
+                      </h3>
+                      <p 
+                        className="text-yellow-500"
+                        style={{
+                          fontSize: 'var(--text-sm)', // 統一職位字體
+                          marginBottom: 'var(--space-2)'
+                        }}
+                      >
+                        {instructor.title}
+                      </p>
+                      <div 
+                        className="flex items-center space-x-4 text-sm text-gray-400"
+                        style={{ gap: 'var(--space-4)' }}
+                      >
+                        <div 
+                          className="flex items-center space-x-1"
+                          style={{ gap: 'var(--space-1)' }}
+                        >
+                          <BookOpen 
+                            style={{ 
+                              width: 'var(--space-4)', 
+                              height: 'var(--space-4)' 
+                            }} 
+                          />
+                          <span 
+                            style={{ fontSize: 'var(--text-sm)' }}
+                          >
+                            {instructor.specialty}
+                          </span>
                         </div>
-                        <div className="flex items-center space-x-1">
-                          <Award className="w-4 h-4" />
-                          <span>{instructor.experience} {language === 'zh-HK' ? t('instructors.experience') : 'Experience'}</span>
+                        <div 
+                          className="flex items-center space-x-1"
+                          style={{ gap: 'var(--space-1)' }}
+                        >
+                          <Award 
+                            style={{ 
+                              width: 'var(--space-4)', 
+                              height: 'var(--space-4)' 
+                            }} 
+                          />
+                          <span 
+                            style={{ fontSize: 'var(--text-sm)' }}
+                          >
+                            {instructor.experience} {language === 'zh-HK' ? t('instructors.experience') : 'Experience'}
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  {/* 導師信息區塊 - 統一間距 */}
+                  <div 
+                    className="grid grid-cols-1 gap-6"
+                    style={{ gap: 'var(--space-6)' }} // 統一信息區塊間距
+                  >
                     <div>
-                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-HK' ? t('instructors.professionalJourney') : 'Professional Journey'}</h4>
-                      <p className="text-gray-300 text-sm leading-relaxed">{instructor.biography}</p>
+                      <h4 
+                        className="font-semibold text-yellow-500"
+                        style={{
+                          fontSize: 'var(--text-base)', // 統一小標題字體
+                          fontWeight: 'var(--font-semibold)',
+                          marginBottom: 'var(--space-2)'
+                        }}
+                      >
+                        {language === 'zh-HK' ? t('instructors.professionalJourney') : 'Professional Journey'}
+                      </h4>
+                      <p 
+                        className="text-gray-300 leading-relaxed"
+                        style={{
+                          fontSize: 'var(--text-sm)',
+                          lineHeight: 'var(--leading-relaxed)'
+                        }}
+                      >
+                        {instructor.biography}
+                      </p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-yellow-500 mb-2">{language === 'zh-HK' ? t('instructors.teachingPhilosophy') : 'Teaching Philosophy'}</h4>
-                      <p className="text-gray-300 text-sm leading-relaxed italic">"{instructor.philosophy}"</p>
+                      <h4 
+                        className="font-semibold text-yellow-500"
+                        style={{
+                          fontSize: 'var(--text-base)',
+                          fontWeight: 'var(--font-semibold)',
+                          marginBottom: 'var(--space-2)'
+                        }}
+                      >
+                        {language === 'zh-HK' ? t('instructors.teachingPhilosophy') : 'Teaching Philosophy'}
+                      </h4>
+                      <p 
+                        className="text-gray-300 italic leading-relaxed"
+                        style={{
+                          fontSize: 'var(--text-sm)',
+                          lineHeight: 'var(--leading-relaxed)'
+                        }}
+                      >
+                        "{instructor.philosophy}"
+                      </p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-yellow-500 mb-3">{language === 'zh-HK' ? t('instructors.keyQualifications') : 'AI Transformation Impact:'}</h4>
-                      <div className="grid grid-cols-1 gap-2">
+                      <h4 
+                        className="font-semibold text-yellow-500"
+                        style={{
+                          fontSize: 'var(--text-base)',
+                          fontWeight: 'var(--font-semibold)',
+                          marginBottom: 'var(--space-3)'
+                        }}
+                      >
+                        {language === 'zh-HK' ? t('instructors.keyQualifications') : 'AI Transformation Impact:'}
+                      </h4>
+                      <div 
+                        className="grid grid-cols-1 gap-2"
+                        style={{ gap: 'var(--space-2)' }}
+                      >
                         {instructor.qualifications.map((qual, qualIndex) => (
-                          <div key={qualIndex} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></div>
-                            <span className="text-gray-300 text-sm">{qual}</span>
+                          <div 
+                            key={qualIndex} 
+                            className="flex items-center space-x-2"
+                            style={{ gap: 'var(--space-2)' }}
+                          >
+                            <div 
+                              className="w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"
+                              style={{
+                                width: 'var(--space-2)',
+                                height: 'var(--space-2)',
+                                borderRadius: 'var(--radius-full)'
+                              }}
+                            ></div>
+                            <span 
+                              className="text-gray-300"
+                              style={{ fontSize: 'var(--text-sm)' }}
+                            >
+                              {qual}
+                            </span>
                           </div>
                         ))}
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-6 border-t border-gray-700">
+                  {/* 🎯 統一按鈕設計 */}
+                  <div 
+                    style={{ marginTop: 'var(--space-6)' }}
+                  >
                     <Button 
                       variant="outline" 
                       size="sm"
                       className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-300"
+                      style={{
+                        height: 'var(--btn-height-md)', // 40px 統一按鈕高度
+                        padding: '0 var(--btn-padding-x-md)', // 0 16px 統一按鈕內邊距
+                        fontSize: 'var(--text-sm)', // 14px 統一按鈕字體
+                        fontWeight: 'var(--font-medium)',
+                        borderRadius: 'var(--radius-md)', // 8px 統一按鈕圓角
+                        width: '100%'
+                      }}
                     >
                       {language === 'zh-HK' ? t('instructors.viewProfile') : 'View Full Profile'}
-                      <ChevronRight className="w-4 h-4 ml-2" />
+                      <ChevronRight 
+                        style={{ 
+                          width: 'var(--space-4)', 
+                          height: 'var(--space-4)',
+                          marginLeft: 'var(--space-2)'
+                        }} 
+                      />
                     </Button>
                   </div>
                 </CardContent>
@@ -169,4 +352,4 @@ const InstructorSection = () => {
   );
 };
 
-export default React.memo(InstructorSection); 
+export default InstructorSection; 

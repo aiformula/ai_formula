@@ -1,37 +1,31 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactSection = () => {
   const { t, language } = useLanguage();
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: ""
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: language === 'zh-HK' ? t('toast.messageSent') : 'Message Sent!',
-      description: language === 'zh-HK' ? t('toast.messageDescription') : "Thank you for your interest. We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: '', email: '', message: '' });
+    alert(language === 'zh-HK' ? '多謝你的留言！我們會盡快回覆。' : 'Thank you for your message! We\'ll get back to you soon.');
+    setFormData({ name: "", email: "", message: "" });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
-    });
+    }));
   };
 
   const contactInfo = [
@@ -56,42 +50,60 @@ const ContactSection = () => {
   ];
 
   return (
-    <section className="py-12 px-6 relative overflow-hidden" style={{ backgroundColor: '#121212' }}>
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section 
+      className="relative py-16"
+      style={{ 
+        backgroundColor: '#121212',
+        padding: 'var(--space-16) 0' // 統一區塊間距
+      }}
+    >
+      <div 
+        className="max-w-7xl mx-auto px-6"
+        style={{ padding: '0 var(--space-6)' }} // 統一容器內邊距
+      >
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center"
+          style={{ marginBottom: 'var(--space-16)' }} // 統一標題下方間距
         >
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+          <h2 
+            className="font-bold text-white"
+            style={{
+              fontSize: 'var(--text-6xl)', // 使用統一 H2 字體大小
+              fontWeight: 'var(--font-bold)',
+              lineHeight: 'var(--leading-tight)',
+              marginBottom: 'var(--space-4)'
+            }}
           >
-            {language === 'zh-HK' ? t('contact.title') : 'Ready to Transform Your Business?'}
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            {language === 'zh-HK' ? t('contact.title') : 'Get In Touch'}
+          </h2>
+          <p 
+            className="text-gray-300 max-w-2xl mx-auto"
+            style={{
+              fontSize: 'var(--text-xl)', // 統一副標題字體
+              fontWeight: 'var(--font-normal)',
+              lineHeight: 'var(--leading-normal)'
+            }}
           >
-            {language === 'zh-HK' ? t('contact.subtitle') : "Let's discuss how AI Formula can help you master AI and automate your business processes"}
-          </motion.p>
+            {language === 'zh-HK' ? t('contact.subtitle') : 'Ready to transform your business with AI?'}
+          </p>
         </motion.div>
 
-        {/* Contact Cards */}
+        {/* 🎯 統一聯繫卡片系統 */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8 mb-16"
+          className="grid md:grid-cols-3 gap-8"
+          style={{ 
+            gap: 'var(--space-8)', // 統一卡片間距
+            marginBottom: 'var(--space-16)' // 統一與表單的間距
+          }}
         >
           {contactInfo.map((info, index) => (
             <motion.div
@@ -103,25 +115,83 @@ const ContactSection = () => {
               whileHover={{ y: -5, scale: 1.02 }}
               className="text-center"
             >
-              <Card className="bg-gray-800 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300 p-6">
-                <CardContent className="p-0">
+              {/* 🎯 統一卡片設計 */}
+              <Card 
+                className="bg-gray-800 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300"
+                style={{
+                  borderRadius: 'var(--radius-lg)', // 統一卡片圓角
+                  backgroundColor: 'rgba(31, 41, 55, 1)', // 統一卡片背景
+                  border: '1px solid rgba(75, 85, 99, 1)'
+                }}
+              >
+                <CardContent 
+                  style={{ 
+                    padding: 'var(--card-padding-md)', // 統一卡片內邊距 24px
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 'var(--space-4)' // 統一內部元素間距
+                  }}
+                >
+                  {/* 統一圖標設計 */}
                   <motion.div 
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.3 }}
-                    className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4"
+                    className="bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full flex items-center justify-center"
+                    style={{
+                      width: 'var(--space-16)', // 64px 統一圖標容器大小
+                      height: 'var(--space-16)',
+                      borderRadius: 'var(--radius-full)'
+                    }}
                   >
-                    <info.icon className="w-8 h-8 text-white" />
+                    <info.icon 
+                      className="text-white" 
+                      style={{
+                        width: 'var(--space-8)', // 32px 統一圖標大小
+                        height: 'var(--space-8)'
+                      }}
+                    />
                   </motion.div>
-                  <h3 className="text-xl font-bold text-white mb-2">{info.title}</h3>
-                  <p className="text-yellow-500 font-medium mb-1">{info.content}</p>
-                  <p className="text-gray-400 text-sm">{info.description}</p>
+                  
+                  {/* 統一文字層級 */}
+                  <h3 
+                    className="font-bold text-white"
+                    style={{
+                      fontSize: 'var(--text-xl)', // 統一標題字體
+                      fontWeight: 'var(--font-bold)',
+                      marginBottom: 'var(--space-2)'
+                    }}
+                  >
+                    {info.title}
+                  </h3>
+                  
+                  <p 
+                    className="text-yellow-500 font-medium"
+                    style={{
+                      fontSize: 'var(--text-base)', // 統一內容字體
+                      fontWeight: 'var(--font-medium)',
+                      marginBottom: 'var(--space-1)'
+                    }}
+                  >
+                    {info.content}
+                  </p>
+                  
+                  <p 
+                    className="text-gray-400"
+                    style={{
+                      fontSize: 'var(--text-sm)', // 統一描述字體
+                      textAlign: 'center'
+                    }}
+                  >
+                    {info.description}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Contact Form */}
+        {/* Contact Form - 統一表單設計 */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -129,133 +199,153 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto"
         >
-          <Card className="bg-gray-800 border border-gray-700 hover:border-yellow-500/30 transition-all duration-300">
-            <CardContent className="p-8">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  {language === 'zh-HK' ? t('contact.form.title') : 'Get In Touch'}
+          <Card 
+            className="bg-gray-800 border border-gray-700 hover:border-yellow-500/30 transition-all duration-300"
+            style={{
+              borderRadius: 'var(--radius-lg)', // 統一卡片圓角
+              backgroundColor: 'rgba(31, 41, 55, 1)' // 統一卡片背景
+            }}
+          >
+            <CardContent 
+              style={{ 
+                padding: 'var(--card-padding-lg)' // 32px 大卡片內邊距
+              }}
+            >
+              <div 
+                className="text-center"
+                style={{ marginBottom: 'var(--space-8)' }}
+              >
+                <h3 
+                  className="font-bold text-white"
+                  style={{
+                    fontSize: 'var(--text-2xl)', // 統一表單標題字體
+                    fontWeight: 'var(--font-bold)',
+                    marginBottom: 'var(--space-2)'
+                  }}
+                >
+                  {language === 'zh-HK' ? t('contact.form.title') : 'Send Us a Message'}
                 </h3>
-                <p className="text-gray-300">
+                <p 
+                  className="text-gray-300"
+                  style={{
+                    fontSize: 'var(--text-base)', // 統一表單描述字體
+                    lineHeight: 'var(--leading-normal)'
+                  }}
+                >
                   {language === 'zh-HK' ? t('contact.form.description') : 'Fill out the form below and we\'ll get back to you within 24 hours'}
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+                style={{ gap: 'var(--space-6)' }}
+              >
                 <div>
-                  <Label htmlFor="name" className="text-white mb-2 block">
-                    {language === 'zh-HK' ? t('contact.form.name') : 'Full Name'}
-                  </Label>
+                  <label 
+                    htmlFor="name" 
+                    className="block text-gray-300 font-medium"
+                    style={{
+                      fontSize: 'var(--text-sm)',
+                      fontWeight: 'var(--font-medium)',
+                      marginBottom: 'var(--space-2)'
+                    }}
+                  >
+                    {language === 'zh-HK' ? '全名' : 'Full Name'}
+                  </label>
                   <Input
                     id="name"
                     name="name"
+                    type="text"
                     value={formData.name}
                     onChange={handleChange}
-                    className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-yellow-500 focus:ring-yellow-500"
-                    placeholder="Your full name"
                     required
+                    className="bg-gray-700 border-gray-600 text-white focus:border-yellow-500 focus:ring-yellow-500/20"
+                    placeholder={language === 'zh-HK' ? '請輸入您的全名' : 'Enter your full name'}
+                    style={{
+                      height: 'var(--input-height-md)', // 40px 統一輸入框高度
+                      padding: '0 var(--space-3)', // 0 12px 統一輸入框內邊距
+                      fontSize: 'var(--text-base)', // 統一輸入框字體
+                      borderRadius: 'var(--radius-md)' // 8px 統一輸入框圓角
+                    }}
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="email" className="text-white mb-2 block">
-                    {language === 'zh-HK' ? t('contact.form.email') : 'Email Address'}
-                  </Label>
+                  <label 
+                    htmlFor="email" 
+                    className="block text-gray-300 font-medium"
+                    style={{
+                      fontSize: 'var(--text-sm)',
+                      fontWeight: 'var(--font-medium)',
+                      marginBottom: 'var(--space-2)'
+                    }}
+                  >
+                    {language === 'zh-HK' ? '電子郵件' : 'Email Address'}
+                  </label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-yellow-500 focus:ring-yellow-500"
-                    placeholder="your@email.com"
                     required
+                    className="bg-gray-700 border-gray-600 text-white focus:border-yellow-500 focus:ring-yellow-500/20"
+                    placeholder={language === 'zh-HK' ? '請輸入您的電子郵件地址' : 'Enter your email address'}
+                    style={{
+                      height: 'var(--input-height-md)', // 統一輸入框高度
+                      padding: '0 var(--space-3)', // 統一輸入框內邊距
+                      fontSize: 'var(--text-base)', // 統一輸入框字體
+                      borderRadius: 'var(--radius-md)' // 統一輸入框圓角
+                    }}
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="message" className="text-white mb-2 block">
-                    {language === 'zh-HK' ? t('contact.form.message') : 'How can we help you?'}
-                  </Label>
-                  
-                  {/* 建議選項 */}
-                  <div className="mb-4">
-                    <p className="text-sm text-gray-400 mb-3">
-                      {language === 'zh-HK' ? '快速選擇常見問題：' : 'Quick select common questions:'}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        {
-                          label: language === 'zh-HK' ? '想要詢問課程內容' : 'Course Content Inquiry',
-                          text: language === 'zh-HK' 
-                            ? '你好，我想要了解更多關於[請填寫課程名稱]的內容，例如上課時間、課程大綱等。'
-                            : 'Hello, I would like to know more about [please specify course name] content, such as class schedule, curriculum, etc.'
-                        },
-                        {
-                          label: language === 'zh-HK' ? '不知道哪個課程好' : 'Course Selection Help',
-                          text: language === 'zh-HK'
-                            ? '你好，我的背景是[請填寫您的職業或背景]，我的學習目標是[請填寫您的目標]，哪個課程比較適合我？'
-                            : 'Hello, my background is [please fill in your profession or background], and my learning goal is [please fill in your goal]. Which course would be most suitable for me?'
-                        },
-                        {
-                          label: language === 'zh-HK' ? '想要了解企業培訓' : 'Corporate Training',
-                          text: language === 'zh-HK'
-                            ? '你好，我們公司有興趣為員工提供AI培訓，想要了解一下您的企業包裝和報價。'
-                            : 'Hello, our company is interested in providing AI training for employees. We would like to know more about your corporate packages and pricing.'
-                        },
-                        {
-                          label: language === 'zh-HK' ? '付款/技術問題' : 'Payment/Technical Issues',
-                          text: language === 'zh-HK'
-                            ? '你好，我遇到[付款/登入/影片觀看]等問題，請問您可以幫我解決嗎？'
-                            : 'Hello, I encountered issues with [payment/login/video viewing]. Could you please help me with this?'
-                        },
-                        {
-                          label: language === 'zh-HK' ? '想要詢問合作機會' : 'Partnership Opportunities',
-                          text: language === 'zh-HK'
-                            ? '你好，我們想要討論合作機會，請問我們應該聯絡哪個部門？'
-                            : 'Hello, we would like to discuss partnership opportunities. Which department should we contact?'
-                        }
-                      ].map((suggestion, index) => (
-                        <motion.button
-                          key={index}
-                          type="button"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => setFormData({ ...formData, message: suggestion.text })}
-                          className="px-3 py-2 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white rounded-lg border border-gray-600 hover:border-yellow-500/50 transition-all duration-200"
-                        >
-                          {suggestion.label}
-                        </motion.button>
-                      ))}
-                    </div>
-                  </div>
-
+                  <label 
+                    htmlFor="message" 
+                    className="block text-gray-300 font-medium"
+                    style={{
+                      fontSize: 'var(--text-sm)',
+                      fontWeight: 'var(--font-medium)',
+                      marginBottom: 'var(--space-2)'
+                    }}
+                  >
+                    {language === 'zh-HK' ? '訊息' : 'Message'}
+                  </label>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={6}
-                    className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-yellow-500 focus:ring-yellow-500 resize-none"
-                    placeholder={language === 'zh-HK' 
-                      ? '可以詳細話知你的背景和學習目標等，幫你選擇最適合的課程。例如：我是一位平面設計師，想學AI繪圖，應該由哪個課程開始？'
-                      : 'Please tell us about your background and learning goals so we can help you choose the most suitable course. For example: I am a graphic designer wanting to learn AI drawing, which course should I start with?'
-                    }
                     required
+                    rows={4}
+                    className="bg-gray-700 border-gray-600 text-white focus:border-yellow-500 focus:ring-yellow-500/20"
+                    placeholder={language === 'zh-HK' ? '請告訴我們您的需求...' : 'Tell us about your needs...'}
+                    style={{
+                      padding: 'var(--space-3)', // 12px 統一文字區域內邊距
+                      fontSize: 'var(--text-base)', // 統一文字區域字體
+                      borderRadius: 'var(--radius-md)', // 統一文字區域圓角
+                      minHeight: '96px'
+                    }}
                   />
                 </div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                
+                {/* 🎯 統一按鈕設計 */}
+                <Button 
+                  type="submit"
+                  className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-semibold transition-all duration-300 hover:scale-105"
+                  style={{
+                    height: 'var(--btn-height-lg)', // 48px 大按鈕高度
+                    padding: '0 var(--btn-padding-x-lg)', // 0 24px 大按鈕內邊距
+                    fontSize: 'var(--text-lg)', // 18px 統一按鈕字體
+                    fontWeight: 'var(--font-semibold)', // 600 統一按鈕字重
+                    borderRadius: 'var(--radius-md)', // 8px 統一按鈕圓角
+                    width: '100%'
+                  }}
                 >
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white font-bold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    {language === 'zh-HK' ? t('contact.form.send') : 'Send Message'}
-                    <Send className="ml-2 h-5 w-5" />
-                  </Button>
-                </motion.div>
+                  {language === 'zh-HK' ? '發送訊息' : 'Send Message'}
+                </Button>
               </form>
             </CardContent>
           </Card>

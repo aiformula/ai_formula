@@ -3,6 +3,9 @@
    統一的設計系統 - 所有UI元素的基礎
    ==================================== */
 
+/* 🎯 引入統一空間與尺寸系統 */
+@import url('./unified-spacing-system.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -357,3 +360,83 @@
     @apply text-sm lg:text-base;
   }
 } 
+
+/* 🎨 AI Formula 統一設計系統 / Unified Design System */
+
+/* === 核心設計原則 / Core Design Principles === */
+:root {
+  /* 間距系統 / Spacing System - 8px Grid */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  
+  /* 圓角系統 / Border Radius System */
+  --radius-sm: 8px;   /* 按鈕、標籤 */
+  --radius-md: 12px;  /* 卡片、輸入框 */
+  --radius-lg: 16px;  /* 大區塊 */
+  --radius-xl: 20px;  /* 最大容器 */
+  
+  /* 過渡系統 / Transition System */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 200ms ease-out;
+  --transition-slow: 300ms ease-out;
+  --transition-extra-slow: 500ms ease-out;
+  
+  /* 導航系統 / Navigation System */
+  --nav-height-mobile: 80px;   /* 移動端導航高度 */
+  --nav-height-desktop: 96px;  /* 桌面端導航高度 */
+  --nav-spacing-mobile: 96px;  /* 移動端內容頂部間距 */
+  --nav-spacing-desktop: 128px; /* 桌面端內容頂部間距 */
+}
+
+/* === 導航間距標準化 / Navigation Spacing Standardization === */
+
+/* 🎯 標準頁面導航間距 - 修復頭部重疊問題 */
+.page-content-with-nav {
+  @apply pt-24 md:pt-32; /* 移動端96px，桌面端128px */
+}
+
+/* Hero sections that need more space */
+.hero-section-with-nav {
+  @apply pt-32 md:pt-40; /* 移動端128px，桌面端160px */
+}
+
+/* Minimal spacing for overlay content */
+.overlay-content-with-nav {
+  @apply pt-20 md:pt-24; /* 移動端80px，桌面端96px */
+}
+
+/* Modal and auth pages that center content */
+.centered-content-with-nav {
+  @apply pt-24 md:pt-32 pb-12; /* 確保上下都有足夠空間 */
+}
+
+/* === 響應式導航工具類 / Responsive Navigation Utilities === */
+
+/* 確保內容不被固定導航遮擋 */
+.nav-safe-area {
+  min-height: calc(100vh - var(--nav-height-mobile));
+}
+
+@media (min-width: 768px) {
+  .nav-safe-area {
+    min-height: calc(100vh - var(--nav-height-desktop));
+  }
+}
+
+/* 滾動時保持適當間距 */
+.scroll-padding-nav {
+  scroll-padding-top: var(--nav-spacing-mobile);
+}
+
+@media (min-width: 768px) {
+  .scroll-padding-nav {
+    scroll-padding-top: var(--nav-spacing-desktop);
+  }
+}
+
+/* === 語義化色彩系統 / Semantic Color System === */ 
