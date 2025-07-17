@@ -37,7 +37,7 @@ const CTASection: React.FC<CTASectionProps> = ({ isZhTW }) => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-black"
+              className="border-white text-black bg-white hover:bg-gray-100 hover:text-black"
               aria-label={isZhTW ? '聯絡我們' : 'Contact us'}
             >
               {isZhTW ? '聯絡我們' : 'Contact Us'}

@@ -10,7 +10,7 @@ const MainHero = () => {
   const { t, language } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#121212' }}>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24" style={{ backgroundColor: '#121212' }}>
       {/* Animated background dots */}
       <div className="absolute inset-0">
         {[...Array(30)].map((_, i) => (
@@ -113,7 +113,7 @@ const MainHero = () => {
               
               <Button 
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300"
+                className="w-full sm:w-auto border-2 border-white text-white bg-white/20 hover:bg-white hover:text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 backdrop-blur-sm"
                 onClick={() => navigate('/course')}
               >
                 {language === 'zh-HK' ? '了解更多' : 'Learn More'}

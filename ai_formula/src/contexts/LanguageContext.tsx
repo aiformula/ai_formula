@@ -386,7 +386,7 @@ const zhTranslations: Translations = {
   'nav.home': '首頁',
   'nav.about': '關於我們',
   'nav.courses': '課程',
-  'nav.tools': '工具',
+  'nav.tools': '推薦 AI 工具',
   'nav.blog': '部落格',
   'nav.signin': '登入',
   'nav.signup': '註冊',
@@ -674,7 +674,7 @@ const zhTranslations: Translations = {
   'common.collapse': '收合',
   
   // 工具頁面
-  'tools.title': '實用工具',
+  'tools.title': '推薦AI 工具',
   'tools.subtitle': '發現強大工具，提升您的生產力和創造力',
   'tools.categories.aiVideo': 'AI 影片工具',
   'tools.categories.dataTools': '數據工具', 

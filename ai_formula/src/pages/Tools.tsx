@@ -34,9 +34,13 @@ const Tools = () => {
       description: t('tools.freepik.description'),
       tag: t('tools.freepik.tag'),
       url: 'https://www.freepik.com/',
-      icon: <Palette className="w-8 h-8 text-purple-500" />,
-      bgGradient: 'from-purple-500/20 to-pink-500/20',
-      tagColor: 'bg-purple-100 text-purple-800'
+      icon: <img 
+        src="/aitools/freepik.png" 
+        alt="Freepik" 
+        className="w-52 h-42 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
+      tagColor: 'bg-blue-100 text-blue-800'
     },
     
     // Data Tools
@@ -47,8 +51,12 @@ const Tools = () => {
       description: t('tools.mem0.description'),
       tag: t('tools.mem0.tag'),
       url: 'https://mem0.ai/openmemory-mcp',
-      icon: <Brain className="w-8 h-8 text-blue-500" />,
-      bgGradient: 'from-blue-500/20 to-cyan-500/20',
+      icon: <img 
+        src="/aitools/mem0.jpg" 
+        alt="Mem0" 
+        className="w-52 h-42 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-blue-100 text-blue-800'
     },
     {
@@ -58,8 +66,12 @@ const Tools = () => {
       description: t('tools.chat4data.description'),
       tag: t('tools.chat4data.tag'),
       url: 'https://chat4data.ai/',
-      icon: <Database className="w-8 h-8 text-green-500" />,
-      bgGradient: 'from-green-500/20 to-emerald-500/20',
+      icon: <img 
+        src="/aitools/chat4data.png" 
+        alt="Chat4Data" 
+        className="w-32 h-32 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-green-100 text-green-800'
     },
     
@@ -71,8 +83,12 @@ const Tools = () => {
       description: t('tools.hailuo.description'),
       tag: t('tools.hailuo.tag'),
       url: 'https://hailuoai.video/',
-      icon: <Video className="w-8 h-8 text-red-500" />,
-      bgGradient: 'from-red-500/20 to-orange-500/20',
+      icon: <img 
+        src="/aitools/hailuo.png" 
+        alt="Hailuo AI" 
+        className="w-40 h-32 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-red-100 text-red-800'
     },
     {
@@ -82,8 +98,12 @@ const Tools = () => {
       description: t('tools.higgsfield.description'),
       tag: t('tools.higgsfield.tag'),
       url: 'https://higgsfield.ai/',
-      icon: <Wand2 className="w-8 h-8 text-purple-600" />,
-      bgGradient: 'from-purple-600/20 to-pink-600/20',
+      icon: <img 
+        src="/aitools/Higgsfield.png" 
+        alt="Higgsfield AI" 
+        className="w-52 h-42 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-purple-100 text-purple-800'
     },
     {
@@ -93,8 +113,12 @@ const Tools = () => {
       description: t('tools.unstableml.description'),
       tag: t('tools.unstableml.tag'),
       url: 'https://unstableml.com/',
-      icon: <Users className="w-8 h-8 text-cyan-500" />,
-      bgGradient: 'from-cyan-500/20 to-blue-500/20',
+      icon: <img 
+        src="/aitools/UnstableML.png" 
+        alt="UnstableML" 
+        className="w-32 h-32 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-cyan-100 text-cyan-800'
     },
     {
@@ -104,8 +128,12 @@ const Tools = () => {
       description: t('tools.4dv.description'),
       tag: t('tools.4dv.tag'),
       url: 'https://www.4dv.ai/',
-      icon: <Film className="w-8 h-8 text-indigo-500" />,
-      bgGradient: 'from-indigo-500/20 to-purple-500/20',
+      icon: <img 
+        src="/aitools/4DV.jpg" 
+        alt="4DV.AI" 
+        className="w-40 h-32 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-indigo-100 text-indigo-800'
     },
     {
@@ -115,8 +143,12 @@ const Tools = () => {
       description: t('tools.seaweedapt.description'),
       tag: t('tools.seaweedapt.tag'),
       url: 'https://seaweed-apt.com/2',
-      icon: <Sparkles className="w-8 h-8 text-teal-500" />,
-      bgGradient: 'from-teal-500/20 to-emerald-500/20',
+      icon: <img 
+        src="/aitools/seaweed.png" 
+        alt="Seaweed APT2" 
+        className="w-52 h-42 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-teal-100 text-teal-800'
     },
     
@@ -128,8 +160,12 @@ const Tools = () => {
       description: t('tools.headai.description'),
       tag: t('tools.headai.tag'),
       url: 'https://headai.io/',
-      icon: <TrendingUp className="w-8 h-8 text-orange-500" />,
-      bgGradient: 'from-orange-500/20 to-red-500/20',
+      icon: <img 
+        src="/aitools/headai.png" 
+        alt="Head AI" 
+        className="w-52 h-42 object-contain"
+      />,
+      bgGradient: 'from-transparent to-transparent',
       tagColor: 'bg-orange-100 text-orange-800'
     }
   ];
@@ -190,7 +226,7 @@ const Tools = () => {
               >
                 <Card className="bg-gray-900/80 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 group backdrop-blur-sm overflow-hidden min-h-[400px] flex flex-col">
                   <CardHeader className="pb-4">
-                    <div className={`w-full h-28 rounded-lg bg-gradient-to-br ${tool.bgGradient} flex items-center justify-center mb-4 border border-gray-600/30`}>
+                    <div className={`w-full ${['freepik', 'mem0', 'chat4data', 'hailuo', 'higgsfield', 'unstableml', '4dv', 'seaweedapt', 'headai'].includes(tool.id) ? 'h-44' : 'h-28'} rounded-lg bg-gradient-to-br ${tool.bgGradient} flex items-center justify-center mb-4 border border-gray-600/30`}>
                       {tool.icon}
                     </div>
                     <div className="flex items-start justify-between">
