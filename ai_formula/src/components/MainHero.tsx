@@ -10,7 +10,13 @@ const MainHero = () => {
   const { t, language } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#121212' }}>
+    <section 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden" 
+      style={{ 
+        backgroundColor: '#121212',
+        padding: 'var(--space-16) var(--space-8)' // 統一頁面級別間距
+      }}
+    >
       {/* Animated background dots */}
       <div className="absolute inset-0">
         {[...Array(30)].map((_, i) => (
@@ -38,31 +44,43 @@ const MainHero = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center" style={{ gap: 'var(--space-8)' }}>
           {/* Content - Centered */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}
           >
             {/* AI in Business Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-blue-900/30 text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6 md:mb-8"
+              className="inline-flex items-center space-x-2 bg-blue-900/30 text-blue-300 rounded-full font-medium"
+              style={{
+                padding: `var(--space-2) var(--space-4)`, // 統一 badge 間距
+                fontSize: 'var(--text-sm)', // 統一字體大小
+                marginBottom: 'var(--space-6)' // 統一下方間距
+              }}
             >
               <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
               <span>{language === 'zh-HK' ? t('hero.badge') : 'AI in Business'}</span>
             </motion.div>
             
-            {/* Main Title - Mobile First */}
+            {/* Main Title - 使用統一字體層級 */}
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight"
+              className="text-white leading-tight font-bold"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              style={{ 
+                fontSize: 'clamp(var(--text-5xl), 5vw, var(--text-7xl))', // 響應式但統一的字體
+                fontWeight: 'var(--font-bold)',
+                lineHeight: 'var(--leading-tight)',
+                marginBottom: 'var(--space-6)'
+              }}
             >
               {language === 'zh-HK' ? (
                 <>
@@ -77,72 +95,112 @@ const MainHero = () => {
               )}
             </motion.h1>
             
-            {/* Secondary Title */}
+            {/* Secondary Title - 使用統一字體層級 */}
             <motion.h2
-              className="text-xl md:text-2xl font-semibold mb-4 text-gray-200"
+              className="font-semibold text-gray-200"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
+              style={{
+                fontSize: 'var(--text-4xl)',
+                fontWeight: 'var(--font-semibold)',
+                lineHeight: 'var(--leading-snug)',
+                marginBottom: 'var(--space-4)'
+              }}
             >
               {language === 'zh-HK' ? '實學實用，專為香港職場而設' : 'Practical AI training designed for Hong Kong professionals'}
             </motion.h2>
             
-            {/* Subtitle - Mobile Friendly */}
+            {/* Subtitle - 使用統一字體層級 */}
             <motion.p
-              className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-gray-300 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
+              style={{
+                fontSize: 'var(--text-lg)',
+                fontWeight: 'var(--font-normal)',
+                lineHeight: 'var(--leading-normal)',
+                marginBottom: 'var(--space-8)'
+              }}
             >
               {language === 'zh-HK' ? '學會立刻幫到你慳時間慳成本的實戰 AI 課程' : 'Learn AI skills that immediately help you save time and boost efficiency'}
             </motion.p>
             
-            {/* Improved CTA Buttons */}
+            {/* 🎯 統一按鈕系統 - 修復按鈕尺寸混亂問題 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 md:mb-16"
+              className="flex flex-col sm:flex-row items-center justify-center"
+              style={{ gap: 'var(--space-4)' }} // 統一按鈕間距
             >
+              {/* 主要按鈕 - 統一尺寸 */}
               <Button 
-                className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
                 onClick={() => navigate('/course')}
+                style={{
+                  height: 'var(--btn-height-lg)', // 48px 大按鈕高度
+                  padding: '0 var(--btn-padding-x-lg)', // 0 24px 大按鈕內邊距
+                  fontSize: 'var(--text-lg)', // 18px 字體
+                  fontWeight: 'var(--font-semibold)', // 600 字重
+                  borderRadius: 'var(--radius-2xl)' // 20px 圓角
+                }}
               >
                 {language === 'zh-HK' ? '免費試學' : 'Start Free Trial'}
               </Button>
               
+              {/* 次要按鈕 - 相同統一尺寸 */}
               <Button 
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300"
+                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black font-semibold rounded-full transition-all duration-300"
                 onClick={() => navigate('/course')}
+                style={{
+                  height: 'var(--btn-height-lg)', // 與主要按鈕相同高度
+                  padding: '0 var(--btn-padding-x-lg)', // 相同內邊距
+                  fontSize: 'var(--text-lg)', // 相同字體大小
+                  fontWeight: 'var(--font-semibold)', // 相同字重
+                  borderRadius: 'var(--radius-2xl)', // 相同圓角
+                  borderWidth: '2px'
+                }}
               >
                 {language === 'zh-HK' ? '了解更多' : 'Learn More'}
               </Button>
             </motion.div>
 
-            {/* Social Media Links */}
+            {/* Social Media Links - 統一間距 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              className="flex flex-wrap items-center justify-center gap-6 md:gap-8"
+              transition={{ duration: 0.8, delay: 1 }}
+              className="flex items-center justify-center"
+              style={{ 
+                gap: 'var(--space-6)', // 統一社交媒體圖標間距
+                marginTop: 'var(--space-12)' // 統一區塊間距
+              }}
             >
               {[
-                { name: 'INSTAGRAM', icon: Instagram },
-                { name: 'WHATSAPP', icon: MessageCircle },
-                { name: 'FACEBOOK', icon: Facebook }
-              ].map((social, index) => (
+                { icon: Instagram, label: 'Instagram', url: 'https://instagram.com' },
+                { icon: Facebook, label: 'Facebook', url: 'https://facebook.com' },
+                { icon: MessageCircle, label: 'WhatsApp', url: 'https://whatsapp.com' }
+              ].map(({ icon: Icon, label, url }) => (
                 <motion.a
-                  key={social.name}
-                  href="#"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer group"
+                  key={label}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    width: 'var(--space-12)', // 48px 統一圖標容器大小
+                    height: 'var(--space-12)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
                 >
-                  <social.icon className="w-5 h-5" />
-                  <span className="text-sm font-medium">{social.name}</span>
+                  <Icon size={24} />
                 </motion.a>
               ))}
             </motion.div>
@@ -153,4 +211,4 @@ const MainHero = () => {
   );
 };
 
-export default React.memo(MainHero); 
+export default MainHero;
