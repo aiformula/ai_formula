@@ -396,12 +396,50 @@ export class CourseManager {
    */
   private async loadCourseData(id: string): Promise<CourseDetail | null> {
     // This would typically load from a database or API
-    // Currently available courses: prompt engineering and AI business automation
+    // Currently available courses: prompt engineering, AI business automation, and ChatGPT
     switch (id) {
       case 'ai-business-automation':
         // Import dynamically to avoid circular dependencies
         const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
         return aiBusinessAutomationCourse;
+      case 'chatgpt-complete-course':
+        // Return a basic course structure for ChatGPT course
+        return {
+          id: 'chatgpt-complete-course',
+          title: this.createLocalizedContent('ChatGPT Complete Course', 'ChatGPT 完整課程'),
+          description: this.createLocalizedContent(
+            'Master ChatGPT from basics to advanced applications',
+            '從基礎到高級應用全面掌握 ChatGPT'
+          ),
+          category: 'ai-communication' as any,
+          difficulty: 'beginner' as any,
+          instructor: this.createLocalizedContent('AI Formula Team', 'AI Formula 團隊'),
+          totalDuration: this.createLocalizedContent('6 hours', '6 小時'),
+          language: ['English', 'Chinese'],
+          requirements: [],
+          learningOutcomes: [],
+          freeModules: [],
+          proModules: [],
+          freeBonuses: [],
+          proBonuses: [],
+          pricing: {
+            free: 'Free',
+            pro: 'HK$0',
+            original: 'HK$0',
+            savings: '100%'
+          },
+          stats: {
+            enrollmentCount: 850,
+            rating: 4.9,
+            reviews: 125
+          },
+          metadata: {
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            version: '1.0.0',
+            author: 'AI Formula Team'
+          }
+        };
       default:
         return null;
     }

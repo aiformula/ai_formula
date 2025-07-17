@@ -44,6 +44,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     // Navigate to the appropriate course outline page using React Router
     if (product.category === 'business-automation') {
       navigate('/courses/ai-business-automation');
+    } else if (product.category === 'chatgpt-complete-course') {
+      navigate('/courses/chatgpt-complete-course');
     } else if (product.category === 'prompt-engineering') {
       navigate('/courses/prompt-engineering-outline');
     } else {
@@ -85,92 +87,264 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           </div>
         </div>
 
-        {/* Course Cards Grid - matching image design */}
+        {/* Course Cards Grid - with mouse-following gradient effects */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              className="group h-full cursor-pointer"
               onClick={() => handleCourseClick(product)}
             >
-              <Card className="bg-slate-800 border-slate-700 hover:border-slate-600 transition-all duration-300 h-full flex flex-col">
-                <CardHeader className="pb-4">
-                  {/* Course Category Badge */}
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge className="bg-green-600 text-white font-medium">
-                      {isZhTW ? '免費' : 'Free'}
-                    </Badge>
-                    <div className="text-2xl">{product.image}</div>
-                  </div>
+              <Card 
+                className="relative h-full bg-black border-gray-800 hover:border-yellow-500 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-yellow-500/20"
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  const centerX = rect.width / 2;
+                  const centerY = rect.height / 2;
+                  const rotateX = (y - centerY) / 20;
+                  const rotateY = (centerX - x) / 20;
                   
-                  {/* Course Title */}
-                  <CardTitle className="text-white text-xl font-bold line-clamp-2 mb-2">
-                    {isZhTW ? product.titleCht : product.title}
-                  </CardTitle>
+                  e.currentTarget.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+                  e.currentTarget.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+                  e.currentTarget.style.setProperty('--rotate-x', `${rotateX}deg`);
+                  e.currentTarget.style.setProperty('--rotate-y', `${rotateY}deg`);
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.setProperty('--mouse-x', '50%');
+                  e.currentTarget.style.setProperty('--mouse-y', '50%');
+                  e.currentTarget.style.setProperty('--rotate-x', '0deg');
+                  e.currentTarget.style.setProperty('--rotate-y', '0deg');
+                }}
+                style={{
+                  '--mouse-x': '50%',
+                  '--mouse-y': '50%',
+                  '--rotate-x': '0deg',
+                  '--rotate-y': '0deg',
+                  transform: 'perspective(1500px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y))',
+                } as React.CSSProperties}
+              >
+                {/* Mouse tracking light effect - 中間層 z-5 */}
+                <div 
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-25 transition-opacity duration-500 z-5"
+                  style={{
+                    transform: `translate(calc((var(--mouse-x) - 50%) * 0.05), calc((var(--mouse-y) - 50%) * 0.05))`,
+                  }}
+                >
+                  {/* 垂直網格線 */}
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `
+                        repeating-linear-gradient(90deg,
+                          transparent 0px,
+                          transparent 39px,
+                          rgba(255, 215, 0, 0.1) 40px,
+                          rgba(255, 215, 0, 0.1) 41px,
+                          transparent 42px,
+                          transparent 79px,
+                          rgba(255, 191, 0, 0.08) 80px,
+                          rgba(255, 191, 0, 0.08) 81px
+                        )
+                      `,
+                    }}
+                  />
                   
-                  {/* Course Description */}
-                  <CardDescription className="text-slate-300 line-clamp-3">
-                    {isZhTW ? product.descriptionCht : product.description}
-                  </CardDescription>
-                </CardHeader>
+                  {/* 水平網格線 */}
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `
+                        repeating-linear-gradient(0deg,
+                          transparent 0px,
+                          transparent 39px,
+                          rgba(255, 215, 0, 0.1) 40px,
+                          rgba(255, 215, 0, 0.1) 41px,
+                          transparent 42px,
+                          transparent 79px,
+                          rgba(255, 191, 0, 0.08) 80px,
+                          rgba(255, 191, 0, 0.08) 81px
+                        )
+                      `,
+                    }}
+                  />
+                  
+                  {/* 滑鼠附近的亮光網格 */}
+                  <div 
+                    className="absolute inset-0 animate-pulse"
+                    style={{
+                      background: `
+                        radial-gradient(200px at var(--mouse-x) var(--mouse-y), 
+                          rgba(255, 215, 0, 0.4) 0%, 
+                          rgba(255, 215, 0, 0.2) 50%, 
+                          transparent 100%)
+                      `,
+                      backgroundImage: `
+                        repeating-linear-gradient(90deg,
+                          transparent 0px,
+                          transparent 39px,
+                          rgba(255, 215, 0, 0.6) 40px,
+                          rgba(255, 215, 0, 0.6) 41px,
+                          transparent 42px
+                        ),
+                        repeating-linear-gradient(0deg,
+                          transparent 0px,
+                          transparent 39px,
+                          rgba(255, 215, 0, 0.6) 40px,
+                          rgba(255, 215, 0, 0.6) 41px,
+                          transparent 42px
+                        )
+                      `,
+                      maskImage: `radial-gradient(200px at var(--mouse-x) var(--mouse-y), black 0%, transparent 100%)`,
+                      WebkitMaskImage: `radial-gradient(200px at var(--mouse-x) var(--mouse-y), black 0%, transparent 100%)`,
+                      animationDuration: '2s',
+                    }}
+                  />
+                  
+                  {/* 交叉點高亮 */}
+                  <div 
+                    className="absolute inset-0 animate-pulse"
+                    style={{
+                      backgroundImage: `
+                        radial-gradient(3px at 40px 40px, #FFD700 0%, transparent 50%),
+                        radial-gradient(3px at 80px 80px, #FFBF00 0%, transparent 50%),
+                        radial-gradient(2px at 120px 40px, #FFD700 0%, transparent 50%),
+                        radial-gradient(2px at 40px 120px, #FFBF00 0%, transparent 50%)
+                      `,
+                      backgroundSize: '80px 80px',
+                      maskImage: `radial-gradient(250px at var(--mouse-x) var(--mouse-y), black 0%, transparent 70%)`,
+                      WebkitMaskImage: `radial-gradient(250px at var(--mouse-x) var(--mouse-y), black 0%, transparent 70%)`,
+                      filter: 'blur(0.5px)',
+                      animationDuration: '2s',
+                      animationDelay: '0.5s',
+                    }}
+                  />
+                </div>
+                
+                {/* 邊角光線效果 - 保持但減弱 */}
+                <div 
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-700 z-5"
+                  style={{
+                    background: `
+                      conic-gradient(from 315deg at 0% 0%, 
+                        rgba(255, 215, 0, 0.05) 0deg,
+                        transparent 20deg),
+                      conic-gradient(from 225deg at 100% 0%, 
+                        rgba(255, 191, 0, 0.04) 0deg,
+                        transparent 20deg),
+                      conic-gradient(from 135deg at 100% 100%, 
+                        rgba(255, 215, 0, 0.05) 0deg,
+                        transparent 20deg),
+                      conic-gradient(from 45deg at 0% 100%, 
+                        rgba(255, 191, 0, 0.04) 0deg,
+                        transparent 20deg)
+                    `,
+                    filter: 'blur(2px)',
+                  }}
+                />
 
-                <CardContent className="flex-1 flex flex-col">
-                  {/* Course Stats */}
-                  <div className="flex items-center gap-4 text-sm text-slate-400 mb-6">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{isZhTW ? product.durationCht : product.duration}</span>
+                {/* Card Content - 最上層 z-20 確保文字唔受影響 */}
+                <div className="relative z-20">
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="text-4xl drop-shadow-lg transition-transform duration-300 group-hover:scale-110" role="img" aria-label={`${product.type} icon`}>
+                        {product.image}
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        {product.newProduct && (
+                          <Badge className="bg-green-600/90 text-white text-xs backdrop-blur-sm">
+                            {isZhTW ? '新品' : 'New'}
+                          </Badge>
+                        )}
+                        {product.bestseller && (
+                          <Badge className="bg-red-600/90 text-white text-xs backdrop-blur-sm">
+                            {isZhTW ? '熱銷' : 'Hot'}
+                          </Badge>
+                        )}
+                        {product.hotSelling && (
+                          <Badge className="bg-orange-600/90 text-white text-xs backdrop-blur-sm">
+                            {isZhTW ? '精選' : 'Featured'}
+                          </Badge>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      <span>{product.downloads.toLocaleString()}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span>{product.rating}</span>
-                    </div>
-                  </div>
+                    <CardTitle className="text-xl mb-2 text-white drop-shadow-sm">
+                      {isZhTW ? product.titleCht : product.title}
+                    </CardTitle>
+                    <CardDescription className="text-gray-200 mb-4 drop-shadow-sm">
+                      {isZhTW ? product.descriptionCht : product.description}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent>
+                    <div className="space-y-4">
+                      {/* Stats Row */}
+                      <div className="flex items-center justify-between text-sm text-gray-200">
+                        <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-4 w-4 text-gray-300" />
+                            <span>{isZhTW ? product.durationCht : product.duration}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Users className="h-4 w-4 text-gray-300" />
+                            <span className="text-gray-300">
+                              {product.downloads.toLocaleString()} {isZhTW ? '下載' : 'downloads'}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <span className="text-white">{product.rating}</span>
+                        </div>
+                      </div>
 
-                  {/* Course Features */}
-                  <div className="mb-6 flex-1">
-                    <p className="text-slate-300 text-sm font-medium mb-3">
-                      {isZhTW ? '包含內容：' : 'Includes:'}
-                    </p>
-                    <ul className="space-y-2">
-                      {(isZhTW ? product.includesCht : product.includes).slice(0, 4).map((item, idx) => (
-                        <li key={idx} className="text-slate-400 text-sm flex items-start gap-2">
-                          <span className="text-green-400 mt-1">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                      {/* Level Badge */}
+                      <div className="flex gap-2">
+                        <Badge variant="outline" className="text-blue-400 border-blue-400/50 text-xs backdrop-blur-sm">
+                          {isZhTW ? product.levelCht : product.level}
+                        </Badge>
+                      </div>
 
-                  {/* Price and CTA */}
-                  <div className="mt-auto">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-white">
-                        {product.price === "免費" ? (isZhTW ? "免費" : "Free") : product.price}
-                      </span>
-                      {product.originalPrice && product.originalPrice !== product.price && product.originalPrice !== "" && (
-                        <span className="text-sm text-slate-400 line-through">{product.originalPrice}</span>
-                      )}
+                      {/* Included Features */}
+                      <div>
+                        <h4 className="font-semibold mb-2 text-white drop-shadow-sm">
+                          {isZhTW ? '包含內容：' : 'What\'s Included:'}
+                        </h4>
+                        <ul className="text-sm text-gray-200 space-y-1">
+                          {(isZhTW ? product.includesCht : product.includes).slice(0, 4).map((item, idx) => (
+                            <li key={idx} className="flex items-center gap-2">
+                              <span className="text-blue-400">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Pricing and CTA */}
+                      <div className="flex items-end justify-between pt-6">
+                        <div className="flex flex-col gap-1">
+                          <div className="text-3xl font-bold text-green-400 drop-shadow-sm">
+                            {isZhTW ? "免費" : "Free"}
+                          </div>
+                        </div>
+                        <Button 
+                          className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-8 py-3 text-base font-semibold rounded-xl backdrop-blur-sm shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 border border-yellow-400/20"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCourseClick(product);
+                          }}
+                        >
+                          {isZhTW ? '立即購買' : 'Buy Now'}
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </Button>
+                      </div>
                     </div>
-                    <Button 
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 group-hover:bg-blue-500 transition-colors"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCourseClick(product);
-                      }}
-                    >
-                      <span className="mr-2">{isZhTW ? '課程大綱' : 'Course Outline'}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </CardContent>
+                  </CardContent>
+                </div>
               </Card>
             </motion.div>
           ))}

@@ -31,6 +31,14 @@ import AIBusinessAutomationTheme from '@/pages/courses/AIBusinessAutomationTheme
 import AIBusinessAutomationUnit from '@/pages/courses/AIBusinessAutomationUnit';
 import AIBusinessAutomationQuiz from '@/pages/courses/AIBusinessAutomationQuiz';
 
+// ChatGPT Course Pages
+import ChatGPTCompleteCourseIndex from '@/pages/courses/chatgpt-complete-course/index';
+import ChatGPTCompleteCourseLearning from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseLearning';
+import ChatGPTCompleteCourseTheme from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseTheme';
+import ChatGPTCompleteCourseUnit from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseUnit';
+import ChatGPTCompleteCourseQuiz from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseQuiz';
+import ChatGPTCompleteCourseOutline from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseOutline';
+
 // Tools Page
 import Tools from '@/pages/Tools';
 
@@ -73,7 +81,14 @@ function App() {
                   <Route path="/courses/ai-business-automation/theme/:themeId" element={<AIBusinessAutomationTheme />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId/unit/:unitId" element={<AIBusinessAutomationUnit />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId/quiz" element={<AIBusinessAutomationQuiz />} />
-                  <Route path="/courses/:courseId" element={<CourseDetail />} />
+                  
+                  {/* ChatGPT Course Routes */}
+                  <Route path="/courses/chatgpt-complete-course" element={<ChatGPTCompleteCourseIndex />} />
+                  <Route path="/courses/chatgpt-complete-course/learning" element={<ChatGPTCompleteCourseLearning />} />
+                  <Route path="/courses/chatgpt-complete-course/outline" element={<ChatGPTCompleteCourseOutline />} />
+                  <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTCompleteCourseTheme />} />
+                  <Route path="/courses/chatgpt-complete-course/theme/:themeId/unit/:unitId" element={<ChatGPTCompleteCourseUnit />} />
+                  <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTCompleteCourseQuiz />} />
                   
                   {/* Design System Demo */}
                   <Route path="/design-system" element={<DesignSystemDemo />} />
@@ -85,7 +100,10 @@ function App() {
                   <Route path="/legal/terms-of-service" element={<TermsOfService />} />
                   <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
                   
-                  {/* 404 Page */}
+                  {/* Generic course route - TEMPORARILY DISABLED to debug conflicts */}
+                  {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}
+                  
+                  {/* 404 Not Found - Keep as the very last route */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />

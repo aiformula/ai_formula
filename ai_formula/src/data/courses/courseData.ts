@@ -62,7 +62,41 @@ export interface ProductGridProps {
 
 // Featured Courses Data - High-quality learning content
 export const digitalProducts: DigitalProduct[] = [
-
+  {
+    id: 1,
+    title: "ChatGPT Complete Practical Course",
+    titleCht: "ChatGPT 完整教學實戰",
+    description: "Master the complete application of ChatGPT, from daily office work to creative projects, comprehensively enhancing your digital capabilities.",
+    descriptionCht: "掌握 ChatGPT 的完整應用，從日常辦公到創意專案，全面提升您的數位能力。",
+    duration: "4 hours comprehensive training",
+    durationCht: "4 小時",
+    downloads: 30,
+    rating: 4.9,
+    level: "All Levels",
+    levelCht: "適合所有級別",
+    price: "免費",
+    originalPrice: "", // 免費課程不顯示原價
+    image: "💬",
+    type: "AI Application",
+    typeCht: "AI 應用",
+    category: "chatgpt-complete-course",
+    newProduct: true,
+    featured: true,
+    bestseller: true,
+    hotSelling: true,
+    includes: [
+      "6 Comprehensive Modules",
+      "Efficient Prompt Practical Manual",
+      "AI Tools Integration Guide",
+      "+4 More Items"
+    ],
+    includesCht: [
+      "6 個綜合模組",
+      "高效 Prompt 實戰手冊",
+      "AI 工具整合指南",
+      "+4 更多項目"
+    ]
+  },
   {
     id: 2,
     title: "AI Business Automation Practice",

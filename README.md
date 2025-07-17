@@ -104,6 +104,83 @@ interface ViewCountContextType {
 - **雙語支援**：完整的廣東話和英文介面
 - **Bilingual Support**: Complete Cantonese and English interface
 
+#### ChatGPT 完整教學實戰課程 / ChatGPT Complete Practical Course
+**課程概述 / Course Overview:**
+- **課程名稱**: ChatGPT 完整教學實戰課程
+- **Course Name**: ChatGPT Complete Practical Course
+- **總時長**: 4 小時綜合訓練
+- **Duration**: 4 hours comprehensive training
+- **課程模組**: 6 個完整學習模組
+- **Course Modules**: 6 complete learning modules
+- **課程特色**: 免費學習，永久訪問
+- **Features**: Free learning, lifetime access
+
+**六大課程模組 / Six Course Modules:**
+
+1. **ChatGPT 基礎入門 (45分鐘, 3課程)**
+   - **Module 1: ChatGPT Basics (45 mins, 3 lessons)**
+   - 什麼是 ChatGPT / What is ChatGPT
+   - 註冊和基本設置 / Registration and basic setup
+   - 基礎對話技巧 / Basic conversation skills
+
+2. **高效 Prompt 實戰手冊 (60分鐘, 4課程)**
+   - **Module 2: Effective Prompt Practical Guide (60 mins, 4 lessons)**
+   - Prompt 工程基礎 / Prompt engineering basics
+   - 情境式提示技巧 / Contextual prompt techniques
+   - 角色扮演提示法 / Role-playing prompt methods
+   - 進階提示優化 / Advanced prompt optimization
+
+3. **AI 工具整合指南 (50分鐘, 3課程)**
+   - **Module 3: AI Tools Integration Guide (50 mins, 3 lessons)**
+   - ChatGPT + 其他 AI 工具 / ChatGPT + other AI tools
+   - 工作流程自動化 / Workflow automation
+   - 跨平台整合應用 / Cross-platform integration
+
+4. **商業應用實例 (65分鐘, 4課程)**
+   - **Module 4: Business Application Examples (65 mins, 4 lessons)**
+   - 內容創作與行銷 / Content creation and marketing
+   - 客戶服務自動化 / Customer service automation
+   - 數據分析與報告 / Data analysis and reporting
+   - 商業流程優化 / Business process optimization
+
+5. **創意專案開發 (55分鐘, 3課程)**
+   - **Module 5: Creative Project Development (55 mins, 3 lessons)**
+   - 創意寫作與故事 / Creative writing and storytelling
+   - 程式碼生成與除錯 / Code generation and debugging
+   - 學習計劃制定 / Learning plan creation
+
+6. **進階技巧與優化 (45分鐘, 3課程)**
+   - **Module 6: Advanced Techniques and Optimization (45 mins, 3 lessons)**
+   - 對話記憶管理 / Conversation memory management
+   - 進階提示技巧 / Advanced prompt techniques
+   - 持續學習策略 / Continuous learning strategies
+
+**課程特色功能 / Course Features:**
+- **對話技巧**: 掌握與 AI 溝通的藝術
+- **Conversation Skills**: Master the art of AI communication
+- **提示工程**: 學習專業的 Prompt 設計方法
+- **Prompt Engineering**: Learn professional prompt design methods
+- **商業應用**: 實際工作場景的應用案例
+- **Business Applications**: Real workplace application cases
+- **實戰練習**: 每個模組包含實際操作練習
+- **Hands-on Practice**: Each module includes practical exercises
+
+**目標受眾 / Target Audience:**
+- **職場工作者**: 提升工作效率和生產力
+- **Working Professionals**: Improve work efficiency and productivity
+- **內容創作者**: 增強創作能力和靈感
+- **Content Creators**: Enhance creativity and inspiration
+- **學生群體**: 輔助學習和研究
+- **Students**: Assist learning and research
+- **AI初學者**: 零基礎入門 AI 應用
+- **AI Beginners**: Zero-foundation entry to AI applications
+
+**課程路徑 / Course Path:**
+```
+主頁面 → 課程大綱 → 學習頁面 → 主題頁面 → 單元學習 → 測驗評估
+Main → Outline → Learning → Theme → Unit → Quiz
+```
+
 #### 產品分類系統 / Product Category System
 - **🎨 創意設計**：AI圖像和影片創作工具
 - **🎨 Creative Design**: AI image and video creation tools

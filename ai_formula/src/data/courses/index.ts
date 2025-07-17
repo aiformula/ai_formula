@@ -14,6 +14,15 @@ export const ALL_COURSES = {
     const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
     return aiBusinessAutomationCourse;
   },
+  'chatgpt-complete-course': async () => {
+    // For now, return a placeholder since we have the UI components but need course data structure
+    return {
+      id: 'chatgpt-complete-course',
+      title: { en: 'ChatGPT Complete Course', 'zh-HK': 'ChatGPT 完整課程' },
+      category: 'AI Communication',
+      difficulty: 'Beginner'
+    };
+  },
 } as const;
 
 // Course metadata
@@ -29,6 +38,18 @@ export const COURSE_METADATA = {
     estimatedDuration: '4.2 hours',
     moduleCount: 3,
     lessonCount: 5
+  },
+  'chatgpt-complete-course': {
+    id: 'chatgpt-complete-course',
+    title: {
+      en: 'ChatGPT Complete Course',
+      'zh-HK': 'ChatGPT 完整課程'
+    },
+    category: 'AI Communication',
+    difficulty: 'Beginner',
+    estimatedDuration: '6 hours',
+    moduleCount: 6,
+    lessonCount: 12
   }
 } as const;
 
