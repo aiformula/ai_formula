@@ -25,19 +25,19 @@
     --ai-formula-dark-light: #161616;
     --ai-formula-dark-medium: #1c1c1c;
     --ai-formula-dark-card: #202020;
-    
+
     /* Accent Colors */
     --ai-formula-accent-blue: #3B82F6;
     --ai-formula-accent-purple: #8B5CF6;
     --ai-formula-accent-pink: #EC4899;
     --ai-formula-accent-cyan: #06B6D4;
-    
+
     /* Status Colors */
     --ai-formula-success: #10B981;
     --ai-formula-warning: #F59E0B;
     --ai-formula-error: #EF4444;
     --ai-formula-info: #60A5FA;
-    
+
     /* Gray Scale */
     --ai-formula-gray-50: #F9FAFB;
     --ai-formula-gray-100: #F3F4F6;
@@ -49,7 +49,7 @@
     --ai-formula-gray-700: #374151;
     --ai-formula-gray-800: #1F2937;
     --ai-formula-gray-900: #111827;
-    
+
     /* Typography Scale */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -74,7 +74,7 @@
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     --radius-xl: 1rem;
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
@@ -83,203 +83,277 @@
   }
 }
 
-/* ============ TYPOGRAPHY SYSTEM ============ */
-@layer base {
-  h1 {
-    @apply text-4xl font-bold leading-tight text-gray-900;
-    font-size: var(--font-size-4xl);
-    line-height: 1.2;
-  }
-  
-  h2 {
-    @apply text-3xl font-semibold leading-tight text-gray-800;
-    font-size: var(--font-size-3xl);
-    line-height: 1.3;
-  }
-  
-  h3 {
-    @apply text-2xl font-semibold leading-snug text-gray-700;
-    font-size: var(--font-size-2xl);
-    line-height: 1.4;
-  }
-  
-  h4 {
-    @apply text-xl font-medium leading-normal text-gray-700;
-    font-size: var(--font-size-xl);
-    line-height: 1.5;
-  }
-  
-  p {
-    @apply text-base leading-relaxed text-gray-600;
-    font-size: var(--font-size-base);
-    line-height: 1.6;
-  }
-}
-
-/* ============ BUTTON SYSTEM ============ */
+/* ============ 學習平台組件系統 ============ */
 @layer components {
-  /* ==========  NAVIGATION BUTTON SYSTEM ========== */
-  
-  /* Base Navigation Button */
-  .nav-button-base {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
-    min-height: 44px; /* Touch-friendly size */
+  /* 🎨 基礎按鈕系統 */
+  .btn-ai-base {
+    @apply inline-flex items-center justify-center gap-2 font-medium duration-200 rounded-ai-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 transform transition-all;
   }
   
-  /* Primary Navigation - Forward Actions */
-  .nav-button-primary {
-    @apply nav-button-base text-black;
-    background: linear-gradient(135deg, var(--ai-formula-primary) 0%, var(--ai-formula-primary-hover) 100%);
-    box-shadow: 0 4px 12px rgba(255, 199, 0, 0.25);
+  .btn-ai-primary {
+    @apply btn-ai-base bg-learning-500 hover:bg-learning-600 text-white shadow-ai-sm hover:shadow-ai-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-ai-sm;
   }
   
-  .nav-button-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(255, 199, 0, 0.35);
+  .btn-ai-success {
+    @apply btn-ai-base bg-completed-500 hover:bg-completed-600 text-white shadow-ai-sm hover:shadow-ai-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-ai-sm hover:scale-105 active:scale-100;
   }
   
-  .nav-button-primary:active {
-    transform: translateY(0);
-  }
-  
-  /* Secondary Navigation - Backward Actions */
-  .nav-button-secondary {
-    @apply nav-button-base text-white bg-gray-700/60 border border-gray-600/50;
-  }
-  
-  .nav-button-secondary:hover {
-    @apply bg-gray-600/70 border-gray-500/70;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Success Navigation - Completion Actions */
-  .nav-button-success {
-    @apply nav-button-base text-white;
-    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-  }
-  
-  .nav-button-success:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
-  }
-  
-  /* Disabled Navigation */
-  .nav-button-disabled {
-    @apply nav-button-base text-gray-500 bg-gray-800/30 border border-gray-700/30 cursor-not-allowed;
-    pointer-events: none;
-  }
-  
-  /* Context-Aware Navigation Labels */
-  .nav-label-context {
-    @apply flex flex-col items-start;
-  }
-  
-  .nav-label-primary {
-    @apply font-semibold text-sm;
-  }
-  
-  .nav-label-secondary {
-    @apply font-normal text-xs opacity-75;
+  .btn-ai-secondary {
+    @apply btn-ai-base bg-gray-700/60 hover:bg-gray-600/70 text-gray-300 hover:text-white border border-gray-600/50 hover:border-gray-500/60 hover:-translate-y-0.5 active:translate-y-0;
   }
 
-  /* Primary Button - 主要動作按鈕 */
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-black transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
-    background: linear-gradient(135deg, var(--ai-formula-primary) 0%, var(--ai-formula-primary-hover) 100%);
-    box-shadow: var(--shadow-md);
+  /* 🎨 卡片系統 */
+  .card-ai-base {
+    @apply bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-ai-md duration-200 transition-all;
   }
   
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-lg);
-    background: linear-gradient(135deg, var(--ai-formula-primary-hover) 0%, #D4A100 100%);
+  .card-ai-elevated {
+    @apply card-ai-base shadow-ai-md hover:shadow-ai-lg hover:-translate-y-1 hover:border-white/20;
   }
   
-  /* Secondary Button - 次要動作按鈕 */
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium text-white bg-gray-700/50 border-2 border-gray-600/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  .card-ai-interactive {
+    @apply card-ai-elevated cursor-pointer hover:border-white/20 hover:bg-gray-800/70 active:translate-y-0 active:shadow-ai-md;
   }
-  
-  .btn-secondary:hover {
-    @apply border-gray-500/70 text-white bg-gray-600/60;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
-  
-  /* Accent Button - 突出動作按鈕 */
-  .btn-accent {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
-    background: linear-gradient(135deg, var(--ai-formula-accent-blue) 0%, var(--ai-formula-accent-purple) 100%);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .btn-accent:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-lg);
-  }
-}
 
-/* ============ PROGRESS BAR SYSTEM ============ */
-@layer components {
-  .progress-bar {
-    @apply w-full h-2 bg-gray-700/50 rounded-full overflow-hidden;
+  /* 🎨 學習狀態指示器 - 增強版 */
+  .status-learning {
+    @apply bg-learning-100 text-learning-600 border border-learning-200 rounded-ai-sm px-2 py-1 transition-all duration-200 hover:bg-learning-200 hover:border-learning-300;
   }
   
-  .progress-bar-fill {
-    @apply h-full transition-all duration-500 ease-out rounded-full;
-    background: linear-gradient(90deg, var(--ai-formula-accent-blue) 0%, var(--ai-formula-accent-purple) 100%);
+  .status-completed {
+    @apply bg-completed-100 text-completed-600 border border-completed-200 rounded-ai-sm px-2 py-1 transition-all duration-200 hover:bg-completed-200 hover:border-completed-300 hover:scale-105;
   }
   
-  .progress-bar-large {
-    @apply h-3;
+  .status-important {
+    @apply bg-important-100 text-important-600 border border-important-200 rounded-ai-sm px-2 py-1 transition-all duration-200 hover:bg-important-200 hover:border-important-300 animate-pulse;
   }
-  
-  .progress-bar-small {
-    @apply h-1;
-  }
-}
 
-/* ============ CARD SYSTEM ============ */
-@layer components {
-  .card-base {
-    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-white/10 transition-all duration-200;
-    box-shadow: var(--shadow-sm);
+  /* 🎨 智能Header組件 */
+  .header-ai-smart {
+    @apply sticky top-0 z-20 bg-gray-900/95 backdrop-blur-lg border-b border-gray-700/30 rounded-b-ai-lg shadow-ai-lg;
   }
-  
-  .card-base:hover {
-    @apply border-white/20;
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-  }
-  
-  .card-interactive {
-    @apply cursor-pointer;
-  }
-  
-  .card-interactive:hover {
-    @apply border-blue-200;
-    box-shadow: var(--shadow-lg);
-  }
-}
 
-/* ============ BADGE SYSTEM ============ */
-@layer components {
-  .badge-success {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
-    background-color: var(--ai-formula-success);
-    color: white;
+  /* 🎨 進度條系統 - 增強版 */
+  .progress-ai-base {
+    @apply w-full bg-gray-700 rounded-full overflow-hidden relative;
   }
   
-  .badge-warning {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
-    background-color: var(--ai-formula-warning);
-    color: white;
+  .progress-ai-sm {
+    @apply progress-ai-base h-2;
   }
   
-  .badge-primary {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-black;
-    background-color: var(--ai-formula-primary);
+  .progress-ai-md {
+    @apply progress-ai-base h-3;
+  }
+  
+  .progress-ai-lg {
+    @apply progress-ai-base h-4;
+  }
+
+  /* 進度條填充動畫 */
+  .progress-ai-fill {
+    @apply h-full rounded-full transition-all duration-700 ease-out relative overflow-hidden;
+  }
+
+  .progress-ai-fill::after {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-progress-shimmer;
+  }
+
+  /* 🎨 微交互增強組件 */
+  .hover-lift {
+    @apply transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .click-scale {
+    @apply transition-transform duration-150 active:scale-95;
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-learning-400/60 focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+
+  .smooth-appear {
+    @apply opacity-0 translate-y-4 transition-all duration-300 ease-out;
+  }
+
+  .smooth-appear.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* 🎨 輸入框系統 - 增強版 */
+  .input-ai-base {
+    @apply w-full px-3 py-2 bg-gray-700/50 border border-gray-600/50 rounded-ai-md text-white placeholder-gray-400 duration-150 focus:border-learning-500 focus:ring-2 focus:ring-learning-200 focus:bg-gray-700/70 transition-all;
+  }
+
+  /* 🎨 動畫工具類 */
+  .animate-learning-active {
+    @apply animate-learning-pulse;
+  }
+  
+  .animate-completion {
+    @apply animate-completion-bounce;
+  }
+  
+  .animate-slide-in {
+    @apply animate-slide-in-right;
+  }
+
+  /* ♿ 無障礙訪問增強 */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .focus-visible-enhanced {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-learning-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-learning-600 focus:text-white focus:rounded-md focus:shadow-lg;
+  }
+
+  /* 高對比度模式支持 */
+  @media (prefers-contrast: high) {
+    .btn-ai-primary {
+      @apply border-2 border-white;
+    }
+    
+    .card-ai-base {
+      @apply border-2 border-gray-400;
+    }
+    
+    .status-learning,
+    .status-completed,
+    .status-important {
+      @apply border-2;
+    }
+  }
+
+  /* 減少動畫模式支持 */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-ai-base,
+    .card-ai-base,
+    .hover-lift,
+    .click-scale {
+      @apply transition-none;
+    }
+    
+    .animate-learning-active,
+    .animate-completion,
+    .animate-slide-in {
+      @apply animate-none;
+    }
+  }
+
+  /* 鍵盤導航增強 */
+  .keyboard-focusable {
+    @apply focus-visible-enhanced tabindex-0;
+  }
+
+  .keyboard-nav-container {
+    @apply focus-within:ring-2 focus-within:ring-learning-400/30 focus-within:ring-offset-1;
+  }
+
+  /* 🚀 性能優化 */
+  .performance-optimized {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .gpu-accelerated {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+
+  /* 內容渲染優化 */
+  .content-optimized {
+    contain: layout style paint;
+  }
+
+  /* 動畫性能優化 */
+  .motion-safe:motion-reduce {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* 滾動性能優化 */
+  .scroll-optimized {
+    @apply overflow-auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* 圖像和媒體優化 */
+  .media-optimized {
+    @apply object-cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* 🎨 響應式佈局系統 */
+  .layout-learning-main {
+    @apply grid gap-6 lg:gap-8;
+    grid-template-columns: 1fr;
+  }
+
+  .layout-learning-main.desktop {
+    @apply lg:grid-cols-10;
+  }
+
+  .layout-main-content {
+    @apply lg:col-span-7 space-y-6 lg:space-y-8;
+  }
+
+  .layout-sidebar-content {
+    @apply lg:col-span-3 space-y-4 lg:space-y-6;
+  }
+
+  /* 🎨 移動端智能Header */
+  .header-ai-mobile {
+    @apply flex flex-col space-y-3 p-4;
+  }
+  
+  .header-ai-mobile .header-row {
+    @apply flex items-center justify-between;
+  }
+  
+  .header-ai-mobile .header-progress {
+    @apply flex items-center justify-center space-x-4;
+  }
+
+  /* 🎨 響應式容器 */
+  .container-responsive {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 🎨 移動端優化按鈕 */
+  .btn-mobile-full {
+    @apply w-full sm:w-auto;
+  }
+  
+  .btn-mobile-compact {
+    @apply px-3 py-2 text-sm sm:px-4 sm:py-2 sm:text-base;
+  }
+
+  /* 🎨 響應式卡片 */
+  .card-responsive {
+    @apply p-4 lg:p-6;
+  }
+
+  /* 🎨 響應式文字 */
+  .text-responsive-title {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+  
+  .text-responsive-body {
+    @apply text-base sm:text-lg;
+  }
+  
+  .text-responsive-small {
+    @apply text-sm lg:text-base;
   }
 } 

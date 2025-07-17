@@ -3,11 +3,15 @@
    專門為各種組件設計的樣式
    ==================================== */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ============ COURSE COMPONENTS ============ */
 @layer components {
   /* Course Card */
   .course-card {
-    @apply card-base card-interactive p-6;
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-white/10 transition-all duration-200 cursor-pointer p-6;
   }
   
   .course-card-header {
@@ -28,7 +32,7 @@
   
   /* Unit Card */
   .unit-card {
-    @apply card-base p-4 mb-4;
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-white/10 transition-all duration-200 p-4 mb-4;
   }
   
   .unit-card-completed {
@@ -117,16 +121,16 @@
   }
   
   .unit-nav-button {
-    @apply nav-button-secondary;
+    @apply inline-flex items-center justify-center px-4 py-2 bg-gray-700/60 border border-gray-600/50 text-white rounded-lg transition-all duration-200 hover:bg-gray-600/70 hover:border-gray-500/70;
   }
   
   .unit-nav-button-primary {
-    @apply nav-button-primary;
+    @apply inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 font-medium;
   }
   
   /* Navigation Button with Context */
   .nav-button-with-context {
-    @apply nav-button-base p-4;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 p-4;
     min-width: 160px;
   }
   
@@ -225,7 +229,7 @@
   }
   
   .notes-save-button {
-    @apply btn-primary mt-3 w-full;
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200 mt-3 w-full;
   }
 }
 

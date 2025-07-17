@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -13,6 +13,9 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAIAutomationProgress } from '@/hooks/useAIAutomationProgress'; // 新增：進度追蹤
+import './AIBusinessAutomationUnit.css'; // 🎨 課程頁面增強樣式
+import '@/styles/design-system.css'; // 🎨 統一設計系統
+import { LearningPageSkeleton, HeaderSkeleton, LearningContentSkeleton, SidebarSkeleton } from '@/components/ui/skeleton'; // 新增：骨架屏
 
 const AIBusinessAutomationUnit: React.FC = () => {
   const { themeId, unitId } = useParams<{ themeId: string; unitId: string }>();
@@ -70,269 +73,8 @@ const AIBusinessAutomationUnit: React.FC = () => {
   const isCompleted = isUnitCompleted(currentUnitKey);
   const stats = getProgressStats();
 
-  // 簡化版單元數據 - 保持原有數據結構
-  const units = {
-    '1': {
-      id: 1,
-      themeId: 1,
-      title: isZhHK ? '單元 1：什麼是「AI 商業自動化」？不只是取代人力，更是升級戰力！' : 'Unit 1: What is "AI Business Automation"? Not just replacing manpower, but upgrading capabilities!',
-      duration: '20分鐘',
-      type: 'video',
-      description: isZhHK ? '介紹傳統自動化與 AI 自動化的區別。AI 自動化能「理解、判斷、創造」，處理更複雜的任務。' : 'Introduction to the differences between traditional automation and AI automation.',
-      content: {
-        video: '/videos/unit-1-ai-automation-basics.mp4',
-        transcript: isZhHK ? 
-          '歡迎來到我們的 AI 商業自動化課程！在這個單元，我們將深入了解什麼是 AI 商業自動化，以及它與傳統自動化的區別。\n\n傳統自動化只能處理固定規則的任務，如設定郵件排程、資料備份等。而 AI 自動化則能夠理解複雜的自然語言、基於情境做出智慧決策、生成個人化的內容和回應，甚至從過往經驗中學習改進。\n\n舉例來說，傳統客服自動化只能發送固定模板回應，但 AI 客服自動化能夠理解客戶的具體問題，判斷問題的複雜程度，提供個人化的解決方案。\n\n現在是導入 AI 自動化的最佳時機，因為技術已經成熟、成本效益越來越高、早期採用者能獲得先行者優勢，而且客戶對更好服務體驗的期望不斷提升。' :
-          'Welcome to our AI Business Automation course! In this unit, we will deeply understand what AI business automation is and how it differs from traditional automation.',
-        keyPoints: isZhHK ? [
-          'AI 自動化能「理解、判斷、創造」',
-          '與傳統自動化的根本區別', 
-          '實際應用案例分析',
-          '現在是導入的最佳時機'
-        ] : [
-          'AI automation can "understand, judge, create"',
-          'Fundamental differences from traditional automation',
-          'Real-world application case studies',
-          'Now is the perfect time for implementation'
-        ]
-      },
-      nextUnit: 2,
-      nextTheme: null,
-      completed: true
-    },
-    '2': {
-      id: 2,
-      themeId: 1,
-      title: isZhHK ? '單元 2：為什麼現在必須導入？三大核心優勢：省時、省錢、防錯' : 'Unit 2: Why must we implement now? Three core advantages: Save time, save money, prevent errors',
-      duration: '25分鐘',
-      type: 'video',
-      description: isZhHK ? '分析導入 AI 自動化的投資回報。透過實際案例，說明如何將員工從重複性高的庶務中解放。' : 'Analyzing the ROI of implementing AI automation through real cases.',
-      content: {
-        video: '/videos/unit-2-core-advantages.mp4',
-        transcript: isZhHK ? 
-          '在上一個單元，我們了解了什麼是 AI 商業自動化。現在讓我們深入分析為什麼現在是導入的最佳時機，以及它的三大核心優勢。\n\n第一個優勢是省時。AI 自動化可以自動處理 80% 的常規任務、即時資料同步和更新、智能工作流程管理，以及快速資訊檢索和分析。某電商公司導入後，訂單處理時間從 30 分鐘縮短到 3 分鐘，客服回應從 24 小時縮短到即時。\n\n第二個優勢是省錢。以一家 50 人的公司為例，如果每人每天節省 2 小時，以平均時薪 200 元計算，一年可節省 500 萬元成本，而 AI 系統投資只需 50 萬元，投資回報率超過 900%。\n\n第三個優勢是防錯。AI 自動化可以標準化流程執行、智能資料驗證、一致性檢查，以及預測性風險管理。某會計事務所導入後，資料錯誤率從 5% 降到 0.1%，合規檢查準確率達到 99.9%。' :
-          'In the previous unit, we learned what AI business automation is. Now let\'s analyze in depth why now is the best time to implement it and its three core advantages.',
-        keyPoints: isZhHK ? [
-          '省時：自動處理 80% 常規任務',
-          '省錢：ROI 可達 900%+',
-          '防錯：準確率達 99.9%',
-          '現在是導入的最佳時機'
-        ] : [
-          'Save Time: Automatically handle 80% of routine tasks',
-          'Save Money: ROI can reach 900%+',
-          'Prevent Errors: Accuracy rate up to 99.9%',
-          'Now is the perfect time for implementation'
-        ]
-      },
-      nextUnit: 3,
-      nextTheme: null,
-      completed: true
-    },
-    '3': {
-      id: 3,
-      themeId: 1,
-      title: isZhHK ? '單元 3：認識你的自動化工具箱：Zapier, Make 與 API 基礎' : 'Unit 3: Know your automation toolbox: Zapier, Make and API basics',
-      duration: '45分鐘',
-      type: 'interactive',
-      description: isZhHK ? '實用工具入門介紹。了解如何透過 Zapier 或 Make 等平台，將不同的軟體與 AI 串接起來。' : 'Practical tool introduction for connecting different software with AI.',
-      content: {
-        video: '/videos/unit-3-automation-tools.mp4',
-        transcript: isZhHK ? 
-          '現在我們已經了解了 AI 自動化的重要性，接下來讓我們學習具體的工具，讓你能夠立即開始實施自動化。\n\nZapier 是自動化新手的最佳朋友，它是一個自動化平台，讓你可以連接超過 5000 個不同的應用程式，無需寫程式就能創建自動化工作流程。核心概念包括 Trigger（觸發器）、Action（動作）和 Zap（完整的自動化流程）。\n\nMake（前身為 Integromat）是進階自動化的選擇，提供更強大的功能，包括視覺化編輯器、條件邏輯處理、強大的資料處理能力，以及完善的錯誤處理機制。\n\nAPI 基礎知識可以解鎖無限可能。API 是應用程式之間溝通的橋樑，讓不同軟體可以交換資料和功能。基本概念包括 Endpoint（API 存取位址）、Request Methods（GET、POST、PUT、DELETE），以及 Authentication（API Key、OAuth 等認證方法）。' :
-          'Now that we understand the importance of AI automation, let\'s learn about specific tools that will allow you to start implementing automation immediately.',
-        keyPoints: isZhHK ? [
-          'Zapier：新手友善的自動化平台',
-          'Make：進階功能與視覺化設計',
-          'API 基礎：解鎖無限可能性',
-          '工具選擇決策框架'
-        ] : [
-          'Zapier: Beginner-friendly automation platform',
-          'Make: Advanced features and visual design',
-          'API Basics: Unlock unlimited possibilities',
-          'Tool selection decision framework'
-        ]
-      },
-      nextUnit: null,
-      nextTheme: null,
-      completed: false
-    },
-    '4': {
-      id: 4,
-      themeId: 2,
-      title: isZhHK ? '單元 4：【行銷自動化】：從文案生成到社群發文，一條龍搞定' : 'Unit 4: Marketing Automation: From copywriting to social posting',
-      duration: '40分鐘',
-      type: 'interactive',
-      description: isZhHK ? '實戰教學：設定一個流程，當你在 Notion 中新增一筆「點子」，AI 會自動生成 FB 貼文草稿、IG 圖說，並排程發布。' : 'Hands-on: Set up AI-powered social media content generation.',
-      content: {
-        video: '/videos/unit-4-marketing-automation.mp4',
-        transcript: isZhHK ? 
-          '歡迎來到行銷自動化單元！在這個部分，我們將學習如何利用 AI 自動化來革命性地改善您的行銷流程。\n\n首先，我們來看文案生成自動化。透過 AI 工具如 ChatGPT 或 Claude，結合 Zapier 平台，您可以建立一個自動化流程：當您在 Notion 中輸入一個商品概念或點子時，AI 會自動生成多版本的 Facebook 貼文、Instagram 圖說、Twitter 文案，甚至是 LinkedIn 文章。\n\n接下來是社群發文自動化。透過整合社群媒體管理工具如 Buffer 或 Hootsuite，您可以設定 AI 自動將生成的內容排程發布到不同平台，並根據各平台的特性調整內容格式和風格。\n\n最後，我們會學習如何建立內容效果分析循環，讓 AI 根據貼文的互動率、點擊率等數據，自動調整未來的內容策略和發文時間。' :
-          'Welcome to the Marketing Automation unit! In this section, we will learn how to use AI automation to revolutionize your marketing processes.',
-        keyPoints: isZhHK ? [
-          'AI 文案生成：多平台內容一次生成',
-          '社群發文排程：跨平台自動發布',
-          '內容效果分析：數據驅動優化',
-          '完整行銷漏斗自動化'
-        ] : [
-          'AI Content Generation: Multi-platform content at once',
-          'Social Media Scheduling: Cross-platform auto-posting',
-          'Content Performance Analysis: Data-driven optimization',
-          'Complete Marketing Funnel Automation'
-        ]
-      },
-      nextUnit: 5,
-      nextTheme: null,
-      completed: false
-    },
-    '5': {
-      id: 5,
-      themeId: 2,
-      title: isZhHK ? '單元 5：【客服自動化】：打造 24H 智慧客服，提升客戶滿意度' : 'Unit 5: Customer Service Automation: 24H smart customer service',
-      duration: '45分鐘',
-      type: 'interactive',
-      description: isZhHK ? '實戰教學：將官網的常見問題 (FAQ) 訓練成一個 AI 知識庫，當客戶透過 LINE 或 Messenger 提問時，AI 能即時提供準確回覆。' : 'Hands-on: Train FAQ into AI knowledge base for instant responses.',
-      content: {
-        video: '/videos/unit-5-customer-service-automation.mp4',
-        transcript: isZhHK ? 
-          '客服自動化是 AI 應用中最具立即效益的領域之一。在這個單元，我們將學習如何建立一個 24 小時不間斷的智慧客服系統。\n\n首先，我們從知識庫建立開始。將您的 FAQ、產品手冊、服務說明等文件整理成結構化資料，透過 AI 訓練平台如 CustomGPT 或 Chatbase，建立專屬的 AI 客服助理。\n\n接下來是多通道整合。我們會學習如何將 AI 客服接入 LINE、Facebook Messenger、WhatsApp、網站聊天機器人等多個客服通道，確保客戶無論從哪個管道聯繫，都能獲得一致的服務體驗。\n\n最重要的是智慧分流機制。AI 客服會先處理 80% 的常見問題，對於複雜或情緒性的問題，會自動分流給人工客服，並附上問題摘要和客戶背景資訊，讓人工客服能快速接手處理。' :
-          'Customer service automation is one of the most immediately beneficial areas of AI application. In this unit, we will learn how to build a 24-hour intelligent customer service system.',
-        keyPoints: isZhHK ? [
-          'AI 知識庫建立：FAQ 智能化',
-          '多通道整合：一致服務體驗',
-          '智慧分流機制：人機協作',
-          '客戶滿意度提升策略'
-        ] : [
-          'AI Knowledge Base: Intelligent FAQ',
-          'Multi-channel Integration: Consistent service experience',
-          'Smart Routing: Human-AI collaboration',
-          'Customer Satisfaction Enhancement Strategy'
-        ]
-      },
-      nextUnit: 6,
-      nextTheme: null,
-      completed: false
-    },
-    '6': {
-      id: 6,
-      themeId: 2,
-      title: isZhHK ? '單元 6：【營運自動化】：報表整理與資訊擷取的智慧幫手' : 'Unit 6: Operations Automation: Smart assistant for reports',
-      duration: '35分鐘',
-      type: 'interactive',
-      description: isZhHK ? '實戰教學：設定一個流程，每日自動抓取網路上的特定新聞或評論，由 AI 進行摘要與情緒分析，最後彙整成一份報告發送到你的 Email。' : 'Hands-on: Set up automated daily information extraction and AI analysis.',
-      content: {
-        video: '/videos/unit-6-operations-automation.mp4',
-        transcript: isZhHK ? 
-          '營運自動化能夠大幅減少重複性的行政工作，讓團隊專注在更具策略性的任務上。\n\n我們從資訊擷取自動化開始。透過 web scraping 工具如 Apify 或 Octoparse，結合 AI 摘要服務，您可以自動監控競爭對手動態、行業新聞、客戶評論等資訊，並生成每日或每週的洞察報告。\n\n接下來是報表自動化。學習如何連接您的 CRM、ERP、Google Analytics 等系統，自動生成銷售報表、客戶分析、財務摘要等各類營運報表，並設定定期發送給相關團隊成員。\n\n最後，我們會建立智慧預警系統。當系統偵測到異常數據（如銷售下滑、庫存不足、客戶投訴增加）時，會自動發送警示並建議處理方案，讓管理者能及時應對。' :
-          'Operations automation can significantly reduce repetitive administrative work, allowing teams to focus on more strategic tasks.',
-        keyPoints: isZhHK ? [
-          '資訊擷取自動化：競爭情報收集',
-          '報表自動生成：數據視覺化',
-          '智慧預警系統：異常偵測',
-          '營運效率最大化'
-        ] : [
-          'Information Extraction Automation: Competitive intelligence',
-          'Automated Report Generation: Data visualization',
-          'Smart Alert System: Anomaly detection',
-          'Operational Efficiency Maximization'
-        ]
-      },
-      nextUnit: null,
-      nextTheme: null,
-      completed: false
-    },
-    '7': {
-      id: 7,
-      themeId: 3,
-      title: isZhHK ? '單元 7：【跨系統工作流】：當客戶下單後，會發生什麼事？' : 'Unit 7: Cross-system Workflow: What happens after an order?',
-      duration: '45分鐘',
-      type: 'interactive',
-      description: isZhHK ? '設計一個完整的跨系統流程。例如：當 Shopify 商店有新訂單時，自動在會計軟體中建立帳目、更新 Google Sheets 的庫存、並透過 AI 發送一封個人化的感謝信給客戶。' : 'Design a complete cross-system process for e-commerce order handling.',
-      content: {
-        video: '/videos/unit-7-cross-system-workflow.mp4',
-        transcript: isZhHK ? 
-          '跨系統工作流是 AI 自動化的進階應用，能夠將企業內不同系統無縫整合，創造真正的端到端自動化體驗。\n\n我們以電商訂單處理為例，設計一個完整的自動化流程：當 Shopify 收到新訂單時，系統會自動觸發一系列動作：首先在 QuickBooks 中建立發票和應收帳款、同時更新 Google Sheets 的庫存數量、發送訂單資訊到倉庫管理系統、生成個人化的感謝郵件給客戶、建立客戶資料到 CRM 系統、設定後續的行銷自動化觸發點。\n\n接著我們會學習如何處理異常情況。例如庫存不足時自動通知採購部門、付款失敗時觸發催收流程、高價值客戶訂單時通知客戶經理等。\n\n最後，我們會建立流程監控儀表板，讓您能即時檢視整個自動化流程的運行狀況，並在出現問題時快速定位和修復。' :
-          'Cross-system workflows are advanced applications of AI automation that can seamlessly integrate different systems within an enterprise.',
-        keyPoints: isZhHK ? [
-          '端到端流程設計：訂單到交付',
-          '多系統整合：無縫資料流',
-          '異常處理機制：智慧應變',
-          '流程監控儀表板：即時檢視'
-        ] : [
-          'End-to-end Process Design: Order to delivery',
-          'Multi-system Integration: Seamless data flow',
-          'Exception Handling: Smart response',
-          'Process Monitoring Dashboard: Real-time view'
-        ]
-      },
-      nextUnit: 8,
-      nextTheme: null,
-      completed: false
-    },
-    '8': {
-      id: 8,
-      themeId: 3,
-      title: isZhHK ? '單元 8：【打造專屬 AI 助理】：訓練它成為專家' : 'Unit 8: Build Personal AI Assistant: Train it to be an expert',
-      duration: '45分鐘',
-      type: 'interactive',
-      description: isZhHK ? '介紹如何利用現有工具，為 AI 設定特定角色、知識庫與指令集，打造一個「市場分析助理」或「法務合約初審助理」，執行更專業的任務。' : 'Learn how to create specialized AI assistants with specific roles and knowledge bases.',
-      content: {
-        video: '/videos/unit-8-ai-assistant.mp4',
-        transcript: isZhHK ? 
-          '在這個單元，我們將學習如何打造專業級的 AI 助理，讓它成為您團隊中不可或缺的專家成員。\n\n首先是角色設定與知識庫建立。我們會學習如何為 AI 助理定義明確的專業角色，例如「市場研究分析師」、「法務合約審查員」、「財務數據分析師」等，並建立相應的專業知識庫，包括行業報告、法規文件、歷史案例等。\n\n接下來是指令集優化。透過精心設計的 prompt engineering，我們可以讓 AI 助理具備特定的思考模式和工作流程，例如法務助理會按照「條款識別→風險評估→修改建議→優先級排序」的邏輯來審查合約。\n\n最後是整合與部署。學習如何將專屬 AI 助理整合到現有的工作流程中，例如自動接收郵件中的文件進行分析、在 Slack 中回答專業問題、定期生成行業分析報告等。' :
-          'In this unit, we will learn how to create professional-grade AI assistants that become indispensable expert members of your team.',
-        keyPoints: isZhHK ? [
-          '專業角色定義：領域專家設定',
-          '知識庫建立：專業資料整合',
-          '指令集優化：思考邏輯設計',
-          '工作流程整合：無縫協作'
-        ] : [
-          'Professional Role Definition: Domain expert setup',
-          'Knowledge Base Creation: Professional data integration',
-          'Instruction Set Optimization: Thinking logic design',
-          'Workflow Integration: Seamless collaboration'
-        ]
-      },
-      nextUnit: 9,
-      nextTheme: null,
-      completed: false
-    },
-    '9': {
-      id: 9,
-      themeId: 3,
-      title: isZhHK ? '單元 9：【效益評估與優化】：如何證明 AI 的價值？' : 'Unit 9: ROI Assessment and Optimization: Prove AI value',
-      duration: '30分鐘',
-      type: 'interactive',
-      description: isZhHK ? '學習如何量化 AI 自動化帶來的效益，例如計算節省的工時、提升的訂單轉換率。並根據數據，不斷回頭優化你的自動化流程。' : 'Learn how to quantify AI automation benefits and continuously optimize processes.',
-      content: {
-        video: '/videos/unit-9-roi-optimization.mp4',
-        transcript: isZhHK ? 
-          '效益評估與優化是 AI 自動化項目成功的關鍵。在這個最後單元，我們將學習如何科學地衡量和優化 AI 自動化的投資回報。\n\n首先是建立評估指標體系。我們會學習如何設定關鍵績效指標（KPI），包括時間節省（工時減少百分比）、成本降低（人力成本節省）、品質提升（錯誤率降低）、效率改善（處理速度提升）等量化指標。\n\n接下來是數據收集與分析。透過自動化工具收集「實施前」vs「實施後」的對比數據，建立清晰的 ROI 計算模型。例如：客服自動化讓回應時間從 4 小時縮短到 5 分鐘，客戶滿意度從 85% 提升到 95%，同時減少 60% 的客服人力需求。\n\n最後是持續優化策略。學習如何根據數據反饋不斷調整自動化流程，包括優化 AI 模型準確性、簡化工作流程、擴展應用範圍等，確保 AI 自動化系統能夠持續創造價值。' :
-          'ROI assessment and optimization are key to the success of AI automation projects. In this final unit, we will learn how to scientifically measure and optimize the return on investment of AI automation.',
-        keyPoints: isZhHK ? [
-          'KPI 指標體系：科學評估標準',
-          '數據收集分析：量化投資回報',
-          '對比效果驗證：前後數據比較',
-          '持續優化策略：價值最大化'
-        ] : [
-          'KPI Indicator System: Scientific evaluation standards',
-          'Data Collection and Analysis: Quantified ROI',
-          'Comparative Effect Verification: Before and after data comparison',
-          'Continuous Optimization Strategy: Value maximization'
-        ]
-      },
-      nextUnit: null,
-      nextTheme: null,
-      completed: false
-    }
-  };
-
-  const currentUnit = units[unitId as keyof typeof units];
-  
-  if (!currentUnit) {
-    return <div>單元不存在</div>;
-  }
-
-  const handleMarkComplete = () => {
+  // 🚀 性能優化：緩存事件處理函數
+  const handleMarkComplete = useCallback(() => {
     console.log(`🎯 [FIXED] 標記完成 - 當前學習秒數:`, learningSeconds);
     
     // 🎯 重要：立即停止計時器
@@ -366,12 +108,178 @@ const AIBusinessAutomationUnit: React.FC = () => {
     setTimeout(() => {
       setCompletionAnimation(false);
     }, 2000);
-  };
+  }, [learningSeconds, currentUnitKey, markUnitCompleted]);
 
-  const handleSaveNotes = () => {
+  const handleSaveNotes = useCallback(() => {
     // 保存筆記的邏輯
     console.log('保存筆記:', notes);
-  };
+  }, [notes]);
+
+  const handleNavigateBack = useCallback(() => {
+    navigate('/courses/ai-business-automation');
+  }, [navigate]);
+
+  const handleNavigateNext = useCallback((nextUnitId: number) => {
+    navigate(`/courses/ai-business-automation/theme/${themeId}/unit/${nextUnitId}`);
+  }, [navigate, themeId]);
+
+  const handleNavigatePrev = useCallback((prevUnitId: number) => {
+    navigate(`/courses/ai-business-automation/theme/${themeId}/unit/${prevUnitId}`);
+  }, [navigate, themeId]);
+
+  const handleNavigateQuiz = useCallback(() => {
+    navigate(`/courses/ai-business-automation/theme/${themeId}/quiz`);
+  }, [navigate, themeId]);
+
+  // 簡化版單元數據 - 保持原有數據結構
+  const units = useMemo(() => ({
+    '1': {
+      id: 1,
+      themeId: 1,
+      title: isZhHK ? '單元 1：什麼是「AI 商業自動化」？不只是取代人力，更是升級戰力！' : 'Unit 1: What is "AI Business Automation"? Not just replacing manpower, but upgrading capabilities!',
+      duration: '20分鐘',
+      type: 'video' as const,
+      description: isZhHK ? '介紹傳統自動化與 AI 自動化的區別。AI 自動化能「理解、判斷、創造」，處理更複雜的任務。' : 'Introduction to the differences between traditional automation and AI automation.',
+      content: {
+        transcript: isZhHK ? 
+          '歡迎來到我們的 AI 商業自動化課程！在這個單元，我們將深入了解什麼是 AI 商業自動化，以及它與傳統自動化的區別。\n\n傳統自動化只能處理固定規則的任務，如設定郵件排程、資料備份等。而 AI 自動化則能夠理解複雜的自然語言、基於情境做出智慧決策、生成個人化的內容和回應，甚至從過往經驗中學習改進。\n\n舉例來說，傳統客服自動化只能發送固定模板回應，但 AI 客服自動化能夠理解客戶的具體問題，判斷問題的複雜程度，提供個人化的解決方案。\n\n現在是導入 AI 自動化的最佳時機，因為技術已經成熟、成本效益越來越高、早期採用者能獲得先行者優勢，而且客戶對更好服務體驗的期望不斷提升。' :
+          'Welcome to our AI Business Automation course! In this unit, we will deeply understand what AI business automation is and how it differs from traditional automation.',
+        keyPoints: isZhHK ? [
+          'AI 自動化能「理解、判斷、創造」',
+          '與傳統自動化的根本區別', 
+          '實際應用案例分析',
+          '現在是導入的最佳時機'
+        ] : [
+          'AI automation can "understand, judge, create"',
+          'Fundamental differences from traditional automation',
+          'Real-world application case studies',
+          'Now is the perfect time for implementation'
+        ]
+      },
+      nextUnit: 2,
+      nextTheme: null,
+      completed: true
+    },
+    '2': {
+      id: 2,
+      themeId: 1,
+      title: isZhHK ? '單元 2：為什麼現在必須導入？三大核心優勢：省時、省錢、防錯' : 'Unit 2: Why must we implement now? Three core advantages: Save time, save money, prevent errors',
+      duration: '25分鐘',
+      type: 'video' as const,
+      description: isZhHK ? '分析導入 AI 自動化的投資回報。透過實際案例，說明如何將員工從重複性高的庶務中解放。' : 'Analyzing the ROI of implementing AI automation through real cases.',
+      content: {
+        transcript: isZhHK ? 
+          '在上一個單元，我們了解了什麼是 AI 商業自動化。現在讓我們深入分析為什麼現在是導入的最佳時機，以及它的三大核心優勢。\n\n第一個優勢是省時。AI 自動化可以自動處理 80% 的常規任務、即時資料同步和更新、智能工作流程管理，以及快速資訊檢索和分析。某電商公司導入後，訂單處理時間從 30 分鐘縮短到 3 分鐘，客服回應從 24 小時縮短到即時。\n\n第二個優勢是省錢。以一家 50 人的公司為例，如果每人每天節省 2 小時，以平均時薪 200 元計算，一年可節省 500 萬元成本，而 AI 系統投資只需 50 萬元，投資回報率超過 900%。\n\n第三個優勢是防錯。AI 自動化可以標準化流程執行、智能資料驗證、一致性檢查，以及預測性風險管理。某會計事務所導入後，資料錯誤率從 5% 降到 0.1%，合規檢查準確率達到 99.9%。' :
+          'In the previous unit, we learned what AI business automation is. Now let\'s analyze in depth why now is the best time to implement it and its three core advantages.',
+        keyPoints: isZhHK ? [
+          '省時：自動處理 80% 常規任務',
+          '省錢：ROI 可達 900%+',
+          '防錯：準確率達 99.9%',
+          '現在是導入的最佳時機'
+        ] : [
+          'Save Time: Automatically handle 80% of routine tasks',
+          'Save Money: ROI can reach 900%+',
+          'Prevent Errors: Accuracy rate up to 99.9%',
+          'Now is the perfect time for implementation'
+        ]
+      },
+      nextUnit: 3,
+      nextTheme: null,
+      completed: true
+    },
+    '3': {
+      id: 3,
+      themeId: 1,
+      title: isZhHK ? '單元 3：認識你的自動化工具箱：Zapier, Make 與 API 基礎' : 'Unit 3: Know your automation toolbox: Zapier, Make and API basics',
+      duration: '45分鐘',
+      type: 'interactive' as const,
+      description: isZhHK ? '實用工具入門介紹。了解如何透過 Zapier 或 Make 等平台，將不同的軟體與 AI 串接起來。' : 'Practical tool introduction for connecting different software with AI.',
+      content: {
+        transcript: isZhHK ? 
+          '現在我們已經了解了 AI 自動化的重要性，接下來讓我們學習具體的工具，讓你能夠立即開始實施自動化。\n\nZapier 是自動化新手的最佳朋友，它是一個自動化平台，讓你可以連接超過 5000 個不同的應用程式，無需寫程式就能創建自動化工作流程。核心概念包括 Trigger（觸發器）、Action（動作）和 Zap（完整的自動化流程）。\n\nMake（前身為 Integromat）是進階自動化的選擇，提供更強大的功能，包括視覺化編輯器、條件邏輯處理、強大的資料處理能力，以及完善的錯誤處理機制。\n\nAPI 基礎知識可以解鎖無限可能。API 是應用程式之間溝通的橋樑，讓不同軟體可以交換資料和功能。基本概念包括 Endpoint（API 存取位址）、Request Methods（GET、POST、PUT、DELETE），以及 Authentication（API Key、OAuth 等認證方法）。' :
+          'Now that we understand the importance of AI automation, let\'s learn about specific tools that will allow you to start implementing automation immediately.',
+        keyPoints: isZhHK ? [
+          'Zapier：新手友善的自動化平台',
+          'Make：進階功能與視覺化設計',
+          'API 基礎：解鎖無限可能性',
+          '工具選擇決策框架'
+        ] : [
+          'Zapier: Beginner-friendly automation platform',
+          'Make: Advanced features and visual design',
+          'API Basics: Unlock unlimited possibilities',
+          'Tool selection decision framework'
+        ]
+      },
+      nextUnit: null,
+      nextTheme: null,
+      completed: false
+    }
+  }), [isZhHK]);
+
+  // 🚀 性能優化：緩存複雜計算
+  const currentUnit = useMemo(() => {
+    const unit = units[unitId as keyof typeof units];
+    if (!unit) {
+      // 提供一個默認的單元結構以防止錯誤
+      return {
+        id: parseInt(unitId || '1'),
+        themeId: parseInt(themeId || '1'),
+        title: '單元不存在',
+        duration: '0分鐘',
+        type: 'video' as const,
+        description: '請檢查單元ID是否正確',
+        content: {
+          transcript: '單元內容不存在',
+          keyPoints: ['請返回課程首頁']
+        }
+      };
+    }
+    return unit;
+  }, [units, unitId]);
+
+  if (!currentUnit || currentUnit.title === '單元不存在') {
+    return (
+      <div className="min-h-screen text-white flex items-center justify-center" style={{ backgroundColor: '#121212' }}>
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">單元不存在</h1>
+          <button
+            onClick={() => navigate('/courses/ai-business-automation')}
+            className="btn-ai-primary"
+          >
+            返回課程首頁
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const navigationConfig = useMemo(() => {
+    const unitNum = parseInt(unitId || '1');
+    const isLastUnitOfTheme = (unitNum % 3 === 0);
+    
+    return {
+      unitNum,
+      isLastUnitOfTheme,
+      hasNextUnit: unitNum < 9,
+      hasPrevUnit: unitNum > 1,
+      nextUnitId: unitNum + 1,
+      prevUnitId: unitNum - 1
+    };
+  }, [unitId]);
+
+  const progressConfig = useMemo(() => {
+    return {
+      progressColorClass: stats.totalProgress >= 75 ? 'bg-gradient-to-r from-completed-400 to-completed-500' :
+                         stats.totalProgress >= 50 ? 'bg-gradient-to-r from-important-400 to-important-500' :
+                         stats.totalProgress >= 25 ? 'bg-gradient-to-r from-learning-400 to-learning-500' :
+                         'bg-gradient-to-r from-gray-400 to-gray-500',
+      timerStatusClass: isTimerActive && !isCompleted 
+                       ? 'status-learning animate-learning-active' 
+                       : isCompleted 
+                       ? 'status-completed'
+                       : 'bg-gray-500/20 text-gray-400'
+    };
+  }, [stats.totalProgress, isTimerActive, isCompleted]);
 
   // 🎯 修復版計時器 - 移除所有可能導致無限循環的依賴
   useEffect(() => {
@@ -445,497 +353,502 @@ const AIBusinessAutomationUnit: React.FC = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+      {/* Skip Links for Keyboard Navigation */}
+      <a href="#main-content" className="skip-link">
+        跳至主要內容
+      </a>
+      <a href="#sidebar-content" className="skip-link">
+        跳至學習輔助區
+      </a>
+      
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
-        {/* Breadcrumb */}
-        <motion.div 
-          className="breadcrumb mb-8"
-          initial={{ opacity: 0, y: -10 }}
+      <div className="container mx-auto px-6 py-0" role="main" aria-label="學習頁面主要內容">
+        {/* 🎯 響應式智能Header - 移動端友善設計 */}
+        <motion.header 
+          className="header-ai-smart mb-6"
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          role="banner"
+          aria-label="課程導航和進度資訊"
         >
-          <button 
-            onClick={() => navigate('/courses/ai-business-automation')}
-            className="breadcrumb-item"
-          >
-            {isZhHK ? '返回課程總覽' : 'Back to Course Overview'}
-          </button>
-          <span className="breadcrumb-separator">/</span>
-          <button 
-            onClick={() => navigate(`/courses/ai-business-automation/theme/${themeId}`)}
-            className="breadcrumb-item"
-          >
-            {isZhHK ? `第${themeId}大主題` : `Theme ${themeId}`}
-          </button>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">
-            {isZhHK ? `單元 ${unitId}` : `Unit ${unitId}`}
-          </span>
-        </motion.div>
-
-          {/* 🔧 調試控制面板 - 只在開發模式顯示 */}
-          {isDevelopment && showDebugPanel && (
-            <motion.div 
-              className="fixed top-4 left-4 z-50 bg-yellow-900/90 border border-yellow-600 rounded-lg p-4 backdrop-blur-sm"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="text-yellow-200 text-sm space-y-2">
-                <div className="font-bold text-yellow-100 mb-2">🔧 計時器調試面板</div>
-                
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div>單元: {currentUnitKey}</div>
-                  <div>已完成: {isCompleted ? '✅' : '❌'}</div>
-                  <div>計時器活躍: {isTimerActive ? '🔵' : '⚪'}</div>
-                  <div>學習秒數: {learningSeconds}</div>
-                  <div>顯示時間: {realTimeDisplay}</div>
-                  <div>強制測試: {forceTimerForTesting ? '✅' : '❌'}</div>
-                </div>
-                
-                <div className="flex space-x-2 mt-3">
-                  <button
-                    onClick={() => setForceTimerForTesting(!forceTimerForTesting)}
-                    className={`px-3 py-1 rounded text-xs font-medium ${
-                      forceTimerForTesting 
-                        ? 'bg-green-600 text-white' 
-                        : 'bg-gray-600 text-gray-300'
-                    }`}
-                  >
-                    {forceTimerForTesting ? '關閉測試模式' : '啟用測試模式'}
-                  </button>
-                  
-                  <button
-                    onClick={() => {
-                      setLearningSeconds(0);
-                      setRealTimeDisplay('00:00');
-                      console.log('🔄 [DEBUG] 手動重置計時器');
-                    }}
-                    className="px-3 py-1 rounded text-xs font-medium bg-blue-600 text-white"
-                  >
-                    重置計時器
-                  </button>
-                </div>
-                
-                <div className="text-xs text-yellow-300 mt-2">
-                  💡 開啟 Console (F12) 查看詳細日誌
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-        {/* Unit Title Section */}
-        <motion.div 
-          className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <div className="flex items-center justify-between mb-6">
+          {/* 桌面版Header */}
+          <div className="hidden lg:flex items-center justify-between py-4 px-6">
+            
+            {/* 左側：返回導航 */}
             <div className="flex items-center space-x-4">
-              <div className={`p-3 rounded-xl ${
-                currentUnit.type === 'video' ? 'bg-purple-500/20 text-purple-400' :
-                currentUnit.type === 'interactive' ? 'bg-blue-500/20 text-blue-400' :
-                'bg-green-500/20 text-green-400'
-              }`}>
-                {currentUnit.type === 'video' ? <Video className="w-6 h-6" /> :
-                 currentUnit.type === 'interactive' ? <Target className="w-6 h-6" /> :
-                 <FileText className="w-6 h-6" />}
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-white mb-2">{currentUnit.title}</h1>
-                <div className="flex items-center space-x-4 text-gray-400">
-                  <span className="flex items-center space-x-2">
-                    <Clock className="w-4 h-4" />
-                    <span>{currentUnit.duration}</span>
-                  </span>
-                  <Badge variant={currentUnit.type === 'video' ? 'default' : 'secondary'}>
-                    {currentUnit.type === 'video' ? '影片課程' : 
-                     currentUnit.type === 'interactive' ? '互動練習' : '閱讀材料'}
-                  </Badge>
-                </div>
+              <button 
+                onClick={handleNavigateBack}
+                className="btn-ai-secondary hover-lift click-scale focus-visible-enhanced"
+                aria-label="返回AI商業自動化課程首頁"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:translate-x-[-2px] transition-transform" aria-hidden="true" />
+                <span className="font-medium text-sm">返回課程</span>
+              </button>
+              
+              <div className="text-gray-400 text-sm" aria-label="課程位置資訊">
+                <span className="text-gray-300 font-medium">AI商業自動化</span>
+                <span className="mx-2" aria-hidden="true">·</span>
+                <span>主題 {themeId}</span>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              {/* 🎯 主要計時器顯示 - 醒目位置 */}
-              <motion.div 
-                className={`px-6 py-4 rounded-xl border-2 ${
-                  isTimerActive && !isCompleted 
-                    ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border-blue-400/50 shadow-lg shadow-blue-500/25' 
-                    : isCompleted 
-                    ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-green-400/50'
-                    : 'bg-gray-500/20 border-gray-400/30'
-                }`}
-                animate={{
-                  scale: isTimerActive && !isCompleted ? [1, 1.02, 1] : 1,
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: isTimerActive && !isCompleted ? Infinity : 0,
-                  ease: "easeInOut"
-                }}
-              >
-                <div className="flex items-center space-x-3">
-                  <Clock className={`w-6 h-6 ${
-                    isTimerActive && !isCompleted 
-                      ? 'text-blue-400' 
-                      : isCompleted 
-                      ? 'text-green-400'
-                      : 'text-gray-400'
-                  }`} />
-                  <div className="text-center">
-                    <div className={`text-2xl font-bold font-mono tracking-wider ${
-                      isTimerActive && !isCompleted 
-                        ? 'text-blue-300' 
-                        : isCompleted 
-                        ? 'text-green-300'
-                        : 'text-gray-300'
-                    }`}>
-                      {realTimeDisplay}
-                    </div>
-                    <div className={`text-xs uppercase tracking-widest ${
-                      isTimerActive && !isCompleted 
-                        ? 'text-blue-400/80' 
-                        : isCompleted 
-                        ? 'text-green-400/80'
-                        : 'text-gray-400/80'
-                    }`}>
-                      {isCompleted 
-                        ? (isZhHK ? '學習完成' : 'Completed')
-                        : isTimerActive 
-                        ? (isZhHK ? '學習計時中' : 'Learning Timer')
-                        : (isZhHK ? '準備開始' : 'Ready to Start')
-                      }
-                    </div>
-                  </div>
+            {/* 中央：進度信息 + 計時器 */}
+            <div className="flex items-center space-x-6" role="region" aria-label="學習進度和計時器">
+              
+              {/* 學習進度 */}
+              <div className="flex items-center space-x-3">
+                <div className="text-right">
+                  <div className="text-sm text-gray-400" aria-label={`目前單元：第${unitId}單元，共9個單元`}>單元 {unitId}/9</div>
+                  <div className="text-lg font-bold text-white" aria-label={`總學習進度：${stats.totalProgress}%`}>{stats.totalProgress}%</div>
                 </div>
-              </motion.div>
+                <div className="w-24 progress-ai-sm performance-optimized" role="progressbar" aria-valuenow={stats.totalProgress} aria-valuemin={0} aria-valuemax={100} aria-label="課程整體進度">
+                  <motion.div 
+                    className={`progress-ai-fill gpu-accelerated ${progressConfig.progressColorClass}`}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${stats.totalProgress}%` }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                  />
+                </div>
+              </div>
 
-              {isCompleted && (
-                <div className="flex items-center space-x-2 text-green-400">
-                  <CheckCircle className="w-5 h-5" />
-                  <span className="text-sm font-medium">{isZhHK ? '已完成' : 'Completed'}</span>
-                </div>
+              {/* 計時器 - 極簡版 */}
+              <div className={`flex items-center space-x-2 px-3 py-2 rounded-ai-md transition-all duration-200 performance-optimized ${progressConfig.timerStatusClass}`} role="timer" aria-label={`本次學習時間：${realTimeDisplay}，${isTimerActive && !isCompleted ? '計時進行中' : isCompleted ? '學習已完成' : '計時器未啟動'}`}>
+                <Clock className="w-4 h-4" aria-hidden="true" />
+                <span className="font-mono text-sm font-medium">{realTimeDisplay}</span>
+                {isTimerActive && !isCompleted && (
+                  <div className="w-2 h-2 bg-learning-400 rounded-full animate-pulse gpu-accelerated" aria-hidden="true"></div>
+                )}
+              </div>
+            </div>
+
+            {/* 右側：主要操作按鈕 */}
+            <div className="flex items-center space-x-3" role="group" aria-label="學習操作按鈕">
+              {(() => {
+                if (!isCompleted) {
+                  return (
+                    <Button 
+                      onClick={handleMarkComplete}
+                      className="btn-ai-success hover-lift click-scale focus-visible-enhanced px-6 py-2 performance-optimized"
+                      aria-label={`標記單元${unitId}為已完成`}
+                    >
+                      <CheckCircle className="w-4 h-4 mr-2" aria-hidden="true" />
+                      完成學習
+                    </Button>
+                  );
+                }
+                
+                if (navigationConfig.isLastUnitOfTheme) {
+                  return (
+                    <Button 
+                      onClick={handleNavigateQuiz}
+                      className="btn-ai-primary hover-lift click-scale focus-visible-enhanced px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400 performance-optimized"
+                      aria-label={`進入主題${themeId}的測驗`}
+                    >
+                      開始測驗
+                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                    </Button>
+                  );
+                } else {
+                  return (
+                    <Button 
+                      onClick={() => handleNavigateNext(navigationConfig.nextUnitId)}
+                      className="btn-ai-primary hover-lift click-scale focus-visible-enhanced px-6 py-2 performance-optimized"
+                      aria-label={`前往下一課：單元${navigationConfig.nextUnitId}`}
+                    >
+                      下一課
+                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                    </Button>
+                  );
+                }
+              })()}
+              
+              {/* 上一課按鈕 - 只在需要時顯示 */}
+              {navigationConfig.hasPrevUnit && (
+                <button 
+                  onClick={() => handleNavigatePrev(navigationConfig.prevUnitId)}
+                  className="p-2 text-gray-400 hover:text-white bg-gray-800/60 hover:bg-gray-700/60 rounded-ai-md duration-200 hover-lift click-scale focus-visible-enhanced performance-optimized"
+                  aria-label={`返回上一課：單元${navigationConfig.prevUnitId}`}
+                  title="上一課"
+                >
+                  <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+                </button>
               )}
             </div>
           </div>
 
-          {/* 🎯 學習進度提示條 */}
+          {/* 移動端Header - 堆疊佈局 */}
+          <div className="lg:hidden header-ai-mobile">
+            {/* 第一行：返回 + 課程信息 */}
+            <div className="header-row">
+              <button 
+                onClick={handleNavigateBack}
+                className="btn-ai-secondary btn-mobile-compact hover-lift click-scale focus-ring"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span className="hidden sm:inline ml-2">返回</span>
+              </button>
+              
+              <div className="text-center flex-1 mx-4">
+                <div className="text-white font-medium text-sm">單元 {unitId}</div>
+                <div className="text-gray-400 text-xs">主題 {themeId}</div>
+              </div>
+              
+              {/* 上一課/下一課導航 */}
+              <div className="flex items-center space-x-2">
+                {currentUnit.id > 1 && (
+                  <button 
+                    onClick={() => handleNavigatePrev(currentUnit.id - 1)}
+                    className="p-2 text-gray-400 hover:text-white bg-gray-800/60 hover:bg-gray-700/60 rounded-ai-sm duration-200 focus-ring"
+                    title="上一課"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* 第二行：進度 + 計時器 */}
+            <div className="header-progress">
+              {/* 進度條 */}
+              <div className="flex items-center space-x-3 flex-1">
+                <div className="text-xs text-gray-400">{stats.totalProgress}%</div>
+                <div className="flex-1 progress-ai-sm max-w-32">
+                  <motion.div 
+                    className={`progress-ai-fill gpu-accelerated ${
+                      stats.totalProgress >= 75 ? 'bg-gradient-to-r from-completed-400 to-completed-500' :
+                      stats.totalProgress >= 50 ? 'bg-gradient-to-r from-important-400 to-important-500' :
+                      stats.totalProgress >= 25 ? 'bg-gradient-to-r from-learning-400 to-learning-500' :
+                      'bg-gradient-to-r from-gray-400 to-gray-500'
+                    }`}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${stats.totalProgress}%` }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                  />
+                </div>
+              </div>
+
+              {/* 計時器 */}
+              <div className={`flex items-center space-x-2 px-3 py-1 rounded-ai-sm text-xs ${
+                isTimerActive && !isCompleted 
+                  ? 'status-learning animate-learning-active' 
+                  : isCompleted 
+                  ? 'status-completed'
+                  : 'bg-gray-500/20 text-gray-400'
+              }`}>
+                <Clock className="w-3 h-3" />
+                <span className="font-mono font-medium">{realTimeDisplay}</span>
+                {isTimerActive && !isCompleted && (
+                  <div className="w-1.5 h-1.5 bg-learning-400 rounded-full animate-pulse"></div>
+                )}
+              </div>
+            </div>
+
+            {/* 第三行：主要操作按鈕 */}
+            <div className="w-full">
+              {(() => {
+                const unitNum = parseInt(unitId);
+                const isLastUnitOfTheme = (unitNum % 3 === 0);
+                
+                if (!isCompleted) {
+                  return (
+                    <Button 
+                      onClick={handleMarkComplete}
+                      className="btn-ai-success btn-mobile-full hover-lift click-scale focus-ring py-3"
+                    >
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      完成學習
+                    </Button>
+                  );
+                }
+                
+                if (isLastUnitOfTheme) {
+                  return (
+                    <Button 
+                      onClick={handleNavigateQuiz}
+                      className="btn-ai-primary btn-mobile-full hover-lift click-scale focus-ring py-3 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400"
+                    >
+                      開始測驗
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  );
+                } else {
+                  const nextUnitId = unitNum + 1;
+                  return (
+                    <Button 
+                      onClick={() => handleNavigateNext(nextUnitId)}
+                      className="btn-ai-primary btn-mobile-full hover-lift click-scale focus-ring py-3"
+                    >
+                      下一課
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  );
+                }
+              })()}
+            </div>
+          </div>
+        </motion.header>
+
+        {/* 🎯 簡化的單元標題區域 */}
+        <motion.div 
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <div className="flex items-start space-x-4">
+            <div className={`p-3 rounded-xl ${
+              currentUnit.type === 'video' ? 'bg-purple-500/20 text-purple-300' :
+              currentUnit.type === 'interactive' ? 'bg-blue-500/20 text-blue-300' :
+              'bg-green-500/20 text-green-300'
+            }`}>
+              {currentUnit.type === 'video' ? <Video className="w-6 h-6" /> :
+               currentUnit.type === 'interactive' ? <Target className="w-6 h-6" /> :
+               <FileText className="w-6 h-6" />}
+            </div>
+            <div className="flex-1">
+              <h1 className="text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
+                {currentUnit.title}
+              </h1>
+              <div className="flex items-center space-x-4 text-gray-400">
+                <span className="flex items-center space-x-2">
+                  <Clock className="w-4 h-4" />
+                  <span>{currentUnit.duration}</span>
+                </span>
+                <Badge variant={currentUnit.type === 'video' ? 'default' : 'secondary'}>
+                  {currentUnit.type === 'video' ? '影片課程' : 
+                   currentUnit.type === 'interactive' ? '互動練習' : '閱讀材料'}
+                </Badge>
+                {isCompleted && (
+                  <span className="flex items-center space-x-2 text-green-400">
+                    <CheckCircle className="w-4 h-4" />
+                    <span className="text-sm font-medium">已完成</span>
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* 學習狀態提示 - 簡化版 */}
           {isTimerActive && !isCompleted && (
             <motion.div 
-              className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4 mb-4"
+              className="mt-4 card-ai-base border-learning-300/50 p-3"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.3 }}
             >
               <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                </div>
-                <div className="text-blue-300">
-                  <span className="font-medium">正在學習中...</span>
-                  <span className="ml-2 text-blue-400/80">計時器已啟動，專心學習吧！</span>
-                </div>
+                <div className="w-2 h-2 bg-learning-400 rounded-full animate-pulse"></div>
+                <span className="text-learning-300 text-sm">正在學習中，計時器已啟動</span>
               </div>
             </motion.div>
           )}
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main Content - Left Column */}
-          <div className="lg:col-span-2 space-y-8">
+        {/* 🎯 響應式學習佈局 - 移動優先設計 */}
+        <div className="layout-learning-main desktop">
+          
+          {/* 主要學習區域 - 響應式 */}
+          <div className="layout-main-content content-optimized" id="main-content" role="main" aria-label="課程主要內容">
             
-            {/* Content Section - IMPROVED (No Video) */}
+            {/* 🔧 調試控制面板 - 只在開發模式顯示 */}
+            {isDevelopment && showDebugPanel && (
+              <motion.div 
+                className="bg-yellow-900/90 border border-yellow-600 rounded-lg p-4 backdrop-blur-sm"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="text-yellow-200 text-sm space-y-2">
+                  <div className="font-bold text-yellow-100 mb-2">🔧 計時器調試面板</div>
+                  
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>單元: {currentUnitKey}</div>
+                    <div>已完成: {isCompleted ? '✅' : '❌'}</div>
+                    <div>計時器活躍: {isTimerActive ? '🔵' : '⚪'}</div>
+                    <div>學習秒數: {learningSeconds}</div>
+                    <div>顯示時間: {realTimeDisplay}</div>
+                    <div>強制測試: {forceTimerForTesting ? '✅' : '❌'}</div>
+                  </div>
+                  
+                  <div className="flex space-x-2 mt-3">
+                    <button
+                      onClick={() => setForceTimerForTesting(!forceTimerForTesting)}
+                      className={`px-3 py-1 rounded text-xs font-medium ${
+                        forceTimerForTesting 
+                          ? 'bg-green-600 text-white' 
+                          : 'bg-gray-600 text-gray-300'
+                      }`}
+                    >
+                      {forceTimerForTesting ? '關閉測試模式' : '啟用測試模式'}
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        setLearningSeconds(0);
+                        setRealTimeDisplay('00:00');
+                        console.log('🔄 [DEBUG] 手動重置計時器');
+                      }}
+                      className="px-3 py-1 rounded text-xs font-medium bg-blue-600 text-white"
+                    >
+                      重置計時器
+                    </button>
+                  </div>
+                  
+                  <div className="text-xs text-yellow-300 mt-2">
+                    💡 開啟 Console (F12) 查看詳細日誌
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* 主要課程內容 - 響應式優化 */}
             <motion.div 
-              className="content-section bg-gray-800/50 backdrop-blur-sm border border-white/10"
+              className="space-y-6 lg:space-y-8"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3 }}
             >
-              <div className="content-section-header">
-                <BookOpen className="w-6 h-6 text-blue-400 mr-3" />
-                <div>
-                  <h2 className="content-section-title text-white">{isZhHK ? '課程內容' : 'Course Content'}</h2>
-                  <p className="content-section-subtitle text-white/70">
-                    {currentUnit.description}
-                  </p>
-                </div>
+              {/* 課程描述 */}
+              <div className="text-responsive-body text-gray-300 leading-relaxed">
+                {currentUnit.description}
               </div>
 
-              <div className="prose prose-invert max-w-none">
-                <div className="text-white/80 leading-relaxed space-y-4">
+              {/* 主要內容文字 - 響應式字體 */}
+              <div className="prose prose-invert prose-lg lg:prose-xl max-w-none">
+                <div className="text-white/95 leading-loose space-y-6 lg:space-y-8">
                   {currentUnit.content.transcript.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-base leading-relaxed">
+                    <p key={index} className="text-responsive-body leading-loose tracking-wide">
                       {paragraph}
                     </p>
                   ))}
                 </div>
               </div>
 
-              {/* Practical Examples Section */}
-              <div className="mt-8 p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20">
-                <h3 className="text-lg font-semibold text-blue-300 mb-4 flex items-center">
-                  <Target className="w-5 h-5 mr-2" />
-                  {isZhHK ? '實際應用案例' : 'Practical Applications'}
+              {/* 實際應用案例 - 響應式優化 */}
+              <div className="mt-8 lg:mt-12 p-6 lg:p-8 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl lg:rounded-2xl border border-blue-500/20">
+                <h3 className="text-xl lg:text-2xl font-bold text-blue-200 mb-4 lg:mb-6 flex items-center">
+                  <Target className="w-5 h-5 lg:w-6 lg:h-6 mr-3" />
+                  實際應用案例
                 </h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="bg-gray-700/30 rounded-lg p-4">
-                    <h4 className="font-medium text-white mb-2">{isZhHK ? '電商自動化' : 'E-commerce Automation'}</h4>
-                    <p className="text-sm text-white/70">{isZhHK ? '從訂單處理到客戶通知的完整流程' : 'Complete workflow from order processing to customer notifications'}</p>
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+                  <div className="space-y-3">
+                    <h4 className="text-base lg:text-lg font-semibold text-white">🛒 電商自動化</h4>
+                    <p className="text-gray-300 leading-relaxed text-sm lg:text-base">從訂單處理到客戶通知的完整流程自動化，提升營運效率。</p>
                   </div>
-                  <div className="bg-gray-700/30 rounded-lg p-4">
-                    <h4 className="font-medium text-white mb-2">{isZhHK ? '內容創作' : 'Content Creation'}</h4>
-                    <p className="text-sm text-white/70">{isZhHK ? '自動生成社群媒體內容與排程發布' : 'Auto-generate social media content and schedule posting'}</p>
+                  <div className="space-y-3">
+                    <h4 className="text-base lg:text-lg font-semibold text-white">📝 內容創作</h4>
+                    <p className="text-gray-300 leading-relaxed text-sm lg:text-base">自動生成社群媒體內容與排程發布，節省創作時間。</p>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* Right Sidebar */}
-          <div className="space-y-6">
+          {/* 學習輔助區域 - 響應式側邊欄 */}
+          <div className="layout-sidebar-content content-optimized" id="sidebar-content" role="complementary" aria-label="學習輔助工具">
             
-            {/* Key Points - IMPROVED */}
+            {/* 移動端：重點摘要在前 */}
             <motion.div 
-              className="sidebar-container bg-gray-800/50 backdrop-blur-sm border border-white/10"
+              className="card-ai-elevated card-responsive order-1 lg:order-1"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
+              role="region"
+              aria-labelledby="key-points-heading"
             >
-              <div className="sidebar-header">
-                <h3 className="sidebar-title text-white flex items-center">
-                  <Star className="w-5 h-5 mr-2 text-yellow-400" />
-                  {isZhHK ? '重點摘要' : 'Key Points'}
-                </h3>
-              </div>
-              <div className="sidebar-content">
-                <div className="key-points-container">
-                  <div className="key-points-list">
-                    {currentUnit.content.keyPoints.map((point, index) => (
-                      <motion.div
-                        key={index}
-                        className="key-point-item"
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 + index * 0.1 }}
-                      >
-                        <CheckCircle className="key-point-icon" />
-                        <span className="key-point-text text-white/80">{point}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <h3 id="key-points-heading" className="text-base lg:text-lg font-bold text-white flex items-center mb-4">
+                <Star className="w-4 h-4 lg:w-5 lg:h-5 mr-2 text-yellow-400" aria-hidden="true" />
+                重點摘要
+              </h3>
+              <ul className="space-y-3" role="list">
+                {currentUnit.content.keyPoints.map((point, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start space-x-3 text-sm"
+                  >
+                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-completed-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-white/90 leading-relaxed text-xs lg:text-sm">{point}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
 
-            {/* Notes Section - IMPROVED */}
+            {/* 學習統計 - 移動端優先 */}
             <motion.div 
-              className="notes-container bg-gray-800/50 backdrop-blur-sm border border-white/10"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="sidebar-header">
-                <h3 className="sidebar-title text-white flex items-center">
-                  <Edit className="w-5 h-5 mr-2 text-green-400" />
-                  {isZhHK ? '我的筆記' : 'My Notes'}
-                </h3>
-              </div>
-              <div className="sidebar-content">
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder={isZhHK ? '在此記錄你的學習筆記...' : 'Record your learning notes here...'}
-                  className="notes-textarea text-white bg-gray-700/50 border-gray-600/50 focus:border-blue-500/50 focus:ring-blue-500/30"
-                />
-                <Button 
-                  onClick={handleSaveNotes}
-                  className="notes-save-button"
-                >
-                  <Save className="w-4 h-4 mr-2" />
-                  {isZhHK ? '儲存' : 'Save'}
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Course Actions - IMPROVED */}
-            <motion.div 
-              className="sidebar-container bg-gray-800/50 backdrop-blur-sm border border-white/10"
+              className="bg-gradient-to-br from-indigo-600/15 to-purple-600/15 backdrop-blur-sm border border-indigo-500/20 rounded-xl card-responsive order-2 lg:order-3"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
+              role="region"
+              aria-labelledby="learning-stats-heading"
             >
-              <div className="sidebar-header">
-                <h3 className="sidebar-title text-white">{isZhHK ? '課程互動' : 'Course Actions'}</h3>
-              </div>
-              <div className="sidebar-content space-y-3">
-                <Button className="btn-secondary w-full justify-start">
-                  <Bookmark className="w-4 h-4 mr-2" />
-                  {isZhHK ? '收藏' : 'Bookmark'}
-                </Button>
-                <Button className="btn-secondary w-full justify-start">
-                  <ThumbsUp className="w-4 h-4 mr-2" />
-                  {isZhHK ? '點讚' : 'Like'}
-                </Button>
-                <Button className="btn-secondary w-full justify-start">
-                  <Share2 className="w-4 h-4 mr-2" />
-                  {isZhHK ? '分享' : 'Share'}
-                </Button>
-                <Button className="btn-secondary w-full justify-start">
-                  <Download className="w-4 h-4 mr-2" />
-                  {isZhHK ? '下載資源' : 'Download'}
-                </Button>
+              <h3 id="learning-stats-heading" className="text-base lg:text-lg font-bold text-white flex items-center mb-4">
+                <TrendingUp className="w-4 h-4 lg:w-5 lg:h-5 mr-2 text-indigo-400" aria-hidden="true" />
+                學習統計
+              </h3>
+              
+              <dl className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <dt className="text-gray-300 text-xs lg:text-sm">本次時間</dt>
+                  <dd className="text-blue-300 font-mono font-medium text-sm lg:text-base" aria-label={`本次學習時間：${realTimeDisplay}`}>{realTimeDisplay}</dd>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <dt className="text-gray-300 text-xs lg:text-sm">總進度</dt>
+                  <dd className="text-green-300 font-bold text-sm lg:text-base" aria-label={`總學習進度：${stats.totalProgress}%`}>{stats.totalProgress}%</dd>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <dt className="text-gray-300 text-xs lg:text-sm">完成單元</dt>
+                  <dd className="text-purple-300 font-medium text-sm lg:text-base" aria-label={`已完成${stats.completedUnits}個單元，共${stats.totalUnits}個單元`}>{stats.completedUnits}/{stats.totalUnits}</dd>
+                </div>
+                
+                {isCompleted && (
+                  <div className="flex items-center space-x-2 mt-4 p-2 bg-green-500/20 border border-green-400/30 rounded-lg" role="status" aria-label="單元已完成">
+                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-400" aria-hidden="true" />
+                    <span className="text-green-300 text-xs lg:text-sm font-medium">已完成</span>
+                  </div>
+                )}
+              </dl>
+            </motion.div>
+
+            {/* 即時筆記 - 桌面版才顯示，移動端隱藏 */}
+            <motion.div 
+              className="hidden lg:block card-ai-elevated card-responsive order-3 lg:order-2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              role="region"
+              aria-labelledby="notes-heading"
+            >
+              <h3 id="notes-heading" className="text-lg font-bold text-white flex items-center mb-4">
+                <Edit className="w-5 h-5 mr-2 text-completed-400" aria-hidden="true" />
+                我的筆記
+              </h3>
+              <div className="space-y-2">
+                <label htmlFor="learning-notes" className="sr-only">學習筆記輸入框</label>
+                <textarea
+                  id="learning-notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="記錄學習心得..."
+                  className="input-ai-base h-32 resize-none text-sm focus-visible-enhanced"
+                  aria-describedby="notes-info"
+                  maxLength={500}
+                />
+                <div id="notes-info" className="mt-2 flex items-center justify-between">
+                  <span className="text-xs text-gray-400">自動保存</span>
+                  <span className="text-xs text-gray-400" aria-label={`已輸入${notes.length}個字符，最多500個字符`}>{notes.length}/500</span>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
-
-        {/* Enhanced Unit Navigation - IMPROVED */}
-        <motion.div 
-          className="unit-navigation mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <div className="flex items-center justify-between">
-            {/* Previous Unit Button with Smart State */}
-            {currentUnit.id > 1 ? (
-              <Button 
-                onClick={() => {
-                  const prevUnitId = currentUnit.id - 1;
-                  navigate(`/courses/ai-business-automation/theme/${themeId}/unit/${prevUnitId}`);
-                }}
-                className="nav-button-with-context nav-button-secondary"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <div className="nav-label-context">
-                  <span className="nav-label-primary">{isZhHK ? '上一課' : 'Previous'}</span>
-                  <span className="nav-label-secondary">{isZhHK ? `單元 ${currentUnit.id - 1}` : `Unit ${currentUnit.id - 1}`}</span>
-                </div>
-              </Button>
-            ) : (
-              <Button 
-                onClick={() => navigate(`/courses/ai-business-automation/theme/${themeId}`)}
-                className="nav-button-with-context nav-button-secondary"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <div className="nav-label-context">
-                  <span className="nav-label-primary">{isZhHK ? '返回' : 'Back'}</span>
-                  <span className="nav-label-secondary">{isZhHK ? '主題概覽' : 'Theme Overview'}</span>
-                </div>
-              </Button>
-            )}
-
-            {/* Center Action Buttons */}
-            <div className="flex items-center space-x-4">
-              {/* Progress Indicator */}
-              <div className="flex items-center space-x-2 px-4 py-2 bg-gray-800/50 rounded-lg border border-gray-700/30">
-                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                <span className="text-sm text-gray-300">
-                  {isZhHK ? `單元 ${unitId} / 主題 ${themeId}` : `Unit ${unitId} / Theme ${themeId}`}
-                </span>
-              </div>
-
-              {/* Completed Indicator (when marked complete) */}
-              {isCompleted && (
-                <div className="flex items-center space-x-2 px-4 py-2 bg-green-900/30 rounded-lg border border-green-700/30">
-                  <CheckCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-sm font-medium text-green-400">
-                    {isZhHK ? '已完成' : 'Completed'}
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Smart Unified Action Button */}
-            {(() => {
-              const unitNum = parseInt(unitId);
-              const themeNum = parseInt(themeId);
-              const isLastUnitOfTheme = (unitNum % 3 === 0);
-              
-              // If not completed yet, show mark complete button
-              if (!isCompleted) {
-                return (
-                  <Button 
-                    onClick={handleMarkComplete}
-                    className="nav-button-success"
-                  >
-                    <CheckCircle className="w-4 h-4" />
-                    <div className="nav-label-context">
-                      <span className="nav-label-primary">{isZhHK ? '標記完成' : 'Mark Complete'}</span>
-                    </div>
-                  </Button>
-                );
-              }
-              
-              // If completed, show next action
-              if (isLastUnitOfTheme) {
-                // Last unit of theme -> Go to quiz
-                return (
-                  <Button 
-                    onClick={() => navigate(`/courses/ai-business-automation/theme/${themeId}/quiz`)}
-                    className="nav-button-with-context nav-button-primary"
-                  >
-                    <div className="nav-label-context">
-                      <span className="nav-label-primary">{isZhHK ? '進入測驗' : 'Take Quiz'}</span>
-                      <span className="nav-label-secondary">{isZhHK ? `主題 ${themeId} 小測驗` : `Theme ${themeId} Quiz`}</span>
-                    </div>
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                );
-              } else {
-                // Not last unit -> Go to next unit in same theme
-                const nextUnitId = unitNum + 1;
-                return (
-                  <Button 
-                    onClick={() => {
-                      navigate(`/courses/ai-business-automation/theme/${themeId}/unit/${nextUnitId}`);
-                    }}
-                    className="nav-button-with-context nav-button-primary"
-                  >
-                    <div className="nav-label-context">
-                      <span className="nav-label-primary">{isZhHK ? '下一課' : 'Next'}</span>
-                      <span className="nav-label-secondary">
-                        {isZhHK ? `單元 ${nextUnitId}` : `Unit ${nextUnitId}`}
-                      </span>
-                    </div>
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                );
-              }
-            })()} 
-          </div>
-
-          {/* Learning Progress Bar */}
-          <div className="mt-6 bg-gray-800/30 rounded-lg p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-400">{isZhHK ? '課程整體進度' : 'Overall Course Progress'}</span>
-              <span className="text-sm font-medium text-white">
-                {stats.totalProgress}%
-              </span>
-            </div>
-            <div className="w-full bg-gray-700 rounded-full h-2">
-              <div 
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
-                style={{ width: `${stats.totalProgress}%` }}
-              ></div>
-            </div>
-            <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <span>{stats.completedUnits}/{stats.totalUnits} 單元完成</span>
-              <span>{stats.completedQuizzes}/{stats.totalQuizzes} 測驗完成</span>
-            </div>
-            {isCompleted && (
-              <div className="flex items-center mt-3 text-green-400 text-sm">
-                <CheckCircle className="w-4 h-4 mr-2" />
-                <span>{isZhHK ? '本單元已完成！' : 'This unit is completed!'}</span>
-              </div>
-            )}
-          </div>
-        </motion.div>
       </div>
 
-      {/* Completion Animation Overlay */}
+      {/* 完成動畫彈窗 - 保持原樣 */}
       {completionAnimation && (
         <motion.div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
