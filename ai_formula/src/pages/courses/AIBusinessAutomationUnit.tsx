@@ -20,14 +20,37 @@ const AIBusinessAutomationUnit: React.FC = () => {
   const { language } = useLanguage();
   const isZhHK = language === 'zh-HK';
   const [notes, setNotes] = useState('');
-  const [startTime] = useState(new Date()); // 記錄開始學習時間
+  // 計時器狀態 - 簡化版
+  const [learningSeconds, setLearningSeconds] = useState(0);
+  const [isTimerActive, setIsTimerActive] = useState(false);
+  const [timerStartTime, setTimerStartTime] = useState<number | null>(null);
+  
+  // 🔧 調試模式：強制啟動計時器（測試用）
+  const [forceTimerForTesting, setForceTimerForTesting] = useState(false); // 🎯 改為 false，生產環境不強制啟動
 
+  // 🔧 調試面板控制 - 只在特定條件下顯示
+  const [showDebugPanel, setShowDebugPanel] = useState(false);
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
+  // 🔧 開發者快捷鍵：按 Ctrl+D 顯示/隱藏調試面板
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'd' && isDevelopment) {
+        e.preventDefault();
+        setShowDebugPanel(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDevelopment]);
+  
   // 🎯 使用進度追蹤 Hook
   const {
     markUnitCompleted,
     isUnitCompleted,
     getProgressStats,
-    // 新增的實時計時功能
+    // 實時計時功能
     startUnitLearning,
     stopUnitLearning,
     getCurrentLearningTime,
@@ -36,7 +59,7 @@ const AIBusinessAutomationUnit: React.FC = () => {
   } = useAIAutomationProgress();
   
   const [completionAnimation, setCompletionAnimation] = useState(false);
-  const [realTimeDisplay, setRealTimeDisplay] = useState('');
+  const [realTimeDisplay, setRealTimeDisplay] = useState('00:00'); // 修正：統一初始化為 MM:SS 格式
 
   // 根據 themeId 和 unitId 生成 unit key
   const getUnitKey = (themeId: string, unitId: string): string => {
@@ -310,9 +333,34 @@ const AIBusinessAutomationUnit: React.FC = () => {
   }
 
   const handleMarkComplete = () => {
-    // 停止計時並標記完成
-    stopUnitLearning(currentUnitKey);
-    markUnitCompleted(currentUnitKey);
+    console.log(`🎯 [FIXED] 標記完成 - 當前學習秒數:`, learningSeconds);
+    
+    // 🎯 重要：立即停止計時器
+    setIsTimerActive(false);
+    
+    // 使用當前的 learningSeconds 作為最終時間
+    const finalSeconds = Math.max(learningSeconds, 1); // 最少1秒
+    
+    console.log(`📊 [FIXED] 最終學習時間: ${finalSeconds}秒`);
+    
+    // 格式化最終顯示時間為 MM:SS 格式
+    const finalMinutes = Math.floor(finalSeconds / 60);
+    const remainingSeconds = finalSeconds % 60;
+    
+    const formattedMinutes = finalMinutes.toString().padStart(2, '0');
+    const formattedSecondsDisplay = remainingSeconds.toString().padStart(2, '0');
+    const finalTimeDisplay = `${formattedMinutes}:${formattedSecondsDisplay}`;
+    
+    setRealTimeDisplay(finalTimeDisplay);
+    
+    // 🎯 重要修改：傳遞精確的學習秒數給 markUnitCompleted
+    markUnitCompleted(currentUnitKey, finalSeconds);
+    
+    console.log(`🎉 [FIXED] 完成動畫將顯示:`, finalTimeDisplay);
+    console.log(`💾 [STORAGE] 已儲存學習時間: ${finalSeconds}秒`);
+    console.log(`⏹️ [TIMER] 計時器已停止，isCompleted 將變為 true`);
+    
+    // 顯示完成動畫
     setCompletionAnimation(true);
     
     setTimeout(() => {
@@ -325,30 +373,75 @@ const AIBusinessAutomationUnit: React.FC = () => {
     console.log('保存筆記:', notes);
   };
 
-  // 自動開始計時當進入頁面時
+  // 🎯 修復版計時器 - 移除所有可能導致無限循環的依賴
   useEffect(() => {
-    if (!isCompleted) {
-      startUnitLearning(currentUnitKey);
+    let interval: NodeJS.Timeout | null = null;
+    
+    console.log(`🔧 [FIXED] 計時器初始化`, {
+      currentUnitKey,
+      isCompleted,
+      forceTimerForTesting,
+      shouldStart: !isCompleted || forceTimerForTesting
+    });
+    
+    // 🎯 重要修復：當單元已完成且不在測試模式時，立即停止計時器
+    if (isCompleted && !forceTimerForTesting) {
+      console.log(`⏹️ [FIXED] 單元已完成，立即停止計時器`);
+      setIsTimerActive(false);
+      setLearningSeconds(0);
+      return; // 提早返回，不啟動新的計時器
     }
-
-    // 離開頁面時停止計時
+    
+    // 決定是否啟動計時器 - 只有在未完成或測試模式時才啟動
+    const shouldStart = !isCompleted || forceTimerForTesting;
+    
+    if (shouldStart) {
+      console.log(`✅ [FIXED] 啟動計時器`);
+      
+      // 重置狀態
+      setIsTimerActive(true);
+      setLearningSeconds(0);
+      setRealTimeDisplay('00:00');
+      setTimerStartTime(Date.now());
+      
+      // 啟動計時器
+      interval = setInterval(() => {
+        setLearningSeconds(prev => {
+          const newSeconds = prev + 1;
+          console.log(`⏰ [FIXED] 計時器更新: ${newSeconds}秒`);
+          
+          // 格式化顯示為 MM:SS 格式
+          const minutes = Math.floor(newSeconds / 60);
+          const seconds = newSeconds % 60;
+          
+          // 格式化為 00:00 格式
+          const formattedMinutes = minutes.toString().padStart(2, '0');
+          const formattedSeconds = seconds.toString().padStart(2, '0');
+          const display = `${formattedMinutes}:${formattedSeconds}`;
+          
+          // 批量更新顯示
+          setRealTimeDisplay(display);
+          
+          return newSeconds;
+        });
+      }, 1000);
+      
+      console.log(`🎯 [FIXED] 計時器創建成功`);
+    } else {
+      console.log(`⏸️ [FIXED] 計時器不啟動 - 單元已完成`);
+      setIsTimerActive(false);
+    }
+    
+    // 清理函數
     return () => {
-      if (!isCompleted) {
-        stopUnitLearning(currentUnitKey);
+      if (interval) {
+        console.log(`🧹 [FIXED] 清理計時器`);
+        clearInterval(interval);
       }
     };
-  }, [currentUnitKey, isCompleted, startUnitLearning, stopUnitLearning]);
+  }, [currentUnitKey, isCompleted, forceTimerForTesting]); // 🎯 重要修復：添加 isCompleted 作為依賴
 
-  // 實時更新學習時間顯示
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const minutes = getCurrentLearningTime(currentUnitKey);
-      const seconds = getRealTimeSeconds(currentUnitKey);
-      setRealTimeDisplay(formatLearningTime(minutes, seconds));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [currentUnitKey, getCurrentLearningTime, getRealTimeSeconds, formatLearningTime]);
+  // 🎯 移除重複的 useEffect，因為主要 useEffect 已經處理完成狀態
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
@@ -380,42 +473,145 @@ const AIBusinessAutomationUnit: React.FC = () => {
           </span>
         </motion.div>
 
-        {/* Unit Header - IMPROVED */}
+          {/* 🔧 調試控制面板 - 只在開發模式顯示 */}
+          {isDevelopment && showDebugPanel && (
+            <motion.div 
+              className="fixed top-4 left-4 z-50 bg-yellow-900/90 border border-yellow-600 rounded-lg p-4 backdrop-blur-sm"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="text-yellow-200 text-sm space-y-2">
+                <div className="font-bold text-yellow-100 mb-2">🔧 計時器調試面板</div>
+                
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div>單元: {currentUnitKey}</div>
+                  <div>已完成: {isCompleted ? '✅' : '❌'}</div>
+                  <div>計時器活躍: {isTimerActive ? '🔵' : '⚪'}</div>
+                  <div>學習秒數: {learningSeconds}</div>
+                  <div>顯示時間: {realTimeDisplay}</div>
+                  <div>強制測試: {forceTimerForTesting ? '✅' : '❌'}</div>
+                </div>
+                
+                <div className="flex space-x-2 mt-3">
+                  <button
+                    onClick={() => setForceTimerForTesting(!forceTimerForTesting)}
+                    className={`px-3 py-1 rounded text-xs font-medium ${
+                      forceTimerForTesting 
+                        ? 'bg-green-600 text-white' 
+                        : 'bg-gray-600 text-gray-300'
+                    }`}
+                  >
+                    {forceTimerForTesting ? '關閉測試模式' : '啟用測試模式'}
+                  </button>
+                  
+                  <button
+                    onClick={() => {
+                      setLearningSeconds(0);
+                      setRealTimeDisplay('00:00');
+                      console.log('🔄 [DEBUG] 手動重置計時器');
+                    }}
+                    className="px-3 py-1 rounded text-xs font-medium bg-blue-600 text-white"
+                  >
+                    重置計時器
+                  </button>
+                </div>
+                
+                <div className="text-xs text-yellow-300 mt-2">
+                  💡 開啟 Console (F12) 查看詳細日誌
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+        {/* Unit Title Section */}
         <motion.div 
-          className="content-section bg-gray-800/50 backdrop-blur-sm border border-white/10 mb-8"
+          className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.2 }}
         >
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-white" />
+              <div className={`p-3 rounded-xl ${
+                currentUnit.type === 'video' ? 'bg-purple-500/20 text-purple-400' :
+                currentUnit.type === 'interactive' ? 'bg-blue-500/20 text-blue-400' :
+                'bg-green-500/20 text-green-400'
+              }`}>
+                {currentUnit.type === 'video' ? <Video className="w-6 h-6" /> :
+                 currentUnit.type === 'interactive' ? <Target className="w-6 h-6" /> :
+                 <FileText className="w-6 h-6" />}
               </div>
               <div>
-                <Badge className="badge-primary mb-2">{isZhHK ? '互動課程' : 'Interactive Course'}</Badge>
-                <h1 className="text-3xl font-bold text-white leading-tight">
-                  {currentUnit.title}
-                </h1>
+                <h1 className="text-3xl font-bold text-white mb-2">{currentUnit.title}</h1>
+                <div className="flex items-center space-x-4 text-gray-400">
+                  <span className="flex items-center space-x-2">
+                    <Clock className="w-4 h-4" />
+                    <span>{currentUnit.duration}</span>
+                  </span>
+                  <Badge variant={currentUnit.type === 'video' ? 'default' : 'secondary'}>
+                    {currentUnit.type === 'video' ? '影片課程' : 
+                     currentUnit.type === 'interactive' ? '互動練習' : '閱讀材料'}
+                  </Badge>
+                </div>
               </div>
             </div>
-            <div className="text-right space-y-2">
-              <div className="flex items-center space-x-2 text-white/70">
-                <Clock className="w-4 h-4" />
-                <span>{currentUnit.duration}</span>
-              </div>
-              
-              {/* Real-time Learning Timer */}
-              <div className="flex items-center space-x-2 bg-blue-500/20 px-3 py-1 rounded-lg border border-blue-400/30">
-                <Clock className="w-4 h-4 text-blue-400" />
-                <span className="text-sm font-mono text-blue-400">
-                  {realTimeDisplay || '0分鐘'}
-                </span>
-                <span className="text-xs text-blue-300/70">
-                  {isZhHK ? '學習中' : 'Learning'}
-                </span>
-              </div>
-              
+
+            <div className="flex items-center space-x-4">
+              {/* 🎯 主要計時器顯示 - 醒目位置 */}
+              <motion.div 
+                className={`px-6 py-4 rounded-xl border-2 ${
+                  isTimerActive && !isCompleted 
+                    ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border-blue-400/50 shadow-lg shadow-blue-500/25' 
+                    : isCompleted 
+                    ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-green-400/50'
+                    : 'bg-gray-500/20 border-gray-400/30'
+                }`}
+                animate={{
+                  scale: isTimerActive && !isCompleted ? [1, 1.02, 1] : 1,
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: isTimerActive && !isCompleted ? Infinity : 0,
+                  ease: "easeInOut"
+                }}
+              >
+                <div className="flex items-center space-x-3">
+                  <Clock className={`w-6 h-6 ${
+                    isTimerActive && !isCompleted 
+                      ? 'text-blue-400' 
+                      : isCompleted 
+                      ? 'text-green-400'
+                      : 'text-gray-400'
+                  }`} />
+                  <div className="text-center">
+                    <div className={`text-2xl font-bold font-mono tracking-wider ${
+                      isTimerActive && !isCompleted 
+                        ? 'text-blue-300' 
+                        : isCompleted 
+                        ? 'text-green-300'
+                        : 'text-gray-300'
+                    }`}>
+                      {realTimeDisplay}
+                    </div>
+                    <div className={`text-xs uppercase tracking-widest ${
+                      isTimerActive && !isCompleted 
+                        ? 'text-blue-400/80' 
+                        : isCompleted 
+                        ? 'text-green-400/80'
+                        : 'text-gray-400/80'
+                    }`}>
+                      {isCompleted 
+                        ? (isZhHK ? '學習完成' : 'Completed')
+                        : isTimerActive 
+                        ? (isZhHK ? '學習計時中' : 'Learning Timer')
+                        : (isZhHK ? '準備開始' : 'Ready to Start')
+                      }
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
               {isCompleted && (
                 <div className="flex items-center space-x-2 text-green-400">
                   <CheckCircle className="w-5 h-5" />
@@ -424,6 +620,26 @@ const AIBusinessAutomationUnit: React.FC = () => {
               )}
             </div>
           </div>
+
+          {/* 🎯 學習進度提示條 */}
+          {isTimerActive && !isCompleted && (
+            <motion.div 
+              className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4 mb-4"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="flex-shrink-0">
+                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                </div>
+                <div className="text-blue-300">
+                  <span className="font-medium">正在學習中...</span>
+                  <span className="ml-2 text-blue-400/80">計時器已啟動，專心學習吧！</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -621,20 +837,7 @@ const AIBusinessAutomationUnit: React.FC = () => {
                 </span>
               </div>
 
-              {/* Mark Complete Button */}
-              {!isCompleted && (
-                <Button 
-                  onClick={handleMarkComplete}
-                  className="nav-button-success"
-                >
-                  <CheckCircle className="w-4 h-4" />
-                  <div className="nav-label-context">
-                    <span className="nav-label-primary">{isZhHK ? '標記完成' : 'Mark Complete'}</span>
-                  </div>
-                </Button>
-              )}
-
-              {/* Completed Indicator */}
+              {/* Completed Indicator (when marked complete) */}
               {isCompleted && (
                 <div className="flex items-center space-x-2 px-4 py-2 bg-green-900/30 rounded-lg border border-green-700/30">
                   <CheckCircle className="w-5 h-5 text-green-400" />
@@ -645,20 +848,34 @@ const AIBusinessAutomationUnit: React.FC = () => {
               )}
             </div>
 
-            {/* Next Unit Button with Smart State */}
+            {/* Smart Unified Action Button */}
             {(() => {
               const unitNum = parseInt(unitId);
               const themeNum = parseInt(themeId);
-              
-              // Check if this is the last unit of the theme (Unit 3, 6, or 9)
               const isLastUnitOfTheme = (unitNum % 3 === 0);
               
+              // If not completed yet, show mark complete button
+              if (!isCompleted) {
+                return (
+                  <Button 
+                    onClick={handleMarkComplete}
+                    className="nav-button-success"
+                  >
+                    <CheckCircle className="w-4 h-4" />
+                    <div className="nav-label-context">
+                      <span className="nav-label-primary">{isZhHK ? '標記完成' : 'Mark Complete'}</span>
+                    </div>
+                  </Button>
+                );
+              }
+              
+              // If completed, show next action
               if (isLastUnitOfTheme) {
                 // Last unit of theme -> Go to quiz
                 return (
                   <Button 
                     onClick={() => navigate(`/courses/ai-business-automation/theme/${themeId}/quiz`)}
-                    className="nav-button-with-context nav-button-success"
+                    className="nav-button-with-context nav-button-primary"
                   >
                     <div className="nav-label-context">
                       <span className="nav-label-primary">{isZhHK ? '進入測驗' : 'Take Quiz'}</span>

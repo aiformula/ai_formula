@@ -25,7 +25,7 @@ import BlogPost from '@/pages/blog/BlogPost';
 // Course Pages
 import CourseListing from '@/pages/courses/CourseListing';
 import CourseDetail from '@/pages/courses/CourseDetail';
-import AIBusinessAutomationOutline from '@/pages/courses/AIBusinessAutomationOutline';
+import AIBusinessAutomationCoursePage from '@/pages/courses/ai-business-automation/index';
 import AIBusinessAutomationLearning from '@/pages/courses/AIBusinessAutomationLearning';
 import AIBusinessAutomationTheme from '@/pages/courses/AIBusinessAutomationTheme';
 import AIBusinessAutomationUnit from '@/pages/courses/AIBusinessAutomationUnit';
@@ -68,13 +68,12 @@ function App() {
                   
                   {/* Course Routes */}
                   <Route path="/courses" element={<CourseListing />} />
-                  <Route path="/courses/:courseId" element={<CourseDetail />} />
-                  <Route path="/courses/business-automation" element={<AIBusinessAutomationOutline />} />
-                  <Route path="/courses/ai-business-automation" element={<AIBusinessAutomationOutline />} />
+                  <Route path="/courses/ai-business-automation" element={<AIBusinessAutomationCoursePage />} />
+                  <Route path="/courses/ai-business-automation/learning" element={<AIBusinessAutomationLearning />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId" element={<AIBusinessAutomationTheme />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId/unit/:unitId" element={<AIBusinessAutomationUnit />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId/quiz" element={<AIBusinessAutomationQuiz />} />
-                  <Route path="/courses/ai-business-automation/learning" element={<AIBusinessAutomationLearning />} />
+                  <Route path="/courses/:courseId" element={<CourseDetail />} />
                   
                   {/* Design System Demo */}
                   <Route path="/design-system" element={<DesignSystemDemo />} />

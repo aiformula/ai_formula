@@ -274,3 +274,87 @@
     font-size: 14px;
   }
 } 
+
+/* ===== 主進度條樣式（AIBusinessAutomationLearning專用） ===== */
+
+/* 標準進度條容器 */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+/* 大型進度條容器 */
+.progress-bar-large {
+  width: 100%;
+  height: 16px;
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  position: relative;
+}
+
+/* 進度條填充 */
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 200% 200%;
+  animation: progressGradient 3s ease-in-out infinite;
+  border-radius: inherit;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  /* 確保寬度正確計算 */
+  min-width: 0%;
+  max-width: 100%;
+}
+
+/* 進度條光澤效果 */
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progressShine 2s infinite;
+}
+
+/* 100% 完成時的特殊樣式 */
+.progress-bar-fill[style*="100%"] {
+  background: linear-gradient(90deg, #10b981, #059669);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+}
+
+/* 進度條調試模式 - 開發環境顯示邊框 */
+.progress-bar.debug {
+  border: 2px solid #ef4444;
+}
+
+.progress-bar.debug .progress-bar-fill {
+  border: 1px solid #22c55e;
+}
+
+/* 響應式進度條 */
+@media (max-width: 768px) {
+  .progress-bar {
+    height: 10px;
+  }
+  
+  .progress-bar-large {
+    height: 14px;
+  }
+} 
