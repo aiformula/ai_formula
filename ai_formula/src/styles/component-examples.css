@@ -1,0 +1,266 @@
+/* ====================================
+   組件使用例子 / Component Usage Examples
+   展示如何使用統一尺寸系統
+   ==================================== */
+
+/* ============ 按鈕使用例子 ============ */
+
+/* 🎯 主要按鈕 - 統一尺寸 */
+.btn-primary-unified {
+  /* 使用統一的按鈕基礎樣式 */
+  height: var(--btn-height-md);           /* 40px 統一高度 */
+  padding: 0 var(--btn-padding-x-md);     /* 0 16px 統一內邊距 */
+  border-radius: var(--radius-md);        /* 8px 統一圓角 */
+  font-size: var(--text-base);            /* 16px 統一字體 */
+  font-weight: var(--font-medium);        /* 500 統一粗度 */
+  
+  /* 樣式 */
+  background: #3b82f6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);                    /* 8px icon和文字間距 */
+  transition: all 0.2s ease;
+}
+
+.btn-primary-unified:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* 🎯 次要按鈕 - 同樣統一尺寸 */
+.btn-secondary-unified {
+  height: var(--btn-height-md);           /* 與主要按鈕相同高度 */
+  padding: 0 var(--btn-padding-x-md);     /* 相同內邊距 */
+  border-radius: var(--radius-md);        /* 相同圓角 */
+  font-size: var(--text-base);            /* 相同字體大小 */
+  font-weight: var(--font-medium);
+  
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary-unified:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  color: #374151;
+}
+
+/* 🎯 大按鈕 - 用於重要CTA */
+.btn-large-unified {
+  height: var(--btn-height-lg);           /* 48px 大按鈕高度 */
+  padding: 0 var(--btn-padding-x-lg);     /* 0 24px 大按鈕內邊距 */
+  border-radius: var(--radius-lg);        /* 12px 大圓角 */
+  font-size: var(--text-lg);              /* 18px 大字體 */
+  font-weight: var(--font-semibold);      /* 600 更粗字體 */
+  
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============ 卡片使用例子 ============ */
+
+/* 🎯 標準卡片 - 統一間距 */
+.card-standard-unified {
+  background: white;
+  border-radius: var(--radius-lg);        /* 12px 統一圓角 */
+  padding: var(--card-padding-md);        /* 24px 統一內邊距 */
+  box-shadow: var(--shadow-sm);           /* 統一陰影 */
+  border: 1px solid rgb(0 0 0 / 0.05);
+  transition: all 0.2s ease;
+}
+
+.card-standard-unified:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* 卡片標題 - 統一字體層級 */
+.card-title-unified {
+  font-size: var(--text-3xl);             /* 30px H5 卡片標題 */
+  font-weight: var(--font-semibold);      /* 600 半粗體 */
+  line-height: var(--leading-snug);       /* 1.375 舒適行高 */
+  color: #111827;
+  margin: 0 0 var(--space-3) 0;           /* 下方12px間距 */
+}
+
+/* 卡片描述 - 統一字體層級 */
+.card-description-unified {
+  font-size: var(--text-base);            /* 16px 標準內文 */
+  font-weight: var(--font-normal);        /* 400 正常字重 */
+  line-height: var(--leading-normal);     /* 1.5 標準行高 */
+  color: #6b7280;
+  margin: 0 0 var(--space-6) 0;           /* 下方24px間距 */
+}
+
+/* 🎯 緊湊卡片 - 小間距 */
+.card-compact-unified {
+  background: white;
+  border-radius: var(--radius-md);        /* 8px 小圓角 */
+  padding: var(--card-padding-sm);        /* 16px 小內邊距 */
+  box-shadow: var(--shadow-xs);           /* 小陰影 */
+  border: 1px solid rgb(0 0 0 / 0.05);
+}
+
+/* 🎯 大卡片 - 大間距 */
+.card-spacious-unified {
+  background: white;
+  border-radius: var(--radius-xl);        /* 16px 大圓角 */
+  padding: var(--card-padding-lg);        /* 32px 大內邊距 */
+  box-shadow: var(--shadow-lg);           /* 大陰影 */
+  border: 1px solid rgb(0 0 0 / 0.05);
+}
+
+/* ============ 表單元素使用例子 ============ */
+
+/* 🎯 統一輸入框 */
+.input-standard-unified {
+  height: var(--input-height-md);         /* 40px 與按鈕同高 */
+  padding: 0 var(--space-3);              /* 0 12px 內邊距 */
+  border-radius: var(--radius-md);        /* 8px 與按鈕同圓角 */
+  border: 1px solid #d1d5db;
+  font-size: var(--text-base);            /* 16px 與按鈕同字體 */
+  background: white;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.input-standard-unified:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+}
+
+/* ============ 布局間距使用例子 ============ */
+
+/* 🎯 組件之間的標準間距 */
+.component-spacing-unified {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);                    /* 24px 組件間距 */
+}
+
+/* 🎯 區塊之間的大間距 */
+.section-spacing-unified {
+  margin-bottom: var(--space-12);         /* 48px 區塊間距 */
+}
+
+/* 🎯 頁面級別的間距 */
+.page-spacing-unified {
+  padding: var(--space-16) var(--space-8); /* 64px 上下，32px 左右 */
+}
+
+/* ============ 實際使用例子 ============ */
+
+/* 🎯 工具卡片例子 - 按照統一系統重新設計 */
+.tool-card-example {
+  background: white;
+  border-radius: var(--radius-lg);        /* 12px 統一圓角 */
+  padding: var(--card-padding-md);        /* 24px 統一內邊距 */
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgb(0 0 0 / 0.05);
+  transition: all 0.2s ease;
+  
+  /* 內部間距使用統一系統 */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);                    /* 16px 內部元素間距 */
+}
+
+.tool-card-example:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.tool-card-example .icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);          /* 8px 圖標下方間距 */
+}
+
+.tool-card-example .tool-title {
+  font-size: var(--text-xl);              /* 20px 副標題 */
+  font-weight: var(--font-semibold);      /* 600 半粗體 */
+  line-height: var(--leading-snug);
+  color: #111827;
+  margin: 0;
+}
+
+.tool-card-example .tool-description {
+  font-size: var(--text-sm);              /* 14px 小文字 */
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+  color: #6b7280;
+  margin: 0;
+}
+
+.tool-card-example .tool-button {
+  height: var(--btn-height-sm);           /* 32px 小按鈕 */
+  padding: 0 var(--btn-padding-x-sm);     /* 0 12px */
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);              /* 14px */
+  font-weight: var(--font-medium);
+  background: #3b82f6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);                    /* 4px icon間距 */
+  align-self: flex-start;
+  margin-top: var(--space-2);             /* 8px 上方間距 */
+  transition: all 0.2s ease;
+}
+
+/* ============ 響應式使用例子 ============ */
+
+/* 🎯 響應式間距 */
+.responsive-spacing-example {
+  padding: var(--space-4);                /* 移動端：16px */
+}
+
+@media (min-width: 768px) {
+  .responsive-spacing-example {
+    padding: var(--space-8);              /* 桌面端：32px */
+  }
+}
+
+/* 🎯 響應式按鈕 */
+.responsive-button-example {
+  height: var(--btn-height-sm);           /* 移動端：32px */
+  padding: 0 var(--btn-padding-x-sm);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 768px) {
+  .responsive-button-example {
+    height: var(--btn-height-md);         /* 桌面端：40px */
+    padding: 0 var(--btn-padding-x-md);
+    font-size: var(--text-base);
+  }
+} 
