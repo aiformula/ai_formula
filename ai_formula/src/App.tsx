@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ViewCountProvider } from '@/contexts/ViewCountContext';
@@ -32,7 +32,6 @@ import AIBusinessAutomationUnit from '@/pages/courses/AIBusinessAutomationUnit';
 import AIBusinessAutomationQuiz from '@/pages/courses/AIBusinessAutomationQuiz';
 
 // ChatGPT Course Pages
-import ChatGPTCompleteCourseIndex from '@/pages/courses/chatgpt-complete-course/index';
 import ChatGPTCompleteCourseLearning from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseLearning';
 import ChatGPTCompleteCourseTheme from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseTheme';
 import ChatGPTCompleteCourseUnit from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseUnit';
@@ -83,7 +82,7 @@ function App() {
                   <Route path="/courses/ai-business-automation/theme/:themeId/quiz" element={<AIBusinessAutomationQuiz />} />
                   
                   {/* ChatGPT Course Routes */}
-                  <Route path="/courses/chatgpt-complete-course" element={<ChatGPTCompleteCourseIndex />} />
+                  <Route path="/courses/chatgpt-complete-course" element={<Navigate to="/courses/chatgpt-complete-course/outline" replace />} />
                   <Route path="/courses/chatgpt-complete-course/learning" element={<ChatGPTCompleteCourseLearning />} />
                   <Route path="/courses/chatgpt-complete-course/outline" element={<ChatGPTCompleteCourseOutline />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTCompleteCourseTheme />} />

@@ -217,7 +217,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">[測驗不存在]</h2>
-          <Button onClick={() => navigate('/courses/chatgpt-complete-course')}>
+          <Button onClick={() => navigate('/courses/chatgpt-complete-course/outline')}>
             [返回課程]
           </Button>
         </div>

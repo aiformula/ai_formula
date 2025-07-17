@@ -93,7 +93,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
   };
 
   const handleBackToCourse = () => {
-    navigate('/courses/chatgpt-complete-course');
+    navigate('/courses/chatgpt-complete-course/outline');
   };
 
   const totalProgress = 0; // 簡化版本，設為0

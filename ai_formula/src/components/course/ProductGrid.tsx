@@ -45,7 +45,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     if (product.category === 'business-automation') {
       navigate('/courses/ai-business-automation');
     } else if (product.category === 'chatgpt-complete-course') {
-      navigate('/courses/chatgpt-complete-course');
+      navigate('/courses/chatgpt-complete-course/outline');
     } else if (product.category === 'prompt-engineering') {
       navigate('/courses/prompt-engineering-outline');
     } else {
