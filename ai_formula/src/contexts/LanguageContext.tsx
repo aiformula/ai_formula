@@ -253,6 +253,9 @@ const enTranslations: Translations = {
   'auth.noAccount': 'Don\'t have an account?',
   'auth.loginDescription': 'Enter your email and password to sign in to your account',
   'auth.signupDescription': 'Create your account to start learning with AI Formula',
+  'auth.emailPlaceholder': 'Please enter your email address',
+  'auth.passwordPlaceholder': 'Please enter your password',
+  'auth.confirmPasswordPlaceholder': 'Please re-enter your password',
   
   // Dashboard
   'dashboard.welcome': 'Welcome back',
@@ -618,6 +621,9 @@ const zhTranslations: Translations = {
   'auth.noAccount': '沒有帳戶？',
   'auth.loginDescription': '輸入您的電子郵件和密碼登入您的帳戶',
   'auth.signupDescription': '創建您的帳戶，開始與AI Formula一起學習',
+  'auth.emailPlaceholder': '請輸入您的電子郵件地址',
+  'auth.passwordPlaceholder': '請輸入您的密碼',
+  'auth.confirmPasswordPlaceholder': '請再次輸入密碼',
   
   // Dashboard
   'dashboard.welcome': '歡迎回來',

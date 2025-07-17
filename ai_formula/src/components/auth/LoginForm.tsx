@@ -101,7 +101,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder={t('auth.email')}
+                  placeholder={t('auth.emailPlaceholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -125,7 +125,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder={t('auth.password')}
+                  placeholder={t('auth.passwordPlaceholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
