@@ -11,7 +11,7 @@ const MainHero = () => {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden page-content" 
       style={{ backgroundColor: '#121212' }}
     >
       {/* Animated background dots */}

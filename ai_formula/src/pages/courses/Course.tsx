@@ -328,7 +328,7 @@ const CourseGrid: React.FC<{ courses: CourseData[]; isZhTW: boolean }> = ({ cour
 
 const HeroSection: React.FC<{ isZhTW: boolean }> = ({ isZhTW }) => {
   return (
-    <section className="pt-20 pb-16 bg-gradient-to-r from-blue-900 to-purple-900">
+    <section className="pb-16 bg-gradient-to-r from-blue-900 to-purple-900">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h1 

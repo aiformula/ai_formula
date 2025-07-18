@@ -55,7 +55,7 @@ const ThemeTest: React.FC = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="pt-24 pb-12 px-4">
+      <div className="page-content pb-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <div className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-4">
             <h1 className="text-5xl md:text-6xl font-bold mb-2">
