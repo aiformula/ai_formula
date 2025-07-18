@@ -412,7 +412,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               </div>
               
               <div className="min-w-0 flex-1">
-                <h1 className="text-xl font-bold text-white mb-1 truncate">
+                <h1 className="text-h1 mb-1 truncate">
                   ChatGPT 完整教學實戰課程
                 </h1>
                 <div className="flex items-center space-x-2 mb-1">
@@ -423,7 +423,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                   ) : (
                     <Star className="w-4 h-4 text-gray-400 flex-shrink-0" />
                   )}
-                  <span className="text-lg font-medium text-white">
+                  <span className="text-status">
                     {stats.totalProgress === 100 ? (
                       isZhHK ? '🎉 恭喜！課程完成！' : '🎉 Congratulations! Course Completed!'
                     ) : stats.totalProgress > 0 ? (
@@ -433,7 +433,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                     )}
                   </span>
                 </div>
-                <p className="text-sm text-white/60">
+                <p className="text-body">
                   {stats.totalProgress === 100 ? (
                     isZhHK ? '全部內容已解鎖' : 'All content unlocked'
                   ) : (
@@ -451,10 +451,10 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="flex items-center justify-center mb-2">
                     <BarChart3 className="w-5 h-5 text-blue-400 mr-1" />
-                    <span className="text-xs font-medium text-white/70 uppercase tracking-wide">總進度</span>
+                    <span className="text-label">總進度</span>
                   </div>
-                  <div className="text-2xl font-bold text-white mb-1">{stats.totalProgress}%</div>
-                  <div className="text-xs text-white/60">
+                  <div className="text-data mb-1">{stats.totalProgress}%</div>
+                  <div className="text-caption">
                     {stats.totalProgress === 100 ? '已達成目標' : '持續進步中'}
                   </div>
                 </div>
@@ -463,22 +463,22 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="flex items-center justify-center mb-2">
                     <Clock className="w-5 h-5 text-green-400 mr-1" />
-                    <span className="text-xs font-medium text-white/70 uppercase tracking-wide">學習時間</span>
+                    <span className="text-label">學習時間</span>
                   </div>
-                  <div className="text-2xl font-bold text-white mb-1">{formattedLearningTime || `${totalLearningMinutes}分鐘`}</div>
-                  <div className="text-xs text-white/60">累積時長</div>
+                  <div className="text-data mb-1">{formattedLearningTime || `${totalLearningMinutes}分鐘`}</div>
+                  <div className="text-caption">累積時長</div>
                 </div>
 
                 {/* Completed Themes Stat */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="flex items-center justify-center mb-2">
                     <BookOpen className="w-5 h-5 text-purple-400 mr-1" />
-                    <span className="text-xs font-medium text-white/70 uppercase tracking-wide">完成主題</span>
+                    <span className="text-label">完成主題</span>
                   </div>
-                  <div className="text-2xl font-bold text-white mb-1">
+                  <div className="text-data mb-1">
                     {stats.completedThemes}/{stats.totalThemes}
                   </div>
-                  <div className="text-xs text-white/60">
+                  <div className="text-caption">
                     {stats.completedThemes === stats.totalThemes ? '全部完成' : '學習中'}
                   </div>
                 </div>
@@ -492,7 +492,8 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               {/* Primary CTA Button */}
               {stats.totalProgress < 100 ? (
                 <Button 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                  className="w-full btn-primary-action"
+                  style={{ backgroundColor: 'var(--status-info)' }}
                   onClick={() => {
                     // 找到當前需要學習的單元
                     for (const theme of courseData.themes) {
@@ -511,7 +512,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 </Button>
               ) : (
                 <Button 
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                  className="w-full btn-primary-action"
                   onClick={() => navigate('/courses/chatgpt-complete-course')}
                 >
                   <Trophy className="w-5 h-5 mr-2" />
@@ -522,8 +523,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               {/* Secondary Action - Reset Progress */}
               {process.env.NODE_ENV === 'development' && (
                 <Button
-                  variant="outline"
-                  className="w-full border-gray-500/30 text-gray-400 hover:bg-gray-700/20 hover:text-gray-300 hover:border-gray-400/50 py-2 px-4 text-sm transition-all duration-200"
+                  className="w-full btn-secondary-action"
                   onClick={resetProgress}
                 >
                   <RotateCcw className="w-4 h-4 mr-2" />
@@ -538,10 +538,10 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {/* Progress Bar - Full Width at Bottom */}
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-white/70 font-medium">
+              <span className="text-body font-medium">
                 整體學習進度
               </span>
-              <span className="text-sm text-white/70">
+              <span className="text-body">
                 {stats.totalProgress}% 已完成
               </span>
             </div>
@@ -566,7 +566,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
             >
               <div className="content-section-header">
                 <BookOpen className="w-6 h-6 text-blue-400 mr-3" />
-                <h3 className="content-section-title text-white">課程模塊</h3>
+                <h3 className="text-h2">課程模塊</h3>
               </div>
 
               {/* 🎯 NEW: Accordion Style Course Modules */}

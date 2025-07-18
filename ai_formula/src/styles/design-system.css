@@ -13,7 +13,37 @@
 /* ============ COLOR SYSTEM ============ */
 @layer base {
   :root {
-    /* Primary Brand Colors */
+    /* === 📊 DASHBOARD DESIGN SYSTEM === */
+    /* Primary Action Colors - 主要操作色系統 */
+    --primary-action: #16A34A;        /* 綠色 - 主要成功操作 */
+    --primary-action-hover: #15803D;  /* 深綠色 - hover狀態 */
+    --primary-action-light: #22C55E;  /* 亮綠色 - 輔助 */
+    
+    /* Secondary Action Colors - 次要操作色系統 */
+    --secondary-action: rgba(255, 255, 255, 0.1);     /* 半透明白色 - ghost按鈕 */
+    --secondary-action-hover: rgba(255, 255, 255, 0.2); /* hover狀態 */
+    --secondary-action-border: rgba(255, 255, 255, 0.3); /* 邊框色 */
+    --secondary-action-text: rgba(255, 255, 255, 0.7);   /* 文字色 */
+    
+    /* Text Color Hierarchy - 文字顏色層級 */
+    --text-primary: #FFFFFF;           /* 純白 - 最重要的文字 */
+    --text-secondary: rgba(255, 255, 255, 0.8);  /* 80%白 - 次要文字 */
+    --text-tertiary: rgba(255, 255, 255, 0.6);   /* 60%白 - 第三級文字 */
+    --text-quaternary: rgba(255, 255, 255, 0.4); /* 40%白 - 最不重要文字 */
+    
+    /* Data Display Colors - 數據顯示專用色 */
+    --data-primary: #FFFFFF;           /* 主要數據 - 純白 */
+    --data-highlight: #22C55E;         /* 突出數據 - 綠色 */
+    --data-warning: #F59E0B;           /* 警告數據 - 橙色 */
+    --data-info: #3B82F6;              /* 資訊數據 - 藍色 */
+    
+    /* Status Colors - 狀態色系統 */
+    --status-success: #22C55E;         /* 成功/完成 */
+    --status-warning: #F59E0B;         /* 警告/進行中 */
+    --status-info: #3B82F6;            /* 資訊/開始 */
+    --status-neutral: rgba(255, 255, 255, 0.6); /* 中性狀態 */
+
+    /* Legacy Brand Colors */
     --ai-formula-primary: #FFD600;
     --ai-formula-primary-hover: #EAB308;
     --ai-formula-secondary: #FFA500;
@@ -53,7 +83,60 @@
     --ai-formula-gray-800: #1F2937;
     --ai-formula-gray-900: #111827;
 
-    /* Typography Scale */
+    /* === 📝 TYPOGRAPHY HIERARCHY === */
+    /* Dashboard Typography Scale - 儀表板字體層級 */
+    
+    /* H1 - 頁面主標題 (例如："ChatGPT 完整教學實戰課程") */
+    --font-h1-size: 1.25rem;        /* 20px */
+    --font-h1-weight: 700;          /* Bold */
+    --font-h1-line-height: 1.4;     /* 28px */
+    --font-h1-color: var(--text-primary);
+    
+    /* H2 - 區塊標題 (例如："課程模塊"、"技能發展路線") */
+    --font-h2-size: 1.125rem;       /* 18px */
+    --font-h2-weight: 600;          /* Semi-bold */
+    --font-h2-line-height: 1.5;     /* 27px */
+    --font-h2-color: var(--text-primary);
+    
+    /* H3 - 卡片內標題 (例如："第一大主題...") */
+    --font-h3-size: 1rem;           /* 16px */
+    --font-h3-weight: 600;          /* Semi-bold */
+    --font-h3-line-height: 1.5;     /* 24px */
+    --font-h3-color: var(--text-primary);
+    
+    /* Data Display - 數據顯示 (例如："100%"、"31分鐘") */
+    --font-data-size: 1.5rem;       /* 24px */
+    --font-data-weight: 700;        /* Bold */
+    --font-data-line-height: 1.2;   /* 28.8px */
+    --font-data-color: var(--data-primary);
+    
+    /* Status Text - 狀態文字 (例如："🎉 恭喜！課程完成！") */
+    --font-status-size: 1.125rem;   /* 18px */
+    --font-status-weight: 500;      /* Medium */
+    --font-status-line-height: 1.4; /* 25.2px */
+    --font-status-color: var(--text-primary);
+    
+    /* Body Text - 內文/描述 */
+    --font-body-size: 0.875rem;     /* 14px */
+    --font-body-weight: 400;        /* Normal */
+    --font-body-line-height: 1.5;   /* 21px */
+    --font-body-color: var(--text-secondary);
+    
+    /* Label Text - 標籤文字 (例如："已完成"、"學習總時長") */
+    --font-label-size: 0.75rem;     /* 12px */
+    --font-label-weight: 500;       /* Medium */
+    --font-label-line-height: 1.4;  /* 16.8px */
+    --font-label-color: var(--text-tertiary);
+    --font-label-transform: uppercase;
+    --font-label-spacing: 0.05em;   /* Letter spacing */
+    
+    /* Caption Text - 最小說明文字 */
+    --font-caption-size: 0.75rem;   /* 12px */
+    --font-caption-weight: 400;     /* Normal */
+    --font-caption-line-height: 1.4; /* 16.8px */
+    --font-caption-color: var(--text-quaternary);
+
+    /* Legacy Typography Scale */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -225,6 +308,127 @@
     max-width: 1440px !important;
   }
   
+  /* ============ 設計系統工具類 ============ */
+  /* === 🎨 按鈕系統 - BUTTON SYSTEM === */
+  
+  /* Primary Action Button - 主要操作按鈕 */
+  .btn-primary-action {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-lg px-6 py-3 
+           transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+    background-color: var(--primary-action);
+    color: var(--text-primary);
+    border: none;
+  }
+  
+  .btn-primary-action:hover {
+    background-color: var(--primary-action-hover);
+    transform: translateY(-2px);
+  }
+  
+  /* Secondary Action Button - 次要操作按鈕 (Ghost Style) */
+  .btn-secondary-action {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-lg px-4 py-2 
+           transition-all duration-200 hover:shadow-md
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+    background-color: var(--secondary-action);
+    color: var(--secondary-action-text);
+    border: 1px solid var(--secondary-action-border);
+    font-size: var(--font-body-size);
+  }
+  
+  .btn-secondary-action:hover {
+    background-color: var(--secondary-action-hover);
+    color: var(--text-secondary);
+    border-color: var(--secondary-action-border);
+  }
+  
+  /* === 📝 字體層級類 - TYPOGRAPHY CLASSES === */
+  
+  /* H1 - 頁面主標題 */
+  .text-h1 {
+    font-size: var(--font-h1-size);
+    font-weight: var(--font-h1-weight);
+    line-height: var(--font-h1-line-height);
+    color: var(--font-h1-color);
+  }
+  
+  /* H2 - 區塊標題 */
+  .text-h2 {
+    font-size: var(--font-h2-size);
+    font-weight: var(--font-h2-weight);
+    line-height: var(--font-h2-line-height);
+    color: var(--font-h2-color);
+  }
+  
+  /* H3 - 卡片內標題 */
+  .text-h3 {
+    font-size: var(--font-h3-size);
+    font-weight: var(--font-h3-weight);
+    line-height: var(--font-h3-line-height);
+    color: var(--font-h3-color);
+  }
+  
+  /* Data Display - 數據顯示 */
+  .text-data {
+    font-size: var(--font-data-size);
+    font-weight: var(--font-data-weight);
+    line-height: var(--font-data-line-height);
+    color: var(--font-data-color);
+  }
+  
+  /* Status Text - 狀態文字 */
+  .text-status {
+    font-size: var(--font-status-size);
+    font-weight: var(--font-status-weight);
+    line-height: var(--font-status-line-height);
+    color: var(--font-status-color);
+  }
+  
+  /* Body Text - 內文/描述 */
+  .text-body {
+    font-size: var(--font-body-size);
+    font-weight: var(--font-body-weight);
+    line-height: var(--font-body-line-height);
+    color: var(--font-body-color);
+  }
+  
+  /* Label Text - 標籤文字 */
+  .text-label {
+    font-size: var(--font-label-size);
+    font-weight: var(--font-label-weight);
+    line-height: var(--font-label-line-height);
+    color: var(--font-label-color);
+    text-transform: var(--font-label-transform);
+    letter-spacing: var(--font-label-spacing);
+  }
+  
+  /* Caption Text - 最小說明文字 */
+  .text-caption {
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-caption-weight);
+    line-height: var(--font-caption-line-height);
+    color: var(--font-caption-color);
+  }
+  
+  /* === 🎯 狀態指示器 - STATUS INDICATORS === */
+  
+  .status-success {
+    color: var(--status-success);
+  }
+  
+  .status-warning {
+    color: var(--status-warning);
+  }
+  
+  .status-info {
+    color: var(--status-info);
+  }
+  
+  .status-neutral {
+    color: var(--status-neutral);
+  }
+
   /* ============ 頁面特定容器系統 ============ */
   /* ChatGPT 完整課程系列 - 最佳體驗：在 1920px 寬螢幕上會有更好的內容展示效果 */
   .chatgpt-learning-page .ai-container,
