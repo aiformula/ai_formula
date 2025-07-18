@@ -175,7 +175,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
   const units = useMemo(() => ({
     // 第一章：解構 ChatGPT — 深入核心技術
     '1': {
-      id: 1,
+          id: 1,
       themeId: 1,
       title: isZhHK ? '單元 1.1：什麼是大型語言模型 (LLM)？' : 'Unit 1.1: What is Large Language Model (LLM)?',
       duration: '15分鐘',
@@ -203,7 +203,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     },
 
     '2': {
-      id: 2,
+          id: 2,
       themeId: 1,
       title: isZhHK ? '單元 1.2：Transformer 架構：神經網絡與自注意力機制 (Self-Attention)' : 'Unit 1.2: Transformer Architecture: Neural Networks & Self-Attention Mechanisms',
       duration: '12分鐘',
@@ -1460,7 +1460,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               >
                 課程完成
                 <CheckCircle className="w-4 h-4 ml-2" />
-              </Button>
+                </Button>
               )}
             </div>
           </div>

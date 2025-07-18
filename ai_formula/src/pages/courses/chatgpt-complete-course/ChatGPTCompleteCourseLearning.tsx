@@ -690,7 +690,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                                 unit.current ? 'text-blue-400' : 'text-gray-400'
                                               }`}>
                                                 {theme.id}.{unitIndex + 1}
-                                              </span>
+                          </span>
                                               <h4 className={`text-base font-medium leading-tight ${
                                                 isLocked ? 'text-gray-500' :
                                                 unit.completed ? 'text-gray-300 line-through decoration-gray-500' : 

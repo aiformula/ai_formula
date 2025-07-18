@@ -870,7 +870,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                         <div className="relative z-10 text-green-300">
                           {feature.icon}
                         </div>
-                      </div>
+                        </div>
                       
                       {/* Title with gradient text */}
                       <h4 className="text-xl font-bold mb-3 text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-200 bg-clip-text">

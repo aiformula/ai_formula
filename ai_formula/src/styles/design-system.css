@@ -202,6 +202,46 @@
     @apply animate-slide-in-right;
   }
 
+  /* ============ 響應式容器系統 ============ */
+  /* 主要內容容器 - 1280px 最大寬度，解決寬螢幕內容拉伸問題 */
+  .ai-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 1.5rem;  /* 24px */
+    padding-right: 1.5rem; /* 24px */
+  }
+  
+  /* 覆蓋 Tailwind 的 container 類別，統一最大寬度 */
+  .container {
+    max-width: 1280px !important;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  /* 統一常用的最大寬度類別 */
+  .max-w-6xl,
+  .max-w-7xl {
+    max-width: 1280px !important;
+  }
+  
+  /* 響應式 padding 調整 */
+  @media (max-width: 640px) {
+    .ai-container,
+    .container {
+      padding-left: 1rem;   /* 16px 在小螢幕 */
+      padding-right: 1rem;  /* 16px 在小螢幕 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .ai-container,
+    .container {
+      padding-left: 2rem;   /* 32px 在大螢幕 */
+      padding-right: 2rem;  /* 32px 在大螢幕 */
+    }
+  }
+
   /* ♿ 無障礙訪問增強 */
   .sr-only {
     @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
