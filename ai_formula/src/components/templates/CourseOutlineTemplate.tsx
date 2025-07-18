@@ -809,25 +809,113 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 ))}
               </div>
               
-              {/* Original Course Features */}
-              <div className="grid md:grid-cols-2 gap-6">
+              {/* Fluid Glass Course Features */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {courseFeatures.map((feature, index) => (
-                  <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0">
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="
+                      group relative overflow-hidden
+                      backdrop-blur-md backdrop-saturate-150
+                      transition-all duration-500 ease-out
+                      transform hover:scale-[1.02] hover:-translate-y-1 active:scale-[0.98]
+                      shadow-lg hover:shadow-xl
+                      cursor-pointer
+                    "
+                    style={{
+                      borderRadius: '20px',
+                      padding: '28px',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      backdropFilter: 'blur(16px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                    }}
+                  >
+                    {/* Glass shine effect */}
+                    <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/20 via-white/5 to-transparent opacity-60" />
+                    
+                    {/* Floating particles effect on hover */}
+                    <div className="absolute inset-0 rounded-[20px] overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-6 left-8 w-1.5 h-1.5 bg-green-300/60 rounded-full animate-pulse" />
+                      <div className="absolute top-12 right-10 w-1 h-1 bg-blue-300/60 rounded-full animate-pulse delay-300" />
+                      <div className="absolute bottom-8 left-12 w-1 h-1 bg-purple-300/60 rounded-full animate-pulse delay-700" />
+                      <div className="absolute bottom-16 right-6 w-0.5 h-0.5 bg-green-400/60 rounded-full animate-pulse delay-1000" />
+                    </div>
+                    
+                    {/* Hover glow effect */}
+                    <div className="absolute inset-0 rounded-[20px] bg-gradient-to-r from-green-400/0 via-green-400/5 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                      {/* Icon container with glass effect */}
+                      <div 
+                        className="
+                          w-16 h-16 rounded-2xl mb-6 flex items-center justify-center
+                          relative overflow-hidden
+                          group-hover:scale-110 transition-transform duration-300
+                        "
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(59, 130, 246, 0.15))',
+                          backdropFilter: 'blur(8px)',
+                          WebkitBackdropFilter: 'blur(8px)',
+                          border: '1px solid rgba(34, 197, 94, 0.3)',
+                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(34, 197, 94, 0.1)'
+                        }}
+                      >
+                        {/* Icon shine effect */}
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 via-transparent to-transparent" />
+                        <div className="relative z-10 text-green-300">
                           {feature.icon}
                         </div>
-                        <div>
-                          <h4 className="text-lg font-bold mb-2 text-white">{feature.title}</h4>
-                          <p className="text-gray-300 mb-3">{feature.description}</p>
-                          <Badge variant="outline" className={instructorTheme.accent}>
-                            {feature.highlight}
-                          </Badge>
-                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                      
+                      {/* Title with gradient text */}
+                      <h4 className="text-xl font-bold mb-3 text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-200 bg-clip-text">
+                        {feature.title}
+                      </h4>
+                      
+                      {/* Description */}
+                      <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                        {feature.description}
+                      </p>
+                      
+                      {/* Highlight badge with glass effect */}
+                      <div 
+                        className="
+                          inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold
+                          relative overflow-hidden
+                          group-hover:scale-105 transition-transform duration-200
+                        "
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(16, 185, 129, 0.15))',
+                          backdropFilter: 'blur(8px)',
+                          WebkitBackdropFilter: 'blur(8px)',
+                          border: '1px solid rgba(34, 197, 94, 0.4)',
+                          color: '#86efac',
+                          textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
+                        }}
+                      >
+                        {/* Badge shine effect */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 via-transparent to-transparent" />
+                        <span className="relative z-10">{feature.highlight}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Click ripple effect */}
+                    <div className="absolute inset-0 rounded-[20px] bg-white/10 opacity-0 group-active:opacity-100 group-active:animate-ping transition-opacity duration-150" />
+                    
+                    {/* Enhanced border on hover */}
+                    <div 
+                      className="absolute inset-0 rounded-[19px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      style={{
+                        border: '1px solid rgba(34, 197, 94, 0.4)',
+                        boxShadow: '0 0 20px rgba(34, 197, 94, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+                      }}
+                    />
+                  </motion.div>
                 ))}
               </div>
             </div>
