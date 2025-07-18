@@ -23,10 +23,21 @@ const Tools = () => {
 
   const toolCategories = [
     { id: 'all', label: '全部工具', labelEn: 'All Tools' },
-    { id: 'design', label: '設計工具', labelEn: 'Design Tools' },
-    { id: 'data', label: '數據工具', labelEn: 'Data Tools' },
-    { id: 'video', label: 'AI影片工具', labelEn: 'AI Video Tools' },
-    { id: 'marketing', label: 'AI行銷工具', labelEn: 'AI Marketing Tools' }
+    { id: 'ai-art', label: 'AI繪圖', labelEn: 'AI Art Generation' },
+    { id: 'image-edit', label: '圖像編輯', labelEn: 'Image Editing' },
+    { id: 'video-gen', label: '影片生成', labelEn: 'Video Generation' },
+    { id: 'video-edit', label: '影片編輯', labelEn: 'Video Editing' },
+    { id: 'audio-gen', label: '音頻生成', labelEn: 'Audio Generation' },
+    { id: 'ai-avatar', label: 'AI虛擬人', labelEn: 'AI Avatars' },
+    { id: 'text-gen', label: '文字創作', labelEn: 'Text Generation' },
+    { id: 'coding', label: '程式開發', labelEn: 'Code Development' },
+    { id: 'ui-design', label: 'UI/UX設計', labelEn: 'UI/UX Design' },
+    { id: '3d-ar', label: '3D/AR', labelEn: '3D/AR' },
+    { id: 'data-analysis', label: '數據分析', labelEn: 'Data Analysis' },
+    { id: 'no-code', label: 'No-Code', labelEn: 'No-Code' },
+    { id: 'prompt-eng', label: 'Prompt工程', labelEn: 'Prompt Engineering' },
+    { id: 'automation', label: '自動化工具', labelEn: 'Automation Tools' },
+    { id: 'marketing', label: '行銷工具', labelEn: 'Marketing Tools' }
   ];
 
   // Merge existing tools with new tools from tools-data.ts
@@ -42,7 +53,7 @@ const Tools = () => {
       url: 'https://www.freepik.com/',
       imageUrl: '/aitools/freepik.png',
       imageAlt: 'Freepik Logo',
-      category: 'design',
+      category: 'ai-art',
       targetAudience: isZhTW ? [
         '平面設計師',
         '網頁設計師', 
@@ -70,7 +81,7 @@ const Tools = () => {
       url: 'https://mem0.ai/openmemory-mcp',
       imageUrl: '/aitools/mem0.jpg',
       imageAlt: 'Mem0 Logo',
-      category: 'data',
+      category: 'data-analysis',
       targetAudience: isZhTW ? [
         '軟體開發者',
         'AI研究員',
@@ -96,7 +107,7 @@ const Tools = () => {
       url: 'https://chat4data.ai/',
       imageUrl: '/aitools/chat4data.png',
       imageAlt: 'Chat4Data Logo',
-      category: 'data',
+      category: 'data-analysis',
       targetAudience: isZhTW ? [
         '市場研究員',
         '數據分析師',
@@ -124,7 +135,7 @@ const Tools = () => {
       url: 'https://hailuoai.video/',
       imageUrl: '/aitools/hailuo.png',
       imageAlt: 'Hailuo AI Logo',
-      category: 'video',
+      category: 'video-gen',
       targetAudience: isZhTW ? [
         '影片創作者',
         '社交媒體管理者',
@@ -149,7 +160,7 @@ const Tools = () => {
       url: 'https://higgsfield.ai/',
       imageUrl: '/aitools/Higgsfield.png',
       imageAlt: 'Higgsfield AI Logo',
-      category: 'video',
+      category: 'video-edit',
       targetAudience: isZhTW ? [
         '影片編輯師',
         'YouTuber',
@@ -174,7 +185,7 @@ const Tools = () => {
       url: 'https://unstableml.com/',
       imageUrl: '/aitools/UnstableML.png',
       imageAlt: 'UnstableML Logo',
-      category: 'video',
+      category: 'ai-avatar',
       targetAudience: isZhTW ? [
         'AI愛好者',
         '創意工作者',
@@ -199,7 +210,7 @@ const Tools = () => {
       url: 'https://www.4dv.ai/',
       imageUrl: '/aitools/4DV.jpg',
       imageAlt: '4DV.AI Logo',
-      category: 'video',
+      category: '3d-ar',
       targetAudience: isZhTW ? [
         '技術研發者',
         'VR/AR 開發者',
@@ -224,7 +235,7 @@ const Tools = () => {
       url: 'https://seaweed-apt.com/2',
       imageUrl: '/aitools/seaweed.png',
       imageAlt: 'Seaweed APT2 Logo',
-      category: 'video',
+      category: 'video-edit',
       targetAudience: isZhTW ? [
         '專業影片編輯師',
         '後期製作團隊',
@@ -249,7 +260,7 @@ const Tools = () => {
       url: 'https://www.headshotpro.com',
       imageUrl: '/aitools/headai.png',
       imageAlt: 'HeadAI Logo',
-      category: 'video',
+      category: 'ai-avatar',
       targetAudience: isZhTW ? [
         '社交媒體用戶',
         '遊戲開發者',
@@ -303,9 +314,20 @@ const Tools = () => {
   const getFunctionIcon = (categoryId: string) => {
     switch(categoryId) {
       case 'all': return '🔧';
-      case 'design': return '🎨';
-      case 'data': return '📊';
-      case 'video': return '🎬';
+      case 'ai-art': return '🎨';
+      case 'image-edit': return '✂️';
+      case 'video-gen': return '🎬';
+      case 'video-edit': return '🎞️';
+      case 'audio-gen': return '🎵';
+      case 'ai-avatar': return '🤖';
+      case 'text-gen': return '📝';
+      case 'coding': return '💻';
+      case 'ui-design': return '🖼️';
+      case '3d-ar': return '🎮';
+      case 'data-analysis': return '📊';
+      case 'no-code': return '🚀';
+      case 'prompt-eng': return '🏷️';
+      case 'automation': return '⚡';
       case 'marketing': return '📈';
       default: return '⚡';
     }

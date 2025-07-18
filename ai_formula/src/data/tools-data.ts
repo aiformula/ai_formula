@@ -27,7 +27,7 @@ export const allTools: Tool[] = [
     url: 'https://www.lovart.ai/home',
     imageUrl: '/placeholder.svg', // 請替換為實際的 Logo URL
     imageAlt: 'Lovart AI Logo',
-    category: 'design',
+    category: 'ai-art',
     targetAudience: [
       '設計師',
       '藝術家', 
@@ -44,7 +44,7 @@ export const allTools: Tool[] = [
     url: 'https://app.lupaupscaler.com/',
     imageUrl: '/placeholder.svg', // 請替換為實際的 Logo URL
     imageAlt: 'Lupa Upscaler Logo',
-    category: 'design',
+    category: 'image-edit',
     targetAudience: [
       '攝影師',
       '影片製作人',
@@ -61,7 +61,7 @@ export const allTools: Tool[] = [
     url: 'https://www.hedra.com/',
     imageUrl: '/placeholder.svg', // 請替換為實際的 Logo URL
     imageAlt: 'Hedra Logo',
-    category: 'video',
+    category: 'ai-avatar',
     targetAudience: [
       '影片創作者',
       '數字行銷人員',
@@ -79,7 +79,7 @@ export const allTools: Tool[] = [
     url: 'https://hailuoai.video/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Hailuo AI Video Logo',
-    category: 'video',
+    category: 'video-gen',
     targetAudience: [
       '內容創作者',
       '市場營銷人員',
@@ -94,7 +94,7 @@ export const allTools: Tool[] = [
     url: 'https://elevenlabs.io/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Eleven Labs Logo',
-    category: 'video',
+    category: 'audio-gen',
     targetAudience: [
       '內容創作者',
       '播客',
@@ -110,7 +110,7 @@ export const allTools: Tool[] = [
     url: 'https://www.heygen.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Heygen Logo',
-    category: 'video',
+    category: 'ai-avatar',
     targetAudience: [
       '企業培訓',
       '市場營銷人員',
@@ -125,7 +125,7 @@ export const allTools: Tool[] = [
     url: 'https://chat4data.ai/',
     imageUrl: '/aitools/chat4data.png',
     imageAlt: 'Chat4Data Logo',
-    category: 'data',
+    category: 'data-analysis',
     targetAudience: [
       '數據分析師',
       '業務決策者',
@@ -955,24 +955,63 @@ export const allTools: Tool[] = [
 // 導出工具類別定義 - 功能分類
 export const toolCategories = [
   { id: 'all', label: '全部工具', labelEn: 'All Tools' },
-  { id: 'design', label: '設計工具', labelEn: 'Design Tools' },
-  { id: 'data', label: '數據工具', labelEn: 'Data Tools' },
-  { id: 'video', label: 'AI影片工具', labelEn: 'AI Video Tools' },
-  { id: 'marketing', label: 'AI行銷工具', labelEn: 'AI Marketing Tools' }
+  { id: 'ai-art', label: 'AI繪圖', labelEn: 'AI Art Generation' },
+  { id: 'image-edit', label: '圖像編輯', labelEn: 'Image Editing' },
+  { id: 'video-gen', label: '影片生成', labelEn: 'Video Generation' },
+  { id: 'video-edit', label: '影片編輯', labelEn: 'Video Editing' },
+  { id: 'audio-gen', label: '音頻生成', labelEn: 'Audio Generation' },
+  { id: 'ai-avatar', label: 'AI虛擬人', labelEn: 'AI Avatars' },
+  { id: 'text-gen', label: '文字創作', labelEn: 'Text Generation' },
+  { id: 'coding', label: '程式開發', labelEn: 'Code Development' },
+  { id: 'ui-design', label: 'UI/UX設計', labelEn: 'UI/UX Design' },
+  { id: '3d-ar', label: '3D/AR', labelEn: '3D/AR' },
+  { id: 'data-analysis', label: '數據分析', labelEn: 'Data Analysis' },
+  { id: 'no-code', label: 'No-Code', labelEn: 'No-Code' },
+  { id: 'prompt-eng', label: 'Prompt工程', labelEn: 'Prompt Engineering' },
+  { id: 'automation', label: '自動化工具', labelEn: 'Automation Tools' },
+  { id: 'marketing', label: '行銷工具', labelEn: 'Marketing Tools' }
 ];
 
-// 新增：用戶群體標籤分類
+// 新增：用戶群體標籤分類 - 擴展為 5 大類別 25 個細分
 export const userGroupCategories = [
   { id: 'all-users', label: '全部用戶', labelEn: 'All Users', icon: '👥' },
-  { id: 'content-creator', label: 'KOL/創作者', labelEn: 'Content Creators', icon: '🎬' },
-  { id: 'student', label: '學生', labelEn: 'Students', icon: '🎓' },
-  { id: 'marketer', label: '營銷人員', labelEn: 'Marketers', icon: '📈' },
-  { id: 'designer', label: '設計師', labelEn: 'Designers', icon: '🎨' },
-  { id: 'developer', label: '開發者', labelEn: 'Developers', icon: '💻' },
-  { id: 'teacher', label: '老師', labelEn: 'Teachers', icon: '👨‍🏫' },
-  { id: 'business', label: '商業人士', labelEn: 'Business Professionals', icon: '💼' },
+  
+  // 🎭 創意專業 (Creative Professionals)
+  { id: 'visual-designer', label: '視覺設計師', labelEn: 'Visual Designers', icon: '🎨' },
+  { id: 'video-creator', label: '影片創作者', labelEn: 'Video Creators', icon: '📹' },
+  { id: 'content-creator', label: '內容創作者', labelEn: 'Content Creators', icon: '🎬' },
+  { id: 'photographer', label: '攝影師', labelEn: 'Photographers', icon: '📸' },
   { id: 'artist', label: '藝術家', labelEn: 'Artists', icon: '🎭' },
-  { id: 'entrepreneur', label: '創業者', labelEn: 'Entrepreneurs', icon: '🚀' }
+  { id: 'music-creator', label: '音樂創作者', labelEn: 'Music Creators', icon: '🎵' },
+  
+  // 💼 商業專業 (Business Professionals)
+  { id: 'marketer', label: '市場行銷', labelEn: 'Marketers', icon: '📈' },
+  { id: 'entrepreneur', label: '創業者', labelEn: 'Entrepreneurs', icon: '🚀' },
+  { id: 'sales', label: '銷售人員', labelEn: 'Sales Professionals', icon: '💰' },
+  { id: 'product-manager', label: '產品經理', labelEn: 'Product Managers', icon: '📊' },
+  { id: 'ecommerce', label: '電商經營者', labelEn: 'E-commerce Operators', icon: '📦' },
+  
+  // 💻 技術專業 (Technical Professionals) 
+  { id: 'developer', label: '軟體開發者', labelEn: 'Software Developers', icon: '👨‍💻' },
+  { id: 'data-scientist', label: '數據科學家', labelEn: 'Data Scientists', icon: '📊' },
+  { id: 'ai-researcher', label: 'AI研究員', labelEn: 'AI Researchers', icon: '🤖' },
+  { id: 'security-expert', label: '網絡安全專家', labelEn: 'Security Experts', icon: '🛡️' },
+  { id: 'game-dev', label: '遊戲開發者', labelEn: 'Game Developers', icon: '🎮' },
+  
+  // 🎓 學術教育 (Academic & Education)
+  { id: 'teacher', label: '教師教授', labelEn: 'Teachers & Professors', icon: '👨‍🏫' },
+  { id: 'student', label: '學生', labelEn: 'Students', icon: '🎓' },
+  { id: 'researcher', label: '研究人員', labelEn: 'Researchers', icon: '🔬' },
+  { id: 'trainer', label: '培訓師', labelEn: 'Trainers', icon: '📚' },
+  
+  // 👤 個人應用 (Personal Use)
+  { id: 'personal-user', label: '個人用戶', labelEn: 'Personal Users', icon: '🏠' },
+  { id: 'efficiency-lover', label: '效率愛好者', labelEn: 'Efficiency Enthusiasts', icon: '⚡' },
+  { id: 'social-media-user', label: '社交媒體用戶', labelEn: 'Social Media Users', icon: '📱' },
+  
+  // 保留舊有標籤以保持兼容性
+  { id: 'designer', label: '設計師', labelEn: 'Designers', icon: '🎨' },
+  { id: 'business', label: '商業人士', labelEn: 'Business Professionals', icon: '💼' }
 ];
 
 // 工具計數統計
