@@ -336,7 +336,6 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
       targetAudience={targetAudience}
       onStartLearning={handleStartLearning}
       onWhatsApp={handleContactWhatsApp}
-      hideSidebar={true}
     />
   );
 };
