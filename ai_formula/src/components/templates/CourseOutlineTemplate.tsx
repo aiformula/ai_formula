@@ -675,106 +675,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
             
-            {/* 學員心聲區域 */}
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "🌟 學員心聲" : "🌟 Student Testimonials"}
-              </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  {
-                    name: "Sarah L.",
-                    role: "數碼行銷專員",
-                    avatar: "S",
-                    rating: 5,
-                    comment: "Kenneth 導師的課程讓我學會了用 Zapier 和 ChatGPT API 自動化客戶查詢處理。現在我的工作效率提升了 300%，每天節省3小時重複工作時間。",
-                    project: "建立自動化客服系統，客戶滿意度提升到95%"
-                  },
-                  {
-                    name: "Michael C.",
-                    role: "中小企業老闆",
-                    avatar: "M",
-                    rating: 5,
-                    comment: "課程教會我用 Make.com 整合各種系統，從訂單處理到庫存管理都自動化了。大大減少了人手成本和錯誤率。",
-                    project: "實施全自動化營運流程，成本降低40%"
-                  },
-                  {
-                    name: "Jenny W.",
-                    role: "營銷經理",
-                    avatar: "J",
-                    rating: 5,
-                    comment: "學會了用 AI 工具自動生成個性化郵件和社媒內容。潛在客戶轉換率從15%提升到35%，營銷效果顯著提升。",
-                    project: "自動化營銷活動帶來300%ROI提升"
-                  },
-                  {
-                    name: "David K.",
-                    role: "IT主管",
-                    avatar: "D",
-                    rating: 5,
-                    comment: "Kenneth的教學很實用，我用n8n建立了完整的業務自動化工作流程。現在數據報告自動生成，決策速度快了很多。",
-                    project: "建立商業智能系統，決策效率提升200%"
-                  }
-                ].map((testimonial, index) => (
-                  <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center text-white font-bold text-lg`}>
-                          {testimonial.avatar}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                            <span className="text-sm text-gray-400">— {testimonial.role}</span>
-                          </div>
-                          <div className="flex items-center gap-1 mb-3">
-                            {[...Array(testimonial.rating)].map((_, i) => (
-                              <Star key={i} className={`w-4 h-4 ${instructorTheme.primary} fill-current`} />
-                            ))}
-                          </div>
-                          <p className="text-gray-300 mb-3 leading-relaxed">"{testimonial.comment}"</p>
-                          <div className={`text-sm ${instructorTheme.primary} font-semibold`}>
-                            ✅ 成果：{testimonial.project}
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
 
-            {/* 常見問題區域 */}
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "❓ 常見問題" : "❓ Frequently Asked Questions"}
-              </h3>
-              <div className="space-y-4">
-                {faqData.map((faq, index) => (
-                  <Card key={index} className="bg-gray-800 border-gray-700">
-                    <CardContent className="p-0">
-                      <button
-                        onClick={() => toggleAccordion(index)}
-                        className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
-                      >
-                        <div className="flex items-center justify-between">
-                          <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
-                          {openAccordion === index ? (
-                            <ChevronUp className="w-5 h-5 text-gray-400" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5 text-gray-400" />
-                          )}
-                        </div>
-                      </button>
-                      {openAccordion === index && (
-                        <div className="px-6 pb-6">
-                          <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
           </div>
         );
 
@@ -1380,6 +1281,200 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             </div>
           </div>
         </div>
+
+        {/* 學員心聲區域 - 獨立於tabs之外 */}
+        <div className="mt-20">
+          <h2 className="text-3xl font-bold mb-16 text-white text-center">
+            {isZhTW ? "🌟 學員心聲" : "🌟 Student Testimonials"}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                name: "Sarah",
+                position: "數碼行銷經理",
+                rating: 5,
+                comment: "課程講解得好清楚，我依家識得點樣同ChatGPT傾偈喇！之前唔知點問問題，而家學識咗寫prompt嘅技巧。",
+                replies: 18
+              },
+              {
+                name: "Michael",
+                position: "產品設計師",
+                rating: 5,
+                comment: "Finally understand how to write effective prompts! The course is practical and easy to follow.",
+                replies: 12
+              },
+              {
+                name: "Jenny",
+                position: "內容創作者",
+                rating: 4,
+                comment: "原來ChatGPT可以幫手寫報告！學咗呢個課程之後，我嘅工作效率真係提升咗好多。",
+                replies: 24
+              },
+              {
+                name: "David",
+                position: "IT顧問",
+                rating: 5,
+                comment: "Great course for beginners. I learned how to use ChatGPT for content creation and it saves me so much time.",
+                replies: 15
+              },
+              {
+                name: "Lisa",
+                position: "市場推廣經理",
+                rating: 4,
+                comment: "上堂之前我都係亂咁問ChatGPT，而家識得點樣設定角色同情境，答案準確咗好多。",
+                replies: 9
+              },
+              {
+                name: "Alex",
+                position: "Business Analyst",
+                rating: 5,
+                comment: "The examples are very practical. Now I can use ChatGPT to help with my daily work tasks.",
+                replies: 21
+              },
+              {
+                name: "Kevin",
+                position: "創業家",
+                rating: 4,
+                comment: "好實用嘅課程！學識咗點樣用ChatGPT嚟做market research同competitor analysis。",
+                replies: 7
+              },
+              {
+                name: "Emma",
+                position: "Project Manager",
+                rating: 5,
+                comment: "Love how the instructor explains everything step by step. ChatGPT has become my daily work assistant now!",
+                replies: 16
+              }
+            ].map((testimonial, index) => (
+              <div 
+                key={index} 
+                className="relative group"
+              >
+                {/* 頂部高光邊框 */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${instructorTheme.gradient} rounded-t-xl`}></div>
+                
+                {/* 主卡片容器 - 細微漸變背景 */}
+                <div className="bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 border border-gray-700 rounded-xl hover:shadow-2xl hover:border-gray-600 transition-all duration-300 overflow-hidden">
+                  <div className="p-10">
+                    {/* 用戶信息區域 */}
+                    <div className="flex items-start gap-4 mb-8">
+                      {/* 圓形頭像 */}
+                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg`}>
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      
+                      {/* 用戶信息 */}
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="text-2xl font-bold text-white tracking-tight">{testimonial.name}</h4>
+                          {/* 星級評分 */}
+                          <div className="flex items-center gap-1">
+                            {[...Array(5)].map((_, i) => (
+                              <Star 
+                                key={i} 
+                                className={`w-5 h-5 ${i < testimonial.rating ? `${instructorTheme.primary} fill-current drop-shadow-sm` : 'text-gray-600'}`} 
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        {/* 職位信息 */}
+                        <p className="text-gray-400 text-sm font-medium">{testimonial.position}</p>
+                      </div>
+                    </div>
+
+                    {/* 引言內容區域 */}
+                    <div className="relative mb-8">
+                      {/* 巨大引號圖示 */}
+                      <div className={`absolute -top-2 -left-2 text-6xl ${instructorTheme.primary} opacity-20 font-serif leading-none`}>
+                        "
+                      </div>
+                      <div className={`absolute -bottom-6 -right-2 text-6xl ${instructorTheme.primary} opacity-20 font-serif leading-none rotate-180`}>
+                        "
+                      </div>
+                      
+                      {/* 引言文字 - 更大更突出 */}
+                      <blockquote className="relative z-10 text-gray-100 text-lg leading-relaxed font-medium px-6">
+                        {testimonial.comment}
+                      </blockquote>
+                    </div>
+
+                    {/* 底部互動區域 */}
+                    <div className="flex justify-end">
+                      <button 
+                        className={`${instructorTheme.accent} hover:bg-gray-700 transition-colors duration-200 text-sm font-medium group`}
+                        onClick={() => {
+                          // 評論功能實現
+                          const currentCard = event.target.closest('.bg-gradient-to-br');
+                          const existingComment = currentCard.querySelector('.comment-section');
+                          
+                          if (!existingComment) {
+                            const commentSection = document.createElement('div');
+                            commentSection.className = 'comment-section mt-6 p-6 bg-gray-750 rounded-lg border border-gray-600';
+                            commentSection.innerHTML = `
+                              <textarea 
+                                placeholder="${isZhTW ? '分享你的想法...' : 'Share your thoughts...'}" 
+                                class="w-full p-4 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-green-400 focus:ring-2 focus:ring-green-400/20 transition-all" 
+                                rows="3"
+                              ></textarea>
+                              <div class="flex justify-between items-center mt-4">
+                                <span class="text-gray-400 text-sm">${isZhTW ? '最多 500 字' : 'Max 500 characters'}</span>
+                                <button class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
+                                  ${isZhTW ? '發布評論' : 'Post Comment'}
+                                </button>
+                              </div>
+                            `;
+                            currentCard.querySelector('.p-10').appendChild(commentSection);
+                          }
+                        }}
+                      >
+                        <span className="flex items-center gap-2">
+                          查看 {testimonial.replies} 則回覆
+                          <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 常見問題區域 - 獨立於tabs之外 */}
+        <div className="mt-12">
+          <h2 className="text-3xl font-bold mb-8 text-white text-center">
+            {isZhTW ? "❓ 常見問題" : "❓ Frequently Asked Questions"}
+          </h2>
+          <div className="max-w-4xl mx-auto space-y-4">
+            {faqData.map((faq, index) => (
+              <Card key={index} className="bg-gray-800 border-gray-700">
+                <CardContent className="p-0">
+                  <button
+                    onClick={() => toggleAccordion(index)}
+                    className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
+                      {openAccordion === index ? (
+                        <ChevronUp className="w-5 h-5 text-gray-400" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-gray-400" />
+                      )}
+                    </div>
+                  </button>
+                  {openAccordion === index && (
+                    <div className="px-6 pb-6">
+                      <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );
