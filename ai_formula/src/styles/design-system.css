@@ -84,68 +84,68 @@
     --ai-formula-gray-900: #111827;
 
     /* === 📝 TYPOGRAPHY HIERARCHY === */
-    /* Dashboard Typography Scale - 儀表板字體層級 */
+    /* Dashboard Typography Scale - 儀表板字體層級 (+15% 易讀性提升) */
     
     /* H1 - 頁面主標題 (例如："ChatGPT 完整教學實戰課程") */
-    --font-h1-size: 1.25rem;        /* 20px */
+    --font-h1-size: 1.44rem;        /* 23px (+15%) */
     --font-h1-weight: 700;          /* Bold */
-    --font-h1-line-height: 1.4;     /* 28px */
+    --font-h1-line-height: 1.4;     /* 32px */
     --font-h1-color: var(--text-primary);
     
     /* H2 - 區塊標題 (例如："課程模塊"、"技能發展路線") */
-    --font-h2-size: 1.125rem;       /* 18px */
+    --font-h2-size: 1.29rem;        /* 21px (+15%) */
     --font-h2-weight: 600;          /* Semi-bold */
-    --font-h2-line-height: 1.5;     /* 27px */
+    --font-h2-line-height: 1.5;     /* 31px */
     --font-h2-color: var(--text-primary);
     
     /* H3 - 卡片內標題 (例如："第一大主題...") */
-    --font-h3-size: 1rem;           /* 16px */
+    --font-h3-size: 1.15rem;        /* 18px (+15%) */
     --font-h3-weight: 600;          /* Semi-bold */
-    --font-h3-line-height: 1.5;     /* 24px */
+    --font-h3-line-height: 1.5;     /* 27px */
     --font-h3-color: var(--text-primary);
     
     /* Data Display - 數據顯示 (例如："100%"、"31分鐘") */
-    --font-data-size: 1.5rem;       /* 24px */
+    --font-data-size: 1.73rem;      /* 28px (+15%) */
     --font-data-weight: 700;        /* Bold */
-    --font-data-line-height: 1.2;   /* 28.8px */
+    --font-data-line-height: 1.2;   /* 33px */
     --font-data-color: var(--data-primary);
     
     /* Status Text - 狀態文字 (例如："🎉 恭喜！課程完成！") */
-    --font-status-size: 1.125rem;   /* 18px */
+    --font-status-size: 1.29rem;    /* 21px (+15%) */
     --font-status-weight: 500;      /* Medium */
-    --font-status-line-height: 1.4; /* 25.2px */
+    --font-status-line-height: 1.4; /* 29px */
     --font-status-color: var(--text-primary);
     
     /* Body Text - 內文/描述 */
-    --font-body-size: 0.875rem;     /* 14px */
+    --font-body-size: 1.01rem;      /* 16px (+15%) */
     --font-body-weight: 400;        /* Normal */
-    --font-body-line-height: 1.5;   /* 21px */
+    --font-body-line-height: 1.5;   /* 24px */
     --font-body-color: var(--text-secondary);
     
     /* Label Text - 標籤文字 (例如："已完成"、"學習總時長") */
-    --font-label-size: 0.75rem;     /* 12px */
+    --font-label-size: 0.86rem;     /* 14px (+15%) */
     --font-label-weight: 500;       /* Medium */
-    --font-label-line-height: 1.4;  /* 16.8px */
+    --font-label-line-height: 1.4;  /* 19px */
     --font-label-color: var(--text-tertiary);
     --font-label-transform: uppercase;
     --font-label-spacing: 0.05em;   /* Letter spacing */
     
     /* Caption Text - 最小說明文字 */
-    --font-caption-size: 0.75rem;   /* 12px */
+    --font-caption-size: 0.86rem;   /* 14px (+15%) */
     --font-caption-weight: 400;     /* Normal */
-    --font-caption-line-height: 1.4; /* 16.8px */
+    --font-caption-line-height: 1.4; /* 19px */
     --font-caption-color: var(--text-quaternary);
 
-    /* Legacy Typography Scale */
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 1.875rem;
-    --font-size-4xl: 2.25rem;
-    --font-size-5xl: 3rem;
+    /* Legacy Typography Scale (+15% 易讀性提升) */
+    --font-size-xs: 0.86rem;        /* 14px (+15%) */
+    --font-size-sm: 1.01rem;        /* 16px (+15%) */
+    --font-size-base: 1.15rem;      /* 18px (+15%) */
+    --font-size-lg: 1.29rem;        /* 21px (+15%) */
+    --font-size-xl: 1.44rem;        /* 23px (+15%) */
+    --font-size-2xl: 1.73rem;       /* 28px (+15%) */
+    --font-size-3xl: 2.16rem;       /* 35px (+15%) */
+    --font-size-4xl: 2.59rem;       /* 41px (+15%) */
+    --font-size-5xl: 3.45rem;       /* 55px (+15%) */
     
     /* Spacing Scale */
     --spacing-xs: 0.25rem;
