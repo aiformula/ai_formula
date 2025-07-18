@@ -32,9 +32,12 @@
   --nav-offset-mobile: var(--nav-height-mobile);     /* 56px 移動端偏移 */
   --nav-offset-desktop: var(--nav-height-desktop);   /* 72px 桌面端偏移 */
   
-  /* 額外安全邊距 - 提供視覺緩衝 */
-  --nav-safe-mobile: calc(var(--nav-height-mobile) + var(--space-4));    /* 72px = 56px + 16px */
-  --nav-safe-desktop: calc(var(--nav-height-desktop) + var(--space-6));  /* 96px = 72px + 24px */
+  /* 額外呼吸空間 - 提供更大的視覺緩衝和設計感 */
+  --breathing-space: 56px;  /* 7 × 8px = 符合8px Grid系統 */
+  
+  /* 最終安全邊距 - 導航高度 + 呼吸空間 */
+  --nav-safe-mobile: calc(var(--nav-height-mobile) + var(--breathing-space));    /* 112px = 56px + 56px */
+  --nav-safe-desktop: calc(var(--nav-height-desktop) + var(--breathing-space));  /* 128px = 72px + 56px */
 
   /* ============ 第二步：字體層級系統 ============ */
   /* Typography Scale - 清晰的資訊層次 */
@@ -326,27 +329,27 @@
 /* ============ 導航列重疊修復系統 ============ */
 /* Navigation Overlap Fix System */
 
-/* 🎯 主要內容容器 - 適用於所有頁面 */
+/* 🎯 主要內容容器 - 適用於所有頁面，提供充足的呼吸空間 */
 .page-content {
-  /* 移動端：72px (56px 導航高度 + 16px 安全邊距) */
-  padding-top: calc(var(--nav-height-mobile, 56px) + var(--space-4, 16px)) !important;
+  /* 移動端：112px (56px 導航高度 + 56px 呼吸空間) */
+  padding-top: var(--nav-safe-mobile) !important;
 }
 
 @media (min-width: 768px) {
   .page-content {
-    /* 桌面端：96px (72px 導航高度 + 24px 安全邊距) */
-    padding-top: calc(var(--nav-height-desktop, 82px) + var(--space-6, 24px)) !important;
+    /* 桌面端：128px (72px 導航高度 + 56px 呼吸空間) */
+    padding-top: var(--nav-safe-desktop) !important;
   }
 }
 
-/* 🎯 緊湊版頁面內容 - 較少間距版本 */
+/* 🎯 緊湊版頁面內容 - 僅導航偏移，無額外空間 */
 .page-content-compact {
-  padding-top: var(--nav-height-mobile, 56px) !important;
+  padding-top: var(--nav-offset-mobile) !important;
 }
 
 @media (min-width: 768px) {
   .page-content-compact {
-    padding-top: var(--nav-height-desktop, 72px) !important;
+    padding-top: var(--nav-offset-desktop) !important;
   }
 }
 
@@ -360,3 +363,30 @@
     padding-top: 106px !important; /* 桌面端安全間距 */
   }
 } 
+
+/* ============ 🚀 終極解決方案：全局內容間距 ============ */
+/* Ultimate Solution: Global Content Spacing - 一勞永逸解決導航重疊問題 */
+
+/* 
+  🎯 推薦使用方案：
+  - 一般頁面使用 .page-content（提供充足呼吸空間）
+  - 需要緊湊佈局使用 .page-content-compact（僅避免重疊）
+  - 或直接使用 CSS 變量 var(--nav-safe-mobile) 和 var(--nav-safe-desktop)
+*/
+
+/* 🔧 便捷工具類 - 可直接在任何元素上使用 */
+.nav-safe-spacing {
+  padding-top: var(--nav-safe-mobile);
+}
+
+@media (min-width: 768px) {
+  .nav-safe-spacing {
+    padding-top: var(--nav-safe-desktop);
+  }
+}
+
+/* 💡 使用範例：
+  <div class="page-content">...</div>           // 推薦：充足呼吸空間
+  <div class="page-content-compact">...</div>   // 備選：緊湊佈局
+  <div class="nav-safe-spacing">...</div>       // 工具類：快速應用
+*/ 

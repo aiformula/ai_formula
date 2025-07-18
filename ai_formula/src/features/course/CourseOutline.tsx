@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { getRecentPosts } from '@/data/blog/blogPosts';
+import AnimatedFAQ from '@/components/AnimatedFAQ';
 import { 
   Brain, 
   Users, 
@@ -199,7 +200,6 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
   const { language } = useLanguage();
   const navigate = useNavigate();
   const isZhHK = language === 'zh-HK';
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<string>('course-intro');
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
@@ -263,10 +263,6 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
       icon: <MessageCircle className="w-4 h-4" />
     }
   ];
-
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
-  };
 
   const toggleAccordion = (index: number) => {
     setOpenAccordion(openAccordion === index ? null : index);
@@ -621,32 +617,12 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
 
       case 'faq':
         return (
-          <div className="space-y-4">
-            {faqData.map((faq, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700">
-                <CardContent className="p-0">
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
-                      {openFAQ === index ? (
-                        <ChevronUp className="w-5 h-5 text-gray-400" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-gray-400" />
-                      )}
-                    </div>
-                  </button>
-                  {openFAQ === index && (
-                    <div className="px-6 pb-6">
-                      <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <AnimatedFAQ
+            faqData={faqData}
+            themeColors={instructorTheme}
+            isZhTW={isZhHK}
+            className="max-w-none"
+          />
         );
 
       default:
@@ -658,7 +634,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8 pt-24">
+      <div className="container mx-auto px-4 py-8 page-content">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-3 gap-8 mb-12 lg:items-start">
           {/* Left Sidebar */}

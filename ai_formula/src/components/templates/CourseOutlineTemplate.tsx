@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { getRecentPosts } from '@/data/blog/blogPosts';
 import { courses } from '@/data/courses';
+import TestimonialCarousel from '@/components/TestimonialCarousel';
+import AnimatedFAQ from '@/components/AnimatedFAQ';
 import { 
   Brain, 
   Users, 
@@ -232,16 +234,6 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       id: 'learning-content',
       label: isZhTW ? '學習內容' : 'Learning Content',
       icon: <GraduationCap className="w-4 h-4" />
-    },
-    {
-      id: 'target-audience',
-      label: isZhTW ? '適合對象' : 'Target Audience',
-      icon: <UserCheck className="w-4 h-4" />
-    },
-    {
-      id: 'instructor-profile',
-      label: isZhTW ? '導師介紹' : 'Meet Your Instructor',
-      icon: <Users className="w-4 h-4" />
     }
   ];
 
@@ -675,6 +667,31 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
             
+            {/* 適合對象內容 */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Users className={`w-5 h-5 ${instructorTheme.primary}`} />
+                  {targetAudience.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-6">{targetAudience.description}</p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {targetAudience.audiences.map((audience, index) => (
+                    <div key={index} className="flex items-start gap-4 p-4 bg-gray-700 rounded-lg">
+                      <div className="flex-shrink-0">
+                        {audience.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-2">{audience.title}</h4>
+                        <p className="text-sm text-gray-300">{audience.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
           </div>
         );
@@ -843,42 +860,8 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 </div>
               </CardContent>
             </Card>
-          </div>
-        );
-
-      case 'target-audience':
-        return (
-          <div className="space-y-8">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <Users className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {targetAudience.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 mb-6">{targetAudience.description}</p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {targetAudience.audiences.map((audience, index) => (
-                    <div key={index} className="flex items-start gap-4 p-4 bg-gray-700 rounded-lg">
-                      <div className="flex-shrink-0">
-                        {audience.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-white mb-2">{audience.title}</h4>
-                        <p className="text-sm text-gray-300">{audience.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
-
-      case 'instructor-profile':
-        return (
-          <div className="space-y-8">
+            
+            {/* 導師介紹內容 */}
             {/* 導師基本信息 */}
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-8">
@@ -993,8 +976,8 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                     </h3>
                     <p className="text-gray-300 leading-relaxed mb-4">
                       {isZhTW 
-                        ? "我相信 AI 不應該是少數技術專家的專利，而是每個有創意和想法的人都能使用的強大工具。通過實戰式教學和真實案例分析，讓學員不只學會操作 AI 工具，更要了解如何將這些工具融入實際工作中，創造真正價值。"
-                        : "I believe AI should not be the exclusive domain of a few technical experts, but a powerful tool that anyone with creativity and ideas can use. Through hands-on teaching and real case studies, I want students to not only learn to operate AI tools, but also understand how to integrate these tools into actual work to create real value."
+                        ? "我相信 AI 不應該是少數技術專家的專利，而是每個有創意和想法的人都能使用的強大工具。通過實戰式教學和真實案例分析，讓學員不只學會操作 AI 工具，更要了解如何將這些工具融入實際工作中，創造真正價值。這不只是一個技術課程，而是一個改變你工作和思維模式的旅程。"
+                        : "I believe AI should not be the exclusive domain of a few technical experts, but a powerful tool that anyone with creativity and ideas can use. Through hands-on teaching and real case studies, I want students to not only learn to operate AI tools, but also understand how to integrate these tools into actual work to create real value. This is not just a technical course, but a journey that will change your way of working and thinking."
                       }
                     </p>
                   </div>
@@ -1051,7 +1034,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                   <blockquote className="text-white text-lg leading-relaxed italic">
                     {isZhTW 
                       ? "「在過去兩年裡，我見過太多人對AI充滿好奇但不知從何開始，也看到很多企業想要使用 AI 但缺乏實戰經驗。我創設這個課程，就是要填補這個空缺——讓每個人都能輕鬆上手 AI 工具，並且真正應用到工作和生活中，創造實際價值。這不只是一個技術課程，而是一個改變你工作和思維模式的旅程。」"
-                      : "\"In the past two years, I've seen too many people curious about AI but not knowing where to start, and many companies wanting to use AI but lacking practical experience. I created this course to fill this gap ??to make AI tools accessible to everyone and truly applicable to work and life, creating real value. This is not just a technical course, but a journey that will change your way of working and thinking.\""
+                      : "\"In the past two years, I've seen too many people curious about AI but not knowing where to start, and many companies wanting to use AI but lacking practical experience. I created this course to fill this gap – to make AI tools accessible to everyone and truly applicable to work and life, creating real value. This is not just a technical course, but a journey that will change your way of working and thinking.\""
                     }
                   </blockquote>
                   <div className="flex items-center gap-3 mt-6">
@@ -1067,32 +1050,6 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
 
-            {/* 聯絡方式 */}
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    {isZhTW ? "想要了解更多？" : "Want to Learn More?"}
-                  </h3>
-                  <p className="text-gray-300 mb-6">
-                    {isZhTW 
-                      ? "對任何課程相關問題，歡迎隨時聯絡我。我會親自回覆每一位學員的詢問。"
-                      : "If you have any course-related questions, feel free to contact me anytime. I personally respond to every student's inquiry."
-                    }
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button variant="ghost" className={`${instructorTheme.accent} hover:bg-gray-700`} onClick={handleWhatsApp}>
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      {isZhTW ? "透過 WhatsApp 查詢/報名" : "WhatsApp Inquiry"}
-                    </Button>
-                    <Button className={`${instructorTheme.secondary} text-white`} onClick={handleRegister}>
-                      <Calendar className="w-4 h-4 mr-2" />
-                      {isZhTW ? "立即報名" : "Enroll Now"}
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         );
 
@@ -1105,7 +1062,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8 pt-24">
+      <div className="container mx-auto px-4 py-8 page-content">
         {/* Hero Section */}
         <div className={`${hideSidebar ? 'max-w-4xl mx-auto' : `grid lg:grid-cols-3 gap-8 ${learningPathExtended ? 'lg:items-stretch' : 'lg:items-start'}`} mb-12`}>
           {/* Left Sidebar - 只有在不隱藏側邊欄時才顯示 */}
@@ -1282,197 +1239,84 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
           </div>
         </div>
 
-        {/* 學員心聲區域 - 獨立於tabs之外 */}
+        {/* 學員心聲區域 - 無限循環跑馬燈 */}
         <div className="mt-20">
-          <h2 className="text-3xl font-bold mb-16 text-white text-center">
-            {isZhTW ? "🌟 學員心聲" : "🌟 Student Testimonials"}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
+          <TestimonialCarousel
+            testimonials={[
               {
                 name: "Sarah",
                 position: "數碼行銷經理",
                 rating: 5,
-                comment: "課程講解得好清楚，我依家識得點樣同ChatGPT傾偈喇！之前唔知點問問題，而家學識咗寫prompt嘅技巧。",
-                replies: 18
+                comment: "課程講解得好清楚，我依家識得點樣同ChatGPT傾偈喇！之前唔知點問問題，而家學識咗寫prompt嘅技巧。"
               },
               {
                 name: "Michael",
                 position: "產品設計師",
                 rating: 5,
-                comment: "Finally understand how to write effective prompts! The course is practical and easy to follow.",
-                replies: 12
+                comment: "Finally understand how to write effective prompts! The course is practical and easy to follow."
               },
               {
                 name: "Jenny",
                 position: "內容創作者",
                 rating: 4,
-                comment: "原來ChatGPT可以幫手寫報告！學咗呢個課程之後，我嘅工作效率真係提升咗好多。",
-                replies: 24
+                comment: "原來ChatGPT可以幫手寫報告！學咗呢個課程之後，我嘅工作效率真係提升咗好多。"
               },
               {
                 name: "David",
                 position: "IT顧問",
                 rating: 5,
-                comment: "Great course for beginners. I learned how to use ChatGPT for content creation and it saves me so much time.",
-                replies: 15
+                comment: "Great course for beginners. I learned how to use ChatGPT for content creation and it saves me so much time."
               },
               {
                 name: "Lisa",
                 position: "市場推廣經理",
                 rating: 4,
-                comment: "上堂之前我都係亂咁問ChatGPT，而家識得點樣設定角色同情境，答案準確咗好多。",
-                replies: 9
+                comment: "上堂之前我都係亂咁問ChatGPT，而家識得點樣設定角色同情境，答案準確咗好多。"
               },
               {
                 name: "Alex",
                 position: "Business Analyst",
                 rating: 5,
-                comment: "The examples are very practical. Now I can use ChatGPT to help with my daily work tasks.",
-                replies: 21
+                comment: "The examples are very practical. Now I can use ChatGPT to help with my daily work tasks."
               },
               {
                 name: "Kevin",
                 position: "創業家",
                 rating: 4,
-                comment: "好實用嘅課程！學識咗點樣用ChatGPT嚟做market research同competitor analysis。",
-                replies: 7
+                comment: "好實用嘅課程！學識咗點樣用ChatGPT嚟做market research同competitor analysis。"
               },
               {
                 name: "Emma",
                 position: "Project Manager",
                 rating: 5,
-                comment: "Love how the instructor explains everything step by step. ChatGPT has become my daily work assistant now!",
-                replies: 16
+                comment: "Love how the instructor explains everything step by step. ChatGPT has become my daily work assistant now!"
+              },
+              {
+                name: "Tony",
+                position: "自由工作者",
+                rating: 5,
+                comment: "學完課程後，我用 ChatGPT 幫手做 freelance project，工作效率提升左好多，而家可以接更多case！"
+              },
+              {
+                name: "Rachel",
+                position: "Content Writer",
+                rating: 4,
+                comment: "The prompt techniques taught in this course revolutionized my writing process. I can now create better content in half the time!"
               }
-            ].map((testimonial, index) => (
-              <div 
-                key={index} 
-                className="relative group"
-              >
-                {/* 頂部高光邊框 */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${instructorTheme.gradient} rounded-t-xl`}></div>
-                
-                {/* 主卡片容器 - 細微漸變背景 */}
-                <div className="bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 border border-gray-700 rounded-xl hover:shadow-2xl hover:border-gray-600 transition-all duration-300 overflow-hidden">
-                  <div className="p-10">
-                    {/* 用戶信息區域 */}
-                    <div className="flex items-start gap-4 mb-8">
-                      {/* 圓形頭像 */}
-                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg`}>
-                        {testimonial.name.charAt(0)}
-                      </div>
-                      
-                      {/* 用戶信息 */}
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-2xl font-bold text-white tracking-tight">{testimonial.name}</h4>
-                          {/* 星級評分 */}
-                          <div className="flex items-center gap-1">
-                            {[...Array(5)].map((_, i) => (
-                              <Star 
-                                key={i} 
-                                className={`w-5 h-5 ${i < testimonial.rating ? `${instructorTheme.primary} fill-current drop-shadow-sm` : 'text-gray-600'}`} 
-                              />
-                            ))}
-                          </div>
-                        </div>
-                        {/* 職位信息 */}
-                        <p className="text-gray-400 text-sm font-medium">{testimonial.position}</p>
-                      </div>
-                    </div>
-
-                    {/* 引言內容區域 */}
-                    <div className="relative mb-8">
-                      {/* 巨大引號圖示 */}
-                      <div className={`absolute -top-2 -left-2 text-6xl ${instructorTheme.primary} opacity-20 font-serif leading-none`}>
-                        "
-                      </div>
-                      <div className={`absolute -bottom-6 -right-2 text-6xl ${instructorTheme.primary} opacity-20 font-serif leading-none rotate-180`}>
-                        "
-                      </div>
-                      
-                      {/* 引言文字 - 更大更突出 */}
-                      <blockquote className="relative z-10 text-gray-100 text-lg leading-relaxed font-medium px-6">
-                        {testimonial.comment}
-                      </blockquote>
-                    </div>
-
-                    {/* 底部互動區域 */}
-                    <div className="flex justify-end">
-                      <button 
-                        className={`${instructorTheme.accent} hover:bg-gray-700 transition-colors duration-200 text-sm font-medium group`}
-                        onClick={() => {
-                          // 評論功能實現
-                          const currentCard = event.target.closest('.bg-gradient-to-br');
-                          const existingComment = currentCard.querySelector('.comment-section');
-                          
-                          if (!existingComment) {
-                            const commentSection = document.createElement('div');
-                            commentSection.className = 'comment-section mt-6 p-6 bg-gray-750 rounded-lg border border-gray-600';
-                            commentSection.innerHTML = `
-                              <textarea 
-                                placeholder="${isZhTW ? '分享你的想法...' : 'Share your thoughts...'}" 
-                                class="w-full p-4 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-green-400 focus:ring-2 focus:ring-green-400/20 transition-all" 
-                                rows="3"
-                              ></textarea>
-                              <div class="flex justify-between items-center mt-4">
-                                <span class="text-gray-400 text-sm">${isZhTW ? '最多 500 字' : 'Max 500 characters'}</span>
-                                <button class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
-                                  ${isZhTW ? '發布評論' : 'Post Comment'}
-                                </button>
-                              </div>
-                            `;
-                            currentCard.querySelector('.p-10').appendChild(commentSection);
-                          }
-                        }}
-                      >
-                        <span className="flex items-center gap-2">
-                          查看 {testimonial.replies} 則回覆
-                          <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            ]}
+            themeColors={instructorTheme}
+            isZhTW={isZhTW}
+          />
         </div>
 
-        {/* 常見問題區域 - 獨立於tabs之外 */}
-        <div className="mt-12">
-          <h2 className="text-3xl font-bold mb-8 text-white text-center">
-            {isZhTW ? "❓ 常見問題" : "❓ Frequently Asked Questions"}
-          </h2>
-          <div className="max-w-4xl mx-auto space-y-4">
-            {faqData.map((faq, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700">
-                <CardContent className="p-0">
-                  <button
-                    onClick={() => toggleAccordion(index)}
-                    className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
-                      {openAccordion === index ? (
-                        <ChevronUp className="w-5 h-5 text-gray-400" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-gray-400" />
-                      )}
-                    </div>
-                  </button>
-                  {openAccordion === index && (
-                    <div className="px-6 pb-6">
-                      <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        {/* 常見問題區域 - 世界級動效體驗 */}
+        <div className="mt-16">
+          <AnimatedFAQ
+            faqData={faqData}
+            themeColors={instructorTheme}
+            isZhTW={isZhTW}
+            className="px-4"
+          />
         </div>
 
       </div>
