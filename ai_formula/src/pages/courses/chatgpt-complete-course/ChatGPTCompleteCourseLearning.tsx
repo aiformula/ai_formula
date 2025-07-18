@@ -608,9 +608,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                             
                             {/* Module Title & Description */}
                             <div className="min-w-0 flex-1">
-                              <h3 className="text-xl font-semibold text-white leading-tight mb-1">
-                                第{theme.id}大主題・{theme.title}
-                              </h3>
+                                                      <h3 className="text-theme-title leading-tight mb-1">
+                          第{theme.id}大主題・{theme.title}
+                        </h3>
                               <p className="text-sm text-gray-300 leading-relaxed line-clamp-2">
                                 {theme.description}
                               </p>
@@ -713,7 +713,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                               }`}>
                                                 {theme.id}.{unitIndex + 1}
                           </span>
-                                              <h4 className={`text-base font-medium leading-tight ${
+                                              <h4 className={`text-unit-title leading-tight ${
                                                 isLocked ? 'text-gray-500' :
                                                 unit.completed ? 'text-gray-300 line-through decoration-gray-500' : 
                                                 unit.current ? 'text-white font-semibold' : 'text-white group-hover:text-blue-300'

@@ -83,57 +83,70 @@
     --ai-formula-gray-800: #1F2937;
     --ai-formula-gray-900: #111827;
 
-    /* === 📝 TYPOGRAPHY HIERARCHY === */
-    /* Dashboard Typography Scale - 儀表板字體層級 (+15% 易讀性提升) */
+    /* === 📝 ENHANCED TYPOGRAPHY HIERARCHY === */
+    /* Professional Typography Scale - 專業字體排印系統 (優化版) */
     
     /* H1 - 頁面主標題 (例如："ChatGPT 完整教學實戰課程") */
-    --font-h1-size: 1.44rem;        /* 23px (+15%) */
-    --font-h1-weight: 700;          /* Bold */
-    --font-h1-line-height: 1.4;     /* 32px */
+    --font-h1-size: 1.56rem;        /* 25px (強化 +8%) */
+    --font-h1-weight: 800;          /* Extra Bold (提升從 700) */
+    --font-h1-line-height: 1.3;     /* 緊湊行高 */
     --font-h1-color: var(--text-primary);
     
     /* H2 - 區塊標題 (例如："課程模塊"、"技能發展路線") */
-    --font-h2-size: 1.29rem;        /* 21px (+15%) */
-    --font-h2-weight: 600;          /* Semi-bold */
-    --font-h2-line-height: 1.5;     /* 31px */
+    --font-h2-size: 1.44rem;        /* 23px (提升從 21px) */
+    --font-h2-weight: 700;          /* Bold (提升從 600) */
+    --font-h2-line-height: 1.4;     /* 更緊湊 */
     --font-h2-color: var(--text-primary);
     
-    /* H3 - 卡片內標題 (例如："第一大主題...") */
-    --font-h3-size: 1.15rem;        /* 18px (+15%) */
-    --font-h3-weight: 600;          /* Semi-bold */
-    --font-h3-line-height: 1.5;     /* 27px */
+    /* === 🎓 COURSE-SPECIFIC TYPOGRAPHY === */
+    /* Theme Title - 課程主題標題 (例如："第1大主題 - 解構 ChatGPT") */
+    --font-theme-title-size: 1.25rem;    /* 20px (新增層級) */
+    --font-theme-title-weight: 700;      /* Bold (重要性突出) */
+    --font-theme-title-line-height: 1.4;
+    --font-theme-title-color: var(--text-primary);
+    
+    /* Unit Title - 單元標題 (例如："1.1 歡迎來到 AI 新紀元") */
+    --font-unit-title-size: 1.08rem;     /* 17px (新增層級) */
+    --font-unit-title-weight: 600;       /* Semi-bold (提升從 400) */
+    --font-unit-title-line-height: 1.5;
+    --font-unit-title-color: var(--text-primary);
+    
+    /* H3 - 一般卡片標題 (例如：其他區塊標題) */
+    --font-h3-size: 1.15rem;        /* 18px (保持) */
+    --font-h3-weight: 600;          /* Semi-bold (保持) */
+    --font-h3-line-height: 1.5;     
     --font-h3-color: var(--text-primary);
     
     /* Data Display - 數據顯示 (例如："100%"、"31分鐘") */
-    --font-data-size: 1.73rem;      /* 28px (+15%) */
-    --font-data-weight: 700;        /* Bold */
-    --font-data-line-height: 1.2;   /* 33px */
+    --font-data-size: 1.88rem;      /* 30px (提升從 28px) */
+    --font-data-weight: 800;        /* Extra Bold (提升從 700) */
+    --font-data-line-height: 1.1;   /* 更緊湊突出 */
     --font-data-color: var(--data-primary);
     
     /* Status Text - 狀態文字 (例如："🎉 恭喜！課程完成！") */
-    --font-status-size: 1.29rem;    /* 21px (+15%) */
-    --font-status-weight: 500;      /* Medium */
-    --font-status-line-height: 1.4; /* 29px */
+    --font-status-size: 1.32rem;    /* 21px (輕微提升) */
+    --font-status-weight: 600;      /* Semi-bold (提升從 500) */
+    --font-status-line-height: 1.4; 
     --font-status-color: var(--text-primary);
     
-    /* Body Text - 內文/描述 */
-    --font-body-size: 1.01rem;      /* 16px (+15%) */
-    --font-body-weight: 400;        /* Normal */
-    --font-body-line-height: 1.5;   /* 24px */
+    /* Body Text - 內文/描述 (關鍵改善) */
+    --font-body-size: 1.06rem;      /* 17px (提升從 16px) */
+    --font-body-weight: 500;        /* Medium (提升從 400) - 關鍵改善 */
+    --font-body-line-height: 1.5;   
     --font-body-color: var(--text-secondary);
     
     /* Label Text - 標籤文字 (例如："已完成"、"學習總時長") */
-    --font-label-size: 0.86rem;     /* 14px (+15%) */
-    --font-label-weight: 500;       /* Medium */
-    --font-label-line-height: 1.4;  /* 19px */
+    --font-label-size: 0.88rem;     /* 14px (輕微提升) */
+    --font-label-weight: 600;       /* Semi-bold (提升從 500) */
+    --font-label-line-height: 1.3;  /* 更緊湊 */
     --font-label-color: var(--text-tertiary);
     --font-label-transform: uppercase;
-    --font-label-spacing: 0.05em;   /* Letter spacing */
+    --font-label-spacing: 0.08em;   /* 增加字母間距 */
     
-    /* Caption Text - 最小說明文字 */
-    --font-caption-size: 0.86rem;   /* 14px (+15%) */
-    --font-caption-weight: 400;     /* Normal */
-    --font-caption-line-height: 1.4; /* 19px */
+    /* Caption Text - 次要資訊 (例如："50分鐘 • 進行中") */
+    --font-caption-size: 0.88rem;   /* 14px (保持較小) */
+    --font-caption-weight: 400;     /* Normal (保持對比) */
+    --font-caption-line-height: 1.4; 
     --font-caption-color: var(--text-quaternary);
 
     /* Legacy Typography Scale (+15% 易讀性提升) */
@@ -343,7 +356,7 @@
     border-color: var(--secondary-action-border);
   }
   
-  /* === 📝 字體層級類 - TYPOGRAPHY CLASSES === */
+  /* === 📝 增強字體層級類 - ENHANCED TYPOGRAPHY CLASSES === */
   
   /* H1 - 頁面主標題 */
   .text-h1 {
@@ -361,7 +374,25 @@
     color: var(--font-h2-color);
   }
   
-  /* H3 - 卡片內標題 */
+  /* === 🎓 課程專用字體類 - COURSE-SPECIFIC CLASSES === */
+  
+  /* Theme Title - 課程主題標題 */
+  .text-theme-title {
+    font-size: var(--font-theme-title-size);
+    font-weight: var(--font-theme-title-weight);
+    line-height: var(--font-theme-title-line-height);
+    color: var(--font-theme-title-color);
+  }
+  
+  /* Unit Title - 單元標題 (關鍵改善) */
+  .text-unit-title {
+    font-size: var(--font-unit-title-size);
+    font-weight: var(--font-unit-title-weight);
+    line-height: var(--font-unit-title-line-height);
+    color: var(--font-unit-title-color);
+  }
+  
+  /* H3 - 一般卡片標題 */
   .text-h3 {
     font-size: var(--font-h3-size);
     font-weight: var(--font-h3-weight);
@@ -369,7 +400,7 @@
     color: var(--font-h3-color);
   }
   
-  /* Data Display - 數據顯示 */
+  /* Data Display - 數據顯示 (增強版) */
   .text-data {
     font-size: var(--font-data-size);
     font-weight: var(--font-data-weight);
@@ -377,7 +408,7 @@
     color: var(--font-data-color);
   }
   
-  /* Status Text - 狀態文字 */
+  /* Status Text - 狀態文字 (增強版) */
   .text-status {
     font-size: var(--font-status-size);
     font-weight: var(--font-status-weight);
@@ -385,7 +416,7 @@
     color: var(--font-status-color);
   }
   
-  /* Body Text - 內文/描述 */
+  /* Body Text - 內文/描述 (關鍵改善: 500字重) */
   .text-body {
     font-size: var(--font-body-size);
     font-weight: var(--font-body-weight);
@@ -393,7 +424,7 @@
     color: var(--font-body-color);
   }
   
-  /* Label Text - 標籤文字 */
+  /* Label Text - 標籤文字 (增強版) */
   .text-label {
     font-size: var(--font-label-size);
     font-weight: var(--font-label-weight);
@@ -403,7 +434,7 @@
     letter-spacing: var(--font-label-spacing);
   }
   
-  /* Caption Text - 最小說明文字 */
+  /* Caption Text - 次要資訊 */
   .text-caption {
     font-size: var(--font-caption-size);
     font-weight: var(--font-caption-weight);
