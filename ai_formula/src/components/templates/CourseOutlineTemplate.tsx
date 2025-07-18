@@ -144,6 +144,7 @@ interface CourseOutlineTemplateProps {
   onStartLearning: () => void;
   onWhatsApp: () => void;
   learningPathExtended?: boolean; // 新增：控制學習路徑容器樣式
+  hideSidebar?: boolean; // 新增：控制是否隱藏側邊欄
 }
 
 const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
@@ -159,7 +160,8 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   onStartLearning,
   onRegister,
   onWhatsApp,
-  learningPathExtended = false // 默認為false
+  learningPathExtended = false, // 默認為false
+  hideSidebar = false // 默認為false
 }) => {
   const { language } = useLanguage();
   const navigate = useNavigate();
@@ -1311,8 +1313,9 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       
       <div className="container mx-auto px-4 py-8 pt-24">
         {/* Hero Section */}
-        <div className={`grid lg:grid-cols-3 gap-8 mb-12 ${learningPathExtended ? 'lg:items-stretch' : 'lg:items-start'}`}>
-          {/* Left Sidebar */}
+        <div className={`${hideSidebar ? 'max-w-4xl mx-auto' : `grid lg:grid-cols-3 gap-8 ${learningPathExtended ? 'lg:items-stretch' : 'lg:items-start'}`} mb-12`}>
+          {/* Left Sidebar - 只有在不隱藏側邊欄時才顯示 */}
+          {!hideSidebar && (
           <div className="lg:col-span-1 flex flex-col h-fit sticky top-24">
             {/* Instructor Info Card */}
             <Card className={`bg-gradient-to-br ${instructorTheme.gradient} text-white mb-6`}>
@@ -1442,9 +1445,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
               </CardContent>
             </Card>
           </div>
+          )}
 
           {/* Right Content */}
-          <div className={`lg:col-span-2 flex flex-col ${learningPathExtended ? 'h-full' : ''}`}>
+          <div className={`${hideSidebar ? '' : 'lg:col-span-2'} flex flex-col ${learningPathExtended ? 'h-full' : ''}`}>
             <div className="mb-6">
               <Badge className={`bg-gray-800 ${instructorTheme.accent} hover:bg-gray-700 mb-4`}>
                 {courseInfo.badge}
