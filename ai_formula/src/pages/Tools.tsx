@@ -333,7 +333,7 @@ const Tools = () => {
     }
   };
 
-  // Helper function to render filter button with improved states
+  // Helper function to render filter button with fluid glass design
   const renderFilterButton = (
     key: string,
     label: string,
@@ -351,54 +351,92 @@ const Tools = () => {
         className={`
           group relative overflow-hidden
           ${isSelected
-            ? 'bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-black shadow-lg shadow-yellow-500/25 border-yellow-400/50' 
+            ? 'bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 text-white border-yellow-400/40 shadow-xl shadow-yellow-500/10' 
             : isDisabled
-              ? 'bg-gray-800/50 border-gray-700/50 text-gray-500 cursor-not-allowed'
-              : 'bg-gray-900/80 border-gray-600/50 text-gray-300 hover:bg-gray-800/90 hover:border-gray-500/70 hover:text-white hover:shadow-md'
+              ? 'bg-white/5 border-white/10 text-gray-500 cursor-not-allowed'
+              : 'bg-white/10 border-white/20 text-gray-200 hover:bg-white/15 hover:border-white/30 hover:text-white'
           }
-          transition-all duration-300 ease-in-out
-          transform hover:scale-105 active:scale-95
-          flex items-center gap-2.5
-          border-2
+          backdrop-blur-md backdrop-saturate-150
+          transition-all duration-500 ease-out
+          transform hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]
+          flex items-center gap-3
+          border
+          shadow-lg hover:shadow-xl
         `}
         style={{
-          borderRadius: '12px',
-          padding: '12px 18px',
+          borderRadius: '16px',
+          padding: '14px 20px',
           fontSize: '14px',
           fontWeight: '600',
-          minHeight: '44px'
+          minHeight: '48px',
+          background: isSelected 
+            ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.15))'
+            : isDisabled
+              ? 'rgba(255, 255, 255, 0.05)'
+              : 'rgba(255, 255, 255, 0.08)',
+          backdropFilter: 'blur(12px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+          boxShadow: isSelected 
+            ? '0 8px 32px rgba(251, 191, 36, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
+            : '0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
         }}
       >
-        {/* Background gradient animation for hover */}
-        {!isSelected && !isDisabled && (
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Glass shine effect */}
+        <div className="absolute inset-0 rounded-[16px] bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
+        
+        {/* Floating particles effect for selected state */}
+        {isSelected && (
+          <div className="absolute inset-0 rounded-[16px] overflow-hidden">
+            <div className="absolute top-2 left-4 w-1 h-1 bg-yellow-300/60 rounded-full animate-pulse" />
+            <div className="absolute top-4 right-6 w-0.5 h-0.5 bg-amber-300/60 rounded-full animate-pulse delay-300" />
+            <div className="absolute bottom-3 left-8 w-0.5 h-0.5 bg-orange-300/60 rounded-full animate-pulse delay-700" />
+          </div>
         )}
         
-        <span className={`text-lg ${isSelected ? 'filter drop-shadow-sm' : ''}`}>
+        {/* Hover glow effect */}
+        {!isSelected && !isDisabled && (
+          <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-orange-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        )}
+        
+        <span className={`text-lg z-10 relative ${isSelected ? 'filter drop-shadow-sm animate-pulse' : ''}`}>
           {icon}
         </span>
         
-        <span className={`font-medium ${isSelected ? 'text-black font-bold' : ''}`}>
+        <span className={`font-semibold z-10 relative ${isSelected ? 'text-yellow-100 drop-shadow-sm' : ''}`}>
           {label}
         </span>
         
         <span className={`
-          inline-flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full text-xs font-bold
+          inline-flex items-center justify-center min-w-[26px] h-7 px-2.5 rounded-full text-xs font-bold z-10 relative
           ${isSelected
-            ? 'bg-black/20 text-black' 
+            ? 'bg-yellow-400/30 text-yellow-100 border border-yellow-400/40 shadow-inner' 
             : isDisabled
-              ? 'bg-gray-700/50 text-gray-600'
-              : 'bg-yellow-500/20 text-yellow-400 group-hover:bg-yellow-500/30 group-hover:text-yellow-300'
+              ? 'bg-white/10 text-gray-600 border border-white/10'
+              : 'bg-white/20 text-yellow-300 border border-white/30 group-hover:bg-yellow-400/20 group-hover:text-yellow-200'
           }
-          transition-all duration-200
-        `}>
+          transition-all duration-300 backdrop-blur-sm
+        `}
+        style={{
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)'
+        }}>
           {count}
         </span>
         
-        {/* Selected state indicator */}
+        {/* Selected state glass indicator */}
         {isSelected && (
-          <div className="absolute inset-0 rounded-[10px] bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 pointer-events-none" />
+          <div 
+            className="absolute inset-0 rounded-[15px] pointer-events-none"
+            style={{
+              background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05), rgba(249, 115, 22, 0.1))',
+              border: '1px solid rgba(251, 191, 36, 0.3)',
+              boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(251, 191, 36, 0.1)'
+            }}
+          />
         )}
+        
+        {/* Ripple effect on click */}
+        <div className="absolute inset-0 rounded-[16px] bg-white/20 opacity-0 group-active:opacity-100 group-active:animate-ping transition-opacity duration-150" />
       </Button>
     );
   };
