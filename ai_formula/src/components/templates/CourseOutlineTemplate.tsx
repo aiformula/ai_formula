@@ -401,9 +401,9 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
     switch (activeTab) {
       case 'course-intro':
         return (
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Course Overview - Enhanced */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* 主課程信息 */}
               <Card className="bg-gray-800 border-gray-700 overflow-hidden">
                 <div className={`h-2 bg-gradient-to-r ${instructorTheme.gradient}`}></div>
@@ -1318,7 +1318,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
           {!hideSidebar && (
           <div className="lg:col-span-1 flex flex-col h-fit sticky top-24">
             {/* Instructor Info Card */}
-            <Card className={`bg-gradient-to-br ${instructorTheme.gradient} text-white mb-6`}>
+            <Card className={`bg-gradient-to-br ${instructorTheme.gradient} text-white mb-4`}>
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div>
@@ -1338,7 +1338,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             </Card>
 
             {/* Pricing Card */}
-            <Card className="mb-6 bg-gray-800 border-gray-700">
+            <Card className="mb-4 bg-gray-800 border-gray-700">
               <CardContent className="p-6">
 
                 <div className="text-center mb-4">
