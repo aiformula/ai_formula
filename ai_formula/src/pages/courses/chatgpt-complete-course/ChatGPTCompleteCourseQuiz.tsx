@@ -305,7 +305,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
 
   if (!currentQuiz) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen chatgpt-quiz-page bg-gray-900 flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">[測驗不存在]</h2>
           <Button onClick={() => navigate('/courses/chatgpt-complete-course/outline')}>
@@ -317,7 +317,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen chatgpt-quiz-page" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">

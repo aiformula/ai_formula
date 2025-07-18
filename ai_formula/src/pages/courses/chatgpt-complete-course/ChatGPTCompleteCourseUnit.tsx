@@ -501,7 +501,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
 
   if (!currentUnit || currentUnit.title === '單元不存在') {
     return (
-      <div className="min-h-screen text-white flex items-center justify-center" style={{ backgroundColor: '#121212' }}>
+      <div className="min-h-screen chatgpt-unit-page text-white flex items-center justify-center" style={{ backgroundColor: '#121212' }}>
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">單元不存在</h1>
           <button
@@ -619,7 +619,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
   }, [currentUnitKey, isCompleted, forceTimerForTesting]); // 🎯 重要修復：添加 isCompleted 作為依賴
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen chatgpt-unit-page" style={{ backgroundColor: '#121212' }}>
       {/* Skip Links for Keyboard Navigation */}
       <a href="#main-content" className="skip-link">
         跳至主要內容

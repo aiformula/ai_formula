@@ -203,9 +203,9 @@
   }
 
   /* ============ 響應式容器系統 ============ */
-  /* 主要內容容器 - 1280px 最大寬度，解決寬螢幕內容拉伸問題 */
+  /* 主要內容容器 - 1440px 最大寬度，解決寬螢幕內容拉伸問題 */
   .ai-container {
-    max-width: 1280px;
+    max-width: 1440px;
     margin: 0 auto;
     padding-left: 1.5rem;  /* 24px */
     padding-right: 1.5rem; /* 24px */
@@ -213,7 +213,7 @@
   
   /* 覆蓋 Tailwind 的 container 類別，統一最大寬度 */
   .container {
-    max-width: 1280px !important;
+    max-width: 1440px !important;
     margin: 0 auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -222,7 +222,28 @@
   /* 統一常用的最大寬度類別 */
   .max-w-6xl,
   .max-w-7xl {
-    max-width: 1280px !important;
+    max-width: 1440px !important;
+  }
+  
+  /* ============ 頁面特定容器系統 ============ */
+  /* ChatGPT 完整課程系列 - 最佳體驗：在 1920px 寬螢幕上會有更好的內容展示效果 */
+  .chatgpt-learning-page .ai-container,
+  .chatgpt-learning-page .container,
+  .chatgpt-learning-page .max-w-6xl,
+  .chatgpt-learning-page .max-w-7xl,
+  .chatgpt-unit-page .ai-container,
+  .chatgpt-unit-page .container,
+  .chatgpt-unit-page .max-w-6xl,
+  .chatgpt-unit-page .max-w-7xl,
+  .chatgpt-quiz-page .ai-container,
+  .chatgpt-quiz-page .container,
+  .chatgpt-quiz-page .max-w-6xl,
+  .chatgpt-quiz-page .max-w-7xl,
+  .chatgpt-theme-page .ai-container,
+  .chatgpt-theme-page .container,
+  .chatgpt-theme-page .max-w-6xl,
+  .chatgpt-theme-page .max-w-7xl {
+    max-width: 1536px !important;
   }
   
   /* 響應式 padding 調整 */

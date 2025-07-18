@@ -376,7 +376,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen chatgpt-learning-page" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
@@ -391,46 +391,19 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           <span>{isZhHK ? '返回課程大綱' : 'Back to Course Overview'}</span>
         </motion.button>
 
-        {/* Header */}
+        {/* Dashboard Header - Three-Section Layout */}
         <motion.div 
-          className="text-center mb-8"
+          className="bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-        >
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <Clock className="w-6 h-6 text-yellow-400" />
-            <h1 className="text-4xl font-bold text-white">
-              {isZhHK ? '歡迎您來・AI 學習者！' : 'Welcome, AI Learner!'}
-              </h1>
-          </div>
-          <div className="flex items-center justify-center space-x-6 text-white/80">
-            <span>{totalLearningMinutes}分鐘 已學習 / {Math.floor(courseData.totalHours / 60)}小時 總計</span>
-            <span>{courseData.totalThemes}大主題・{stats.completedThemes}已完成</span>
-            <div className="flex items-center space-x-2">
-              <Star className="w-4 h-4 text-yellow-400" />
-              <span>學習進度: {stats.totalProgress}%</span>
-            </div>
-            {/* 🎯 新增：詳細學習時間顯示 */}
-            {totalLearningMinutes > 0 && (
-              <div className="flex items-center space-x-2 text-green-400">
-                <Clock className="w-4 h-4" />
-                <span>實際學習: {formattedLearningTime}</span>
-              </div>
-            )}
-          </div>
-        </motion.div>
-
-        {/* Main Learning Journey Banner - IMPROVED */}
-        <motion.div 
-          className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <div className="relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            
+            {/* Left Section - Identity & Status (30% width) */}
+            <div className="lg:col-span-4 flex items-center space-x-4">
+              <div className="relative flex-shrink-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
                   <Play className="w-8 h-8 text-white" />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
@@ -438,99 +411,148 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 </div>
               </div>
               
-                <div>
-                <h2 className="text-2xl font-bold text-white mb-2">
-                  {isZhHK ? '您現在的學習旅程' : 'Your Current Learning Journey'}
-                </h2>
-                <p className="text-white/70 mb-1">
-                  {(() => {
-                    // 找到當前學習的主題和單元
+              <div className="min-w-0 flex-1">
+                <h1 className="text-xl font-bold text-white mb-1 truncate">
+                  ChatGPT 完整教學實戰課程
+                </h1>
+                <div className="flex items-center space-x-2 mb-1">
+                  {stats.totalProgress === 100 ? (
+                    <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+                  ) : stats.totalProgress > 0 ? (
+                    <Zap className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                  ) : (
+                    <Star className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                  )}
+                  <span className="text-lg font-medium text-white">
+                    {stats.totalProgress === 100 ? (
+                      isZhHK ? '🎉 恭喜！課程完成！' : '🎉 Congratulations! Course Completed!'
+                    ) : stats.totalProgress > 0 ? (
+                      isZhHK ? '🚀 正在學習中...' : '🚀 Learning in Progress...'
+                    ) : (
+                      isZhHK ? '👋 歡迎開始學習！' : '👋 Welcome to Learning!'
+                    )}
+                  </span>
+                </div>
+                <p className="text-sm text-white/60">
+                  {stats.totalProgress === 100 ? (
+                    isZhHK ? '全部內容已解鎖' : 'All content unlocked'
+                  ) : (
+                    isZhHK ? '互動課程・隨時學習' : 'Interactive • Learn anytime'
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {/* Center Section - Core Metrics (45% width) */}
+            <div className="lg:col-span-5">
+              <div className="grid grid-cols-3 gap-4">
+                
+                {/* Progress Stat */}
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
+                  <div className="flex items-center justify-center mb-2">
+                    <BarChart3 className="w-5 h-5 text-blue-400 mr-1" />
+                    <span className="text-xs font-medium text-white/70 uppercase tracking-wide">總進度</span>
+                  </div>
+                  <div className="text-2xl font-bold text-white mb-1">{stats.totalProgress}%</div>
+                  <div className="text-xs text-white/60">
+                    {stats.totalProgress === 100 ? '已達成目標' : '持續進步中'}
+                  </div>
+                </div>
+
+                {/* Learning Time Stat */}
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
+                  <div className="flex items-center justify-center mb-2">
+                    <Clock className="w-5 h-5 text-green-400 mr-1" />
+                    <span className="text-xs font-medium text-white/70 uppercase tracking-wide">學習時間</span>
+                  </div>
+                  <div className="text-2xl font-bold text-white mb-1">{formattedLearningTime || `${totalLearningMinutes}分鐘`}</div>
+                  <div className="text-xs text-white/60">累積時長</div>
+                </div>
+
+                {/* Completed Themes Stat */}
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
+                  <div className="flex items-center justify-center mb-2">
+                    <BookOpen className="w-5 h-5 text-purple-400 mr-1" />
+                    <span className="text-xs font-medium text-white/70 uppercase tracking-wide">完成主題</span>
+                  </div>
+                  <div className="text-2xl font-bold text-white mb-1">
+                    {stats.completedThemes}/{stats.totalThemes}
+                  </div>
+                  <div className="text-xs text-white/60">
+                    {stats.completedThemes === stats.totalThemes ? '全部完成' : '學習中'}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Right Section - Primary Actions (25% width) */}
+            <div className="lg:col-span-3 flex flex-col space-y-3">
+              
+              {/* Primary CTA Button */}
+              {stats.totalProgress < 100 ? (
+                <Button 
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                  onClick={() => {
+                    // 找到當前需要學習的單元
                     for (const theme of courseData.themes) {
                       const currentUnit = theme.units.find(unit => unit.current);
                       if (currentUnit) {
-                        return isZhHK 
-                          ? `第${theme.id}大主題・${theme.title.slice(0, 20)}...`
-                          : `Theme ${theme.id} • ${theme.title.slice(0, 20)}...`;
+                        navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${currentUnit.id}`);
+                        return;
                       }
                     }
-                    return isZhHK ? '所有課程已完成！' : 'All courses completed!';
-                  })()}
-                </p>
-                <p className="text-sm text-white/60">
-                  {stats.totalProgress < 100 ? (isZhHK ? '預計 50分鐘・互動課程' : 'Estimated 50min • Interactive') : (isZhHK ? '恭喜完成所有課程！' : 'Congratulations on completing all courses!')}
-                </p>
-                  </div>
-                </div>
-            
-            {stats.totalProgress < 100 ? (
-              <Button 
-                className="btn-primary px-8 py-4 text-lg"
-                onClick={() => {
-                  // 找到當前需要學習的單元
-                  for (const theme of courseData.themes) {
-                    const currentUnit = theme.units.find(unit => unit.current);
-                    if (currentUnit) {
-                      navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${currentUnit.id}`);
-                      return;
-                    }
-                  }
-                  // 如果沒有找到當前單元，導航到第一個主題
-                  navigate('/courses/chatgpt-complete-course/theme/1');
-                }}
-              >
-                <Play className="w-5 h-5 mr-2" />
-                {isZhHK ? '立即繼續學習' : 'Continue Learning'}
-              </Button>
-            ) : (
-              <Button 
-                className="btn-success px-8 py-4 text-lg bg-green-600 hover:bg-green-700"
-                onClick={() => navigate('/courses/chatgpt-complete-course')}
-              >
-                <Trophy className="w-5 h-5 mr-2" />
-                {isZhHK ? '查看課程證書' : 'View Certificate'}
-              </Button>
-            )}
-                  </div>
-          
-          <div className="mt-6">
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-white/70">
-                  {stats.totalProgress}% 已完成・{stats.completedThemes}/{stats.totalThemes} 主題
-                </span>
-                {process.env.NODE_ENV === 'development' && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={resetProgress}
-                    className="border-red-500 text-red-400 hover:bg-red-500/10"
-                  >
-                    <RotateCcw className="w-3 h-3 mr-1" />
-                    重置進度
-                  </Button>
-                )}
-                  </div>
-              
-              {/* 100% 完成慶祝 */}
-              {stats.totalProgress === 100 && (
-                <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
-                  <div className="flex items-center space-x-3">
-                    <Trophy className="w-6 h-6 text-yellow-400" />
-                <div>
-                      <h4 className="text-green-400 font-medium">🎉 恭喜！課程完成！</h4>
-                      <p className="text-green-200 text-sm">您已完成所有{stats.totalThemes}個主題的學習！</p>
-                  </div>
-                  </div>
-                </div>
+                    // 如果沒有找到當前單元，導航到第一個主題
+                    navigate('/courses/chatgpt-complete-course/theme/1');
+                  }}
+                >
+                  <Play className="w-5 h-5 mr-2" />
+                  {isZhHK ? '繼續學習' : 'Continue Learning'}
+                </Button>
+              ) : (
+                <Button 
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                  onClick={() => navigate('/courses/chatgpt-complete-course')}
+                >
+                  <Trophy className="w-5 h-5 mr-2" />
+                  {isZhHK ? '查看課程證書' : 'View Certificate'}
+                </Button>
               )}
-                  </div>
+
+              {/* Secondary Action - Reset Progress */}
+              {process.env.NODE_ENV === 'development' && (
+                <Button
+                  variant="outline"
+                  className="w-full border-gray-500/30 text-gray-400 hover:bg-gray-700/20 hover:text-gray-300 hover:border-gray-400/50 py-2 px-4 text-sm transition-all duration-200"
+                  onClick={resetProgress}
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  {isZhHK ? '重置進度' : 'Reset Progress'}
+                </Button>
+              )}
+
+            </div>
+
+          </div>
+
+          {/* Progress Bar - Full Width at Bottom */}
+          <div className="mt-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm text-white/70 font-medium">
+                整體學習進度
+              </span>
+              <span className="text-sm text-white/70">
+                {stats.totalProgress}% 已完成
+              </span>
+            </div>
             <div className="progress-bar progress-bar-large">
               <div 
-                className="progress-bar-fill" 
+                className="progress-bar-fill transition-all duration-700 ease-out" 
                 style={{width: `${stats.totalProgress}%`}}
               ></div>
-                </div>
-              </div>
+            </div>
+          </div>
+
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">

@@ -404,6 +404,7 @@ const Tools = () => {
           flex items-center gap-2
           border
           shadow-md hover:shadow-lg
+          w-full
         "
         style={{
           borderRadius: '12px',
@@ -461,7 +462,7 @@ const Tools = () => {
         onClick={isDisabled ? undefined : onClick}
         disabled={isDisabled}
         className={`
-          group relative overflow-hidden
+          group relative overflow-hidden w-full
           ${isSelected
             ? 'bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 text-white border-yellow-400/40 shadow-xl shadow-yellow-500/10' 
             : isDisabled
@@ -510,16 +511,16 @@ const Tools = () => {
           <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-orange-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         )}
         
-        <span className={`text-lg z-10 relative ${isSelected ? 'filter drop-shadow-sm animate-pulse' : ''}`}>
+        <span className={`text-lg z-10 relative flex-shrink-0 ${isSelected ? 'filter drop-shadow-sm animate-pulse' : ''}`}>
           {icon}
         </span>
         
-        <span className={`font-semibold z-10 relative ${isSelected ? 'text-yellow-100 drop-shadow-sm' : ''}`}>
+        <span className={`font-semibold z-10 relative flex-1 text-left ${isSelected ? 'text-yellow-100 drop-shadow-sm' : ''}`}>
           {label}
         </span>
         
         <span className={`
-          inline-flex items-center justify-center min-w-[26px] h-7 px-2.5 rounded-full text-xs font-bold z-10 relative
+          inline-flex items-center justify-center min-w-[26px] h-7 px-2.5 rounded-full text-xs font-bold z-10 relative flex-shrink-0
           ${isSelected
             ? 'bg-yellow-400/30 text-yellow-100 border border-yellow-400/40 shadow-inner' 
             : isDisabled
@@ -553,14 +554,194 @@ const Tools = () => {
     );
   };
 
+  // Render the filter sidebar component
+  const renderFilterSidebar = () => (
+    <div className="space-y-8">
+      {/* Filter Header */}
+      <div className="flex items-center gap-3">
+        <Filter className="w-5 h-5 text-yellow-400" />
+        <h2 className="text-xl font-bold text-white">
+          {isZhTW ? '智能篩選器' : 'Smart Filters'}
+        </h2>
+      </div>
+
+      {/* Function Categories Section */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1 h-6 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full"></div>
+          <h3 className="text-lg font-semibold text-gray-200">
+            {isZhTW ? '工具類型' : 'Tool Type'}
+          </h3>
+        </div>
+        
+        <div className="space-y-3">
+          {/* Always visible categories */}
+          {getDisplayCategories().map((category) => {
+            const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
+            const isDisabled = category.count === 0;
+            
+            return renderFilterButton(
+              `function-${category.id}`,
+              isZhTW ? category.label : category.labelEn,
+              category.count,
+              getFunctionIcon(category.id),
+              isSelected,
+              () => {
+                setSelectedCategory(category.id);
+                setSelectedUserGroup('all-users');
+              },
+              isDisabled
+            );
+          })}
+          
+          {/* Expand/Collapse Button */}
+          {renderExpandButton(
+            isCategoryExpanded,
+            () => setIsCategoryExpanded(!isCategoryExpanded),
+            getSmartSortedCategories().length,
+            getDisplayCategories().length
+          )}
+        </div>
+        
+        {/* Expandable content with smooth animation */}
+        <AnimatePresence>
+          {isCategoryExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+              className="overflow-hidden"
+            >
+              <div className="space-y-3 mt-3 pt-3 border-t border-white/10">
+                {getSmartSortedCategories().slice(getDisplayCategories().length).map((category) => {
+                  const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
+                  const isDisabled = category.count === 0;
+                  
+                  return renderFilterButton(
+                    `function-expanded-${category.id}`,
+                    isZhTW ? category.label : category.labelEn,
+                    category.count,
+                    getFunctionIcon(category.id),
+                    isSelected,
+                    () => {
+                      setSelectedCategory(category.id);
+                      setSelectedUserGroup('all-users');
+                    },
+                    isDisabled
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* User Groups Section */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+          <h3 className="text-lg font-semibold text-gray-200">
+            {isZhTW ? '用戶角色' : 'User Role'}
+          </h3>
+        </div>
+        
+        <div className="space-y-3">
+          {/* Always visible user groups */}
+          {getDisplayUserGroups().map((userGroup) => {
+            const isSelected = selectedUserGroup === userGroup.id;
+            const isDisabled = userGroup.count === 0;
+            
+            return renderFilterButton(
+              `user-${userGroup.id}`,
+              isZhTW ? userGroup.label : userGroup.labelEn,
+              userGroup.count,
+              userGroup.icon,
+              isSelected,
+              () => {
+                setSelectedUserGroup(userGroup.id);
+                setSelectedCategory('all');
+              },
+              isDisabled
+            );
+          })}
+          
+          {/* Expand/Collapse Button */}
+          {renderExpandButton(
+            isUserGroupExpanded,
+            () => setIsUserGroupExpanded(!isUserGroupExpanded),
+            getSmartSortedUserGroups().length,
+            getDisplayUserGroups().length
+          )}
+        </div>
+        
+        {/* Expandable content with smooth animation */}
+        <AnimatePresence>
+          {isUserGroupExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+              className="overflow-hidden"
+            >
+              <div className="space-y-3 mt-3 pt-3 border-t border-white/10">
+                {getSmartSortedUserGroups().slice(getDisplayUserGroups().length).map((userGroup) => {
+                  const isSelected = selectedUserGroup === userGroup.id;
+                  const isDisabled = userGroup.count === 0;
+                  
+                  return renderFilterButton(
+                    `user-expanded-${userGroup.id}`,
+                    isZhTW ? userGroup.label : userGroup.labelEn,
+                    userGroup.count,
+                    userGroup.icon,
+                    isSelected,
+                    () => {
+                      setSelectedUserGroup(userGroup.id);
+                      setSelectedCategory('all');
+                    },
+                    isDisabled
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Active Filter Indicator */}
+      {(selectedCategory !== 'all' || selectedUserGroup !== 'all-users') && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="pt-4 border-t border-white/10"
+        >
+          <div className="bg-yellow-500/10 text-yellow-400 rounded-xl p-4 border border-yellow-500/20">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">
+                {isZhTW ? '已篩選' : 'Filtered'}: {filteredTools.length} {isZhTW ? '個工具' : 'tools'}
+              </span>
+              <Button
+                onClick={() => {
+                  setSelectedCategory('all');
+                  setSelectedUserGroup('all-users');
+                }}
+                className="h-6 w-6 p-0 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-full"
+              >
+                ×
+              </Button>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
       <Navigation />
 
-      <div 
-        className="container mx-auto px-4 py-8 page-content"
-        style={{ maxWidth: '1200px' }}
-      >
+      <div className="ai-container px-4 py-8">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -600,205 +781,605 @@ const Tools = () => {
           </p>
         </motion.div>
 
-        {/* Enhanced Filter Section with Clear Hierarchy */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12"
-        >
-          {/* Filter Header */}
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <Filter className="w-5 h-5 text-yellow-400" />
-            <h2 className="text-xl font-bold text-white">
-              {isZhTW ? '智能篩選器' : 'Smart Filters'}
-            </h2>
-          </div>
+        {/* Main Content - Responsive Two Column Layout */}
+        <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8 space-y-8 lg:space-y-0">
+          {/* Left Sidebar - Desktop Only */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="hidden lg:block"
+          >
+            <div className="sticky top-8">
+              {renderFilterSidebar()}
+            </div>
+          </motion.div>
 
-          {/* Function Categories Section - Expandable */}
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-1 h-6 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full"></div>
-              <h3 className="text-lg font-semibold text-gray-200">
-                {isZhTW ? '按工具類型篩選' : 'Filter by Tool Type'}
-              </h3>
-              <div className="flex-1 h-px bg-gradient-to-r from-gray-600/50 to-transparent ml-4"></div>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-3">
-              {/* Always visible categories */}
-              {getDisplayCategories().map((category) => {
-                const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
-                const isDisabled = category.count === 0;
+          {/* Mobile Filter Section - Mobile Only */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:hidden mb-12"
+          >
+            {/* Enhanced Filter Section with Clear Hierarchy */}
+            <div>
+              {/* Filter Header */}
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <Filter className="w-5 h-5 text-yellow-400" />
+                <h2 className="text-xl font-bold text-white">
+                  {isZhTW ? '智能篩選器' : 'Smart Filters'}
+                </h2>
+              </div>
+
+              {/* Function Categories Section - Expandable */}
+              <div className="mb-8">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-1 h-6 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full"></div>
+                  <h3 className="text-lg font-semibold text-gray-200">
+                    {isZhTW ? '按工具類型篩選' : 'Filter by Tool Type'}
+                  </h3>
+                  <div className="flex-1 h-px bg-gradient-to-r from-gray-600/50 to-transparent ml-4"></div>
+                </div>
                 
-                return renderFilterButton(
-                  `function-${category.id}`,
-                  isZhTW ? category.label : category.labelEn,
-                  category.count,
-                  getFunctionIcon(category.id),
-                  isSelected,
-                  () => {
-                    setSelectedCategory(category.id);
-                    setSelectedUserGroup('all-users');
-                  },
-                  isDisabled
-                );
-              })}
-              
-              {/* Expand/Collapse Button */}
-              {renderExpandButton(
-                isCategoryExpanded,
-                () => setIsCategoryExpanded(!isCategoryExpanded),
-                getSmartSortedCategories().length,
-                getDisplayCategories().length
-              )}
-            </div>
-            
-            {/* Expandable content with smooth animation */}
-            <AnimatePresence>
-              {isCategoryExpanded && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-wrap justify-center gap-3 mt-3 pt-3 border-t border-white/10">
-                    {getSmartSortedCategories().slice(getDisplayCategories().length).map((category) => {
-                      const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
-                      const isDisabled = category.count === 0;
-                      
-                      return renderFilterButton(
-                        `function-expanded-${category.id}`,
-                        isZhTW ? category.label : category.labelEn,
-                        category.count,
-                        getFunctionIcon(category.id),
-                        isSelected,
-                        () => {
+                <div className="flex flex-wrap justify-center gap-3">
+                  {/* Always visible categories */}
+                  {getDisplayCategories().map((category) => {
+                    const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
+                    const isDisabled = category.count === 0;
+                    
+                    return (
+                      <Button
+                        key={`function-${category.id}`}
+                        onClick={isDisabled ? undefined : () => {
                           setSelectedCategory(category.id);
                           setSelectedUserGroup('all-users');
-                        },
-                        isDisabled
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* User Groups Section - Expandable */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
-              <h3 className="text-lg font-semibold text-gray-200">
-                {isZhTW ? '按用戶角色篩選' : 'Filter by User Role'}
-              </h3>
-              <div className="flex-1 h-px bg-gradient-to-r from-gray-600/50 to-transparent ml-4"></div>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-3">
-              {/* Always visible user groups */}
-              {getDisplayUserGroups().map((userGroup) => {
-                const isSelected = selectedUserGroup === userGroup.id;
-                const isDisabled = userGroup.count === 0;
+                        }}
+                        disabled={isDisabled}
+                        className={`
+                          group relative overflow-hidden
+                          ${isSelected
+                            ? 'bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 text-white border-yellow-400/40 shadow-xl shadow-yellow-500/10' 
+                            : isDisabled
+                              ? 'bg-white/5 border-white/10 text-gray-500 cursor-not-allowed'
+                              : 'bg-white/10 border-white/20 text-gray-200 hover:bg-white/15 hover:border-white/30 hover:text-white'
+                          }
+                          backdrop-blur-md backdrop-saturate-150
+                          transition-all duration-500 ease-out
+                          transform hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]
+                          flex items-center gap-3
+                          border
+                          shadow-lg hover:shadow-xl
+                        `}
+                        style={{
+                          borderRadius: '16px',
+                          padding: '14px 20px',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          minHeight: '48px',
+                          background: isSelected 
+                            ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.15))'
+                            : isDisabled
+                              ? 'rgba(255, 255, 255, 0.05)'
+                              : 'rgba(255, 255, 255, 0.08)',
+                          backdropFilter: 'blur(12px) saturate(180%)',
+                          WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                          boxShadow: isSelected 
+                            ? '0 8px 32px rgba(251, 191, 36, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
+                            : '0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                        }}
+                      >
+                        {/* Glass shine effect */}
+                        <div className="absolute inset-0 rounded-[16px] bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
+                        
+                        {/* Floating particles effect for selected state */}
+                        {isSelected && (
+                          <div className="absolute inset-0 rounded-[16px] overflow-hidden">
+                            <div className="absolute top-2 left-4 w-1 h-1 bg-yellow-300/60 rounded-full animate-pulse" />
+                            <div className="absolute top-4 right-6 w-0.5 h-0.5 bg-amber-300/60 rounded-full animate-pulse delay-300" />
+                            <div className="absolute bottom-3 left-8 w-0.5 h-0.5 bg-orange-300/60 rounded-full animate-pulse delay-700" />
+                          </div>
+                        )}
+                        
+                        {/* Hover glow effect */}
+                        {!isSelected && !isDisabled && (
+                          <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-orange-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        )}
+                        
+                        <span className={`text-lg z-10 relative ${isSelected ? 'filter drop-shadow-sm animate-pulse' : ''}`}>
+                          {getFunctionIcon(category.id)}
+                        </span>
+                        
+                        <span className={`font-semibold z-10 relative ${isSelected ? 'text-yellow-100 drop-shadow-sm' : ''}`}>
+                          {isZhTW ? category.label : category.labelEn}
+                        </span>
+                        
+                        <span className={`
+                          inline-flex items-center justify-center min-w-[26px] h-7 px-2.5 rounded-full text-xs font-bold z-10 relative
+                          ${isSelected
+                            ? 'bg-yellow-400/30 text-yellow-100 border border-yellow-400/40 shadow-inner' 
+                            : isDisabled
+                              ? 'bg-white/10 text-gray-600 border border-white/10'
+                              : 'bg-white/20 text-yellow-300 border border-white/30 group-hover:bg-yellow-400/20 group-hover:text-yellow-200'
+                          }
+                          transition-all duration-300 backdrop-blur-sm
+                        `}
+                        style={{
+                          backdropFilter: 'blur(8px)',
+                          WebkitBackdropFilter: 'blur(8px)'
+                        }}>
+                          {category.count}
+                        </span>
+                        
+                        {/* Selected state glass indicator */}
+                        {isSelected && (
+                          <div 
+                            className="absolute inset-0 rounded-[15px] pointer-events-none"
+                            style={{
+                              background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05), rgba(249, 115, 22, 0.1))',
+                              border: '1px solid rgba(251, 191, 36, 0.3)',
+                              boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(251, 191, 36, 0.1)'
+                            }}
+                          />
+                        )}
+                        
+                        {/* Ripple effect on click */}
+                        <div className="absolute inset-0 rounded-[16px] bg-white/20 opacity-0 group-active:opacity-100 group-active:animate-ping transition-opacity duration-150" />
+                      </Button>
+                    );
+                  })}
+                  
+                  {/* Expand/Collapse Button */}
+                  {renderExpandButton(
+                    isCategoryExpanded,
+                    () => setIsCategoryExpanded(!isCategoryExpanded),
+                    getSmartSortedCategories().length,
+                    getDisplayCategories().length
+                  )}
+                </div>
                 
-                return renderFilterButton(
-                  `user-${userGroup.id}`,
-                  isZhTW ? userGroup.label : userGroup.labelEn,
-                  userGroup.count,
-                  userGroup.icon,
-                  isSelected,
-                  () => {
-                    setSelectedUserGroup(userGroup.id);
-                    setSelectedCategory('all');
-                  },
-                  isDisabled
-                );
-              })}
-              
-              {/* Expand/Collapse Button */}
-              {renderExpandButton(
-                isUserGroupExpanded,
-                () => setIsUserGroupExpanded(!isUserGroupExpanded),
-                getSmartSortedUserGroups().length,
-                getDisplayUserGroups().length
-              )}
-            </div>
-            
-            {/* Expandable content with smooth animation */}
-            <AnimatePresence>
-              {isUserGroupExpanded && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-wrap justify-center gap-3 mt-3 pt-3 border-t border-white/10">
-                    {getSmartSortedUserGroups().slice(getDisplayUserGroups().length).map((userGroup) => {
-                      const isSelected = selectedUserGroup === userGroup.id;
-                      const isDisabled = userGroup.count === 0;
-                      
-                      return renderFilterButton(
-                        `user-expanded-${userGroup.id}`,
-                        isZhTW ? userGroup.label : userGroup.labelEn,
-                        userGroup.count,
-                        userGroup.icon,
-                        isSelected,
-                        () => {
+                {/* Expandable content with smooth animation */}
+                <AnimatePresence>
+                  {isCategoryExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-wrap justify-center gap-3 mt-3 pt-3 border-t border-white/10">
+                        {getSmartSortedCategories().slice(getDisplayCategories().length).map((category) => {
+                          const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
+                          const isDisabled = category.count === 0;
+                          
+                          return (
+                            <Button
+                              key={`function-expanded-${category.id}`}
+                              onClick={isDisabled ? undefined : () => {
+                                setSelectedCategory(category.id);
+                                setSelectedUserGroup('all-users');
+                              }}
+                              disabled={isDisabled}
+                              className={`
+                                group relative overflow-hidden
+                                ${isSelected
+                                  ? 'bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 text-white border-yellow-400/40 shadow-xl shadow-yellow-500/10' 
+                                  : isDisabled
+                                    ? 'bg-white/5 border-white/10 text-gray-500 cursor-not-allowed'
+                                    : 'bg-white/10 border-white/20 text-gray-200 hover:bg-white/15 hover:border-white/30 hover:text-white'
+                                }
+                                backdrop-blur-md backdrop-saturate-150
+                                transition-all duration-500 ease-out
+                                transform hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]
+                                flex items-center gap-3
+                                border
+                                shadow-lg hover:shadow-xl
+                              `}
+                              style={{
+                                borderRadius: '16px',
+                                padding: '14px 20px',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                minHeight: '48px',
+                                background: isSelected 
+                                  ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.15))'
+                                  : isDisabled
+                                    ? 'rgba(255, 255, 255, 0.05)'
+                                    : 'rgba(255, 255, 255, 0.08)',
+                                backdropFilter: 'blur(12px) saturate(180%)',
+                                WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                                boxShadow: isSelected 
+                                  ? '0 8px 32px rgba(251, 191, 36, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
+                                  : '0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                              }}
+                            >
+                              {/* Glass shine effect */}
+                              <div className="absolute inset-0 rounded-[16px] bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
+                              
+                              {/* Floating particles effect for selected state */}
+                              {isSelected && (
+                                <div className="absolute inset-0 rounded-[16px] overflow-hidden">
+                                  <div className="absolute top-2 left-4 w-1 h-1 bg-yellow-300/60 rounded-full animate-pulse" />
+                                  <div className="absolute top-4 right-6 w-0.5 h-0.5 bg-amber-300/60 rounded-full animate-pulse delay-300" />
+                                  <div className="absolute bottom-3 left-8 w-0.5 h-0.5 bg-orange-300/60 rounded-full animate-pulse delay-700" />
+                                </div>
+                              )}
+                              
+                              {/* Hover glow effect */}
+                              {!isSelected && !isDisabled && (
+                                <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-orange-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                              )}
+                              
+                              <span className={`text-lg z-10 relative ${isSelected ? 'filter drop-shadow-sm animate-pulse' : ''}`}>
+                                {getFunctionIcon(category.id)}
+                              </span>
+                              
+                              <span className={`font-semibold z-10 relative ${isSelected ? 'text-yellow-100 drop-shadow-sm' : ''}`}>
+                                {isZhTW ? category.label : category.labelEn}
+                              </span>
+                              
+                              <span className={`
+                                inline-flex items-center justify-center min-w-[26px] h-7 px-2.5 rounded-full text-xs font-bold z-10 relative
+                                ${isSelected
+                                  ? 'bg-yellow-400/30 text-yellow-100 border border-yellow-400/40 shadow-inner' 
+                                  : isDisabled
+                                    ? 'bg-white/10 text-gray-600 border border-white/10'
+                                    : 'bg-white/20 text-yellow-300 border border-white/30 group-hover:bg-yellow-400/20 group-hover:text-yellow-200'
+                                }
+                                transition-all duration-300 backdrop-blur-sm
+                              `}
+                              style={{
+                                backdropFilter: 'blur(8px)',
+                                WebkitBackdropFilter: 'blur(8px)'
+                              }}>
+                                {category.count}
+                              </span>
+                              
+                              {/* Selected state glass indicator */}
+                              {isSelected && (
+                                <div 
+                                  className="absolute inset-0 rounded-[15px] pointer-events-none"
+                                  style={{
+                                    background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05), rgba(249, 115, 22, 0.1))',
+                                    border: '1px solid rgba(251, 191, 36, 0.3)',
+                                    boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(251, 191, 36, 0.1)'
+                                  }}
+                                />
+                              )}
+                              
+                              {/* Ripple effect on click */}
+                              <div className="absolute inset-0 rounded-[16px] bg-white/20 opacity-0 group-active:opacity-100 group-active:animate-ping transition-opacity duration-150" />
+                            </Button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* User Groups Section - Expandable */}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+                  <h3 className="text-lg font-semibold text-gray-200">
+                    {isZhTW ? '按用戶角色篩選' : 'Filter by User Role'}
+                  </h3>
+                  <div className="flex-1 h-px bg-gradient-to-r from-gray-600/50 to-transparent ml-4"></div>
+                </div>
+                
+                <div className="flex flex-wrap justify-center gap-3">
+                  {/* Always visible user groups */}
+                  {getDisplayUserGroups().map((userGroup) => {
+                    const isSelected = selectedUserGroup === userGroup.id;
+                    const isDisabled = userGroup.count === 0;
+                    
+                    return (
+                      <Button
+                        key={`user-${userGroup.id}`}
+                        onClick={isDisabled ? undefined : () => {
                           setSelectedUserGroup(userGroup.id);
                           setSelectedCategory('all');
-                        },
-                        isDisabled
-                      );
-                    })}
+                        }}
+                        disabled={isDisabled}
+                        className={`
+                          group relative overflow-hidden
+                          ${isSelected
+                            ? 'bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 text-white border-yellow-400/40 shadow-xl shadow-yellow-500/10' 
+                            : isDisabled
+                              ? 'bg-white/5 border-white/10 text-gray-500 cursor-not-allowed'
+                              : 'bg-white/10 border-white/20 text-gray-200 hover:bg-white/15 hover:border-white/30 hover:text-white'
+                          }
+                          backdrop-blur-md backdrop-saturate-150
+                          transition-all duration-500 ease-out
+                          transform hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]
+                          flex items-center gap-3
+                          border
+                          shadow-lg hover:shadow-xl
+                        `}
+                        style={{
+                          borderRadius: '16px',
+                          padding: '14px 20px',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          minHeight: '48px',
+                          background: isSelected 
+                            ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.15))'
+                            : isDisabled
+                              ? 'rgba(255, 255, 255, 0.05)'
+                              : 'rgba(255, 255, 255, 0.08)',
+                          backdropFilter: 'blur(12px) saturate(180%)',
+                          WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                          boxShadow: isSelected 
+                            ? '0 8px 32px rgba(251, 191, 36, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
+                            : '0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                        }}
+                      >
+                        {/* Glass shine effect */}
+                        <div className="absolute inset-0 rounded-[16px] bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
+                        
+                        {/* Floating particles effect for selected state */}
+                        {isSelected && (
+                          <div className="absolute inset-0 rounded-[16px] overflow-hidden">
+                            <div className="absolute top-2 left-4 w-1 h-1 bg-yellow-300/60 rounded-full animate-pulse" />
+                            <div className="absolute top-4 right-6 w-0.5 h-0.5 bg-amber-300/60 rounded-full animate-pulse delay-300" />
+                            <div className="absolute bottom-3 left-8 w-0.5 h-0.5 bg-orange-300/60 rounded-full animate-pulse delay-700" />
+                          </div>
+                        )}
+                        
+                        {/* Hover glow effect */}
+                        {!isSelected && !isDisabled && (
+                          <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-orange-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        )}
+                        
+                        <span className={`text-lg z-10 relative ${isSelected ? 'filter drop-shadow-sm animate-pulse' : ''}`}>
+                          {userGroup.icon}
+                        </span>
+                        
+                        <span className={`font-semibold z-10 relative ${isSelected ? 'text-yellow-100 drop-shadow-sm' : ''}`}>
+                          {isZhTW ? userGroup.label : userGroup.labelEn}
+                        </span>
+                        
+                        <span className={`
+                          inline-flex items-center justify-center min-w-[26px] h-7 px-2.5 rounded-full text-xs font-bold z-10 relative
+                          ${isSelected
+                            ? 'bg-yellow-400/30 text-yellow-100 border border-yellow-400/40 shadow-inner' 
+                            : isDisabled
+                              ? 'bg-white/10 text-gray-600 border border-white/10'
+                              : 'bg-white/20 text-yellow-300 border border-white/30 group-hover:bg-yellow-400/20 group-hover:text-yellow-200'
+                          }
+                          transition-all duration-300 backdrop-blur-sm
+                        `}
+                        style={{
+                          backdropFilter: 'blur(8px)',
+                          WebkitBackdropFilter: 'blur(8px)'
+                        }}>
+                          {userGroup.count}
+                        </span>
+                        
+                        {/* Selected state glass indicator */}
+                        {isSelected && (
+                          <div 
+                            className="absolute inset-0 rounded-[15px] pointer-events-none"
+                            style={{
+                              background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05), rgba(249, 115, 22, 0.1))',
+                              border: '1px solid rgba(251, 191, 36, 0.3)',
+                              boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(251, 191, 36, 0.1)'
+                            }}
+                          />
+                        )}
+                        
+                        {/* Ripple effect on click */}
+                        <div className="absolute inset-0 rounded-[16px] bg-white/20 opacity-0 group-active:opacity-100 group-active:animate-ping transition-opacity duration-150" />
+                      </Button>
+                    );
+                  })}
+                  
+                  {/* Expand/Collapse Button */}
+                  {renderExpandButton(
+                    isUserGroupExpanded,
+                    () => setIsUserGroupExpanded(!isUserGroupExpanded),
+                    getSmartSortedUserGroups().length,
+                    getDisplayUserGroups().length
+                  )}
+                </div>
+                
+                {/* Expandable content with smooth animation */}
+                <AnimatePresence>
+                  {isUserGroupExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-wrap justify-center gap-3 mt-3 pt-3 border-t border-white/10">
+                        {getSmartSortedUserGroups().slice(getDisplayUserGroups().length).map((userGroup) => {
+                          const isSelected = selectedUserGroup === userGroup.id;
+                          const isDisabled = userGroup.count === 0;
+                          
+                          return (
+                            <Button
+                              key={`user-expanded-${userGroup.id}`}
+                              onClick={isDisabled ? undefined : () => {
+                                setSelectedUserGroup(userGroup.id);
+                                setSelectedCategory('all');
+                              }}
+                              disabled={isDisabled}
+                              className={`
+                                group relative overflow-hidden
+                                ${isSelected
+                                  ? 'bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 text-white border-yellow-400/40 shadow-xl shadow-yellow-500/10' 
+                                  : isDisabled
+                                    ? 'bg-white/5 border-white/10 text-gray-500 cursor-not-allowed'
+                                    : 'bg-white/10 border-white/20 text-gray-200 hover:bg-white/15 hover:border-white/30 hover:text-white'
+                                }
+                                backdrop-blur-md backdrop-saturate-150
+                                transition-all duration-500 ease-out
+                                transform hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]
+                                flex items-center gap-3
+                                border
+                                shadow-lg hover:shadow-xl
+                              `}
+                              style={{
+                                borderRadius: '16px',
+                                padding: '14px 20px',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                minHeight: '48px',
+                                background: isSelected 
+                                  ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.15))'
+                                  : isDisabled
+                                    ? 'rgba(255, 255, 255, 0.05)'
+                                    : 'rgba(255, 255, 255, 0.08)',
+                                backdropFilter: 'blur(12px) saturate(180%)',
+                                WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                                boxShadow: isSelected 
+                                  ? '0 8px 32px rgba(251, 191, 36, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
+                                  : '0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                              }}
+                            >
+                              {/* Glass shine effect */}
+                              <div className="absolute inset-0 rounded-[16px] bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
+                              
+                              {/* Floating particles effect for selected state */}
+                              {isSelected && (
+                                <div className="absolute inset-0 rounded-[16px] overflow-hidden">
+                                  <div className="absolute top-2 left-4 w-1 h-1 bg-yellow-300/60 rounded-full animate-pulse" />
+                                  <div className="absolute top-4 right-6 w-0.5 h-0.5 bg-amber-300/60 rounded-full animate-pulse delay-300" />
+                                  <div className="absolute bottom-3 left-8 w-0.5 h-0.5 bg-orange-300/60 rounded-full animate-pulse delay-700" />
+                                </div>
+                              )}
+                              
+                              {/* Hover glow effect */}
+                              {!isSelected && !isDisabled && (
+                                <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-orange-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                              )}
+                              
+                              <span className={`text-lg z-10 relative ${isSelected ? 'filter drop-shadow-sm animate-pulse' : ''}`}>
+                                {userGroup.icon}
+                              </span>
+                              
+                              <span className={`font-semibold z-10 relative ${isSelected ? 'text-yellow-100 drop-shadow-sm' : ''}`}>
+                                {isZhTW ? userGroup.label : userGroup.labelEn}
+                              </span>
+                              
+                              <span className={`
+                                inline-flex items-center justify-center min-w-[26px] h-7 px-2.5 rounded-full text-xs font-bold z-10 relative
+                                ${isSelected
+                                  ? 'bg-yellow-400/30 text-yellow-100 border border-yellow-400/40 shadow-inner' 
+                                  : isDisabled
+                                    ? 'bg-white/10 text-gray-600 border border-white/10'
+                                    : 'bg-white/20 text-yellow-300 border border-white/30 group-hover:bg-yellow-400/20 group-hover:text-yellow-200'
+                                }
+                                transition-all duration-300 backdrop-blur-sm
+                              `}
+                              style={{
+                                backdropFilter: 'blur(8px)',
+                                WebkitBackdropFilter: 'blur(8px)'
+                              }}>
+                                {userGroup.count}
+                              </span>
+                              
+                              {/* Selected state glass indicator */}
+                              {isSelected && (
+                                <div 
+                                  className="absolute inset-0 rounded-[15px] pointer-events-none"
+                                  style={{
+                                    background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05), rgba(249, 115, 22, 0.1))',
+                                    border: '1px solid rgba(251, 191, 36, 0.3)',
+                                    boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(251, 191, 36, 0.1)'
+                                  }}
+                                />
+                              )}
+                              
+                              {/* Ripple effect on click */}
+                              <div className="absolute inset-0 rounded-[16px] bg-white/20 opacity-0 group-active:opacity-100 group-active:animate-ping transition-opacity duration-150" />
+                            </Button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Active Filter Indicator */}
+              {(selectedCategory !== 'all' || selectedUserGroup !== 'all-users') && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 text-center"
+                >
+                  <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-400 rounded-full px-4 py-2 border border-yellow-500/20">
+                    <span className="text-sm font-medium">
+                      {isZhTW ? '已篩選' : 'Filtered'}: {filteredTools.length} {isZhTW ? '個工具' : 'tools'}
+                    </span>
+                    <Button
+                      onClick={() => {
+                        setSelectedCategory('all');
+                        setSelectedUserGroup('all-users');
+                      }}
+                      className="ml-2 h-6 w-6 p-0 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-full"
+                    >
+                      ×
+                    </Button>
                   </div>
                 </motion.div>
               )}
-            </AnimatePresence>
-          </div>
+            </div>
+          </motion.div>
 
-          {/* Active Filter Indicator */}
-          {(selectedCategory !== 'all' || selectedUserGroup !== 'all-users') && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-6 text-center"
-            >
-              <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-400 rounded-full px-4 py-2 border border-yellow-500/20">
-                <span className="text-sm font-medium">
-                  {isZhTW ? '已篩選' : 'Filtered'}: {filteredTools.length} {isZhTW ? '個工具' : 'tools'}
-                </span>
+          {/* Right Main Content - Tools Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex-1"
+          >
+            {/* Tools Grid */}
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {filteredTools.map((tool, index) => (
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  visitButtonText={isZhTW ? `訪問 ${tool.title.split(' - ')[0]}` : `Visit ${tool.title.split(' - ')[0]}`}
+                  targetAudienceLabel={isZhTW ? '適用於：' : 'Perfect for:'}
+                  index={index}
+                />
+              ))}
+            </div>
+
+            {/* Empty State */}
+            {filteredTools.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center py-16"
+              >
+                <div className="w-24 h-24 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                  <Filter className="w-12 h-12 text-gray-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {isZhTW ? '找不到符合條件的工具' : 'No Tools Found'}
+                </h3>
+                <p className="text-gray-400 mb-6">
+                  {isZhTW ? '嘗試調整篩選條件以查看更多工具' : 'Try adjusting your filters to see more tools'}
+                </p>
                 <Button
                   onClick={() => {
                     setSelectedCategory('all');
                     setSelectedUserGroup('all-users');
                   }}
-                  className="ml-2 h-6 w-6 p-0 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-full"
+                  className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 border border-yellow-500/30"
                 >
-                  ×
-            </Button>
-              </div>
-            </motion.div>
-          )}
-        </motion.div>
-
-        {/* Tools Grid with New ToolCard Component */}
-        <div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto gap-6"
-        >
-          {filteredTools.map((tool, index) => (
-            <ToolCard
-              key={tool.id}
-              tool={tool}
-              visitButtonText={isZhTW ? `訪問 ${tool.title.split(' - ')[0]}` : `Visit ${tool.title.split(' - ')[0]}`}
-              targetAudienceLabel={isZhTW ? '適用於：' : 'Perfect for:'}
-              index={index}
-            />
-          ))}
+                  {isZhTW ? '重置篩選' : 'Reset Filters'}
+                </Button>
+              </motion.div>
+            )}
+          </motion.div>
         </div>
       </div>
     </div>
