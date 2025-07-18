@@ -37,22 +37,6 @@ export const allTools: Tool[] = [
     userGroups: ['content-creator', 'designer', 'artist']
   },
   {
-    id: 'mem0-openmemory-mcp',
-    title: 'Mem0 OpenMemory MCP - AI 記憶體服務',
-    description: '一個為 AI 工具（如 Cursor）提供共享、持久記憶嘅服務。佢可以記住你嘅對話同偏好，令 AI 更加個人化同聰明。',
-    tag: 'AI 記憶體',
-    url: 'https://mem0.ai/openmemory-mcp',
-    imageUrl: '/aitools/mem0.jpg', // 使用現有的 mem0 圖片
-    imageAlt: 'Mem0 OpenMemory MCP Logo',
-    category: 'data',
-    targetAudience: [
-      'AI 開發者',
-      'Power User',
-      '企業用戶'
-    ],
-    userGroups: ['developer', 'business']
-  },
-  {
     id: 'lupa-upscaler',
     title: 'Lupa Upscaler - AI 圖像增強工具', 
     description: '一個專業級嘅 AI 圖像與影片增強工具。可以將低解析度嘅圖片或影片升級為高清，並修復舊有或損壞嘅影像細節。',
