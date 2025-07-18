@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Palette, Brain, Video, Database, Wand2, Sparkles, Film, Users, Zap, TrendingUp } from "lucide-react";
+import { ExternalLink, Palette, Brain, Video, Database, Wand2, Sparkles, Film, Users, Zap, TrendingUp, Filter } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ToolCard from "@/components/ToolCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { allTools as newTools, userGroupCategories } from "@/data/tools-data";
 
 const Tools = () => {
   const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedUserGroup, setSelectedUserGroup] = useState('all-users');
   const isZhTW = language === 'zh-HK';
 
   const fadeIn = {
@@ -27,7 +29,8 @@ const Tools = () => {
     { id: 'marketing', label: 'AI行銷工具', labelEn: 'AI Marketing Tools' }
   ];
 
-  const tools = [
+  // Merge existing tools with new tools from tools-data.ts
+  const existingTools = [
     // Design Tools
     {
       id: 'freepik',
@@ -52,7 +55,8 @@ const Tools = () => {
         'UI/UX Designers', 
         'Brand Designers',
         'Freelance Creators'
-      ]
+      ],
+      userGroups: ['designer', 'content-creator']
     },
     
     // Data Tools
@@ -79,7 +83,8 @@ const Tools = () => {
         'Data Scientists',
         'Product Managers',
         'Tech Enthusiasts'
-      ]
+      ],
+      userGroups: ['developer', 'business']
     },
     {
       id: 'chat4data',
@@ -104,7 +109,8 @@ const Tools = () => {
         'Business Analysts',
         'Content Creators',
         'E-commerce Operators'
-      ]
+      ],
+      userGroups: ['business', 'marketer']
     },
     
     // AI Video Tools
@@ -260,9 +266,120 @@ const Tools = () => {
     }
   ];
 
-  const filteredTools = selectedCategory === 'all' 
-    ? tools 
-    : tools.filter(tool => tool.category === selectedCategory);
+  // Transform new tools to match existing format (add English translations)
+  const transformedNewTools = newTools.map(tool => ({
+    ...tool,
+    title: tool.title, // Keep original Chinese title since existing ones also use Chinese
+    description: tool.description, // Keep original Chinese description
+    tag: tool.tag, // Keep original Chinese tag
+    targetAudience: tool.targetAudience, // Keep original Chinese target audience
+    userGroups: tool.userGroups || [] // Ensure userGroups exists
+  }));
+
+  // Ensure all existing tools have userGroups property
+  const processedExistingTools = existingTools.map(tool => ({
+    ...tool,
+    userGroups: tool.userGroups || [] // Add empty userGroups if not exists
+  }));
+
+  // Combine existing and new tools
+  const tools = [...processedExistingTools, ...transformedNewTools];
+
+  // 篩選邏輯：統一篩選（功能分類或用戶群體，互斥選擇）
+  let filteredTools = tools;
+  
+  // 如果選擇了特定用戶群體，按用戶群體篩選
+  if (selectedUserGroup !== 'all-users') {
+    filteredTools = filteredTools.filter(tool => 
+      tool.userGroups && tool.userGroups.includes(selectedUserGroup)
+    );
+  }
+  // 否則如果選擇了特定功能分類，按功能分類篩選
+  else if (selectedCategory !== 'all') {
+    filteredTools = filteredTools.filter(tool => tool.category === selectedCategory);
+  }
+
+  // Helper function to get function category icon
+  const getFunctionIcon = (categoryId: string) => {
+    switch(categoryId) {
+      case 'all': return '🔧';
+      case 'design': return '🎨';
+      case 'data': return '📊';
+      case 'video': return '🎬';
+      case 'marketing': return '📈';
+      default: return '⚡';
+    }
+  };
+
+  // Helper function to render filter button with improved states
+  const renderFilterButton = (
+    key: string,
+    label: string,
+    count: number,
+    icon: string,
+    isSelected: boolean,
+    onClick: () => void,
+    isDisabled: boolean = false
+  ) => {
+    return (
+      <Button
+        key={key}
+        onClick={isDisabled ? undefined : onClick}
+        disabled={isDisabled}
+        className={`
+          group relative overflow-hidden
+          ${isSelected
+            ? 'bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-black shadow-lg shadow-yellow-500/25 border-yellow-400/50' 
+            : isDisabled
+              ? 'bg-gray-800/50 border-gray-700/50 text-gray-500 cursor-not-allowed'
+              : 'bg-gray-900/80 border-gray-600/50 text-gray-300 hover:bg-gray-800/90 hover:border-gray-500/70 hover:text-white hover:shadow-md'
+          }
+          transition-all duration-300 ease-in-out
+          transform hover:scale-105 active:scale-95
+          flex items-center gap-2.5
+          border-2
+        `}
+        style={{
+          borderRadius: '12px',
+          padding: '12px 18px',
+          fontSize: '14px',
+          fontWeight: '600',
+          minHeight: '44px'
+        }}
+      >
+        {/* Background gradient animation for hover */}
+        {!isSelected && !isDisabled && (
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        )}
+        
+        <span className={`text-lg ${isSelected ? 'filter drop-shadow-sm' : ''}`}>
+          {icon}
+        </span>
+        
+        <span className={`font-medium ${isSelected ? 'text-black font-bold' : ''}`}>
+          {label}
+        </span>
+        
+        <span className={`
+          inline-flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full text-xs font-bold
+          ${isSelected
+            ? 'bg-black/20 text-black' 
+            : isDisabled
+              ? 'bg-gray-700/50 text-gray-600'
+              : 'bg-yellow-500/20 text-yellow-400 group-hover:bg-yellow-500/30 group-hover:text-yellow-300'
+          }
+          transition-all duration-200
+        `}>
+          {count}
+        </span>
+        
+        {/* Selected state indicator */}
+        {isSelected && (
+          <div className="absolute inset-0 rounded-[10px] bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 pointer-events-none" />
+        )}
+      </Button>
+    );
+  };
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
@@ -282,7 +399,7 @@ const Tools = () => {
           <div className="inline-flex items-center space-x-2 bg-yellow-500/10 text-yellow-400 rounded-full px-6 py-3 mb-8 border border-yellow-500/20">
             <Sparkles className="w-5 h-5" />
             <span className="font-medium">
-              {isZhTW ? '推薦 AI 工具' : 'Recommended AI Tools'}
+              {isZhTW ? `${tools.length} 個推薦 AI 工具` : `${tools.length} Recommended AI Tools`}
             </span>
           </div>
           
@@ -311,35 +428,114 @@ const Tools = () => {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* Enhanced Filter Section with Clear Hierarchy */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="mb-12"
         >
-          {toolCategories.map((category) => (
-            <Button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              className={`
-                ${selectedCategory === category.id 
-                  ? 'bg-yellow-500 text-black hover:bg-yellow-400' 
-                  : 'bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white'
-                }
-                transition-all duration-300
-              `}
-              style={{
-                borderRadius: 'var(--radius-xl)',
-                padding: 'var(--space-3) var(--space-6)',
-                fontSize: 'var(--text-sm)',
-                fontWeight: 'var(--font-medium)'
-              }}
+          {/* Filter Header */}
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Filter className="w-5 h-5 text-yellow-400" />
+            <h2 className="text-xl font-bold text-white">
+              {isZhTW ? '智能篩選器' : 'Smart Filters'}
+            </h2>
+          </div>
+
+          {/* Function Categories Section */}
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-1 h-6 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full"></div>
+              <h3 className="text-lg font-semibold text-gray-200">
+                {isZhTW ? '按工具類型篩選' : 'Filter by Tool Type'}
+              </h3>
+              <div className="flex-1 h-px bg-gradient-to-r from-gray-600/50 to-transparent ml-4"></div>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-3">
+              {toolCategories.map((category) => {
+                const categoryCount = category.id === 'all' 
+                  ? tools.length
+                  : tools.filter(tool => tool.category === category.id).length;
+                
+                const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
+                const isDisabled = categoryCount === 0;
+                
+                return renderFilterButton(
+                  `function-${category.id}`,
+                  isZhTW ? category.label : category.labelEn,
+                  categoryCount,
+                  getFunctionIcon(category.id),
+                  isSelected,
+                  () => {
+                    setSelectedCategory(category.id);
+                    setSelectedUserGroup('all-users');
+                  },
+                  isDisabled
+                );
+              })}
+            </div>
+          </div>
+
+          {/* User Groups Section */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+              <h3 className="text-lg font-semibold text-gray-200">
+                {isZhTW ? '按用戶角色篩選' : 'Filter by User Role'}
+              </h3>
+              <div className="flex-1 h-px bg-gradient-to-r from-gray-600/50 to-transparent ml-4"></div>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-3">
+              {userGroupCategories.filter(group => group.id !== 'all-users').map((userGroup) => {
+                const userGroupCount = tools.filter(tool => 
+                  tool.userGroups && tool.userGroups.includes(userGroup.id)
+                ).length;
+                
+                const isSelected = selectedUserGroup === userGroup.id;
+                const isDisabled = userGroupCount === 0;
+                
+                return renderFilterButton(
+                  `user-${userGroup.id}`,
+                  isZhTW ? userGroup.label : userGroup.labelEn,
+                  userGroupCount,
+                  userGroup.icon,
+                  isSelected,
+                  () => {
+                    setSelectedUserGroup(userGroup.id);
+                    setSelectedCategory('all');
+                  },
+                  isDisabled
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Active Filter Indicator */}
+          {(selectedCategory !== 'all' || selectedUserGroup !== 'all-users') && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 text-center"
             >
-              {isZhTW ? category.label : category.labelEn}
-            </Button>
-          ))}
+              <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-400 rounded-full px-4 py-2 border border-yellow-500/20">
+                <span className="text-sm font-medium">
+                  {isZhTW ? '已篩選' : 'Filtered'}: {filteredTools.length} {isZhTW ? '個工具' : 'tools'}
+                </span>
+                <Button
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setSelectedUserGroup('all-users');
+                  }}
+                  className="ml-2 h-6 w-6 p-0 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-full"
+                >
+                  ×
+                </Button>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
 
         {/* Tools Grid with New ToolCard Component */}
