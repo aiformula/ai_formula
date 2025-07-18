@@ -166,7 +166,6 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   const { language } = useLanguage();
   const navigate = useNavigate();
   const isZhTW = language === 'zh-HK';
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<string>('course-intro');
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
@@ -243,16 +242,6 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
       id: 'instructor-profile',
       label: isZhTW ? '導師介紹' : 'Meet Your Instructor',
       icon: <Users className="w-4 h-4" />
-    },
-    {
-      id: 'student-testimonials',
-      label: isZhTW ? '學員心聲' : 'Student Testimonials',
-      icon: <Star className="w-4 h-4" />
-    },
-    {
-      id: 'faq',
-      label: isZhTW ? '常見問題' : 'FAQ',
-      icon: <MessageCircle className="w-4 h-4" />
     }
   ];
 
@@ -371,10 +360,6 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
   };
 
   const dynamicLatestNews = getDynamicLatestNews();
-
-  const toggleFAQ = (index: number) => {
-    setOpenFAQ(openFAQ === index ? null : index);
-  };
 
   const toggleAccordion = (index: number) => {
     setOpenAccordion(openAccordion === index ? null : index);
@@ -1106,199 +1091,6 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 </div>
               </CardContent>
             </Card>
-          </div>
-        );
-
-      case 'student-testimonials':
-        return (
-          <div className="space-y-8">
-            {/* 學員評價 */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "學員評價" : "Student Reviews"}
-              </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  {
-                    name: "Sarah L.",
-                    role: "數碼行銷專員",
-                    avatar: "S",
-                    rating: 5,
-                    comment: "Kenneth 導師的課程讓我學會了用 Zapier 和 ChatGPT API 自動化客戶查詢處理。現在我的工作效率提升了 300%，每天節省3小時重複工作時間。",
-                    project: "建立自動化客服系統，客戶滿意度提升到95%"
-                  },
-                  {
-                    name: "Michael C.",
-                    role: "中小企業老闆",
-                    avatar: "M",
-                    rating: 5,
-                    comment: "課程教會我用 Make.com 整合各種系統，從訂單處理到庫存管理都自動化了。大大減少了人手成本和錯誤率。",
-                    project: "實施全自動化營運流程，成本降低40%"
-                  },
-                  {
-                    name: "Jenny W.",
-                    role: "營銷經理",
-                    avatar: "J",
-                    rating: 5,
-                    comment: "學會了用 AI 工具自動生成個性化郵件和社媒內容。潛在客戶轉換率從15%提升到35%，營銷效果顯著提升。",
-                    project: "自動化營銷活動帶來300%ROI提升"
-                  },
-                  {
-                    name: "David K.",
-                    role: "IT主管",
-                    avatar: "D",
-                    rating: 5,
-                    comment: "Kenneth的教學很實用，我用n8n建立了完整的業務自動化工作流程。現在數據報告自動生成，決策速度快了很多。",
-                    project: "建立商業智能系統，決策效率提升200%"
-                  }
-                ].map((testimonial, index) => (
-                  <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center text-white font-bold text-lg`}>
-                          {testimonial.avatar}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                            <span className="text-sm text-gray-400">— {testimonial.role}</span>
-                          </div>
-                          <div className="flex items-center gap-1 mb-3">
-                            {[...Array(testimonial.rating)].map((_, i) => (
-                              <Star key={i} className={`w-4 h-4 ${instructorTheme.primary} fill-current`} />
-                            ))}
-                          </div>
-                          <p className="text-gray-300 mb-3 leading-relaxed">"{testimonial.comment}"</p>
-                          <div className={`text-sm ${instructorTheme.primary} font-semibold`}>
-                            ✅ 成果：{testimonial.project}
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* 學員作品展示 */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-white">
-                {isZhTW ? "🎨 學員作品展示" : "🎨 Student Showcase"}
-              </h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    title: "智能客服自動化系統",
-                    student: "Sarah L.",
-                    description: "使用 Zapier + ChatGPT API 建立24小時智能客服，自動處理常見查詢",
-                    tech: ["Zapier", "ChatGPT API", "Slack"],
-                    result: "客戶滿意度提升至95%"
-                  },
-                  {
-                    title: "全自動化營運流程",
-                    student: "Michael C.",
-                    description: "使用 Make.com 整合訂單、庫存、會計系統，實現全流程自動化",
-                    tech: ["Make.com", "Google Sheets", "Webhooks"],
-                    result: "營運成本降低40%"
-                  },
-                  {
-                    title: "AI 營銷自動化系統",
-                    student: "Jenny W.",
-                    description: "建立個性化郵件營銷和社媒內容自動生成系統",
-                    tech: ["n8n", "ChatGPT API", "Airtable"],
-                    result: "轉換率提升至35%"
-                  },
-                  {
-                    title: "商業智能報告系統",
-                    student: "David K.",
-                    description: "使用 n8n 建立自動化數據收集和報告生成系統",
-                    tech: ["n8n", "Google Sheets", "AI 分析"],
-                    result: "決策效率提升200%"
-                  }
-                ].map((showcase, index) => (
-                  <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className={`h-32 bg-gradient-to-br ${instructorTheme.gradient} rounded-lg mb-4 flex items-center justify-center`}>
-                        <div className="text-white text-center">
-                          <PlayCircle className="w-12 h-12 mx-auto mb-2" />
-                          <div className="text-sm font-semibold">作品展示</div>
-                        </div>
-                      </div>
-                      <h4 className="font-semibold text-white mb-2">{showcase.title}</h4>
-                      <p className="text-sm text-gray-400 mb-3">by {showcase.student}</p>
-                      <p className="text-sm text-gray-300 mb-3">{showcase.description}</p>
-                      <div className="flex flex-wrap gap-1 mb-3">
-                        {showcase.tech.map((tech, techIndex) => (
-                          <Badge key={techIndex} variant="outline" className={`${instructorTheme.accent} text-xs`}>
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className={`text-sm ${instructorTheme.primary} font-semibold`}>
-                        ✅ 成果：{showcase.result}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* 統計數據 */}
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-white mb-6 text-center">
-                  {isZhTW ? "📊 課程影響統計" : "📊 Course Impact Statistics"}
-                </h3>
-                <div className="grid md:grid-cols-4 gap-6 text-center">
-                  <div>
-                    <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>500+</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "完課學員" : "Graduates"}</div>
-                  </div>
-                  <div>
-                    <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>4.9/5</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "平均評分" : "Average Rating"}</div>
-                  </div>
-                  <div>
-                    <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>85%</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "就業提升" : "Career Advancement"}</div>
-                  </div>
-                  <div>
-                    <div className={`text-3xl font-bold ${instructorTheme.primary} mb-2`}>300%</div>
-                    <div className="text-sm text-gray-400">{isZhTW ? "平均效率提升" : "Efficiency Improvement"}</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
-
-      case 'faq':
-        return (
-          <div className="space-y-4">
-            {faqData.map((faq, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700">
-                <CardContent className="p-0">
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
-                      {openFAQ === index ? (
-                        <ChevronUp className="w-5 h-5 text-gray-400" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-gray-400" />
-                      )}
-                    </div>
-                  </button>
-                  {openFAQ === index && (
-                    <div className="px-6 pb-6">
-                      <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
           </div>
         );
 
