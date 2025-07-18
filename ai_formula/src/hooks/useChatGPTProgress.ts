@@ -37,12 +37,12 @@ const CHATGPT_STATS_KEY = 'chatgpt_course_stats';
 const COURSE_STRUCTURE = {
   totalThemes: 6,
   themes: [
-    { id: 1, totalLessons: 3, totalUnits: 5 },
-    { id: 2, totalLessons: 4, totalUnits: 6 },
-    { id: 3, totalLessons: 3, totalUnits: 5 },
-    { id: 4, totalLessons: 4, totalUnits: 7 },
-    { id: 5, totalLessons: 3, totalUnits: 5 },
-    { id: 6, totalLessons: 3, totalUnits: 6 }
+    { id: 1, totalLessons: 5, totalUnits: 5 }, // AI 革命的開端 — 重新認識 ChatGPT (1.1-1.5)
+    { id: 2, totalLessons: 5, totalUnits: 5 }, // 初探門徑 — 帳戶設定與介面導覽 (2.1-2.5)
+    { id: 3, totalLessons: 6, totalUnits: 6 }, // 指令的藝術 (Prompt Engineering) (3.1-3.6)
+    { id: 4, totalLessons: 5, totalUnits: 5 }, // 精通之道 — 高級提示工程 (Prompt Engineering) (4.1-4.5)
+    { id: 5, totalLessons: 5, totalUnits: 5 }, // 打造專屬 AI — 個人化與 GPT 商店 (5.1-5.5)
+    { id: 6, totalLessons: 5, totalUnits: 5 }  // 展望未來 — 應用、倫理與挑戰 (6.1-6.5)
   ]
 };
 

@@ -780,7 +780,7 @@ const Tools = () => {
                   className="ml-2 h-6 w-6 p-0 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-full"
                 >
                   ×
-                </Button>
+            </Button>
               </div>
             </motion.div>
           )}
