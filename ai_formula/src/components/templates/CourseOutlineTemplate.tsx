@@ -1482,7 +1482,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
             </div>
 
             {/* Tab Content */}
-            <div className={`flex-1 ${learningPathExtended ? 'min-h-[1200px]' : 'min-h-[500px] max-h-[calc(100vh-24rem)]'} ${learningPathExtended ? '' : 'overflow-y-auto'} pl-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-track-gray-800/50`}>
+            <div className={`flex-1 ${learningPathExtended ? 'min-h-[1200px]' : ''} ${learningPathExtended ? '' : 'overflow-y-auto'} pl-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-track-gray-800/50`}>
               {renderTabContent()}
             </div>
           </div>
