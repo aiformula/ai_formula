@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Palette, Brain, Video, Database, Wand2, Sparkles, Film, Users, Zap, TrendingUp, Filter } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ToolCard from "@/components/ToolCard";
@@ -13,6 +13,8 @@ const Tools = () => {
   const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedUserGroup, setSelectedUserGroup] = useState('all-users');
+  const [isCategoryExpanded, setIsCategoryExpanded] = useState(false);
+  const [isUserGroupExpanded, setIsUserGroupExpanded] = useState(false);
   const isZhTW = language === 'zh-HK';
 
   const fadeIn = {
@@ -333,6 +335,116 @@ const Tools = () => {
     }
   };
 
+  // Smart sorting and display logic for expandable filters
+  const getSmartSortedCategories = () => {
+    const categoriesWithCount = toolCategories.map(category => {
+      const count = category.id === 'all' 
+        ? tools.length
+        : tools.filter(tool => tool.category === category.id).length;
+      return { ...category, count };
+    });
+    
+    // Sort: non-zero counts first, then by count descending
+    return categoriesWithCount.sort((a, b) => {
+      if (a.count === 0 && b.count === 0) return 0;
+      if (a.count === 0) return 1;
+      if (b.count === 0) return -1;
+      return b.count - a.count;
+    });
+  };
+
+  const getSmartSortedUserGroups = () => {
+    const userGroupsWithCount = userGroupCategories.filter(group => group.id !== 'all-users').map(userGroup => {
+      const count = tools.filter(tool => 
+        tool.userGroups && tool.userGroups.includes(userGroup.id)
+      ).length;
+      return { ...userGroup, count };
+    });
+    
+    // Sort: non-zero counts first, then by count descending
+    return userGroupsWithCount.sort((a, b) => {
+      if (a.count === 0 && b.count === 0) return 0;
+      if (a.count === 0) return 1;
+      if (b.count === 0) return -1;
+      return b.count - a.count;
+    });
+  };
+
+  // Get display items based on expansion state
+  const getDisplayCategories = () => {
+    const sorted = getSmartSortedCategories();
+    const defaultShowCount = 6; // Show first 6 items by default
+    return isCategoryExpanded ? sorted : sorted.slice(0, defaultShowCount);
+  };
+
+  const getDisplayUserGroups = () => {
+    const sorted = getSmartSortedUserGroups();
+    const defaultShowCount = 8; // Show first 8 items by default
+    return isUserGroupExpanded ? sorted : sorted.slice(0, defaultShowCount);
+  };
+
+  // Helper function to render expand/collapse button
+  const renderExpandButton = (
+    isExpanded: boolean,
+    onClick: () => void,
+    totalCount: number,
+    visibleCount: number
+  ) => {
+    if (totalCount <= visibleCount) return null;
+    
+    return (
+      <Button
+        onClick={onClick}
+        className="
+          group relative overflow-hidden
+          bg-white/5 border-white/20 text-gray-300 hover:bg-white/10 hover:border-white/30 hover:text-white
+          backdrop-blur-md backdrop-saturate-150
+          transition-all duration-300 ease-out
+          transform hover:scale-[1.02] active:scale-[0.98]
+          flex items-center gap-2
+          border
+          shadow-md hover:shadow-lg
+        "
+        style={{
+          borderRadius: '12px',
+          padding: '8px 16px',
+          fontSize: '13px',
+          fontWeight: '500',
+          background: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(8px) saturate(150%)',
+          WebkitBackdropFilter: 'blur(8px) saturate(150%)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+        }}
+      >
+        {/* Glass shine effect */}
+        <div className="absolute inset-0 rounded-[12px] bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-60" />
+        
+        <span className="z-10 relative">
+          {isExpanded 
+            ? (isZhTW ? '收合' : 'Show Less')
+            : (isZhTW ? `顯示更多 (+${totalCount - visibleCount})` : `Show More (+${totalCount - visibleCount})`)
+          }
+        </span>
+        
+        <motion.div
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="z-10 relative"
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path 
+              d="M3 5L6 8L9 5" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.div>
+      </Button>
+    );
+  };
+
   // Helper function to render filter button with fluid glass design
   const renderFilterButton = (
     key: string,
@@ -503,7 +615,7 @@ const Tools = () => {
             </h2>
           </div>
 
-          {/* Function Categories Section */}
+          {/* Function Categories Section - Expandable */}
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-1 h-6 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full"></div>
@@ -514,18 +626,15 @@ const Tools = () => {
             </div>
             
             <div className="flex flex-wrap justify-center gap-3">
-              {toolCategories.map((category) => {
-                const categoryCount = category.id === 'all' 
-                  ? tools.length
-                  : tools.filter(tool => tool.category === category.id).length;
-                
+              {/* Always visible categories */}
+              {getDisplayCategories().map((category) => {
                 const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
-                const isDisabled = categoryCount === 0;
+                const isDisabled = category.count === 0;
                 
                 return renderFilterButton(
                   `function-${category.id}`,
                   isZhTW ? category.label : category.labelEn,
-                  categoryCount,
+                  category.count,
                   getFunctionIcon(category.id),
                   isSelected,
                   () => {
@@ -535,10 +644,51 @@ const Tools = () => {
                   isDisabled
                 );
               })}
+              
+              {/* Expand/Collapse Button */}
+              {renderExpandButton(
+                isCategoryExpanded,
+                () => setIsCategoryExpanded(!isCategoryExpanded),
+                getSmartSortedCategories().length,
+                getDisplayCategories().length
+              )}
             </div>
+            
+            {/* Expandable content with smooth animation */}
+            <AnimatePresence>
+              {isCategoryExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-wrap justify-center gap-3 mt-3 pt-3 border-t border-white/10">
+                    {getSmartSortedCategories().slice(getDisplayCategories().length).map((category) => {
+                      const isSelected = selectedCategory === category.id && selectedUserGroup === 'all-users';
+                      const isDisabled = category.count === 0;
+                      
+                      return renderFilterButton(
+                        `function-expanded-${category.id}`,
+                        isZhTW ? category.label : category.labelEn,
+                        category.count,
+                        getFunctionIcon(category.id),
+                        isSelected,
+                        () => {
+                          setSelectedCategory(category.id);
+                          setSelectedUserGroup('all-users');
+                        },
+                        isDisabled
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* User Groups Section */}
+          {/* User Groups Section - Expandable */}
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
@@ -549,18 +699,15 @@ const Tools = () => {
             </div>
             
             <div className="flex flex-wrap justify-center gap-3">
-              {userGroupCategories.filter(group => group.id !== 'all-users').map((userGroup) => {
-                const userGroupCount = tools.filter(tool => 
-                  tool.userGroups && tool.userGroups.includes(userGroup.id)
-                ).length;
-                
+              {/* Always visible user groups */}
+              {getDisplayUserGroups().map((userGroup) => {
                 const isSelected = selectedUserGroup === userGroup.id;
-                const isDisabled = userGroupCount === 0;
+                const isDisabled = userGroup.count === 0;
                 
                 return renderFilterButton(
                   `user-${userGroup.id}`,
                   isZhTW ? userGroup.label : userGroup.labelEn,
-                  userGroupCount,
+                  userGroup.count,
                   userGroup.icon,
                   isSelected,
                   () => {
@@ -570,7 +717,48 @@ const Tools = () => {
                   isDisabled
                 );
               })}
+              
+              {/* Expand/Collapse Button */}
+              {renderExpandButton(
+                isUserGroupExpanded,
+                () => setIsUserGroupExpanded(!isUserGroupExpanded),
+                getSmartSortedUserGroups().length,
+                getDisplayUserGroups().length
+              )}
             </div>
+            
+            {/* Expandable content with smooth animation */}
+            <AnimatePresence>
+              {isUserGroupExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-wrap justify-center gap-3 mt-3 pt-3 border-t border-white/10">
+                    {getSmartSortedUserGroups().slice(getDisplayUserGroups().length).map((userGroup) => {
+                      const isSelected = selectedUserGroup === userGroup.id;
+                      const isDisabled = userGroup.count === 0;
+                      
+                      return renderFilterButton(
+                        `user-expanded-${userGroup.id}`,
+                        isZhTW ? userGroup.label : userGroup.labelEn,
+                        userGroup.count,
+                        userGroup.icon,
+                        isSelected,
+                        () => {
+                          setSelectedUserGroup(userGroup.id);
+                          setSelectedCategory('all');
+                        },
+                        isDisabled
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Active Filter Indicator */}
