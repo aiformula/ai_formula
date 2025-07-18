@@ -674,6 +674,107 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({
                 </div>
               </CardContent>
             </Card>
+            
+            {/* 學員心聲區域 */}
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold mb-6 text-white">
+                {isZhTW ? "🌟 學員心聲" : "🌟 Student Testimonials"}
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  {
+                    name: "Sarah L.",
+                    role: "數碼行銷專員",
+                    avatar: "S",
+                    rating: 5,
+                    comment: "Kenneth 導師的課程讓我學會了用 Zapier 和 ChatGPT API 自動化客戶查詢處理。現在我的工作效率提升了 300%，每天節省3小時重複工作時間。",
+                    project: "建立自動化客服系統，客戶滿意度提升到95%"
+                  },
+                  {
+                    name: "Michael C.",
+                    role: "中小企業老闆",
+                    avatar: "M",
+                    rating: 5,
+                    comment: "課程教會我用 Make.com 整合各種系統，從訂單處理到庫存管理都自動化了。大大減少了人手成本和錯誤率。",
+                    project: "實施全自動化營運流程，成本降低40%"
+                  },
+                  {
+                    name: "Jenny W.",
+                    role: "營銷經理",
+                    avatar: "J",
+                    rating: 5,
+                    comment: "學會了用 AI 工具自動生成個性化郵件和社媒內容。潛在客戶轉換率從15%提升到35%，營銷效果顯著提升。",
+                    project: "自動化營銷活動帶來300%ROI提升"
+                  },
+                  {
+                    name: "David K.",
+                    role: "IT主管",
+                    avatar: "D",
+                    rating: 5,
+                    comment: "Kenneth的教學很實用，我用n8n建立了完整的業務自動化工作流程。現在數據報告自動生成，決策速度快了很多。",
+                    project: "建立商業智能系統，決策效率提升200%"
+                  }
+                ].map((testimonial, index) => (
+                  <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center text-white font-bold text-lg`}>
+                          {testimonial.avatar}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                            <span className="text-sm text-gray-400">— {testimonial.role}</span>
+                          </div>
+                          <div className="flex items-center gap-1 mb-3">
+                            {[...Array(testimonial.rating)].map((_, i) => (
+                              <Star key={i} className={`w-4 h-4 ${instructorTheme.primary} fill-current`} />
+                            ))}
+                          </div>
+                          <p className="text-gray-300 mb-3 leading-relaxed">"{testimonial.comment}"</p>
+                          <div className={`text-sm ${instructorTheme.primary} font-semibold`}>
+                            ✅ 成果：{testimonial.project}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* 常見問題區域 */}
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold mb-6 text-white">
+                {isZhTW ? "❓ 常見問題" : "❓ Frequently Asked Questions"}
+              </h3>
+              <div className="space-y-4">
+                {faqData.map((faq, index) => (
+                  <Card key={index} className="bg-gray-800 border-gray-700">
+                    <CardContent className="p-0">
+                      <button
+                        onClick={() => toggleAccordion(index)}
+                        className="w-full p-6 text-left hover:bg-gray-700 transition-colors"
+                      >
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
+                          {openAccordion === index ? (
+                            <ChevronUp className="w-5 h-5 text-gray-400" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-gray-400" />
+                          )}
+                        </div>
+                      </button>
+                      {openAccordion === index && (
+                        <div className="px-6 pb-6">
+                          <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </div>
         );
 
