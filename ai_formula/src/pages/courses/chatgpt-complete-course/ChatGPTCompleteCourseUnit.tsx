@@ -85,7 +85,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
   }, [completeUnit]);
   
   const [completionAnimation, setCompletionAnimation] = useState(false);
-  const [realTimeDisplay, setRealTimeDisplay] = useState('00:00'); // 修正：統一初始化為 MM:SS 格式
+  const [realTimeDisplay, setRealTimeDisplay] = useState('00:00:00'); // 修正：統一初始化為 HH:MM:SS 格式
 
   // 根據 themeId 和 unitId 生成 unit key
   const getUnitKey = (themeId: string, unitId: string): string => {
@@ -108,13 +108,15 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     
     console.log(`📊 [FIXED] 最終學習時間: ${finalSeconds}秒`);
     
-    // 格式化最終顯示時間為 MM:SS 格式
-    const finalMinutes = Math.floor(finalSeconds / 60);
+    // 格式化最終顯示時間為 HH:MM:SS 格式
+    const finalHours = Math.floor(finalSeconds / 3600);
+    const finalMinutes = Math.floor((finalSeconds % 3600) / 60);
     const remainingSeconds = finalSeconds % 60;
     
+    const formattedHours = finalHours.toString().padStart(2, '0');
     const formattedMinutes = finalMinutes.toString().padStart(2, '0');
     const formattedSecondsDisplay = remainingSeconds.toString().padStart(2, '0');
-    const finalTimeDisplay = `${formattedMinutes}:${formattedSecondsDisplay}`;
+    const finalTimeDisplay = `${formattedHours}:${formattedMinutes}:${formattedSecondsDisplay}`;
     
     setRealTimeDisplay(finalTimeDisplay);
     
@@ -253,7 +255,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
           'Transformer: underlying technical architecture based on self-attention mechanism',
           'Pre-trained: unsupervised learning on massive text, predicting next words',
           'Generative: creating new original content, different from discriminative models',
-          'Fine-tuning stage: further optimization using task-specific datasets',
+          'Fine-tuning stage: further optimisation using task-specific datasets',
           'RLHF: Reinforcement Learning from Human Feedback to align with human expectations'
         ]
       },
@@ -408,7 +410,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
           'Two Settings: "About You" provides personal background, "Response Preferences" sets style',
           'Personal Background: Profession, expertise, current projects, learning goals',
           'Response Preferences: Language, length, format, tone settings',
-          'Practical Application: Customized for different roles like students, professionals',
+          'Practical Application: Customised for different roles like students, professionals',
           'Usage Scope: Only applies to new conversations, can be modified or disabled anytime'
         ]
       },
@@ -474,6 +476,640 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       },
       nextUnit: 11,
       nextTheme: 3,
+      completed: false
+    },
+
+    // 第三主題：指令的藝術 (Prompt Engineering)
+    '11': {
+      id: 11,
+      themeId: 3,
+      title: isZhHK ? '單元 3.1：優質指令的四大基石：角色 (Role)、任務 (Task)、脈絡 (Context)、格式 (Format)' : 'Unit 3.1: Four Pillars of Quality Prompts: Role, Task, Context, Format',
+      duration: '32分鐘',
+      type: 'interactive' as const,
+      description: isZhHK ? '學習構建高效提示詞的四大核心要素，建立系統性的 Prompt 設計框架。' : 'Learn the four core elements for building effective prompts and establish a systematic prompt design framework.',
+      content: {
+        transcript: isZhHK ? 
+          '優質的 Prompt 設計有四個核心基石：角色 (Role)、任務 (Task)、脈絡 (Context) 和格式 (Format)，簡稱 RTCF 框架。\n\n**角色 (Role)**：明確定義 ChatGPT 應該扮演的角色和身份。例如：「你是一位資深的市場營銷專家」、「作為一名經驗豐富的程式設計師」或「扮演一位耐心的英語老師」。角色設定幫助 AI 以特定的專業視角和語調來回應。\n\n**任務 (Task)**：清楚說明你希望 AI 完成的具體任務。任務描述應該具體、明確，避免模糊的表達。例如：「幫我撰寫一份產品發布會的新聞稿」而非「幫我寫點東西」。\n\n**脈絡 (Context)**：提供相關的背景資訊、約束條件和具體要求。這包括目標受眾、使用場景、特殊要求等。例如：「這份新聞稿將發送給科技媒體，重點強調產品的創新性，字數控制在 500 字以內」。\n\n**格式 (Format)**：指定期望的輸出格式和結構。例如：「請以項目清單的形式」、「用表格形式整理」或「分為三個段落，每段不超過 100 字」。\n\n實例對比：\n\n**差的 Prompt**：「幫我寫個計劃」\n\n**好的 Prompt**：\n- **角色**：作為一位專業的項目管理顧問\n- **任務**：為我制定一個為期 3 個月的團隊技能提升計劃\n- **脈絡**：針對 10 人的軟體開發團隊，重點提升前端開發和用戶體驗設計能力，預算限制在 50,000 元內\n- **格式**：請以時間軸形式呈現，包含具體的培訓內容、時間安排和預算分配' :
+          'Quality Prompt design has four core pillars: Role, Task, Context, and Format, known as the RTCF framework.',
+        keyPoints: isZhHK ? [
+          '角色 (Role)：明確定義 AI 應扮演的身份和專業視角',
+          '任務 (Task)：清楚說明希望完成的具體任務',
+          '脈絡 (Context)：提供背景資訊、約束條件和具體要求',
+          '格式 (Format)：指定期望的輸出格式和結構',
+          'RTCF 框架：系統性的 Prompt 設計方法'
+        ] : [
+          'Role: Clearly define the identity and professional perspective AI should take',
+          'Task: Clearly explain the specific task to be completed',
+          'Context: Provide background information, constraints and specific requirements',
+          'Format: Specify expected output format and structure',
+          'RTCF Framework: Systematic prompt design methodology'
+        ]
+      },
+      nextUnit: 12,
+      nextTheme: null,
+      completed: false
+    },
+
+    '12': {
+      id: 12,
+      themeId: 3,
+      title: isZhHK ? '單元 3.2：角色扮演法：讓 ChatGPT 成為你的私人律師、程式設計師或行銷專家' : 'Unit 3.2: Role-Playing Method: Make ChatGPT Your Personal Expert',
+      duration: '28分鐘',
+      type: 'interactive' as const,
+      description: isZhHK ? '掌握角色設定技巧，讓 ChatGPT 以專業身份提供更精準的建議和解答。' : 'Master role-setting techniques to make ChatGPT provide more precise advice as a professional.',
+      content: {
+        transcript: isZhHK ? 
+          '角色扮演是讓 ChatGPT 發揮專業能力的關鍵技巧。通過設定具體的角色，AI 會以該專業的視角、知識和語言風格來回應你的問題。\n\n**有效的角色設定要素：**\n\n1. **專業背景**：明確指出專業領域和經驗水平\n   - 「作為一位有 10 年經驗的心理治療師」\n   - 「以資深財務分析師的身份」\n\n2. **性格特質**：描述溝通風格和個性特點\n   - 「耐心且善於解釋複雜概念」\n   - 「直接且注重實用性」\n\n3. **工作方式**：說明處理問題的方法\n   - 「總是提供具體的步驟和範例」\n   - 「喜歡用類比來解釋抽象概念」\n\n**實用角色範例：**\n\n**商業顧問角色**：\n「你是一位經驗豐富的商業策略顧問，擅長幫助中小企業解決營運問題。你的回答總是結構清晰，會先分析問題，然後提供 2-3 個具體的解決方案，並評估每個方案的優缺點。」\n\n**程式設計導師角色**：\n「你是一位資深的軟體工程師和編程導師，專精於 Python 和網頁開發。你解釋程式碼時會由淺入深，先說明整體概念，再逐步解析細節，並會主動指出常見的錯誤和最佳實踐。」\n\n**創意寫作教練角色**：\n「你是一位獲獎的創意寫作教練，擅長激發靈感和改善文章結構。你會先了解寫作目的和目標讀者，然後提供具體的改進建議，並解釋每個建議背後的寫作原理。」' :
+          'Role-playing is a key technique for unleashing ChatGPT\'s professional capabilities. By setting specific roles, AI will respond with that professional\'s perspective, knowledge, and communication style.',
+        keyPoints: isZhHK ? [
+          '專業背景：明確指出領域和經驗水平',
+          '性格特質：描述溝通風格和個性特點',
+          '工作方式：說明處理問題的方法',
+          '角色一致性：確保整個對話中保持角色設定',
+          '細節豐富：越具體的角色設定效果越好'
+        ] : [
+          'Professional Background: Clearly specify field and experience level',
+          'Personality Traits: Describe communication style and characteristics',
+          'Working Methods: Explain problem-solving approaches',
+          'Role Consistency: Maintain role setting throughout conversation',
+          'Rich Details: More specific role settings yield better results'
+        ]
+      },
+      nextUnit: 13,
+      nextTheme: null,
+      completed: false
+    },
+
+    '13': {
+      id: 13,
+      themeId: 3,
+      title: isZhHK ? '單元 3.3：範例引導法 (Few-Shot Prompting)：給予 AI 範例，讓它模仿你的風格' : 'Unit 3.3: Few-Shot Prompting: Give AI Examples to Mimic Your Style',
+      duration: '26分鐘',
+      type: 'interactive' as const,
+      description: isZhHK ? '學習使用範例來引導 AI 產生符合特定風格和格式的內容。' : 'Learn to use examples to guide AI in generating content that matches specific styles and formats.',
+      content: {
+        transcript: isZhHK ? 
+          'Few-Shot Prompting 是一種強大的技巧，通過提供少量（通常 1-3 個）高質量的範例，來引導 ChatGPT 理解你期望的輸出風格、格式和品質。\n\n**Few-Shot Prompting 的工作原理：**\n\nAI 模型擅長模式識別。當你提供具體範例時，模型會分析範例中的模式、結構、語調和內容特點，然後在新的情境中重現這些模式。\n\n**有效範例的特徵：**\n\n1. **代表性**：範例應該完全體現你想要的輸出特點\n2. **多樣性**：如果提供多個範例，應涵蓋不同情況\n3. **完整性**：範例應該是完整的，包含所有重要元素\n4. **清晰性**：範例的格式和結構要清楚易懂\n\n**實際應用範例：**\n\n**郵件寫作範例：**\n「請根據以下範例的風格和格式，為我寫一封客戶跟進郵件：\n\n範例：\n主旨：關於您的產品諮詢 - 後續討論\n\n親愛的張先生，\n\n感謝您昨天抽空與我討論貴公司的數位轉型需求。根據我們的談話，我整理了以下重點：\n\n• 目前挑戰：手動流程效率低下\n• 期望目標：自動化核心業務流程\n• 預算範圍：50-100萬元\n\n我們的解決方案可以幫助您：\n1. 減少 70% 的手動作業時間\n2. 提升數據準確性\n3. 降低長期營運成本\n\n建議下週安排具體的產品展示，您看如何？\n\n最佳問候，\n李經理」\n\n現在請為我寫一封給王總監的跟進郵件，內容是關於培訓服務的討論。」' :
+          'Few-Shot Prompting is a powerful technique that uses a small number (usually 1-3) of high-quality examples to guide ChatGPT in understanding your expected output style, format, and quality.',
+        keyPoints: isZhHK ? [
+          '模式識別：AI 通過分析範例來理解期望的輸出模式',
+          '範例質量：代表性、多樣性、完整性、清晰性',
+          '數量適中：通常 1-3 個範例最有效',
+          '風格一致：範例應該體現一致的風格和標準',
+          '格式規範：清楚的結構讓 AI 更容易模仿'
+        ] : [
+          'Pattern Recognition: AI understands expected output patterns by analyzing examples',
+          'Example Quality: Representative, diverse, complete, clear',
+          'Appropriate Quantity: Usually 1-3 examples work best',
+          'Style Consistency: Examples should reflect consistent style and standards',
+          'Format Standards: Clear structure makes it easier for AI to imitate'
+        ]
+      },
+      nextUnit: 14,
+      nextTheme: null,
+      completed: false
+    },
+
+    '14': {
+      id: 14,
+      themeId: 3,
+      title: isZhHK ? '單元 3.4：思維鏈技巧 (Chain of Thought)：引導 AI 一步步思考，解決複雜問題' : 'Unit 3.4: Chain of Thought: Guide AI to Think Step by Step',
+      duration: '30分鐘',
+      type: 'interactive' as const,
+      description: isZhHK ? '掌握思維鏈技巧，引導 AI 進行邏輯推理和複雜問題解決。' : 'Master chain of thought techniques to guide AI in logical reasoning and complex problem solving.',
+      content: {
+        transcript: isZhHK ? 
+          '思維鏈 (Chain of Thought) 是一種引導 AI 展示推理過程的技巧，特別適用於需要多步驟思考的複雜問題。\n\n**思維鏈的核心概念：**\n\n不要求 AI 直接給出最終答案，而是要求它展示思考過程，逐步分析問題、考慮各種因素，最後得出結論。這種方法能顯著提高複雜問題的解決質量。\n\n**觸發思維鏈的關鍵詞句：**\n\n• 「請一步步分析」\n• 「讓我們逐步思考這個問題」\n• 「首先...然後...最後...」\n• 「請展示你的推理過程」\n• 「分步驟解決這個問題」\n\n**思維鏈的應用場景：**\n\n1. **數學和邏輯問題**\n2. **商業決策分析**\n3. **問題診斷和解決**\n4. **複雜的規劃任務**\n5. **多因素考量的選擇**\n\n**實際應用範例：**\n\n**商業問題分析：**\n「我的網路商店銷量下降了 30%，請一步步分析可能的原因，並提出解決方案。請展示你的完整思考過程。」\n\nAI 的思維鏈回應會包含：\n1. 問題界定和數據分析\n2. 可能原因的分類（內部/外部因素）\n3. 每個原因的可能性評估\n4. 解決方案的制定\n5. 實施優先順序的排列\n\n**技術問題解決：**\n「我的網站載入速度很慢，請一步步診斷問題並提供優化建議。」\n\n這種方法讓 AI 像專業顧問一樣思考，提供更有邏輯性和說服力的答案。' :
+          'Chain of Thought is a technique that guides AI to show its reasoning process, particularly useful for complex problems requiring multi-step thinking.',
+        keyPoints: isZhHK ? [
+          '逐步推理：要求 AI 展示完整的思考過程',
+          '觸發詞句：「一步步分析」、「展示推理過程」',
+          '適用場景：數學邏輯、商業決策、問題診斷、複雜規劃',
+          '提高質量：顯著提升複雜問題的解決品質',
+          '邏輯性強：讓 AI 像專業顧問一樣思考'
+        ] : [
+          'Step-by-step Reasoning: Require AI to show complete thinking process',
+          'Trigger Phrases: "analyze step by step", "show reasoning process"',
+          'Use Cases: Math logic, business decisions, problem diagnosis, complex planning',
+          'Quality Improvement: Significantly enhances complex problem-solving quality',
+          'Strong Logic: Makes AI think like professional consultants'
+        ]
+      },
+      nextUnit: 15,
+      nextTheme: null,
+      completed: false
+    },
+
+    '15': {
+      id: 15,
+      themeId: 3,
+      title: isZhHK ? '單元 3.5：迭代與追問：如何透過追問，從 60 分的答案優化到 95 分' : 'Unit 3.5: Iteration & Follow-up: Optimise from 60-point to 95-point Answers',
+      duration: '24分鐘',
+      type: 'interactive' as const,
+      description: isZhHK ? '學習如何通過有效的追問和迭代來不斷優化 AI 的回答質量。' : 'Learn how to continuously optimise AI response quality through effective follow-up and iteration.',
+      content: {
+        transcript: isZhHK ? 
+          '很少有 AI 能在第一次回應中就給出完美的答案。迭代和追問是將普通答案提升為優秀答案的關鍵技巧。\n\n**迭代優化的基本原理：**\n\n第一次的回應通常是一個良好的起點，但往往缺乏深度、具體性或針對性。通過系統性的追問，可以引導 AI 深入挖掘、完善細節、調整角度。\n\n**有效追問的策略：**\n\n1. **深度挖掘**：「請更詳細地解釋第三點」\n2. **具體化要求**：「請提供具體的數字和範例」\n3. **不同角度**：「從用戶的角度來看，還有什麼考慮？」\n4. **實用性強化**：「請給出可立即執行的具體步驟」\n5. **品質提升**：「請讓這個建議更加專業和具說服力」\n\n**迭代優化的實際流程：**\n\n**初始問題**：「我想提升團隊的工作效率，有什麼建議？」\n\n**第一次回應**：AI 給出一般性的建議清單\n\n**追問 1**：「請針對軟體開發團隊，提供更具體的效率提升方法」\n\n**追問 2**：「請為每個方法提供實施的具體步驟和預期效果」\n\n**追問 3**：「考慮到我們是 10 人的小團隊，預算有限，請調整這些建議」\n\n**追問 4**：「請提供一個 3 個月的實施時間表」\n\n**高級追問技巧：**\n\n• **角色轉換**：「如果你是我們的競爭對手，會如何看待這個策略？」\n• **情境模擬**：「如果預算減少 50%，你會如何調整建議？」\n• **質量檢驗**：「請批判性地分析這個方案的潛在缺點」\n• **創新要求**：「請提供一些別人不太會想到的創新方法」' :
+          'Rarely can AI provide perfect answers in the first response. Iteration and follow-up are key techniques for elevating ordinary answers to excellent ones.',
+        keyPoints: isZhHK ? [
+          '迭代原理：第一次回應是起點，需要系統性追問優化',
+          '追問策略：深度挖掘、具體化、不同角度、實用性、品質提升',
+          '優化流程：初始問題→一般回應→具體追問→細節完善',
+          '高級技巧：角色轉換、情境模擬、質量檢驗、創新要求',
+          '效果顯著：從 60 分答案提升到 95 分專業水準'
+        ] : [
+          'Iteration Principle: First response is starting point, requires systematic follow-up optimization',
+          'Follow-up Strategies: Deep digging, specification, different angles, practicality, quality enhancement',
+          'Optimization Process: Initial question → General response → Specific follow-up → Detail refinement',
+          'Advanced Techniques: Role switching, scenario simulation, quality testing, innovation requirements',
+          'Significant Results: Elevate from 60-point answers to 95-point professional level'
+        ]
+      },
+      nextUnit: 16,
+      nextTheme: null,
+      completed: false
+    },
+
+    '16': {
+      id: 16,
+      themeId: 3,
+      title: isZhHK ? '單元 3.6：指令範本庫：提供 20+ 個常用高效指令範本，即學即用' : 'Unit 3.6: Prompt Template Library: 20+ High-Efficiency Templates Ready to Use',
+      duration: '18分鐘',
+      type: 'resource' as const,
+      description: isZhHK ? '獲得精心設計的提示詞範本庫，涵蓋各種常見使用場景。' : 'Access a carefully designed prompt template library covering various common use cases.',
+      content: {
+        transcript: isZhHK ? 
+          '這裡提供 20+ 個經過實戰驗證的 Prompt 範本，涵蓋商業、學習、創意、技術等各個領域。\n\n**商業場景範本：**\n\n**商業計劃書撰寫**：\n「作為一位經驗豐富的商業策略顧問，請為 [產品/服務名稱] 撰寫一份商業計劃書。包含：市場分析、競爭優勢、財務預測、營銷策略。目標讀者是 [投資者/銀行/合作夥伴]，請用專業且有說服力的語調，篇幅控制在 [字數] 字以內。」\n\n**市場研究分析**：\n「扮演資深市場研究分析師，針對 [產品類別/行業] 進行全面的市場分析。請包含：市場規模、增長趨勢、主要競爭者、目標客群特徵、機會和威脅。請用數據支持你的分析，並提供具體的市場進入建議。」\n\n**學習場景範本：**\n\n**概念解釋**：\n「你是一位擅長深入淺出的教育專家。請向 [目標受眾：如 12 歲學生/非技術背景的成年人] 解釋 [複雜概念]。使用生活化的比喻和範例，確保 95% 的人都能理解。解釋結構：基本定義→生活比喻→實際應用→常見誤解澄清。」\n\n**學習計劃制定**：\n「作為專業的學習規劃師，為我制定一個 [時間週期] 的 [技能/知識領域] 學習計劃。我的現況是 [當前水平]，目標是 [期望達到的水平]。請提供：具體學習內容、時間分配、資源推薦、進度檢核點。」\n\n**創意場景範本：**\n\n**創意文案**：\n「你是一位獲獎的創意總監，專精於 [品牌調性] 風格的文案創作。請為 [產品/服務] 創作 [社群媒體貼文/廣告標語/產品描述]。目標受眾是 [具體描述]，重點突出 [核心賣點]，語調要 [專業/活潑/溫馨]。」\n\n**技術場景範本：**\n\n**程式碼解釋**：\n「作為資深的程式設計導師，請詳細解釋這段 [程式語言] 程式碼的運作原理。解釋要包含：整體邏輯、關鍵函數作用、可能的優化建議、新手容易犯的錯誤。請用通俗易懂的語言，適合 [初學者/中級開發者] 理解。」' :
+          'Here are 20+ battle-tested Prompt templates covering business, learning, creative, and technical domains.',
+        keyPoints: isZhHK ? [
+          '商業範本：商業計劃書、市場研究、策略分析',
+          '學習範本：概念解釋、學習計劃、技能提升',
+          '創意範本：文案創作、內容策劃、品牌建設',
+          '技術範本：程式碼解釋、問題診斷、系統設計',
+          '即學即用：拿來就能用的高效率範本'
+        ] : [
+          'Business Templates: Business plans, market research, strategy analysis',
+          'Learning Templates: Concept explanation, study plans, skill improvement',
+          'Creative Templates: Copywriting, content planning, brand building',
+          'Technical Templates: Code explanation, problem diagnosis, system design',
+          'Ready to Use: High-efficiency templates for immediate application'
+        ]
+      },
+      nextUnit: 17,
+      nextTheme: 4,
+      completed: false
+    },
+
+    // 第四主題：精通之道 — 高級提示工程
+    '17': {
+      id: 17,
+      themeId: 4,
+      title: isZhHK ? '單元 4.1：實戰項目 (一) 內容創作引擎：自動生成高質素的社交媒體貼文、廣告文案與電子郵件' : 'Unit 4.1: Project 1: Content Creation Engine - Social Media, Ads & Email',
+      duration: '35分鐘',
+      type: 'project' as const,
+      description: isZhHK ? '實戰演練：使用 ChatGPT 建立內容創作工作流程，批量生成高質量的行銷內容。' : 'Hands-on practice: Use ChatGPT to build content creation workflows and generate high-quality marketing content in batches.',
+      content: {
+        transcript: isZhHK ? 
+          '內容創作是 ChatGPT 最實用的應用領域之一。通過系統化的方法，你可以建立高效的內容創作工作流程。\n\n**社交媒體貼文創作流程：**\n\n1. **品牌調性定義**：\n「作為我們品牌的社群管理專家，請先了解我們的品牌調性：[溫馨親和/專業權威/年輕活潑]，目標受眾是 [詳細描述]，核心價值是 [品牌價值]。」\n\n2. **內容主題規劃**：\n「基於我們的品牌調性，請為本月制定 20 個社群貼文主題，涵蓋：產品介紹(30%)、行業洞察(25%)、用戶故事(25%)、品牌文化(20%)。每個主題提供具體的執行角度。」\n\n3. **具體貼文創作**：\n「請為主題『[具體主題]』創作 3 個不同版本的 Instagram 貼文。要求：吸睛的開頭、清晰的價值點、行動呼籲。字數控制在 150 字以內，包含 3-5 個相關 hashtag。」\n\n**廣告文案創作系統：**\n\n**AIDA 框架應用**：\n「運用 AIDA 模型為 [產品名稱] 創作廣告文案：\n- Attention：用震撼的數據或問題抓住注意力\n- Interest：突出獨特賣點激發興趣\n- Desire：描繪使用後的美好情景\n- Action：清晰的行動呼籲\n字數控制在 100 字以內，語調要 [具體要求]。」\n\n**電子郵件行銷範本：**\n\n**歡迎信序列**：\n「為新訂閱用戶設計 5 封歡迎信序列，時間間隔：註冊當日、第3天、第7天、第14天、第30天。每封信的目的分別是：歡迎並介紹品牌、提供價值內容、建立信任、促進首次購買、培養長期關係。」' :
+          'Content creation is one of the most practical applications of ChatGPT. Through systematic methods, you can build efficient content creation workflows.',
+        keyPoints: isZhHK ? [
+          '社群貼文：品牌調性定義、主題規劃、多版本創作',
+          '廣告文案：AIDA 框架、獨特賣點、行動呼籲',
+          '電子郵件：歡迎序列、價值內容、關係培養',
+          '工作流程：系統化方法提升創作效率',
+          '批量生產：一次性創作多個高質量內容'
+        ] : [
+          'Social Media: Brand tone definition, topic planning, multi-version creation',
+          'Ad Copy: AIDA framework, unique selling points, call to action',
+          'Email Marketing: Welcome sequences, value content, relationship building',
+          'Workflow: Systematic methods to improve creation efficiency',
+          'Batch Production: Create multiple high-quality content pieces at once'
+        ]
+      },
+      nextUnit: 18,
+      nextTheme: null,
+      completed: false
+    },
+
+    '18': {
+      id: 18,
+      themeId: 4,
+      title: isZhHK ? '單元 4.2：實戰項目 (二) 學習研究加速器：快速總結論文、報告，並用簡單方式解釋複雜概念' : 'Unit 4.2: Project 2: Learning Research Accelerator - Summarize Papers & Reports',
+      duration: '28分鐘',
+      type: 'project' as const,
+      description: isZhHK ? '學習如何使用 ChatGPT 快速處理學術資料，提升學習和研究效率。' : 'Learn to use ChatGPT for rapid academic material processing, improving learning and research efficiency.',
+      content: {
+        transcript: isZhHK ? 
+          'ChatGPT 可以大幅提升學習和研究效率，特別是在處理大量文獻和複雜概念時。\n\n**學術論文總結流程：**\n\n1. **結構化總結**：\n「請按以下結構總結這篇論文：\n- 研究背景和問題\n- 研究方法和數據\n- 主要發現和結論\n- 實際應用和啟示\n- 研究限制和未來方向\n每部分用 2-3 句話概括，總字數控制在 300 字以內。」\n\n2. **關鍵概念提取**：\n「從這份研究中提取 5-8 個最重要的概念或術語，並為每個概念提供簡潔的定義。如果有相關的實際應用案例，請一併說明。」\n\n**複雜概念簡化技巧：**\n\n**層次化解釋法**：\n「請用三個層次解釋 [複雜概念]：\n- 給 10 歲孩子的解釋（用生活比喻）\n- 給高中生的解釋（加入基本原理）\n- 給大學生的解釋（包含技術細節）\n每個層次用 100 字以內說明。」\n\n**知識連結建構**：\n「請解釋 [新概念] 與以下已知概念的關係：[列出相關概念]。用圖像化的方式描述它們之間的連結，幫助建立知識網絡。」\n\n**研究報告快速分析：**\n\n**數據洞察提取**：\n「分析這份市場報告，提取 10 個最重要的數據洞察。每個洞察包含：具體數據、趨勢方向、可能原因、商業含義。按重要性排序。」\n\n**比較分析框架**：\n「比較這兩份研究報告的異同點，製作對比表格：\n- 研究方法差異\n- 結論一致性分析\n- 數據可信度評估\n- 實用性比較」' :
+          'ChatGPT can dramatically improve learning and research efficiency, especially when processing large amounts of literature and complex concepts.',
+        keyPoints: isZhHK ? [
+          '論文總結：結構化摘要、關鍵概念提取',
+          '概念簡化：層次化解釋、生活比喻、知識連結',
+          '報告分析：數據洞察、趨勢識別、商業含義',
+          '比較研究：異同分析、可信度評估',
+          '效率提升：快速處理大量學術資料'
+        ] : [
+          'Paper Summarization: Structured abstracts, key concept extraction',
+          'Concept Simplification: Layered explanations, life analogies, knowledge linking',
+          'Report Analysis: Data insights, trend identification, business implications',
+          'Comparative Research: Similarity analysis, credibility assessment',
+          'Efficiency Boost: Rapid processing of large academic materials'
+        ]
+      },
+      nextUnit: 19,
+      nextTheme: null,
+      completed: false
+    },
+
+    '19': {
+      id: 19,
+      themeId: 4,
+      title: isZhHK ? '單元 4.3：實戰項目 (三) 創意腦震盪夥伴：從零開始規劃旅行、活動流程或商業點子' : 'Unit 4.3: Project 3: Creative Brainstorming Partner - Travel, Events & Business Ideas',
+      duration: '22分鐘',
+      type: 'project' as const,
+      description: isZhHK ? '發揮 ChatGPT 的創意潛能，協助您進行各種創意規劃和點子發想。' : 'Unleash ChatGPT\'s creative potential to assist in various creative planning and idea generation.',
+      content: {
+        transcript: isZhHK ? 
+          'ChatGPT 是出色的創意夥伴，能協助你從零開始規劃各種項目，激發創新思維。\n\n**旅行規劃助手：**\n\n**個人化行程設計**：\n「作為專業旅行規劃師，為我設計 [目的地] [天數] 的旅行行程。我的偏好：[文化探索/美食體驗/自然風光/冒險活動]，預算 [金額]，同行者 [情況]。請提供：\n- 每日詳細行程\n- 預算分配建議\n- 當地文化注意事項\n- 必備物品清單\n- 備選方案（應對天氣等變化）」\n\n**活動策劃專家：**\n\n**活動概念發想**：\n「為 [公司/組織] 策劃一場 [活動類型] 活動，目標是 [具體目標]，參與者約 [人數]，預算 [範圍]。請提供：\n- 3 個不同風格的活動概念\n- 詳細執行流程\n- 所需資源和人力\n- 風險評估和應對方案\n- 成功指標設定」\n\n**商業點子孵化器：**\n\n**市場機會識別**：\n「分析 [行業/市場] 中被忽視的機會，考慮以下趨勢：[列出相關趨勢]。請提供：\n- 5 個創新商業點子\n- 每個點子的目標市場\n- 競爭優勢分析\n- 初步商業模式\n- 驗證方法建議」\n\n**創意思維激發技巧：**\n\n**六頂思考帽方法**：\n「用愛德華·德博的六頂思考帽方法分析這個創意：[描述創意]\n- 白帽（事實數據）\n- 紅帽（情感直覺）\n- 黑帽（風險挑戰）\n- 黃帽（積極面向）\n- 綠帽（創新可能）\n- 藍帽（思維管理）」\n\n**SCAMPER 創新法**：\n「運用 SCAMPER 方法改善這個想法：[現有想法]\n- Substitute（替代）\n- Combine（結合）\n- Adapt（調整）\n- Modify（修改）\n- Put to other use（轉用）\n- Eliminate（消除）\n- Reverse（逆向）」' :
+          'ChatGPT is an excellent creative partner that can help you plan various projects from scratch and stimulate innovative thinking.',
+        keyPoints: isZhHK ? [
+          '旅行規劃：個人化行程、預算分配、文化注意事項',
+          '活動策劃：概念發想、執行流程、風險評估',
+          '商業創新：市場機會、點子孵化、模式設計',
+          '思維工具：六頂思考帽、SCAMPER 創新法',
+          '創意激發：系統化方法提升創新效率'
+        ] : [
+          'Travel Planning: Personalized itineraries, budget allocation, cultural considerations',
+          'Event Planning: Concept development, execution process, risk assessment',
+          'Business Innovation: Market opportunities, idea incubation, model design',
+          'Thinking Tools: Six Thinking Hats, SCAMPER innovation method',
+          'Creative Stimulation: Systematic methods to enhance innovation efficiency'
+        ]
+      },
+      nextUnit: 20,
+      nextTheme: null,
+      completed: false
+    },
+
+    '20': {
+      id: 20,
+      themeId: 4,
+      title: isZhHK ? '單元 4.4：實戰項目 (四) 程式設計超級助手：解釋程式碼、除錯 (Debug) 與編寫簡單腳本' : 'Unit 4.4: Project 4: Programming Super Assistant - Code Explanation & Debugging',
+      duration: '40分鐘',
+      type: 'project' as const,
+      description: isZhHK ? '即使不是程式設計師，也能利用 ChatGPT 處理基本的程式設計任務和技術問題。' : 'Even non-programmers can use ChatGPT to handle basic programming tasks and technical issues.',
+      content: {
+        transcript: isZhHK ? 
+          'ChatGPT 是強大的程式設計助手，無論你是新手還是專業開發者，都能從中獲得幫助。\n\n**程式碼解釋專家：**\n\n**逐行代碼解析**：\n「請詳細解釋這段 [程式語言] 程式碼：\n[貼上程式碼]\n\n請按以下格式解釋：\n1. 整體功能概述\n2. 逐行詳細說明\n3. 關鍵概念解釋\n4. 可能的改進建議\n5. 相關學習資源推薦\n\n解釋要適合 [初學者/中級/高級] 程度理解。」\n\n**演算法原理說明**：\n「解釋這個演算法的工作原理，包含：\n- 基本思路和邏輯\n- 時間複雜度分析\n- 空間複雜度分析\n- 適用場景\n- 優缺點比較\n- 實際應用範例」\n\n**除錯診斷助手：**\n\n**錯誤分析流程**：\n「我的程式出現以下錯誤：\n[錯誤訊息]\n\n程式碼：\n[相關程式碼]\n\n請幫我：\n1. 分析錯誤原因\n2. 提供具體的修復方案\n3. 解釋為什麼會出現這個錯誤\n4. 給出預防類似錯誤的建議\n5. 提供測試驗證的方法」\n\n**簡單腳本編寫：**\n\n**自動化任務腳本**：\n「請為我編寫一個 [Python/JavaScript] 腳本，功能是：[具體需求描述]。要求：\n- 程式碼要有詳細註釋\n- 包含錯誤處理\n- 提供使用說明\n- 給出執行範例\n- 說明所需的依賴套件」\n\n**數據處理腳本**：\n「編寫一個腳本來處理 [Excel/CSV/JSON] 文件，需要：\n- 讀取文件內容\n- 執行 [具體處理邏輯]\n- 輸出處理結果\n- 處理異常情況\n請包含完整的範例和使用指南。」' :
+          'ChatGPT is a powerful programming assistant that can help both beginners and professional developers.',
+        keyPoints: isZhHK ? [
+          '程式解釋：逐行分析、演算法原理、概念說明',
+          '除錯協助：錯誤診斷、修復方案、預防建議',
+          '腳本編寫：自動化任務、數據處理、完整註釋',
+          '學習支援：適應不同程度、提供學習資源',
+          '實用導向：即學即用的程式設計解決方案'
+        ] : [
+          'Code Explanation: Line-by-line analysis, algorithm principles, concept clarification',
+          'Debugging Assistance: Error diagnosis, fix solutions, prevention advice',
+          'Script Writing: Automation tasks, data processing, complete documentation',
+          'Learning Support: Adapt to different levels, provide learning resources',
+          'Practical Focus: Ready-to-use programming solutions'
+        ]
+      },
+      nextUnit: 21,
+      nextTheme: null,
+      completed: false
+    },
+
+    '21': {
+      id: 21,
+      themeId: 4,
+      title: isZhHK ? '單元 4.5：實戰項目 (五) 語言翻譯與潤飾大師：進行多國語言精準翻譯與專業級文章校對' : 'Unit 4.5: Project 5: Language Translation & Polishing Master',
+      duration: '25分鐘',
+      type: 'project' as const,
+      description: isZhHK ? '掌握 ChatGPT 的語言處理能力，實現專業級的翻譯和文案潤飾。' : 'Master ChatGPT\'s language processing capabilities for professional-level translation and copywriting.',
+      content: {
+        transcript: isZhHK ? 
+          'ChatGPT 在語言處理方面表現出色，能提供高質量的翻譯和文字潤飾服務。\n\n**專業翻譯技巧：**\n\n**情境化翻譯**：\n「請將以下 [源語言] 文字翻譯成 [目標語言]：\n[原文內容]\n\n翻譯要求：\n- 目標讀者：[具體描述]\n- 文體風格：[正式/非正式/技術性/文學性]\n- 文化適應：考慮目標文化的表達習慣\n- 術語處理：保持專業術語的準確性\n- 語調保持：與原文情感色彩一致\n\n請提供翻譯結果和重要翻譯說明。」\n\n**多版本翻譯比較**：\n「為這段文字提供 3 個不同風格的翻譯版本：\n- 版本 1：直譯版（忠實原文結構）\n- 版本 2：意譯版（流暢自然表達）\n- 版本 3：創意版（適應目標文化）\n並解釋每個版本的特點和適用場景。」\n\n**文章潤飾服務：**\n\n**全面校對流程**：\n「請對以下文章進行全面校對和潤飾：\n[文章內容]\n\n校對重點：\n1. 語法和拼寫檢查\n2. 句式結構優化\n3. 詞彙選擇改善\n4. 邏輯順序調整\n5. 整體可讀性提升\n\n請標示所有修改並解釋修改原因。」\n\n**風格調整專家**：\n「將這篇文章的風格從 [原風格] 調整為 [目標風格]：\n[原文內容]\n\n調整說明：\n- 目標讀者變化\n- 語調轉換要求\n- 專業程度調整\n- 情感色彩變化\n\n請提供調整後的版本和風格變化說明。」\n\n**多語言內容策略：**\n\n**本地化建議**：\n「為進入 [目標市場] 市場，請為我們的 [產品/服務] 提供內容本地化建議：\n- 文化敏感性考量\n- 語言表達習慣\n- 營銷信息調整\n- 視覺元素建議\n- 避免的文化禁忌」' :
+          'ChatGPT excels in language processing, providing high-quality translation and text polishing services.',
+        keyPoints: isZhHK ? [
+          '專業翻譯：情境化處理、文化適應、術語準確',
+          '多版本對比：直譯、意譯、創意版本選擇',
+          '文章潤飾：語法校對、結構優化、可讀性提升',
+          '風格調整：語調轉換、讀者適應、情感把控',
+          '本地化策略：文化考量、市場適應、禁忌避免'
+        ] : [
+          'Professional Translation: Contextual processing, cultural adaptation, terminology accuracy',
+          'Multi-version Comparison: Literal, interpretive, creative version selection',
+          'Article Polishing: Grammar checking, structure optimization, readability improvement',
+          'Style Adjustment: Tone conversion, audience adaptation, emotion control',
+          'Localization Strategy: Cultural considerations, market adaptation, taboo avoidance'
+        ]
+      },
+      nextUnit: 22,
+      nextTheme: 5,
+      completed: false
+    },
+
+    // 第五主題：打造專屬 AI — 個人化與 GPT 商店
+    '22': {
+      id: 22,
+      themeId: 5,
+      title: isZhHK ? '單元 5.1：Advanced Data Analysis (數據分析大師)：上傳 Excel/CSV/PDF，進行數據分析與圖表製作' : 'Unit 5.1: Advanced Data Analysis Master: Upload Excel/CSV/PDF for Data Analysis',
+      duration: '35分鐘',
+      type: 'advanced' as const,
+      description: isZhHK ? '學習使用 ChatGPT 的 Advanced Data Analysis 功能，處理和分析各種數據文件。' : 'Learn to use ChatGPT\'s Advanced Data Analysis feature to process and analyze various data files.',
+      content: {
+        transcript: isZhHK ? 
+          'Advanced Data Analysis 是 ChatGPT Plus 的強大功能，能夠處理 Excel、CSV、PDF 等多種文件格式，進行深度數據分析。\n\n**文件上傳與處理：**\n\n**Excel 文件分析**：\n「我上傳了一個銷售數據的 Excel 文件，請幫我：\n1. 分析數據的基本結構和統計資訊\n2. 識別銷售趨勢和季節性模式\n3. 找出表現最好和最差的產品類別\n4. 計算關鍵績效指標（KPI）\n5. 創建視覺化圖表展示主要發現\n6. 提供改善銷售的具體建議」\n\n**CSV 數據清理**：\n「這個 CSV 文件包含客戶數據，請協助：\n- 檢查數據完整性和一致性\n- 識別和處理缺失值\n- 發現重複記錄並建議處理方法\n- 標準化數據格式\n- 創建數據品質報告」\n\n**PDF 文件解析**：\n「請分析這份 PDF 報告：\n- 提取關鍵數據和統計資訊\n- 總結主要發現和結論\n- 識別重要趨勢和模式\n- 與歷史數據進行比較分析\n- 製作摘要和可視化圖表」\n\n**數據分析流程：**\n\n**探索性數據分析 (EDA)**：\n「對這個數據集進行全面的探索性分析：\n1. 數據概覽和基本統計\n2. 變量分佈分析\n3. 相關性分析\n4. 異常值檢測\n5. 缺失值模式分析\n6. 數據可視化\n7. 初步洞察和假設」\n\n**商業智能分析**：\n「基於這些業務數據，請提供：\n- 關鍵業務指標分析\n- 客戶細分和行為分析\n- 市場趨勢識別\n- 收入和成本分析\n- 預測和預警指標\n- 行動建議和策略方向」' :
+          'Advanced Data Analysis is a powerful feature of ChatGPT Plus that can process Excel, CSV, PDF and other file formats for deep data analysis.',
+        keyPoints: isZhHK ? [
+          '文件支援：Excel、CSV、PDF 等多種格式處理',
+          '數據清理：完整性檢查、缺失值處理、格式標準化',
+          '分析功能：趨勢分析、統計計算、異常檢測',
+          '視覺化：自動生成圖表和數據可視化',
+          '商業洞察：KPI 計算、客戶分析、預測建議'
+        ] : [
+          'File Support: Processing Excel, CSV, PDF and other formats',
+          'Data Cleaning: Integrity checking, missing value handling, format standardization',
+          'Analysis Features: Trend analysis, statistical calculation, anomaly detection',
+          'Visualization: Automatic chart generation and data visualization',
+          'Business Insights: KPI calculation, customer analysis, predictive recommendations'
+        ]
+      },
+      nextUnit: 23,
+      nextTheme: null,
+      completed: false
+    },
+
+    '23': {
+      id: 23,
+      themeId: 5,
+      title: isZhHK ? '單元 5.2：Web Browse (實時網絡瀏覽)：結合即時網絡資訊，進行市場調查與新聞總結' : 'Unit 5.2: Web Browse: Real-time Web Information for Market Research',
+      duration: '30分鐘',
+      type: 'advanced' as const,
+      description: isZhHK ? '掌握 ChatGPT 的網絡瀏覽功能，獲取最新資訊並進行分析。' : 'Master ChatGPT\'s web browsing feature to gather latest information and conduct analysis.',
+      content: {
+        transcript: isZhHK ? 
+          'Web Browse 功能讓 ChatGPT 能夠訪問即時網絡資訊，大大擴展了其知識範圍和實用性。\n\n**實時資訊獲取：**\n\n**新聞監測與總結**：\n「請搜尋並總結今天關於 [特定主題/公司/行業] 的最新新聞：\n- 列出 5-10 條最重要的新聞\n- 每條新聞提供簡潔摘要\n- 分析整體趨勢和影響\n- 識別關鍵事件和轉折點\n- 預測可能的後續發展\n- 提供相關的投資或商業建議」\n\n**市場研究與競爭分析**：\n「針對 [產品/服務/行業] 進行市場調查：\n- 搜尋最新的市場報告和數據\n- 分析主要競爭對手的動態\n- 識別市場趨勢和機會\n- 收集客戶評價和反饋\n- 比較定價策略\n- 總結市場進入建議」\n\n**技術趨勢追蹤**：\n「研究 [技術領域] 的最新發展：\n- 搜尋最新的技術突破\n- 分析重要研究論文和專利\n- 識別領先的公司和研究機構\n- 評估技術成熟度和應用前景\n- 預測未來發展方向\n- 提供技術投資建議」\n\n**實用應用場景：**\n\n**投資決策支援**：\n「請幫我研究 [公司名稱/股票代碼]：\n- 搜尋最新的財務報告和新聞\n- 分析股價表現和市場反應\n- 收集分析師觀點和評級\n- 識別風險因素和機會\n- 比較同行業公司表現\n- 提供投資建議和風險評估」\n\n**旅行規劃更新**：\n「為我的 [目的地] 旅行計劃提供最新資訊：\n- 查詢當前的旅行限制和要求\n- 搜尋最新的景點開放情況\n- 收集當地天氣和季節資訊\n- 找到最新的活動和節慶\n- 獲取交通和住宿的最新價格\n- 提供安全提醒和注意事項」' :
+          'The Web Browse feature allows ChatGPT to access real-time web information, greatly expanding its knowledge range and practicality.',
+        keyPoints: isZhHK ? [
+          '即時資訊：獲取最新新聞、報告、數據',
+          '市場調查：競爭分析、趨勢識別、客戶反饋',
+          '技術追蹤：最新突破、研究動態、發展預測',
+          '投資支援：財務分析、風險評估、市場比較',
+          '生活應用：旅行規劃、事件追蹤、實用資訊'
+        ] : [
+          'Real-time Info: Latest news, reports, data acquisition',
+          'Market Research: Competitive analysis, trend identification, customer feedback',
+          'Tech Tracking: Latest breakthroughs, research dynamics, development predictions',
+          'Investment Support: Financial analysis, risk assessment, market comparison',
+          'Life Applications: Travel planning, event tracking, practical information'
+        ]
+      },
+      nextUnit: 24,
+      nextTheme: null,
+      completed: false
+    },
+
+    '24': {
+      id: 24,
+      themeId: 5,
+      title: isZhHK ? '單元 5.3：DALL-E 3 圖像生成：用文字創造出專業級的商業插圖、簡報圖片與藝術作品' : 'Unit 5.3: DALL-E 3 Image Generation: Create Professional Business Illustrations',
+      duration: '32分鐘',
+      type: 'creative' as const,
+      description: isZhHK ? '學習使用 DALL-E 3 創作高質量圖像，滿足各種商業和創意需求。' : 'Learn to use DALL-E 3 to create high-quality images for various business and creative needs.',
+      content: {
+        transcript: isZhHK ? 
+          'DALL-E 3 是 ChatGPT 整合的強大圖像生成工具，能根據文字描述創造出令人驚豔的視覺內容。\n\n**專業圖像創作技巧：**\n\n**商業插圖設計**：\n「請為我創作一幅商業插圖：\n主題：[具體業務場景]\n風格：現代、簡潔、專業\n色彩：企業品牌色調 [具體顏色]\n元素：包含 [相關商業元素]\n用途：網站首頁、簡報、行銷材料\n尺寸建議：適合網頁和印刷使用\n情感基調：可信、創新、成功」\n\n**簡報視覺元素**：\n「為我的商業簡報創作配圖：\n簡報主題：[主題內容]\n目標受眾：[具體描述]\n設計要求：\n- 風格一致性\n- 清晰的視覺層次\n- 適合投影顯示\n- 支持核心訊息\n- 專業且吸引人\n請提供 3-5 個不同的設計概念」\n\n**品牌視覺識別**：\n「協助設計品牌相關圖像：\nBrand：[品牌名稱和定位]\n產品/服務：[具體描述]\n目標市場：[受眾特徵]\n品牌個性：[形容詞描述]\n視覺風格：[現代/經典/創新等]\n應用場景：Logo、包裝、廣告、社群媒體\n請創作體現品牌精神的視覺元素」\n\n**創意提示詞技巧：**\n\n**描述結構優化**：\n「有效的 DALL-E 3 提示詞結構：\n1. 主題描述（要創作什麼）\n2. 風格指定（藝術風格、視覺風格）\n3. 技術參數（光線、構圖、色彩）\n4. 情感基調（氛圍、感受）\n5. 品質要求（高解析度、專業級）\n6. 參考風格（著名藝術家、設計流派）」\n\n**常見應用場景**：\n\n**社群媒體內容**：\n「為社群媒體貼文創作吸睛圖像：\n平台：[Instagram/Facebook/LinkedIn]\n內容主題：[貼文內容]\n視覺風格：與品牌一致\n尺寸要求：適合各平台規範\n文字空間：預留標題和標語位置\n行動呼籲：視覺上支持 CTA」\n\n**教育培訓材料**：\n「創作教學用圖像：\n課程主題：[具體課程]\n學習目標：[教學重點]\n學員程度：[初級/中級/高級]\n視覺要求：清晰、易懂、記憶深刻\n風格偏好：友善、專業、啟發性」' :
+          'DALL-E 3 is a powerful image generation tool integrated with ChatGPT that can create stunning visual content based on text descriptions.',
+        keyPoints: isZhHK ? [
+          '商業應用：插圖設計、簡報配圖、品牌視覺',
+          '創意技巧：提示詞結構、風格指定、品質控制',
+          '多元場景：社群媒體、教育培訓、行銷材料',
+          '專業品質：高解析度、商業級別的視覺效果',
+          '效率提升：快速產生多個設計概念和版本'
+        ] : [
+          'Business Applications: Illustration design, presentation graphics, brand visuals',
+          'Creative Techniques: Prompt structure, style specification, quality control',
+          'Multiple Scenarios: Social media, educational training, marketing materials',
+          'Professional Quality: High resolution, commercial-grade visual effects',
+          'Efficiency Boost: Rapidly generate multiple design concepts and versions'
+        ]
+      },
+      nextUnit: 25,
+      nextTheme: null,
+      completed: false
+    },
+
+    '25': {
+      id: 25,
+      themeId: 5,
+      title: isZhHK ? '單元 5.4：創建你的第一個 Custom GPT：無需編程，手把手教你打造個人專屬的 AI 應用' : 'Unit 5.4: Create Your First Custom GPT: Build Personal AI Applications Without Programming',
+      duration: '28分鐘',
+      type: 'practical' as const,
+      description: isZhHK ? '學習創建自訂 GPT，打造專門化的 AI 助手來解決特定問題。' : 'Learn to create custom GPTs and build specialized AI assistants to solve specific problems.',
+      content: {
+        transcript: isZhHK ? 
+          'Custom GPT 讓你能夠創建專門化的 AI 助手，無需編程知識就能打造個人專屬的 AI 應用。\n\n**Custom GPT 創建流程：**\n\n**概念設計階段**：\n「規劃你的 Custom GPT：\n目的：要解決什麼問題？\n目標用戶：誰會使用這個 GPT？\n核心功能：主要提供哪些服務？\n專業領域：需要什麼專業知識？\n互動風格：正式、友善、技術性？\n獨特價值：與其他 GPT 的差異化？」\n\n**知識庫建設**：\n「為 Custom GPT 準備知識內容：\n- 上傳相關文檔和資料\n- 整理常見問題和答案\n- 建立專業術語詞典\n- 收集最佳實踐案例\n- 準備範例對話和回應\n- 設定回應的語調和風格」\n\n**實用 Custom GPT 範例：**\n\n**商業顧問 GPT**：\n「創建企業專用顧問：\n角色：資深商業策略顧問\n專長：中小企業營運優化\n知識基礎：行業最佳實踐、案例研究\n服務範圍：策略規劃、營運改善、市場分析\n溝通風格：專業、結構化、行動導向\n特殊功能：SWOT 分析、商業模式設計」\n\n**學習輔導 GPT**：\n「打造個人化學習助手：\n專業領域：[特定學科或技能]\n教學風格：循序漸進、互動問答\n學習資源：教材、練習題、參考資料\n評估機制：進度追蹤、弱點識別\n激勵系統：鼓勵和建議\n適應性：根據學習進度調整難度」\n\n**Creative GPT**：\n「設計創意助手：\n創意領域：寫作、設計、音樂、影片\n靈感來源：大量創意作品案例\n創作流程：從構思到執行的完整指導\n風格多樣：不同流派和技法\n協作模式：與用戶共同創作\n品質控制：創意評估和改善建議」\n\n**GPT 優化技巧：**\n\n**提示詞優化**：\n「完善 Custom GPT 的系統提示：\n1. 清晰的角色定義\n2. 具體的行為指引\n3. 回應格式規範\n4. 專業知識邊界\n5. 錯誤處理機制\n6. 用戶體驗優化」\n\n**測試與改進**：\n「Custom GPT 品質保證：\n- 多場景測試對話\n- 收集用戶反饋\n- 持續優化回應品質\n- 擴充知識庫內容\n- 調整互動風格\n- 監控使用效果」' :
+          'Custom GPT allows you to create specialized AI assistants and build personal AI applications without programming knowledge.',
+        keyPoints: isZhHK ? [
+          '創建流程：概念設計、知識建設、系統配置',
+          '應用範例：商業顧問、學習輔導、創意助手',
+          '優化技巧：提示詞完善、測試改進、用戶反饋',
+          '無需編程：視覺化界面操作，簡單易用',
+          '個人化定制：專屬功能、風格、知識領域'
+        ] : [
+          'Creation Process: Concept design, knowledge building, system configuration',
+          'Application Examples: Business consulting, learning tutoring, creative assistance',
+          'Optimization Tips: Prompt refinement, testing improvement, user feedback',
+          'No Programming: Visual interface operation, simple and easy to use',
+          'Personal Customization: Exclusive functions, styles, knowledge domains'
+        ]
+      },
+      nextUnit: 26,
+      nextTheme: null,
+      completed: false
+    },
+
+    '26': {
+      id: 26,
+      themeId: 5,
+      title: isZhHK ? '單元 5.5：GPTs 應用商店的秘密：如何發佈你的 GPT，甚至未來可能從中獲利' : 'Unit 5.5: GPTs App Store Secrets: How to Publish Your GPT and Potentially Profit',
+      duration: '32分鐘',
+      type: 'business' as const,
+      description: isZhHK ? '了解 GPT Store 的運作機制，學習如何發佈和推廣你的 Custom GPT。' : 'Understand how GPT Store works and learn to publish and promote your Custom GPT.',
+      content: {
+        transcript: isZhHK ? 
+          'GPT Store 為創作者提供了分享和潛在獲利的平台，了解其運作機制對成功發佈至關重要。\n\n**GPT Store 發佈流程：**\n\n**發佈前準備**：\n「準備發佈你的 Custom GPT：\n1. 完善 GPT 功能和性能\n2. 創建吸引人的名稱和描述\n3. 設計專業的圖標和視覺元素\n4. 撰寫清晰的使用說明\n5. 進行全面測試和優化\n6. 準備示範案例和範例對話\n7. 設定適當的類別和標籤」\n\n**市場定位策略**：\n「找到你的 GPT 獨特定位：\n目標用戶：明確定義使用者群體\n解決痛點：識別具體的用戶需求\n競爭分析：研究類似的 GPT 應用\n差異化優勢：突出獨特功能和價值\n市場空白：發現未被滿足的需求\n用戶體驗：優化互動流程和滿意度」\n\n**內容優化與 SEO**：\n\n**描述文案優化**：\n「撰寫吸引人的 GPT 描述：\n標題優化：包含關鍵詞，簡潔有力\n功能介紹：清楚說明核心功能和優勢\n使用場景：描述具體的應用情境\n用戶收益：強調使用者能獲得的價值\n關鍵詞策略：融入相關搜尋詞彙\n行動呼籲：引導用戶試用和互動」\n\n**視覺設計重要性**：\n「打造專業的 GPT 形象：\n圖標設計：簡潔、識別度高、符合功能\n色彩選擇：與品牌一致，吸引目標用戶\n視覺風格：專業性與親和力的平衡\n品牌一致性：所有視覺元素協調統一\n用戶認知：容易理解和記憶」\n\n**推廣與營銷策略：**\n\n**社群媒體推廣**：\n「有效推廣你的 Custom GPT：\n- 在 LinkedIn、Twitter 等平台分享\n- 創建使用教程和案例研究\n- 參與相關社群和討論\n- 與意見領袖和專家合作\n- 定期分享更新和改進\n- 收集和展示用戶見證」\n\n**內容行銷**：\n「建立 GPT 的權威性：\n- 撰寫相關領域的專業文章\n- 製作操作指南和最佳實踐\n- 舉辦線上研討會或培訓\n- 創建影片教程和演示\n- 建立用戶社群和支援系統\n- 持續優化和功能更新」\n\n**未來獲利機會**：\n\n**商業模式探索**：\n「GPT 變現的可能途徑：\n1. 直接收費模式（如果平台支援）\n2. 諮詢服務和客製化開發\n3. 培訓課程和教育內容\n4. 品牌合作和贊助機會\n5. 進階版本和專業服務\n6. 數據洞察和市場研究」' :
+          'GPT Store provides creators with a platform for sharing and potential monetization, understanding its mechanisms is crucial for successful publishing.',
+        keyPoints: isZhHK ? [
+          '發佈準備：功能完善、描述優化、視覺設計',
+          '市場定位：目標用戶、差異化、競爭分析',
+          'SEO 優化：關鍵詞策略、描述文案、搜尋可見度',
+          '推廣策略：社群媒體、內容行銷、用戶見證',
+          '獲利機會：多元變現模式、商業合作可能'
+        ] : [
+          'Publishing Prep: Feature perfection, description optimization, visual design',
+          'Market Positioning: Target users, differentiation, competitive analysis',
+          'SEO Optimization: Keyword strategy, description copy, search visibility',
+          'Promotion Strategy: Social media, content marketing, user testimonials',
+          'Profit Opportunities: Multiple monetization models, business collaboration possibilities'
+        ]
+      },
+      nextUnit: 27,
+      nextTheme: 6,
+      completed: false
+    },
+
+    // 第六主題：展望未來 — 應用、倫理與挑戰
+    '27': {
+      id: 27,
+      themeId: 6,
+      title: isZhHK ? '單元 6.1：AI 的「幻覺」現象：如何識別並查證 AI 生成的虛假資訊' : 'Unit 6.1: AI "Hallucination" Phenomenon: Identify and Verify AI-generated False Information',
+      duration: '25分鐘',
+      type: 'critical' as const,
+      description: isZhHK ? '了解 AI 幻覺現象的成因，學習識別和驗證 AI 輸出的真實性。' : 'Understand the causes of AI hallucination and learn to identify and verify the authenticity of AI outputs.',
+      content: {
+        transcript: isZhHK ? 
+          'AI「幻覺」是指人工智能生成看似合理但實際錯誤或虛構的資訊，了解這個現象對負責任地使用 AI 至關重要。\n\n**AI 幻覺的定義與特徵：**\n\n**什麼是 AI 幻覺**：\nAI 幻覺指的是語言模型在沒有足夠或正確資訊的情況下，仍然會以高度自信的語調產生錯誤、誤導或完全虛構的內容。這些回應往往在語法和邏輯上都很通順，讓人難以立即識別其虛假性。\n\n**常見的幻覺類型**：\n1. **事實性錯誤**：錯誤的日期、人名、地點、數據\n2. **虛構引用**：不存在的研究、書籍、文章引用\n3. **邏輯矛盾**：前後不一致的陳述\n4. **過度外推**：基於有限資訊做出過於絕對的結論\n5. **混合真假**：將真實和虛假資訊混合呈現\n\n**幻覺產生的原因：**\n\n**技術層面原因**：\n- 訓練數據的限制和偏差\n- 模型對不確定性的處理不當\n- 生成機制的隨機性\n- 知識截止日期的限制\n- 長文本生成中的偏差累積\n\n**識別 AI 幻覺的技巧：**\n\n**批判性思維檢查**：\n「評估 AI 回應的可信度：\n1. 事實查證：重要數據和陳述需要獨立驗證\n2. 邏輯一致性：檢查前後陳述是否矛盾\n3. 來源追蹤：要求提供具體的資料來源\n4. 常識判斷：不合理的內容需要質疑\n5. 專業知識：在你熟悉的領域檢驗準確性\n6. 多重驗證：使用多個資訊來源交叉驗證」\n\n**實用驗證方法**：\n\n**事實查證流程**：\n「建立系統性的驗證習慣：\n- 對具體數據和統計資訊保持懷疑\n- 使用可信的事實查證網站\n- 查找原始資料來源\n- 諮詢領域專家意見\n- 比較多個 AI 工具的回應\n- 使用搜尋引擎獨立驗證\n- 特別注意敏感或爭議性話題」\n\n**風險評估策略**：\n\n**高風險應用場景**：\n「在以下情況下特別謹慎：\n- 醫療健康建議\n- 法律和監管事務\n- 財務投資決策\n- 學術研究引用\n- 新聞和時事資訊\n- 技術規格和操作指南\n- 安全相關指示」\n\n**最佳實踐建議**：\n\n**負責任使用原則**：\n「建立健康的 AI 使用習慣：\n1. 保持批判性思維\n2. 建立多重驗證機制\n3. 了解 AI 的限制\n4. 在重要決策中諮詢專家\n5. 持續學習和更新知識\n6. 教育他人識別 AI 幻覺」' :
+          'AI "hallucination" refers to artificial intelligence generating seemingly reasonable but actually incorrect or fabricated information. Understanding this phenomenon is crucial for responsible AI use.',
+        keyPoints: isZhHK ? [
+          'AI 幻覺：虛假但看似合理的AI生成內容',
+          '常見類型：事實錯誤、虛構引用、邏輯矛盾',
+          '產生原因：訓練限制、不確定性處理、知識截止',
+          '識別技巧：批判思維、事實查證、多重驗證',
+          '風險管控：高風險場景謹慎、專家諮詢、持續學習'
+        ] : [
+          'AI Hallucination: False but seemingly reasonable AI-generated content',
+          'Common Types: Factual errors, fictional citations, logical contradictions',
+          'Causes: Training limitations, uncertainty handling, knowledge cutoffs',
+          'Identification Skills: Critical thinking, fact-checking, multiple verification',
+          'Risk Management: Caution in high-risk scenarios, expert consultation, continuous learning'
+        ]
+      },
+      nextUnit: 28,
+      nextTheme: null,
+      completed: false
+    },
+
+    '28': {
+      id: 28,
+      themeId: 6,
+      title: isZhHK ? '單元 6.2：數據私隱與安全：你的對話安全嗎？如何管理你的數據' : 'Unit 6.2: Data Privacy & Security: Are Your Conversations Safe? Managing Your Data',
+      duration: '22分鐘',
+      type: 'security' as const,
+      description: isZhHK ? '了解 AI 服務的隱私政策，學習保護個人和企業數據的最佳實踐。' : 'Understand AI service privacy policies and learn best practices for protecting personal and business data.',
+      content: {
+        transcript: isZhHK ? 
+          '在使用 ChatGPT 等 AI 服務時，了解數據隱私和安全議題對個人和企業都至關重要。\n\n**數據收集與使用**：\n\n**OpenAI 的數據政策**：\nOpenAI 會收集用戶的對話內容用於改善服務品質，但有幾個重要考量：\n- 免費版用戶的對話可能用於模型訓練\n- ChatGPT Plus 用戶可以選擇退出數據收集\n- 企業版提供更嚴格的數據保護選項\n- API 使用的數據不會用於模型訓練\n\n**隱私風險評估**：\n\n**個人資訊洩露風險**：\n「識別潛在的隱私威脅：\n1. 個人身份資訊 (PII) 意外分享\n2. 敏感商業資訊洩露\n3. 客戶資料和聯絡方式\n4. 財務和醫療資訊\n5. 密碼和登入憑證\n6. 內部文件和策略」\n\n**數據保護最佳實踐**：\n\n**個人用戶指南**：\n「保護你的個人隱私：\n- 避免分享真實姓名、地址、電話\n- 不提供信用卡號碼或銀行資訊\n- 使用假名或代號替代真實身份\n- 定期檢查和清理對話歷史\n- 啟用隱私設定選項\n- 了解數據保留政策」\n\n**企業安全策略**：\n\n**商業數據保護**：\n「企業使用 AI 的安全準則：\n1. 建立明確的 AI 使用政策\n2. 訓練員工隱私意識\n3. 使用企業級服務方案\n4. 實施數據分類系統\n5. 定期進行安全審查\n6. 建立事故應對流程」\n\n**敏感資訊替代策略**：\n\n**資訊匿名化技巧**：\n「安全地使用 AI 服務：\n- 用 [公司A] 替代真實公司名稱\n- 用 [客戶B] 替代具體客戶信息\n- 使用示例數據而非真實數據\n- 描述情境而非具體案例\n- 聚焦方法而非敏感細節\n- 使用通用術語替代專有名詞」\n\n**法規遵循考量**：\n\n**全球隱私法規**：\n「了解相關法規要求：\n- GDPR（歐盟一般數據保護規則）\n- CCPA（加州消費者隱私法）\n- 個人資料保護法（台灣）\n- 數據安全法（中國）\n- 行業特定規範（金融、醫療等）」\n\n**安全工具與設定**：\n\n**隱私控制選項**：\n「優化你的隱私設定：\n1. 關閉對話歷史記錄\n2. 禁用數據收集用於訓練\n3. 定期刪除對話記錄\n4. 使用無痕瀏覽模式\n5. 考慮使用 VPN 服務\n6. 監控帳戶活動」\n\n**事故響應計劃**：\n\n**數據洩露應對**：\n「如果懷疑數據洩露：\n- 立即停止使用相關服務\n- 記錄和評估洩露範圍\n- 聯繫服務提供商\n- 通知相關持份者\n- 實施損害控制措施\n- 檢討和改善安全政策」' :
+          'When using AI services like ChatGPT, understanding data privacy and security issues is crucial for both individuals and businesses.',
+        keyPoints: isZhHK ? [
+          '數據政策：了解AI服務的收集和使用規則',
+          '風險評估：識別個人和商業資訊洩露威脅',
+          '保護策略：匿名化、資訊替代、隱私設定',
+          '企業安全：政策制定、員工培訓、服務選擇',
+          '法規遵循：GDPR、CCPA等隱私法規要求'
+        ] : [
+          'Data Policies: Understanding AI service collection and usage rules',
+          'Risk Assessment: Identifying personal and business information leak threats',
+          'Protection Strategies: Anonymization, information substitution, privacy settings',
+          'Enterprise Security: Policy formulation, employee training, service selection',
+          'Regulatory Compliance: GDPR, CCPA and other privacy regulation requirements'
+        ]
+      },
+      nextUnit: 29,
+      nextTheme: null,
+      completed: false
+    },
+
+    '29': {
+      id: 29,
+      themeId: 6,
+      title: isZhHK ? '單元 6.3：AI 的偏見問題：認識訓練數據帶來的潜在影響，並學習如何應對' : 'Unit 6.3: AI Bias Issues: Understanding Training Data Impact and How to Respond',
+      duration: '20分鐘',
+      type: 'ethical' as const,
+      description: isZhHK ? '探討 AI 偏見的來源和影響，學習識別和減少偏見的策略。' : 'Explore the sources and impacts of AI bias, learn strategies to identify and reduce bias.',
+      content: {
+        transcript: isZhHK ? 
+          'AI 偏見是指人工智能系統在處理資訊時表現出不公平或歧視性的傾向，了解這個問題有助於更負責任地使用 AI。\n\n**AI 偏見的來源**：\n\n**訓練數據偏見**：\nAI 模型的訓練數據來自互聯網和各種文本資源，這些資料不可避免地包含了人類社會的偏見和刻板印象：\n- 歷史文獻中的性別和種族偏見\n- 地理和文化的代表性不均\n- 社會經濟地位的差異\n- 語言和表達方式的偏好\n- 價值觀和世界觀的局限性\n\n**常見的偏見類型**：\n\n**社會人口偏見**：\n「識別不同類型的 AI 偏見：\n1. 性別偏見：職業刻板印象、能力假設\n2. 種族偏見：文化誤解、歷史偏見\n3. 年齡偏見：世代差異、技術能力假設\n4. 地理偏見：西方中心主義、城鄉差異\n5. 語言偏見：英語優先、方言歧視\n6. 經濟偏見：階級假設、消費能力判斷」\n\n**認知偏見**：\n「AI 可能複製的人類認知偏見：\n- 確認偏誤：偏好支持既有觀點的資訊\n- 可得性偏誤：高估常見事件的機率\n- 代表性偏誤：過度概括小樣本特徵\n- 錨定偏誤：過度依賴首次獲得的資訊\n- 群體思維：盲從多數意見」\n\n**偏見識別技巧**：\n\n**批判性評估方法**：\n「檢測 AI 回應中的潛在偏見：\n1. 多角度測試：用不同身份和背景重複問題\n2. 反向驗證：測試相反或對立的情況\n3. 文化敏感性：檢查是否考慮不同文化觀點\n4. 語言分析：注意用詞是否暗示刻板印象\n5. 數據來源：質疑統計和事實的代表性\n6. 專家諮詢：在不熟悉領域尋求專業意見」\n\n**減少偏見的策略**：\n\n**提示詞優化**：\n「設計更公平的 AI 互動：\n- 明確要求多元化觀點\n- 避免使用可能暗示偏見的詞彙\n- 要求考慮不同文化和背景\n- 請求平衡和客觀的分析\n- 明確指出需要避免的偏見類型\n- 要求提供多種解決方案」\n\n**實例應用**：\n\n**改善提示詞範例**：\n\n**原始提示**：「描述一個成功的企業家」\n**改良提示**：「描述不同背景的成功企業家，包括不同性別、種族、年齡和地理位置的例子，避免刻板印象」\n\n**原始提示**：「解釋為什麼某些國家比較發達」\n**改良提示**：「從多個角度分析國家發展的複雜因素，避免簡化或偏見性的解釋，考慮歷史、地理、政治、經濟等多重因素」\n\n**組織層面的應對**：\n\n**企業 AI 治理**：\n「建立負責任的 AI 使用文化：\n1. 制定 AI 倫理政策\n2. 提供偏見意識培訓\n3. 建立多元化的 AI 使用團隊\n4. 定期審查 AI 產出品質\n5. 建立回饋和改進機制\n6. 與多元化社群保持對話」\n\n**持續改進**：\n\n**學習和適應**：\n「培養長期的偏見意識：\n- 定期更新對偏見問題的理解\n- 參與相關的教育和討論\n- 與不同背景的人交流經驗\n- 關注 AI 倫理的最新發展\n- 積極參與創建更公平的 AI 環境」' :
+          'AI bias refers to unfair or discriminatory tendencies in AI systems when processing information. Understanding this issue helps use AI more responsibly.',
+        keyPoints: isZhHK ? [
+          '偏見來源：訓練數據中的歷史和社會偏見',
+          '偏見類型：社會人口、認知、文化等多種偏見',
+          '識別技巧：多角度測試、批判性評估、專家諮詢',
+          '減少策略：提示詞優化、多元化要求、平衡分析',
+          '組織治理：倫理政策、培訓教育、持續改進'
+        ] : [
+          'Bias Sources: Historical and social biases in training data',
+          'Bias Types: Demographic, cognitive, cultural and other biases',
+          'Identification Skills: Multi-angle testing, critical assessment, expert consultation',
+          'Reduction Strategies: Prompt optimization, diversity requirements, balanced analysis',
+          'Organizational Governance: Ethical policies, training education, continuous improvement'
+        ]
+      },
+      nextUnit: 30,
+      nextTheme: null,
+      completed: false
+    },
+
+    '30': {
+      id: 30,
+      themeId: 6,
+      title: isZhHK ? '單元 6.4：負責任地使用 AI：在學術、工作與創作中應遵守的倫理界線' : 'Unit 6.4: Responsible AI Use: Ethical Boundaries in Academia, Work & Creation',
+      duration: '18分鐘',
+      type: 'ethical' as const,
+      description: isZhHK ? '探討在不同領域使用 AI 的倫理準則和最佳實踐。' : 'Explore ethical guidelines and best practices for using AI in different fields.',
+      content: {
+        transcript: isZhHK ? 
+          '負責任地使用 AI 需要在各個領域建立明確的倫理界線，平衡技術便利與道德責任。\n\n**學術研究倫理**：\n\n**AI 輔助研究的準則**：\n「在學術環境中使用 AI 的倫理考量：\n1. 透明度原則：明確聲明 AI 的使用範圍\n2. 原創性維護：確保研究的獨立思考價值\n3. 引用規範：適當標註 AI 協助的部分\n4. 品質控制：人工驗證 AI 生成的內容\n5. 學術誠信：避免將 AI 輸出直接作為自己的成果\n6. 同儕審查：接受對 AI 使用的監督和評估」\n\n**可接受的使用場景**：\n「學術研究中 AI 的適當應用：\n- 文獻搜尋和初步整理\n- 數據分析和模式識別\n- 語言潤飾和格式優化\n- 概念解釋和理論探討\n- 研究方法的建議和討論\n- 跨學科知識的整合」\n\n**應避免的行為**：\n「學術不當使用 AI 的例子：\n- 直接複製 AI 生成的論文段落\n- 用 AI 偽造實驗數據或結果\n- 不聲明 AI 輔助就提交作業\n- 讓 AI 代替完成核心創新工作\n- 使用 AI 進行不當的同儕評議」\n\n**職場應用倫理**：\n\n**專業責任界線**：\n「工作環境中的 AI 使用原則：\n1. 公司政策遵循：了解並遵守組織的 AI 使用規範\n2. 客戶利益保護：確保 AI 使用不損害客戶權益\n3. 專業能力維護：不讓 AI 替代核心專業判斷\n4. 資訊安全：避免洩露敏感的商業資訊\n5. 品質責任：對 AI 輔助的工作成果負責\n6. 持續學習：保持和提升個人專業能力」\n\n**不同職業的考量**：\n\n**法律專業**：\n「律師使用 AI 的倫理界線：\n- 法律研究和案例分析輔助\n- 文件起草的初步協助\n- 客戶諮詢的背景研究\n- 但不能完全依賴 AI 做法律判斷\n- 必須人工驗證所有法律建議\n- 保護客戶隱私和律師職業特權」\n\n**醫療健康**：\n「醫療專業 AI 使用的謹慎原則：\n- 教育和知識更新的輔助工具\n- 行政工作和文檔整理\n- 研究文獻的搜尋和總結\n- 絕不能替代臨床診斷判斷\n- 不提供具體的治療建議\n- 嚴格保護患者隱私資訊」\n\n**教育領域**：\n「教師和教育工作者的 AI 倫理：\n- 課程內容的準備和研究\n- 教學方法的創新探索\n- 學生評估的輔助工具\n- 培養學生的 AI 素養\n- 示範負責任的 AI 使用\n- 防止學生過度依賴 AI」\n\n**創作與智慧財產權**：\n\n**創意產業倫理**：\n「創作者使用 AI 的考量：\n1. 原創性聲明：明確標示 AI 參與的創作部分\n2. 智慧財產權：了解 AI 生成內容的版權狀況\n3. 藝術完整性：保持個人創作風格和理念\n4. 市場公平：避免不當競爭優勢\n5. 文化尊重：避免 AI 複製敏感文化元素\n6. 技能平衡：維持和發展個人創作能力」\n\n**商業創作應用**：\n「商業環境中的創作倫理：\n- 廣告和行銷內容的 AI 輔助\n- 產品設計和包裝的靈感來源\n- 品牌傳播的創意發想\n- 客戶體驗的優化建議\n- 但需保持品牌真實性\n- 避免誤導消費者」\n\n**建立個人倫理框架**：\n\n**自我評估問題**：\n「使用 AI 前的倫理檢視：\n1. 這種使用是否符合專業標準？\n2. 我是否能對結果承擔責任？\n3. 這樣做是否尊重他人權益？\n4. 我是否保持了學習和成長？\n5. 這種使用是否透明和誠實？\n6. 長期來看是否有益於社會？」' :
+          'Responsible AI use requires establishing clear ethical boundaries in various fields, balancing technological convenience with moral responsibility.',
+        keyPoints: isZhHK ? [
+          '學術倫理：透明聲明、原創維護、品質控制',
+          '職場責任：政策遵循、專業判斷、資訊安全',
+          '專業界線：法律、醫療、教育等領域的特殊考量',
+          '創作倫理：原創聲明、智慧財產權、文化尊重',
+          '個人框架：自我評估、責任承擔、持續學習'
+        ] : [
+          'Academic Ethics: Transparent declaration, originality maintenance, quality control',
+          'Workplace Responsibility: Policy compliance, professional judgment, information security',
+          'Professional Boundaries: Special considerations for legal, medical, educational fields',
+          'Creative Ethics: Originality declaration, intellectual property, cultural respect',
+          'Personal Framework: Self-assessment, responsibility assumption, continuous learning'
+        ]
+      },
+      nextUnit: 31,
+      nextTheme: null,
+      completed: false
+    },
+
+    '31': {
+      id: 31,
+      themeId: 6,
+      title: isZhHK ? '單元 6.5：人工智能的未來：展望 GPT 的下一步發展與對社會的長遠影響' : 'Unit 6.5: The Future of AI: GPT\'s Next Development and Long-term Social Impact',
+      duration: '25分鐘',
+      type: 'future' as const,
+      description: isZhHK ? '探討 AI 技術的未來發展趨勢和對社會各層面的潛在影響。' : 'Explore future trends in AI technology and potential impacts on various aspects of society.',
+      content: {
+        transcript: isZhHK ? 
+          '人工智能正處於快速發展階段，了解其未來趨勢對個人和社會的規劃都具有重要意義。\n\n**技術發展趨勢**：\n\n**模型能力的演進**：\n「未來 GPT 和 AI 模型的可能發展：\n1. 推理能力增強：更複雜的邏輯思考和問題解決\n2. 多模態整合：文本、圖像、聲音、影片的無縫結合\n3. 實時學習：持續從新資訊中學習和適應\n4. 個人化程度：更深度的用戶個性化體驗\n5. 專業化分工：針對特定領域的深度專精\n6. 可解釋性：AI 決策過程的透明化」\n\n**技術整合趨勢**：\n「AI 與其他技術的融合：\n- 物聯網 (IoT)：智能家居和城市的全面覆蓋\n- 擴增實境 (AR/VR)：沉浸式 AI 交互體驗\n- 區塊鏈：去中心化的 AI 治理和激勵機制\n- 量子計算：突破性的計算能力提升\n- 邊緣計算：本地化的 AI 處理能力\n- 腦機介面：直接的思維-AI 交互」\n\n**社會影響預測**：\n\n**工作和就業變化**：\n「AI 對勞動市場的長期影響：\n正面影響：\n- 自動化重複性工作，釋放人力從事創意工作\n- 創造新的職業類別和工作機會\n- 提高整體生產力和經濟效率\n- 降低某些服務的成本和門檻\n\n挑戰：\n- 某些傳統職業可能被取代\n- 技能要求快速變化，需要持續學習\n- 數位鴻溝可能加劇社會不平等\n- 勞動價值和意義的重新定義」\n\n**教育體系轉型**：\n「AI 時代的教育變革：\n- 個人化學習路徑和節奏\n- AI 輔助的智能教學系統\n- 技能導向而非知識記憶的教育\n- 終身學習成為常態\n- 創意、批判思維、情感智能的重視\n- 跨學科整合能力的培養」\n\n**醫療健康革命**：\n「AI 在醫療領域的未來應用：\n- 精準醫學和個人化治療\n- 早期疾病檢測和預防\n- 藥物研發的加速\n- 遠程醫療和健康監測\n- 心理健康的 AI 支援\n- 醫療資源的優化配置」\n\n**倫理和治理挑戰**：\n\n**新興倫理議題**：\n「AI 發展帶來的倫理考驗：\n1. AI 權利：當 AI 更加智能時，是否需要法律保護？\n2. 人機關係：人類與 AI 的界線在哪裡？\n3. 決策責任：AI 做決定時，誰承擔後果？\n4. 數據主權：個人數據的控制權歸屬\n5. 算法透明：AI 決策過程的可理解性\n6. 數位人格：虛擬身份和真實身份的關係」\n\n**全球治理需求**：\n「國際合作與規範建立：\n- AI 安全的國際標準和協議\n- 跨國數據流動的規則制定\n- AI 軍事應用的限制共識\n- 技術轉移和知識共享機制\n- 發展中國家的 AI 能力建設\n- 全球 AI 倫理框架的建立」\n\n**個人和社會的準備**：\n\n**個人能力建設**：\n「在 AI 時代保持競爭力：\n1. 持續學習意願和能力\n2. 跨領域知識的整合\n3. 創意和創新思維\n4. 情感智能和人際技能\n5. 批判性思考和判斷力\n6. 適應變化的靈活性」\n\n**社會制度適應**：\n「社會層面的準備工作：\n- 教育制度的全面改革\n- 社會保障體系的重新設計\n- 法律框架的更新和完善\n- 經濟模式的創新探索\n- 文化價值的重新審視\n- 國際合作機制的加強」\n\n**積極參與未來**：\n\n**成為 AI 時代的積極參與者**：\n「如何在 AI 發展中發揮作用：\n- 保持對新技術的開放態度\n- 參與 AI 倫理和政策的討論\n- 支持負責任的 AI 發展\n- 培養下一代的 AI 素養\n- 在自己的領域探索 AI 應用\n- 促進包容性的技術發展」\n\n**結語：擁抱變化，塑造未來**：\n\n「人工智能的未來不是預定的命運，而是我們共同創造的結果。通過負責任的開發、明智的應用、和積極的參與，我們可以確保 AI 技術真正為人類福祉服務，創造一個更加智能、公平、和可持續的未來。」' :
+          'Artificial intelligence is in a rapid development phase, and understanding its future trends is important for both personal and social planning.',
+        keyPoints: isZhHK ? [
+          '技術趨勢：模型能力增強、多模態整合、技術融合',
+          '社會影響：就業變化、教育轉型、醫療革命',
+          '倫理挑戰：新興議題、全球治理、責任歸屬',
+          '個人準備：持續學習、跨領域能力、情感智能',
+          '積極參與：開放態度、倫理討論、包容發展'
+        ] : [
+          'Tech Trends: Enhanced model capabilities, multimodal integration, technology convergence',
+          'Social Impact: Employment changes, education transformation, healthcare revolution',
+          'Ethical Challenges: Emerging issues, global governance, responsibility attribution',
+          'Personal Preparation: Continuous learning, interdisciplinary skills, emotional intelligence',
+          'Active Participation: Open attitude, ethical discussion, inclusive development'
+        ]
+      },
+      nextUnit: null,
+      nextTheme: null,
       completed: false
     }
   }), [isZhHK]);
@@ -578,7 +1214,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       // 重置狀態
       setIsTimerActive(true);
       setLearningSeconds(0);
-      setRealTimeDisplay('00:00');
+      setRealTimeDisplay('00:00:00');
       setTimerStartTime(Date.now());
       
       // 啟動計時器
@@ -588,13 +1224,15 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
           console.log(`⏰ [FIXED] 計時器更新: ${newSeconds}秒`);
           
           // 格式化顯示為 MM:SS 格式
-          const minutes = Math.floor(newSeconds / 60);
+          const hours = Math.floor(newSeconds / 3600);
+          const minutes = Math.floor((newSeconds % 3600) / 60);
           const seconds = newSeconds % 60;
           
-          // 格式化為 00:00 格式
+          // 格式化為 00:00:00 格式
+          const formattedHours = hours.toString().padStart(2, '0');
           const formattedMinutes = minutes.toString().padStart(2, '0');
           const formattedSeconds = seconds.toString().padStart(2, '0');
-          const display = `${formattedMinutes}:${formattedSeconds}`;
+          const display = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
           
           // 批量更新顯示
           setRealTimeDisplay(display);
@@ -719,7 +1357,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                   return (
                     <Button 
                       onClick={handleNavigateQuiz}
-                      className="btn-ai-primary hover-lift click-scale focus-visible-enhanced px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400 performance-optimized"
+                                              className="btn-ai-primary hover-lift click-scale focus-visible-enhanced px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 performance-optimized"
                       aria-label={`進入主題${themeId}的測驗`}
                     >
                       開始測驗
@@ -861,7 +1499,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                   return (
                     <Button 
                       onClick={handleNavigateQuiz}
-                      className="btn-ai-primary btn-mobile-full hover-lift click-scale focus-ring py-3 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400"
+                                              className="btn-ai-primary btn-mobile-full hover-lift click-scale focus-ring py-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700"
                     >
                       開始測驗
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -893,7 +1531,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
         >
           <div className="flex items-start space-x-4">
             <div className={`p-3 rounded-xl ${
-              currentUnit.type === 'video' ? 'bg-purple-500/20 text-purple-300' :
+                              currentUnit.type === 'video' ? 'bg-gray-700/50 text-gray-300' :
               currentUnit.type === 'text' ? 'bg-green-500/20 text-green-300' :
               'bg-gray-500/20 text-gray-300'
             }`}>
@@ -981,10 +1619,10 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                     <button
                       onClick={() => {
                         setLearningSeconds(0);
-                        setRealTimeDisplay('00:00');
+                        setRealTimeDisplay('00:00:00');
                         console.log('🔄 [DEBUG] 手動重置計時器');
                       }}
-                      className="px-3 py-1 rounded text-xs font-medium bg-blue-600 text-white"
+                      className="px-3 py-1 rounded text-xs font-medium bg-gray-700 text-white"
                     >
                       重置計時器
                     </button>
@@ -1021,8 +1659,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               </div>
 
               {/* 動態應用案例展示 - 響應式優化 */}
-              <div className="mt-8 lg:mt-12 p-6 lg:p-8 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl lg:rounded-2xl border border-blue-500/20">
-                <h3 className="text-xl lg:text-2xl font-bold text-blue-200 mb-4 lg:mb-6 flex items-center">
+              <div className="mt-8 lg:mt-12 p-6 lg:p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl lg:rounded-2xl border border-gray-600/30">
+                                  <h3 className="text-xl lg:text-2xl font-bold text-gray-200 mb-4 lg:mb-6 flex items-center">
                   <Target className="w-5 h-5 lg:w-6 lg:h-6 mr-3" />
                   {(() => {
                     switch(currentUnit.id) {
@@ -1322,7 +1960,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
 
             {/* 學習統計 - 移動端優先 */}
                   <motion.div
-              className="bg-gradient-to-br from-indigo-600/15 to-purple-600/15 backdrop-blur-sm border border-indigo-500/20 rounded-xl card-responsive order-2 lg:order-3"
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-600/30 rounded-xl card-responsive order-2 lg:order-3"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
@@ -1330,14 +1968,14 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               aria-labelledby="learning-stats-heading"
             >
               <h3 id="learning-stats-heading" className="text-base lg:text-lg font-bold text-white flex items-center mb-4">
-                <TrendingUp className="w-4 h-4 lg:w-5 lg:h-5 mr-2 text-indigo-400" aria-hidden="true" />
+                <TrendingUp className="w-4 h-4 lg:w-5 lg:h-5 mr-2 text-gray-400" aria-hidden="true" />
                 學習統計
               </h3>
               
               <dl className="space-y-3">
                 <div className="flex items-center justify-between">
                   <dt className="text-gray-300 text-xs lg:text-sm">本次時間</dt>
-                  <dd className="text-blue-300 font-mono font-medium text-sm lg:text-base" aria-label={`本次學習時間：${realTimeDisplay}`}>{realTimeDisplay}</dd>
+                  <dd className="text-gray-300 font-mono font-medium text-sm lg:text-base" aria-label={`本次學習時間：${realTimeDisplay}`}>{realTimeDisplay}</dd>
                     </div>
                 
                 <div className="flex items-center justify-between">
@@ -1347,7 +1985,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                 
                 <div className="flex items-center justify-between">
                   <dt className="text-gray-300 text-xs lg:text-sm">完成主題</dt>
-                  <dd className="text-purple-300 font-medium text-sm lg:text-base" aria-label={`已完成${stats.completedThemes}個主題，共${stats.totalThemes}個主題`}>{stats.completedThemes}/{stats.totalThemes}</dd>
+                  <dd className="text-gray-300 font-medium text-sm lg:text-base" aria-label={`已完成${stats.completedThemes}個主題，共${stats.totalThemes}個主題`}>{stats.completedThemes}/{stats.totalThemes}</dd>
           </div>
                 
                 {isCompleted && (
@@ -1435,7 +2073,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               // 已完成且是主題最後一課 - 顯示測驗按鈕
               <Button 
                 onClick={handleNavigateQuiz}
-                className="btn-ai-primary px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400"
+                                        className="btn-ai-primary px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700"
                 aria-label={`進入主題${themeId}的測驗`}
               >
                 開始測驗

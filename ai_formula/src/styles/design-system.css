@@ -40,7 +40,7 @@
     /* Status Colors - 狀態色系統 */
     --status-success: #22C55E;         /* 成功/完成 */
     --status-warning: #F59E0B;         /* 警告/進行中 */
-    --status-info: #3B82F6;            /* 資訊/開始 */
+    --status-info: #F59E0B;            /* 資訊/開始 */
     --status-neutral: rgba(255, 255, 255, 0.6); /* 中性狀態 */
 
     /* Legacy Brand Colors */
@@ -406,6 +406,7 @@
     font-weight: var(--font-data-weight);
     line-height: var(--font-data-line-height);
     color: var(--font-data-color);
+    white-space: nowrap; /* 防止數據換行，確保如「40分鐘」、「33%」保持在同一行 */
   }
   
   /* Status Text - 狀態文字 (增強版) */
@@ -543,6 +544,38 @@
     .animate-slide-in {
       @apply animate-none;
     }
+  }
+
+  /* === 🎯 數據統計卡片修正 - 防止圖示和標題換行 === */
+  /* 方法A: 防止標題文字換行 (推薦方案) */
+  .stat-card-header {
+    @apply flex items-center justify-center;
+    white-space: nowrap; /* 關鍵：防止文字換行 */
+    min-width: 0; /* 防止flex shrink問題 */
+  }
+  
+  .stat-card-title {
+    white-space: nowrap; /* 確保標題文字不換行 */
+    overflow: hidden; /* 如果真的太長，隱藏而不是換行 */
+    text-overflow: ellipsis; /* 顯示...省略號 */
+    flex-shrink: 0; /* 防止被壓縮 */
+  }
+  
+  /* 方法B: 替代方案 - 如果需要更多控制 */
+  .stat-card-icon-text-container {
+    @apply flex items-center;
+    flex-wrap: nowrap; /* 防止換行 */
+    min-width: 0;
+  }
+  
+  .stat-card-icon-text-container .lucide {
+    flex-shrink: 0; /* 圖示不會被壓縮 */
+  }
+  
+  .stat-card-icon-text-container span {
+    white-space: nowrap; /* 文字不換行 */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* 鍵盤導航增強 */

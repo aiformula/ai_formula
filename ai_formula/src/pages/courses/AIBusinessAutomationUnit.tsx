@@ -62,7 +62,7 @@ const AIBusinessAutomationUnit: React.FC = () => {
   } = useAIAutomationProgress();
   
   const [completionAnimation, setCompletionAnimation] = useState(false);
-  const [realTimeDisplay, setRealTimeDisplay] = useState('00:00'); // 修正：統一初始化為 MM:SS 格式
+  const [realTimeDisplay, setRealTimeDisplay] = useState('00:00:00'); // 修正：統一初始化為 HH:MM:SS 格式
 
   // 根據 themeId 和 unitId 生成 unit key
   const getUnitKey = (themeId: string, unitId: string): string => {
@@ -85,13 +85,15 @@ const AIBusinessAutomationUnit: React.FC = () => {
     
     console.log(`📊 [FIXED] 最終學習時間: ${finalSeconds}秒`);
     
-    // 格式化最終顯示時間為 MM:SS 格式
-    const finalMinutes = Math.floor(finalSeconds / 60);
+    // 格式化最終顯示時間為 HH:MM:SS 格式
+    const finalHours = Math.floor(finalSeconds / 3600);
+    const finalMinutes = Math.floor((finalSeconds % 3600) / 60);
     const remainingSeconds = finalSeconds % 60;
     
+    const formattedHours = finalHours.toString().padStart(2, '0');
     const formattedMinutes = finalMinutes.toString().padStart(2, '0');
     const formattedSecondsDisplay = remainingSeconds.toString().padStart(2, '0');
-    const finalTimeDisplay = `${formattedMinutes}:${formattedSecondsDisplay}`;
+    const finalTimeDisplay = `${formattedHours}:${formattedMinutes}:${formattedSecondsDisplay}`;
     
     setRealTimeDisplay(finalTimeDisplay);
     
@@ -309,7 +311,7 @@ const AIBusinessAutomationUnit: React.FC = () => {
       // 重置狀態
       setIsTimerActive(true);
       setLearningSeconds(0);
-      setRealTimeDisplay('00:00');
+      setRealTimeDisplay('00:00:00');
       setTimerStartTime(Date.now());
       
       // 啟動計時器
@@ -318,14 +320,16 @@ const AIBusinessAutomationUnit: React.FC = () => {
           const newSeconds = prev + 1;
           console.log(`⏰ [FIXED] 計時器更新: ${newSeconds}秒`);
           
-          // 格式化顯示為 MM:SS 格式
-          const minutes = Math.floor(newSeconds / 60);
+          // 格式化顯示為 HH:MM:SS 格式
+          const hours = Math.floor(newSeconds / 3600);
+          const minutes = Math.floor((newSeconds % 3600) / 60);
           const seconds = newSeconds % 60;
           
-          // 格式化為 00:00 格式
+          // 格式化為 00:00:00 格式
+          const formattedHours = hours.toString().padStart(2, '0');
           const formattedMinutes = minutes.toString().padStart(2, '0');
           const formattedSeconds = seconds.toString().padStart(2, '0');
-          const display = `${formattedMinutes}:${formattedSeconds}`;
+          const display = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
           
           // 批量更新顯示
           setRealTimeDisplay(display);
@@ -687,7 +691,7 @@ const AIBusinessAutomationUnit: React.FC = () => {
                     <button
                       onClick={() => {
                         setLearningSeconds(0);
-                        setRealTimeDisplay('00:00');
+                        setRealTimeDisplay('00:00:00');
                         console.log('🔄 [DEBUG] 手動重置計時器');
                       }}
                       className="px-3 py-1 rounded text-xs font-medium bg-blue-600 text-white"

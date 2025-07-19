@@ -487,13 +487,7 @@ export const useAIAutomationProgress = () => {
     
     if (totalSeconds === 0) return '0秒';
     
-    if (hours > 0) {
-      return `${hours}小時${minutes}分鐘`;
-    } else if (minutes > 0) {
-      return `${minutes}分鐘${seconds > 0 ? `${seconds}秒` : ''}`;
-    } else {
-      return `${seconds}秒`;
-    }
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }, [getTotalLearningTimeInSeconds]);
 
   // 獲取當前學習時間（實時）

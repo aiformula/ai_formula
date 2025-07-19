@@ -19,12 +19,21 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useChatGPTProgress } from '@/hooks/useChatGPTProgress'; // ChatGPT 進度追蹤
 
 const ChatGPTCompleteCourseLearning: React.FC = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
+  const { user } = useAuth();
   const isZhHK = language === 'zh-HK';
+  
+  // 獲取用戶顯示名稱嘅函數
+  const getUserDisplayName = () => {
+    if (!user?.email) return isZhHK ? '學習者' : 'Learner';
+    const username = user.email.split('@')[0];
+    return username.charAt(0).toUpperCase() + username.slice(1);
+  };
 
   // 🎯 手風琴狀態管理
   const [expandedThemes, setExpandedThemes] = useState<Set<number>>(new Set());
@@ -46,9 +55,25 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
 
   // 🎯 獲取真實的學習時間數據
   const totalLearningMinutes = stats.totalTimeSpent;
-  const formattedLearningTime = totalLearningMinutes > 60 
-    ? `${Math.floor(totalLearningMinutes / 60)}小時${totalLearningMinutes % 60}分鐘`
-    : `${totalLearningMinutes}分鐘`;
+  const formattedLearningTime = (() => {
+    const totalSeconds = totalLearningMinutes * 60; // 將分鐘轉換為秒
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    
+    // 選擇顯示格式：可以改為簡潔格式或保持 HH:MM:SS
+    const useCompactFormat = true; // 設為 true 使用 "2h 32m" 格式
+    
+    if (useCompactFormat) {
+      if (hours > 0) {
+        return `${hours}h ${minutes}m`;
+      } else {
+        return `${minutes}m`;
+      }
+    } else {
+      const seconds = totalSeconds % 60;
+      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+  })();
 
   // ChatGPT 完整教學課程規劃大綱
   const courseData = {
@@ -73,30 +98,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
     {
       id: 1,
             title: isZhHK ? '歡迎來到 AI 新紀元： 課程簡介與學習地圖' : 'Welcome to the New AI Era: Course Introduction & Learning Map',
+            duration: '15分鐘',
             completed: getThemeProgress(1)?.completedUnits.includes(1) || false,
             current: !getThemeProgress(1)?.completedUnits.includes(1)
           },
           {
             id: 2,
             title: isZhHK ? 'ChatGPT 是什麼？ 白話拆解大型語言模型 (LLM) 核心概念' : 'What is ChatGPT? Breaking Down Large Language Model (LLM) Core Concepts',
+            duration: '25分鐘',
             completed: getThemeProgress(1)?.completedUnits.includes(2) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(1) || false) && !(getThemeProgress(1)?.completedUnits.includes(2) || false)
           },
           {
             id: 3,
             title: isZhHK ? 'GPT 的演進史： 從 GPT-3.5 到 GPT-4o 的關鍵差異' : 'Evolution of GPT: Key Differences from GPT-3.5 to GPT-4o',
+            duration: '20分鐘',
             completed: getThemeProgress(1)?.completedUnits.includes(3) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(2) || false) && !(getThemeProgress(1)?.completedUnits.includes(3) || false)
           },
           {
             id: 4,
             title: isZhHK ? '免費版 vs. Plus 版： 功能比較與選擇策略，哪一個更適合你？' : 'Free vs. Plus: Feature Comparison & Selection Strategy',
+            duration: '18分鐘',
             completed: getThemeProgress(1)?.completedUnits.includes(4) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(3) || false) && !(getThemeProgress(1)?.completedUnits.includes(4) || false)
           },
           {
             id: 5,
             title: isZhHK ? '帳戶註冊與安全設定： 逐步完成註冊，保障你的帳戶安全' : 'Account Registration & Security Settings: Step-by-step Registration',
+            duration: '12分鐘',
             completed: getThemeProgress(1)?.completedUnits.includes(5) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(4) || false) && !(getThemeProgress(1)?.completedUnits.includes(5) || false)
           }
@@ -115,30 +145,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 6,
             title: isZhHK ? '主介面深度導覽： 對話視窗、歷史紀錄 (History) 與設定區' : 'Main Interface Deep Tour: Chat Window, History & Settings',
+            duration: '30分鐘',
             completed: getThemeProgress(2)?.completedUnits.includes(6) || false,
             current: isThemeCompleted(1) && !(getThemeProgress(2)?.completedUnits.includes(6) || false)
           },
           {
             id: 7,
             title: isZhHK ? '對話管理技巧： 如何有效命名 (Rename)、分享 (Share) 與刪除 (Delete) 對話' : 'Conversation Management: Rename, Share & Delete Conversations',
+            duration: '22分鐘',
             completed: getThemeProgress(2)?.completedUnits.includes(7) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(6) || false) && !(getThemeProgress(2)?.completedUnits.includes(7) || false)
           },
           {
             id: 8,
             title: isZhHK ? 'Custom Instructions (自訂指令)： 打造你的個人化 AI 助教，讓每次回答更貼心' : 'Custom Instructions: Create Your Personal AI Assistant',
+            duration: '28分鐘',
             completed: getThemeProgress(2)?.completedUnits.includes(8) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(7) || false) && !(getThemeProgress(2)?.completedUnits.includes(8) || false)
           },
           {
             id: 9,
             title: isZhHK ? '手機 App 獨有功能： 語音對話與圖像辨識實戰' : 'Mobile App Exclusive Features: Voice Chat & Image Recognition',
+            duration: '35分鐘',
             completed: getThemeProgress(2)?.completedUnits.includes(9) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(8) || false) && !(getThemeProgress(2)?.completedUnits.includes(9) || false)
           },
           {
             id: 10,
             title: isZhHK ? '探索 GPT Store： 如何尋找、評估及使用別人建立的優秀 GPTs' : 'Exploring GPT Store: Finding, Evaluating & Using GPTs',
+            duration: '25分鐘',
             completed: getThemeProgress(2)?.completedUnits.includes(10) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(9) || false) && !(getThemeProgress(2)?.completedUnits.includes(10) || false)
           }
@@ -157,36 +192,42 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 11,
             title: isZhHK ? '優質指令的四大基石： 角色 (Role)、任務 (Task)、脈絡 (Context)、格式 (Format)' : 'Four Pillars of Quality Prompts: Role, Task, Context, Format',
+            duration: '32分鐘',
             completed: getThemeProgress(3)?.completedUnits.includes(11) || false,
             current: isThemeCompleted(2) && !(getThemeProgress(3)?.completedUnits.includes(11) || false)
           },
           {
             id: 12,
             title: isZhHK ? '角色扮演法： 讓 ChatGPT 成為你的私人律師、程式設計師或行銷專家' : 'Role-Playing Method: Make ChatGPT Your Personal Lawyer, Programmer or Marketing Expert',
+            duration: '28分鐘',
             completed: getThemeProgress(3)?.completedUnits.includes(12) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(11) || false) && !(getThemeProgress(3)?.completedUnits.includes(12) || false)
           },
           {
             id: 13,
             title: isZhHK ? '範例引導法 (Few-Shot Prompting)： 給予 AI 範例，讓它模仿你的風格與格式' : 'Few-Shot Prompting: Give AI Examples to Mimic Your Style',
+            duration: '26分鐘',
             completed: getThemeProgress(3)?.completedUnits.includes(13) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(12) || false) && !(getThemeProgress(3)?.completedUnits.includes(13) || false)
           },
           {
             id: 14,
             title: isZhHK ? '思維鏈技巧 (Chain of Thought)： 引導 AI 一步步思考，解決複雜問題' : 'Chain of Thought: Guide AI to Think Step by Step',
+            duration: '30分鐘',
             completed: getThemeProgress(3)?.completedUnits.includes(14) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(13) || false) && !(getThemeProgress(3)?.completedUnits.includes(14) || false)
           },
           {
             id: 15,
-            title: isZhHK ? '迭代與追問： 如何透過追問，從 60 分的答案優化到 95 分' : 'Iteration & Follow-up: Optimize from 60-point to 95-point Answers',
+            title: isZhHK ? '迭代與追問： 如何透過追問，從 60 分的答案優化到 95 分' : 'Iteration & Follow-up: Optimise from 60-point to 95-point Answers',
+            duration: '24分鐘',
             completed: getThemeProgress(3)?.completedUnits.includes(15) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(14) || false) && !(getThemeProgress(3)?.completedUnits.includes(15) || false)
           },
           {
             id: 16,
             title: isZhHK ? '指令範本庫： 提供 20+ 個常用高效指令範本，即學即用' : 'Prompt Template Library: 20+ High-Efficiency Templates Ready to Use',
+            duration: '18分鐘',
             completed: getThemeProgress(3)?.completedUnits.includes(16) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(15) || false) && !(getThemeProgress(3)?.completedUnits.includes(16) || false)
           }
@@ -205,30 +246,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 17,
             title: isZhHK ? '實戰項目 (一) 內容創作引擎： 自動生成高質素的社交媒體貼文、廣告文案與電子郵件' : 'Project 1: Content Creation Engine - Social Media, Ads & Email',
+            duration: '35分鐘',
             completed: getThemeProgress(4)?.completedUnits.includes(17) || false,
             current: isThemeCompleted(3) && !(getThemeProgress(4)?.completedUnits.includes(17) || false)
           },
           {
             id: 18,
             title: isZhHK ? '實戰項目 (二) 學習研究加速器： 快速總結論文、報告，並用簡單方式解釋複雜概念' : 'Project 2: Learning Research Accelerator - Summarize Papers & Reports',
+            duration: '28分鐘',
             completed: getThemeProgress(4)?.completedUnits.includes(18) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(17) || false) && !(getThemeProgress(4)?.completedUnits.includes(18) || false)
           },
           {
             id: 19,
             title: isZhHK ? '實戰項目 (三) 創意腦震盪夥伴： 從零開始規劃旅行、活動流程或商業點子' : 'Project 3: Creative Brainstorming Partner - Travel, Events & Business Ideas',
+            duration: '22分鐘',
             completed: getThemeProgress(4)?.completedUnits.includes(19) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(18) || false) && !(getThemeProgress(4)?.completedUnits.includes(19) || false)
           },
           {
             id: 20,
             title: isZhHK ? '實戰項目 (四) 程式設計超級助手： 解釋程式碼、除錯 (Debug) 與編寫簡單腳本' : 'Project 4: Programming Super Assistant - Code Explanation & Debugging',
+            duration: '40分鐘',
             completed: getThemeProgress(4)?.completedUnits.includes(20) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(19) || false) && !(getThemeProgress(4)?.completedUnits.includes(20) || false)
           },
           {
             id: 21,
             title: isZhHK ? '實戰項目 (五) 語言翻譯與潤飾大師： 進行多國語言精準翻譯與專業級文章校對' : 'Project 5: Language Translation & Polishing Master - Professional Translation & Proofreading',
+            duration: '25分鐘',
             completed: getThemeProgress(4)?.completedUnits.includes(21) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(20) || false) && !(getThemeProgress(4)?.completedUnits.includes(21) || false)
           }
@@ -247,30 +293,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 22,
             title: isZhHK ? 'Advanced Data Analysis (數據分析大師)： 上傳 Excel/CSV/PDF，進行數據分析與圖表製作' : 'Advanced Data Analysis Master: Upload Excel/CSV/PDF for Data Analysis',
+            duration: '38分鐘',
             completed: getThemeProgress(5)?.completedUnits.includes(22) || false,
             current: isThemeCompleted(4) && !(getThemeProgress(5)?.completedUnits.includes(22) || false)
           },
           {
             id: 23,
             title: isZhHK ? 'Web Browse (實時網絡瀏覽)： 結合即時網絡資訊，進行市場調查與新聞總結' : 'Web Browse: Real-time Web Information for Market Research',
+            duration: '20分鐘',
             completed: getThemeProgress(5)?.completedUnits.includes(23) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(22) || false) && !(getThemeProgress(5)?.completedUnits.includes(23) || false)
           },
           {
             id: 24,
             title: isZhHK ? 'DALL-E 3 圖像生成： 用文字創造出專業級的商業插圖、簡報圖片與藝術作品' : 'DALL-E 3 Image Generation: Create Professional Business Illustrations',
+            duration: '32分鐘',
             completed: getThemeProgress(5)?.completedUnits.includes(24) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(23) || false) && !(getThemeProgress(5)?.completedUnits.includes(24) || false)
           },
           {
             id: 25,
             title: isZhHK ? '創建你的第一個 Custom GPT： 無需編程，手把手教你打造個人專屬的 AI 應用' : 'Create Your First Custom GPT: Build Personal AI Applications Without Programming',
+            duration: '45分鐘',
             completed: getThemeProgress(5)?.completedUnits.includes(25) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(24) || false) && !(getThemeProgress(5)?.completedUnits.includes(25) || false)
           },
           {
             id: 26,
             title: isZhHK ? 'GPTs 應用商店的秘密： 如何發佈你的 GPT，甚至未來可能從中獲利' : 'GPTs App Store Secrets: How to Publish Your GPT and Potentially Profit',
+            duration: '22分鐘',
             completed: getThemeProgress(5)?.completedUnits.includes(26) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(25) || false) && !(getThemeProgress(5)?.completedUnits.includes(26) || false)
           }
@@ -289,30 +340,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 27,
             title: isZhHK ? 'AI 的「幻覺」現象： 如何識別並查證 AI 生成的虛假資訊' : 'AI "Hallucination" Phenomenon: Identify and Verify AI-generated False Information',
+            duration: '18分鐘',
             completed: getThemeProgress(6)?.completedUnits.includes(27) || false,
             current: isThemeCompleted(5) && !(getThemeProgress(6)?.completedUnits.includes(27) || false)
           },
           {
             id: 28,
             title: isZhHK ? '數據私隱與安全： 你的對話安全嗎？如何管理你的數據' : 'Data Privacy & Security: Are Your Conversations Safe? Managing Your Data',
+            duration: '15分鐘',
             completed: getThemeProgress(6)?.completedUnits.includes(28) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(27) || false) && !(getThemeProgress(6)?.completedUnits.includes(28) || false)
           },
           {
             id: 29,
             title: isZhHK ? 'AI 的偏見問題： 認識訓練數據帶來的潛在影響，並學習如何應對' : 'AI Bias Issues: Understanding Training Data Impact and How to Respond',
+            duration: '22分鐘',
             completed: getThemeProgress(6)?.completedUnits.includes(29) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(28) || false) && !(getThemeProgress(6)?.completedUnits.includes(29) || false)
           },
           {
             id: 30,
             title: isZhHK ? '負責任地使用 AI： 在學術、工作與創作中應遵守的倫理界線' : 'Responsible AI Use: Ethical Boundaries in Academia, Work & Creation',
+            duration: '20分鐘',
             completed: getThemeProgress(6)?.completedUnits.includes(30) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(29) || false) && !(getThemeProgress(6)?.completedUnits.includes(30) || false)
           },
           {
             id: 31,
             title: isZhHK ? '人工智能的未來： 展望 GPT 的下一步發展與對社會的長遠影響' : 'The Future of AI: GPT\'s Next Development and Long-term Social Impact',
+            duration: '25分鐘',
             completed: getThemeProgress(6)?.completedUnits.includes(31) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(30) || false) && !(getThemeProgress(6)?.completedUnits.includes(31) || false)
           }
@@ -393,7 +449,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
 
         {/* Dashboard Header - Three-Section Layout */}
         <motion.div 
-          className="bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-8"
+          className="bg-gradient-to-r from-gray-800/50 via-gray-900/50 to-black/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -401,17 +457,8 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             
             {/* Left Section - Identity & Status (30% width) */}
-            <div className="lg:col-span-4 flex items-center space-x-4">
-              <div className="relative flex-shrink-0">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Play className="w-8 h-8 text-white" />
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-                  <span className="text-xs font-bold text-white">{stats.totalProgress}%</span>
-                </div>
-              </div>
-              
-              <div className="min-w-0 flex-1">
+            <div className="lg:col-span-4">
+              <div className="min-w-0">
                 <h1 className="text-h1 mb-1 truncate">
                   ChatGPT 完整教學實戰課程
                 </h1>
@@ -419,7 +466,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                   {stats.totalProgress === 100 ? (
                     <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0" />
                   ) : stats.totalProgress > 0 ? (
-                    <Zap className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                    <Zap className="w-4 h-4 text-gray-400 flex-shrink-0" />
                   ) : (
                     <Star className="w-4 h-4 text-gray-400 flex-shrink-0" />
                   )}
@@ -427,7 +474,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                     {stats.totalProgress === 100 ? (
                       isZhHK ? '🎉 恭喜！課程完成！' : '🎉 Congratulations! Course Completed!'
                     ) : stats.totalProgress > 0 ? (
-                      isZhHK ? '🚀 正在學習中...' : '🚀 Learning in Progress...'
+                      isZhHK ? `${getUserDisplayName()} 🚀 正在學習中` : `${getUserDisplayName()} 🚀 Learning in Progress`
                     ) : (
                       isZhHK ? '👋 歡迎開始學習！' : '👋 Welcome to Learning!'
                     )}
@@ -449,11 +496,11 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 
                 {/* Progress Stat */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <BarChart3 className="w-5 h-5 text-blue-400 mr-1" />
-                    <span className="text-label">總進度</span>
+                  <div className="stat-card-header mb-2">
+                    <BarChart3 className="w-5 h-5 text-gray-400 mr-1" />
+                    <span className="stat-card-title text-label">總進度</span>
                   </div>
-                  <div className="text-data mb-1">{stats.totalProgress}%</div>
+                  <div className="text-2xl font-bold mb-1 text-white">{stats.totalProgress}%</div>
                   <div className="text-caption">
                     {stats.totalProgress === 100 ? '已達成目標' : '持續進步中'}
                   </div>
@@ -461,21 +508,21 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
 
                 {/* Learning Time Stat */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
-                  <div className="flex items-center justify-center mb-2">
+                  <div className="stat-card-header mb-2">
                     <Clock className="w-5 h-5 text-green-400 mr-1" />
-                    <span className="text-label">學習時間</span>
+                    <span className="stat-card-title text-label">學習時間</span>
                   </div>
-                  <div className="text-data mb-1">{formattedLearningTime || `${totalLearningMinutes}分鐘`}</div>
+                  <div className="text-2xl font-bold mb-1 font-mono text-white">{formattedLearningTime || `${totalLearningMinutes}分鐘`}</div>
                   <div className="text-caption">累積時長</div>
                 </div>
 
                 {/* Completed Themes Stat */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <BookOpen className="w-5 h-5 text-purple-400 mr-1" />
-                    <span className="text-label">完成主題</span>
+                  <div className="stat-card-header mb-2">
+                    <BookOpen className="w-5 h-5 text-gray-400 mr-1" />
+                    <span className="stat-card-title text-label">完成主題</span>
                   </div>
-                  <div className="text-data mb-1">
+                  <div className="text-2xl font-bold mb-1 text-white">
                     {stats.completedThemes}/{stats.totalThemes}
                   </div>
                   <div className="text-caption">
@@ -538,7 +585,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {/* Progress Bar - Full Width at Bottom */}
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-body font-medium">
+              <span className="text-body">
                 整體學習進度
               </span>
               <span className="text-body">
@@ -565,7 +612,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               transition={{ delay: 0.3 }}
             >
               <div className="content-section-header">
-                <BookOpen className="w-6 h-6 text-blue-400 mr-3" />
+                <BookOpen className="w-6 h-6 text-gray-400 mr-3" />
                 <h3 className="text-h2">課程模塊</h3>
               </div>
 
@@ -576,7 +623,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 key={theme.id}
                     className={`theme-accordion bg-gray-800/30 rounded-xl border overflow-hidden transition-all duration-300 ${
                       theme.completed ? 'border-green-400/30 bg-green-400/5' : 
-                      theme.units.some(unit => unit.current) ? 'border-blue-400/30 bg-blue-400/5' :
+                      theme.units.some(unit => unit.current) ? 'border-gray-600/50 bg-gray-800/30' :
                       'border-gray-600/30'
                     }`}
                     initial={{ opacity: 0, y: 15 }}
@@ -600,8 +647,8 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center mb-3">
                             {/* Module Number Badge */}
-                            <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg mr-4 ${
-                              theme.completed ? 'bg-green-500 text-white' : 'bg-blue-600 text-white'
+                            <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-data mr-4 ${
+                              theme.completed ? 'bg-green-500 text-white' : 'bg-gray-700 text-white'
                             }`}>
                               {theme.completed ? <CheckCircle className="w-6 h-6" /> : theme.id}
                             </div>
@@ -611,7 +658,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                                       <h3 className="text-theme-title leading-tight mb-1">
                           第{theme.id}大主題・{theme.title}
                         </h3>
-                              <p className="text-sm text-gray-300 leading-relaxed line-clamp-2">
+                              <p className="text-body leading-relaxed line-clamp-2">
                                 {theme.description}
                               </p>
                         </div>
@@ -620,14 +667,14 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                           {/* Progress Section */}
                           <div className="ml-16">
                             <div className="flex items-center justify-between mb-2">
-                              <span className="text-sm font-medium text-gray-400">主題進度</span>
-                              <span className="text-sm font-semibold text-blue-400">
+                              <span className="text-label">主題進度</span>
+                              <span className="text-caption text-gray-400">
                                 {theme.units.filter(u => u.completed).length}/{theme.units.length} 完成 ({theme.progress}%)
                               </span>
                             </div>
                             <div className="w-full bg-gray-700 rounded-full h-2">
                               <div 
-                                className="bg-blue-500 h-2 rounded-full transition-all duration-300" 
+                                className="bg-gray-600 h-2 rounded-full transition-all duration-300" 
                                 style={{ width: `${theme.progress}%` }}
                               ></div>
                             </div>
@@ -678,7 +725,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                       className={`flex items-center p-4 rounded-lg border transition-all duration-150 ${
                                         isLocked ? 'border-gray-600 bg-gray-800/30 opacity-60 cursor-not-allowed' :
                                         unit.completed ? 'border-green-400/30 bg-green-400/5 hover:bg-green-400/10' : 
-                                        unit.current ? 'border-blue-400/50 bg-blue-400/10 hover:bg-blue-400/15 cursor-pointer' : 
+                                        unit.current ? 'border-gray-500/50 bg-gray-800/50 hover:bg-gray-700/50 cursor-pointer' : 
                                         'border-gray-600/30 bg-gray-700/20 hover:bg-gray-600/20 cursor-pointer'
                                       }`}
                                       onClick={() => !isLocked && navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${unit.id}`)}
@@ -688,7 +735,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                                           isLocked ? 'bg-gray-600' :
                                           unit.completed ? 'bg-green-500' : 
-                                          unit.current ? 'bg-blue-600 animate-pulse' : 'bg-gray-500'
+                                          unit.current ? 'bg-gray-600 animate-pulse' : 'bg-gray-500'
                                         }`}>
                                           {isLocked ? (
                                             <Lock className="w-4 h-4 text-gray-300" />
@@ -707,29 +754,29 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                         <div className="flex items-center justify-between">
                                           <div className="min-w-0 flex-1">
                                             <div className="flex items-center mb-1">
-                                              <span className={`text-sm font-medium mr-3 ${
+                                              <span className={`text-caption mr-3 ${
                                                 isLocked ? 'text-gray-500' :
-                                                unit.current ? 'text-blue-400' : 'text-gray-400'
+                                                unit.current ? 'text-gray-300' : 'text-gray-400'
                                               }`}>
                                                 {theme.id}.{unitIndex + 1}
                           </span>
                                               <h4 className={`text-unit-title leading-tight ${
                                                 isLocked ? 'text-gray-500' :
                                                 unit.completed ? 'text-gray-300 line-through decoration-gray-500' : 
-                                                unit.current ? 'text-white font-semibold' : 'text-white group-hover:text-blue-300'
+                                                unit.current ? 'text-white' : 'text-white group-hover:text-gray-200'
                                               }`}>
                                                 {unit.title}
                                               </h4>
                                             </div>
-                                            <div className={`flex items-center text-sm ${
+                                            <div className={`flex items-center text-caption ${
                                               isLocked ? 'text-gray-600' : 'text-gray-400'
                                             }`}>
                                               <Clock className="w-4 h-4 mr-1" />
-                                              <span>50分鐘</span>
+                                              <span>{unit.duration || '30分鐘'}</span>
                                               {unit.current && (
                                                 <>
                                                   <span className="mx-2">•</span>
-                                                  <span className="text-blue-400 font-medium">進行中</span>
+                                                  <span className="text-caption text-gray-300">進行中</span>
                                                 </>
                                               )}
                                             </div>
@@ -738,18 +785,18 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                           {/* Action Button */}
                                           <div className="flex-shrink-0 ml-4">
                                             {isLocked ? (
-                                              <span className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-700 text-gray-400">
+                                              <span className="inline-flex items-center px-3 py-1.5 rounded-md text-caption bg-gray-700 text-gray-400">
                                                 <Lock className="w-4 h-4 mr-1" />
                                                 已鎖定
                               </span>
                                             ) : unit.completed ? (
-                                              <span className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-green-100 text-green-700">
+                                              <span className="inline-flex items-center px-3 py-1.5 rounded-md text-caption bg-green-100 text-green-700">
                                                 <CheckCircle className="w-4 h-4 mr-1" />
                                                 已完成
                               </span>
                                             ) : unit.current ? (
                                               <Button
-                                                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm"
+                                                className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2"
                                                 onClick={(e) => {
                                                   e.stopPropagation();
                                                   navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${unit.id}`);
@@ -761,7 +808,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                             ) : (
                                               <Button
                                                 variant="outline"
-                                                className="border-gray-500 text-gray-300 hover:bg-gray-700 hover:border-blue-400 hover:text-blue-300 px-4 py-2 text-sm"
+                                                className="border-gray-500 text-gray-300 hover:bg-gray-700 hover:border-gray-400 hover:text-gray-200 px-4 py-2"
                                                 onClick={(e) => {
                                                   e.stopPropagation();
                                                   navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${unit.id}`);
@@ -780,77 +827,106 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                               })}
                             </ul>
 
-                            {/* 🎯 Quiz Section - Added for Theme 1 & 2 */}
-                            {(theme.id === 1 || theme.id === 2) && (
-                              <motion.div
-                                className="mt-6 p-5 bg-gradient-to-r from-yellow-500/15 to-orange-500/15 rounded-lg border border-yellow-500/30"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                              >
-                                <div className="flex items-start space-x-4">
-                                  {/* Quiz Icon */}
-                                  <div className="flex-shrink-0">
-                                    <div className="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center">
-                                      <Target className="w-5 h-5 text-white" />
+                            {/* 🎯 Quiz Section - Added for ALL THEMES 1-6 */}
+                            <motion.div
+                              className="mt-6 p-5 bg-gradient-to-r from-yellow-500/15 to-orange-500/15 rounded-lg border border-yellow-500/30"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.3 }}
+                            >
+                              <div className="flex items-start space-x-4">
+                                {/* Quiz Icon */}
+                                <div className="flex-shrink-0">
+                                  <div className="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center">
+                                    <Target className="w-5 h-5 text-white" />
+                                  </div>
+                                </div>
+                                
+                                {/* Quiz Content */}
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center justify-between mb-3">
+                                    <h4 className="text-h3 text-yellow-300">
+                                      {theme.id === 1 ? (
+                                        isZhHK ? '第一章測驗：初見 ChatGPT - 基礎入門' : 'Chapter 1 Quiz: First Encounter with ChatGPT - Basic Introduction'
+                                      ) : theme.id === 2 ? (
+                                        isZhHK ? '第二章測驗：提問的藝術 - 高效 Prompt Engineering' : 'Chapter 2 Quiz: The Art of Questioning - Efficient Prompt Engineering'
+                                      ) : theme.id === 3 ? (
+                                        isZhHK ? '第三章測驗：生活與工作 - 日常實用場景' : 'Chapter 3 Quiz: Life and Work - Daily Practical Scenarios'
+                                      ) : theme.id === 4 ? (
+                                        isZhHK ? '第四章測驗：釋放潛能 - 進階功能與技巧' : 'Chapter 4 Quiz: Unleashing Potential - Advanced Features and Techniques'
+                                      ) : theme.id === 5 ? (
+                                        isZhHK ? '第五章測驗：創意無限 - 探索娛樂與創作' : 'Chapter 5 Quiz: Unlimited Creativity - Exploring Entertainment and Creation'
+                                      ) : (
+                                        isZhHK ? '第六章測驗：智慧使用 - 限制、道德與未來' : 'Chapter 6 Quiz: Smart Usage - Limitations, Ethics and Future'
+                                      )}
+                                    </h4>
+                                    <Badge variant="outline" className="border-yellow-500 text-yellow-400">
+                                      {isZhHK ? '測驗' : 'Quiz'}
+                                    </Badge>
+                                  </div>
+                                  
+                                  <p className="text-body text-yellow-100/80 mb-4 leading-relaxed">
+                                    {theme.id === 1 ? (
+                                      isZhHK ? 
+                                        '測試您對 ChatGPT 基礎概念的理解，包括核心技術、使用方法和基本功能。' : 
+                                        'Test your understanding of ChatGPT basic concepts, including core technology, usage methods and basic functions.'
+                                    ) : theme.id === 2 ? (
+                                      isZhHK ? 
+                                        '測試您對 Prompt Engineering 的理解，包括有效提示詞的構建技巧和優化策略。' : 
+                                        'Test your understanding of Prompt Engineering, including effective prompt construction techniques and optimisation strategies.'
+                                    ) : theme.id === 3 ? (
+                                      isZhHK ? 
+                                        '測試您在日常生活和工作場景中應用 ChatGPT 的實際能力和技巧。' : 
+                                        'Test your practical ability and skills in applying ChatGPT in daily life and work scenarios.'
+                                    ) : theme.id === 4 ? (
+                                      isZhHK ? 
+                                        '測試您對 ChatGPT 進階功能的掌握程度，包括複雜任務處理和高級技巧。' : 
+                                        'Test your mastery of ChatGPT advanced features, including complex task handling and advanced techniques.'
+                                    ) : theme.id === 5 ? (
+                                      isZhHK ? 
+                                        '測試您運用 ChatGPT 進行創意創作和娛樂應用的技能和想像力。' : 
+                                        'Test your skills and creativity in using ChatGPT for creative projects and entertainment applications.'
+                                    ) : (
+                                      isZhHK ? 
+                                        '測試您對 ChatGPT 使用限制、道德考量和未來發展的深度理解。' : 
+                                        'Test your deep understanding of ChatGPT usage limitations, ethical considerations and future developments.'
+                                    )}
+                                  </p>
+                                  
+                                  {/* Quiz Info */}
+                                  <div className="flex items-center space-x-6 mb-4 text-caption text-yellow-200/70">
+                                    <div className="flex items-center space-x-2">
+                                      <Clock className="w-4 h-4" />
+                                      <span>
+                                        {theme.id === 1 ? (isZhHK ? '15分鐘' : '15 minutes') : 
+                                         theme.id === 2 ? (isZhHK ? '18分鐘' : '18 minutes') : 
+                                         theme.id === 3 ? (isZhHK ? '20分鐘' : '20 minutes') : 
+                                         theme.id === 4 ? (isZhHK ? '25分鐘' : '25 minutes') : 
+                                         theme.id === 5 ? (isZhHK ? '20分鐘' : '20 minutes') : 
+                                         (isZhHK ? '15分鐘' : '15 minutes')}
+                                      </span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <Target className="w-4 h-4" />
+                                      <span>{isZhHK ? '5道題目' : '5 questions'}</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <Award className="w-4 h-4" />
+                                      <span>{isZhHK ? '60%及格' : '60% to pass'}</span>
                                     </div>
                                   </div>
                                   
-                                  {/* Quiz Content */}
-                                  <div className="flex-1 min-w-0">
-                                    <div className="flex items-center justify-between mb-3">
-                                      <h4 className="text-lg font-semibold text-yellow-300">
-                                        {theme.id === 1 ? (
-                                          isZhHK ? '第一章測驗：初見 ChatGPT - 基礎入門' : 'Chapter 1 Quiz: First Encounter with ChatGPT - Basic Introduction'
-                                        ) : (
-                                          isZhHK ? '第二章測驗：提問的藝術 - 高效 Prompt Engineering' : 'Chapter 2 Quiz: The Art of Questioning - Efficient Prompt Engineering'
-                                        )}
-                                      </h4>
-                                      <Badge variant="outline" className="border-yellow-500 text-yellow-400">
-                                        {isZhHK ? '測驗' : 'Quiz'}
-                                      </Badge>
-                                    </div>
-                                    
-                                    <p className="text-yellow-100/80 text-sm mb-4 leading-relaxed">
-                                      {theme.id === 1 ? (
-                                        isZhHK ? 
-                                          '測試您對 ChatGPT 基礎概念的理解，包括核心技術、使用方法和基本功能。' : 
-                                          'Test your understanding of ChatGPT basic concepts, including core technology, usage methods and basic functions.'
-                                      ) : (
-                                        isZhHK ? 
-                                          '測試您對 Prompt Engineering 的理解，包括有效提示詞的構建技巧和優化策略。' : 
-                                          'Test your understanding of Prompt Engineering, including effective prompt construction techniques and optimization strategies.'
-                                      )}
-                                    </p>
-                                    
-                                    {/* Quiz Info */}
-                                    <div className="flex items-center space-x-6 mb-4 text-sm text-yellow-200/70">
-                                      <div className="flex items-center space-x-2">
-                                        <Clock className="w-4 h-4" />
-                                        <span>{theme.id === 1 ? (isZhHK ? '15分鐘' : '15 minutes') : (isZhHK ? '18分鐘' : '18 minutes')}</span>
-                                      </div>
-                                      <div className="flex items-center space-x-2">
-                                        <Target className="w-4 h-4" />
-                                        <span>{isZhHK ? '5道題目' : '5 questions'}</span>
-                                      </div>
-                                      <div className="flex items-center space-x-2">
-                                        <Award className="w-4 h-4" />
-                                        <span>{isZhHK ? '60%及格' : '60% to pass'}</span>
-                                      </div>
-                                    </div>
-                                    
-                                    {/* Action Button */}
-                                    <Button
-                                      className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-6 py-2"
-                                      onClick={() => navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/quiz`)}
-                                    >
-                                      <Target className="w-4 h-4 mr-2" />
-                                      {isZhHK ? '開始測驗' : 'Start Quiz'}
-                                    </Button>
-                                  </div>
+                                  {/* Action Button */}
+                                  <Button
+                                    className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-2"
+                                    onClick={() => navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/quiz`)}
+                                  >
+                                    <Target className="w-4 h-4 mr-2" />
+                                    {isZhHK ? '開始測驗' : 'Start Quiz'}
+                                  </Button>
                                 </div>
-                              </motion.div>
-                            )}
+                              </div>
+                            </motion.div>
                           </div>
                         </motion.div>
                       )}
@@ -871,8 +947,8 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               transition={{ delay: 0.5 }}
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="skills-radar-title text-white flex items-center">
-                  <BarChart3 className="w-5 h-5 mr-2 text-blue-400" />
+                <h3 className="text-h2 flex items-center">
+                  <BarChart3 className="w-5 h-5 mr-2 text-gray-400" />
                   技能發展追蹤
                 </h3>
                 <div className="learning-progress-percentage text-white">
@@ -908,9 +984,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg border border-yellow-500/20">
                 <div className="flex items-center space-x-2 text-yellow-400 mb-2">
                   <Trophy className="w-4 h-4" />
-                  <span className="text-sm font-medium">學習成就</span>
+                  <span className="text-h3">學習成就</span>
                 </div>
-                <p className="text-xs text-white/70">ChatGPT 完整教學實戰課程</p>
+                <p className="text-caption">ChatGPT 完整教學實戰課程</p>
               </div>
             </motion.div>
 
@@ -921,26 +997,26 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <h3 className="learning-progress-title text-white flex items-center mb-6">
+              <h3 className="text-h2 flex items-center mb-6">
                 <Calendar className="w-5 h-5 mr-2 text-green-400" />
                 學習進度總覽
               </h3>
               
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="text-center p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                  <div className="text-2xl font-bold text-blue-400 mb-1">{stats.completedThemes}</div>
-                  <div className="text-xs text-white/70">已完成主題</div>
+                                    <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
+                                      <div className="text-data text-gray-300 mb-1">{stats.completedThemes}</div>
+                  <div className="text-label">已完成主題</div>
                 </div>
-                <div className="text-center p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                  <div className="text-2xl font-bold text-purple-400 mb-1">{stats.totalThemes - stats.completedThemes}</div>
-                  <div className="text-xs text-white/70">剩餘主題</div>
+                                  <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
+                                      <div className="text-data text-gray-300 mb-1">{stats.totalThemes - stats.completedThemes}</div>
+                  <div className="text-label">剩餘主題</div>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-white/70">學習時間</span>
-                  <span className="text-sm font-semibold text-white">{formattedLearningTime}</span>
+                  <span className="text-caption">學習時間</span>
+                  <span className="text-body">{formattedLearningTime}</span>
                 </div>
                 
                 <div className="learning-streak border border-orange-500/20 bg-orange-500/10">
@@ -951,7 +1027,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                     </div>
                     
                 <div className="text-center pt-4">
-                  <p className="text-sm text-white/60 mb-2">
+                  <p className="text-caption mb-2">
                     {(() => {
                       // 找到當前學習的單元
                       for (const theme of courseData.themes) {
@@ -983,8 +1059,8 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                     </div>
                   </div>
 
-              <div className="mt-6 p-3 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-lg border border-green-500/20">
-                <div className="flex items-center space-x-2 text-green-400 text-sm">
+                              <div className="mt-6 p-3 bg-gradient-to-r from-green-500/10 to-gray-700/30 rounded-lg border border-green-500/20">
+                <div className="flex items-center space-x-2 text-green-400 text-caption">
                   <Target className="w-4 h-4" />
                   <span>6大學習里程碑</span>
                 </div>
@@ -998,7 +1074,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
             >
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+              <h3 className="text-h2 mb-4 flex items-center">
                 <Award className="w-5 h-5 mr-2 text-yellow-400" />
                 成就徽章
               </h3>
@@ -1007,7 +1083,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 {achievements.map((achievement, index) => (
                   <motion.div
                     key={index}
-                    className={`achievement-badge-${achievement.type} text-sm`}
+                    className={`achievement-badge-${achievement.type} text-caption`}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.9 + index * 0.1 }}

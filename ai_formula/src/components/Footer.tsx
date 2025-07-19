@@ -59,16 +59,6 @@ const Footer: React.FC = () => {
           { name: '學習指南', href: '/blog?category=guide' }
         ]
       },
-      legal: {
-        title: '法律資訊',
-        links: [
-          { name: '隱私政策', href: '/legal/privacy-policy' },
-          { name: '服務條款', href: '/legal/terms-of-service' },
-          { name: '退款政策', href: '/legal/refund-policy' },
-          { name: '免責聲明', href: '/legal/disclaimer' },
-          { name: '網站地圖', href: '/sitemap' }
-        ]
-      },
       support: {
         title: '客戶支援',
         links: [
@@ -110,16 +100,6 @@ const Footer: React.FC = () => {
           { name: 'Learning Guides', href: '/blog?category=guide' }
         ]
       },
-      legal: {
-        title: 'Legal Information',
-        links: [
-          { name: 'Privacy Policy', href: '/legal/privacy-policy' },
-          { name: 'Terms of Service', href: '/legal/terms-of-service' },
-          { name: 'Refund Policy', href: '/legal/refund-policy' },
-          { name: 'Disclaimer', href: '/legal/disclaimer' },
-          { name: 'Sitemap', href: '/sitemap' }
-        ]
-      },
       support: {
         title: 'Customer Support',
         links: [
@@ -136,136 +116,22 @@ const Footer: React.FC = () => {
   const currentSections = footerSections[language as keyof typeof footerSections];
 
   return (
-    <footer className="text-white" style={{ backgroundColor: '#18181B' }}>
-
-      {/* Main footer content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
-          {/* Company Info - Takes 2 columns on large screens */}
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              AI FORMULA
-            </h3>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              {isZhHK 
-                ? '專為香港專業人士設計的實用AI培訓平台。我們致力於提供最新、最實用的AI知識和技能，幫助您在數碼轉型時代中保持競爭優勢。'
-                : 'Practical AI training platform designed for Hong Kong professionals. We are committed to providing the latest and most practical AI knowledge and skills to help you stay competitive in the digital transformation era.'
-              }
-            </p>
-            
-            {/* Social Media Links with better engagement */}
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-yellow-400 uppercase tracking-wide">
-                {isZhHK ? '關注我們' : 'Follow Us'}
-              </h4>
-              <div className="flex space-x-4">
-                <a href="https://instagram.com/aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Instagram size={20} />
-                </a>
-                <a href="https://facebook.com/aiformula.hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Facebook size={20} />
-                </a>
-                <a href="https://twitter.com/aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Twitter size={20} />
-                </a>
-                <a href="https://linkedin.com/company/aiformula" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Linkedin size={20} />
-                </a>
-                <a href="https://youtube.com/@aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Youtube size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Sections - Each takes 1 column */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-yellow-400">
-              {currentSections.quickLinks.title}
-            </h4>
-            <ul className="space-y-2">
-              {currentSections.quickLinks.links.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-300 hover:text-yellow-400 transition-colors text-sm hover:underline"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-yellow-400">
-              {currentSections.services.title}
-            </h4>
-            <ul className="space-y-2">
-              {currentSections.services.links.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-300 hover:text-yellow-400 transition-colors text-sm hover:underline"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-yellow-400">
-              {currentSections.learning.title}
-            </h4>
-            <ul className="space-y-2">
-              {currentSections.learning.links.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-300 hover:text-yellow-400 transition-colors text-sm hover:underline"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-yellow-400">
-              {currentSections.support.title}
-            </h4>
-            <ul className="space-y-2">
-              {currentSections.support.links.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-300 hover:text-yellow-400 transition-colors text-sm hover:underline"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Newsletter Section - Enhanced */}
-        <div className="mt-12 pt-8 border-t border-gray-700">
+    <footer className="text-white" style={{ backgroundColor: '#0a0a0a' }}>
+      {/* Newsletter Section - MOVED TO TOP */}
+      <div className="bg-black/30 border-b border-gray-700">
+        <div className="ai-container py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h4 className="text-xl font-semibold text-yellow-400 mb-3">
+              <h4 className="text-h2 text-yellow-400 mb-3">
                 {isZhHK ? '訂閱 AI Formula 電子報' : 'Subscribe to AI Formula Newsletter'}
               </h4>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-body mb-4">
                 {isZhHK 
                   ? '獲取最新的AI趨勢分析、實用教學、課程優惠和香港商業案例。每週僅一封，絕不騷擾。'
                   : 'Get the latest AI trend analysis, practical tutorials, course offers and Hong Kong business cases. Only one email per week, no spam.'
                 }
               </p>
-              <div className="text-xs text-gray-400">
+              <div className="text-caption">
                 <span>{isZhHK ? '我們保護您的隱私，隨時可取消訂閱' : 'We protect your privacy, unsubscribe anytime'}</span>
               </div>
             </div>
@@ -293,34 +159,157 @@ const Footer: React.FC = () => {
             </form>
           </div>
         </div>
+      </div>
 
-
-
-        {/* Legal Links Section - Enhanced for Trust */}
-        <div className="mt-8 pt-6 border-t border-gray-700">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
-              {currentSections.legal.links.map((link, index) => (
-                <Link
-                  key={index}
-                  to={link.href}
-                  className="hover:text-yellow-400 transition-colors hover:underline"
-                >
-                  {link.name}
-                </Link>
-              ))}
+      {/* Main footer content - REORGANIZED LAYOUT */}
+      <div className="ai-container py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Company Info - Takes 1 column, MOVED TO FIRST POSITION */}
+          <div className="lg:col-span-1 space-y-4">
+            <h3 className="text-h2 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              AI FORMULA
+            </h3>
+            <p className="text-body leading-relaxed">
+              {isZhHK 
+                ? '專為香港專業人士設計的實用AI培訓平台。我們致力於提供最新、最實用的AI知識和技能，幫助您在數碼轉型時代中保持競爭優勢。'
+                : 'Practical AI training platform designed for Hong Kong professionals. We are committed to providing the latest and most practical AI knowledge and skills to help you stay competitive in the digital transformation era.'
+              }
+            </p>
+            
+            {/* Social Media Links */}
+            <div className="space-y-3">
+              <h4 className="text-label text-yellow-400">
+                {isZhHK ? '關注我們' : 'Follow Us'}
+              </h4>
+              <div className="flex space-x-4">
+                <a href="https://instagram.com/aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
+                  <Instagram size={20} />
+                </a>
+                <a href="https://facebook.com/aiformula.hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
+                  <Facebook size={20} />
+                </a>
+                <a href="https://twitter.com/aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
+                  <Twitter size={20} />
+                </a>
+                <a href="https://linkedin.com/company/aiformula" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
+                  <Linkedin size={20} />
+                </a>
+                <a href="https://youtube.com/@aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
+                  <Youtube size={20} />
+                </a>
+              </div>
             </div>
-                         <div className="text-sm text-gray-400">
-               <span>
-                 {isZhHK ? '依據香港法律營運' : 'Operating under Hong Kong Law'}
-               </span>
-             </div>
+          </div>
+
+          {/* REARRANGED SECTIONS - Swapped positions */}
+          {/* Quick Links - Second position */}
+          <div className="space-y-4">
+            <h4 className="text-h3 text-yellow-400">
+              {currentSections.quickLinks.title}
+            </h4>
+            <ul className="space-y-2">
+              {currentSections.quickLinks.links.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.href}
+                    className="text-body hover:text-yellow-400 transition-colors hover:underline"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services - Third position */}
+          <div className="space-y-4">
+            <h4 className="text-h3 text-yellow-400">
+              {currentSections.services.title}
+            </h4>
+            <ul className="space-y-2">
+              {currentSections.services.links.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.href}
+                    className="text-body hover:text-yellow-400 transition-colors hover:underline"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Learning Resources - Fourth position */}
+          <div className="space-y-4">
+            <h4 className="text-h3 text-yellow-400">
+              {currentSections.learning.title}
+            </h4>
+            <ul className="space-y-2">
+              {currentSections.learning.links.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.href}
+                    className="text-body hover:text-yellow-400 transition-colors hover:underline"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Customer Support - Fifth position */}
+          <div className="space-y-4">
+            <h4 className="text-h3 text-yellow-400">
+              {currentSections.support.title}
+            </h4>
+            <ul className="space-y-2">
+              {currentSections.support.links.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.href}
+                    className="text-body hover:text-yellow-400 transition-colors hover:underline"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Bottom */}
+        {/* Legal Links Section - Enhanced */}
+        <div className="mt-12 pt-8 border-t border-gray-700">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="flex flex-wrap items-center gap-4 text-caption">
+              <Link to="/legal/privacy-policy" className="hover:text-yellow-400 transition-colors hover:underline">
+                {isZhHK ? '隱私政策' : 'Privacy Policy'}
+              </Link>
+              <Link to="/legal/terms-of-service" className="hover:text-yellow-400 transition-colors hover:underline">
+                {isZhHK ? '服務條款' : 'Terms of Service'}
+              </Link>
+              <Link to="/legal/refund-policy" className="hover:text-yellow-400 transition-colors hover:underline">
+                {isZhHK ? '退款政策' : 'Refund Policy'}
+              </Link>
+              <Link to="/legal/disclaimer" className="hover:text-yellow-400 transition-colors hover:underline">
+                {isZhHK ? '免責聲明' : 'Disclaimer'}
+              </Link>
+              <Link to="/sitemap" className="hover:text-yellow-400 transition-colors hover:underline">
+                {isZhHK ? '網站地圖' : 'Sitemap'}
+              </Link>
+            </div>
+            <div className="text-caption">
+              <span>
+                {isZhHK ? '依據香港法律營運' : 'Operating under Hong Kong Law'}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright - Bottom */}
         <div className="mt-6 pt-6 border-t border-gray-700 text-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-caption">
             © 2025 AI Formula. {isZhHK ? '版權所有' : 'All rights reserved'}.
             <span className="mx-2">|</span>
             {isZhHK ? '用心設計，專業製作' : 'Designed with care, built with expertise'}

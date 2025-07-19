@@ -45,8 +45,8 @@
 }
 
 .theme-badge {
-  border-color: rgb(59 130 246 / 0.5);
-  color: rgb(96 165 250);
+  border-color: rgb(245 158 11 / 0.5);
+  color: rgb(251 191 36);
 }
 
 .unit-info {
@@ -114,7 +114,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, rgb(59 130 246), rgb(147 51 234));
+  background: linear-gradient(90deg, rgb(245 158 11), rgb(251 191 36));
   border-radius: 0.25rem;
   transition: width 0.3s ease;
 }
@@ -169,9 +169,9 @@
 }
 
 .tab-trigger[data-state="active"] {
-  color: rgb(96 165 250);
-  background: rgba(59, 130, 246, 0.1);
-  border-bottom: 2px solid rgb(59 130 246);
+  color: rgb(251 191 36);
+  background: rgba(245, 158, 11, 0.1);
+  border-bottom: 2px solid rgb(245 158 11);
 }
 
 .tab-content {
@@ -283,7 +283,7 @@
 
 .exercise-textarea:focus {
   outline: none;
-  border-color: rgb(59 130 246);
+  border-color: rgb(245 158 11);
 }
 
 .no-exercises, .no-resources {
@@ -447,7 +447,7 @@
 }
 
 .btn-primary {
-  background: rgb(59 130 246);
+  background: rgb(245 158 11);
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;

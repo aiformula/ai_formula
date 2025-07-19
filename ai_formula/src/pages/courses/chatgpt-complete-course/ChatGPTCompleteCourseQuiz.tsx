@@ -128,7 +128,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
     },
     2: {
       title: isZhHK ? '第二章測驗：提問的藝術 - 高效 Prompt Engineering' : 'Chapter 2 Quiz: The Art of Questioning - Efficient Prompt Engineering',
-      description: isZhHK ? '測試您對 Prompt Engineering 的理解，包括有效提示詞的構建技巧和優化策略。' : 'Test your understanding of Prompt Engineering, including effective prompt construction techniques and optimization strategies.',
+      description: isZhHK ? '測試您對 Prompt Engineering 的理解，包括有效提示詞的構建技巧和優化策略。' : 'Test your understanding of Prompt Engineering, including effective prompt construction techniques and optimisation strategies.',
       passingScore: 60,
       timeLimit: 18,
       questions: [
@@ -186,7 +186,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
         },
         {
           id: 5,
-          question: isZhHK ? '如果 ChatGPT 第一次嘅答案唔夠好，你點樣「追問」去優化佢？' : 'If ChatGPT\'s first answer is not good enough, how should you "follow up" to optimize it?',
+          question: isZhHK ? '如果 ChatGPT 第一次嘅答案唔夠好，你點樣「追問」去優化佢？' : 'If ChatGPT\'s first answer is not good enough, how should you "follow up" to optimise it?',
           options: [
             isZhHK ? '直接話「你錯喇」，然後唔再追問' : 'Directly say "you are wrong" and stop asking',
             isZhHK ? '開一個新對話，問完全一樣嘅問題' : 'Start a new conversation and ask exactly the same question',
@@ -194,29 +194,300 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
             isZhHK ? '將佢嘅答案複製再貼上一次，睇下會唔會唔同' : 'Copy and paste its answer again to see if it will be different'
           ],
           correctAnswer: 2,
-          explanation: isZhHK ? '最有效的追問方式是在原有答案基礎上提出具體的改善要求。這種方法保持了對話的連續性，讓 ChatGPT 能理解你的具體需求，並在原有基礎上進行優化。給出具體的改善方向比簡單的否定更有建設性。' : 'The most effective follow-up method is to make specific improvement requests based on the original answer. This approach maintains conversation continuity, allows ChatGPT to understand your specific needs, and optimize based on the original foundation. Giving specific improvement directions is more constructive than simple negation.',
+          explanation: isZhHK ? '最有效的追問方式是在原有答案基礎上提出具體的改善要求。這種方法保持了對話的連續性，讓 ChatGPT 能理解你的具體需求，並在原有基礎上進行優化。給出具體的改善方向比簡單的否定更有建設性。' : 'The most effective follow-up method is to make specific improvement requests based on the original answer. This approach maintains conversation continuity, allows ChatGPT to understand your specific needs, and optimise based on the original foundation. Giving specific improvement directions is more constructive than simple negation.',
           difficulty: 'medium'
         }
       ]
     },
     3: {
-      title: isZhHK ? '[ChatGPT 主題3測驗標題]' : '[ChatGPT Theme 3 Quiz Title]',
-      description: isZhHK ? '[ChatGPT 主題3測驗描述]' : '[ChatGPT Theme 3 Quiz Description]',
-      passingScore: 80,
+      title: isZhHK ? '第三章測驗：生活與工作 - 日常實用場景' : 'Chapter 3 Quiz: Life and Work - Daily Practical Scenarios',
+      description: isZhHK ? '測試您在日常生活和工作中應用 ChatGPT 的實用技巧。' : 'Test your practical skills in applying ChatGPT in daily life and work.',
+      passingScore: 70,
+      timeLimit: 20,
+      questions: [
+        {
+          id: 1,
+          question: isZhHK ? '你想 ChatGPT 幫你總結一篇好長嘅網上新聞，你最基本要提供啲咩俾佢？' : 'If you want ChatGPT to help you summarize a long online news article, what do you basically need to provide?',
+          options: [
+            isZhHK ? '新聞發佈嘅日期同時間' : 'The publication date and time of the news',
+            isZhHK ? '新聞嘅標題，或者成篇新聞嘅文字內容/網址' : 'The news title, or the complete text content/URL of the news',
+            isZhHK ? '寫呢篇新聞嘅記者個名' : 'The name of the journalist who wrote the news',
+            isZhHK ? '你自己對呢篇新聞嘅睇法' : 'Your own opinion about the news'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '要讓 ChatGPT 總結新聞，最基本需要提供新聞的實際內容，可以是標題、完整文字內容或網址，這樣 AI 才能分析和總結新聞的重點。' : 'To have ChatGPT summarize news, you basically need to provide the actual news content, which can be the title, complete text content or URL, so the AI can analyze and summarize the key points.',
+          difficulty: 'easy'
+        },
+        {
+          id: 2,
+          question: isZhHK ? '你叫 ChatGPT 幫手寫一封投訴電郵，除咗講清楚投訴嘅事，提供邊樣嘢最可以令封信寫得更好？' : 'When asking ChatGPT to help write a complaint email, besides clearly stating the complaint, what can you provide to make the letter better?',
+          options: [
+            isZhHK ? '你今日嘅心情' : 'Your mood today',
+            isZhHK ? '你希望封信嘅語氣係點 (例如：強硬但有禮貌)，同埋你想要達到咩目的 (例如：要求退款)' : 'Your desired tone for the letter (e.g., firm but polite), and what goal you want to achieve (e.g., request refund)',
+            isZhHK ? '隨便一個電郵地址' : 'Any random email address',
+            isZhHK ? '你屋企人嘅電話號碼' : 'Your family member\'s phone number'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '提供期望的語氣和目標能讓 ChatGPT 寫出更有效的投訴信。明確的語氣指導（如強硬但有禮貌）和具體目標（如退款、道歉等）能讓信件更有針對性和說服力。' : 'Providing the desired tone and goal allows ChatGPT to write a more effective complaint letter. Clear tone guidance (like firm but polite) and specific goals (like refund, apology, etc.) make the letter more targeted and persuasive.',
+          difficulty: 'medium'
+        },
+        {
+          id: 3,
+          question: isZhHK ? '以下邊一項任務，目前嘅 ChatGPT（單純嘅文字模型）本身係做唔到嘅？' : 'Which of the following tasks cannot be performed by current ChatGPT (pure text model) itself?',
+          options: [
+            isZhHK ? '將一段中文錄音檔直接轉成文字' : 'Convert a Chinese audio file directly to text',
+            isZhHK ? '檢查一段 Python 程式碼有冇語法錯誤' : 'Check a Python code for syntax errors',
+            isZhHK ? '寫一首關於夏天嘅十四行詩' : 'Write a sonnet about summer',
+            isZhHK ? '將一段法文翻譯成德文' : 'Translate French text to German'
+          ],
+          correctAnswer: 0,
+          explanation: isZhHK ? 'ChatGPT 是純文字模型，無法直接處理音頻文件。它可以檢查代碼、寫詩、翻譯文字，但需要其他工具來處理音頻轉文字的任務。' : 'ChatGPT is a pure text model and cannot directly process audio files. It can check code, write poetry, and translate text, but needs other tools to handle audio-to-text conversion.',
+          difficulty: 'medium'
+        },
+        {
+          id: 4,
+          question: isZhHK ? '你想用 ChatGPT 學習一種新語言（例如日文），以下邊個係一個好嘅應用方法？' : 'If you want to use ChatGPT to learn a new language (e.g., Japanese), which is a good application method?',
+          options: [
+            isZhHK ? '叫佢幫你設計一個學習計劃，同埋進行角色扮演對話練習' : 'Ask it to design a learning plan and conduct role-playing conversation practice',
+            isZhHK ? '淨係用佢嚟查字典' : 'Only use it as a dictionary',
+            isZhHK ? '叫佢直接將成個日文文法系統一次過俾你' : 'Ask it to give you the entire Japanese grammar system all at once',
+            isZhHK ? '叫佢幫你考日文能力試' : 'Ask it to help you take the Japanese proficiency test'
+          ],
+          correctAnswer: 0,
+          explanation: isZhHK ? '最有效的方法是讓 ChatGPT 設計個人化學習計劃並進行互動練習。這樣可以循序漸進地學習，通過對話練習來提高實際應用能力。' : 'The most effective method is to have ChatGPT design a personalized learning plan and conduct interactive practice. This allows gradual learning and improves practical application skills through conversation practice.',
+          difficulty: 'easy'
+        },
+        {
+          id: 5,
+          question: isZhHK ? '關於利用 ChatGPT 進行「腦力激盪」(Brainstorming)，以下講法邊個最貼切？' : 'Regarding using ChatGPT for "Brainstorming", which statement is most accurate?',
+          options: [
+            isZhHK ? '佢只可以提供一個最終答案，唔識得俾好多唔同嘅建議' : 'It can only provide one final answer, cannot give many different suggestions',
+            isZhHK ? '你可以俾佢一個主題（例如：環保主題嘅公司活動），叫佢諗出10個唔同嘅創意點子' : 'You can give it a topic (e.g., eco-friendly company activities) and ask it to come up with 10 different creative ideas',
+            isZhHK ? '腦力激盪功能只係 Plus 會員先有' : 'Brainstorming function is only available for Plus members',
+            isZhHK ? '佢諗出嚟嘅主意通常都好唔實際，無參考價值' : 'The ideas it generates are usually impractical and have no reference value'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? 'ChatGPT 非常擅長腦力激盪，可以根據給定主題快速生成多個創意想法。只要提供清楚的主題和要求，它就能提供多樣化和實用的建議。' : 'ChatGPT excels at brainstorming and can quickly generate multiple creative ideas based on a given topic. As long as you provide a clear topic and requirements, it can offer diverse and practical suggestions.',
+          difficulty: 'easy'
+        }
+      ]
+    },
+    4: {
+      title: isZhHK ? '第四章測驗：釋放潛能 - 進階功能與技巧' : 'Chapter 4 Quiz: Unleashing Potential - Advanced Features and Techniques',
+      description: isZhHK ? '測試您對 ChatGPT 進階功能和高級應用技巧的掌握程度。' : 'Test your mastery of ChatGPT advanced features and high-level application techniques.',
+      passingScore: 70,
       timeLimit: 25,
       questions: [
         {
           id: 1,
-          question: isZhHK ? '[ChatGPT 主題3問題1]' : '[ChatGPT Theme 3 Question 1]',
+          question: isZhHK ? '你係一個學生，想 ChatGPT 之後回答你所有問題嗰陣，都用比較學術、嚴謹嘅風格，並且以繁體中文回答。你應該用咩功能去設定呢個長遠嘅要求？' : 'As a student, you want ChatGPT to always answer all your questions in an academic, rigorous style and in Traditional Chinese. What function should you use to set this long-term requirement?',
           options: [
-            isZhHK ? '[ChatGPT 選項1A]' : '[ChatGPT Option 1A]',
-            isZhHK ? '[ChatGPT 選項1B]' : '[ChatGPT Option 1B]',
-            isZhHK ? '[ChatGPT 選項1C]' : '[ChatGPT Option 1C]',
-            isZhHK ? '[ChatGPT 選項1D]' : '[ChatGPT Option 1D]'
+            isZhHK ? '每次提問前都重複打一次「請用學術風格同繁體中文回答」' : 'Repeat "Please answer in academic style and Traditional Chinese" before every question',
+            isZhHK ? '用「Custom Instructions (自訂指令)」功能一次過設定好' : 'Use "Custom Instructions" feature to set it once',
+            isZhHK ? '登出再登入，系統就會自動調整' : 'Log out and log in again, the system will adjust automatically',
+            isZhHK ? '呢個係做唔到嘅，只可以逐次要求' : 'This cannot be done, can only request each time'
           ],
-          correctAnswer: 3,
-          explanation: isZhHK ? '[ChatGPT 問題1解釋]' : '[ChatGPT Question 1 Explanation]',
-          difficulty: 'hard'
+          correctAnswer: 1,
+          explanation: isZhHK ? 'Custom Instructions (自訂指令) 功能允許用戶一次性設定長期的對話偏好，包括回答風格、語言選擇等，讓 ChatGPT 在每次對話中都遵循這些設定。' : 'Custom Instructions feature allows users to set long-term conversation preferences once, including response style and language choice, making ChatGPT follow these settings in every conversation.',
+          difficulty: 'medium'
+        },
+        {
+          id: 2,
+          question: isZhHK ? '關於創建一個屬於你自己嘅 GPT，以下邊個講法係啱嘅？' : 'Regarding creating your own GPT, which statement is correct?',
+          options: [
+            isZhHK ? '只有專業程式設計師先可以創建 GPT' : 'Only professional programmers can create GPTs',
+            isZhHK ? '創建 GPT 嘅過程非常複雜，需要至少一個星期' : 'Creating a GPT is very complex and takes at least a week',
+            isZhHK ? '你可以透過對話形式，用自然語言指示 ChatGPT 去創建一個有特定功能嘅 GPT，唔一定需要寫程式碼' : 'You can create a GPT with specific functions through conversation using natural language, without necessarily writing code',
+            isZhHK ? '所有自己創建嘅 GPT 都一定要公開俾全世界嘅人用' : 'All self-created GPTs must be made public for everyone to use'
+          ],
+          correctAnswer: 2,
+          explanation: isZhHK ? 'ChatGPT 允許用戶通過自然語言對話來創建自定義 GPT，過程相對簡單直觀，不需要編程知識，也可以選擇是否公開分享。' : 'ChatGPT allows users to create custom GPTs through natural language conversation, with a relatively simple and intuitive process that requires no programming knowledge, and you can choose whether to share publicly.',
+          difficulty: 'medium'
+        },
+        {
+          id: 3,
+          question: isZhHK ? 'ChatGPT 嘅「Advanced Data Analysis (進階數據分析)」功能最適合處理以下邊一項任務？' : 'Which task is most suitable for ChatGPT\'s "Advanced Data Analysis" function?',
+          options: [
+            isZhHK ? '問佢「宇宙嘅意義係咩？」' : 'Ask it "What is the meaning of the universe?"',
+            isZhHK ? '上傳一個 Excel 銷售數據檔案，叫佢分析趨勢並畫一個棒形圖 (bar chart)' : 'Upload an Excel sales data file and ask it to analyze trends and create a bar chart',
+            isZhHK ? '叫佢寫一篇感人嘅愛情小說' : 'Ask it to write a touching love story',
+            isZhHK ? '即時查詢紐約而家幾多點' : 'Real-time query of current time in New York'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? 'Advanced Data Analysis 功能專門用於處理和分析數據文件，可以上傳文檔進行數據分析、創建圖表和執行統計計算，非常適合處理 Excel 等數據文件。' : 'Advanced Data Analysis function is specifically designed for processing and analyzing data files, allowing file uploads for data analysis, chart creation, and statistical calculations, making it ideal for handling Excel and other data files.',
+          difficulty: 'easy'
+        },
+        {
+          id: 4,
+          question: isZhHK ? '喺 GPT Store 入面，你搵到一個專門用嚟「優化旅行路線」嘅 GPT。呢個 GPT 同普通 ChatGPT 相比，最大嘅優點可能係咩？' : 'In the GPT Store, you find a GPT specifically for "optimizing travel routes". What might be the biggest advantage of this GPT compared to regular ChatGPT?',
+          options: [
+            isZhHK ? '佢回答速度一定快幾倍' : 'It definitely answers several times faster',
+            isZhHK ? '佢被預先設定好特定嘅知識同指令，可以更專業、更有效率咁處理旅行規劃嘅問題' : 'It is pre-configured with specific knowledge and instructions, enabling more professional and efficient handling of travel planning issues',
+            isZhHK ? '佢識得講全世界所有語言' : 'It can speak all languages in the world',
+            isZhHK ? '佢可以幫你直接訂機票同酒店' : 'It can directly book flights and hotels for you'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '專門的 GPT 通常被預先配置了特定領域的知識、指令和工作流程，使其在處理相關任務時更加專業和高效，比通用 ChatGPT 更有針對性。' : 'Specialized GPTs are usually pre-configured with domain-specific knowledge, instructions, and workflows, making them more professional and efficient in handling related tasks, more targeted than general ChatGPT.',
+          difficulty: 'medium'
+        },
+        {
+          id: 5,
+          question: isZhHK ? '你想用 Advanced Data Analysis 功能去分析一份 PDF 文件入面嘅文字內容，你嘅第一步應該係咩？' : 'If you want to use Advanced Data Analysis function to analyze text content in a PDF file, what should your first step be?',
+          options: [
+            isZhHK ? '將 PDF 嘅內容用口讀俾電腦聽' : 'Read the PDF content aloud to the computer',
+            isZhHK ? '將成份 PDF 嘅文字複製，然後貼上對話框' : 'Copy all the PDF text and paste it into the chat box',
+            isZhHK ? '用對話框左邊嘅「萬字夾」圖示上傳個 PDF 檔案' : 'Use the "paperclip" icon on the left side of the chat box to upload the PDF file',
+            isZhHK ? '先將 PDF 轉成 Word 檔案先可以分析' : 'First convert the PDF to a Word file before analysis'
+          ],
+          correctAnswer: 2,
+          explanation: isZhHK ? 'Advanced Data Analysis 功能支持直接上傳 PDF 文件進行分析。使用對話框旁的上傳功能（通常是paperclip圖示）是最直接有效的方法。' : 'Advanced Data Analysis function supports direct PDF file upload for analysis. Using the upload feature next to the chat box (usually a paperclip icon) is the most direct and effective method.',
+          difficulty: 'easy'
+        }
+      ]
+    },
+    5: {
+      title: isZhHK ? '第五章測驗：創意無限 - 探索娛樂與創作' : 'Chapter 5 Quiz: Unlimited Creativity - Exploring Entertainment and Creation',
+      description: isZhHK ? '測試您在創意寫作、娛樂互動和藝術創作方面的 ChatGPT 應用技巧。' : 'Test your ChatGPT application skills in creative writing, entertainment interaction, and artistic creation.',
+      passingScore: 70,
+      timeLimit: 20,
+      questions: [
+        {
+          id: 1,
+          question: isZhHK ? '你想 ChatGPT 幫你寫一個偵探故仔，為咗令故仔更精彩，喺 Prompt 入面提供邊啲元素效果最好？' : 'If you want ChatGPT to help write a detective story, what elements should you provide in the prompt to make the story more exciting?',
+          options: [
+            isZhHK ? '淨係講「寫個偵探故仔」' : 'Just say "write a detective story"',
+            isZhHK ? '提供主角設定、案情背景、兇案現場線索，同埋想要嘅結局方向' : 'Provide character settings, case background, crime scene clues, and desired ending direction',
+            isZhHK ? '提供你最鍾意嘅偵探個名' : 'Provide the name of your favorite detective',
+            isZhHK ? '問佢識唔識寫偵探故仔' : 'Ask if it knows how to write detective stories'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '創作優質故事需要詳細的背景信息和創作指導。提供主角設定、案情背景、線索和結局方向能讓 ChatGPT 創作出更豐富、更有結構的故事。' : 'Creating quality stories requires detailed background information and creative guidance. Providing character settings, case background, clues, and ending direction enables ChatGPT to create richer, more structured stories.',
+          difficulty: 'easy'
+        },
+        {
+          id: 2,
+          question: isZhHK ? '關於用 ChatGPT 進行文字角色扮演遊戲 (RPG)，以下描述何者正確？' : 'Regarding using ChatGPT for text-based role-playing games (RPG), which description is correct?',
+          options: [
+            isZhHK ? '呢個功能需要另外俾錢' : 'This function requires additional payment',
+            isZhHK ? '你可以要求 ChatGPT 扮演「遊戲管理員」(GM)，由佢創造世界觀同劇情，你扮演冒險者進行互動' : 'You can ask ChatGPT to play "Game Master" (GM), creating worldview and storylines while you play as an adventurer for interaction',
+            isZhHK ? 'ChatGPT 只可以扮演好人角色，唔可以扮演壞人' : 'ChatGPT can only play good characters, not villains',
+            isZhHK ? '遊戲一旦開始就唔可以中途停低' : 'Once the game starts, it cannot be paused midway'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? 'ChatGPT 可以很好地扮演遊戲管理員角色，創造豐富的世界觀、劇情和各種角色（包括反派），與玩家進行互動式的角色扮演遊戲，而且可以隨時暫停或調整。' : 'ChatGPT can effectively play the game master role, creating rich worldviews, storylines, and various characters (including villains), engaging in interactive role-playing games with players, and can be paused or adjusted anytime.',
+          difficulty: 'medium'
+        },
+        {
+          id: 3,
+          question: isZhHK ? '「請用金庸武俠小說嘅風格，寫一段關於兩個高手喺竹林對決嘅描寫。」呢個 Prompt 係想測試 ChatGPT 嘅咩能力？' : '"Please write a description of two masters dueling in a bamboo forest in the style of Jin Yong\'s martial arts novels." What ability of ChatGPT does this prompt aim to test?',
+          options: [
+            isZhHK ? '模仿特定風格同語氣嘅能力' : 'Ability to mimic specific styles and tones',
+            isZhHK ? '翻譯文言文嘅能力' : 'Ability to translate classical Chinese',
+            isZhHK ? '總結小說內容嘅能力' : 'Ability to summarize novel content',
+            isZhHK ? '認識歷史人物嘅能力' : 'Knowledge of historical figures'
+          ],
+          correctAnswer: 0,
+          explanation: isZhHK ? '這個 Prompt 主要測試 ChatGPT 模仿特定作家風格的能力。要求以金庸的寫作風格創作武俠場景，需要 AI 理解並重現特定的文學風格、用詞習慣和敘述方式。' : 'This prompt primarily tests ChatGPT\'s ability to mimic specific author styles. Requiring creation of martial arts scenes in Jin Yong\'s writing style needs the AI to understand and reproduce specific literary styles, word usage habits, and narrative approaches.',
+          difficulty: 'medium'
+        },
+        {
+          id: 4,
+          question: isZhHK ? '除咗寫故仔，ChatGPT 喺創意方面可以點樣幫一個畫家或者設計師？' : 'Besides writing stories, how can ChatGPT help a painter or designer creatively?',
+          options: [
+            isZhHK ? '幫佢調校電腦螢幕嘅顏色' : 'Help adjust computer screen colors',
+            isZhHK ? '直接取代畫家，畫出完美嘅作品' : 'Directly replace the painter and create perfect artwork',
+            isZhHK ? '為佢嘅作品提供文字描述、創作理念，或者根據一個主題（例如「孤獨嘅城市」）提供畫面構圖嘅靈感同想法' : 'Provide text descriptions and creative concepts for their work, or offer composition inspiration and ideas based on themes (e.g., "lonely city")',
+            isZhHK ? '幫佢登記作品版權' : 'Help register artwork copyrights'
+          ],
+          correctAnswer: 2,
+          explanation: isZhHK ? 'ChatGPT 可以作為創意夥伴，為視覺藝術家提供概念描述、主題解釋、構圖建議和創作靈感，幫助藝術家拓展創意思維和表達方式。' : 'ChatGPT can serve as a creative partner, providing concept descriptions, theme interpretations, composition suggestions, and creative inspiration to help visual artists expand their creative thinking and expression methods.',
+          difficulty: 'easy'
+        },
+        {
+          id: 5,
+          question: isZhHK ? '當你完全冇靈感嘅時候，可以點樣用一個開放式問題，叫 ChatGPT 幫你進行「腦力激盪」？' : 'When you have no inspiration at all, how can you use an open-ended question to ask ChatGPT to help you brainstorm?',
+          options: [
+            isZhHK ? '「我冇靈感，點算？」' : '"I have no inspiration, what should I do?"',
+            isZhHK ? '「俾啲靈感我。」' : '"Give me some inspiration."',
+            isZhHK ? '「我係一個遊戲設計師，想設計一款以『時間旅行』為主題嘅手機遊戲，請俾10個唔同玩法嘅創意點子。」' : '"I am a game designer wanting to create a mobile game with \'time travel\' theme, please give me 10 different creative gameplay ideas."',
+            isZhHK ? '「靈感係咩？」' : '"What is inspiration?"'
+          ],
+          correctAnswer: 2,
+          explanation: isZhHK ? '有效的腦力激盪需要提供具體的背景、明確的目標和具體的要求。說明自己的身份（遊戲設計師）、項目主題（時間旅行）和具體需求（10個玩法創意）能讓 ChatGPT 提供更有針對性和實用性的建議。' : 'Effective brainstorming requires providing specific background, clear objectives, and concrete requirements. Stating your identity (game designer), project theme (time travel), and specific needs (10 gameplay ideas) enables ChatGPT to provide more targeted and practical suggestions.',
+          difficulty: 'easy'
+        }
+      ]
+    },
+    6: {
+      title: isZhHK ? '第六章測驗：智慧使用 - 限制、道德與未來' : 'Chapter 6 Quiz: Smart Usage - Limitations, Ethics and Future',
+      description: isZhHK ? '測試您對 AI 限制、使用道德和負責任應用的理解。' : 'Test your understanding of AI limitations, usage ethics, and responsible application.',
+      passingScore: 60,
+      timeLimit: 15,
+      questions: [
+        {
+          id: 1,
+          question: isZhHK ? '當 ChatGPT 俾咗一個睇落好真，但其實係完全錯誤或者憑空捏造嘅資訊，呢個現象行內術語叫咩？' : 'When ChatGPT provides information that looks real but is completely wrong or fabricated, what is this phenomenon called in industry terms?',
+          options: [
+            isZhHK ? '系統故障 (System Error)' : 'System Error',
+            isZhHK ? '產生幻覺 (Hallucination)' : 'Hallucination',
+            isZhHK ? '網絡延遲 (Network Lag)' : 'Network Lag',
+            isZhHK ? '知識偏見 (Knowledge Bias)' : 'Knowledge Bias'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '「Hallucination（幻覺）」是AI領域的專業術語，指AI模型生成看似真實但實際錯誤或虛構的信息，這是當前大型語言模型的一個重要限制。' : '"Hallucination" is a professional term in the AI field, referring to AI models generating information that appears real but is actually incorrect or fabricated, which is an important limitation of current large language models.',
+          difficulty: 'medium'
+        },
+        {
+          id: 2,
+          question: isZhHK ? '為咗保護你嘅私隱，以下邊一樣嘢你最唔應該直接輸入 ChatGPT？' : 'To protect your privacy, which of the following should you NEVER directly input into ChatGPT?',
+          options: [
+            isZhHK ? '一個公開嘅新聞網址，想佢幫你總結' : 'A public news URL for summarization',
+            isZhHK ? '你嘅完整身份證號碼同銀行戶口密碼' : 'Your complete ID number and bank account password',
+            isZhHK ? '一條公開嘅數學題' : 'A public math problem',
+            isZhHK ? '一段你想佢幫手潤飾嘅公司簡介文字' : 'Company introduction text you want polished'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '絕對不應該向 ChatGPT 提供任何敏感個人信息，如身份證號碼、密碼、銀行信息等。這些信息可能被儲存或用於訓練，存在隱私洩露風險。' : 'You should never provide any sensitive personal information to ChatGPT, such as ID numbers, passwords, banking information, etc. This information might be stored or used for training, posing privacy leak risks.',
+          difficulty: 'easy'
+        },
+        {
+          id: 3,
+          question: isZhHK ? '關於 ChatGPT 提供嘅資訊，以下邊個心態先係最正確、最負責任？' : 'Regarding information provided by ChatGPT, which attitude is most correct and responsible?',
+          options: [
+            isZhHK ? '佢係超級AI，俾嘅所有資訊（尤其醫療、法律、金融建議）都係絕對準確，應該完全信晒佢' : 'It\'s a super AI, all information (especially medical, legal, financial advice) is absolutely accurate and should be completely trusted',
+            isZhHK ? '佢只係一個輔助工具，所提供嘅資訊應該要抱持懷疑態度，並且喺重要情況下搵專家或可靠來源核實' : 'It\'s just an auxiliary tool, information provided should be approached with skepticism, and verified with experts or reliable sources in important situations',
+            isZhHK ? '佢講嘅嘢全部都係假嘅，完全冇參考價值' : 'Everything it says is fake and has no reference value',
+            isZhHK ? '只有用付費版，答案先係可信嘅' : 'Only paid version answers are trustworthy'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '正確的態度是將 ChatGPT 視為有用的輔助工具，但要保持批判性思維。特別是涉及健康、法律、金融等重要決策時，必須諮詢專業人士或查證可靠來源。' : 'The correct attitude is to view ChatGPT as a useful auxiliary tool while maintaining critical thinking. Especially for important decisions involving health, legal, or financial matters, professional consultation or reliable source verification is essential.',
+          difficulty: 'medium'
+        },
+        {
+          id: 4,
+          question: isZhHK ? '點解話 AI 嘅答案可能會有「偏見」(Bias)？呢個偏見最主要係源自邊度？' : 'Why might AI answers have "bias"? Where does this bias mainly come from?',
+          options: [
+            isZhHK ? 'AI 自己有個人喜好同情緒' : 'AI has personal preferences and emotions',
+            isZhHK ? '訓練 AI 嘅大量數據本身就包含咗人類社會存在嘅各種偏見' : 'The massive data used to train AI contains various biases that exist in human society',
+            isZhHK ? '程式設計師故意寫入嘅偏見' : 'Bias intentionally written by programmers',
+            isZhHK ? '因為伺服器放置嘅地理位置唔同' : 'Due to different geographic locations of servers'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? 'AI 偏見主要源於訓練數據。由於 AI 從人類創造的大量文本和內容中學習，這些數據不可避免地包含了人類社會的各種偏見、刻板印象和不平等觀念。' : 'AI bias mainly comes from training data. Since AI learns from massive amounts of human-created texts and content, this data inevitably contains various biases, stereotypes, and inequality concepts from human society.',
+          difficulty: 'medium'
+        },
+        {
+          id: 5,
+          question: isZhHK ? '當你用 ChatGPT 輔助完成一份功課報告時，點樣先算係一個負責任同埋誠實嘅做法？' : 'When using ChatGPT to assist with homework assignments, what constitutes responsible and honest practice?',
+          options: [
+            isZhHK ? '將 ChatGPT 寫嘅所有文字直接複製貼上，當成係自己寫嘅' : 'Copy and paste all ChatGPT-written text directly as your own work',
+            isZhHK ? '利用佢嚟搵資料、整理大綱、激發靈感同潤飾自己嘅句子，但最終嘅內容同觀點必須經過自己嘅理解同重寫' : 'Use it to find information, organize outlines, inspire ideas and polish your sentences, but final content and viewpoints must be understood and rewritten by yourself',
+            isZhHK ? '完全唔用，因為用 AI 就等於作弊' : 'Don\'t use it at all, because using AI equals cheating',
+            isZhHK ? '喺報告最後寫一句「多謝 ChatGPT」就得' : 'Just write "Thanks ChatGPT" at the end of the report'
+          ],
+          correctAnswer: 1,
+          explanation: isZhHK ? '負責任的使用方式是將 ChatGPT 作為研究和寫作的輔助工具，用來激發想法、整理思路或改善表達，但最終的內容必須經過自己的思考、理解和重新組織，體現自己的學習成果。' : 'Responsible usage involves using ChatGPT as a research and writing assistant to inspire ideas, organize thoughts, or improve expression, but the final content must go through your own thinking, understanding, and reorganization, reflecting your own learning outcomes.',
+          difficulty: 'easy'
         }
       ]
     }
@@ -339,7 +610,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="flex items-center justify-center space-x-3 mb-4">
-            <Brain className="w-8 h-8 text-purple-400" />
+                              <Brain className="w-8 h-8 text-gray-400" />
             <h1 className="text-4xl font-bold text-white">
               {currentQuiz.title}
             </h1>
@@ -349,7 +620,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
           {/* Quiz Stats */}
           <div className="flex items-center justify-center space-x-8 text-white/70">
             <div className="flex items-center space-x-2">
-              <BookOpen className="w-5 h-5 text-blue-400" />
+                                <BookOpen className="w-5 h-5 text-gray-400" />
               <span>{totalQuestions} [題目]</span>
             </div>
             <div className="flex items-center space-x-2">
@@ -371,7 +642,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <Brain className="w-16 h-16 text-purple-400 mx-auto mb-6" />
+                              <Brain className="w-16 h-16 text-gray-400 mx-auto mb-6" />
               <h2 className="text-2xl font-bold text-white mb-4">
                 {isZhHK ? '[準備開始測驗]' : '[Ready to Start Quiz]'}
               </h2>
@@ -380,8 +651,8 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
-                  <BookOpen className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                <div className="bg-gray-800/50 border border-gray-600/30 rounded-lg p-4">
+                                      <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                   <h3 className="font-semibold text-white mb-1">{totalQuestions} [題目]</h3>
                   <p className="text-sm text-white/60">[選擇題形式]</p>
                 </div>
@@ -433,7 +704,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                 {/* Question */}
                 <div className="mb-8">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                       {currentQuestion + 1}
                     </div>
                     <Badge 
@@ -461,7 +732,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                       key={index}
                       className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${
                         selectedAnswers[currentQuestion] === index
-                          ? 'border-blue-500 bg-blue-500/10 text-white'
+                          ? 'border-gray-500 bg-gray-700/50 text-white'
                           : 'border-gray-600 bg-gray-700/20 text-white/80 hover:border-gray-500 hover:bg-gray-600/20'
                       }`}
                       onClick={() => selectAnswer(index)}
@@ -471,7 +742,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                       <div className="flex items-center space-x-3">
                         <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold ${
                           selectedAnswers[currentQuestion] === index
-                            ? 'border-blue-500 bg-blue-500 text-white'
+                            ? 'border-gray-600 bg-gray-700 text-white'
                             : 'border-gray-400 text-gray-400'
                         }`}>
                           {String.fromCharCode(65 + index)}
@@ -557,17 +828,17 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
               </div>
 
               <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
-                  <Star className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">[正確答案]</h3>
-                  <p className="text-2xl font-bold text-blue-400">
+                <div className="bg-gray-800/50 border border-gray-600/30 rounded-lg p-6">
+                                      <Star className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                    <h3 className="font-semibold text-white mb-1">[正確答案]</h3>
+                    <p className="text-2xl font-bold text-gray-300">
                     {currentQuiz.questions.filter((_, index) => selectedAnswers[index] === currentQuiz.questions[index].correctAnswer).length} / {totalQuestions}
                   </p>
                 </div>
-                <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-6">
-                  <Timer className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">[完成時間]</h3>
-                  <p className="text-2xl font-bold text-purple-400">
+                                  <div className="bg-gray-800/50 border border-gray-600/30 rounded-lg p-6">
+                                      <Timer className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                    <h3 className="font-semibold text-white mb-1">[完成時間]</h3>
+                    <p className="text-2xl font-bold text-gray-300">
                     {formatTime((currentQuiz.timeLimit * 60) - timeRemaining)}
                   </p>
                 </div>
@@ -587,14 +858,14 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                   <Button
                     className="btn-primary"
                     onClick={() => {
-                      if (currentThemeId < 3) {
+                      if (currentThemeId < 6) {
                         navigate(`/courses/chatgpt-complete-course/theme/${currentThemeId + 1}`);
                       } else {
                         navigate('/courses/chatgpt-complete-course/learning');
                       }
                     }}
                   >
-                    {currentThemeId < 3 ? '[下一主題]' : '[完成課程]'}
+                                          {currentThemeId < 6 ? (isZhHK ? '下一主題' : 'Next Theme') : (isZhHK ? '完成課程' : 'Complete Course')}
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 )}

@@ -588,7 +588,15 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-white/70">學習時間</span>
-                  <span className="text-sm font-semibold text-white">{courseData.completedHours}小時 累積</span>
+                  <span className="text-sm font-semibold text-white">
+                    {(() => {
+                      const totalSeconds = courseData.completedHours * 60; // 將分鐘轉換為秒
+                      const hours = Math.floor(totalSeconds / 3600);
+                      const minutes = Math.floor((totalSeconds % 3600) / 60);
+                      const seconds = totalSeconds % 60;
+                      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    })()}
+                  </span>
                 </div>
                 
                 <div className="learning-streak border border-orange-500/20 bg-orange-500/10">

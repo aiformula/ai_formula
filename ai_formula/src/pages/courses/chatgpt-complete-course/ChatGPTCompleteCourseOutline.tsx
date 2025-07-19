@@ -56,7 +56,7 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
     {
       icon: <Clock className="w-6 h-6 text-green-400" />,
       label: isZhHK ? "課程總長度" : "Course Duration",
-      value: isZhHK ? "4 小時綜合培訓" : "4 Hours Comprehensive Training"
+      value: isZhHK ? "13+ 小時深度學習" : "13+ Hours Deep Learning"
     },
     {
       icon: <Monitor className="w-6 h-6 text-green-400" />,
@@ -202,7 +202,7 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
     description: isZhHK ? "本課程專為以下人群設計" : "This course is designed for",
     audiences: [
       {
-        icon: <Briefcase className="w-6 h-6 text-blue-400" />,
+        icon: <Briefcase className="w-6 h-6 text-gray-400" />,
         title: isZhHK ? "職場工作者" : "Working Professionals",
         description: isZhHK ? "想要提升工作效率的上班族" : "Office workers wanting to improve productivity"
       },
@@ -212,7 +212,7 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
         description: isZhHK ? "需要創意發想和寫作協助的創作者" : "Creators needing creative inspiration and writing assistance"
       },
       {
-        icon: <Users className="w-6 h-6 text-purple-400" />,
+        icon: <Users className="w-6 h-6 text-gray-400" />,
         title: isZhHK ? "學生群體" : "Students",
         description: isZhHK ? "想要學習 AI 工具的學生" : "Students wanting to learn AI tools"
       },
@@ -228,88 +228,99 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
   const courseModules = [
     {
       id: 1,
-      title: isZhHK ? "ChatGPT 基礎入門" : "ChatGPT Fundamentals",
-      description: isZhHK ? "瞭解 ChatGPT 基本概念與註冊使用" : "Understanding ChatGPT basics and getting started",
-      duration: isZhHK ? "45分鐘" : "45 minutes",
-      lessons: 3,
+      title: isZhHK ? "AI 革命的開端：重新認識 ChatGPT" : "The Beginning of AI Revolution: Rediscovering ChatGPT",
+      description: isZhHK ? "這個單元為零基礎學員打好穩固根基，理解 ChatGPT 的運作原理與價值，並完成所有前置準備。" : "This unit builds a solid foundation for beginners, understanding how ChatGPT works and its value.",
+      duration: isZhHK ? "90分鐘" : "90 minutes",
+      lessons: 5,
       completed: false,
       locked: false,
       topics: [
-        isZhHK ? "什麼是 ChatGPT" : "What is ChatGPT",
-        isZhHK ? "如何註冊與設定" : "How to register and set up",
-        isZhHK ? "基本介面操作" : "Basic interface operation"
+        isZhHK ? "歡迎來到 AI 新紀元：課程簡介與學習地圖" : "Welcome to the New AI Era: Course Introduction & Learning Map",
+        isZhHK ? "ChatGPT 是什麼？白話拆解大型語言模型 (LLM) 核心概念" : "What is ChatGPT? Breaking Down Large Language Model (LLM) Core Concepts",
+        isZhHK ? "GPT 的演進史：從 GPT-3.5 到 GPT-4o 的關鍵差異" : "Evolution of GPT: Key Differences from GPT-3.5 to GPT-4o",
+        isZhHK ? "免費版 vs. Plus 版：功能比較與選擇策略" : "Free vs. Plus: Feature Comparison & Selection Strategy",
+        isZhHK ? "帳戶註冊與安全設定：逐步完成註冊，保障帳戶安全" : "Account Registration & Security Settings: Step-by-step Registration"
       ]
     },
     {
       id: 2,
-      title: isZhHK ? "高效 Prompt 實戰手冊" : "Efficient Prompt Practical Manual",
-      description: isZhHK ? "掌握 Prompt 工程技巧，提升回答質量" : "Master prompt engineering techniques for better responses",
-      duration: isZhHK ? "60分鐘" : "60 minutes",
-      lessons: 4,
+      title: isZhHK ? "高效 Prompt 實戰手冊：掌握與 AI 對話的藝術" : "Efficient Prompt Practical Manual: Master the Art of AI Conversation",
+      description: isZhHK ? "掌握 Prompt 工程技巧，提升回答質量和準確性，學會如何與 ChatGPT 進行更有效的溝通。" : "Master prompt engineering techniques for better responses and learn how to communicate more effectively with ChatGPT.",
+      duration: isZhHK ? "140分鐘" : "140 minutes",
+      lessons: 5,
       completed: false,
       locked: false,
       topics: [
-        isZhHK ? "提示詞基本原則" : "Basic prompt principles",
-        isZhHK ? "角色設定技巧" : "Role-setting techniques",
-        isZhHK ? "情境描述方法" : "Context description methods",
-        isZhHK ? "結果優化策略" : "Result optimization strategies"
+        isZhHK ? "主介面深度導覽：對話視窗、歷史紀錄與設定區" : "Main Interface Deep Tour: Chat Window, History & Settings",
+        isZhHK ? "對話管理技巧：如何有效命名、分享與刪除對話" : "Conversation Management: Rename, Share & Delete Conversations",
+        isZhHK ? "Custom Instructions (自訂指令)：打造個人化 AI 助教" : "Custom Instructions: Create Your Personal AI Assistant",
+        isZhHK ? "手機 App 獨有功能：語音對話與圖像辨識實戰" : "Mobile App Exclusive Features: Voice Chat & Image Recognition",
+        isZhHK ? "探索 GPT Store：如何尋找、評估及使用優秀 GPTs" : "Exploring GPT Store: Finding, Evaluating & Using GPTs"
       ]
     },
     {
       id: 3,
-      title: isZhHK ? "AI 工具整合指南" : "AI Tools Integration Guide",
-      description: isZhHK ? "學習與其他 AI 工具的協同使用" : "Learn to integrate with other AI tools",
-      duration: isZhHK ? "50分鐘" : "50 minutes",
-      lessons: 3,
+      title: isZhHK ? "指令的藝術 (Prompt Engineering) — 讓 AI 精準聽懂你的話" : "The Art of Prompts (Prompt Engineering) — Making AI Understand You Precisely",
+      description: isZhHK ? "這是整個課程的核心，學會「提問」比擁有工具更重要。本單元將傳授從入門到高階的指令技巧。" : "This is the core of the entire course. Learning to 'ask questions' is more important than having tools.",
+      duration: isZhHK ? "158分鐘" : "158 minutes",
+      lessons: 6,
       completed: false,
       locked: false,
       topics: [
-        isZhHK ? "常用 AI 工具介紹" : "Introduction to common AI tools",
-        isZhHK ? "工具間的協作流程" : "Collaborative processes between tools",
-        isZhHK ? "效率提升實例" : "Efficiency improvement examples"
+        isZhHK ? "優質指令的四大基石：角色 (Role)、任務 (Task)、脈絡 (Context)、格式 (Format)" : "Four Pillars of Quality Prompts: Role, Task, Context, Format",
+        isZhHK ? "角色扮演法：讓 ChatGPT 成為你的私人律師、程式設計師或行銷專家" : "Role-Playing Method: Make ChatGPT Your Personal Expert",
+        isZhHK ? "範例引導法 (Few-Shot Prompting)：給予 AI 範例，讓它模仿你的風格" : "Few-Shot Prompting: Give AI Examples to Mimic Your Style",
+        isZhHK ? "思維鏈技巧 (Chain of Thought)：引導 AI 一步步思考，解決複雜問題" : "Chain of Thought: Guide AI to Think Step by Step",
+        isZhHK ? "迭代與追問：如何透過追問，從 60 分的答案優化到 95 分" : "Iteration & Follow-up: Optimise from 60-point to 95-point Answers",
+        isZhHK ? "指令範本庫：提供 20+ 個常用高效指令範本，即學即用" : "Prompt Template Library: 20+ High-Efficiency Templates Ready to Use"
       ]
     },
     {
       id: 4,
-      title: isZhHK ? "商業應用實例" : "Business Application Cases",
-      description: isZhHK ? "真實商業場景的 ChatGPT 應用" : "Real business scenarios using ChatGPT",
-      duration: isZhHK ? "65分鐘" : "65 minutes",
-      lessons: 4,
+      title: isZhHK ? "精通之道 — 高級提示工程 (Prompt Engineering)" : "Path to Mastery — Advanced Prompt Engineering",
+      description: isZhHK ? "掌握了 ChatGPT 的基本功能後，要真正發揮其潛力，關鍵在於學會如何「提問」。" : "After mastering ChatGPT basics, the key to unleashing its potential lies in learning how to 'ask'.",
+      duration: isZhHK ? "150分鐘" : "150 minutes",
+      lessons: 5,
       completed: false,
       locked: false,
       topics: [
-        isZhHK ? "郵件撰寫自動化" : "Email writing automation",
-        isZhHK ? "市場分析報告" : "Market analysis reports",
-        isZhHK ? "客戶服務應用" : "Customer service applications",
-        isZhHK ? "會議記錄整理" : "Meeting notes organization"
+        isZhHK ? "實戰項目 (一) 內容創作引擎：自動生成高質素的社交媒體貼文、廣告文案與電子郵件" : "Project 1: Content Creation Engine - Social Media, Ads & Email",
+        isZhHK ? "實戰項目 (二) 學習研究加速器：快速總結論文、報告，並用簡單方式解釋複雜概念" : "Project 2: Learning Research Accelerator - Summarize Papers & Reports",
+        isZhHK ? "實戰項目 (三) 創意腦震盪夥伴：從零開始規劃旅行、活動流程或商業點子" : "Project 3: Creative Brainstorming Partner - Travel, Events & Business Ideas",
+        isZhHK ? "實戰項目 (四) 程式設計超級助手：解釋程式碼、除錯與編寫簡單腳本" : "Project 4: Programming Super Assistant - Code Explanation & Debugging",
+        isZhHK ? "實戰項目 (五) 語言翻譯與潤飾大師：進行多國語言精準翻譯與專業級文章校對" : "Project 5: Language Translation & Polishing Master"
       ]
     },
     {
       id: 5,
-      title: isZhHK ? "創意專案開發" : "Creative Project Development",
-      description: isZhHK ? "使用 ChatGPT 進行創意內容創作" : "Creative content creation with ChatGPT",
-      duration: isZhHK ? "55分鐘" : "55 minutes",
-      lessons: 3,
+      title: isZhHK ? "打造專屬 AI — 個人化與 GPT 商店" : "Build Your Personal AI — Personalization & GPT Store",
+      description: isZhHK ? "學習如何將 ChatGPT 從一個通用工具，轉變為一個真正懂您、為您量身定做的私人 AI 助手。" : "Learn to transform ChatGPT from a universal tool into a personal AI assistant tailored for you.",
+      duration: isZhHK ? "157分鐘" : "157 minutes",
+      lessons: 5,
       completed: false,
       locked: false,
       topics: [
-        isZhHK ? "創意發想技巧" : "Creative brainstorming techniques",
-        isZhHK ? "內容創作流程" : "Content creation process",
-        isZhHK ? "多媒體整合應用" : "Multimedia integration applications"
+        isZhHK ? "Advanced Data Analysis (數據分析大師)：上傳 Excel/CSV/PDF，進行數據分析與圖表製作" : "Advanced Data Analysis Master: Upload Excel/CSV/PDF for Data Analysis",
+        isZhHK ? "Web Browse (實時網絡瀏覽)：結合即時網絡資訊，進行市場調查與新聞總結" : "Web Browse: Real-time Web Information for Market Research",
+        isZhHK ? "DALL-E 3 圖像生成：用文字創造出專業級的商業插圖、簡報圖片與藝術作品" : "DALL-E 3 Image Generation: Create Professional Business Illustrations",
+        isZhHK ? "創建你的第一個 Custom GPT：無需編程，手把手教你打造個人專屬的 AI 應用" : "Create Your First Custom GPT: Build Personal AI Applications Without Programming",
+        isZhHK ? "GPTs 應用商店的秘密：如何發佈你的 GPT，甚至未來可能從中獲利" : "GPTs App Store Secrets: How to Publish Your GPT and Potentially Profit"
       ]
     },
     {
       id: 6,
-      title: isZhHK ? "進階技巧與優化" : "Advanced Techniques & Optimization",
-      description: isZhHK ? "高級使用技巧與效率優化策略" : "Advanced usage tips and efficiency optimization",
-      duration: isZhHK ? "45分鐘" : "45 minutes",
-      lessons: 3,
+      title: isZhHK ? "展望未來 — 應用、倫理與挑戰" : "Looking Forward — Applications, Ethics & Challenges",
+      description: isZhHK ? "從更宏觀的視角審視 ChatGPT，探討其廣泛應用，同時坦誠面對其局限性、倫理挑戰和隱私問題。" : "Examine ChatGPT from a macro perspective, exploring its applications while addressing limitations, ethics and privacy.",
+      duration: isZhHK ? "100分鐘" : "100 minutes",
+      lessons: 5,
       completed: false,
       locked: false,
       topics: [
-        isZhHK ? "進階提示技巧" : "Advanced prompt techniques",
-        isZhHK ? "自動化工作流程" : "Automated workflows",
-        isZhHK ? "持續學習策略" : "Continuous learning strategies"
+        isZhHK ? "AI 的「幻覺」現象：如何識別並查證 AI 生成的虛假資訊" : "AI 'Hallucination' Phenomenon: Identify and Verify AI-generated False Information",
+        isZhHK ? "數據私隱與安全：你的對話安全嗎？如何管理你的數據" : "Data Privacy & Security: Are Your Conversations Safe? Managing Your Data",
+        isZhHK ? "AI 的偏見問題：認識訓練數據帶來的潛在影響，並學習如何應對" : "AI Bias Issues: Understanding Training Data Impact and How to Respond",
+        isZhHK ? "負責任地使用 AI：在學術、工作與創作中應遵守的倫理界線" : "Responsible AI Use: Ethical Boundaries in Academia, Work & Creation",
+        isZhHK ? "人工智能的未來：展望 GPT 的下一步發展與對社會的長遠影響" : "The Future of AI: GPT's Next Development and Long-term Social Impact"
       ]
     }
   ];

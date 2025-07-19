@@ -303,7 +303,7 @@
 /* 進度條填充 */
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #fcd34d);
   background-size: 200% 200%;
   animation: progressGradient 3s ease-in-out infinite;
   border-radius: inherit;

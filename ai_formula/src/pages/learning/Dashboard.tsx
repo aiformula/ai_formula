@@ -251,9 +251,9 @@ const Dashboard: React.FC = () => {
           >
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-400 flex items-center">
+                <CardTitle className="text-sm font-medium text-gray-400 stat-card-icon-text-container">
                   <BookOpen className="h-4 w-4 mr-2" />
-                  {t.coursesCompleted}
+                  <span className="stat-card-title">{t.coursesCompleted}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -275,9 +275,9 @@ const Dashboard: React.FC = () => {
           >
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-400 flex items-center">
+                <CardTitle className="text-sm font-medium text-gray-400 stat-card-icon-text-container">
                   <Clock className="h-4 w-4 mr-2" />
-                  {t.totalStudyTime}
+                  <span className="stat-card-title">{t.totalStudyTime}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -298,9 +298,9 @@ const Dashboard: React.FC = () => {
           >
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-400 flex items-center">
+                <CardTitle className="text-sm font-medium text-gray-400 stat-card-icon-text-container">
                   <Target className="h-4 w-4 mr-2" />
-                  {t.averageScore}
+                  <span className="stat-card-title">{t.averageScore}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -321,9 +321,9 @@ const Dashboard: React.FC = () => {
           >
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-400 flex items-center">
+                <CardTitle className="text-sm font-medium text-gray-400 stat-card-icon-text-container">
                   <TrendingUp className="h-4 w-4 mr-2" />
-                  {isZhHK ? '學習連續天數' : 'Current Streak'}
+                  <span className="stat-card-title">{isZhHK ? '學習連續天數' : 'Current Streak'}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>

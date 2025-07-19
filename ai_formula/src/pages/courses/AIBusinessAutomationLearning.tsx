@@ -531,7 +531,7 @@ const AIBusinessAutomationLearning: React.FC = () => {
               transition={{ delay: 0.5 }}
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="skills-radar-title text-white flex items-center">
+                <h3 className="text-h2 flex items-center">
                   <BarChart3 className="w-5 h-5 mr-2 text-blue-400" />
                   技能發展追蹤
                 </h3>
@@ -568,9 +568,9 @@ const AIBusinessAutomationLearning: React.FC = () => {
               <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg border border-yellow-500/20">
                 <div className="flex items-center space-x-2 text-yellow-400 mb-2">
                   <Trophy className="w-4 h-4" />
-                  <span className="text-sm font-medium">學習成就</span>
+                  <span className="text-h3">學習成就</span>
                 </div>
-                <p className="text-xs text-white/70">AI 自動化基礎課程</p>
+                <p className="text-caption">AI 自動化基礎課程</p>
               </div>
             </motion.div>
 
@@ -581,26 +581,26 @@ const AIBusinessAutomationLearning: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <h3 className="learning-progress-title text-white flex items-center mb-6">
+              <h3 className="text-h2 flex items-center mb-6">
                 <Calendar className="w-5 h-5 mr-2 text-green-400" />
                 學習進度總覽
               </h3>
               
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="text-center p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                  <div className="text-2xl font-bold text-blue-400 mb-1">2</div>
-                  <div className="text-xs text-white/70">已完成單元</div>
+                  <div className="text-data text-blue-400 mb-1">2</div>
+                  <div className="text-label">已完成單元</div>
                 </div>
                 <div className="text-center p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                  <div className="text-2xl font-bold text-purple-400 mb-1">7</div>
-                  <div className="text-xs text-white/70">剩餘單元</div>
+                  <div className="text-data text-purple-400 mb-1">7</div>
+                  <div className="text-label">剩餘單元</div>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-white/70">學習時間</span>
-                  <span className="text-sm font-semibold text-white">{formattedLearningTime}</span>
+                  <span className="text-caption">學習時間</span>
+                  <span className="text-body">{formattedLearningTime}</span>
                 </div>
                 
                 <div className="learning-streak border border-orange-500/20 bg-orange-500/10">
@@ -637,7 +637,7 @@ const AIBusinessAutomationLearning: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
             >
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+              <h3 className="text-h2 mb-4 flex items-center">
                 <Award className="w-5 h-5 mr-2 text-yellow-400" />
                 成就徽章
               </h3>
