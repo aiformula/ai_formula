@@ -832,6 +832,32 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                   </div>
                 </div>
               </motion.div>
+
+              {/* 學習重點卡片 */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-gradient-to-br from-purple-900/80 via-blue-900/60 to-purple-900/80 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20"
+              >
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  <Target className="h-5 w-5 mr-2 text-green-400" />
+                  學習重點
+                </h3>
+                
+                <div className="space-y-3">
+                  {currentUnit.keyPoints.map((point, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <p className="text-gray-300 text-sm leading-relaxed">{point}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
