@@ -749,11 +749,52 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                 </Button>
 
                 <Button
-                  onClick={handleNextUnit}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  onClick={() => {
+                    // 檢查是否為主題最後一個單元
+                    const isLastUnitOfTheme = 
+                      (getThemeId(currentUnit.id) === 1 && currentUnit.id === 5) || 
+                      (getThemeId(currentUnit.id) === 2 && currentUnit.id === 10);
+                    
+                    if (isLastUnitOfTheme) {
+                      // 主題最後單元，導航到Quiz
+                      handleNavigateQuiz();
+                    } else {
+                      // 正常導航到下一單元
+                      handleNextUnit();
+                    }
+                  }}
+                  className={
+                    // 主題最後單元使用黃色漸變，其他使用藍紫漸變
+                    ((getThemeId(currentUnit.id) === 1 && currentUnit.id === 5) || 
+                     (getThemeId(currentUnit.id) === 2 && currentUnit.id === 10))
+                      ? "bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white"
+                      : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  }
                 >
-                  {currentUnit.id >= unitsData.length ? '完成課程' : '下一單元'}
-                  <ArrowRight className="h-4 w-4 ml-2" />
+                  {(() => {
+                    // 決定按鈕文字
+                    const isLastUnitOfTheme = 
+                      (getThemeId(currentUnit.id) === 1 && currentUnit.id === 5) || 
+                      (getThemeId(currentUnit.id) === 2 && currentUnit.id === 10);
+                    
+                    if (isLastUnitOfTheme) {
+                      return '開始測驗';
+                    } else if (currentUnit.id >= unitsData.length) {
+                      return '完成課程';
+                    } else {
+                      return '下一單元';
+                    }
+                  })()}
+                  
+                  {/* 圖標根據按鈕類型變化 */}
+                  {((getThemeId(currentUnit.id) === 1 && currentUnit.id === 5) || 
+                    (getThemeId(currentUnit.id) === 2 && currentUnit.id === 10)) ? (
+                    <svg className="h-4 w-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  ) : (
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  )}
                 </Button>
               </motion.div>
             </div>
@@ -845,46 +886,7 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                 </div>
               </motion.div>
 
-              {/* Quiz 卡片 - 在每個主題的最後一個單元顯示 */}
-              {((getThemeId(currentUnit.id) === 1 && currentUnit.id === 5) || 
-                (getThemeId(currentUnit.id) === 2 && currentUnit.id === 10)) && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-md rounded-2xl p-6 border border-yellow-500/30"
-                >
-                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-                    <svg className="h-5 w-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    章節測驗
-                  </h3>
-                  
-                  <div className="space-y-3">
-                    <p className="text-gray-300 text-sm">
-                      恭喜完成{getThemeId(currentUnit.id) === 1 ? '第一章' : '第二章'}！
-                      現在可以進行章節測驗來檢驗學習成果。
-                    </p>
-                    
-                    <div className="space-y-2 text-xs text-gray-400">
-                      <div>📊 題目數量：10題</div>
-                      <div>⏱️ 測驗時間：15分鐘</div>
-                      <div>🎯 及格分數：70%</div>
-                    </div>
-                    
-                    <Button
-                      onClick={handleNavigateQuiz}
-                      className="w-full mt-4 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-medium"
-                    >
-                      <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      開始測驗
-                    </Button>
-                  </div>
-                </motion.div>
-              )}
+
             </div>
           </div>
         </div>
