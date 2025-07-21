@@ -65,6 +65,13 @@ const ChatGPTUnitRedirect: React.FC = () => {
   };
   
   const unitNumber = parseInt(unitId || '1');
+  
+  // 邊界檢查：確保單元ID在有效範圍內（1-10）
+  if (unitNumber < 1 || unitNumber > 10 || isNaN(unitNumber)) {
+    console.warn(`無效的單元ID: ${unitId}，重定向到第一個單元`);
+    return <Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />;
+  }
+  
   const themeId = getThemeId(unitNumber);
   
   // 調試日誌
@@ -111,6 +118,8 @@ function App() {
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTCompleteCourseTheme />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/unit/:unitId" element={<ChatGPTCompleteCourseUnit />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTCompleteCourseQuiz />} />
+                  {/* 無效路由重定向 */}
+                  <Route path="/courses/chatgpt-complete-course/*" element={<Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />} />
                   
                   {/* Design System Demo */}
                   <Route path="/design-system" element={<DesignSystemDemo />} />

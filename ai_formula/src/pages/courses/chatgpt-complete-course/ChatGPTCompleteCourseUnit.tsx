@@ -251,11 +251,29 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
     }
   ];
 
-  // 當前單元
+  // 計算主題ID - 移到前面
+  const getThemeId = (unitNumber: number) => {
+    if (unitNumber >= 1 && unitNumber <= 5) return 1; // 第一章：解構 ChatGPT
+    if (unitNumber >= 6 && unitNumber <= 10) return 2; // 第二章：初探門徑
+    return 1; // 默認第一章
+  };
+
+  // 當前單元 - 簡化版本（路由驗證已在App.tsx處理）
   const currentUnit = useMemo(() => {
-    const unitIndex = parseInt(unitId || '1') - 1;
-    return unitsData[unitIndex] || unitsData[0];
-  }, [unitId]);
+    const unitNum = parseInt(unitId || '1');
+    const currentThemeId = parseInt(themeId || '1');
+    
+    // 檢查主題和單元的匹配是否正確
+    const correctThemeId = getThemeId(unitNum);
+    if (currentThemeId !== correctThemeId) {
+      // 主題不匹配，重定向到正確的主題
+      console.warn(`主題不匹配: 單元 ${unitNum} 應該在主題 ${correctThemeId}，不是主題 ${currentThemeId}`);
+      navigate(`/courses/chatgpt-complete-course/theme/${correctThemeId}/unit/${unitNum}`, { replace: true });
+    }
+    
+    const unitIndex = Math.max(0, Math.min(unitNum - 1, unitsData.length - 1));
+    return unitsData[unitIndex];
+  }, [unitId, themeId, navigate]);
 
   // 保存進度
   const handleSaveProgress = useCallback(() => {
@@ -269,12 +287,7 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
     localStorage.setItem(`chatgpt-progress-${currentUnit.id}`, JSON.stringify(progress));
   }, [currentUnit.id, learningSeconds]);
 
-  // 計算主題ID
-  const getThemeId = (unitNumber: number) => {
-    if (unitNumber >= 1 && unitNumber <= 5) return 1; // 第一章：解構 ChatGPT
-    if (unitNumber >= 6 && unitNumber <= 10) return 2; // 第二章：初探門徑
-    return 1; // 默認第一章
-  };
+
 
   // 導航到Quiz
   const handleNavigateQuiz = useCallback(() => {
