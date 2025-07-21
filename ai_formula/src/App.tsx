@@ -67,6 +67,9 @@ const ChatGPTUnitRedirect: React.FC = () => {
   const unitNumber = parseInt(unitId || '1');
   const themeId = getThemeId(unitNumber);
   
+  // 調試日誌
+  console.log(`ChatGPT重定向: Unit ${unitId} -> Theme ${themeId}/Unit ${unitId}`);
+  
   return <Navigate to={`/courses/chatgpt-complete-course/theme/${themeId}/unit/${unitId}`} replace />;
 };
 
@@ -102,11 +105,11 @@ function App() {
                   
                   {/* ChatGPT Course Routes */}
                   <Route path="/courses/chatgpt-complete-course" element={<Navigate to="/courses/chatgpt-complete-course/outline" replace />} />
+                  <Route path="/courses/chatgpt-complete-course/unit/:unitId" element={<ChatGPTUnitRedirect />} />
                   <Route path="/courses/chatgpt-complete-course/learning" element={<ChatGPTCompleteCourseLearning />} />
                   <Route path="/courses/chatgpt-complete-course/outline" element={<ChatGPTCompleteCourseOutline />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTCompleteCourseTheme />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/unit/:unitId" element={<ChatGPTCompleteCourseUnit />} />
-                  <Route path="/courses/chatgpt-complete-course/unit/:unitId" element={<ChatGPTUnitRedirect />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTCompleteCourseQuiz />} />
                   
                   {/* Design System Demo */}

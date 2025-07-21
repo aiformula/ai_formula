@@ -301,7 +301,7 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="dark min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Navigation />
       
       {/* 主要內容區域 */}
