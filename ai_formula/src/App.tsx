@@ -1,8 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ViewCountProvider } from '@/contexts/ViewCountContext';
+import { Toaster } from '@/components/ui/toaster';
+import { SEOHead } from '@/components/SEO';
 
 // Components
 import Navigation from '@/components/Navigation';
@@ -51,6 +53,23 @@ import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 import './App.css';
 import './styles/progress-styles.css'; // 新增：進度追蹤樣式
 
+// ChatGPT單元重定向組件
+const ChatGPTUnitRedirect: React.FC = () => {
+  const { unitId } = useParams<{ unitId: string }>();
+  
+  // 計算主題ID
+  const getThemeId = (unitNumber: number) => {
+    if (unitNumber >= 1 && unitNumber <= 5) return 1; // 第一章：解構 ChatGPT
+    if (unitNumber >= 6 && unitNumber <= 10) return 2; // 第二章：初探門徑
+    return 1; // 默認第一章
+  };
+  
+  const unitNumber = parseInt(unitId || '1');
+  const themeId = getThemeId(unitNumber);
+  
+  return <Navigate to={`/courses/chatgpt-complete-course/theme/${themeId}/unit/${unitId}`} replace />;
+};
+
 function App() {
   return (
     <ErrorBoundary>
@@ -87,7 +106,7 @@ function App() {
                   <Route path="/courses/chatgpt-complete-course/outline" element={<ChatGPTCompleteCourseOutline />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTCompleteCourseTheme />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/unit/:unitId" element={<ChatGPTCompleteCourseUnit />} />
-                  <Route path="/courses/chatgpt-complete-course/unit/:unitId" element={<Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />} />
+                  <Route path="/courses/chatgpt-complete-course/unit/:unitId" element={<ChatGPTUnitRedirect />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTCompleteCourseQuiz />} />
                   
                   {/* Design System Demo */}
