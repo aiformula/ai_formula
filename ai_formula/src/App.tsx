@@ -53,14 +53,14 @@ import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 import './App.css';
 import './styles/progress-styles.css'; // 新增：進度追蹤樣式
 
-// ChatGPT課程路由驗證組件
+// ChatGPT課程路由驗證組件 - 更新為6單元結構
 const getThemeId = (unitNumber: number) => {
-  if (unitNumber >= 1 && unitNumber <= 5) return 1;   // 第一章：解構 ChatGPT
-  if (unitNumber >= 6 && unitNumber <= 10) return 2;  // 第二章：初探門徑
-  if (unitNumber >= 11 && unitNumber <= 15) return 3; // 第三章：核心功能實戰
-  if (unitNumber >= 16 && unitNumber <= 20) return 4; // 第四章：精通之道
-  if (unitNumber >= 21 && unitNumber <= 25) return 5; // 第五章：打造專屬 AI
-  if (unitNumber >= 26 && unitNumber <= 30) return 6; // 第六章：展望未來
+  if (unitNumber >= 1 && unitNumber <= 5) return 1;   // 第一章：解構 ChatGPT (1-5)
+  if (unitNumber >= 6 && unitNumber <= 10) return 2;  // 第二章：初探門徑 (6-10)
+  if (unitNumber >= 11 && unitNumber <= 16) return 3; // 第三章：核心功能實戰 (11-16)
+  if (unitNumber >= 17 && unitNumber <= 22) return 4; // 第四章：精通之道 (17-22)
+  if (unitNumber >= 23 && unitNumber <= 28) return 5; // 第五章：打造專屬 AI (23-28)
+  if (unitNumber >= 29 && unitNumber <= 34) return 6; // 第六章：展望未來 (29-34)
   return 1; // 默認第一章
 };
 
@@ -70,8 +70,8 @@ const ChatGPTUnitRedirect: React.FC = () => {
   
   const unitNumber = parseInt(unitId || '1');
   
-  // 邊界檢查：確保單元ID在有效範圍內（1-30）
-  if (unitNumber < 1 || unitNumber > 30 || isNaN(unitNumber)) {
+  // 邊界檢查：確保單元ID在有效範圍內（1-34）
+  if (unitNumber < 1 || unitNumber > 34 || isNaN(unitNumber)) {
     console.warn(`無效的單元ID: ${unitId}，重定向到第一個單元`);
     return <Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />;
   }
@@ -107,8 +107,8 @@ const ChatGPTUnitValidator: React.FC = () => {
   const themeNumber = parseInt(themeId || '1');
   const unitNumber = parseInt(unitId || '1');
   
-  // 檢查單元ID是否有效（1-30）
-  if (unitNumber < 1 || unitNumber > 30 || isNaN(unitNumber)) {
+  // 檢查單元ID是否有效（1-34）
+  if (unitNumber < 1 || unitNumber > 34 || isNaN(unitNumber)) {
     console.warn(`無效的單元ID: ${unitId}，重定向到第一個單元`);
     return <Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />;
   }
