@@ -269,12 +269,20 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
     localStorage.setItem(`chatgpt-progress-${currentUnit.id}`, JSON.stringify(progress));
   }, [currentUnit.id, learningSeconds]);
 
+  // 計算主題ID
+  const getThemeId = (unitNumber: number) => {
+    if (unitNumber >= 1 && unitNumber <= 5) return 1; // 第一章：解構 ChatGPT
+    if (unitNumber >= 6 && unitNumber <= 10) return 2; // 第二章：初探門徑
+    return 1; // 默認第一章
+  };
+
   // 導航到下一單元
   const handleNextUnit = useCallback(() => {
     handleSaveProgress();
     const nextUnitId = currentUnit.id + 1;
     if (nextUnitId <= unitsData.length) {
-      navigate(`/courses/chatgpt-complete-course/unit/${nextUnitId}`);
+      const nextThemeId = getThemeId(nextUnitId);
+      navigate(`/courses/chatgpt-complete-course/theme/${nextThemeId}/unit/${nextUnitId}`);
     } else {
       navigate('/courses/chatgpt-complete-course');
     }
@@ -328,7 +336,7 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                   </div>
                   
                   <Button
-                    onClick={() => navigate('/courses/chatgpt-complete-course')}
+                    onClick={() => navigate('/courses/chatgpt-complete-course/learning')}
                     variant="outline"
                     size="sm"
                     className="bg-white/10 border-white/20 text-white hover:bg-white/20"
@@ -742,7 +750,8 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                   onClick={() => {
                     const prevUnitId = currentUnit.id - 1;
                     if (prevUnitId >= 1) {
-                      navigate(`/courses/chatgpt-complete-course/unit/${prevUnitId}`);
+                      const prevThemeId = getThemeId(prevUnitId);
+                      navigate(`/courses/chatgpt-complete-course/theme/${prevThemeId}/unit/${prevUnitId}`);
                     }
                   }}
                   variant="outline"
@@ -776,6 +785,13 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                 
                 <div className="space-y-4">
                   <div className="flex justify-between text-sm">
+                    <span className="text-gray-300">當前主題</span>
+                    <span className="text-white font-medium">
+                      主題 {getThemeId(currentUnit.id)} / 2
+                    </span>
+                  </div>
+                  
+                  <div className="flex justify-between text-sm">
                     <span className="text-gray-300">當前單元</span>
                     <span className="text-white font-medium">{currentUnit.id}/{unitsData.length}</span>
                   </div>
@@ -787,6 +803,10 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                     <span className="text-white font-medium">
                       {Math.round((currentUnit.id / unitsData.length) * 100)}%
                     </span>
+                  </div>
+                  
+                  <div className="text-xs text-gray-400 pt-2 border-t border-white/10">
+                    {getThemeId(currentUnit.id) === 1 ? '第一章：解構 ChatGPT' : '第二章：初探門徑'}
                   </div>
                 </div>
               </motion.div>
