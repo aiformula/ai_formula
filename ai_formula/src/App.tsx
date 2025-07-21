@@ -53,16 +53,16 @@ import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 import './App.css';
 import './styles/progress-styles.css'; // 新增：進度追蹤樣式
 
+// ChatGPT課程路由驗證組件
+const getThemeId = (unitNumber: number) => {
+  if (unitNumber >= 1 && unitNumber <= 5) return 1; // 第一章：解構 ChatGPT
+  if (unitNumber >= 6 && unitNumber <= 10) return 2; // 第二章：初探門徑
+  return 1; // 默認第一章
+};
+
 // ChatGPT單元重定向組件
 const ChatGPTUnitRedirect: React.FC = () => {
   const { unitId } = useParams<{ unitId: string }>();
-  
-  // 計算主題ID
-  const getThemeId = (unitNumber: number) => {
-    if (unitNumber >= 1 && unitNumber <= 5) return 1; // 第一章：解構 ChatGPT
-    if (unitNumber >= 6 && unitNumber <= 10) return 2; // 第二章：初探門徑
-    return 1; // 默認第一章
-  };
   
   const unitNumber = parseInt(unitId || '1');
   
@@ -78,6 +78,69 @@ const ChatGPTUnitRedirect: React.FC = () => {
   console.log(`ChatGPT重定向: Unit ${unitId} -> Theme ${themeId}/Unit ${unitId}`);
   
   return <Navigate to={`/courses/chatgpt-complete-course/theme/${themeId}/unit/${unitId}`} replace />;
+};
+
+// ChatGPT主題驗證組件
+const ChatGPTThemeValidator: React.FC = () => {
+  const { themeId } = useParams<{ themeId: string }>();
+  
+  const themeNumber = parseInt(themeId || '1');
+  
+  // 檢查主題ID是否有效（1-2）
+  if (themeNumber < 1 || themeNumber > 2 || isNaN(themeNumber)) {
+    console.warn(`無效的主題ID: ${themeId}，重定向到第一個主題`);
+    return <Navigate to="/courses/chatgpt-complete-course/theme/1" replace />;
+  }
+  
+  // 如果主題ID有效，渲染主題組件
+  return <ChatGPTCompleteCourseTheme />;
+};
+
+// ChatGPT單元驗證組件
+const ChatGPTUnitValidator: React.FC = () => {
+  const { themeId, unitId } = useParams<{ themeId: string; unitId: string }>();
+  
+  const themeNumber = parseInt(themeId || '1');
+  const unitNumber = parseInt(unitId || '1');
+  
+  // 檢查單元ID是否有效（1-10）
+  if (unitNumber < 1 || unitNumber > 10 || isNaN(unitNumber)) {
+    console.warn(`無效的單元ID: ${unitId}，重定向到第一個單元`);
+    return <Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />;
+  }
+  
+  // 檢查主題ID是否有效（1-2）
+  if (themeNumber < 1 || themeNumber > 2 || isNaN(themeNumber)) {
+    const correctThemeId = getThemeId(unitNumber);
+    console.warn(`無效的主題ID: ${themeId}，重定向到正確主題 ${correctThemeId}`);
+    return <Navigate to={`/courses/chatgpt-complete-course/theme/${correctThemeId}/unit/${unitNumber}`} replace />;
+  }
+  
+  // 檢查主題和單元的匹配
+  const correctThemeId = getThemeId(unitNumber);
+  if (themeNumber !== correctThemeId) {
+    console.warn(`主題單元不匹配: 單元 ${unitNumber} 應該在主題 ${correctThemeId}，不是主題 ${themeNumber}`);
+    return <Navigate to={`/courses/chatgpt-complete-course/theme/${correctThemeId}/unit/${unitNumber}`} replace />;
+  }
+  
+  // 所有驗證通過，渲染單元組件
+  return <ChatGPTCompleteCourseUnit />;
+};
+
+// ChatGPT測驗驗證組件
+const ChatGPTQuizValidator: React.FC = () => {
+  const { themeId } = useParams<{ themeId: string }>();
+  
+  const themeNumber = parseInt(themeId || '1');
+  
+  // 檢查主題ID是否有效（1-2）
+  if (themeNumber < 1 || themeNumber > 2 || isNaN(themeNumber)) {
+    console.warn(`無效的測驗主題ID: ${themeId}，重定向到第一個主題測驗`);
+    return <Navigate to="/courses/chatgpt-complete-course/theme/1/quiz" replace />;
+  }
+  
+  // 如果主題ID有效，渲染測驗組件
+  return <ChatGPTCompleteCourseQuiz />;
 };
 
 function App() {
@@ -110,15 +173,15 @@ function App() {
                   <Route path="/courses/ai-business-automation/theme/:themeId/unit/:unitId" element={<AIBusinessAutomationUnit />} />
                   <Route path="/courses/ai-business-automation/theme/:themeId/quiz" element={<AIBusinessAutomationQuiz />} />
                   
-                  {/* ChatGPT Course Routes */}
+                  {/* ChatGPT Course Routes - 使用驗證組件 */}
                   <Route path="/courses/chatgpt-complete-course" element={<Navigate to="/courses/chatgpt-complete-course/outline" replace />} />
                   <Route path="/courses/chatgpt-complete-course/unit/:unitId" element={<ChatGPTUnitRedirect />} />
                   <Route path="/courses/chatgpt-complete-course/learning" element={<ChatGPTCompleteCourseLearning />} />
                   <Route path="/courses/chatgpt-complete-course/outline" element={<ChatGPTCompleteCourseOutline />} />
-                  <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTCompleteCourseTheme />} />
-                  <Route path="/courses/chatgpt-complete-course/theme/:themeId/unit/:unitId" element={<ChatGPTCompleteCourseUnit />} />
-                  <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTCompleteCourseQuiz />} />
-                  {/* 無效路由重定向 */}
+                  <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTThemeValidator />} />
+                  <Route path="/courses/chatgpt-complete-course/theme/:themeId/unit/:unitId" element={<ChatGPTUnitValidator />} />
+                  <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTQuizValidator />} />
+                  {/* 無效路由重定向 - 作為最後的保障 */}
                   <Route path="/courses/chatgpt-complete-course/*" element={<Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />} />
                   
                   {/* Design System Demo */}
