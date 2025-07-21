@@ -276,6 +276,12 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
     return 1; // 默認第一章
   };
 
+  // 導航到Quiz
+  const handleNavigateQuiz = useCallback(() => {
+    const currentThemeId = getThemeId(currentUnit.id);
+    navigate(`/courses/chatgpt-complete-course/theme/${currentThemeId}/quiz`);
+  }, [currentUnit.id, navigate]);
+
   // 導航到下一單元
   const handleNextUnit = useCallback(() => {
     handleSaveProgress();
@@ -371,27 +377,7 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                 </div>
               </motion.div>
 
-              {/* 學習重點 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
-              >
-                <h2 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <Target className="h-5 w-5 mr-2 text-green-400" />
-                  學習重點
-                </h2>
-                
-                <div className="space-y-3">
-                  {currentUnit.keyPoints.map((point, index) => (
-                    <div key={index} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                      <p className="text-gray-300 leading-relaxed">{point}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
+
 
               {/* 視覺卡片區域 */}
               <motion.div
@@ -838,7 +824,7 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
-                className="bg-gradient-to-br from-purple-900/80 via-blue-900/60 to-purple-900/80 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20"
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
               >
                 <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
                   <Target className="h-5 w-5 mr-2 text-green-400" />
@@ -858,6 +844,47 @@ ChatGPT 的引爆點 (2022)：儘管 OpenAI 在此之前已經發布了多個版
                   ))}
                 </div>
               </motion.div>
+
+              {/* Quiz 卡片 - 在每個主題的最後一個單元顯示 */}
+              {((getThemeId(currentUnit.id) === 1 && currentUnit.id === 5) || 
+                (getThemeId(currentUnit.id) === 2 && currentUnit.id === 10)) && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-md rounded-2xl p-6 border border-yellow-500/30"
+                >
+                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+                    <svg className="h-5 w-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    章節測驗
+                  </h3>
+                  
+                  <div className="space-y-3">
+                    <p className="text-gray-300 text-sm">
+                      恭喜完成{getThemeId(currentUnit.id) === 1 ? '第一章' : '第二章'}！
+                      現在可以進行章節測驗來檢驗學習成果。
+                    </p>
+                    
+                    <div className="space-y-2 text-xs text-gray-400">
+                      <div>📊 題目數量：10題</div>
+                      <div>⏱️ 測驗時間：15分鐘</div>
+                      <div>🎯 及格分數：70%</div>
+                    </div>
+                    
+                    <Button
+                      onClick={handleNavigateQuiz}
+                      className="w-full mt-4 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-medium"
+                    >
+                      <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      開始測驗
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
             </div>
           </div>
         </div>
