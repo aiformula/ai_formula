@@ -87,6 +87,7 @@ function App() {
                   <Route path="/courses/chatgpt-complete-course/outline" element={<ChatGPTCompleteCourseOutline />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId" element={<ChatGPTCompleteCourseTheme />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/unit/:unitId" element={<ChatGPTCompleteCourseUnit />} />
+                  <Route path="/courses/chatgpt-complete-course/unit/:unitId" element={<Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />} />
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTCompleteCourseQuiz />} />
                   
                   {/* Design System Demo */}
