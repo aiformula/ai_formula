@@ -55,8 +55,12 @@ import './styles/progress-styles.css'; // 新增：進度追蹤樣式
 
 // ChatGPT課程路由驗證組件
 const getThemeId = (unitNumber: number) => {
-  if (unitNumber >= 1 && unitNumber <= 5) return 1; // 第一章：解構 ChatGPT
-  if (unitNumber >= 6 && unitNumber <= 10) return 2; // 第二章：初探門徑
+  if (unitNumber >= 1 && unitNumber <= 5) return 1;   // 第一章：解構 ChatGPT
+  if (unitNumber >= 6 && unitNumber <= 10) return 2;  // 第二章：初探門徑
+  if (unitNumber >= 11 && unitNumber <= 15) return 3; // 第三章：核心功能實戰
+  if (unitNumber >= 16 && unitNumber <= 20) return 4; // 第四章：精通之道
+  if (unitNumber >= 21 && unitNumber <= 25) return 5; // 第五章：打造專屬 AI
+  if (unitNumber >= 26 && unitNumber <= 30) return 6; // 第六章：展望未來
   return 1; // 默認第一章
 };
 
@@ -66,8 +70,8 @@ const ChatGPTUnitRedirect: React.FC = () => {
   
   const unitNumber = parseInt(unitId || '1');
   
-  // 邊界檢查：確保單元ID在有效範圍內（1-10）
-  if (unitNumber < 1 || unitNumber > 10 || isNaN(unitNumber)) {
+  // 邊界檢查：確保單元ID在有效範圍內（1-30）
+  if (unitNumber < 1 || unitNumber > 30 || isNaN(unitNumber)) {
     console.warn(`無效的單元ID: ${unitId}，重定向到第一個單元`);
     return <Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />;
   }
@@ -86,8 +90,8 @@ const ChatGPTThemeValidator: React.FC = () => {
   
   const themeNumber = parseInt(themeId || '1');
   
-  // 檢查主題ID是否有效（1-2）
-  if (themeNumber < 1 || themeNumber > 2 || isNaN(themeNumber)) {
+  // 檢查主題ID是否有效（1-6）
+  if (themeNumber < 1 || themeNumber > 6 || isNaN(themeNumber)) {
     console.warn(`無效的主題ID: ${themeId}，重定向到第一個主題`);
     return <Navigate to="/courses/chatgpt-complete-course/theme/1" replace />;
   }
@@ -103,14 +107,14 @@ const ChatGPTUnitValidator: React.FC = () => {
   const themeNumber = parseInt(themeId || '1');
   const unitNumber = parseInt(unitId || '1');
   
-  // 檢查單元ID是否有效（1-10）
-  if (unitNumber < 1 || unitNumber > 10 || isNaN(unitNumber)) {
+  // 檢查單元ID是否有效（1-30）
+  if (unitNumber < 1 || unitNumber > 30 || isNaN(unitNumber)) {
     console.warn(`無效的單元ID: ${unitId}，重定向到第一個單元`);
     return <Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />;
   }
   
-  // 檢查主題ID是否有效（1-2）
-  if (themeNumber < 1 || themeNumber > 2 || isNaN(themeNumber)) {
+  // 檢查主題ID是否有效（1-6）
+  if (themeNumber < 1 || themeNumber > 6 || isNaN(themeNumber)) {
     const correctThemeId = getThemeId(unitNumber);
     console.warn(`無效的主題ID: ${themeId}，重定向到正確主題 ${correctThemeId}`);
     return <Navigate to={`/courses/chatgpt-complete-course/theme/${correctThemeId}/unit/${unitNumber}`} replace />;
@@ -133,8 +137,8 @@ const ChatGPTQuizValidator: React.FC = () => {
   
   const themeNumber = parseInt(themeId || '1');
   
-  // 檢查主題ID是否有效（1-2）
-  if (themeNumber < 1 || themeNumber > 2 || isNaN(themeNumber)) {
+  // 檢查主題ID是否有效（1-6）
+  if (themeNumber < 1 || themeNumber > 6 || isNaN(themeNumber)) {
     console.warn(`無效的測驗主題ID: ${themeId}，重定向到第一個主題測驗`);
     return <Navigate to="/courses/chatgpt-complete-course/theme/1/quiz" replace />;
   }
