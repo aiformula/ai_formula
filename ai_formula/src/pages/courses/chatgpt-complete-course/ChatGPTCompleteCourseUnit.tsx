@@ -201,7 +201,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               description: isZhHK ? '探索LLM的建構基礎神經網絡以及革命性Transformer架構的核心創新自注意力機制' : 'Explore the building blocks of LLM neural networks and the core innovation of the revolutionary Transformer architecture self-attention mechanisms.',
       content: {
         transcript: isZhHK ? 
-          'LLM 的建基礎是人工神經網絡，這是一種模仿我們大腦中神經元相互連接傳遞信息方式的計算模型，包含多層級的節點，包括輸入層、輸出層以及一層或多層位於兩者之間的隱藏層。\n\n然而LLM 能夠實現質的飛躍，其真正的技術突破在於2017 年被提出的Transformer 架構。在 Transformer 出現之前，主流的序列處理模型（如循環神經網絡 RNN）只能逐步處理文本，這極大地限制了訓練速度和長文本的能力。Transformer 架構拋棄了循環機制，可以並行處理整個輸入序列，從而能夠利用現代GPU 的強大並行計算能力，大幅縮短訓練時間\n\nTransformer 架構的核心是獨創的「自注意力機制」（Self-Attention Mechanism）。這個機制使得模型在處理序列中的每個單詞時，能夠衡量輸入序列中所有其他單詞對該單詞的重要性，並給予不同的注意力權重。這讓模型能夠捕捉語言中的長距離依賴關係，從而更深刻地理解上下文。例如在句子「小狗追趕老鼠，因為它餓了」中，自注意力機制能幫助模型準確理解「它」指的是主語「小狗」，而不是「老鼠」。\n\n為了讓神經網絡能夠理解語言，LLM 使用了「詞嵌入技術」（Word Embeddings）來表示詞彙。傳統的機器學習只能使用孤立的數字來編碼每個詞，無法表達語言的語義關係。詞嵌入將每個單詞映射到一個高維向量空間中。在這個空間裡，語義相似的詞例如「男人」和「女人」，「走路」和「跑步」會聚集在相近的位置。這種表示方法使得模型能夠理解單詞的細微語義和句法關係，為理解語言奠定了數學基礎。\n\n這種從序列化到並行處理方式的轉移，在近年來AI 的突然加速發展中扮演關鍵角色，使得海量數據訓練成為可能，超大規模模型成為可能，最終催生了強大的ChatGPT。 :
+          'LLM 的建基礎是人工神經網絡，這是一種模仿我們大腦中神經元相互連接傳遞信息方式的計算模型，包含多層級的節點，包括輸入層、輸出層以及一層或多層位於兩者之間的隱藏層。\n\n然而LLM 能夠實現質的飛躍，其真正的技術突破在於2017 年被提出的Transformer 架構。在 Transformer 出現之前，主流的序列處理模型（如循環神經網絡 RNN）只能逐步處理文本，這極大地限制了訓練速度和長文本的能力。Transformer 架構拋棄了循環機制，可以並行處理整個輸入序列，從而能夠利用現代GPU 的強大並行計算能力，大幅縮短訓練時間\n\nTransformer 架構的核心是獨創的「自注意力機制」（Self-Attention Mechanism）。這個機制使得模型在處理序列中的每個單詞時，能夠衡量輸入序列中所有其他單詞對該單詞的重要性，並給予不同的注意力權重。這讓模型能夠捕捉語言中的長距離依賴關係，從而更深刻地理解上下文。例如在句子「小狗追趕老鼠，因為它餓了」中，自注意力機制能幫助模型準確理解「它」指的是主語「小狗」，而不是「老鼠」。\n\n為了讓神經網絡能夠理解語言，LLM 使用了「詞嵌入技術」（Word Embeddings）來表示詞彙。傳統的機器學習只能使用孤立的數字來編碼每個詞，無法表達語言的語義關係。詞嵌入將每個單詞映射到一個高維向量空間中。在這個空間裡，語義相似的詞例如「男人」和「女人」，「走路」和「跑步」會聚集在相近的位置。這種表示方法使得模型能夠理解單詞的細微語義和句法關係，為理解語言奠定了數學基礎。\n\n這種從序列化到並行處理方式的轉移，在近年來AI 的突然加速發展中扮演關鍵角色，使得海量數據訓練成為可能，超大規模模型成為可能，最終催生了強大的ChatGPT。' :
           'The building blocks of LLM are artificial neural networks, which are computational models that mimic the way neurons in biological brains interconnect and transmit signals.',
                   keyPoints: isZhHK ? [
             '神經網絡：模仿我們大腦的計算模型，包含多層節點',
@@ -231,7 +231,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               description: isZhHK ? '分析ChatGPT技術的三大要素，理解其架構、訓練方法和核心功能的深層含義' : 'Analyze the three core elements of ChatGPT technology, understanding the deep meaning of its architecture, training methods, and core functions.',
       content: {
         transcript: isZhHK ? 
-          'ChatGPT 的核心技術可以從其全名GPT（Generative Pre-trained Transformer）中得到精確理解。這三個詞彙揭示了其架構、訓練方法和核心功能\n\nTransformer（轉換器）：這是底層技術架構，我們在上一節詳述過，基於自注意力機制的 Transformer 模型\n\nPre-trained（預訓練）：這是 GPT 模型訓練的第一階段，也是最關鍵的階段。在這個階段，模型進行所謂的「無監督學習」，消化來自互聯網、書籍、文章的海量、未經標註的文本數據。其實際學習任務非常簡單：根據一段文字的上文，預測下一個詞可能出現的字符。通過數以萬億的句子練習，這個過程讓模型不只學會了語法和詞彙結構，還學會了大量關於世界常識的語義關係，甚至邏輯推理模式。這個階段為模型建立了廣泛的知識基礎\n\nGenerative（生成式）：這個詞描述了模型的核心能力——創造（生成）全新原創內容。這與另一類被稱為「判別式模型」（Discriminative Models）的 AI 形成對比。判別式模型（例如用於文本分類的BERT）的主要任務是進行分類判斷，例如判斷一封郵件是否為垃圾郵件。而生成式模型能夠從零開始創作出嶄新的句子、段落、代碼甚至整篇文章\n\n經過大規模的「預訓練」後，模型通常會進入第二個訓練階段——「微調」（Fine-tuning）。在這個階段，開發者會使用一些模型得到的帶有特定任務標籤的數據來進一步訓練模型。更重要的是，OpenAI 引入了「基於人類反饋的強化學習」（Reinforcement Learning from Human Feedback, RLHF）技術。在這個過程中，人類訓練員會對模型的回答進行評分，然後模型根據這些反饋來調整其行為，使得輸出更符合人類期望，例如更準確地遵循指令，減少有害或帶有偏見的內容。 :
+          'ChatGPT 的核心技術可以從其全名GPT（Generative Pre-trained Transformer）中得到精確理解。這三個詞彙揭示了其架構、訓練方法和核心功能\n\nTransformer（轉換器）：這是底層技術架構，我們在上一節詳述過，基於自注意力機制的 Transformer 模型\n\nPre-trained（預訓練）：這是 GPT 模型訓練的第一階段，也是最關鍵的階段。在這個階段，模型進行所謂的「無監督學習」，消化來自互聯網、書籍、文章的海量、未經標註的文本數據。其實際學習任務非常簡單：根據一段文字的上文，預測下一個詞可能出現的字符。通過數以萬億的句子練習，這個過程讓模型不只學會了語法和詞彙結構，還學會了大量關於世界常識的語義關係，甚至邏輯推理模式。這個階段為模型建立了廣泛的知識基礎\n\nGenerative（生成式）：這個詞描述了模型的核心能力——創造（生成）全新原創內容。這與另一類被稱為「判別式模型」（Discriminative Models）的 AI 形成對比。判別式模型（例如用於文本分類的BERT）的主要任務是進行分類判斷，例如判斷一封郵件是否為垃圾郵件。而生成式模型能夠從零開始創作出嶄新的句子、段落、代碼甚至整篇文章\n\n經過大規模的「預訓練」後，模型通常會進入第二個訓練階段——「微調」（Fine-tuning）。在這個階段，開發者會使用一些模型得到的帶有特定任務標籤的數據來進一步訓練模型。更重要的是，OpenAI 引入了「基於人類反饋的強化學習」（Reinforcement Learning from Human Feedback, RLHF）技術。在這個過程中，人類訓練員會對模型的回答進行評分，然後模型根據這些反饋來調整其行為，使得輸出更符合人類期望，例如更準確地遵循指令，減少有害或帶有偏見的內容。' :
           'The core technology of ChatGPT can be precisely explained through its full name GPT (Generative Pre-trained Transformer). These three words reveal its architecture, training methods, and core functions.',
         keyPoints: isZhHK ? [
           'Transformer：基於自注意力機制的底層技術架構',
@@ -261,7 +261,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               description: isZhHK ? '追溯GPT模型的發展歷程，了解每個版本的技術突破和關鍵能力提升點' : 'Trace the development history of GPT models, understanding the technical breakthroughs and key capability improvements of each generation.',
       content: {
         transcript: isZhHK ? 
-          'GPT 模�??�發展歷程�??�地展示�?OpenAI ?��?術�??�路徑�?每�?�?��?�都?��?模�??��?上實?��?顯�??��?躍。這�?路�?不�??��?術�??�然延伸，�??��?�?OpenAI ?�產?��??�略：�??�建立�??�知識淵?��??�大?�」�??��??��??�聽?��?令」�??�後賦予�??��??��?維度互�??�「�?官」。\n\nGPT-1 (2018)：�??��??�者�?GPT-1 首次?��??��? Transformer ?��??�用?��??��??��?練任?�。�??��? 1.17 ?�個�??��??�當?��?多個自?��?言?��??��?測試中�?得�??�異?�績，�?證�??��??�術路線�??��??�。\n\nGPT-2 (2019)：�??��?模�?訓練?��??�大幅�??��?展現了令人�?訝�??�零�?��學�??��?Zero-shot learning）能?�。這�??��?它可以在沒�?任�??��?任�?範�??��?況�?，�??��?令就完�?一些新任�?，顯示出?�強?��??�能?�。\n\nGPT-3 (2020)：這是一?��?程�?式�?模�?，�???1750 ?�個�??�。其?�顯�??��??�是強大?�「�?�?��學�??��?Few-shot learning）能?��??�只?�?��?示中給出極�??��?幾個�?範�?，模?�就?��??��??�新任�??�模式並?��??��??�\n\nInstructGPT (2022)：�??�說?�是下�?�?��?��?不�?說是一次方?�性�?轉�??�OpenAI ?�現，�??�「�?學」�?模�?並�?總是?��??�」�??��??�」。InstructGPT ?��?引入�?RLHF 訓練?��?，旨?�解�?AI ?�「�?齊」�?Alignment）�?題�??�使模�??��??��?輸出?�符?�人類�??��??�價?��??�這使得模?�極大地?��?了遵循用?��?令�??��?，為 ChatGPT ?��??��?定�??�鍵?��??�\n\nGPT-4 (2023)：GPT-4 不�??��?言?�解?��?輯推?��?準確?��??��? GPT-3.5 ?��?質�?飛�?，更?��??�是，�??�為了�??�「�?模�??��?multimodal）模?�。�?首次?��?了�??��??�以外信?��??��?，能夠接?��??�解?��?輸入，�?如解?��?張�?表�??�容?��?述�?張照?��??�景?�\n\nGPT-4o (2024)：o �?�� "omni"（全?��?，�?誌�? OpenAI ?��?模�?交�?上�??��??�大突破?�GPT-4o ?��??�在?��?神�?網絡模�?中�??�整?��??�本?�音訊�?視覺?��??��??�模?�。這使得�??��?實現近�??��??�、極?�自?��?實�?語音對話，並?��??��?�?��?��?語音?��??�頭?��??��?視覺信息，極大地?��?�?AI 交�??�人類自?��??��?距離?? :
+          'GPT 模型的發展歷程清晰地展示了OpenAI的技術演進路徑，每個版本都在模型規模上實現了顯著的躍升。\n\nGPT-1 (2018)：先驅者，GPT-1 首次成功將 Transformer 架構應用於生成式預訓練任務。擁有 1.17 億個參數，驗證了這條技術路線的可行性。\n\nGPT-2 (2019)：這個模型訓練規模的大幅提升，展現了令人驚訝的零樣本學習（Zero-shot learning）能力。\n\nGPT-3 (2020)：這是一個里程碑式的模型，擁有1750 億個參數。其最顯著的特點是強大的小樣本學習（Few-shot learning）能力。\n\nInstructGPT (2022)：OpenAI 發現，單純學會的模型並不總是有用或安全。InstructGPT 因此引入了RLHF 訓練方法，旨在解決AI 的對齊（Alignment）問題。\n\nGPT-4 (2023)：GPT-4 不僅在語言理解和邏輯推理的準確性上比 GPT-3.5 實現了質的飛躍，更重要的是，它成為了首個多模態（multimodal）模型。\n\nGPT-4o (2024)：o 代表 omni（全能），標誌著 OpenAI 在模型交互上的最新突破。GPT-4o 能夠在單一神經網絡模型中原生整合文本、音訊和視覺的處理模態。' :
           'The development history of GPT models clearly demonstrates OpenAI\'s technical evolution path, with each generation achieving significant leaps in scale and capabilities.',
         keyPoints: isZhHK ? [
           'GPT-1 (2018)：先驅者，首次將Transformer應用於生成式預訓練',
@@ -293,15 +293,15 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       description: isZhHK ? '了解OpenAI從非營利研究實驗室到AI巨頭的發展歷程，以及關鍵人物和戰略決策' : 'Understand OpenAI\'s transformation from a non-profit research lab to an AI giant, including key figures and strategic decisions.',
       content: {
         transcript: isZhHK ? 
-          'ChatGPT ?�橫空出世�?讓其?��??��??��?�?OpenAI 從�??�在人工?�能?�究?��??��?尊敬?��?字�?一躍�??�全?��??�?��??��??�家?�戶?��??��??�\n\n?��??��?�?(2015)：OpenAI ??2015 年由一群�??�?��??��??�共?�創立�??�中?�括 Sam Altman?�Elon Musk?�Greg Brockman ??Ilya Sutskever 等人?�其?�?��?形�??��??��??�利?�究實�?室�??�抱?��??��?大�?使命：確保通用人工?�能（Artificial General Intelligence, AGI）�??��??��?安全?��?責任?�造�??�人類�??��??�被少數巨頭壟斷?��?人�?構�?威�??�\n\n轉�??�微軟�??�略?��?：隨?��?究�?深入，OpenAI ?��??��?練�?尖大?��?言模�??�要極?��?大�?計�?資�??��??��??��??��??��??��??�利組�??�?��??�。為了�?對這�??�戰，OpenAI ??2019 年進�?了�?構�?組�??��?了�?家�???OpenAI LP ?�「利潤�??�」�?capped-profit）公?�。這�??�特?��?構旨?�平衡其追�?科�?使命?�吸引�?業�?資�??�求。�?年�?微�???OpenAI ?��?�?10 ?��??��??��??��?，並?�隨後�?幾年裡追?��??��??��??��??�為?��??��??�戰?��?作夥伴�??�其?��?了�??�??Azure ?��?算�?源。\n\n?�鍵人物：公?��??��?人物?�其?��??��?人兼行政總�? Sam Altman?�在?��? OpenAI 之�?，Altman 以其作為?��??�創企業孵�???Y Combinator 總�??��?歷而�??��??��?孵�?�?Airbnb?�Reddit 等眾多知?��?業。�??��??�在科�??��?影響?��??��??��?導�?，帶??OpenAI 從�??��?究�?構�??�為估值數?��?美�???AI 巨頭?�另一位�??��?注�??��?�?Elon Musk ?��?對公?�發展方?��?安全?��??��??��???2018 年離?��? OpenAI ????��?並在之�??��?了自己�? AI ?�司 xAI?�\n\nChatGPT ?��??��? (2022)：�?�?OpenAI ?�此之�?已�??��?了�??��??��? GPT 模�?，並?�學術�??��??�者社?�中享?��?譽�?但�?�???��??��?層、�??�全?�性�?注�?，是 2022 �?11 ?�發布�? ChatGPT?�其極其?�用?��?話�??��?強大?�能?��?迅速吸引�??�以?��??�用?��?引�?了全?��??�內?��??��? AI ?�潮，並促使 Google?�Meta 等�??�巨頭紛�??�速推?�自己�?競�??? :
+          'ChatGPT 的橫空出世，讓其母公司 OpenAI 從一個在人工智能研究領域受尊敬的名字，一躍成為全球最受矚目的家喻戶曉品牌。\n\n創立初衷 (2015)：OpenAI 於2015 年由一群科技領袖共同創立，其中包括 Sam Altman、Elon Musk、Greg Brockman 和 Ilya Sutskever 等人。其最初形態是非營利研究實驗室，懷抱著一個宏大的使命：確保通用人工智能（Artificial General Intelligence, AGI）能夠安全且負責任地造福人類，而非被少數巨頭壟斷或對人類構成威脅。\n\n轉向與微軟的戰略合作：隨著研究的深入，OpenAI 意識到訓練尖端大型語言模型需要極其龐大的計算資源和資金，這對非營利組織來說是巨大挑戰。為了應對這個挑戰，OpenAI 於2019 年進行了結構重組，成立了一家名為 OpenAI LP 的「利潤上限」（capped-profit）公司。這種特殊結構旨在平衡其追求科學使命與吸引商業投資的需求。同年，微軟向 OpenAI 投資10 億美元，並在隨後的幾年裡追加投資，成為其最重要的戰略合作夥伴，為其提供了強大的 Azure 雲端算力資源。\n\n關鍵人物：公司的領導人物是其聯合創始人兼行政總裁 Sam Altman。在加入 OpenAI 之前，Altman 以其作為知名創企業孵化器 Y Combinator 總裁的經歷而聞名，曾孵化過 Airbnb、Reddit 等眾多知名企業。他在科技界的影響力和前瞻性領導力，帶領 OpenAI 從一個研究機構發展為估值數百億美元的 AI 巨頭。另一位值得注意的人物是 Elon Musk，他因對公司發展方向和安全理念的分歧而於2018 年離開了 OpenAI，並在之後創立了自己的 AI 公司 xAI。\n\nChatGPT 的突破 (2022)：雖然 OpenAI 在此之前已經發布了多個版本的 GPT 模型，並在學術和開發者社群中享有聲譽，但真正讓其走向大眾層面、獲得全民性關注的，是 2022 年11 月發布的 ChatGPT。其極其易用的對話界面和強大功能，迅速吸引了數以億計的用戶，引發了全球範圍內的生成式 AI 熱潮，並促使 Google、Meta 等科技巨頭紛紛加速推出自己的競爭產品。' :
           'The emergence of ChatGPT has transformed OpenAI from a respected name in AI research into a global tech focus and household brand.',
         keyPoints: isZhHK ? [
-          '?��??�衷 (2015)：�??�利?�究實�?室�?確�?AGI安全?��?人�?',
-          '?�略轉�? (2019)：�?組為?�潤上�??�司，平衡使?��??��?',
-          '微�??��?�?0?��??��?始�?資�??��?Azure?��?算�?�?,
-          '?�鍵人物：Sam Altman (CEO)?�Elon Musk (已離???�Ilya Sutskever',
-          'ChatGPT引�?�?(2022)：�??��?層�?引發?��??��?式AI?�潮',
-          '行業影響：�?使Google?�Meta等巨?��??�推?�競??
+          '創立初衷 (2015)：非營利研究實驗室，確保AGI安全造福人類',
+          '戰略轉向 (2019)：重組為利潤上限公司，平衡使命與投資',
+          '微軟合作：10億美元初始投資，提供Azure雲端算力資源',
+          '關鍵人物：Sam Altman (CEO)、Elon Musk (已離開)、Ilya Sutskever',
+          'ChatGPT引爆 (2022)：打破界線，引發全球生成式AI熱潮',
+          '行業影響：促使Google、Meta等巨頭加速推出競爭產品'
         ] : [
           'Founding mission (2015): Non-profit research lab ensuring AGI safely benefits humanity',
           'Strategic transformation (2019): Restructured as capped-profit company balancing mission and investment',
@@ -316,7 +316,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       completed: false
     },
 
-    // 第二章：深入探索ChatGPT界面與帳戶設定    '6': {
+    // 第二章：深入探索ChatGPT界面與帳戶設定
+    '6': {
       id: 6,
       themeId: 2,
       title: isZhHK ? '單元 2.1：主介面深度導覽：對話視窗、歷史記錄(History)和設定選項' : 'Unit 2.1: Main Interface Deep Tour: Chat Window, History & Settings',
@@ -325,14 +326,14 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       description: isZhHK ? '詳細介紹 ChatGPT 主界面的各個元素，包括對話視窗操作、歷史記錄管理和設定功能' : 'Detailed introduction to ChatGPT main interface elements, including chat window operations, history management, and settings functionality.',
       content: {
         transcript: isZhHK ? 
-          '?�您首次?�入 ChatGPT ?��??��??�到一?�簡潔而�??��?富�?主�??�。�?�?��個�??��?每個�?素�?幫助?�更?��??�使??ChatGPT?�\n\n對話視�??�整?��??��??��?，�??�螢幕中央。這裡?�您??ChatGPT ?��?對話?�主要�??�。在對話視�??��??��??��??�到?��?輸入框�??�是?�輸?��?題�??�令?�地?�。輸?��??�援多�??��?，您?�以??Shift+Enter 來�?行�??�單純�? Enter ?��??�出訊息?�\n\n左側?��??�含?��?對話歷史紀?�。�?次�?始新對話?��?ChatGPT ?��??��??�建一?�新?��?話�??�。這�?對話?��??��??��??��?，�??��?對話顯示?��?上方?�您?�以點�?任�?一?�歷?��?話�??�新?��?它�?繼�?之�??��?論。\n\n?�左?��?欄�??�部，您?��??�「New Chat?��??��?點�?它可以�?始全?��?對話?��?住�?每個�?話都?�獨立�? - ChatGPT 不�?記�??��?對話中�??�容?�\n\n?��?角�??�人資�??�?��?供�??�帳?��?存�??�這裡?�可以管?��??�、查?�使?��?況�?以�?存�??��?設�??��???ChatGPT Plus ?�戶，這裡?��?顯示?��?訂閱?�?��??�用?��??��??��? :
+          '當您首次登入 ChatGPT 時，會看到一個簡潔而功能豐富的主界面。理解這個界面的每個元素，將幫助您更高效地使用 ChatGPT。\n\n對話視窗是整個界面的核心，位於螢幕中央。這裡是您與 ChatGPT 進行對話的主要區域。在對話視窗的底部，您會看到文字輸入框，這是您輸入問題或指令的地方。輸入框支援多行輸入，您可以用 Shift+Enter 來換行，而單純的 Enter 會發送訊息。\n\n左側邊欄包含了所有對話歷史紀錄。每次開始新對話時，ChatGPT 會自動建立一個新的對話紀錄。這些對話會按時間排序，最新對話顯示在最上方。您可以點擊任何一個歷史對話來重新開啟它，繼續之前的討論。\n\n在左側邊欄的頂部，您會看到「New Chat」按鈕。點擊它可以開始全新的對話。請記住，每個對話都是獨立的 - ChatGPT 不會記住其他對話中的內容。\n\n右上角是個人資料區域，提供各種帳戶存取選項。這裡您可以管理帳號、查看使用狀況，以及存取各種設定選項。對於 ChatGPT Plus 用戶，這裡還會顯示您的訂閱狀態和專用功能。' :
           'When you first log into ChatGPT, you\'ll see a clean yet feature-rich main interface. Understanding each element of this interface will help you use ChatGPT more effectively.',
         keyPoints: isZhHK ? [
-          '對話視�?：�??�核心�??��? AI 對話?�主要�???,
-          '?��?輸入框�??�援多�?輸入，Shift+Enter?��?，Enter?�出',
-          '歷史紀?��?左側?��?顯示?�?��?話�??��??��?�?,
-          'New Chat ?��?：�?始全?�獨立�?�?,
-          '?�人資�??�：管?�帳?�、�??��?設�?'
+          '對話視窗：界面核心，進行 AI 對話的主要區域',
+          '文字輸入框：支援多行輸入，Shift+Enter換行，Enter發送',
+          '歷史紀錄：左側邊欄顯示所有對話，按時間排序',
+          'New Chat 按鈕：開始全新獨立對話',
+          '個人資料區：管理帳號、訂閱和設定'
         ] : [
           'Chat Window: Interface core, main area for AI conversations',
           'Text Input Box: Supports multi-line input, Shift+Enter for new line, Enter to send',
