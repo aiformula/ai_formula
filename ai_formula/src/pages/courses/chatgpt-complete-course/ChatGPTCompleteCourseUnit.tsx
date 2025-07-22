@@ -196,7 +196,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       id: 2,
       themeId: 1,
       title: isZhHK ? '單元 1.2：深度解析 LLM' : 'Unit 1.2: Deep Decoding LLM',
-      duration: '12?��?',
+      duration: '12分鐘',
       type: 'text' as const,
               description: isZhHK ? '探索LLM的建構基礎神經網絡以及革命性Transformer架構的核心創新自注意力機制' : 'Explore the building blocks of LLM neural networks and the core innovation of the revolutionary Transformer architecture self-attention mechanisms.',
       content: {
@@ -350,7 +350,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       id: 7,
       themeId: 2,
       title: isZhHK ? '單元 2.2：對話管理技巧：如何重新命名(Rename)、分享(Share)和刪除(Delete)對話' : 'Unit 2.2: Conversation Management: Rename, Share & Delete Conversations',
-      duration: '10?��?',
+      duration: '10分鐘',
       type: 'text' as const,
       description: isZhHK ? '學�?如�??��?管�??��? ChatGPT 對話，�??��??�命?�、�?享�???�刪?��??�要�?對話?? : 'Learn how to effectively manage your ChatGPT conversations, including renaming, sharing links, and deleting unnecessary conversations.',
       content: {
@@ -380,7 +380,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
       id: 8,
       themeId: 2,
       title: isZhHK ? '單元 2.3：Custom Instructions (自定義指令)：創建你的個人專屬AI助手，免除每次重複貼上' : 'Unit 2.3: Custom Instructions: Create Your Personal AI Assistant',
-      duration: '15?��?',
+      duration: '15分鐘',
       type: 'text' as const,
       description: isZhHK ? '學�?如�?設�??��??�令，�? ChatGPT ?��?�?��?��?求�??�好，�?供更?�人?��??��??? : 'Learn how to set up custom instructions to make ChatGPT better understand your needs and preferences for more personalized responses.',
       content: {
@@ -409,8 +409,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '9': {
       id: 9,
       themeId: 2,
-      title: isZhHK ? '?��? 2.4：�?�?App ?��??�能：�??��?話�??��?辨�?實戰' : 'Unit 2.4: Mobile App Exclusive Features: Voice Chat & Image Recognition',
-      duration: '13?��?',
+      title: isZhHK ? '單元 2.4：手機App獨家功能：語音對話和圖像識別實戰' : 'Unit 2.4: Mobile App Exclusive Features: Voice Chat & Image Recognition',
+      duration: '13分鐘',
       type: 'text' as const,
       description: isZhHK ? '?�索 ChatGPT ?��??�用程�??�獨?��??��??�括語音對話?��??�辨識�??��?行�?裝置使用體�??? : 'Explore the unique features of ChatGPT mobile app, including voice conversations and image recognition, enhancing mobile device user experience.',
       content: {
@@ -439,8 +439,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '10': {
       id: 10,
       themeId: 2,
-      title: isZhHK ? '?��? 2.5：探�?GPT Store：�?何�??�、�?估�?使用?�人建�??�優秀 GPTs' : 'Unit 2.5: Exploring GPT Store: Finding, Evaluating & Using GPTs',
-      duration: '14?��?',
+      title: isZhHK ? '單元 2.5：探索GPT Store：如何找到、評估和使用他人建構的優秀 GPTs' : 'Unit 2.5: Exploring GPT Store: Finding, Evaluating & Using GPTs',
+      duration: '14分鐘',
       type: 'text' as const,
       description: isZhHK ? '深入了解 GPT Store ?�使?�方法�?學�?如�??�到?��??�自�?GPT，並?��?評估?�使?��??��? : 'Deep dive into GPT Store usage, learn how to find suitable custom GPTs and effectively evaluate and use them.',
       content: {
@@ -470,8 +470,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '11': {
       id: 11,
       themeId: 3,
-      title: isZhHK ? '?��? 3.1：優質�?令�??�大?�石：�???(Role)?�任??(Task)?��?�?(Context)?�格�?(Format)' : 'Unit 3.1: Four Pillars of Quality Prompts: Role, Task, Context, Format',
-      duration: '32?��?',
+      title: isZhHK ? '單元 3.1：優質指令的四大基石：角色(Role)、任務(Task)、脈絡(Context)、格式(Format)' : 'Unit 3.1: Four Pillars of Quality Prompts: Role, Task, Context, Format',
+      duration: '32分鐘',
       type: 'interactive' as const,
       description: isZhHK ? '學�?構建高�??�示詞�??�大?��?要�?，建立系統性�? Prompt 設�?框架?? : 'Learn the four core elements for building effective prompts and establish a systematic prompt design framework.',
       content: {
@@ -500,8 +500,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '12': {
       id: 12,
       themeId: 3,
-      title: isZhHK ? '?��? 3.2：�??�扮演�?：�? ChatGPT ?�為你�?私人律師?��?式設計師?��??��?�? : 'Unit 3.2: Role-Playing Method: Make ChatGPT Your Personal Expert',
-      duration: '28?��?',
+      title: isZhHK ? '單元 3.2：角色扮演法：讓 ChatGPT 成為你的私人律師、程式設計師或行銷專家' : 'Unit 3.2: Role-Playing Method: Make ChatGPT Your Personal Expert',
+      duration: '28分鐘',
       type: 'interactive' as const,
       description: isZhHK ? '?�握角色設�??�巧�?�?ChatGPT 以�?業身份�?供更精�??�建議�?�???? : 'Master role-setting techniques to make ChatGPT provide more precise advice as a professional.',
       content: {
@@ -530,8 +530,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '13': {
       id: 13,
       themeId: 3,
-      title: isZhHK ? '?��? 3.3：�?例�?導�? (Few-Shot Prompting)：給�?AI 範�?，�?它模仿�??�風?? : 'Unit 3.3: Few-Shot Prompting: Give AI Examples to Mimic Your Style',
-      duration: '26?��?',
+      title: isZhHK ? '單元 3.3：範例引導法 (Few-Shot Prompting)：給予AI範例，讓它模仿你的風格' : 'Unit 3.3: Few-Shot Prompting: Give AI Examples to Mimic Your Style',
+      duration: '26分鐘',
       type: 'interactive' as const,
       description: isZhHK ? '學�?使用範�?來�?�?AI ?��?符�??��?風格?�格式�??�容?? : 'Learn to use examples to guide AI in generating content that matches specific styles and formats.',
       content: {
@@ -560,8 +560,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '14': {
       id: 14,
       themeId: 3,
-      title: isZhHK ? '?��? 3.4：思維?��?�?(Chain of Thought)：�?�?AI 一步步?�考�?�?��複�??��?' : 'Unit 3.4: Chain of Thought: Guide AI to Think Step by Step',
-      duration: '30?��?',
+      title: isZhHK ? '單元 3.4：思維鏈技巧(Chain of Thought)：引導AI一步步思考，解決複雜問題' : 'Unit 3.4: Chain of Thought: Guide AI to Think Step by Step',
+      duration: '30分鐘',
       type: 'interactive' as const,
       description: isZhHK ? '?�握?�維?��?巧�?引�? AI ?��??�輯?��??��??��?題解決�? : 'Master chain of thought techniques to guide AI in logical reasoning and complex problem solving.',
       content: {
@@ -590,8 +590,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '15': {
       id: 15,
       themeId: 3,
-      title: isZhHK ? '?��? 3.5：迭�??追�?：�?何透�?追�?，�? 60 ?��?答�??��???95 ?? : 'Unit 3.5: Iteration & Follow-up: Optimise from 60-point to 95-point Answers',
-      duration: '24?��?',
+      title: isZhHK ? '單元 3.5：迭代與追問：如何透過追問，從60分的答案優化到95分' : 'Unit 3.5: Iteration & Follow-up: Optimise from 60-point to 95-point Answers',
+      duration: '24分鐘',
       type: 'interactive' as const,
       description: isZhHK ? '學�?如�??��??��??�追?��?迭代來�??�優??AI ?��?答質?��? : 'Learn how to continuously optimise AI response quality through effective follow-up and iteration.',
       content: {
@@ -620,8 +620,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '16': {
       id: 16,
       themeId: 3,
-      title: isZhHK ? '?��? 3.6：�?令�??�庫：�?�?20+ ?�常?��??��?令�??��??�學?�用' : 'Unit 3.6: Prompt Template Library: 20+ High-Efficiency Templates Ready to Use',
-      duration: '18?��?',
+      title: isZhHK ? '單元 3.6：指令範本庫：提供20+個常用高效指令範本，即學即用' : 'Unit 3.6: Prompt Template Library: 20+ High-Efficiency Templates Ready to Use',
+      duration: '18分鐘',
       type: 'resource' as const,
       description: isZhHK ? '?��?精�?設�??��?示�?範本庫�?涵�??�種常�?使用?�景?? : 'Access a carefully designed prompt template library covering various common use cases.',
       content: {
@@ -651,8 +651,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '17': {
       id: 17,
       themeId: 4,
-      title: isZhHK ? '?��? 4.1：實?��???(一) ?�容?��?引�?：自?��??��?質�??�社交�?體貼?�、廣?��?案�??��??�件' : 'Unit 4.1: Project 1: Content Creation Engine - Social Media, Ads & Email',
-      duration: '35?��?',
+      title: isZhHK ? '單元 4.1：實戰項目(一) 內容創作引擎：自動生成高質量的社交媒體貼文、廣告文案和電子郵件' : 'Unit 4.1: Project 1: Content Creation Engine - Social Media, Ads & Email',
+      duration: '35分鐘',
       type: 'project' as const,
       description: isZhHK ? '實戰演練：使??ChatGPT 建�??�容?��?工�?流�?，批?��??��?質�??��??�內容�? : 'Hands-on practice: Use ChatGPT to build content creation workflows and generate high-quality marketing content in batches.',
       content: {
@@ -681,8 +681,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '18': {
       id: 18,
       themeId: 4,
-      title: isZhHK ? '?��? 4.2：實?��???(�? 學�??�究?�速器：快?�總結�??�、報?��?並用簡單?��?�??複�?概念' : 'Unit 4.2: Project 2: Learning Research Accelerator - Summarize Papers & Reports',
-      duration: '28?��?',
+      title: isZhHK ? '單元 4.2：實戰項目(二) 學習研究加速器：快速總結論文、報告，並用簡單方式解釋複雜概念' : 'Unit 4.2: Project 2: Learning Research Accelerator - Summarize Papers & Reports',
+      duration: '28分鐘',
       type: 'project' as const,
       description: isZhHK ? '學�?如�?使用 ChatGPT 快速�??�學術�??��??��?學�??��?究�??��? : 'Learn to use ChatGPT for rapid academic material processing, improving learning and research efficiency.',
       content: {
@@ -711,8 +711,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '19': {
       id: 19,
       themeId: 4,
-      title: isZhHK ? '?��? 4.3：實?��???(�? ?��??��??�夥伴�?從零?��?規�??��??�活?��?程�??�業點�?' : 'Unit 4.3: Project 3: Creative Brainstorming Partner - Travel, Events & Business Ideas',
-      duration: '22?��?',
+      title: isZhHK ? '單元 4.3：實戰項目(三) 創意腦震盪夥伴：從零開始規劃旅行、活動流程或商業點子' : 'Unit 4.3: Project 3: Creative Brainstorming Partner - Travel, Events & Business Ideas',
+      duration: '22分鐘',
       type: 'project' as const,
       description: isZhHK ? '?�揮 ChatGPT ?�創?��??��??�助?�進�??�種?��?規�??��?子發?��? : 'Unleash ChatGPT\'s creative potential to assist in various creative planning and idea generation.',
       content: {
@@ -741,8 +741,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '20': {
       id: 20,
       themeId: 4,
-      title: isZhHK ? '?��? 4.4：實?��???(?? 程�?設�?超�??��?：解?��?式碼?�除??(Debug) ?�編寫簡?�腳?? : 'Unit 4.4: Project 4: Programming Super Assistant - Code Explanation & Debugging',
-      duration: '40?��?',
+      title: isZhHK ? '單元 4.4：實戰項目(四) 程式設計超級助手：解釋程式碼、除錯(Debug)和編寫簡單腳本' : 'Unit 4.4: Project 4: Programming Super Assistant - Code Explanation & Debugging',
+      duration: '40分鐘',
       type: 'project' as const,
       description: isZhHK ? '?�使不是程�?設�?師�?也能?�用 ChatGPT ?��??�本?��?式設計任?��??�術�?題�? : 'Even non-programmers can use ChatGPT to handle basic programming tasks and technical issues.',
       content: {
@@ -771,8 +771,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '21': {
       id: 21,
       themeId: 4,
-      title: isZhHK ? '?��? 4.5：實?��???(�? 語�?翻譯?�潤飾大師�??��?多�?語�?精�?翻譯?��?業�??��??��?' : 'Unit 4.5: Project 5: Language Translation & Polishing Master',
-      duration: '25?��?',
+      title: isZhHK ? '單元 4.5：實戰項目(五) 語言翻譯與潤飾大師：進行多國語言精準翻譯與專業級文章校對' : 'Unit 4.5: Project 5: Language Translation & Polishing Master',
+      duration: '25分鐘',
       type: 'project' as const,
       description: isZhHK ? '?�握 ChatGPT ?��?言?��??��?，實?��?業�??�翻譯�??��?潤飾?? : 'Master ChatGPT\'s language processing capabilities for professional-level translation and copywriting.',
       content: {
@@ -802,8 +802,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '22': {
       id: 22,
       themeId: 5,
-      title: isZhHK ? '?��? 5.1：Advanced Data Analysis (?��??��?大師)：�???Excel/CSV/PDF，進�??��??��??��?表製�? : 'Unit 5.1: Advanced Data Analysis Master: Upload Excel/CSV/PDF for Data Analysis',
-      duration: '35?��?',
+      title: isZhHK ? '單元 5.1：Advanced Data Analysis (數據分析大師)：上傳Excel/CSV/PDF，進行數據分析與圖表製作' : 'Unit 5.1: Advanced Data Analysis Master: Upload Excel/CSV/PDF for Data Analysis',
+      duration: '35分鐘',
       type: 'advanced' as const,
       description: isZhHK ? '學�?使用 ChatGPT ??Advanced Data Analysis ?�能，�??��??��??�種?��??�件?? : 'Learn to use ChatGPT\'s Advanced Data Analysis feature to process and analyze various data files.',
       content: {
@@ -832,8 +832,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '23': {
       id: 23,
       themeId: 5,
-      title: isZhHK ? '?��? 5.2：Web Browse (實�?網絡?�覽)：�??�即?�網絡�?訊�??��?市場調查?�新?�總�? : 'Unit 5.2: Web Browse: Real-time Web Information for Market Research',
-      duration: '30?��?',
+      title: isZhHK ? '單元 5.2：Web Browse (實時網絡瀏覽)：結合即時網絡資訊，進行市場調查與新聞總結' : 'Unit 5.2: Web Browse: Real-time Web Information for Market Research',
+      duration: '30分鐘',
       type: 'advanced' as const,
       description: isZhHK ? '?�握 ChatGPT ?�網絡瀏覽?�能，獲?��??��?訊並?��??��??? : 'Master ChatGPT\'s web browsing feature to gather latest information and conduct analysis.',
       content: {
@@ -862,8 +862,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '24': {
       id: 24,
       themeId: 5,
-      title: isZhHK ? '?��? 5.3：DALL-E 3 ?��??��?：用?��??�造出專業級�??�業?��??�簡?��??��??��?作�?' : 'Unit 5.3: DALL-E 3 Image Generation: Create Professional Business Illustrations',
-      duration: '32?��?',
+      title: isZhHK ? '單元 5.3：DALL-E 3 圖像生成：用文字創造出專業級的商業插圖、簡報圖片與藝術作品' : 'Unit 5.3: DALL-E 3 Image Generation: Create Professional Business Illustrations',
+      duration: '32分鐘',
       type: 'creative' as const,
       description: isZhHK ? '學�?使用 DALL-E 3 ?��?高質?��??��?滿足?�種?�業?�創?��?求�? : 'Learn to use DALL-E 3 to create high-quality images for various business and creative needs.',
       content: {
@@ -892,8 +892,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '25': {
       id: 25,
       themeId: 5,
-      title: isZhHK ? '?��? 5.4：創建�??�第一??Custom GPT：無?�編�?，�??��??��??�造個人專屬??AI ?�用' : 'Unit 5.4: Create Your First Custom GPT: Build Personal AI Applications Without Programming',
-      duration: '28?��?',
+      title: isZhHK ? '單元 5.4：創建你的第一個Custom GPT：無需編程，手把手教你打造個人專屬的AI應用' : 'Unit 5.4: Create Your First Custom GPT: Build Personal AI Applications Without Programming',
+      duration: '28分鐘',
       type: 'practical' as const,
       description: isZhHK ? '學�??�建?��? GPT，�??��??�?��? AI ?��?來解決特定�?題�? : 'Learn to create custom GPTs and build specialized AI assistants to solve specific problems.',
       content: {
@@ -922,8 +922,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '26': {
       id: 26,
       themeId: 5,
-      title: isZhHK ? '?��? 5.5：GPTs ?�用?��??��?密�?如�??��?你�? GPT，�??�未來可?��?中獲?? : 'Unit 5.5: GPTs App Store Secrets: How to Publish Your GPT and Potentially Profit',
-      duration: '32?��?',
+      title: isZhHK ? '單元 5.5：GPTs 應用商店的秘密：如何發佈你的 GPT，甚至未來可能從中獲利' : 'Unit 5.5: GPTs App Store Secrets: How to Publish Your GPT and Potentially Profit',
+      duration: '32分鐘',
       type: 'business' as const,
       description: isZhHK ? '了解 GPT Store ?��?作�??��?學�?如�??��??�推�????Custom GPT?? : 'Understand how GPT Store works and learn to publish and promote your Custom GPT.',
       content: {
@@ -952,8 +952,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     // 第六主�?：�??�未�????�用?�倫�??��???    '27': {
       id: 27,
       themeId: 6,
-      title: isZhHK ? '?��? 6.1：AI ?�「幻覺」現象�?如�?識別並查�?AI ?��??��??��?�? : 'Unit 6.1: AI "Hallucination" Phenomenon: Identify and Verify AI-generated False Information',
-      duration: '25?��?',
+      title: isZhHK ? '單元 6.1：AI 的「幻覺」現象：如何識別並查證 AI 生成的虛假資訊' : 'Unit 6.1: AI "Hallucination" Phenomenon: Identify and Verify AI-generated False Information',
+      duration: '25分鐘',
       type: 'critical' as const,
       description: isZhHK ? '了解 AI 幻覺?�象?��??��?學�?識別?��?�?AI 輸出?��?實性�? : 'Understand the causes of AI hallucination and learn to identify and verify the authenticity of AI outputs.',
       content: {
@@ -982,8 +982,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '28': {
       id: 28,
       themeId: 6,
-      title: isZhHK ? '?��? 6.2：數?��??��?安全：�??��?話�??��?？�?何管?��??�數?? : 'Unit 6.2: Data Privacy & Security: Are Your Conversations Safe? Managing Your Data',
-      duration: '22?��?',
+      title: isZhHK ? '單元 6.2：數據私隱與安全：你的對話安全嗎？如何管理你的數據' : 'Unit 6.2: Data Privacy & Security: Are Your Conversations Safe? Managing Your Data',
+      duration: '22分鐘',
       type: 'security' as const,
       description: isZhHK ? '了解 AI ?��??�隱私政策�?學�?保護?�人?��?業數?��??�佳實踐�? : 'Understand AI service privacy policies and learn best practices for protecting personal and business data.',
       content: {
@@ -1012,8 +1012,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '29': {
       id: 29,
       themeId: 6,
-      title: isZhHK ? '?��? 6.3：AI ?��?見�?題�?認�?訓練?��?帶�??��??�影?��?並學習�?何�?�? : 'Unit 6.3: AI Bias Issues: Understanding Training Data Impact and How to Respond',
-      duration: '20?��?',
+      title: isZhHK ? '單元 6.3：AI 的偏見問題：認識訓練數據帶來的潛在影響，並學習如何應對' : 'Unit 6.3: AI Bias Issues: Understanding Training Data Impact and How to Respond',
+      duration: '20分鐘',
       type: 'ethical' as const,
       description: isZhHK ? '?��? AI ?��??��?源�?影響，學習�??��?減�??��??��??��? : 'Explore the sources and impacts of AI bias, learn strategies to identify and reduce bias.',
       content: {
@@ -1042,8 +1042,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '30': {
       id: 30,
       themeId: 6,
-      title: isZhHK ? '?��? 6.4：�?責任?�使??AI：在學�??�工作�??��?中�??��??�倫�??��?' : 'Unit 6.4: Responsible AI Use: Ethical Boundaries in Academia, Work & Creation',
-      duration: '18?��?',
+      title: isZhHK ? '單元 6.4：負責任地使用 AI：在學術、工作與創作中應遵守的倫理界線' : 'Unit 6.4: Responsible AI Use: Ethical Boundaries in Academia, Work & Creation',
+      duration: '18分鐘',
       type: 'ethical' as const,
       description: isZhHK ? '?��??��??��??�使??AI ?�倫�?準�??��?佳實踐�? : 'Explore ethical guidelines and best practices for using AI in different fields.',
       content: {
@@ -1072,8 +1072,8 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     '31': {
       id: 31,
       themeId: 6,
-      title: isZhHK ? '?��? 6.5：人工智?��??��?：�???GPT ?��?一步發展�?對社?��??��?影響' : 'Unit 6.5: The Future of AI: GPT\'s Next Development and Long-term Social Impact',
-      duration: '25?��?',
+      title: isZhHK ? '單元 6.5：人工智能的未來：展望 GPT 的下一步發展與對社會的長遠影響' : 'Unit 6.5: The Future of AI: GPT\'s Next Development and Long-term Social Impact',
+      duration: '25分鐘',
       type: 'future' as const,
       description: isZhHK ? '?��? AI ?�術�??��??��?趨勢?��?社�??�層?��?潛在影響?? : 'Explore future trends in AI technology and potential impacts on various aspects of society.',
       content: {
@@ -1107,7 +1107,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
         id: parseInt(unitId || '1'),
         themeId: parseInt(themeId || '1'),
         title: '?��?不�???,
-        duration: '0?��?',
+        duration: '0分鐘',
         type: 'video' as const,
         description: '請檢?�單?�ID?�否�?��',
         content: {
