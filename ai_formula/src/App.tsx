@@ -27,11 +27,6 @@ import BlogPost from '@/pages/blog/BlogPost';
 // Course Pages
 import CourseListing from '@/pages/courses/CourseListing';
 import CourseDetail from '@/pages/courses/CourseDetail';
-import AIBusinessAutomationCoursePage from '@/pages/courses/ai-business-automation/index';
-import AIBusinessAutomationLearning from '@/pages/courses/AIBusinessAutomationLearning';
-import AIBusinessAutomationTheme from '@/pages/courses/AIBusinessAutomationTheme';
-import AIBusinessAutomationUnit from '@/pages/courses/AIBusinessAutomationUnit';
-import AIBusinessAutomationQuiz from '@/pages/courses/AIBusinessAutomationQuiz';
 
 // ChatGPT Course Pages
 import ChatGPTCompleteCourseLearning from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseLearning';
@@ -171,11 +166,6 @@ function App() {
                   
                   {/* Course Routes */}
                   <Route path="/courses" element={<CourseListing />} />
-                  <Route path="/courses/ai-business-automation" element={<AIBusinessAutomationCoursePage />} />
-                  <Route path="/courses/ai-business-automation/learning" element={<AIBusinessAutomationLearning />} />
-                  <Route path="/courses/ai-business-automation/theme/:themeId" element={<AIBusinessAutomationTheme />} />
-                  <Route path="/courses/ai-business-automation/theme/:themeId/unit/:unitId" element={<AIBusinessAutomationUnit />} />
-                  <Route path="/courses/ai-business-automation/theme/:themeId/quiz" element={<AIBusinessAutomationQuiz />} />
                   
                   {/* ChatGPT Course Routes - 使用驗證組件 */}
                   <Route path="/courses/chatgpt-complete-course" element={<Navigate to="/courses/chatgpt-complete-course/outline" replace />} />
