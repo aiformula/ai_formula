@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { 
   ArrowLeft, Play, CheckCircle, Clock, BookOpen, ArrowRight,
   MessageSquare, Bookmark, ThumbsUp, Share2, FileText, Video,
-  Star, Target, Download, Save, Volume2, Maximize, Lightbulb, TrendingUp, Users, Globe, Zap
+  Star, Target, Download, Save, Volume2, Maximize, Lightbulb, TrendingUp, Users, Globe, Zap, AlertTriangle
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
@@ -13,15 +13,19 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useChatGPTProgress } from '@/hooks/useChatGPTProgress';
+import { chatGPTCourseData } from '@/data/chatgpt-complete-course-data';
 import './ChatGPTCompleteCourseUnit.css';
 import '@/styles/design-system.css';
-import { LearningPageSkeleton, HeaderSkeleton, LearningContentSkeleton, SidebarSkeleton } from '@/components/ui/skeleton';
 
 const ChatGPTCompleteCourseUnit: React.FC = () => {
-  const { themeId, unitId } = useParams<{ themeId: string; unitId: string }>();
+  const { themeId: themeIdStr, unitId: unitIdStr } = useParams<{ themeId: string; unitId: string }>();
   const navigate = useNavigate();
   const { language } = useLanguage();
   const isZhHK = language === 'zh-HK';
+  
+  // 🎯 核心修正：立即將字串轉換為數字
+  const themeId = parseInt(themeIdStr || '', 10);
+  const unitId = parseInt(unitIdStr || '', 10);
   
   const [learningSeconds, setLearningSeconds] = useState(0);
   const [isTimerActive, setIsTimerActive] = useState(false);
@@ -30,22 +34,12 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
   const [showDebugPanel, setShowDebugPanel] = useState(false);
   const [completionAnimation, setCompletionAnimation] = useState(false);
   const [realTimeDisplay, setRealTimeDisplay] = useState('00:00:00');
-
+  
+  // 🎯 新增：兩步式按鈕互動狀態
+  const [isMarkedComplete, setIsMarkedComplete] = useState(false);
+  
   const isDevelopment = process.env.NODE_ENV === 'development';
 
-  // Development keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === 'd' && isDevelopment) {
-        e.preventDefault();
-        setShowDebugPanel(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isDevelopment]);
-  
   // Progress tracking hooks
   const { 
     completeUnit,
@@ -54,40 +48,161 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     themeProgress
   } = useChatGPTProgress();
 
-  // Unit completion check
-  const isUnitCompleted = useCallback((unitKey: string): boolean => {
-    const match = unitKey.match(/t(\d+)-u(\d+)/);
-    if (!match) return false;
+  // 🎯 徹底重構：正確的兩步式搜尋邏輯 (使用數字ID匹配)
+  const currentUnit = useMemo(() => {
+    if (!themeId || !unitId || isNaN(themeId) || isNaN(unitId)) {
+      console.warn('Missing or invalid themeId/unitId in URL parameters');
+      return null;
+    }
+
+    console.log(`🔍 Searching for theme ${themeId}, unit ${unitId}`);
+
+    // 🎯 第一步：根據themeId找出正確的主題 (數字比較)
+    const currentModule = chatGPTCourseData.courseModules.find(
+      module => module.id === themeId
+    );
+
+    if (!currentModule) {
+      console.error(`❌ Theme ${themeId} not found in courseModules`);
+      return null;
+    }
+
+    console.log(`✅ Found theme: ${currentModule.title}`);
+    console.log(`📚 Theme has ${currentModule.lessons.length} lessons`);
+
+    // 🎯 第二步：根據unitId在主題的lessons陣列中找出正確的單元 (ID匹配)
+    const currentLesson = currentModule.lessons.find(
+      lesson => lesson.id === unitId
+    );
+
+    if (!currentLesson) {
+      console.error(`❌ Unit ${unitId} not found in theme ${themeId}`);
+      console.log(`📋 Available lesson IDs in theme ${themeId}:`, currentModule.lessons.map(l => l.id));
+      return null;
+    }
     
-    const themeId = parseInt(match[1]);
-    const unitId = parseInt(match[2]);
+    console.log(`✅ Found lesson: ${currentLesson.title}`);
+    console.log(`📖 Lesson ID: ${currentLesson.id}, Duration: ${currentLesson.duration}`);
+
+    // 返回包含完整信息的單元對象
+    return {
+      ...currentLesson,
+      themeId: themeId,
+      themeTitle: currentModule.title,
+      themeDescription: currentModule.description,
+      absoluteLessonId: currentLesson.id // 保存絕對課程ID
+    };
+  }, [themeId, unitId]);
+
+  // 🎯 重構：完整的導航信息計算
+  const navigationInfo = useMemo(() => {
+    if (!currentUnit) return null;
+
+    // 找到當前主題模組
+    const currentModule = chatGPTCourseData.courseModules.find(
+      module => module.id === currentUnit.themeId
+    );
+
+    if (!currentModule) return null;
+
+    // 🎯 判斷是否為主題的最後一課（使用ID匹配）
+    const lastLessonId = Math.max(...currentModule.lessons.map(lesson => lesson.id));
+    const isLastUnitOfTheme = currentUnit.id === lastLessonId;
     
-    const progress = getThemeProgress(themeId);
-    return progress ? progress.completedUnits.includes(unitId) : false;
-  }, [getThemeProgress]);
+    // 🎯 判斷是否為整個課程的最後一個主題
+    const lastThemeId = Math.max(...chatGPTCourseData.courseModules.map(module => module.id));
+    const isLastThemeOfCourse = currentUnit.themeId === lastThemeId;
+    
+    // 🎯 判斷是否為整個課程的最後一課
+    const isLastUnitOfCourse = isLastUnitOfTheme && isLastThemeOfCourse;
+    
+    // 計算總單元數
+    const totalUnits = chatGPTCourseData.courseModules.reduce(
+      (total, module) => total + module.lessons.length, 
+      0
+    );
+
+    // 🎯 重構：獲取當前單元在全部課程中的位置（使用相對編號）
+    let currentPosition = 0;
+    let foundCurrent = false;
+    
+    for (const module of chatGPTCourseData.courseModules) {
+      for (let lessonIndex = 0; lessonIndex < module.lessons.length; lessonIndex++) {
+        currentPosition++;
+        const relativeUnitId = lessonIndex + 1;
+        
+        if (module.id === currentUnit.themeId && module.lessons[lessonIndex].id === currentUnit.id) {
+          foundCurrent = true;
+          break;
+        }
+      }
+      if (foundCurrent) break;
+    }
+
+    // 🎯 重構：計算前一個和後一個單元（使用相對編號）
+    let prevUnit = null;
+    let nextUnit = null;
+    let globalPosition = 0;
+
+    for (const module of chatGPTCourseData.courseModules) {
+      for (let lessonIndex = 0; lessonIndex < module.lessons.length; lessonIndex++) {
+        globalPosition++;
+        
+        // 計算相對單元編號（1-based）
+        const relativeUnitId = lessonIndex + 1;
+        
+        if (globalPosition === currentPosition - 1) {
+          prevUnit = { themeId: module.id, unitId: relativeUnitId };
+        }
+        
+        if (globalPosition === currentPosition + 1) {
+          nextUnit = { themeId: module.id, unitId: relativeUnitId };
+        }
+      }
+    }
+
+    return {
+      currentPosition,
+      totalUnits,
+      prevUnit,
+      nextUnit,
+      isFirstUnit: currentPosition === 1,
+      isLastUnit: currentPosition === totalUnits,
+      isLastUnitOfTheme,        // 🎯 是否為主題最後一課
+      isLastThemeOfCourse,      // 🎯 是否為課程最後一個主題
+      isLastUnitOfCourse,       // 🎯 是否為整個課程的最後一課
+      currentModule
+    };
+  }, [currentUnit]);
+
+  // 🎯 重構：檢查單元完成狀態（使用絕對課程ID）
+  const isUnitCompleted = useCallback((): boolean => {
+    if (!currentUnit) return false;
+    
+    const progress = getThemeProgress(currentUnit.themeId);
+    const isCompleted = progress ? progress.completedUnits.includes(currentUnit.absoluteLessonId) : false;
+    
+    console.log(`🔍 Checking completion: Theme ${currentUnit.themeId}, Absolute ID ${currentUnit.absoluteLessonId}, Completed: ${isCompleted}`);
+    
+    return isCompleted;
+  }, [getThemeProgress, currentUnit]);
   
-  // Mark unit as completed
-  const markUnitCompleted = useCallback((unitKey: string, timeSpent: number = 60) => {
-    const match = unitKey.match(/t(\d+)-u(\d+)/);
-    if (!match) return;
+  // 🎯 重構：標記單元完成（使用絕對課程ID進行進度跟踪）
+  const markUnitCompleted = useCallback((timeSpent: number = 60) => {
+    if (!currentUnit) return;
     
-    const themeId = parseInt(match[1]);
-    const unitId = parseInt(match[2]);
+    console.log(`🎯 Marking unit complete: Theme ${currentUnit.themeId}, Absolute ID ${currentUnit.absoluteLessonId}`);
+    
     const timeInMinutes = Math.ceil(timeSpent / 60);
     
-    completeUnit(themeId, unitId, timeInMinutes);
-  }, [completeUnit]);
+    // 使用絕對課程ID進行進度跟踪，確保與系統其他部分一致
+    completeUnit(currentUnit.themeId, currentUnit.absoluteLessonId, timeInMinutes);
+  }, [completeUnit, currentUnit]);
 
-  // Generate unit key
-  const getUnitKey = (themeId: string, unitId: string): string => {
-    return `t${themeId}-u${unitId}`;
-  };
-
-  const currentUnitKey = getUnitKey(themeId || '1', unitId || '1');
-  const isCompleted = isUnitCompleted(currentUnitKey);
+  const isCompleted = isUnitCompleted();
   const stats = getProgressStats();
 
-  // Handle mark complete
+  // 🎯 重構：兩步式標記完成 - 第一步：標記完成
   const handleMarkComplete = useCallback(() => {
     setIsTimerActive(false);
     const finalSeconds = Math.max(learningSeconds, 1);
@@ -102,153 +217,69 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     const finalTimeDisplay = `${formattedHours}:${formattedMinutes}:${formattedSecondsDisplay}`;
     
     setRealTimeDisplay(finalTimeDisplay);
-    markUnitCompleted(currentUnitKey, finalSeconds);
     
+    // 🎯 儲存進度到系統
+    markUnitCompleted(finalSeconds);
+    
+    // 🎯 更新頁面狀態，觸發按鈕變身
+    setIsMarkedComplete(true);
+    
+    // 🎯 顯示完成動畫
     setCompletionAnimation(true);
     setTimeout(() => {
       setCompletionAnimation(false);
     }, 2000);
-  }, [learningSeconds, currentUnitKey, markUnitCompleted]);
+  }, [learningSeconds, markUnitCompleted]);
 
   // Navigation handlers
   const handleNavigateBack = useCallback(() => {
     navigate('/courses/chatgpt-complete-course/learning');
   }, [navigate]);
 
-  const handleNavigateNext = useCallback((nextUnitId: number) => {
-    let nextThemeId = themeId;
-    if (nextUnitId >= 6 && nextUnitId <= 10) nextThemeId = '2';
-    if (nextUnitId >= 11 && nextUnitId <= 16) nextThemeId = '3';
-    if (nextUnitId >= 17 && nextUnitId <= 21) nextThemeId = '4';
-    if (nextUnitId >= 22 && nextUnitId <= 26) nextThemeId = '5';
-    if (nextUnitId >= 27 && nextUnitId <= 31) nextThemeId = '6';
-    
-    navigate(`/courses/chatgpt-complete-course/theme/${nextThemeId}/unit/${nextUnitId}`);
-  }, [navigate, themeId]);
+  const handleNavigateNext = useCallback(() => {
+    if (navigationInfo?.nextUnit) {
+      navigate(`/courses/chatgpt-complete-course/theme/${navigationInfo.nextUnit.themeId}/unit/${navigationInfo.nextUnit.unitId}`);
+    }
+  }, [navigate, navigationInfo]);
 
-  const handleNavigatePrev = useCallback((prevUnitId: number) => {
-    let prevThemeId = themeId;
-    if (prevUnitId >= 1 && prevUnitId <= 5) prevThemeId = '1';
-    if (prevUnitId >= 6 && prevUnitId <= 10) prevThemeId = '2';
-    if (prevUnitId >= 11 && prevUnitId <= 16) prevThemeId = '3';
-    if (prevUnitId >= 17 && prevUnitId <= 21) prevThemeId = '4';
-    if (prevUnitId >= 22 && prevUnitId <= 26) prevThemeId = '5';
-    if (prevUnitId >= 27 && prevUnitId <= 31) prevThemeId = '6';
-    
-    navigate(`/courses/chatgpt-complete-course/theme/${prevThemeId}/unit/${prevUnitId}`);
-  }, [navigate, themeId]);
+  const handleNavigatePrev = useCallback(() => {
+    if (navigationInfo?.prevUnit) {
+      navigate(`/courses/chatgpt-complete-course/theme/${navigationInfo.prevUnit.themeId}/unit/${navigationInfo.prevUnit.unitId}`);
+    }
+  }, [navigate, navigationInfo]);
 
   const handleNavigateQuiz = useCallback(() => {
     navigate(`/courses/chatgpt-complete-course/theme/${themeId}/quiz`);
   }, [navigate, themeId]);
 
-  // Course units data - properly structured
-  const units = useMemo(() => ({
-    '1': {
-      id: 1,
-      themeId: 1,
-      title: isZhHK ? '單元 1.1：什麼是大型語言模型 (LLM)?' : 'Unit 1.1: What is a Large Language Model (LLM)?',
-      duration: '15分鐘',
-      type: 'text' as const,
-      description: isZhHK ? '整個課程的起點，介紹人工智能基礎概念和完整學習路線圖，建立學習目標和方法' : 'The beginning of the entire course, introducing basic AI concepts and complete learning roadmap, establishing learning goals and methods.',
-      content: {
-        transcript: isZhHK ? 
-          '大型語言模型（Large Language Model, LLM）是一種先進的人工智能（AI）程式，經過海量文本數據訓練，從而學會理解、生成、總結、翻譯人類語言以及執行其他複雜的文本相關任務。' :
-          'A Large Language Model (LLM) is a cutting-edge artificial intelligence program trained on massive text data to understand, generate, summarize, translate human language and perform other complex text-related tasks.',
-        keyPoints: isZhHK ? [
-          '大型語言模型：基於Transformer架構的先進AI系統',
-          '海量訓練：使用互聯網大量文本數據進行訓練',
-          '多功能性：理解、生成、翻譯、總結等多種能力',
-          '參數規模：數十億到數千億個參數的複雜模型'
-        ] : [
-          'Large Language Model: Advanced AI system based on Transformer architecture',
-          'Massive Training: Trained on vast amounts of internet text data',
-          'Versatility: Multiple capabilities including understanding, generation, translation, summarization',
-          'Parameter Scale: Complex models with billions to hundreds of billions of parameters'
-        ]
-      },
-      nextUnit: 2,
-      nextTheme: null,
-      completed: false
-    },
-    '2': {
-      id: 2,
-      themeId: 1,
-      title: isZhHK ? '單元 1.2：深度解析 LLM' : 'Unit 1.2: Deep Analysis of LLM',
-      duration: '18分鐘',
-      type: 'text' as const,
-      description: isZhHK ? '探索LLM的建構基礎神經網絡以及革命性Transformer架構的核心創新自注意力機制' : 'Explore the building blocks of LLM neural networks and the core innovation of the revolutionary Transformer architecture self-attention mechanisms.',
-      content: {
-        transcript: isZhHK ? 
-          'LLM的建構基礎是人工神經網絡，這是一種模仿我們大腦中神經元相互連接傳遞信息方式的計算模型。' :
-          'The building blocks of LLM are artificial neural networks, which are computational models that mimic the way neurons in biological brains interconnect and transmit signals.',
-        keyPoints: isZhHK ? [
-          '神經網絡：模仿大腦神經元的計算模型',
-          'Transformer架構：2017年革命性的深度學習架構',
-          '自注意力機制：捕捉文本中長距離依賴關係的核心技術',
-          '並行處理：相比RNN大幅提升訓練效率'
-        ] : [
-          'Neural Networks: Computational models mimicking brain neurons',
-          'Transformer Architecture: Revolutionary deep learning architecture from 2017',
-          'Self-Attention Mechanism: Core technology for capturing long-range dependencies in text',
-          'Parallel Processing: Significantly improved training efficiency compared to RNN'
-        ]
-      },
-      nextUnit: 3,
-      nextTheme: null,
-      completed: false
-    },
-    // Add remaining units following the same pattern...
-    '31': {
-      id: 31,
-      themeId: 6,
-      title: isZhHK ? '單元 6.5：人工智能的未來：展望 GPT 的下一步發展與對社會的長遠影響' : 'Unit 6.5: The Future of AI: GPT\'s Next Development and Long-term Social Impact',
-      duration: '25分鐘',
-      type: 'text' as const,
-      description: isZhHK ? '探索AI技術的未來趨勢和對社會各個層面的潛在影響' : 'Explore future trends in AI technology and potential impacts on various aspects of society.',
-      content: {
-        transcript: isZhHK ? 
-          '人工智能正處於快速發展階段，了解其未來趨勢對個人和社會規劃都具有重要意義。' :
-          'Artificial intelligence is in a rapid development phase, and understanding its future trends is important for both personal and social planning.',
-        keyPoints: isZhHK ? [
-          '技術趨勢：模型能力增強、多模態整合、技術融合',
-          '社會影響：就業變化、教育轉型、醫療革命',
-          '倫理挑戰：新興議題、全球治理、責任歸屬',
-          '個人準備：持續學習、跨領域技能、情感智能',
-          '積極參與：開放態度、倫理討論、包容發展'
-        ] : [
-          'Tech Trends: Enhanced model capabilities, multimodal integration, technology convergence',
-          'Social Impact: Employment changes, education transformation, healthcare revolution',
-          'Ethical Challenges: Emerging issues, global governance, responsibility attribution',
-          'Personal Preparation: Continuous learning, interdisciplinary skills, emotional intelligence',
-          'Active Participation: Open attitude, ethical discussion, inclusive development'
-        ]
-      },
-      nextUnit: null,
-      nextTheme: null,
-      completed: false
+  // 🎯 重構：完整的兩步式導航邏輯
+  const handleNavigateToNext = useCallback(() => {
+    if (navigationInfo?.isLastUnitOfCourse) {
+      // 情況D：課程最後一課，不做任何跳轉（或可以跳轉到課程完成頁面）
+      console.log('恭喜！您已完成所有課程！');
+      // 可以跳轉到課程完成頁面或顯示慶祝動畫
+      // navigate('/courses/chatgpt-complete-course/completed');
+    } else if (navigationInfo?.isLastUnitOfTheme) {
+      // 情況C：主題最後一課但不是課程最後一課，前往測驗
+      handleNavigateQuiz();
+    } else if (navigationInfo?.nextUnit) {
+      // 情況B：不是主題最後一課，前往下一單元
+      handleNavigateNext();
     }
-  }), [isZhHK]);
+  }, [navigationInfo, handleNavigateQuiz, handleNavigateNext]);
 
-  // Current unit data with proper fallback
-  const currentUnit = useMemo(() => {
-    const unit = units[unitId as keyof typeof units];
-    if (!unit) {
-      return {
-        id: parseInt(unitId || '1'),
-        themeId: parseInt(themeId || '1'),
-        title: '單元不存在',
-        duration: '0分鐘',
-        type: 'video' as const,
-        description: '請檢查單元ID是否正確',
-        content: {
-          transcript: '內容不存在',
-          keyPoints: ['請返回課程列表']
-        }
-      };
-    }
-    return unit;
-  }, [units, unitId]);
+  // Development keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'd' && isDevelopment) {
+        e.preventDefault();
+        setShowDebugPanel(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDevelopment]);
 
   // Timer effect
   useEffect(() => {
@@ -293,36 +324,56 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     }
   }, [isCompleted, forceTimerForTesting]);
 
-  // Navigation configuration
-  const navigationConfig = useMemo(() => {
-    const currentId = currentUnit.id;
-    const hasPrevUnit = currentId > 1;
-    const hasNextUnit = currentId < 31;
-    
-    return {
-      hasPrevUnit,
-      hasNextUnit,
-      prevUnitId: currentId - 1,
-      nextUnitId: currentId + 1
-    };
-  }, [currentUnit.id]);
+  // 如果找不到對應的課程單元，顯示錯誤頁面
+  if (!currentUnit) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-white">
+      <Navigation />
+      
+        <div className="pt-20 lg:pt-24">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div 
+              className="text-center py-20"
+              initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <AlertTriangle className="w-20 h-20 text-yellow-400 mx-auto mb-6" />
+              <h1 className="text-3xl font-bold text-white mb-4">
+                {isZhHK ? '課程單元不存在' : 'Course Unit Not Found'}
+              </h1>
+              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                {isZhHK 
+                  ? `抱歉，我們找不到主題 ${themeId} 的單元 ${unitId}。請檢查網址是否正確，或返回課程列表選擇其他單元。`
+                  : `Sorry, we couldn't find unit ${unitId} in theme ${themeId}. Please check the URL or return to the course list to select another unit.`
+                }
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                onClick={handleNavigateBack}
+                  className="btn-ai-primary flex items-center space-x-2"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>{isZhHK ? '返回課程列表' : 'Back to Course List'}</span>
+                </Button>
+                
+                <Button
+                  onClick={() => navigate('/courses/chatgpt-complete-course/theme/1/unit/1')}
+                  className="btn-ai-secondary flex items-center space-x-2"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  <span>{isZhHK ? '從第一課開始' : 'Start from First Lesson'}</span>
+                </Button>
+            </div>
+            </motion.div>
+          </div>
+          </div>
+          </div>
+    );
+  }
 
-  // Progress configuration
-  const progressConfig = useMemo(() => {
-    const totalUnits = 31;
-    const completedUnits = stats.completedUnits || 0;
-    const progressPercentage = Math.round((completedUnits / totalUnits) * 100);
-    
-    return {
-      totalUnits,
-      completedUnits,
-      progressPercentage,
-      currentUnitNumber: currentUnit.id,
-      isLastUnit: currentUnit.id === totalUnits
-    };
-  }, [stats.completedUnits, currentUnit.id]);
-
-  return (
+                  return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Navigation />
       
@@ -338,22 +389,22 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center justify-between mb-6">
-              <Button
+                    <Button 
                 onClick={handleNavigateBack}
                 className="btn-ai-secondary flex items-center space-x-2"
-              >
+                    >
                 <ArrowLeft className="w-4 h-4" />
                 <span>{isZhHK ? '返回課程' : 'Back to Course'}</span>
-              </Button>
+                    </Button>
               
               <div className="text-right">
                 <div className="text-sm text-gray-400">{isZhHK ? '進度' : 'Progress'}</div>
                 <div className="text-lg font-semibold text-green-400">
-                  {progressConfig.completedUnits}/{progressConfig.totalUnits}
-                </div>
-              </div>
-            </div>
-            
+                  {navigationInfo?.currentPosition}/{navigationInfo?.totalUnits}
+                        </div>
+          </div>
+                              </div>
+              
             <div className="text-center">
               <Badge className="bg-green-500/20 text-green-300 mb-4">
                 {isZhHK ? `第 ${currentUnit.themeId} 章` : `Chapter ${currentUnit.themeId}`}
@@ -364,7 +415,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
               <p className="text-gray-300 text-lg max-w-3xl mx-auto">
                 {currentUnit.description}
               </p>
-            </div>
+              </div>
           </motion.div>
 
           {/* Content Section */}
@@ -389,10 +440,10 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                     </h3>
                     <div className="prose prose-invert prose-lg max-w-none">
                       <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                        {currentUnit.content.transcript}
+                        {currentUnit.transcript}
                       </p>
-                    </div>
-                  </div>
+              </div>
+            </div>
 
                   {/* Key Points */}
                   <div>
@@ -401,84 +452,291 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                       {isZhHK ? '重點整理' : 'Key Points'}
                     </h3>
                     <ul className="space-y-3">
-                      {currentUnit.content.keyPoints.map((point, index) => (
+                      {currentUnit.keyPoints?.map((point, index) => (
                         <li key={index} className="flex items-start">
                           <span className="text-green-400 mr-3 mt-1">•</span>
                           <span className="text-gray-300">{point}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
+                              </div>
 
-                </div>
+            </div>
 
-                {/* Action Buttons */}
+                {/* 🎯 徹底重構：兩步式導航按鈕系統 */}
                 <div className="mt-8 pt-6 border-t border-gray-700/50">
-                  <div className="flex flex-col sm:flex-row gap-4 justify-between">
+                  
+                  {/* 🎯 主要導航列 - justify-between 佈局 */}
+                  <div className="flex justify-between items-center gap-4">
                     
-                    {/* Mark Complete Button */}
-                    {!isCompleted && (
-                      <Button
-                        onClick={handleMarkComplete}
-                        className="btn-ai-primary flex items-center space-x-2"
-                      >
-                        <CheckCircle className="w-5 h-5" />
-                        <span>{isZhHK ? '標記完成' : 'Mark Complete'}</span>
-                      </Button>
-                    )}
-
-                    {isCompleted && (
-                      <div className="flex items-center space-x-2 text-green-400">
-                        <CheckCircle className="w-5 h-5" />
-                        <span>{isZhHK ? '已完成' : 'Completed'}</span>
-                      </div>
-                    )}
-
-                    {/* Navigation Buttons */}
-                    <div className="flex space-x-3">
-                      {navigationConfig.hasPrevUnit && (
-                        <Button
-                          onClick={() => handleNavigatePrev(navigationConfig.prevUnitId)}
-                          className="btn-ai-secondary"
+                    {/* 🎯 左側：上一單元按鈕 */}
+                    <div className="flex-shrink-0">
+                      {navigationInfo?.prevUnit ? (
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3 }}
                         >
-                          <ArrowLeft className="w-4 h-4 mr-2" />
-                          {isZhHK ? '上一單元' : 'Previous'}
-                        </Button>
-                      )}
-
-                      {navigationConfig.hasNextUnit && (
-                        <Button
-                          onClick={() => handleNavigateNext(navigationConfig.nextUnitId)}
-                          className="btn-ai-primary"
-                        >
-                          {isZhHK ? '下一單元' : 'Next'}
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
-                      )}
-
-                      {progressConfig.isLastUnit && (
-                        <Button
-                          onClick={handleNavigateQuiz}
-                          className="btn-ai-accent"
-                        >
-                          {isZhHK ? '進行測驗' : 'Take Quiz'}
-                        </Button>
+                          <Button 
+                            onClick={handleNavigatePrev}
+                            variant="outline"
+                            className="bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500 hover:text-white transition-all duration-200"
+                          >
+                            <ArrowLeft className="w-4 h-4 mr-2" />
+                            {isZhHK ? '上一單元' : 'Previous'}
+                          </Button>
+                        </motion.div>
+                      ) : (
+                        <div className="w-24"></div> // 佔位元素保持佈局平衡
                       )}
                     </div>
 
+                    {/* 🎯 中間：完成狀態指示 */}
+                    {(isCompleted || isMarkedComplete) && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4 }}
+                        className="flex items-center space-x-2 text-green-400"
+                      >
+                        <motion.div
+                          animate={{ rotate: [0, 360] }}
+                          transition={{ duration: 0.6, ease: "easeInOut" }}
+                        >
+                          <CheckCircle className="w-5 h-5" />
+                        </motion.div>
+                        <span className="font-medium text-sm">
+                          {isZhHK ? '已完成' : 'Completed'}
+                        </span>
+                      </motion.div>
+                    )}
+
+                    {/* 🎯 右側：主要操作按鈕 */}
+                    <div className="flex-shrink-0">
+                      
+                      {/* 情況A: 用戶未完成且未標記完成 - 顯示標記完成按鈕 */}
+                      {!isCompleted && !isMarkedComplete && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <Button 
+                            onClick={handleMarkComplete}
+                            className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold px-6 py-2 text-base relative overflow-hidden group border-none"
+                          >
+                            {/* 按鈕動畫背景 */}
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-yellow-400"
+                              initial={{ opacity: 0 }}
+                              whileHover={{ opacity: 1 }}
+                              transition={{ duration: 0.3 }}
+                            />
+                            
+                            <div className="relative z-10 flex items-center space-x-2">
+                              <motion.div
+                                whileHover={{ scale: 1.1, rotate: 10 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                              >
+                                <CheckCircle className="w-5 h-5" />
+                              </motion.div>
+                              <span>{isZhHK ? '標記完成' : 'Mark Complete'}</span>
+                            </div>
+                            
+                            {/* 脈動效果 */}
+                            <motion.div
+                              className="absolute inset-0 border-2 border-yellow-400 rounded-md"
+                              animate={{ 
+                                opacity: [0, 0.6, 0],
+                                scale: [1, 1.05, 1]
+                              }}
+                              transition={{ 
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                              }}
+                            />
+                          </Button>
+                        </motion.div>
+                      )}
+
+                      {/* 情況B-D: 用戶已完成 - 顯示對應的前進按鈕 */}
+                      {(isCompleted || isMarkedComplete) && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2, duration: 0.4 }}
+                        >
+                          {/* 情況B: 不是主題最後一課 - 下一單元 */}
+                          {!navigationInfo?.isLastUnitOfTheme && (
+                            <Button 
+                              onClick={handleNavigateToNext}
+                              className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold px-6 py-2 text-base relative overflow-hidden group border-none"
+                            >
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-yellow-400"
+                                initial={{ opacity: 0 }}
+                                whileHover={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                              />
+                              
+                              <div className="relative z-10 flex items-center space-x-2">
+                                <BookOpen className="w-5 h-5" />
+                                <span>{isZhHK ? '下一單元' : 'Next Unit'}</span>
+                                <motion.div
+                                  animate={{ x: [0, 3, 0] }}
+                                  transition={{ duration: 1.5, repeat: Infinity }}
+                                >
+                                  <ArrowRight className="w-4 h-4" />
+                                </motion.div>
+                              </div>
+                            </Button>
+                          )}
+
+                          {/* 情況C: 主題最後一課但不是課程最後一課 - 前往測驗 */}
+                          {navigationInfo?.isLastUnitOfTheme && !navigationInfo?.isLastUnitOfCourse && (
+                            <Button 
+                              onClick={handleNavigateToNext}
+                              className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold px-6 py-2 text-base relative overflow-hidden group border-none"
+                            >
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-yellow-400"
+                                initial={{ opacity: 0 }}
+                                whileHover={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                              />
+                              
+                              <div className="relative z-10 flex items-center space-x-2">
+                                <Target className="w-5 h-5" />
+                                <span>{isZhHK ? '前往測驗' : 'Take Quiz'}</span>
+                                <motion.div
+                                  animate={{ x: [0, 3, 0] }}
+                                  transition={{ duration: 1.5, repeat: Infinity }}
+                                >
+                                  <ArrowRight className="w-4 h-4" />
+                                </motion.div>
+                              </div>
+                            </Button>
+                          )}
+
+                          {/* 情況D: 課程最後一課 - 恭喜完成 */}
+                          {navigationInfo?.isLastUnitOfCourse && (
+                            <motion.div
+                              initial={{ scale: 0.9 }}
+                              animate={{ scale: 1 }}
+                              transition={{ duration: 0.4 }}
+                            >
+                              <Button 
+                                onClick={() => {
+                                  console.log('恭喜！您已完成所有課程！');
+                                  // 可以跳轉到課程完成頁面
+                                }}
+                                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold px-8 py-3 text-base relative overflow-hidden group border-none"
+                              >
+                                <div className="relative z-10 flex items-center space-x-2">
+                                  <motion.div
+                                    animate={{ scale: [1, 1.2, 1] }}
+                                    transition={{ duration: 1, repeat: Infinity }}
+                                  >
+                                    <Star className="w-6 h-6" />
+                                  </motion.div>
+                                  <span>{isZhHK ? '🎉 恭喜完成課程！' : '🎉 Course Completed!'}</span>
+                                </div>
+                                
+                                {/* 慶祝動畫背景 */}
+                                <motion.div
+                                  className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-pink-400"
+                                  animate={{ 
+                                    opacity: [0, 0.3, 0],
+                                    scale: [1, 1.1, 1]
+                                  }}
+                                  transition={{ 
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                  }}
+                                />
+                              </Button>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      )}
+                    </div>
                   </div>
+
+                  {/* 🎯 學習提示文字 */}
+                  {!isCompleted && !isMarkedComplete && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.4 }}
+                      className="mt-6 text-center"
+                    >
+                      <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                        <Lightbulb className="w-4 h-4 text-yellow-400" />
+                        {isZhHK 
+                          ? '完成學習後，點擊「標記完成」即可解鎖下一課程' 
+                          : 'After studying, click "Mark Complete" to unlock the next lesson'
+                        }
+                      </p>
+                    </motion.div>
+                  )}
+
+                  {/* 🎯 完成後的鼓勵文字 */}
+                  {(isCompleted || isMarkedComplete) && !navigationInfo?.isLastUnitOfCourse && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      className="mt-6 text-center"
+                    >
+                      <p className="text-sm text-green-300 flex items-center justify-center gap-2">
+                        <TrendingUp className="w-4 h-4" />
+                        {isZhHK 
+                          ? `太棒了！繼續保持學習熱忱，${navigationInfo?.isLastUnitOfTheme ? '準備挑戰測驗' : '前往下一個單元'}！` 
+                          : `Great job! Keep up the momentum and ${navigationInfo?.isLastUnitOfTheme ? 'prepare for the quiz' : 'move to the next unit'}!`
+                        }
+                      </p>
+                    </motion.div>
+                  )}
+
+                  {/* 🎯 課程完成的特殊慶祝文字 */}
+                  {(isCompleted || isMarkedComplete) && navigationInfo?.isLastUnitOfCourse && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      className="mt-6 text-center p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-lg border border-green-500/30"
+                    >
+                      <p className="text-lg font-semibold text-green-300 flex items-center justify-center gap-2 mb-2">
+                        <motion.div
+                          animate={{ rotate: [0, 360] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        >
+                          <Star className="w-5 h-5" />
+                        </motion.div>
+                        {isZhHK ? '🏆 課程學習完成！' : '🏆 Course Complete!'}
+                      </p>
+                      <p className="text-sm text-green-200">
+                        {isZhHK 
+                          ? '您已成功完成 ChatGPT 完整教學實戰課程！現在您已具備運用 AI 工具的全面技能。' 
+                          : 'You have successfully completed the ChatGPT Complete Practical Course! You now have comprehensive AI tool skills.'
+                        }
+                      </p>
+                    </motion.div>
+                  )}
                 </div>
 
-              </motion.div>
-            </div>
+                </motion.div>
+          </div>
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <motion.div
+            <motion.div 
                 className="sticky top-24 space-y-6"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
               >
                 
                 {/* Unit Info */}
@@ -487,21 +745,21 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                     {isZhHK ? '單元資訊' : 'Unit Info'}
                   </h4>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                       <span className="text-gray-400">{isZhHK ? '時長' : 'Duration'}</span>
                       <span className="text-white font-medium">{currentUnit.duration}</span>
                     </div>
-                    <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                       <span className="text-gray-400">{isZhHK ? '類型' : 'Type'}</span>
                       <span className="text-white font-medium capitalize">{currentUnit.type}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
+              </div>
+                <div className="flex items-center justify-between">
                       <span className="text-gray-400">{isZhHK ? '學習時間' : 'Study Time'}</span>
                       <span className="text-green-400 font-mono font-medium">{realTimeDisplay}</span>
                     </div>
                   </div>
-                </div>
-
+          </div>
+                
                 {/* Progress Stats */}
                 <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
                   <h4 className="text-lg font-semibold mb-4">
@@ -516,31 +774,31 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                       <span className="text-gray-400">{isZhHK ? '完成主題' : 'Themes'}</span>
                       <span className="text-white">{stats.completedThemes}/{stats.totalThemes}</span>
                     </div>
-                    {isCompleted && (
+                {isCompleted && (
                       <div className="flex items-center space-x-2 mt-4 p-2 bg-green-500/20 border border-green-400/30 rounded-lg">
                         <CheckCircle className="w-4 h-4 text-green-400" />
                         <span className="text-green-300 text-sm font-medium">{isZhHK ? '已完成' : 'Completed'}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-              </motion.div>
-            </div>
-
-          </div>
         </div>
+                )}
+        </div>
+            </div>
+            
+              </motion.div>
+          </div>
+
+            </div>
+          </div>
       </div>
 
       {/* Completion Animation */}
       {completionAnimation && (
-        <motion.div
+            <motion.div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
             className="bg-green-600 text-white px-8 py-6 rounded-2xl flex items-center space-x-4"
             initial={{ scale: 0, rotate: 0 }}
             animate={{ scale: 1, rotate: 360 }}
@@ -550,10 +808,10 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
             <div>
               <h3 className="text-xl font-bold">{isZhHK ? '完成！' : 'Completed!'}</h3>
               <p className="text-green-100">{isZhHK ? '學習時間' : 'Study Time'}: {realTimeDisplay}</p>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
     </div>
   );
 };

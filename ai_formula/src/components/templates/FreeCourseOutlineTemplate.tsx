@@ -341,7 +341,7 @@ const FreeCourseOutlineTemplate: React.FC<FreeCourseOutlineTemplateProps> = ({
                       </button>
                       {openAccordion === module.id && (
                         <div className="px-6 pb-6 space-y-3">
-                          {module.lessons.map((lesson) => (
+                          {module.lessons.map((lesson, lessonIndex) => (
                             <div key={lesson.id} className="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
                               <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">

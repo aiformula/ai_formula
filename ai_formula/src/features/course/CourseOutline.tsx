@@ -207,10 +207,10 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
   const getInstructorTheme = () => {
     if (isFree) {
       return {
-        gradient: 'from-green-600 to-green-800',
-        primary: 'text-green-400',
-        secondary: 'bg-green-600 hover:bg-green-700',
-        accent: 'text-green-400 border-green-400'
+        gradient: 'from-[#10a37f] to-[#0d8a69]',
+        primary: 'text-[#10a37f]',
+        secondary: 'bg-[#10a37f] hover:bg-[#0d8a69]',
+        accent: 'text-[#10a37f] border-[#10a37f]'
       };
     }
     
@@ -246,16 +246,6 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
       id: 'learning-content',
       label: isZhHK ? '學習內容' : 'Learning Content',
       icon: <GraduationCap className="w-4 h-4" />
-    },
-    {
-      id: 'target-audience',
-      label: isZhHK ? '適合對象' : 'Target Audience',
-      icon: <UserCheck className="w-4 h-4" />
-    },
-    {
-      id: 'instructor-profile',
-      label: isZhHK ? '導師介紹' : 'Meet Your Instructor',
-      icon: <Users className="w-4 h-4" />
     },
     {
       id: 'faq',
@@ -360,36 +350,204 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                 </CardContent>
               </Card>
 
-              {/* 課程價值展示 */}
+              {/* 課程價值展示 - 半透明玻璃設計 */}
               {courseFeatures.length > 0 && (
-                <Card className="bg-gray-800 border-gray-700">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-white">
-                      {isFree ? <Gift className={`w-5 h-5 ${instructorTheme.primary}`} /> : <Star className={`w-5 h-5 ${instructorTheme.primary}`} />}
-                      {isFree ? 
-                        (isZhHK ? "免費課程價值" : "Free Course Value") :
-                        (isZhHK ? "課程價值" : "Course Value")
-                      }
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid md:grid-cols-3 gap-6">
-                      {courseFeatures.map((feature, index) => (
-                        <div key={index} className="text-center p-4 bg-gray-700 rounded-lg">
-                          <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center`}>
-                            {feature.icon}
-                          </div>
-                          <h4 className="font-semibold text-white text-sm mb-1">{feature.title}</h4>
-                          <p className="text-xs text-gray-400 mb-2">{feature.description}</p>
-                          <Badge variant="outline" className={instructorTheme.accent}>
-                            {feature.highlight}
-                          </Badge>
-                        </div>
-                      ))}
+                <motion.div
+                  className="space-y-6"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  {/* 標題區域 */}
+                  <motion.div 
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      >
+                        {isFree ? 
+                          <Gift className={`w-8 h-8 ${instructorTheme.primary}`} /> : 
+                          <Star className={`w-8 h-8 ${instructorTheme.primary}`} />
+                        }
+                      </motion.div>
+                      <h2 className="text-2xl font-bold text-white">
+                        {isFree ? 
+                          (isZhHK ? "免費課程價值" : "Free Course Value") :
+                          (isZhHK ? "課程價值" : "Course Value")
+                        }
+                      </h2>
                     </div>
-                  </CardContent>
-                </Card>
+                    <motion.p 
+                      className="text-gray-300 max-w-2xl mx-auto"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.6 }}
+                    >
+                      {isZhHK ? 
+                        "專業設計的學習模組，從基礎到進階，全方位提升您的 AI 應用能力" :
+                        "Professionally designed learning modules, from basics to advanced, comprehensively enhancing your AI application capabilities"
+                      }
+                    </motion.p>
+                  </motion.div>
+
+                  {/* 玻璃卡片網格 */}
+                  <motion.div 
+                    className="glass-cards-grid"
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          staggerChildren: 0.15,
+                          delayChildren: 0.2
+                        }
+                      }
+                    }}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {courseFeatures.map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        className="glass-card"
+                        variants={{
+                          hidden: { 
+                            opacity: 0, 
+                            y: 30,
+                            scale: 0.95
+                          },
+                          visible: { 
+                            opacity: 1, 
+                            y: 0,
+                            scale: 1,
+                            transition: {
+                              type: "spring",
+                              stiffness: 100,
+                              damping: 12,
+                              duration: 0.6
+                            }
+                          }
+                        }}
+                        whileHover={{
+                          y: -8,
+                          scale: 1.02,
+                          transition: {
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 17
+                          }
+                        }}
+                        whileTap={{
+                          scale: 0.98,
+                          transition: { duration: 0.1 }
+                        }}
+                      >
+                        <div className="glass-card-header">
+                          {/* 玻璃圖標容器 */}
+                          <motion.div 
+                            className="glass-card-icon"
+                            whileHover={{
+                              rotate: 360,
+                              transition: { duration: 0.8, ease: "easeInOut" }
+                            }}
+                          >
+                            {feature.icon}
+                          </motion.div>
+                          
+                          {/* 標題 */}
+                          <h3 className="glass-card-title">
+                            {feature.title}
+                          </h3>
+                          
+                          {/* 描述 */}
+                          <p className="glass-card-description">
+                            {feature.description}
+                          </p>
+                        </div>
+
+                        {/* 玻璃標籤 */}
+                        <motion.div
+                          className="text-center"
+                          whileHover={{
+                            scale: 1.05,
+                            transition: { duration: 0.2 }
+                          }}
+                        >
+                          <span className="glass-card-badge">
+                            {feature.highlight}
+                          </span>
+                        </motion.div>
+
+                        {/* 背景光暈效果 */}
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl opacity-0"
+                          style={{
+                            background: `radial-gradient(circle at 50% 50%, rgba(16, 163, 127, 0.1) 0%, transparent 70%)`,
+                            pointerEvents: 'none'
+                          }}
+                          whileHover={{
+                            opacity: 1,
+                            scale: 1.1,
+                            transition: { duration: 0.3 }
+                          }}
+                        />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+
+                  {/* 底部裝飾性元素 */}
+                  <motion.div
+                    className="flex justify-center mt-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
+                  >
+                    <motion.div
+                      className="w-16 h-1 bg-gradient-to-r from-transparent via-[#10a37f] to-transparent rounded-full"
+                      animate={{
+                        scaleX: [1, 1.2, 1],
+                        opacity: [0.5, 1, 0.5]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
               )}
+
+              {/* 適合對象 - 移到課程介紹中 */}
+              <Card className="bg-gray-800 border-gray-700">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Users className={`w-5 h-5 ${instructorTheme.primary}`} />
+                    {targetAudience.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 mb-6">{targetAudience.description}</p>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {targetAudience.audiences.map((audience, index) => (
+                      <div key={index} className="flex items-start gap-4 p-4 bg-gray-700 rounded-lg">
+                        <div className="flex-shrink-0">
+                          {audience.icon}
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-2">{audience.title}</h4>
+                          <p className="text-sm text-gray-300">{audience.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         );
@@ -430,7 +588,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       </button>
                       {openAccordion === module.id && (
                         <div className="px-6 pb-6 space-y-3">
-                          {module.lessons.map((lesson) => (
+                          {module.lessons.map((lesson, lessonIndex) => (
                             <div key={lesson.id} className="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
                               <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
@@ -449,7 +607,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                                     {isZhHK ? '預覽' : 'Preview'}
                                   </Badge>
                                 )}
-                                <Badge variant="outline" className="text-xs text-green-400 border-green-400">
+                                <Badge variant="outline" className="text-xs text-[#10a37f] border-[#10a37f]">
                                   {isZhHK ? '免費' : 'Free'}
                                 </Badge>
                               </div>
@@ -485,135 +643,76 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
               </div>
             )}
 
-            {/* 可選課程 */}
-            {availableCourses.length > 0 && (
-              <div className="mt-8">
-                <h4 className="text-lg font-semibold text-white mb-4">
-                  {isZhHK ? "相關課程" : "Related Courses"}
-                </h4>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {availableCourses.map((course, index) => (
-                    <Card key={index} className="bg-gray-800 border-gray-700">
-                      <CardContent className="p-4">
-                        <h5 className="font-semibold text-white mb-2">{course.title}</h5>
-                        <p className="text-gray-400 text-sm mb-3">{course.description}</p>
-                        <Badge className={`bg-${course.color}-600 text-white`}>
-                          {course.available ? (isZhHK ? '可報讀' : 'Available') : (isZhHK ? '籌備中' : 'Coming Soon')}
-                        </Badge>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        );
 
-      case 'target-audience':
-        return (
-          <div className="space-y-8">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <Users className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {targetAudience.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 mb-6">{targetAudience.description}</p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {targetAudience.audiences.map((audience, index) => (
-                    <div key={index} className="flex items-start gap-4 p-4 bg-gray-700 rounded-lg">
-                      <div className="flex-shrink-0">
-                        {audience.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-white mb-2">{audience.title}</h4>
-                        <p className="text-sm text-gray-300">{audience.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
 
-      case 'instructor-profile':
-        return (
-          <div className="space-y-8">
-            {/* 導師基本信息 */}
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-                  <div className={`w-32 h-32 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center flex-shrink-0`}>
-                    <div className="text-white text-center">
-                      <div className="text-4xl font-bold mb-1">{courseInfo.instructor.charAt(0)}</div>
-                      <div className="text-sm opacity-90">導師</div>
-                    </div>
-                  </div>
-                  <div className="flex-1 text-center md:text-left">
-                    <h2 className="text-3xl font-bold text-white mb-2">{courseInfo.instructor}</h2>
-                    <p className="text-xl text-gray-300 mb-4">{courseInfo.instructorTitle}</p>
-                    <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
-                      <Badge className={`${instructorTheme.secondary} text-white`}>
-                        {isZhHK ? "AI 專家" : "AI Expert"}
-                      </Badge>
-                      <Badge className={`${instructorTheme.secondary} text-white`}>
-                        {isZhHK ? "資深導師" : "Senior Instructor"}
-                      </Badge>
-                      {isFree && (
+            {/* 導師介紹 - 移到學習內容中 */}
+            <div className="space-y-6">
+              {/* 導師基本信息 */}
+              <Card className="bg-gray-800 border-gray-700">
+                <CardContent className="p-8">
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <div className="flex-1 text-center md:text-left">
+                      <h2 className="text-3xl font-bold text-white mb-2">{courseInfo.instructor}</h2>
+                      <p className="text-xl text-gray-300 mb-4">{courseInfo.instructorTitle}</p>
+                      <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
                         <Badge className={`${instructorTheme.secondary} text-white`}>
-                          {isZhHK ? "免費教育推廣者" : "Free Education Advocate"}
+                          {isZhHK ? "AI 專家" : "AI Expert"}
                         </Badge>
-                      )}
+                        <Badge className={`${instructorTheme.secondary} text-white`}>
+                          {isZhHK ? "資深導師" : "Senior Instructor"}
+                        </Badge>
+                        {isFree && (
+                          <Badge className={`${instructorTheme.secondary} text-white`}>
+                            {isZhHK ? "免費教育推廣者" : "Free Education Advocate"}
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">
+                        {isZhHK 
+                          ? `擁有超過 8 年 AI 技術應用經驗，專精於 AI 工具在${isFree ? '基礎教育' : '商業'}的實務應用。曾協助超過 200 家企業導入 AI 自動化流程，學員遍佈全球，累計培養超過 3,000 名 AI 應用專才。${isFree ? '致力於推廣免費 AI 教育，讓更多人能夠掌握 AI 技能。' : '專注於企業級 AI 解決方案設計與實施。'}`
+                          : `With over 8 years of AI technology application experience, specializing in practical AI tool applications in ${isFree ? 'basic education' : 'business'}. Has successfully helped over 200 companies implement AI automation processes, with students worldwide and over 3,000 AI application specialists trained. ${isFree ? 'Dedicated to promoting free AI education for everyone.' : 'Focusing on enterprise-level AI solution design and implementation.'}`
+                        }
+                      </p>
                     </div>
-                    <p className="text-gray-300 leading-relaxed">
-                      {isZhHK 
-                        ? `擁有超過 8 年 AI 技術應用經驗，專精於 AI 工具在${isFree ? '基礎教育' : '商業'}的實務應用。曾協助超過 200 家企業導入 AI 自動化流程，學員遍佈全球，累計培養超過 3,000 名 AI 應用專才。${isFree ? '致力於推廣免費 AI 教育，讓更多人能夠掌握 AI 技能。' : '專注於企業級 AI 解決方案設計與實施。'}`
-                        : `With over 8 years of AI technology application experience, specializing in practical AI tool applications in ${isFree ? 'basic education' : 'business'}. Has successfully helped over 200 companies implement AI automation processes, with students worldwide and over 3,000 AI application specialists trained. ${isFree ? 'Dedicated to promoting free AI education for everyone.' : 'Focusing on enterprise-level AI solution design and implementation.'}`
-                      }
-                    </p>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* 為什麼提供免費課程 / 課程理念 */}
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <Heart className={`w-5 h-5 ${instructorTheme.primary}`} />
-                  {isFree ? (isZhHK ? "為什麼提供免費課程" : "Why Free Course") : (isZhHK ? "課程理念" : "Course Philosophy")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className={`p-6 bg-gradient-to-r ${instructorTheme.gradient} rounded-lg`}>
-                  <blockquote className="text-white text-lg leading-relaxed italic">
-                    {isFree ? (
-                      isZhHK 
-                        ? "「我相信知識應該是人人都能獲得的。AI 技術正在改變世界，但不應該只是少數人的特權。通過這個免費課程，我希望能夠幫助更多人了解和掌握 AI 工具，讓科技真正為所有人服務。每個人都應該有機會學習和成長，不應該被經濟條件所限制。」"
-                        : "\"I believe knowledge should be accessible to everyone. AI technology is changing the world, but it shouldn't be a privilege for just a few. Through this free course, I hope to help more people understand and master AI tools, making technology truly serve everyone. Everyone should have the opportunity to learn and grow, without being limited by economic conditions.\""
-                    ) : (
-                      isZhHK 
-                        ? "「AI 技術的快速發展為企業帶來了前所未有的機遇。我致力於將最前沿的 AI 應用技術，轉化為實用的商業解決方案。每個企業都應該能夠利用 AI 的力量，提升效率、降低成本、創造價值。這不僅是技術的革命，更是思維的轉變。」"
-                        : "\"The rapid development of AI technology brings unprecedented opportunities for businesses. I am dedicated to transforming cutting-edge AI application technologies into practical business solutions. Every business should be able to harness the power of AI to improve efficiency, reduce costs, and create value. This is not just a technological revolution, but a transformation of mindset.\""
-                    )}
-                  </blockquote>
-                  <div className="flex items-center gap-3 mt-6">
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">{courseInfo.instructor.charAt(0)}</span>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">{courseInfo.instructor}</div>
-                      <div className="text-sm text-white/80">{courseInfo.instructorTitle}</div>
+              {/* 為什麼提供免費課程 / 課程理念 */}
+              <Card className="bg-gray-800 border-gray-700">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Heart className={`w-5 h-5 ${instructorTheme.primary}`} />
+                    {isFree ? (isZhHK ? "為什麼提供免費課程" : "Why Free Course") : (isZhHK ? "課程理念" : "Course Philosophy")}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className={`p-6 bg-gradient-to-r ${instructorTheme.gradient} rounded-lg`}>
+                    <blockquote className="text-white text-lg leading-relaxed italic">
+                      {isFree ? (
+                        isZhHK 
+                          ? "「我相信知識應該是人人都能獲得的。AI 技術正在改變世界，但不應該只是少數人的特權。通過這個免費課程，我希望能夠幫助更多人了解和掌握 AI 工具，讓科技真正為所有人服務。每個人都應該有機會學習和成長，不應該被經濟條件所限制。」"
+                          : "\"I believe knowledge should be accessible to everyone. AI technology is changing the world, but it shouldn't be a privilege for just a few. Through this free course, I hope to help more people understand and master AI tools, making technology truly serve everyone. Everyone should have the opportunity to learn and grow, without being limited by economic conditions.\""
+                      ) : (
+                        isZhHK 
+                          ? "「AI 技術的快速發展為企業帶來了前所未有的機遇。我致力於將最前沿的 AI 應用技術，轉化為實用的商業解決方案。每個企業都應該能夠利用 AI 的力量，提升效率、降低成本、創造價值。這不僅是技術的革命，更是思維的轉變。」"
+                          : "\"The rapid development of AI technology brings unprecedented opportunities for businesses. I am dedicated to transforming cutting-edge AI application technologies into practical business solutions. Every business should be able to harness the power of AI to improve efficiency, reduce costs, and create value. This is not just a technological revolution, but a transformation of mindset.\""
+                      )}
+                    </blockquote>
+                    <div className="flex items-center gap-3 mt-6">
+                      <div>
+                        <div className="font-semibold text-white">{courseInfo.instructor}</div>
+                        <div className="text-sm text-white/80">{courseInfo.instructorTitle}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         );
+
+
 
       case 'faq':
         return (
@@ -631,10 +730,10 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
   };
 
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen text-white hide-scrollbar course-outline-page" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8 page-content">
+      <div className="container mx-auto px-4 py-8 page-content hide-scrollbar">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-3 gap-8 mb-12 lg:items-start">
           {/* Left Sidebar */}
@@ -677,7 +776,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                 </div>
 
                 <div className="space-y-3">
-                  <div className={`text-center p-4 ${isFree ? 'bg-green-600' : instructorTheme.secondary} rounded-lg`}>
+                  <div className={`text-center p-4 ${isFree ? 'bg-gray-700 border border-gray-600' : instructorTheme.secondary} rounded-lg`}>
                     <div className="text-2xl font-bold text-white mb-1">
                       {isFree ? (isZhHK ? "完全免費" : "Completely Free") : pricingInfo.price}
                     </div>
@@ -687,7 +786,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                   </div>
 
                   <Button 
-                    className={`w-full ${isFree ? 'bg-green-600 hover:bg-green-700' : instructorTheme.secondary} text-white py-3 mb-4`}
+                    className={`w-full ${isFree ? 'bg-[#10a37f] hover:bg-[#0d8a69]' : instructorTheme.secondary} text-white py-3 mb-4`}
                     onClick={onStartLearning}
                   >
                     <PlayCircle className="w-4 h-4 mr-2" />
@@ -783,7 +882,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
           {/* Right Content */}
           <div className="lg:col-span-2 flex flex-col">
             <div className="mb-6">
-              <Badge className={`${isFree ? 'bg-green-600 hover:bg-green-700' : instructorTheme.secondary} text-white mb-4`}>
+              <Badge className={`${isFree ? 'bg-[#10a37f] hover:bg-[#0d8a69]' : instructorTheme.secondary} text-white mb-4`}>
                 {courseInfo.badge}
                 {isFree && (
                   <span className="ml-2 px-2 py-1 bg-white/20 rounded text-xs">
@@ -820,7 +919,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
             </div>
 
             {/* Tab Content */}
-            <div className={`flex-1 min-h-[500px] ${learningPathExtended ? 'max-h-[calc(100vh-20rem)]' : 'max-h-[calc(100vh-24rem)]'} overflow-y-auto pl-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-track-gray-800/50`}>
+            <div className={`flex-1 min-h-[700px] ${learningPathExtended ? 'max-h-[calc(100vh-12rem)]' : 'max-h-[calc(100vh-16rem)]'} overflow-y-auto pl-2 hide-scrollbar`}>
               {renderTabContent()}
             </div>
           </div>
