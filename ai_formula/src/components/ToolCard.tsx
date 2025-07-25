@@ -5,17 +5,20 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
-interface ToolCardProps {
+export interface ToolCardProps {
   tool: {
     id: string;
     title: string;
     description: string;
     tag: string;
+    tags?: string[]; // 保留用於過濾功能
     url: string;
     imageUrl: string;
     imageAlt: string;
     category: string;
+    categories?: string[]; // 保留用於過濾功能
     targetAudience?: string[];
+    userGroups?: string[];
   };
   visitButtonText: string;
   targetAudienceLabel: string;
@@ -31,95 +34,91 @@ const ToolCard: React.FC<ToolCardProps> = ({
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, delay: index * 0.1 }
+    transition: { duration: 0.5, delay: index * 0.1 }
   };
 
-  // 根據分類設置標籤顏色
-  const getTagColor = (category: string) => {
-    switch (category) {
-      case 'design':
-        return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-      case 'data':
-        return 'bg-green-500/20 text-green-300 border-green-500/30';
-      case 'video':
-        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
-      case 'marketing':
-        return 'bg-orange-500/20 text-orange-300 border-orange-500/30';
-      default:
-        return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
-    }
-  };
+  // 🛡️ 防禦性檢查：確保 tool 物件存在
+  if (!tool) {
+    console.warn('ToolCard: tool object is undefined');
+    return null;
+  }
+
+  // 🛡️ 防禦性檢查：確保必要屬性存在
+  const safeImageUrl = tool.imageUrl || '/placeholder.svg';
+  const safeImageAlt = tool.imageAlt || `${tool.title} Logo`;
+  const safeTitle = tool.title || 'Unknown Tool';
+  const safeDescription = tool.description || 'No description available';
+  const safeUrl = tool.url || '#';
 
   return (
-    <motion.div {...fadeIn}>
-      <Card className="bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 group h-full flex flex-col overflow-hidden">
-        
-        {/* 🎯 第一步：固定尺寸圖片容器 - 解決尺寸不一問題 */}
-        <div className="relative w-full h-48 bg-gray-800 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+    <motion.div 
+      {...fadeIn}
+      className="h-full"
+    >
+      <Card className="h-full flex flex-col overflow-hidden bg-gray-800/90 border-gray-700/50 backdrop-blur-sm">
+        {/* Logo Container */}
+        <div className="relative w-full h-48 bg-gray-900/50 overflow-hidden">
           <img
-            src={tool.imageUrl}
-            alt={tool.imageAlt}
-            className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-            style={{
-              filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3))'
+            src={safeImageUrl}
+            alt={safeImageAlt}
+            className="absolute inset-0 w-full h-full object-contain p-4 transition-all duration-300 hover:scale-105"
+            onError={(e) => {
+              e.currentTarget.src = '/placeholder.svg';
             }}
           />
         </div>
 
-        {/* 卡片內容區域 */}
-        <div className="flex-1 flex flex-col p-6">
-          
-          {/* 🎯 第二步 a: 工具名稱 */}
-          <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors duration-300 mb-3 line-clamp-2">
-            {tool.title}
-          </h3>
-
-          {/* 🎯 第二步 b: 標籤 */}
+        {/* Content Area */}
+        <CardContent className="flex-1 flex flex-col p-6 bg-gray-800/90">
           <div className="mb-4">
-            <Badge 
-              className={`${getTagColor(tool.category)} border text-xs font-medium px-3 py-1`}
-            >
-              {tool.tag}
-            </Badge>
+            <h3 className="text-xl font-bold text-white line-clamp-2 leading-tight mb-3">
+              {safeTitle}
+            </h3>
           </div>
 
-          {/* 🎯 第二步 c: 簡介 */}
-          <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow">
-            {tool.description}
-          </p>
+          <div className="mb-4 flex-1">
+            <p className="text-sm leading-relaxed text-gray-300 line-clamp-3">
+              {safeDescription}
+            </p>
+          </div>
 
-          {/* 🎯 第二步 d: 適用對象列表 (新功能) */}
+          {/* Target Audience Section */}
           {tool.targetAudience && tool.targetAudience.length > 0 && (
-            <div className="mb-6">
+            <div className="mb-4">
               <div className="flex items-center gap-2 mb-3">
-                <Users className="w-4 h-4 text-yellow-400" />
-                <span className="text-sm font-medium text-yellow-400">
+                <Users className="w-4 h-4 text-orange-400" />
+                <span className="text-sm font-semibold text-white">
                   {targetAudienceLabel}
                 </span>
               </div>
-              <ul className="space-y-1">
-                {tool.targetAudience.map((audience, idx) => (
-                  <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
-                    <span className="w-1 h-1 bg-yellow-400 rounded-full flex-shrink-0"></span>
+              <ul className="space-y-1.5">
+                {tool.targetAudience.slice(0, 3).map((audience, idx) => (
+                  <li key={idx} className="text-xs flex items-center gap-2 font-medium text-gray-300">
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0"></span>
                     {audience}
                   </li>
                 ))}
+                {tool.targetAudience.length > 3 && (
+                  <li className="text-xs flex items-center gap-2 font-medium text-gray-300">
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0"></span>
+                    +{tool.targetAudience.length - 3} 更多
+                  </li>
+                )}
               </ul>
             </div>
           )}
 
-          {/* 🎯 第二步 e: 行動呼籲按鈕 */}
+          {/* CTA Button */}
           <div className="mt-auto">
             <Button
-              onClick={() => window.open(tool.url, '_blank')}
-              className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-semibold py-3 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/25 border-0"
+              onClick={() => window.open(safeUrl, '_blank')}
+              className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
-              {visitButtonText}
+              訪問 {safeTitle.split(' - ')[0] || 'Website'}
             </Button>
           </div>
-        </div>
+        </CardContent>
       </Card>
     </motion.div>
   );
