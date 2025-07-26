@@ -48,7 +48,7 @@ export const userGroupCategories = [
 ];
 
 // 完整的101個AI工具數據庫（合併並重新分類）
-export const allTools: Tool[] = [
+const allTools: Tool[] = [
   // === AI繪圖類工具 (12個) ===
   {
     id: 'midjourney',
@@ -1731,7 +1731,7 @@ const businessToolsUpdates = textContentUpdates.map(tool => {
 });
 
 // 批量更新創意其他工具分類
-export const allTools: Tool[] = businessToolsUpdates.map(tool => {
+const creativeOthersUpdates = businessToolsUpdates.map(tool => {
   if (tool.category === 'creative-tools' || 
       tool.categories.includes('creative-tools')) {
     return {
@@ -1745,12 +1745,15 @@ export const allTools: Tool[] = businessToolsUpdates.map(tool => {
   return tool;
 });
 
+// 最終處理後的工具數據 - 重新導出為 allTools
+export { creativeOthersUpdates as allTools };
+
 // 工具計數統計
 export const getToolsCount = () => ({
-  total: allTools.length,
+  total: creativeOthersUpdates.length,
   byCategory: toolCategories.reduce((acc, category) => {
     if (category.id !== 'all') {
-      acc[category.id] = allTools.filter(tool => 
+      acc[category.id] = creativeOthersUpdates.filter(tool => 
         tool.category === category.id || tool.categories.includes(category.id)
       ).length;
     }

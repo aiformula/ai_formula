@@ -13,9 +13,25 @@ const Tools = () => {
   const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedUserGroup, setSelectedUserGroup] = useState('all-users');
-  const [showAllCategories, setShowAllCategories] = useState(false); // 改為顯示更多/更少控制
-  const [showAllUserGroups, setShowAllUserGroups] = useState(false); // 改為顯示更多/更少控制
+  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [showAllUserGroups, setShowAllUserGroups] = useState(false);
+  const [isFilterExpanded, setIsFilterExpanded] = useState(true); // Main filter expand/collapse
   const isZhTW = language === 'zh-HK';
+
+  // Helper function to get translated category label
+  const getCategoryLabel = (categoryId: string) => {
+    return t(`toolCategory.${categoryId}`) || categoryId;
+  };
+
+  // Helper function to get translated user group label  
+  const getUserGroupLabel = (groupId: string) => {
+    return t(`userGroup.${groupId}`) || groupId;
+  };
+
+  // Randomize array function
+  const randomizeArray = <T,>(array: T[]): T[] => {
+    return [...array].sort(() => Math.random() - 0.5);
+  };
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -28,6 +44,16 @@ const Tools = () => {
 
   // 🛡️ 防禦性檢查：過濾掉任何可能為 undefined 的工具
   const validTools = tools.filter(tool => tool && tool.id && tool.title && tool.imageUrl);
+
+  // 隨機排序函數
+  const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
   // 篩選邏輯：統一篩選（功能分類或用戶群體，互斥選擇）
   let filteredTools = validTools;
@@ -51,6 +77,15 @@ const Tools = () => {
       }
       return false;
     });
+  }
+
+  // 🔁 全部工具隨機排序：當顯示所有工具時（無篩選），每次載入隨機化順序
+  // 當切換分類時也進行隨機化
+  if (selectedCategory === 'all' && selectedUserGroup === 'all-users') {
+    filteredTools = randomizeArray(filteredTools);
+  } else if (selectedCategory !== 'all' || selectedUserGroup !== 'all-users') {
+    // Randomize filtered results as well for variety
+    filteredTools = randomizeArray(filteredTools);
   }
 
   // 智能排序：計算每個分類的工具數量
@@ -143,238 +178,255 @@ const Tools = () => {
       
       <div className="pt-20 pb-12">
         <div className="container mx-auto px-4">
-          {/* 標題區域 */}
-          <motion.div 
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              AI 工具庫
-              <span className="block text-2xl md:text-3xl font-normal text-gray-400 mt-2">
-                {validTools.length}個精選AI工具，提升您的工作效率
-              </span>
+          {/* Page Header */}
+          <motion.div {...fadeIn} className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+              {t('page.title')}
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              從AI繪圖到程式開發，從內容創作到數據分析，找到最適合您需求的AI工具。
-              {filteredTools.length !== validTools.length && (
-                <span className="block mt-2 text-lg text-blue-400">
-                  目前顯示 {filteredTools.length} 個工具
-                </span>
-              )}
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              {t('page.subtitle')}
             </p>
           </motion.div>
 
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* 左側篩選器 - 圓角卡片風格設計 */}
-            <motion.div 
-              className="w-full lg:w-1/4 relative"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              {/* 篩選器標題卡片 - 簡化設計，移除收起/展開按鈕 */}
-              <div className="mb-6">
-                <div className="bg-gray-900/60 backdrop-blur-md border border-gray-700/40 rounded-2xl p-4 shadow-2xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-xl flex items-center justify-center border border-blue-500/30">
-                      <Filter className="h-5 w-5 text-blue-400" />
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Left Sidebar - Smart Filter - Normal Positioning with Expand/Collapse */}
+            <motion.div {...fadeIn} className="lg:col-span-1">
+              <Card className="bg-gray-900/50 border-gray-700/50 backdrop-blur-md">
+                {/* Filter Header with Expand/Collapse Button */}
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Filter className="w-5 h-5 text-yellow-400" />
+                      <CardTitle className="text-white">
+                        {t('label.smartFilter')}
+                      </CardTitle>
                     </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-white">智能篩選器</h2>
-                      <p className="text-xs text-gray-400">選擇工具類型或用戶角色</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 篩選內容 - 始終顯示，不再摺疊 */}
-              <div className="space-y-6">
-                {/* 工具分類篩選 - 圓角卡片風格 */}
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300 mb-4 px-2">工具類型</h3>
-                  <div className="space-y-3">
-                    {displayedCategories.map((category) => (
+                    <button
+                      onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+                      className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200"
+                      title={isFilterExpanded ? t('button.collapse') : t('button.expand')}
+                      aria-label={isFilterExpanded ? t('button.collapse') : t('button.expand')}
+                    >
                       <motion.div
-                        key={category.id}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="cursor-pointer"
-                        onClick={() => {
-                          setSelectedCategory(category.id);
-                          setSelectedUserGroup('all-users');
-                        }}
+                        animate={{ rotate: isFilterExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        <div
-                          className={`
-                            relative rounded-2xl p-4 transition-all duration-300 group
-                            ${selectedCategory === category.id 
-                              ? 'bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border-2 border-orange-500/50 shadow-lg shadow-orange-500/20' 
-                              : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
-                            }
-                            backdrop-blur-md
-                          `}
+                        <svg 
+                          className="w-4 h-4 text-gray-400" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
                         >
-                          {/* 微霓虹光效果 */}
-                          {selectedCategory === category.id && (
-                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500/10 to-yellow-500/10 blur-sm"></div>
-                          )}
-                          
-                          <div className="relative flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className={`
-                                w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300
-                                ${selectedCategory === category.id 
-                                  ? 'bg-gradient-to-br from-orange-500/30 to-yellow-500/30 border border-orange-400/50' 
-                                  : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
-                                }
-                              `}>
-                                {getFunctionIcon(category.id)}
-                              </div>
-                              <span className={`
-                                font-medium transition-colors duration-300
-                                ${selectedCategory === category.id 
-                                  ? 'text-white' 
-                                  : 'text-gray-300 group-hover:text-white'
-                                }
-                              `}>
-                                {isZhTW ? category.label : category.labelEn}
-                              </span>
-                            </div>
-                            
-                            {/* 數量圓圈 */}
-                            <div className={`
-                              w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-                              ${selectedCategory === category.id 
-                                ? 'bg-gradient-to-br from-orange-500 to-yellow-500 text-white shadow-lg shadow-orange-500/30' 
-                                : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
-                              }
-                            `}>
-                              {category.count}
-                            </div>
-                          </div>
-                        </div>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
                       </motion.div>
-                    ))}
-                    
-                    {/* 顯示更多/更少按鈕 */}
-                    {smartSortedCategories.length > 5 && (
-                      <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="cursor-pointer"
-                        onClick={() => setShowAllCategories(!showAllCategories)}
-                      >
-                        <div className="rounded-2xl p-4 bg-gray-900/40 border border-gray-700/40 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
-                          <div className="flex items-center justify-center">
-                            <span className="text-orange-400 font-medium text-sm">
-                              {showAllCategories 
-                                ? '顯示更少' 
-                                : `顯示更多 (+${smartSortedCategories.length - 5})`
-                              }
-                            </span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
+                    </button>
                   </div>
-                </div>
+                  <CardDescription className="text-gray-400">
+                    {t('label.filterDescription')}
+                  </CardDescription>
+                </CardHeader>
 
-                {/* 用戶群體篩選 - 同樣的圓角卡片風格 */}
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300 mb-4 px-2">用戶角色</h3>
-                  <div className="space-y-3">
-                    {displayedUserGroups.map((group) => (
-                      <motion.div
-                        key={group.id}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="cursor-pointer"
-                        onClick={() => {
-                          setSelectedUserGroup(group.id);
-                          setSelectedCategory('all');
-                        }}
-                      >
-                        <div
-                          className={`
-                            relative rounded-2xl p-4 transition-all duration-300 group
-                            ${selectedUserGroup === group.id 
-                              ? 'bg-gradient-to-r from-blue-500/20 to-purple-600/20 border-2 border-blue-500/50 shadow-lg shadow-blue-500/20' 
-                              : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
-                            }
-                            backdrop-blur-md
-                          `}
-                        >
-                          {/* 微霓虹光效果 */}
-                          {selectedUserGroup === group.id && (
-                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-600/10 blur-sm"></div>
-                          )}
-                          
-                          <div className="relative flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className={`
-                                w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 text-sm
-                                ${selectedUserGroup === group.id 
-                                  ? 'bg-gradient-to-br from-blue-500/30 to-purple-600/30 border border-blue-400/50' 
-                                  : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
-                                }
-                              `}>
-                                {group.icon}
-                              </div>
-                              <span className={`
-                                font-medium transition-colors duration-300
-                                ${selectedUserGroup === group.id 
-                                  ? 'text-white' 
-                                  : 'text-gray-300 group-hover:text-white'
-                                }
-                              `}>
-                                {isZhTW ? group.label : group.labelEn}
-                              </span>
-                            </div>
+                {/* Collapsible Filter Content */}
+                <AnimatePresence>
+                  {isFilterExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <CardContent className="space-y-6">
+                        {/* 工具類型篩選區 */}
+                        <div className="mb-8">
+                          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                            <Palette className="w-5 h-5 text-orange-400" />
+                            {t('label.toolType')}
+                          </h3>
+                          <div className="space-y-3">
+                            {displayedCategories.map((category) => (
+                              <motion.div
+                                key={category.id}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="cursor-pointer"
+                                onClick={() => {
+                                  setSelectedCategory(category.id);
+                                  setSelectedUserGroup('all-users');
+                                }}
+                              >
+                                <div
+                                  className={`
+                                    relative rounded-2xl p-4 transition-all duration-300 group
+                                    ${selectedCategory === category.id 
+                                      ? 'bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border-2 border-orange-500/50 shadow-lg shadow-orange-500/20' 
+                                      : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
+                                    }
+                                    backdrop-blur-md
+                                  `}
+                                >
+                                  {/* 微霓虹光效果 */}
+                                  {selectedCategory === category.id && (
+                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500/10 to-yellow-500/10 blur-sm"></div>
+                                  )}
+                                  
+                                  <div className="relative flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                      <div className={`
+                                        w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300
+                                        ${selectedCategory === category.id 
+                                          ? 'bg-gradient-to-br from-orange-500/30 to-yellow-500/30 border border-orange-400/50' 
+                                          : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
+                                        }
+                                      `}>
+                                        {getFunctionIcon(category.id)}
+                                      </div>
+                                      <span className={`
+                                        font-medium transition-colors duration-300
+                                        ${selectedCategory === category.id 
+                                          ? 'text-white' 
+                                          : 'text-gray-300 group-hover:text-white'
+                                        }
+                                      `}>
+                                        {getCategoryLabel(category.id)}
+                                      </span>
+                                    </div>
+                                    
+                                    {/* 數量圓圈 */}
+                                    <div className={`
+                                      w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
+                                      ${selectedCategory === category.id 
+                                        ? 'bg-gradient-to-br from-orange-500 to-yellow-500 text-white shadow-lg shadow-orange-500/30' 
+                                        : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
+                                      }
+                                    `}>
+                                      {category.count}
+                                    </div>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            ))}
                             
-                            {/* 數量圓圈 */}
-                            <div className={`
-                              w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-                              ${selectedUserGroup === group.id 
-                                ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30' 
-                                : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
-                              }
-                            `}>
-                              {group.count}
-                            </div>
+                            {/* 顯示更多/更少按鈕 */}
+                            {smartSortedCategories.length > 5 && !showAllCategories && (
+                              <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="cursor-pointer"
+                                onClick={() => setShowAllCategories(true)}
+                              >
+                                <div className="rounded-2xl p-4 bg-gray-900/40 border border-gray-700/40 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
+                                  <div className="flex items-center justify-center">
+                                    <span className="text-orange-400 font-medium text-sm">
+                                      {t('button.showMore')} (+{smartSortedCategories.length - 5})
+                                    </span>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            )}
                           </div>
                         </div>
-                      </motion.div>
-                    ))}
-                    
-                    {/* 顯示更多/更少按鈕 */}
-                    {smartSortedUserGroups.length > 4 && (
-                      <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="cursor-pointer"
-                        onClick={() => setShowAllUserGroups(!showAllUserGroups)}
-                      >
-                        <div className="rounded-2xl p-4 bg-gray-900/40 border border-gray-700/40 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
-                          <div className="flex items-center justify-center">
-                            <span className="text-blue-400 font-medium text-sm">
-                              {showAllUserGroups 
-                                ? '顯示更少' 
-                                : `顯示更多 (+${smartSortedUserGroups.length - 4})`
-                              }
-                            </span>
+
+                        {/* 用戶角色篩選區 */}
+                        <div>
+                          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                            <Users className="w-5 h-5 text-blue-400" />
+                            {t('label.userRole')}
+                          </h3>
+                          <div className="space-y-3">
+                            {displayedUserGroups.map((group) => (
+                              <motion.div
+                                key={group.id}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="cursor-pointer"
+                                onClick={() => {
+                                  setSelectedUserGroup(group.id);
+                                  setSelectedCategory('all');
+                                }}
+                              >
+                                <div
+                                  className={`
+                                    relative rounded-2xl p-4 transition-all duration-300 group
+                                    ${selectedUserGroup === group.id 
+                                      ? 'bg-gradient-to-r from-blue-500/20 to-purple-600/20 border-2 border-blue-500/50 shadow-lg shadow-blue-500/20' 
+                                      : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
+                                    }
+                                    backdrop-blur-md
+                                  `}
+                                >
+                                  {/* 微霓虹光效果 */}
+                                  {selectedUserGroup === group.id && (
+                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-600/10 blur-sm"></div>
+                                  )}
+                                  
+                                  <div className="relative flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                      <div className={`
+                                        w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 text-sm
+                                        ${selectedUserGroup === group.id 
+                                          ? 'bg-gradient-to-br from-blue-500/30 to-purple-600/30 border border-blue-400/50' 
+                                          : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
+                                        }
+                                      `}>
+                                        {group.icon}
+                                      </div>
+                                      <span className={`
+                                        font-medium transition-colors duration-300
+                                        ${selectedUserGroup === group.id 
+                                          ? 'text-white' 
+                                          : 'text-gray-300 group-hover:text-white'
+                                        }
+                                      `}>
+                                        {getUserGroupLabel(group.id)}
+                                      </span>
+                                    </div>
+                                    
+                                    {/* 數量圓圈 */}
+                                    <div className={`
+                                      w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
+                                      ${selectedUserGroup === group.id 
+                                        ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30' 
+                                        : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
+                                      }
+                                    `}>
+                                      {group.count}
+                                    </div>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            ))}
+                            
+                            {/* 顯示更多/更少按鈕 */}
+                            {smartSortedUserGroups.length > 4 && !showAllUserGroups && (
+                              <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="cursor-pointer"
+                                onClick={() => setShowAllUserGroups(true)}
+                              >
+                                <div className="rounded-2xl p-4 bg-gray-900/40 border border-gray-700/40 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
+                                  <div className="flex items-center justify-center">
+                                    <span className="text-blue-400 font-medium text-sm">
+                                      {t('button.showMore')} (+{smartSortedUserGroups.length - 4})
+                                    </span>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            )}
                           </div>
                         </div>
-                      </motion.div>
-                    )}
-                  </div>
-                </div>
-              </div>
+                      </CardContent>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Card>
             </motion.div>
 
-            {/* 右側工具網格 */}
-            <div className="lg:w-3/4">
+            {/* Right Side - Tools Grid */}
+            <div className="lg:col-span-3">
               {/* 結果統計 */}
               <motion.div 
                 className="mb-6 flex justify-between items-center"
@@ -384,13 +436,19 @@ const Tools = () => {
               >
                 <p className="text-gray-400">
                   {selectedCategory !== 'all' && selectedUserGroup === 'all-users' && (
-                    <>顯示 <span className="text-white font-semibold">{smartSortedCategories.find(c => c.id === selectedCategory)?.label}</span> 分類的 <span className="text-white font-semibold">{filteredTools.length}</span> 個工具</>
+                    <>
+                      {t('label.resultsShowing')} <span className="text-white font-semibold">{getCategoryLabel(selectedCategory)}</span> {t('label.resultsCategory')} {t('label.resultsFor')} <span className="text-white font-semibold">{filteredTools.length}</span> {t('label.toolsFound')}
+                    </>
                   )}
                   {selectedUserGroup !== 'all-users' && selectedCategory === 'all' && (
-                    <>顯示適合 <span className="text-white font-semibold">{smartSortedUserGroups.find(g => g.id === selectedUserGroup)?.label}</span> 的 <span className="text-white font-semibold">{filteredTools.length}</span> 個工具</>
+                    <>
+                      {t('label.resultsShowing')} <span className="text-white font-semibold">{filteredTools.length}</span> {t('label.toolsFound')} {t('label.resultsSuitableFor')} <span className="text-white font-semibold">{getUserGroupLabel(selectedUserGroup)}</span>
+                    </>
                   )}
                   {selectedCategory === 'all' && selectedUserGroup === 'all-users' && (
-                    <>顯示 <span className="text-white font-semibold">全部 {filteredTools.length}</span> 個工具</>
+                    <>
+                      {t('label.resultsShowing')} <span className="text-white font-semibold">{t('label.resultsAll')} {filteredTools.length}</span> {t('label.toolsFound')}
+                    </>
                   )}
                 </p>
                 
@@ -404,7 +462,7 @@ const Tools = () => {
                     }}
                     className="text-gray-400 border-gray-600 hover:text-white hover:border-gray-500"
                   >
-                    清除篩選
+                    {t('button.resetFilters')}
                   </Button>
                 )}
               </motion.div>
@@ -420,23 +478,11 @@ const Tools = () => {
                   transition={{ duration: 0.4 }}
                 >
                   {filteredTools.map((tool, index) => (
-                    <motion.div
+                    <ToolCard
                       key={tool.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: 0.4, 
-                        delay: index * 0.05,
-                        ease: "easeOut"
-                      }}
-                    >
-                      <ToolCard
-                        tool={tool}
-                        visitButtonText="🌐 Visit Website"
-                        targetAudienceLabel={isZhTW ? "目標用戶" : "Target Audience"}
-                        index={index}
-                      />
-                    </motion.div>
+                      tool={tool}
+                      index={index}
+                    />
                   ))}
                 </motion.div>
               </AnimatePresence>

@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 // 支援語言類型
-export type Language = 'en' | 'zh-HK'
+export type Language = 'en-GB' | 'zh-HK'
 
 interface Translations {
-  [key: string]: string
+  [key: string]: string | { [key: string]: string }
 }
 
 // 語言上下文接口
@@ -15,8 +15,179 @@ interface LanguageContextType {
   translations: Translations;
 }
 
-// 英文翻譯
+// 英式英文翻譯
 const enTranslations: Translations = {
+  // Nested structure for better organization
+  toolCategory: {
+    all: 'All Tools',
+    'ai-drawing': 'AI Drawing & Design',
+    'video-content': 'Video Content',
+    'image-editing': 'Image Editing',
+    'ai-avatar': 'AI Avatar & Character',
+    'audio-music': 'Audio & Music',
+    'text-content': 'Text & Content',
+    'business-tools': 'Business Tools',
+    'creative-others': 'Creative & Others'
+  },
+  
+  userGroup: {
+    'all-users': 'All Users',
+    'creative-professional': 'Creative & Design Professionals',
+    'content-creator': 'Content Creators',
+    'business-professional': 'Business & Marketing Professionals',
+    'tech-developer': 'Tech & Development Professionals',
+    'data-analyst': 'Data & Analytics Professionals',
+    'educator': 'Education & Training Professionals',
+    'media-professional': 'Media & Communication Professionals',
+    'enterprise-manager': 'Enterprise Managers',
+    'productivity-user': 'Productivity Users'
+  },
+
+  userTags: {
+    // Creative & Design
+    'digital-artist': 'Digital Artist',
+    'concept-designer': 'Concept Designer',
+    'illustrator': 'Illustrator',
+    'creative-director': 'Creative Director',
+    'professional-designer': 'Professional Designer',
+    'graphic-designer': 'Graphic Designer',
+    'brand-designer': 'Brand Designer',
+    'designer': 'Designer',
+    'artist': 'Artist',
+    'creative-worker': 'Creative Worker',
+    'ui-ux-designer': 'UI/UX Designer',
+    'photographer': 'Photographer',
+    
+    // Content & Media
+    'content-creator': 'Content Creator',
+    'blogger': 'Blogger',
+    'podcaster': 'Podcaster',
+    'youtuber': 'YouTuber',
+    'social-media-manager': 'Social Media Manager',
+    'copywriter': 'Copywriter',
+    'journalist': 'Journalist',
+    'editor': 'Editor',
+    'video-editor': 'Video Editor',
+    'filmmaker': 'Filmmaker',
+    'marketing-content-creator': 'Marketing Content Creator',
+    
+    // Business & Marketing
+    'entrepreneur': 'Entrepreneur',
+    'startup-founder': 'Startup Founder',
+    'business-owner': 'Business Owner',
+    'marketer': 'Marketer',
+    'sales-professional': 'Sales Professional',
+    'consultant': 'Consultant',
+    'freelancer': 'Freelancer',
+    'project-manager': 'Project Manager',
+    'product-manager': 'Product Manager',
+    'advertising-agency': 'Advertising Agency',
+    'brand-team': 'Brand Team',
+    'marketing-professional': 'Marketing Professional',
+    
+    // Technology & Development
+    'developer': 'Developer',
+    'programmer': 'Programmer',
+    'software-engineer': 'Software Engineer',
+    'web-developer': 'Web Developer',
+    'app-developer': 'App Developer',
+    'data-scientist': 'Data Scientist',
+    'ai-researcher': 'AI Researcher',
+    'tech-professional': 'Tech Professional',
+    'researcher': 'Researcher',
+    'ai-enthusiast': 'AI Enthusiast',
+    
+    // Education & Research
+    'teacher': 'Teacher',
+    'educator': 'Educator',
+    'student': 'Student',
+    'academic': 'Academic',
+    'trainer': 'Trainer',
+    
+    // Other Professionals
+    'analyst': 'Analyst',
+    'manager': 'Manager',
+    'executive': 'Executive',
+    'administrator': 'Administrator',
+    'assistant': 'Assistant',
+    'creative-explorer': 'Creative Explorer',
+    'small-business-owner': 'Small Business Owner',
+    'business-decision-maker': 'Business Decision Maker'
+  },
+
+  button: {
+    visitWebsite: 'Visit Website',
+    showMore: 'Show More',
+    showLess: 'Show Less',
+    resetFilters: 'Reset Filters',
+    expand: 'Expand',
+    collapse: 'Collapse'
+  },
+
+  label: {
+    targetUsers: 'Target Users',
+    smartFilter: 'Smart Filter',
+    toolType: 'Tool Type',
+    userRole: 'User Role',
+    filterDescription: 'Find the perfect AI tools for your needs',
+    resultsShowing: 'Showing',
+    resultsFor: 'for',
+    resultsCategory: 'category',
+    resultsSuitableFor: 'Suitable for',
+    resultsAll: 'All',
+    toolsFound: 'tools found'
+  },
+
+  page: {
+    title: 'Recommended AI Tools',
+    subtitle: 'Discover 101 powerful AI tools to enhance your productivity and creativity'
+  },
+
+  // Tools Page - Main Content (keeping backwards compatibility)
+  'tools.pageTitle': 'Recommended AI Tools',
+  'tools.pageSubtitle': 'Discover 101 powerful AI tools to enhance your productivity and creativity',
+  'tools.smartFilter': 'Smart Filter',
+  'tools.filterDescription': 'Find the perfect AI tools for your needs',
+  'tools.allTools': 'All Tools',
+  'tools.toolsFound': 'tools found',
+  'tools.noToolsFound': 'No tools found',
+  'tools.noToolsMessage': 'Try adjusting your filters to see more results',
+  'tools.visitWebsite': 'Visit Website',
+  'tools.targetUsers': 'Target Users',
+  'tools.showMore': 'Show More',
+  'tools.showLess': 'Show Less',
+  'tools.toolType': 'Tool Type',
+  'tools.userRole': 'User Role',
+  'tools.resetFilters': 'Reset Filters',
+  'tools.resultsShowing': 'Showing',
+  'tools.resultsFor': 'for',
+  'tools.resultsCategory': 'category',
+  'tools.resultsSuitableFor': 'Suitable for',
+  'tools.resultsAll': 'All',
+  
+  // Tool Categories
+  'toolCategory.all': 'All Tools',
+  'toolCategory.aiDrawing': 'AI Drawing & Design',
+  'toolCategory.videoContent': 'Video Content',
+  'toolCategory.imageEditing': 'Image Editing',
+  'toolCategory.aiAvatar': 'AI Avatar & Character',
+  'toolCategory.audioMusic': 'Audio & Music',
+  'toolCategory.textContent': 'Text & Content',
+  'toolCategory.businessTools': 'Business Tools',
+  'toolCategory.creativeOthers': 'Creative & Others',
+  
+  // User Groups
+  'userGroup.allUsers': 'All Users',
+  'userGroup.creativeProfessional': 'Creative & Design Professionals',
+  'userGroup.contentCreator': 'Content Creators',
+  'userGroup.businessProfessional': 'Business & Marketing Professionals',
+  'userGroup.techDeveloper': 'Tech & Development Professionals',
+  'userGroup.dataAnalyst': 'Data & Analytics Professionals',
+  'userGroup.educator': 'Education & Training Professionals',
+  'userGroup.mediaProfessional': 'Media & Communication Professionals',
+  'userGroup.enterpriseManager': 'Enterprise Managers',
+  'userGroup.productivityUser': 'Productivity Users',
+
   // 導航
   'nav.home': 'Home',
   'nav.about': 'About Us',
@@ -385,6 +556,132 @@ const enTranslations: Translations = {
 
 // 中文翻譯
 const zhTranslations: Translations = {
+  // 巢狀結構以便更好的組織
+  toolCategory: {
+    all: '全部工具',
+    'ai-drawing': 'AI繪圖設計',
+    'video-content': '影片相關',
+    'image-editing': '圖片編輯',
+    'ai-avatar': 'AI虛擬人',
+    'audio-music': '音樂音頻',
+    'text-content': '文字內容',
+    'business-tools': '商業工具',
+    'creative-others': '創意其他'
+  },
+  
+  userGroup: {
+    'all-users': '全部用戶',
+    'creative-professional': '創意設計師',
+    'content-creator': '內容創作者',
+    'business-professional': '商業營銷人員',
+    'tech-developer': '技術開發者',
+    'data-analyst': '數據分析相關',
+    'educator': '教育培訓人員',
+    'media-professional': '媒體傳播人員',
+    'enterprise-manager': '企業管理者',
+    'productivity-user': '效率提升用戶'
+  },
+
+  userTags: {
+    // 創意設計
+    'digital-artist': '數字藝術家',
+    'concept-designer': '概念設計師',
+    'illustrator': '插畫家',
+    'creative-director': '創意總監',
+    'professional-designer': '專業設計師',
+    'graphic-designer': '平面設計師',
+    'brand-designer': '品牌設計師',
+    'designer': '設計師',
+    'artist': '藝術家',
+    'creative-worker': '創意工作者',
+    'ui-ux-designer': 'UI/UX設計師',
+    'photographer': '攝影師',
+    
+    // 內容媒體
+    'content-creator': '內容創作者',
+    'blogger': '博客作者',
+    'podcaster': '播客主',
+    'youtuber': 'YouTuber',
+    'social-media-manager': '社交媒體經理',
+    'copywriter': '文案撰寫人',
+    'journalist': '記者',
+    'editor': '編輯',
+    'video-editor': '影片編輯',
+    'filmmaker': '電影製作人',
+    'marketing-content-creator': '營銷內容創作者',
+    
+    // 商業營銷
+    'entrepreneur': '企業家',
+    'startup-founder': '創業者',
+    'business-owner': '企業主',
+    'marketer': '營銷人員',
+    'sales-professional': '銷售專業人員',
+    'consultant': '顧問',
+    'freelancer': '自由職業者',
+    'project-manager': '項目經理',
+    'product-manager': '產品經理',
+    'advertising-agency': '廣告公司',
+    'brand-team': '品牌團隊',
+    'marketing-professional': '市場營銷人員',
+    
+    // 技術開發
+    'developer': '開發者',
+    'programmer': '程式員',
+    'software-engineer': '軟體工程師',
+    'web-developer': '網頁開發者',
+    'app-developer': '應用程式開發者',
+    'data-scientist': '數據科學家',
+    'ai-researcher': 'AI研究員',
+    'tech-professional': '技術專業人員',
+    'researcher': '研究人員',
+    'ai-enthusiast': 'AI愛好者',
+    
+    // 教育研究
+    'teacher': '教師',
+    'educator': '教育工作者',
+    'student': '學生',
+    'academic': '學者',
+    'trainer': '培訓師',
+    
+    // 其他專業人員
+    'analyst': '分析師',
+    'manager': '經理',
+    'executive': '主管',
+    'administrator': '管理員',
+    'assistant': '助理',
+    'creative-explorer': '創意探索者',
+    'small-business-owner': '小企業主',
+    'business-decision-maker': '企業決策者'
+  },
+
+  button: {
+    visitWebsite: '訪問網站',
+    showMore: '顯示更多',
+    showLess: '顯示更少',
+    resetFilters: '重置篩選',
+    expand: '展開',
+    collapse: '收合'
+  },
+
+  label: {
+    targetUsers: '目標用戶',
+    smartFilter: '智能篩選器',
+    toolType: '工具類型',
+    userRole: '用戶角色',
+    filterDescription: '為您的需求找到完美的 AI 工具',
+    resultsShowing: '顯示',
+    resultsFor: '於',
+    resultsCategory: '類別',
+    resultsSuitableFor: '適合',
+    resultsAll: '全部',
+    toolsFound: '個工具'
+  },
+
+  page: {
+    title: '推薦 AI 工具',
+    subtitle: '探索 101 個強大的 AI 工具，提升您的生產力和創造力'
+  },
+
   // 導航
   'nav.home': '首頁',
   'nav.about': '關於我們',
@@ -393,6 +690,51 @@ const zhTranslations: Translations = {
   'nav.blog': '部落格',
   'nav.signin': '登入',
   'nav.signup': '註冊',
+  
+  // Tools Page - 工具頁面
+  'tools.pageTitle': '推薦 AI 工具',
+  'tools.pageSubtitle': '探索 101 個強大的 AI 工具，提升您的生產力和創造力',
+  'tools.smartFilter': '智能篩選器',
+  'tools.filterDescription': '為您的需求找到完美的 AI 工具',
+  'tools.allTools': '全部工具',
+  'tools.toolsFound': '個工具',
+  'tools.noToolsFound': '找不到工具',
+  'tools.noToolsMessage': '嘗試調整篩選條件以查看更多結果',
+  'tools.visitWebsite': '訪問網站',
+  'tools.targetUsers': '目標用戶',
+  'tools.showMore': '顯示更多',
+  'tools.showLess': '顯示更少',
+  'tools.toolType': '工具類型',
+  'tools.userRole': '用戶角色',
+  'tools.resetFilters': '重置篩選',
+  'tools.resultsShowing': '顯示',
+  'tools.resultsFor': '於',
+  'tools.resultsCategory': '類別',
+  'tools.resultsSuitableFor': '適合',
+  'tools.resultsAll': '全部',
+  
+  // Tool Categories - 工具分類
+  'toolCategory.all': '全部工具',
+  'toolCategory.aiDrawing': 'AI繪圖設計',
+  'toolCategory.videoContent': '影片相關',
+  'toolCategory.imageEditing': '圖片編輯',
+  'toolCategory.aiAvatar': 'AI虛擬人',
+  'toolCategory.audioMusic': '音樂音頻',
+  'toolCategory.textContent': '文字內容',
+  'toolCategory.businessTools': '商業工具',
+  'toolCategory.creativeOthers': '創意其他',
+  
+  // User Groups - 用戶群體
+  'userGroup.allUsers': '全部用戶',
+  'userGroup.creativeProfessional': '創意設計師',
+  'userGroup.contentCreator': '內容創作者',
+  'userGroup.businessProfessional': '商業營銷人員',
+  'userGroup.techDeveloper': '技術開發者',
+  'userGroup.dataAnalyst': '數據分析相關',
+  'userGroup.educator': '教育培訓人員',
+  'userGroup.mediaProfessional': '媒體傳播人員',
+  'userGroup.enterpriseManager': '企業管理者',
+  'userGroup.productivityUser': '效率提升用戶',
   
   // Hero Section
   'hero.badge': '商業AI',
@@ -768,7 +1110,31 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   const t = (key: string): string => {
     const translations = getTranslations(language);
-    return translations[key] || key;
+    
+    // First check if the full key exists as a flat key (for backwards compatibility)
+    if (translations[key] && typeof translations[key] === 'string') {
+      return translations[key] as string;
+    }
+    
+    // Handle nested keys with dot notation
+    if (key.includes('.')) {
+      const keys = key.split('.');
+      let value: any = translations;
+      
+      for (const nestedKey of keys) {
+        if (value && typeof value === 'object' && nestedKey in value) {
+          value = value[nestedKey];
+        } else {
+          return key; // Return the key if path doesn't exist
+        }
+      }
+      
+      return typeof value === 'string' ? value : key;
+    }
+    
+    // Handle flat keys (backwards compatibility)
+    const value = translations[key];
+    return typeof value === 'string' ? value : key;
   };
 
   const value: LanguageContextType = {

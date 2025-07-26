@@ -35,6 +35,7 @@ const Navigation = () => {
     return email.split('@')[0];
   };
   
+  // Define navigation items inside component to ensure re-evaluation on language change
   const navigationItems = [
     { label: t('nav.home'), path: '/' },
     { label: t('nav.about'), path: language === 'zh-HK' ? '/about-cht' : '/about' },
@@ -52,14 +53,12 @@ const Navigation = () => {
         className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm"
       >
         {/* Logo - Enhanced with Professional Typography */}
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-white cursor-pointer"
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="cursor-pointer"
           onClick={() => navigate('/')}
         >
-          <span className="text-h2 font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+          <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
             AI FORMULA.
           </span>
         </motion.div>
@@ -81,11 +80,11 @@ const Navigation = () => {
             >
               <Link
                 to={item.path}
-                className={`text-body hover:text-white transition-colors ${
+                className={`text-lg font-medium hover:text-white transition-colors duration-300 ${
                   (location.pathname === item.path || 
                    (location.pathname === '/about' && item.path === '/about-cht') ||
                    (location.pathname === '/about-cht' && item.path === '/about')) 
-                  ? 'text-yellow-500 font-semibold' : 'text-gray-300'
+                  ? 'text-yellow-400 font-bold' : 'text-gray-300'
                 }`}
               >
                 {item.label}
@@ -110,58 +109,55 @@ const Navigation = () => {
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center space-x-3 p-3 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black"
                 >
-                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-semibold text-body">
+                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-semibold text-base">
                     {getUserInitials(user?.email)}
                   </div>
-                  <span className="text-white text-body hidden lg:block">
+                  <span className="text-white text-base hidden lg:block">
                     {getUserDisplayName(user?.email)}
                   </span>
                 </motion.button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent 
-                align="end" 
-                className="w-56 bg-gray-900/95 backdrop-blur-sm border-gray-700 text-white"
-              >
-                <DropdownMenuLabel className="text-body text-gray-300">
+              <DropdownMenuContent className="w-56 bg-black/90 backdrop-blur-xl border-gray-700">
+                <DropdownMenuLabel className="text-base text-gray-300">
                   {t('userMenu.greeting')}, {getUserDisplayName(user?.email)}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-gray-700" />
-                <DropdownMenuItem 
+                <DropdownMenuItem
                   onClick={() => navigate('/dashboard')}
-                  className="hover:bg-gray-800 focus:bg-gray-800 cursor-pointer text-body"
+                  className="hover:bg-gray-800 focus:bg-gray-800 cursor-pointer text-base"
                 >
-                  <User className="w-5 h-5 mr-2" />
-                  {t('userMenu.dashboard')}
+                  <User className="mr-2 h-4 w-4" />
+                  <span>{t('userMenu.dashboard')}</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem 
+                <DropdownMenuItem
                   onClick={() => navigate('/settings')}
-                  className="hover:bg-gray-800 focus:bg-gray-800 cursor-pointer text-body"
+                  className="hover:bg-gray-800 focus:bg-gray-800 cursor-pointer text-base"
                 >
-                  <Settings className="w-5 h-5 mr-2" />
-                  {t('userMenu.settings')}
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>{t('userMenu.settings')}</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-gray-700" />
-                <DropdownMenuItem 
-                  onClick={signOut}
-                  className="hover:bg-red-900/50 focus:bg-red-900/50 cursor-pointer text-red-300 text-body"
+                <DropdownMenuItem
+                  onClick={() => signOut()}
+                  className="hover:bg-red-900/50 focus:bg-red-900/50 cursor-pointer text-red-300 text-base"
                 >
-                  <LogOut className="w-5 h-5 mr-2" />
-                  {t('userMenu.signOut')}
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>{t('userMenu.signOut')}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-4">
               <Button 
                 onClick={() => navigate('/auth')}
                 variant="outline"
-                className="border-white bg-white text-black hover:bg-yellow-500 hover:text-black hover:border-yellow-500 rounded-full px-6 py-3 text-body font-medium transition-all duration-300"
+                className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full px-6 py-3 text-base font-medium transition-all duration-300"
               >
                 {t('nav.signin')}
               </Button>
               <Button 
                 onClick={() => navigate('/auth')}
-                className="bg-white text-black hover:bg-yellow-500 hover:text-black rounded-full px-6 py-3 text-body font-medium transition-all duration-300"
+                className="bg-white text-black hover:bg-yellow-500 hover:text-black rounded-full px-6 py-3 text-base font-medium transition-all duration-300"
               >
                 {t('nav.signup')}
               </Button>
@@ -201,11 +197,11 @@ const Navigation = () => {
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block text-h3 py-4 px-4 rounded-lg transition-colors ${
+                className={`block text-lg font-medium py-4 px-4 rounded-lg transition-colors duration-300 ${
                   (location.pathname === item.path || 
                    (location.pathname === '/about' && item.path === '/about-cht') ||
                    (location.pathname === '/about-cht' && item.path === '/about')) 
-                  ? 'text-yellow-500 font-semibold bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                  ? 'text-yellow-400 font-bold bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800'
                 }`}
               >
                 {item.label}
@@ -218,12 +214,12 @@ const Navigation = () => {
                 <>
                   {/* 用戶問候 - Enhanced Typography */}
                   <div className="flex items-center space-x-3 p-4 bg-gray-800/50 rounded-lg">
-                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-body">
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-lg">
                       {getUserInitials(user?.email)}
                     </div>
                     <div>
-                      <p className="text-white text-body font-medium">{t('userMenu.greeting')}</p>
-                      <p className="text-gray-400 text-caption">{getUserDisplayName(user?.email)}</p>
+                      <p className="text-white text-base font-medium">{t('userMenu.greeting')}</p>
+                      <p className="text-gray-400 text-sm">{getUserDisplayName(user?.email)}</p>
                     </div>
                   </div>
                   
@@ -232,7 +228,7 @@ const Navigation = () => {
                       navigate('/dashboard');
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full bg-white text-black hover:bg-yellow-500 rounded-lg py-4 text-body"
+                    className="w-full bg-white text-black hover:bg-yellow-500 rounded-lg py-4 text-base"
                   >
                     <User className="w-5 h-5 mr-2" />
                     {t('userMenu.dashboard')}
@@ -244,7 +240,7 @@ const Navigation = () => {
                       setIsMobileMenuOpen(false);
                     }}
                     variant="outline"
-                    className="w-full border-white text-white hover:bg-yellow-500 hover:text-black rounded-lg py-4 text-body"
+                    className="w-full border-white text-white hover:bg-yellow-500 hover:text-black rounded-lg py-4 text-base"
                   >
                     <Settings className="w-5 h-5 mr-2" />
                     {t('userMenu.settings')}
@@ -256,7 +252,7 @@ const Navigation = () => {
                       setIsMobileMenuOpen(false);
                     }}
                     variant="outline"
-                    className="w-full border-red-400 text-red-400 hover:bg-red-500 hover:text-white rounded-lg py-4 text-body"
+                    className="w-full border-red-400 text-red-400 hover:bg-red-500 hover:text-white rounded-lg py-4 text-base"
                   >
                     <LogOut className="w-5 h-5 mr-2" />
                     {t('userMenu.signOut')}
@@ -270,7 +266,7 @@ const Navigation = () => {
                       setIsMobileMenuOpen(false);
                     }}
                     variant="outline"
-                    className="w-full border-white text-white hover:bg-yellow-500 hover:text-black rounded-lg py-4 text-body"
+                    className="w-full border-white text-white hover:bg-yellow-500 hover:text-black rounded-lg py-4 text-base"
                   >
                     {t('nav.signin')}
                   </Button>
@@ -279,7 +275,7 @@ const Navigation = () => {
                       navigate('/auth');
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full bg-white text-black hover:bg-yellow-500 rounded-lg py-4 text-body"
+                    className="w-full bg-white text-black hover:bg-yellow-500 rounded-lg py-4 text-base"
                   >
                     {t('nav.signup')}
                   </Button>
