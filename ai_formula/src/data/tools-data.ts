@@ -20,21 +20,17 @@ export interface Tool {
   userGroups?: string[]; // 新增：用戶群體標籤
 }
 
-// 新的12個工具類型分類系統（基於用戶需求）
+// 優化後的8個工具類型分類系統（合併相似分類）
 export const toolCategories = [
   { id: 'all', label: '全部工具', labelEn: 'All Tools' },
-  { id: 'ai-drawing', label: 'AI繪圖', labelEn: 'AI Drawing & Art Generation' },
-  { id: 'video-generation', label: '影片生成', labelEn: 'Video Generation' },
-  { id: 'video-editing', label: '影片編輯', labelEn: 'Video Editing' },
+  { id: 'ai-drawing', label: 'AI繪圖設計', labelEn: 'AI Drawing & Design' },
+  { id: 'video-content', label: '影片相關', labelEn: 'Video Content' }, // 合併：影片生成 + 影片編輯
   { id: 'image-editing', label: '圖片編輯', labelEn: 'Image Editing' },
-  { id: 'ai-avatar', label: 'AI虛擬人/角色', labelEn: 'AI Avatar & Character' },
-  { id: 'music-generation', label: '音樂生成', labelEn: 'Music & Audio Generation' },
-  { id: 'text-writing', label: '文字創作/文案', labelEn: 'Text & Copywriting' },
-  { id: 'presentation-charts', label: '簡報/圖表生成', labelEn: 'Presentation & Charts' },
-  { id: 'business-analytics', label: '商業分析/數據提取', labelEn: 'Business Analytics & Data' },
-  { id: 'creative-tools', label: '創意工具/其他', labelEn: 'Creative Tools & Others' },
-  { id: 'ai-assistant', label: 'AI助手/對話工具', labelEn: 'AI Assistant & Chat Tools' },
-  { id: 'web-development', label: '網站/程式開發', labelEn: 'Web & Programming Development' }
+  { id: 'ai-avatar', label: 'AI虛擬人', labelEn: 'AI Avatar & Character' },
+  { id: 'audio-music', label: '音樂音頻', labelEn: 'Audio & Music' }, // 合併：音樂生成 + 音頻處理
+  { id: 'text-content', label: '文字內容', labelEn: 'Text & Content' }, // 合併：文案創作 + 簡報圖表
+  { id: 'business-tools', label: '商業工具', labelEn: 'Business Tools' }, // 合併：商業分析 + AI助手 + 開發工具
+  { id: 'creative-others', label: '創意其他', labelEn: 'Creative & Others' } // 合併：創意工具 + 其他
 ];
 
 // 優化的用戶群體分類（保持原有10個核心群體）
@@ -1673,6 +1669,81 @@ export const allTools: Tool[] = [
     userGroups: ['tech-developer', 'creative-professional']
   }
 ];
+
+// 批量更新影片相關工具分類
+const videoContentUpdates = allTools.map(tool => {
+  if (tool.category === 'video-generation' || tool.category === 'video-editing' || 
+      tool.categories.includes('video-generation') || tool.categories.includes('video-editing')) {
+    return {
+      ...tool,
+      category: 'video-content',
+      categories: tool.categories.map(cat => 
+        cat === 'video-generation' || cat === 'video-editing' ? 'video-content' : cat
+      ).filter((cat, index, arr) => arr.indexOf(cat) === index) // 去重
+    };
+  }
+  return tool;
+});
+
+// 批量更新音樂音頻工具分類
+const audioMusicUpdates = videoContentUpdates.map(tool => {
+  if (tool.category === 'music-generation' || 
+      tool.categories.includes('music-generation')) {
+    return {
+      ...tool,
+      category: 'audio-music',
+      categories: tool.categories.map(cat => 
+        cat === 'music-generation' ? 'audio-music' : cat
+      ).filter((cat, index, arr) => arr.indexOf(cat) === index)
+    };
+  }
+  return tool;
+});
+
+// 批量更新文字內容工具分類
+const textContentUpdates = audioMusicUpdates.map(tool => {
+  if (tool.category === 'text-writing' || tool.category === 'presentation-charts' ||
+      tool.categories.includes('text-writing') || tool.categories.includes('presentation-charts')) {
+    return {
+      ...tool,
+      category: 'text-content',
+      categories: tool.categories.map(cat => 
+        cat === 'text-writing' || cat === 'presentation-charts' ? 'text-content' : cat
+      ).filter((cat, index, arr) => arr.indexOf(cat) === index)
+    };
+  }
+  return tool;
+});
+
+// 批量更新商業工具分類
+const businessToolsUpdates = textContentUpdates.map(tool => {
+  if (tool.category === 'business-analytics' || tool.category === 'ai-assistant' || tool.category === 'web-development' ||
+      tool.categories.includes('business-analytics') || tool.categories.includes('ai-assistant') || tool.categories.includes('web-development')) {
+    return {
+      ...tool,
+      category: 'business-tools',
+      categories: tool.categories.map(cat => 
+        cat === 'business-analytics' || cat === 'ai-assistant' || cat === 'web-development' ? 'business-tools' : cat
+      ).filter((cat, index, arr) => arr.indexOf(cat) === index)
+    };
+  }
+  return tool;
+});
+
+// 批量更新創意其他工具分類
+export const allTools: Tool[] = businessToolsUpdates.map(tool => {
+  if (tool.category === 'creative-tools' || 
+      tool.categories.includes('creative-tools')) {
+    return {
+      ...tool,
+      category: 'creative-others',
+      categories: tool.categories.map(cat => 
+        cat === 'creative-tools' ? 'creative-others' : cat
+      ).filter((cat, index, arr) => arr.indexOf(cat) === index)
+    };
+  }
+  return tool;
+});
 
 // 工具計數統計
 export const getToolsCount = () => ({

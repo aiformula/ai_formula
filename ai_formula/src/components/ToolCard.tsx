@@ -55,9 +55,9 @@ const ToolCard: React.FC<ToolCardProps> = ({
       {...fadeIn}
       className="h-full"
     >
-      <Card className="h-full flex flex-col overflow-hidden bg-gray-800/90 border-gray-700/50 backdrop-blur-sm">
-        {/* Logo Container */}
-        <div className="relative w-full h-48 bg-gray-900/50 overflow-hidden">
+      <Card className="h-full flex flex-col overflow-hidden bg-black border-gray-700/50 backdrop-blur-sm">
+        {/* Logo Container - 純黑色背景 */}
+        <div className="relative w-full h-48 bg-black overflow-hidden">
           <img
             src={safeImageUrl}
             alt={safeImageAlt}
@@ -68,8 +68,8 @@ const ToolCard: React.FC<ToolCardProps> = ({
           />
         </div>
 
-        {/* Content Area */}
-        <CardContent className="flex-1 flex flex-col p-6 bg-gray-800/90">
+        {/* Content Area - 純黑色背景 */}
+        <CardContent className="flex-1 flex flex-col p-6 bg-black">
           <div className="mb-4">
             <h3 className="text-xl font-bold text-white line-clamp-2 leading-tight mb-3">
               {safeTitle}
@@ -82,41 +82,44 @@ const ToolCard: React.FC<ToolCardProps> = ({
             </p>
           </div>
 
-          {/* Target Audience Section */}
+          {/* Target Audience Section - 簡化顯示，移除標籤 */}
           {tool.targetAudience && tool.targetAudience.length > 0 && (
             <div className="mb-4">
               <div className="flex items-center gap-2 mb-3">
-                <Users className="w-4 h-4 text-orange-400" />
+                <Users className="w-4 h-4 text-yellow-400" />
                 <span className="text-sm font-semibold text-white">
                   {targetAudienceLabel}
                 </span>
               </div>
-              <ul className="space-y-1.5">
-                {tool.targetAudience.slice(0, 3).map((audience, idx) => (
-                  <li key={idx} className="text-xs flex items-center gap-2 font-medium text-gray-300">
-                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0"></span>
-                    {audience}
-                  </li>
-                ))}
-                {tool.targetAudience.length > 3 && (
-                  <li className="text-xs flex items-center gap-2 font-medium text-gray-300">
-                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0"></span>
-                    +{tool.targetAudience.length - 3} 更多
-                  </li>
-                )}
-              </ul>
+              <div className="text-xs text-gray-300">
+                {tool.targetAudience.slice(0, 2).join(' • ')}
+                {tool.targetAudience.length > 2 && ' • ...'}
+              </div>
             </div>
           )}
 
-          {/* CTA Button */}
+          {/* CTA Button - 黃色霓虹邊框風格 */}
           <div className="mt-auto">
-            <Button
+            <button
               onClick={() => window.open(safeUrl, '_blank')}
-              className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="
+                w-full py-3 px-4 rounded-xl font-semibold text-sm
+                bg-black/40 backdrop-blur-md
+                border-2 border-yellow-400/60
+                text-yellow-400
+                hover:border-yellow-300/80 hover:text-yellow-300
+                hover:shadow-lg hover:shadow-yellow-400/20
+                transition-all duration-300
+                group
+              "
             >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              訪問 {safeTitle.split(' - ')[0] || 'Website'}
-            </Button>
+              <div className="flex items-center justify-center gap-2">
+                <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                訪問 {safeTitle.split(' - ')[0] || 'Website'}
+              </div>
+              {/* 霓虹光暈效果 */}
+              <div className="absolute inset-0 rounded-xl bg-yellow-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            </button>
           </div>
         </CardContent>
       </Card>

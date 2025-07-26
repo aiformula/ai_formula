@@ -13,7 +13,8 @@ const Tools = () => {
   const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedUserGroup, setSelectedUserGroup] = useState('all-users');
-  const [isFiltersExpanded, setIsFiltersExpanded] = useState(true); // 改為單一控制所有篩選器
+  const [showAllCategories, setShowAllCategories] = useState(false); // 改為顯示更多/更少控制
+  const [showAllUserGroups, setShowAllUserGroups] = useState(false); // 改為顯示更多/更少控制
   const isZhTW = language === 'zh-HK';
 
   const fadeIn = {
@@ -97,15 +98,22 @@ const Tools = () => {
     });
   };
 
-  // 動態圖標映射：根據新的12分類系統，增加顏色區分
+  // 動態圖標映射：根據合併後的8分類系統，增加顏色區分
   const getFunctionIcon = (categoryId: string) => {
     const iconMap: Record<string, React.ReactNode> = {
       'all': <Wand2 className="h-4 w-4 text-gray-400" />,
       'ai-drawing': <Palette className="h-4 w-4 text-pink-400" />,
-      'video-generation': <Video className="h-4 w-4 text-purple-400" />,
-      'video-editing': <Film className="h-4 w-4 text-blue-400" />,
+      'video-content': <Video className="h-4 w-4 text-purple-400" />, // 合併：影片生成+編輯
       'image-editing': <Wand2 className="h-4 w-4 text-green-400" />,
       'ai-avatar': <Users className="h-4 w-4 text-indigo-400" />,
+      'audio-music': <Sparkles className="h-4 w-4 text-yellow-400" />, // 合併：音樂+音頻
+      'text-content': <Brain className="h-4 w-4 text-orange-400" />, // 合併：文案+簡報
+      'business-tools': <Database className="h-4 w-4 text-emerald-400" />, // 合併：商業分析+AI助手+開發
+      'creative-others': <Zap className="h-4 w-4 text-violet-400" />, // 合併：創意工具+其他
+      
+      // 保持向後兼容
+      'video-generation': <Video className="h-4 w-4 text-purple-400" />,
+      'video-editing': <Film className="h-4 w-4 text-blue-400" />,
       'music-generation': <Sparkles className="h-4 w-4 text-yellow-400" />,
       'text-writing': <Brain className="h-4 w-4 text-orange-400" />,
       'presentation-charts': <TrendingUp className="h-4 w-4 text-cyan-400" />,
@@ -120,14 +128,14 @@ const Tools = () => {
   const smartSortedCategories = getSmartSortedCategories();
   const smartSortedUserGroups = getSmartSortedUserGroups();
 
-  // 顯示類別控制 - 統一管理，預設展開更多
-  const displayedCategories = isFiltersExpanded 
+  // 顯示類別控制 - 改為顯示更多/更少邏輯
+  const displayedCategories = showAllCategories 
     ? smartSortedCategories 
-    : smartSortedCategories.slice(0, 5); // 收起時顯示前5個最重要的
+    : smartSortedCategories.slice(0, 5); // 預設顯示前5個
 
-  const displayedUserGroups = isFiltersExpanded 
+  const displayedUserGroups = showAllUserGroups 
     ? smartSortedUserGroups 
-    : smartSortedUserGroups.slice(0, 4); // 收起時顯示前4個最重要的
+    : smartSortedUserGroups.slice(0, 4); // 預設顯示前4個
 
   return (
     <div className="min-h-screen bg-black">
@@ -166,217 +174,203 @@ const Tools = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* 篩選器標題卡片 */}
+              {/* 篩選器標題卡片 - 簡化設計，移除收起/展開按鈕 */}
               <div className="mb-6">
-                <div className="bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-2xl p-4 shadow-2xl">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-xl flex items-center justify-center border border-blue-500/30">
-                        <Filter className="h-5 w-5 text-blue-400" />
-                      </div>
-                      <div>
-                        <h2 className="text-lg font-bold text-white">智能篩選器</h2>
-                        <p className="text-xs text-gray-400">選擇工具類型或用戶角色</p>
-                      </div>
+                <div className="bg-gray-900/60 backdrop-blur-md border border-gray-700/40 rounded-2xl p-4 shadow-2xl">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-xl flex items-center justify-center border border-blue-500/30">
+                      <Filter className="h-5 w-5 text-blue-400" />
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
-                      className="text-orange-400 hover:text-orange-300 hover:bg-gray-700/50 rounded-lg px-3 py-1"
-                    >
-                      {isFiltersExpanded ? '收起' : '展開'}
-                    </Button>
+                    <div>
+                      <h2 className="text-lg font-bold text-white">智能篩選器</h2>
+                      <p className="text-xs text-gray-400">選擇工具類型或用戶角色</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* 可摺疊的篩選內容 */}
-              <AnimatePresence>
-                {isFiltersExpanded && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden space-y-6"
-                  >
-                    {/* 工具分類篩選 - 圓角卡片風格 */}
-                    <div>
-                      <h3 className="text-sm font-semibold text-gray-300 mb-4 px-2">工具類型</h3>
-                      <div className="space-y-3">
-                        {displayedCategories.map((category) => (
-                          <motion.div
-                            key={category.id}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="cursor-pointer"
-                            onClick={() => {
-                              setSelectedCategory(category.id);
-                              setSelectedUserGroup('all-users');
-                            }}
-                          >
-                            <div
-                              className={`
-                                relative rounded-2xl p-4 transition-all duration-300 group
+              {/* 篩選內容 - 始終顯示，不再摺疊 */}
+              <div className="space-y-6">
+                {/* 工具分類篩選 - 圓角卡片風格 */}
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-300 mb-4 px-2">工具類型</h3>
+                  <div className="space-y-3">
+                    {displayedCategories.map((category) => (
+                      <motion.div
+                        key={category.id}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setSelectedCategory(category.id);
+                          setSelectedUserGroup('all-users');
+                        }}
+                      >
+                        <div
+                          className={`
+                            relative rounded-2xl p-4 transition-all duration-300 group
+                            ${selectedCategory === category.id 
+                              ? 'bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border-2 border-orange-500/50 shadow-lg shadow-orange-500/20' 
+                              : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
+                            }
+                            backdrop-blur-md
+                          `}
+                        >
+                          {/* 微霓虹光效果 */}
+                          {selectedCategory === category.id && (
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500/10 to-yellow-500/10 blur-sm"></div>
+                          )}
+                          
+                          <div className="relative flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className={`
+                                w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300
                                 ${selectedCategory === category.id 
-                                  ? 'bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border-2 border-orange-500/50 shadow-lg shadow-orange-500/20' 
-                                  : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
+                                  ? 'bg-gradient-to-br from-orange-500/30 to-yellow-500/30 border border-orange-400/50' 
+                                  : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
                                 }
-                                backdrop-blur-md
-                              `}
-                            >
-                              {/* 微霓虹光效果 */}
-                              {selectedCategory === category.id && (
-                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500/10 to-yellow-500/10 blur-sm"></div>
-                              )}
-                              
-                              <div className="relative flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                  <div className={`
-                                    w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300
-                                    ${selectedCategory === category.id 
-                                      ? 'bg-gradient-to-br from-orange-500/30 to-yellow-500/30 border border-orange-400/50' 
-                                      : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
-                                    }
-                                  `}>
-                                    {getFunctionIcon(category.id)}
-                                  </div>
-                                  <span className={`
-                                    font-medium transition-colors duration-300
-                                    ${selectedCategory === category.id 
-                                      ? 'text-white' 
-                                      : 'text-gray-300 group-hover:text-white'
-                                    }
-                                  `}>
-                                    {isZhTW ? category.label : category.labelEn}
-                                  </span>
-                                </div>
-                                
-                                {/* 數量圓圈 */}
-                                <div className={`
-                                  w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-                                  ${selectedCategory === category.id 
-                                    ? 'bg-gradient-to-br from-orange-500 to-yellow-500 text-white shadow-lg shadow-orange-500/30' 
-                                    : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
-                                  }
-                                `}>
-                                  {category.count}
-                                </div>
+                              `}>
+                                {getFunctionIcon(category.id)}
                               </div>
+                              <span className={`
+                                font-medium transition-colors duration-300
+                                ${selectedCategory === category.id 
+                                  ? 'text-white' 
+                                  : 'text-gray-300 group-hover:text-white'
+                                }
+                              `}>
+                                {isZhTW ? category.label : category.labelEn}
+                              </span>
                             </div>
-                          </motion.div>
-                        ))}
-                        
-                        {/* 顯示更多按鈕 */}
-                        {smartSortedCategories.length > 5 && (
-                          <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="cursor-pointer"
-                            onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
-                          >
-                            <div className="rounded-2xl p-4 bg-gray-800/30 border border-gray-700/40 hover:bg-gray-700/30 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
-                              <div className="flex items-center justify-center">
-                                <span className="text-orange-400 font-medium text-sm">
-                                  顯示更多 (+{smartSortedCategories.length - 5})
-                                </span>
-                              </div>
+                            
+                            {/* 數量圓圈 */}
+                            <div className={`
+                              w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
+                              ${selectedCategory === category.id 
+                                ? 'bg-gradient-to-br from-orange-500 to-yellow-500 text-white shadow-lg shadow-orange-500/30' 
+                                : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
+                              }
+                            `}>
+                              {category.count}
                             </div>
-                          </motion.div>
-                        )}
-                      </div>
-                    </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                    
+                    {/* 顯示更多/更少按鈕 */}
+                    {smartSortedCategories.length > 5 && (
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="cursor-pointer"
+                        onClick={() => setShowAllCategories(!showAllCategories)}
+                      >
+                        <div className="rounded-2xl p-4 bg-gray-900/40 border border-gray-700/40 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
+                          <div className="flex items-center justify-center">
+                            <span className="text-orange-400 font-medium text-sm">
+                              {showAllCategories 
+                                ? '顯示更少' 
+                                : `顯示更多 (+${smartSortedCategories.length - 5})`
+                              }
+                            </span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+                </div>
 
-                    {/* 用戶群體篩選 - 同樣的圓角卡片風格 */}
-                    <div>
-                      <h3 className="text-sm font-semibold text-gray-300 mb-4 px-2">用戶角色</h3>
-                      <div className="space-y-3">
-                        {displayedUserGroups.map((group) => (
-                          <motion.div
-                            key={group.id}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="cursor-pointer"
-                            onClick={() => {
-                              setSelectedUserGroup(group.id);
-                              setSelectedCategory('all');
-                            }}
-                          >
-                            <div
-                              className={`
-                                relative rounded-2xl p-4 transition-all duration-300 group
+                {/* 用戶群體篩選 - 同樣的圓角卡片風格 */}
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-300 mb-4 px-2">用戶角色</h3>
+                  <div className="space-y-3">
+                    {displayedUserGroups.map((group) => (
+                      <motion.div
+                        key={group.id}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="cursor-pointer"
+                        onClick={() => {
+                          setSelectedUserGroup(group.id);
+                          setSelectedCategory('all');
+                        }}
+                      >
+                        <div
+                          className={`
+                            relative rounded-2xl p-4 transition-all duration-300 group
+                            ${selectedUserGroup === group.id 
+                              ? 'bg-gradient-to-r from-blue-500/20 to-purple-600/20 border-2 border-blue-500/50 shadow-lg shadow-blue-500/20' 
+                              : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
+                            }
+                            backdrop-blur-md
+                          `}
+                        >
+                          {/* 微霓虹光效果 */}
+                          {selectedUserGroup === group.id && (
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-600/10 blur-sm"></div>
+                          )}
+                          
+                          <div className="relative flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className={`
+                                w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 text-sm
                                 ${selectedUserGroup === group.id 
-                                  ? 'bg-gradient-to-r from-blue-500/20 to-purple-600/20 border-2 border-blue-500/50 shadow-lg shadow-blue-500/20' 
-                                  : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-700/40 hover:border-gray-600/60'
+                                  ? 'bg-gradient-to-br from-blue-500/30 to-purple-600/30 border border-blue-400/50' 
+                                  : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
                                 }
-                                backdrop-blur-md
-                              `}
-                            >
-                              {/* 微霓虹光效果 */}
-                              {selectedUserGroup === group.id && (
-                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-600/10 blur-sm"></div>
-                              )}
-                              
-                              <div className="relative flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                  <div className={`
-                                    w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 text-sm
-                                    ${selectedUserGroup === group.id 
-                                      ? 'bg-gradient-to-br from-blue-500/30 to-purple-600/30 border border-blue-400/50' 
-                                      : 'bg-gray-700/50 border border-gray-600/50 group-hover:bg-gray-600/50'
-                                    }
-                                  `}>
-                                    {group.icon}
-                                  </div>
-                                  <span className={`
-                                    font-medium transition-colors duration-300
-                                    ${selectedUserGroup === group.id 
-                                      ? 'text-white' 
-                                      : 'text-gray-300 group-hover:text-white'
-                                    }
-                                  `}>
-                                    {isZhTW ? group.label : group.labelEn}
-                                  </span>
-                                </div>
-                                
-                                {/* 數量圓圈 */}
-                                <div className={`
-                                  w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-                                  ${selectedUserGroup === group.id 
-                                    ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30' 
-                                    : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
-                                  }
-                                `}>
-                                  {group.count}
-                                </div>
+                              `}>
+                                {group.icon}
                               </div>
+                              <span className={`
+                                font-medium transition-colors duration-300
+                                ${selectedUserGroup === group.id 
+                                  ? 'text-white' 
+                                  : 'text-gray-300 group-hover:text-white'
+                                }
+                              `}>
+                                {isZhTW ? group.label : group.labelEn}
+                              </span>
                             </div>
-                          </motion.div>
-                        ))}
-                        
-                        {/* 顯示更多按鈕 */}
-                        {smartSortedUserGroups.length > 4 && (
-                          <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="cursor-pointer"
-                            onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
-                          >
-                            <div className="rounded-2xl p-4 bg-gray-800/30 border border-gray-700/40 hover:bg-gray-700/30 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
-                              <div className="flex items-center justify-center">
-                                <span className="text-blue-400 font-medium text-sm">
-                                  顯示更多 (+{smartSortedUserGroups.length - 4})
-                                </span>
-                              </div>
+                            
+                            {/* 數量圓圈 */}
+                            <div className={`
+                              w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
+                              ${selectedUserGroup === group.id 
+                                ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30' 
+                                : 'bg-gray-600/50 text-gray-300 group-hover:bg-gray-500/60 group-hover:text-white'
+                              }
+                            `}>
+                              {group.count}
                             </div>
-                          </motion.div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                    
+                    {/* 顯示更多/更少按鈕 */}
+                    {smartSortedUserGroups.length > 4 && (
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="cursor-pointer"
+                        onClick={() => setShowAllUserGroups(!showAllUserGroups)}
+                      >
+                        <div className="rounded-2xl p-4 bg-gray-900/40 border border-gray-700/40 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-md">
+                          <div className="flex items-center justify-center">
+                            <span className="text-blue-400 font-medium text-sm">
+                              {showAllUserGroups 
+                                ? '顯示更少' 
+                                : `顯示更多 (+${smartSortedUserGroups.length - 4})`
+                              }
+                            </span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
             {/* 右側工具網格 */}
