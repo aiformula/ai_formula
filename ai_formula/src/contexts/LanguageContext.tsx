@@ -19,7 +19,7 @@ interface LanguageContextType {
 const enTranslations: Translations = {
   // Nested structure for better organization
   toolCategory: {
-    all: 'All Tools',
+    'all': 'All Tools',
     'ai-drawing': 'AI Drawing & Design',
     'video-content': 'Video Content',
     'image-editing': 'Image Editing',
@@ -165,28 +165,7 @@ const enTranslations: Translations = {
   'tools.resultsSuitableFor': 'Suitable for',
   'tools.resultsAll': 'All',
   
-  // Tool Categories
-  'toolCategory.all': 'All Tools',
-  'toolCategory.aiDrawing': 'AI Drawing & Design',
-  'toolCategory.videoContent': 'Video Content',
-  'toolCategory.imageEditing': 'Image Editing',
-  'toolCategory.aiAvatar': 'AI Avatar & Character',
-  'toolCategory.audioMusic': 'Audio & Music',
-  'toolCategory.textContent': 'Text & Content',
-  'toolCategory.businessTools': 'Business Tools',
-  'toolCategory.creativeOthers': 'Creative & Others',
-  
-  // User Groups
-  'userGroup.allUsers': 'All Users',
-  'userGroup.creativeProfessional': 'Creative & Design Professionals',
-  'userGroup.contentCreator': 'Content Creators',
-  'userGroup.businessProfessional': 'Business & Marketing Professionals',
-  'userGroup.techDeveloper': 'Tech & Development Professionals',
-  'userGroup.dataAnalyst': 'Data & Analytics Professionals',
-  'userGroup.educator': 'Education & Training Professionals',
-  'userGroup.mediaProfessional': 'Media & Communication Professionals',
-  'userGroup.enterpriseManager': 'Enterprise Managers',
-  'userGroup.productivityUser': 'Productivity Users',
+
 
   // 導航
   'nav.home': 'Home',
@@ -558,7 +537,7 @@ const enTranslations: Translations = {
 const zhTranslations: Translations = {
   // 巢狀結構以便更好的組織
   toolCategory: {
-    all: '全部工具',
+    'all': '全部工具',
     'ai-drawing': 'AI繪圖設計',
     'video-content': '影片相關',
     'image-editing': '圖片編輯',
@@ -712,29 +691,6 @@ const zhTranslations: Translations = {
   'tools.resultsCategory': '類別',
   'tools.resultsSuitableFor': '適合',
   'tools.resultsAll': '全部',
-  
-  // Tool Categories - 工具分類
-  'toolCategory.all': '全部工具',
-  'toolCategory.aiDrawing': 'AI繪圖設計',
-  'toolCategory.videoContent': '影片相關',
-  'toolCategory.imageEditing': '圖片編輯',
-  'toolCategory.aiAvatar': 'AI虛擬人',
-  'toolCategory.audioMusic': '音樂音頻',
-  'toolCategory.textContent': '文字內容',
-  'toolCategory.businessTools': '商業工具',
-  'toolCategory.creativeOthers': '創意其他',
-  
-  // User Groups - 用戶群體
-  'userGroup.allUsers': '全部用戶',
-  'userGroup.creativeProfessional': '創意設計師',
-  'userGroup.contentCreator': '內容創作者',
-  'userGroup.businessProfessional': '商業營銷人員',
-  'userGroup.techDeveloper': '技術開發者',
-  'userGroup.dataAnalyst': '數據分析相關',
-  'userGroup.educator': '教育培訓人員',
-  'userGroup.mediaProfessional': '媒體傳播人員',
-  'userGroup.enterpriseManager': '企業管理者',
-  'userGroup.productivityUser': '效率提升用戶',
   
   // Hero Section
   'hero.badge': '商業AI',
