@@ -20,6 +20,8 @@ export interface ToolCardProps {
     categories?: string[]; // 保留用於過濾功能
     targetAudience?: string[];
     userGroups?: string[];
+    titleEn?: string; // Added for English title
+    descriptionEn?: string; // Added for English description
   };
   index: number;
 }
@@ -28,8 +30,20 @@ const ToolCard: React.FC<ToolCardProps> = ({
   tool, 
   index 
 }) => {
-  const { t } = useLanguage();
+  const { t } = useLanguage(); // Get t function
   
+  // Language-aware title and description
+  const isEnglish = t('nav.home') === 'Home'; // Check if current language is English
+  const displayTitle = isEnglish && tool.titleEn ? tool.titleEn : tool.title;
+  const displayDescription = isEnglish && tool.descriptionEn ? tool.descriptionEn : tool.description;
+
+  // Defensive programming: ensure tool object exists and provide fallbacks
+  const safeTitle = displayTitle || 'Unknown Tool';
+  const safeDescription = displayDescription || 'No description available';
+  const safeUrl = tool.url || '#';
+  const safeImageUrl = tool.imageUrl || '/placeholder.svg';
+  const safeImageAlt = tool.imageAlt || 'Tool Logo';
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -41,13 +55,6 @@ const ToolCard: React.FC<ToolCardProps> = ({
     console.warn('ToolCard: tool object is undefined');
     return null;
   }
-
-  // 🛡️ 防禦性檢查：確保必要屬性存在
-  const safeImageUrl = tool.imageUrl || '/placeholder.svg';
-  const safeImageAlt = tool.imageAlt || `${tool.title} Logo`;
-  const safeTitle = tool.title || 'Unknown Tool';
-  const safeDescription = tool.description || 'No description available';
-  const safeUrl = tool.url || '#';
 
   // Comprehensive mapping of Chinese targetAudience values to English keys
   const audienceMapping: { [key: string]: string } = {

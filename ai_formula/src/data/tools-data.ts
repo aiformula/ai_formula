@@ -8,7 +8,9 @@
 export interface Tool {
   id: string;
   title: string;
+  titleEn?: string; // 新增：英文標題
   description: string;
+  descriptionEn?: string; // 新增：英文描述
   tag: string; // 保留單一主要標籤用於向後兼容
   tags: string[]; // 新增：多標籤支援
   url: string;
@@ -53,7 +55,9 @@ const allTools: Tool[] = [
   {
     id: 'midjourney',
     title: 'Midjourney - AI 圖像生成工具',
+    titleEn: 'Midjourney - AI Image Generation Tool',
     description: '一個領先嘅 AI 圖像生成工具，以其卓越嘅藝術質量同創意表達能力而聞名，特別適合創作概念藝術同插畫作品。',
+    descriptionEn: 'A leading AI image generation tool renowned for its exceptional artistic quality and creative expression capabilities, particularly suitable for concept art and illustration creation.',
     tag: 'AI 繪圖',
     tags: ['AI 繪圖', '藝術創作', '概念設計'],
     url: 'https://www.midjourney.com/',
@@ -67,7 +71,9 @@ const allTools: Tool[] = [
   {
     id: 'stable-diffusion',
     title: 'Stable Diffusion - 開源圖像AI',
+    titleEn: 'Stable Diffusion - Open Source Image AI',
     description: '最受歡迎的開源AI圖像生成模型，完全免費，支援本地運行和雲端使用。',
+    descriptionEn: 'The most popular open-source AI image generation model, completely free, supporting both local and cloud deployment.',
     tag: '開源AI',
     tags: ['開源AI', '圖像生成', '免費工具'],
     url: 'https://stability.ai/stable-diffusion',
@@ -81,7 +87,9 @@ const allTools: Tool[] = [
   {
     id: 'dall-e-3',
     title: 'DALL·E 3 - OpenAI圖像生成',
+    titleEn: 'DALL·E 3 - OpenAI Image Generation',
     description: 'OpenAI最新的圖像生成模型，能創造極其精細和準確的AI藝術作品。',
+    descriptionEn: 'OpenAI\'s latest image generation model that creates extremely detailed and accurate AI artwork.',
     tag: 'AI藝術',
     tags: ['AI藝術', '圖像生成', 'OpenAI'],
     url: 'https://openai.com/dall-e-3',
@@ -95,7 +103,9 @@ const allTools: Tool[] = [
   {
     id: 'adobe-firefly',
     title: 'Adobe Firefly - 商業AI創意',
+    titleEn: 'Adobe Firefly - Commercial AI Creative',
     description: 'Adobe推出的商業級AI創意工具，專為專業設計工作流程優化，版權安全。',
+    descriptionEn: 'Adobe\'s commercial-grade AI creative tool optimized for professional design workflows with copyright safety.',
     tag: '商業AI',
     tags: ['商業AI', 'Adobe', '專業設計'],
     url: 'https://firefly.adobe.com/',
@@ -109,7 +119,9 @@ const allTools: Tool[] = [
   {
     id: 'ideogram-ai',
     title: 'Ideogram - 文字渲染AI',
+    titleEn: 'Ideogram - Text Rendering AI',
     description: '擅長在圖像中準確渲染文字的AI工具，是製作海報、標誌和品牌設計的理想選擇。',
+    descriptionEn: 'An AI tool that excels at accurately rendering text in images, ideal for creating posters, logos, and brand designs.',
     tag: '文字渲染',
     tags: ['文字渲染', '海報設計', '品牌設計'],
     url: 'https://ideogram.ai/',
@@ -151,7 +163,9 @@ const allTools: Tool[] = [
   {
     id: 'lightfield',
     title: 'Lightfield - AI 圖像影片創作平台',
+    titleEn: 'Lightfield - AI Image & Video Creation Platform',
     description: '一個 AI 驅動的圖像和影片創作平台。它提供先進的生成模型，用戶可以通過文本提示創建高質量的視覺內容。',
+    descriptionEn: 'An AI-powered image and video creation platform that provides advanced generative models for creating high-quality visual content through text prompts.',
     tag: '圖像生成',
     tags: ['圖像生成', '影片生成', 'AI 藝術'],
     url: 'https://lightfield.app/',
@@ -179,7 +193,9 @@ const allTools: Tool[] = [
   {
     id: 'higgsfield-ai',
     title: 'Higgsfield AI - 多模態 AI 創作平台',
+    titleEn: 'Higgsfield AI - Multimodal AI Creation Platform',
     description: '一個集合咗影片生成、圖像創作、音頻合成等多種 AI 功能嘅創作平台，為創作者提供一站式嘅 AI 創作解決方案。',
+    descriptionEn: 'A comprehensive creation platform integrating video generation, image creation, audio synthesis and other AI functions, providing creators with a one-stop AI creation solution.',
     tag: '多模態 AI',
     tags: ['多模態 AI', 'AI 影片', 'AI 繪圖', 'AI 音頻'],
     url: 'https://higgsfield.ai/',
@@ -933,7 +949,9 @@ const allTools: Tool[] = [
   {
     id: 'claude-anthropic',
     title: 'Claude - Anthropic AI助手',
+    titleEn: 'Claude - Anthropic AI Assistant',
     description: 'Anthropic開發的先進AI助手，擅長深度思考、分析和創意寫作。',
+    descriptionEn: 'An advanced AI assistant developed by Anthropic, excelling in deep thinking, analysis, and creative writing.',
     tag: 'AI助手',
     tags: ['AI助手', '深度分析', '創意寫作'],
     url: 'https://claude.ai/',
@@ -1003,7 +1021,9 @@ const allTools: Tool[] = [
   {
     id: 'jasper-ai',
     title: 'Jasper.ai - AI 寫作助手',
+    titleEn: 'Jasper.ai - AI Writing Assistant',
     description: '一個強大的人工智能寫作助手，能幫助市場營銷人員、作家和企業家快速生成高質量的文案、博客文章、社交媒體帖子、郵件等多種內容。',
+    descriptionEn: 'A powerful AI writing assistant that helps marketers, writers, and entrepreneurs quickly generate high-quality copy, blog posts, social media content, emails, and more.',
     tag: 'AI 寫作',
     tags: ['AI 寫作', '內容生成', '文案工具'],
     url: 'https://www.jasper.ai/',
@@ -1017,7 +1037,9 @@ const allTools: Tool[] = [
   {
     id: 'copy-ai',
     title: 'Copy.ai - AI 文案生成',
+    titleEn: 'Copy.ai - AI Copywriting',
     description: '專為市場營銷和銷售團隊設計的 AI 寫作平台，能自動生成有說服力的文案，包括廣告文案、產品描述、電子郵件和社交媒體內容。',
+    descriptionEn: 'An AI writing platform designed for marketing and sales teams that automatically generates compelling copy, including ads, product descriptions, emails, and social media content.',
     tag: 'AI 寫作',
     tags: ['AI 寫作', '文案生成', '市場營銷'],
     url: 'https://www.copy.ai/',
