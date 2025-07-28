@@ -12,6 +12,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useViewCount } from '@/contexts/ViewCountContext';
 import { getSortedPostsNewest } from '@/data/blog/blogPosts';
 import { BlogPost as BlogPostType } from '@/data/blog/blogPosts';
+import { articleContents } from '@/data/blog/articleContent';
 
 interface ArticleViewCounterProps {
   initialViews: string;
@@ -21,6 +22,7 @@ interface ArticleViewCounterProps {
 interface BlogPostPageProps {
   post: BlogPostType;
   isZhHK: boolean;
+  content?: any; // ArticleContent 型別
 }
 
 interface ShareData {
@@ -43,7 +45,8 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   const [isAnimating, setIsAnimating] = useState(false);
   
   const currentViews = getViewCount(postId);
-  const displayViews = currentViews > 0 ? currentViews.toString() : initialViews;
+  const baseViews = parseInt(initialViews) || 0;
+  const displayViews = (baseViews + currentViews).toString();
   
   useEffect(() => {
     incrementView(postId);
@@ -67,7 +70,8 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   );
 };
 
-const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
+// BlogPostPage: 修正內容渲染，支援多 section
+const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) => {
   const navigate = useNavigate();
   const [shareData, setShareData] = useState<ShareData | null>(null);
 
@@ -96,24 +100,73 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
     console.log('Bookmark functionality will be implemented with user accounts');
   }, []);
 
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
+  const formatDate = (date: Date | string | undefined): string => {
+    if (!date) return isZhHK ? '未知日期' : 'Unknown Date';
+    const d = typeof date === 'string' ? new Date(date) : date;
     return isZhHK 
-      ? date.toLocaleDateString('zh-HK', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        })
-      : date.toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        });
+      ? d.toLocaleDateString('zh-HK', { year: 'numeric', month: 'long', day: 'numeric' })
+      : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
   const title = isZhHK ? post.title : post.titleEn;
   const excerpt = isZhHK ? post.excerpt : post.excerptEn;
-  const content = isZhHK ? post.content : post.contentEn;
+
+  // 渲染多 section 內容
+  const renderSections = (contentObj) => {
+    if (!contentObj || !contentObj.sections) return <p>Content not available.</p>;
+    return contentObj.sections.map((section, idx) => {
+      const text = isZhHK ? section.content : (section.contentEn || section.content);
+      // 保證 items 一定是陣列
+      const safeItems = Array.isArray(isZhHK ? section.items : section.itemsEn)
+        ? (isZhHK ? section.items : section.itemsEn)
+        : [];
+      if (section.type === 'heading') {
+        const Tag = `h${section.level || 2}`;
+        return React.createElement(Tag, { key: idx, className: 'font-bold mt-8 mb-4 text-2xl' }, text);
+      }
+      if (section.type === 'paragraph') {
+        return <p key={idx} className="mb-4 text-lg leading-relaxed">{text}</p>;
+      }
+      if (section.type === 'card') {
+        return (
+          <div key={idx} className="bg-yellow-50 dark:bg-yellow-900/10 border-l-4 border-yellow-400 rounded-lg p-4 mb-4">
+            <div className="font-semibold mb-2">{text}</div>
+            <ul className="list-disc pl-6">
+              {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          </div>
+        );
+      }
+      if (section.type === 'highlight') {
+        return (
+          <div key={idx} className="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-400 rounded-lg p-4 mb-4">
+            <div className="font-semibold mb-2">{text}</div>
+            <ul className="list-disc pl-6">
+              {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          </div>
+        );
+      }
+      if (section.type === 'steps' || section.type === 'list') {
+        return (
+          <ol key={idx} className="list-decimal pl-6 mb-4">
+            {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+          </ol>
+        );
+      }
+      if (section.type === 'conclusion') {
+        return (
+          <div key={idx} className="bg-green-50 dark:bg-green-900/10 border-l-4 border-green-400 rounded-lg p-4 mb-4">
+            <div className="font-semibold mb-2">{text}</div>
+            <ul className="list-disc pl-6">
+              {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          </div>
+        );
+      }
+      return <p key={idx}>{text}</p>;
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
@@ -125,7 +178,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={window.location.href} />
         <meta property="article:author" content={post.author} />
-        <meta property="article:published_time" content={post.publishedAt} />
+        <meta property="article:published_time" content={post.publishDate ? post.publishDate.toISOString() : ''} />
         <meta property="article:tag" content={post.category} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
@@ -164,7 +217,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
               {/* Hero Image */}
               <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
                 <img
-                  src={post.imageUrl}
+                  src={post.image}
                   alt={title}
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 />
@@ -191,11 +244,11 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>{formatDate(post.publishedAt)}</span>
+                    <span>{formatDate(post.publishDate)}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4" />
-                    <span>{post.readingTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
+                    <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
                   </div>
                   <ArticleViewCounter initialViews={post.views} postId={post.id} />
                 </div>
@@ -204,7 +257,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
               {/* Article Content */}
               <div className="p-6 md:p-8">
                 <div className="prose prose-lg dark:prose-invert max-w-none">
-                  <div dangerouslySetInnerHTML={{ __html: content }} />
+                  {renderSections(content)}
                 </div>
               </div>
 
@@ -295,7 +348,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
                         >
                           <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                             <img
-                              src={relatedPost.imageUrl}
+                              src={relatedPost.image}
                               alt={isZhHK ? relatedPost.title : relatedPost.titleEn}
                               className="w-16 h-16 object-cover rounded-lg"
                             />
@@ -304,7 +357,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK }) => {
                                 {isZhHK ? relatedPost.title : relatedPost.titleEn}
                               </h4>
                               <p className="text-xs text-gray-600 dark:text-gray-400">
-                                {formatDate(relatedPost.publishedAt)}
+                                {formatDate(relatedPost.publishDate)}
                               </p>
                             </div>
                           </div>
@@ -326,18 +379,33 @@ const BlogPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const isZhHK = language === 'zh-HK';
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const post = useMemo(() => {
     const allPosts = getSortedPostsNewest();
     const postId = parseInt(id || '1');
     return allPosts.find(p => p.id === postId) || allPosts[0];
   }, [id]);
 
+  // 取得對應內容
+  const content = useMemo(() => {
+    if (!post) return null;
+    return articleContents.find(a => a.id === post.id) || null;
+  }, [post]);
+
   // Scroll to top when post changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  return <BlogPostPage post={post} isZhHK={isZhHK} />;
+  if (!post) {
+    return <div className="max-w-xl mx-auto py-24 text-center text-red-500 text-xl font-bold">Blog not found.</div>;
+  }
+  if (!content) {
+    return <div className="max-w-xl mx-auto py-24 text-center text-yellow-500 text-lg font-semibold">Blog content is missing or not yet published.</div>;
+  }
+
+  // 傳遞 content 給 BlogPostPage（如需渲染內容）
+  return <BlogPostPage post={post} isZhHK={isZhHK} content={content} />;
 };
 
 export default BlogPost; 

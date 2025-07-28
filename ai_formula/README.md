@@ -919,3 +919,29 @@ isZhHK ? '🚀 正在學習中' : '🚀 Learning in Progress'
 - 🧹 UI清理和用戶體驗提升 (UI Cleanup and UX Enhancement)
 - 📊 學習進度追蹤完整改進 (Complete Learning Progress Tracking Improvements)
 - 🆕 視覺設計統一與英式英語標準化 (Visual Design Unification & British English Standardization)
+
+---
+
+## 🆕 2024/06 最新優化與常見問題
+
+### 🚀 AI工具卡片顯示優化
+- **移除所有動畫延遲**：卡片、用戶標籤、結果統計等全部同步顯示，無逐張浮現
+- **隨機排序**：每次載入/篩選都用 Fisher-Yates 洗牌算法，確保每次順序不同且高效
+- **UI/UX 保持**：黑金主題、badge 樣式、hover 動畫等全部保留
+- **性能提升**：首次渲染極速，無 lazy loading 或 IntersectionObserver 造成延遲
+
+### 🐞 常見錯誤排查
+- **Blog 全部丟失/無法顯示**：
+  - 請檢查 `/src/data/blog/` 目錄下的 `blogPosts.ts`、`articleContent.ts` 是否存在且導出正確
+  - Blog 列表與詳情頁需正確 import blog 資料
+  - 若出現 `Cannot read properties of undefined (reading 'add')`，請檢查 Supabase 或本地 mock 資料是否正確連結
+  - Blog 路由需正確設置（如 `/blog/:id`）且 id 對應資料存在
+
+### 🛠️ Blog 資料連結建議
+- Blog 資料應集中於 `/src/data/blog/` 目錄
+- Blog 列表頁（如 `BlogListing.tsx`）應 import 並 map blogPosts
+- Blog 詳情頁（如 `BlogPost.tsx`）應根據路由 id 讀取對應內容
+- 若使用 Supabase，請檢查環境變數與資料表結構
+- 本地開發可用 mock 資料，確保每篇 blog 都有 id、title、content
+
+---

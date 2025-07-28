@@ -7,7 +7,7 @@ interface ViewCounts {
 interface ViewCountContextType {
   viewCounts: ViewCounts;
   incrementView: (postId: number) => void;
-  getViewCount: (postId: number, initialViews: string) => number;
+  getViewCount: (postId: number) => number;
 }
 
 const ViewCountContext = createContext<ViewCountContextType | undefined>(undefined);
@@ -15,7 +15,7 @@ const ViewCountContext = createContext<ViewCountContextType | undefined>(undefin
 export const ViewCountProvider = ({ children }: { children: ReactNode }) => {
   const [viewCounts, setViewCounts] = useState<ViewCounts>({});
 
-  // 從localStorage載入?��?
+  // 從localStorage載入?��?
   useEffect(() => {
     const savedCounts = localStorage.getItem('blogViewCounts');
     if (savedCounts) {
@@ -27,7 +27,7 @@ export const ViewCountProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // 保�??�localStorage
+  // 保�??�localStorage
   useEffect(() => {
     if (Object.keys(viewCounts).length > 0) {
       localStorage.setItem('blogViewCounts', JSON.stringify(viewCounts));
@@ -41,10 +41,8 @@ export const ViewCountProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
-  const getViewCount = (postId: number, initialViews: string): number => {
-    const baseViews = parseInt(initialViews);
-    const additionalViews = viewCounts[postId] || 0;
-    return baseViews + additionalViews;
+  const getViewCount = (postId: number): number => {
+    return viewCounts[postId] || 0;
   };
 
   return (
