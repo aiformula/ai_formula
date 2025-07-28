@@ -225,30 +225,33 @@ const Tools = () => {
                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
                   )}
                   
-                  {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
-                  <div className="relative h-full flex items-center gap-3 px-4">
-                    {/* Icon 區域 - 固定寬度 */}
-                    <div className="flex-shrink-0 w-6 flex justify-center">
-                      {getFunctionIcon(category.id, isActive, isHover)}
-                    </div>
-                    
-                    {/* 文字區域 - 完整顯示，不截斷 */}
-                    <div className="flex-1 text-left">
-                      <span className={`
-                        font-medium ${isMobile ? 'text-xs' : 'text-sm'} transition-colors duration-300 block
-                        ${isActive 
-                          ? 'text-white font-semibold' 
-                          : isHover 
-                          ? 'text-yellow-100' 
-                          : 'text-gray-300'
-                        }
-                      `}>
-                        {getCategoryLabel(category.id)}
-                      </span>
+                  {/* 主要內容區域 - 優化移動端水平對齊 */}
+                  <div className={`relative h-full flex items-center justify-between gap-3 px-4 ${isMobile ? 'min-w-0' : ''}`}>
+                    {/* 左側區域：Icon + 文字 */}
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      {/* Icon 區域 - 固定寬度 */}
+                      <div className="flex-shrink-0 w-5 flex justify-center">
+                        {getFunctionIcon(category.id, isActive, isHover)}
+                      </div>
+                      
+                      {/* 文字區域 - 水平對齊，防止截斷 */}
+                      <div className="flex-1 min-w-0">
+                        <span className={`
+                          font-medium ${isMobile ? 'text-sm' : 'text-sm'} transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
+                          ${isActive 
+                            ? 'text-white font-semibold' 
+                            : isHover 
+                            ? 'text-yellow-100' 
+                            : 'text-gray-300'
+                          }
+                        `}>
+                          {getCategoryLabel(category.id)}
+                        </span>
+                      </div>
                     </div>
                     
                     {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
-                    <div className="flex-shrink-0 ml-2">
+                    <div className="flex-shrink-0">
                       <div className={`
                         min-w-[20px] ${isMobile ? 'h-5 px-1.5' : 'h-6 px-2'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-bold transition-all duration-300
                         ${isActive 
@@ -335,40 +338,43 @@ const Tools = () => {
                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
                   )}
                   
-                  {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
-                  <div className="relative h-full flex items-center gap-3 px-4">
-                    {/* Icon 區域 - 固定寬度 */}
-                    <div className="flex-shrink-0 w-6 flex justify-center">
-                      <div className={`
-                        text-sm transition-colors duration-300
-                        ${isActive 
-                          ? 'text-yellow-400' 
-                          : isHover 
-                          ? 'text-yellow-300' 
-                          : 'text-white'
-                        }
-                      `}>
-                        {group.icon}
+                  {/* 主要內容區域 - 優化移動端水平對齊 */}
+                  <div className={`relative h-full flex items-center justify-between gap-3 px-4 ${isMobile ? 'min-w-0' : ''}`}>
+                    {/* 左側區域：Icon + 文字 */}
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      {/* Icon 區域 - 固定寬度 */}
+                      <div className="flex-shrink-0 w-5 flex justify-center">
+                        <div className={`
+                          text-sm transition-colors duration-300
+                          ${isActive 
+                            ? 'text-yellow-400' 
+                            : isHover 
+                            ? 'text-yellow-300' 
+                            : 'text-white'
+                          }
+                        `}>
+                          {group.icon}
+                        </div>
+                      </div>
+                      
+                      {/* 文字區域 - 水平對齊，防止截斷 */}
+                      <div className="flex-1 min-w-0">
+                        <span className={`
+                          font-medium ${isMobile ? 'text-sm' : 'text-sm'} transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
+                          ${isActive 
+                            ? 'text-white font-semibold' 
+                            : isHover 
+                            ? 'text-yellow-100' 
+                            : 'text-gray-300'
+                          }
+                        `}>
+                          {getUserGroupLabel(group.id)}
+                        </span>
                       </div>
                     </div>
                     
-                    {/* 文字區域 - 完整顯示，不截斷 */}
-                    <div className="flex-1 text-left">
-                      <span className={`
-                        font-medium ${isMobile ? 'text-xs' : 'text-sm'} transition-colors duration-300 block
-                        ${isActive 
-                          ? 'text-white font-semibold' 
-                          : isHover 
-                          ? 'text-yellow-100' 
-                          : 'text-gray-300'
-                        }
-                      `}>
-                        {getUserGroupLabel(group.id)}
-                      </span>
-                    </div>
-                    
                     {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
-                    <div className="flex-shrink-0 ml-2">
+                    <div className="flex-shrink-0">
                       <div className={`
                         min-w-[20px] ${isMobile ? 'h-5 px-1.5' : 'h-6 px-2'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-bold transition-all duration-300
                         ${isActive 
@@ -578,36 +584,40 @@ const Tools = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-80 max-w-[90vw] bg-gray-900/95 backdrop-blur-md border-l border-gray-700/50 z-50 lg:hidden overflow-y-auto"
+              className="fixed right-0 top-0 bottom-0 w-[85vw] max-w-[400px] bg-gray-900/95 backdrop-blur-md border-l border-gray-700/50 z-50 lg:hidden overflow-hidden flex flex-col"
             >
-              {/* Panel Header */}
-              <div className="sticky top-0 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 p-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Filter className="w-5 h-5 text-yellow-400" />
-                  <h2 className="text-lg font-semibold text-white">
-                    {t('label.smartFilter')}
-                  </h2>
+              {/* Panel Header - 固定頂部 */}
+              <div className="flex-shrink-0 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Filter className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                    <h2 className="text-lg font-semibold text-white whitespace-nowrap">
+                      {t('label.smartFilter')}
+                    </h2>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileFilterOpen(false)}
+                    className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200 flex-shrink-0"
+                  >
+                    <X className="w-5 h-5 text-gray-400" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setIsMobileFilterOpen(false)}
-                  className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200"
-                >
-                  <X className="w-5 h-5 text-gray-400" />
-                </button>
               </div>
 
-              {/* Panel Content */}
-              <div className="p-4">
-                <FilterContent isMobile={true} />
+              {/* Panel Content - 可滾動區域 */}
+              <div className="flex-1 overflow-y-auto">
+                <div className="p-4">
+                  <FilterContent isMobile={true} />
+                </div>
               </div>
 
-              {/* Panel Footer */}
-              <div className="sticky bottom-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50 p-4">
+              {/* Panel Footer - 固定底部 */}
+              <div className="flex-shrink-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50 p-4">
                 <Button 
                   onClick={() => setIsMobileFilterOpen(false)}
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-medium py-3 text-base"
                 >
-                  {t('button.apply') || 'Apply Filters'}
+                  {t('common.apply')}
                 </Button>
               </div>
             </motion.div>
