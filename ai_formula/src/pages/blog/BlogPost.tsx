@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { Helmet } from 'react-helmet-async';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useViewCount } from '@/contexts/ViewCountContext';
+import { useSafeViewCount } from '@/contexts/ViewCountContext';
 import { getSortedPostsNewest } from '@/data/blog/blogPosts';
 import { BlogPost as BlogPostType } from '@/data/blog/blogPosts';
 import { articleContents } from '@/data/blog/articleContent';
@@ -41,7 +41,7 @@ const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
 // Components
 const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, postId }) => {
   const { language } = useLanguage();
-  const { getViewCount, incrementView } = useViewCount(); // 現在有fallback，不會報錯
+  const { getViewCount, incrementView } = useSafeViewCount(); // 使用安全的hook
   const [isAnimating, setIsAnimating] = useState(false);
   
   const currentViews = getViewCount(postId);
@@ -49,10 +49,13 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   const displayViews = (baseViews + currentViews).toString();
   
   useEffect(() => {
-    incrementView(postId);
-    setIsAnimating(true);
-    const timer = setTimeout(() => setIsAnimating(false), 500);
-    return () => clearTimeout(timer);
+    // 只在客戶端執行
+    if (typeof window !== 'undefined') {
+      incrementView(postId);
+      setIsAnimating(true);
+      const timer = setTimeout(() => setIsAnimating(false), 500);
+      return () => clearTimeout(timer);
+    }
   }, [postId, incrementView]);
 
   return (
@@ -413,6 +416,10 @@ class BlogErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
+      const errorMessage = this.state.error?.message || 'Unknown error';
+      const isViewCountError = errorMessage.includes('add') || errorMessage.includes('ViewCount');
+      const isContextError = errorMessage.includes('undefined') || errorMessage.includes('null');
+      
       return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
           <div className="max-w-xl mx-auto py-24 text-center">
@@ -421,23 +428,34 @@ class BlogErrorBoundary extends React.Component<
                 <AlertTriangle className="w-8 h-8 text-red-600" />
               </div>
               <h1 className="text-2xl font-bold text-red-900 dark:text-red-400 mb-2">
-                Blog Loading Error
+                {isViewCountError ? 'ViewCount Context Error' : 
+                 isContextError ? 'Missing Context Provider' : 
+                 'Blog Loading Error'}
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                There was an error loading this blog post. This might be due to:
+                {isViewCountError ? 
+                  'The view counting system encountered an error. This is usually due to missing ViewCountProvider.' :
+                  isContextError ?
+                  'A required context provider is missing from the component tree.' :
+                  'There was an error loading this blog post.'}
               </p>
               <ul className="text-left text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-1">
-                <li>• Missing ViewCountContext</li>
-                <li>• Invalid blog post data</li>
+                <li>• {isViewCountError ? 'Missing ViewCountContext (most likely)' : 'Missing ViewCountContext'}</li>
+                <li>• {isContextError ? 'Provider not wrapping the route (likely)' : 'Invalid blog post data'}</li>
                 <li>• Content parsing errors</li>
-                <li>• localStorage access issues</li>
+                <li>• localStorage access issues (SSR)</li>
               </ul>
               {this.state.error && (
                 <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 mb-4">
                   <p className="text-sm text-red-800 dark:text-red-400 font-medium">Technical Details:</p>
-                  <p className="text-xs text-red-700 dark:text-red-300 mt-1 font-mono">
-                    {this.state.error.message}
+                  <p className="text-xs text-red-700 dark:text-red-300 mt-1 font-mono break-all">
+                    {errorMessage}
                   </p>
+                  {isViewCountError && (
+                    <p className="text-xs text-red-600 dark:text-red-400 mt-2">
+                      → This error suggests ViewCountProvider is not properly wrapping the blog route.
+                    </p>
+                  )}
                 </div>
               )}
               <div className="flex flex-col sm:flex-row gap-3">

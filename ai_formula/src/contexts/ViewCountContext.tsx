@@ -103,23 +103,80 @@ export const ViewCountProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// 安全的ViewCount hook，絕對不會返回undefined
+export const useSafeViewCount = () => {
+  const context = useContext(ViewCountContext);
+  
+  // 即使context為undefined也提供完整的fallback
+  return context ?? {
+    viewCounts: {},
+    incrementView: (postId: number) => {
+      if (typeof window !== 'undefined') {
+        console.warn('ViewCount incrementView called outside of provider context');
+      }
+    },
+    getViewCount: (postId: number) => {
+      if (typeof window !== 'undefined') {
+        console.warn('ViewCount getViewCount called outside of provider context');
+      }
+      return 0;
+    },
+    // 兼容性方法 - 如果有舊代碼使用這些方法名
+    add: (postId: number) => {
+      if (typeof window !== 'undefined') {
+        console.warn('ViewCount add method called outside of provider context');
+      }
+    },
+    get: (postId: number) => {
+      if (typeof window !== 'undefined') {
+        console.warn('ViewCount get method called outside of provider context');
+      }
+      return 0;
+    }
+  };
+};
+
 export const useViewCount = () => {
   const context = useContext(ViewCountContext);
   
   if (context === undefined) {
     // 提供完整的 fallback 而不是拋出錯誤
-    console.warn('useViewCount must be used within a ViewCountProvider. Using fallback values.');
+    if (typeof window !== 'undefined') {
+      console.warn('useViewCount must be used within a ViewCountProvider. Using fallback values.');
+    }
     return {
       viewCounts: {},
       incrementView: (postId: number) => {
-        console.warn('ViewCount incrementView called outside of provider context');
+        if (typeof window !== 'undefined') {
+          console.warn('ViewCount incrementView called outside of provider context');
+        }
       },
       getViewCount: (postId: number) => {
-        console.warn('ViewCount getViewCount called outside of provider context');
+        if (typeof window !== 'undefined') {
+          console.warn('ViewCount getViewCount called outside of provider context');
+        }
         return 0;
       }
     };
   }
   
   return context;
+}; 
+
+// Debug function to check if ViewCountProvider is properly set up
+export const debugViewCountContext = () => {
+  if (typeof window !== 'undefined') {
+    console.group('🔍 ViewCount Context Debug');
+    console.log('Window object:', typeof window !== 'undefined' ? '✅ Available' : '❌ Missing');
+    console.log('localStorage:', typeof localStorage !== 'undefined' ? '✅ Available' : '❌ Missing');
+    
+    try {
+      const testData = localStorage.getItem('blogViewCounts');
+      console.log('Stored view counts:', testData ? JSON.parse(testData) : 'None');
+    } catch (error) {
+      console.log('localStorage error:', error);
+    }
+    
+    console.groupEnd();
+  }
 }; 
