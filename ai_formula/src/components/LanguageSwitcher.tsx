@@ -10,13 +10,13 @@ const LanguageSwitcher = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const handleLanguageChange = (newLang: 'en' | 'zh-HK') => {
+  const handleLanguageChange = (newLang: 'en-GB' | 'zh-HK') => {
     setLanguage(newLang);
     
     // Handle About page redirection
     if (location.pathname === '/about' && newLang === 'zh-HK') {
       navigate('/about-cht');
-    } else if (location.pathname === '/about-cht' && newLang === 'en') {
+    } else if (location.pathname === '/about-cht' && newLang === 'en-GB') {
       navigate('/about');
     }
   };
@@ -33,9 +33,9 @@ const LanguageSwitcher = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => handleLanguageChange('en')}
+          onClick={() => handleLanguageChange('en-GB')}
           className={`px-3 py-1 text-sm rounded-full transition-all duration-300 ${
-            language === 'en' 
+            language === 'en-GB' 
               ? 'bg-yellow-500 text-white' 
               : 'text-gray-300 hover:text-white'
           }`}
