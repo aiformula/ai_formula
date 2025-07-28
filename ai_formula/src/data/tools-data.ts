@@ -229,7 +229,9 @@ const allTools: Tool[] = [
   {
     id: 'lummi-ai',
     title: 'Lummi.ai - AI 圖片庫',
+    titleEn: 'Lummi.ai - AI Image Library',
     description: '提供大量由 AI 生成的、免版稅的高質量圖片庫。與傳統圖庫不同，這裡的圖片都是獨一無二的。',
+    descriptionEn: 'Provides a vast collection of AI-generated, royalty-free high-quality images. Unlike traditional stock libraries, every image here is unique.',
     tag: 'AI 圖片',
     tags: ['AI 圖片', '免版稅圖庫', '圖像資源'],
     url: 'https://www.lummi.ai/',
@@ -291,7 +293,9 @@ const allTools: Tool[] = [
   {
     id: 'dream-machine',
     title: 'Dream Machine - AI 影片生成器',
+    titleEn: 'Dream Machine - AI Video Generator',
     description: '一個先進嘅 AI 影片生成工具，可以將靜態圖片轉換成動態影片，或者根據文字描述創建全新嘅影片內容。',
+    descriptionEn: 'An advanced AI video generation tool that can transform static images into dynamic videos or create entirely new video content based on text descriptions.',
     tag: '影片生成',
     tags: ['影片生成', '圖片轉影片'],
     url: 'https://lumalabs.ai/dream-machine',
@@ -305,7 +309,9 @@ const allTools: Tool[] = [
   {
     id: 'stable-video-diffusion',
     title: 'Stable Video Diffusion - 開源影片AI',
+    titleEn: 'Stable Video Diffusion - Open Source Video AI',
     description: 'Stability AI推出的開源影片生成模型，提供高品質的影片創作能力，完全免費使用。',
+    descriptionEn: 'Open-source video generation model released by Stability AI, providing high-quality video creation capabilities that are completely free to use.',
     tag: '開源影片',
     tags: ['開源工具', '影片生成', 'AI影片'],
     url: 'https://stability.ai/research/stable-video-diffusion-scaling-latent-video-diffusion-models-to-large-datasets',
@@ -351,7 +357,9 @@ const allTools: Tool[] = [
   {
     id: 'hedra',
     title: 'Hedra - AI 角色創作平台',
+    titleEn: 'Hedra - AI Character Creation Platform',
     description: '一個強大嘅 AI 角色創作平台，可以將靜態嘅人像圖片，根據你提供嘅聲音，生成口形同步、表情生動嘅動畫影片。',
+    descriptionEn: 'A powerful AI character creation platform that can transform static portrait images into animated videos with lip-synced and expressive animations based on your provided audio.',
     tag: '影片生成',
     tags: ['影片生成', 'AI 虛擬人'],
     url: 'https://www.hedra.com/',
@@ -365,7 +373,9 @@ const allTools: Tool[] = [
   {
     id: 'fliki-ai',
     title: 'Fliki - AI影片配音工具',
+    titleEn: 'Fliki - AI Video Voiceover Tool',
     description: '將文字轉換為帶有AI語音和視覺效果的影片，支援多種語言和逼真的AI頭像。',
+    descriptionEn: 'Converts text into videos with AI voices and visual effects, supporting multiple languages and realistic AI avatars.',
     tag: 'AI配音',
     tags: ['AI配音', '影片生成', '多語言'],
     url: 'https://fliki.ai/',
@@ -395,7 +405,9 @@ const allTools: Tool[] = [
   {
     id: 'pictory-ai',
     title: 'Pictory - 長文轉短影片',
+    titleEn: 'Pictory - Long-form to Short Video',
     description: '將長篇文章、博客或腳本自動轉換為引人入勝的短影片，適合社交媒體分享。',
+    descriptionEn: 'Automatically transforms long-form articles, blogs, or scripts into engaging short videos suitable for social media sharing.',
     tag: '文轉影片',
     tags: ['文轉影片', '社交媒體', '內容再利用'],
     url: 'https://pictory.ai/',
@@ -409,7 +421,9 @@ const allTools: Tool[] = [
   {
     id: 'pipio',
     title: 'Pipio - 虛擬化身影片平台',
+    titleEn: 'Pipio - Virtual Avatar Video Platform',
     description: '一個專注於創建超逼真虛擬化身的 AI 影片平台。用戶可以輸入文本，讓數字人以自然的口型和動作進行播報。',
+    descriptionEn: 'An AI video platform focused on creating ultra-realistic virtual avatars. Users can input text and have digital humans present with natural lip movements and gestures.',
     tag: '虛擬化身',
     tags: ['虛擬化身', '數字人', 'AI 影片'],
     url: 'https://app.pipio.ai/',
@@ -439,7 +453,9 @@ const allTools: Tool[] = [
   {
     id: 'skyreels-ai',
     title: 'SkyReels AI - 短影片自動生成工具',
+    titleEn: 'SkyReels AI - Automatic Short Video Generation Tool',
     description: '一個專為社交媒體短影片而設計嘅 AI 工具，可以根據用戶提供嘅內容主題，自動生成吸引人嘅短影片。',
+    descriptionEn: 'An AI tool specifically designed for social media short videos that can automatically generate engaging short videos based on content topics provided by users.',
     tag: '短影片生成',
     tags: ['短影片生成', '社交媒體'],
     url: 'https://skyreels.ai/',
@@ -453,7 +469,9 @@ const allTools: Tool[] = [
   {
     id: 'invideo-ai',
     title: 'InVideo AI - 智能影片編輯',
+    titleEn: 'InVideo AI - Intelligent Video Editing',
     description: '基於AI的影片編輯平台，只需輸入簡單描述就能自動生成專業級影片內容。',
+    descriptionEn: 'AI-based video editing platform that can automatically generate professional-grade video content from simple descriptions.',
     tag: '智能編輯',
     tags: ['智能編輯', '影片創作', '自動化'],
     url: 'https://invideo.io/ai/',
@@ -469,7 +487,9 @@ const allTools: Tool[] = [
   {
     id: 'lupa-upscaler',
     title: 'Lupa Upscaler - AI 圖像增強工具',
+    titleEn: 'Lupa Upscaler - AI Image Enhancement Tool',
     description: '一個專業級嘅 AI 圖像與影片增強工具。可以將低解析度嘅圖片或影片升級為高清，並修復舊有或損壞嘅影像細節。',
+    descriptionEn: 'A professional-grade AI image and video enhancement tool that can upgrade low-resolution images or videos to high definition and restore details in old or damaged visuals.',
     tag: '圖像增強',
     tags: ['圖像增強', '影片編輯'],
     url: 'https://app.lupaupscaler.com/',
@@ -483,7 +503,9 @@ const allTools: Tool[] = [
   {
     id: 'veed-io',
     title: 'Veed.io - 在線影片編輯器',
+    titleEn: 'Veed.io - Online Video Editor',
     description: '一個功能全面的在線影片編輯器，內置多種 AI 工具，如自動添加字幕、背景噪音消除、影片去雜物等。',
+    descriptionEn: 'A comprehensive online video editor with built-in AI tools including automatic subtitle generation, background noise removal, and video object removal.',
     tag: '在線影片編輯',
     tags: ['在線影片編輯', 'AI 字幕', '影片工具'],
     url: 'https://www.veed.io/',
@@ -497,7 +519,9 @@ const allTools: Tool[] = [
   {
     id: 'wisecut',
     title: 'Wisecut - AI 智能剪輯工具',
+    titleEn: 'Wisecut - AI Intelligent Editing Tool',
     description: '一款專為長影片設計的 AI 智能剪輯工具，能夠自動識別影片中的精華片段、去除長時間的停頓。',
+    descriptionEn: 'An AI intelligent editing tool designed specifically for long videos that can automatically identify highlight moments and remove lengthy pauses.',
     tag: '智能剪輯',
     tags: ['智能剪輯', 'AI 影片編輯', '長影片轉短片'],
     url: 'https://www.wisecut.ai/',
@@ -615,7 +639,9 @@ const allTools: Tool[] = [
   {
     id: 'invideo-ai',
     title: 'InVideo AI - 智能影片編輯',
+    titleEn: 'InVideo AI - Intelligent Video Editing',
     description: '基於AI的影片編輯平台，只需輸入簡單描述就能自動生成專業級影片內容。',
+    descriptionEn: 'AI-based video editing platform that can automatically generate professional-grade video content from simple descriptions.',
     tag: '智能編輯',
     tags: ['智能編輯', '影片創作', '自動化'],
     url: 'https://invideo.io/ai/',
@@ -663,7 +689,9 @@ const allTools: Tool[] = [
   {
     id: 'upscayl',
     title: 'Upscayl - 免費圖像放大',
+    titleEn: 'Upscayl - Free Image Upscaling',
     description: '完全免費的開源AI圖像放大工具，能將低解析度圖片轉為高清，支援離線使用。',
+    descriptionEn: 'Completely free open-source AI image upscaling tool that can convert low-resolution images to high definition, supporting offline use.',
     tag: '圖像放大',
     tags: ['圖像放大', '免費工具', '開源軟件'],
     url: 'https://github.com/upscayl/upscayl',
@@ -677,7 +705,9 @@ const allTools: Tool[] = [
   {
     id: 'ai-image-enlarger',
     title: 'AI Image Enlarger - 線上圖片放大',
+    titleEn: 'AI Image Enlarger - Online Image Enlargement',
     description: '專業的線上AI圖片放大服務，支援照片、插畫、動漫圖片的無損放大。',
+    descriptionEn: 'Professional online AI image enlargement service that supports lossless enlargement of photos, illustrations, and anime images.',
     tag: '線上放大',
     tags: ['線上放大', '無損放大', '多格式支援'],
     url: 'https://imglarger.com/',
@@ -691,7 +721,9 @@ const allTools: Tool[] = [
   {
     id: 'photopea',
     title: 'Photopea - 免費線上Photoshop',
+    titleEn: 'Photopea - Free Online Photoshop',
     description: '功能强大的免費線上圖像編輯器，支援PSD格式，無需安裝即可使用。',
+    descriptionEn: 'Powerful free online image editor that supports PSD format and can be used without installation.',
     tag: '線上編輯',
     tags: ['線上編輯', '免費工具', 'PSD支援'],
     url: 'https://www.photopea.com/',
@@ -721,7 +753,9 @@ const allTools: Tool[] = [
   {
     id: 'pngmaker',
     title: 'PNG Maker - AI透明背景',
+    titleEn: 'PNG Maker - AI Transparent Background',
     description: '專門製作透明背景PNG圖片的AI工具，適合製作標誌、貼紙和產品圖片。',
+    descriptionEn: 'AI tool specialised in creating transparent background PNG images, suitable for making logos, stickers, and product images.',
     tag: '透明背景',
     tags: ['透明背景', 'PNG製作', '產品圖片'],
     url: 'https://pngmaker.com/',
@@ -753,7 +787,9 @@ const allTools: Tool[] = [
   {
     id: 'headai',
     title: 'HeadAI - AI 頭像生成器',
+    titleEn: 'HeadAI - AI Avatar Generator',
     description: '智能頭像和人像生成工具，能夠創建逼真的AI頭像，適用於各種數字化應用場景。',
+    descriptionEn: 'Intelligent avatar and portrait generation tool that can create realistic AI avatars suitable for various digital application scenarios.',
     tag: 'AI頭像',
     tags: ['AI頭像', '人像生成', '虛擬形象'],
     url: 'https://www.headshotpro.com',
