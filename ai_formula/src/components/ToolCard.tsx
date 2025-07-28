@@ -281,7 +281,10 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '任何使用多個網絡應用的人': 'multi-app-users',
     '任何需要快速建站的人': 'quick-website-builders',
     '任何需要快速獲取信息的人': 'information-seekers',
-    '希望使用 AI 的小型企業': 'ai-interested-small-business'
+    '希望使用 AI 的小型企業': 'ai-interested-small-business',
+    
+    // Missing mappings  
+    'AI 開發者': 'ai-developer'
   };
 
   // Helper function to convert targetAudience to userTags keys using mapping
