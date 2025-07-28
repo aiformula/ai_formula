@@ -266,7 +266,7 @@ const Tools = () => {
                                 >
                                   <div
                                     className={`
-                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden
+                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full
                                       ${isActive 
                                         ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
                                         : isHover 
@@ -285,17 +285,17 @@ const Tools = () => {
                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
                                     )}
                                     
-                                    {/* 主要內容區域 - 使用 Grid 對齊 */}
-                                    <div className="relative h-full grid grid-cols-[auto_1fr_auto] items-center gap-3 px-4">
-                                      {/* Icon 區域 */}
-                                      <div className="flex-shrink-0">
+                                    {/* 主要內容區域 - 使用 Grid 對齊，防止換行 */}
+                                    <div className="relative h-full grid grid-cols-[24px_1fr_auto] items-center gap-3 px-4 min-w-0">
+                                      {/* Icon 區域 - 固定寬度 */}
+                                      <div className="flex-shrink-0 w-6 flex justify-center">
                                         {getFunctionIcon(category.id, isActive, isHover)}
                                       </div>
                                       
-                                      {/* 文字區域 - 置中偏左 */}
-                                      <div className="flex-1 text-left">
+                                      {/* 文字區域 - 單行顯示，支援截斷 */}
+                                      <div className="flex-1 text-left min-w-0">
                                         <span className={`
-                                          font-medium text-sm transition-colors duration-300
+                                          font-medium text-sm transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
                                           ${isActive 
                                             ? 'text-white font-semibold' 
                                             : isHover 
@@ -307,8 +307,8 @@ const Tools = () => {
                                         </span>
                                       </div>
                                       
-                                      {/* 數字 Badge 區域 - 右邊貼齊 */}
-                                      <div className="flex-shrink-0 pr-1">
+                                      {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
+                                      <div className="flex-shrink-0">
                                         <div className={`
                                           min-w-[24px] h-6 px-2 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
                                           ${isActive 
@@ -373,7 +373,7 @@ const Tools = () => {
                                 >
                                   <div
                                     className={`
-                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden
+                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full
                                       ${isActive 
                                         ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
                                         : isHover 
@@ -392,10 +392,10 @@ const Tools = () => {
                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
                                     )}
                                     
-                                    {/* 主要內容區域 - 使用 Grid 對齊 */}
-                                    <div className="relative h-full grid grid-cols-[auto_1fr_auto] items-center gap-3 px-4">
-                                      {/* Icon 區域 */}
-                                      <div className="flex-shrink-0">
+                                    {/* 主要內容區域 - 使用 Grid 對齊，防止換行 */}
+                                    <div className="relative h-full grid grid-cols-[24px_1fr_auto] items-center gap-3 px-4 min-w-0">
+                                      {/* Icon 區域 - 固定寬度 */}
+                                      <div className="flex-shrink-0 w-6 flex justify-center">
                                         <div className={`
                                           text-sm transition-colors duration-300
                                           ${isActive 
@@ -409,10 +409,10 @@ const Tools = () => {
                                         </div>
                                       </div>
                                       
-                                      {/* 文字區域 - 置中偏左 */}
-                                      <div className="flex-1 text-left">
+                                      {/* 文字區域 - 單行顯示，支援截斷 */}
+                                      <div className="flex-1 text-left min-w-0">
                                         <span className={`
-                                          font-medium text-sm transition-colors duration-300
+                                          font-medium text-sm transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
                                           ${isActive 
                                             ? 'text-white font-semibold' 
                                             : isHover 
@@ -424,8 +424,8 @@ const Tools = () => {
                                         </span>
                                       </div>
                                       
-                                      {/* 數字 Badge 區域 - 右邊貼齊 */}
-                                      <div className="flex-shrink-0 pr-1">
+                                      {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
+                                      <div className="flex-shrink-0">
                                         <div className={`
                                           min-w-[24px] h-6 px-2 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
                                           ${isActive 
