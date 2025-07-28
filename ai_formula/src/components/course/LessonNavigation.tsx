@@ -8,7 +8,7 @@ interface LessonNavigationProps {
   completedParts: number[];
   onPartSelect: (partIndex: number) => void;
   onMarkComplete: (partNumber: number) => void;
-  language: 'en' | 'zh-HK';
+  language: 'en-GB' | 'zh-HK';
 }
 
 const LessonNavigation: React.FC<LessonNavigationProps> = ({
@@ -25,7 +25,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
     <div className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-6 border border-gray-700/50 sticky top-24">
       <h3 className="text-2xl font-bold mb-6 text-yellow-400 flex items-center gap-2">
         <Target className="w-6 h-6" />
-        {language === 'en' ? 'Learning Path' : '學�?路�?'}
+        {language === 'en-GB' ? 'Learning Path' : '學?路?'}
       </h3>
       
       {parts.map((part, index) => (
@@ -42,22 +42,22 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
               <div className="text-2xl">{part.icon}</div>
               <div>
                 <div className="font-bold text-lg">
-                  {language === 'en' ? `Part ${part.number}` : `Part ${part.number}`}
+                  {language === 'en-GB' ? `Part ${part.number}` : `Part ${part.number}`}
                 </div>
                 <div className="text-sm opacity-90">
-                  {language === 'en' ? part.title : part.titleCht}
+                  {language === 'en-GB' ? part.title : part.titleCht}
                 </div>
               </div>
             </div>
             
             <div className="text-sm opacity-80 mb-3">
-              {language === 'en' ? part.description : part.descriptionCht}
+              {language === 'en-GB' ? part.description : part.descriptionCht}
             </div>
             
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs">
                 <Clock className="w-3 h-3" />
-                <span>{language === 'en' ? part.duration : part.durationCht}</span>
+                <span>{language === 'en-GB' ? part.duration : part.durationCht}</span>
               </div>
               
               {completedParts.includes(part.number) && (
@@ -72,20 +72,20 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
               {part.topics.map((topic, topicIndex) => (
                 <div key={topicIndex} className="flex items-center gap-2 text-sm text-gray-400 bg-gray-800/30 p-2 rounded-lg">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span>{language === 'en' ? topic.name : topic.nameCht}</span>
+                  <span>{language === 'en-GB' ? topic.name : topic.nameCht}</span>
                 </div>
               ))}
               
               {/* Sample Content Preview */}
               <div className="bg-blue-500/20 p-3 rounded-lg border border-blue-500/30 mt-3">
                 <div className="text-sm font-semibold text-blue-400 mb-2">
-                  {language === 'en' ? part.sampleContent.title : part.sampleContent.titleCht}
+                  {language === 'en-GB' ? part.sampleContent.title : part.sampleContent.titleCht}
                 </div>
                 <div className="text-xs text-gray-300 bg-gray-800/50 p-2 rounded font-mono">
-                  {language === 'en' ? part.sampleContent.prompt : part.sampleContent.promptCht}
+                  {language === 'en-GB' ? part.sampleContent.prompt : part.sampleContent.promptCht}
                 </div>
                 <div className="text-xs text-green-400 mt-1">
-                  ??{language === 'en' ? part.sampleContent.result : part.sampleContent.resultCht}
+                  ??{language === 'en-GB' ? part.sampleContent.result : part.sampleContent.resultCht}
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
       {/* Completion Status */}
       <div className="mt-6 pt-4 border-t border-gray-600">
         <div className="text-sm text-gray-400 mb-2">
-          {language === 'en' ? 'Progress' : '?�度'}
+          {language === 'en-GB' ? 'Progress' : '?度'}
         </div>
         <div className="flex items-center gap-2">
           <div className="flex-1 bg-gray-700 rounded-full h-2">
@@ -122,8 +122,8 @@ const LessonNavigation: React.FC<LessonNavigationProps> = ({
       >
         <CheckCircle className="w-5 h-5" />
         {completedParts.includes(currentPartData.number)
-          ? (language === 'en' ? 'Completed!' : '已�??��?')
-          : (language === 'en' ? 'Mark Complete' : '標�?完�?')
+          ? (language === 'en-GB' ? 'Completed!' : '已???')
+          : (language === 'en-GB' ? 'Mark Complete' : '標?完?')
         }
       </button>
     </div>

@@ -58,181 +58,177 @@ const ThemeTest: React.FC = () => {
       <div className="page-content pb-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <div className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-4">
-            <h1 className="text-5xl md:text-6xl font-bold mb-2">
-              {language === 'en' ? 'AI Formula Theme Test' : 'AI Formula 主�?測試'}
+            <h1 className="text-h1 text-yellow-400 mb-2">
+              {language === 'en-GB' ? 'AI Formula Theme Test' : 'AI Formula 主題測試'}
             </h1>
-            <p className="text-2xl md:text-3xl font-semibold">
-              {language === 'en' ? 'Visual Consistency & Accessibility' : '視覺一?�性�??��?礙�?}
+            <p className="text-body text-gray-300 mb-8">
+              {language === 'en-GB' ? 'Visual Consistency & Accessibility' : '視覺一致性與無障礙'}
             </p>
-          </div>
-
-          {/* 主�??��??��? */}
-          <div className="flex justify-center mb-8">
-            <button
-              onClick={toggleTheme}
-              className="flex items-center gap-2 ai-bg-primary text-black px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              {language === 'en' ? 
-                `Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme` : 
-                `?��???{theme === 'dark' ? '亮色' : '深色'}主�?`
-              }
-            </button>
-          </div>
-
-          {/* 測試結�?總覽 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
-              <div className="flex items-center gap-3 mb-2">
-                <CheckCircle className="w-6 h-6 text-green-400" />
-                <h3 className="text-lg font-semibold">
-                  {language === 'en' ? 'Passed Tests' : '?��?測試'}
-                </h3>
-              </div>
-              <p className="text-3xl font-bold text-green-400">{testResults.passed}</p>
-            </div>
             
-            <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
-              <div className="flex items-center gap-3 mb-2">
-                <AlertCircle className="w-6 h-6 text-red-400" />
-                <h3 className="text-lg font-semibold">
-                  {language === 'en' ? 'Failed Tests' : '失�?測試'}
-                </h3>
-              </div>
-              <p className="text-3xl font-bold text-red-400">{testResults.failed}</p>
-            </div>
-            
-            <div className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
-              <div className="flex items-center gap-3 mb-2">
-                <Palette className="w-6 h-6 ai-text-info" />
-                <h3 className="text-lg font-semibold">
-                  {language === 'en' ? 'Total Tests' : '總測試數'}
-                </h3>
-              </div>
-              <p className="text-3xl font-bold ai-text-info">{testResults.total}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 主�??�容 */}
-      <div className="max-w-7xl mx-auto px-4 pb-20">
-        
-        {/* 組件測試 */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 ai-text-primary flex items-center gap-2">
-            <Eye className="w-8 h-8" />
-            {language === 'en' ? 'Component Visual Tests' : '組件視覺測試'}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testItems.map((item, index) => (
-              <div key={index} className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
-                <h4 className="font-semibold mb-4 text-gray-300">{item.name}</h4>
-                <div className="flex justify-center">
-                  {item.component}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">
+                    {testResults.passed}
+                  </div>
+                  <div className="text-h3 text-gray-300">
+                    {language === 'en-GB' ?
+                      'Visual tests for layout consistency, spacing, typography, and color schemes.' :
+                      '佈局一致性、間距、字體排印和顏色方案的視覺測試。'
+                    }
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ?��?礙性測�?*/}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 ai-text-primary flex items-center gap-2">
-            <Users className="w-8 h-8" />
-            {language === 'en' ? 'Accessibility Tests' : '?��?礙性測�?}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {accessibilityTests.map((test, index) => (
-              <div key={index} className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
-                <div className="flex items-center gap-3 mb-2">
-                  <CheckCircle className="w-6 h-6 text-green-400" />
-                  <h3 className="text-lg font-semibold">{test.name}</h3>
-                </div>
-                <p className="text-gray-300 text-sm">{test.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 顏色系統展示 */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 ai-text-primary flex items-center gap-2">
-            <Palette className="w-8 h-8" />
-            {language === 'en' ? 'AI Formula Color System' : 'AI Formula 顏色系統'}
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              { name: 'Primary', class: 'ai-bg-primary', text: 'text-black' },
-              { name: 'Secondary', class: 'ai-bg-secondary', text: 'text-black' },
-              { name: 'Success', class: 'ai-bg-success', text: 'text-white' },
-              { name: 'Info', class: 'ai-bg-info', text: 'text-white' },
-              { name: 'Warning', class: 'ai-bg-warning', text: 'text-black' },
-              { name: 'Error', class: 'ai-bg-error', text: 'text-white' },
-              { name: 'Dark', class: 'ai-bg-dark', text: 'text-white' },
-              { name: 'Dark Medium', class: 'ai-bg-dark-medium', text: 'text-white' }
-            ].map((color, index) => (
-              <div key={index} className={`${color.class} p-4 rounded-lg text-center`}>
-                <div className={`font-semibold ${color.text}`}>
-                  {color.name}
+              
+              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">
+                    {testResults.passed}
+                  </div>
+                  <div className="text-h3 text-gray-300">
+                    {language === 'en-GB' ? 'Passed Tests' : '通過測試'}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+              
+              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-red-400 mb-2">
+                    {testResults.failed}
+                  </div>
+                  <div className="text-h3 text-gray-300">
+                    {language === 'en-GB' ? 'Failed Tests' : '失敗測試'}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">
+                    {testResults.total}
+                  </div>
+                  <div className="text-h3 text-gray-300">
+                    {language === 'en-GB' ? 'Total Tests' : '總測試數'}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        {/* ?�能?��? */}
-        <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl p-8 border border-purple-500/30">
-          <h3 className="text-2xl font-bold mb-6 text-center text-purple-400 flex items-center justify-center gap-2">
-            <Star className="w-6 h-6" />
-            {language === 'en' ? 'Performance Metrics' : '?�能?��?'}
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-400 mb-2">95%</div>
-              <div className="text-sm text-gray-300">
-                {language === 'en' ? 'Design Consistency' : '設�?一?��?}
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700">
+                <h2 className="text-h2 text-yellow-400 mb-4">
+                  {language === 'en-GB' ? 'Component Visual Tests' : '組件視覺測試'}
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {testItems.map((item, index) => (
+                    <div key={index} className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
+                      <h4 className="font-semibold mb-4 text-gray-300">{item.name}</h4>
+                      <div className="flex justify-center">
+                        {item.component}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700">
+                <h2 className="text-h2 text-yellow-400 mb-4">
+                  {language === 'en-GB' ? 'Accessibility Tests' : '無障礙性測試'}
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {accessibilityTests.map((test, index) => (
+                    <div key={index} className="ai-bg-dark-medium p-6 rounded-lg border ai-border-gray">
+                      <div className="flex items-center gap-3 mb-2">
+                        <CheckCircle className="w-6 h-6 text-green-400" />
+                        <h3 className="text-lg font-semibold">{test.name}</h3>
+                      </div>
+                      <p className="text-gray-300 text-sm">{test.description}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-            
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">100%</div>
-              <div className="text-sm text-gray-300">
-                {language === 'en' ? 'Accessibility Score' : '?��?礙性�???}
+
+            {/* 顏色系統展示 */}
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold mb-6 ai-text-primary flex items-center gap-2">
+                <Palette className="w-8 h-8" />
+                {language === 'en-GB' ? 'AI Formula Color System' : 'AI Formula 顏色系統'}
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {[
+                  { name: 'Primary', class: 'ai-bg-primary', text: 'text-black' },
+                  { name: 'Secondary', class: 'ai-bg-secondary', text: 'text-black' },
+                  { name: 'Success', class: 'ai-bg-success', text: 'text-white' },
+                  { name: 'Info', class: 'ai-bg-info', text: 'text-white' },
+                  { name: 'Warning', class: 'ai-bg-warning', text: 'text-black' },
+                  { name: 'Error', class: 'ai-bg-error', text: 'text-white' },
+                  { name: 'Dark', class: 'ai-bg-dark', text: 'text-white' },
+                  { name: 'Dark Medium', class: 'ai-bg-dark-medium', text: 'text-white' }
+                ].map((color, index) => (
+                  <div key={index} className={`${color.class} p-4 rounded-lg text-center`}>
+                    <div className={`font-semibold ${color.text}`}>
+                      {color.name}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            
-            <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">85%</div>
-              <div className="text-sm text-gray-300">
-                {language === 'en' ? 'Code Quality' : '�?��質�?'}
+
+            {/* ?能?? */}
+            <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl p-8 border border-purple-500/30">
+              <h3 className="text-2xl font-bold mb-6 text-center text-purple-400 flex items-center justify-center gap-2">
+                <Star className="w-6 h-6" />
+                {language === 'en-GB' ? 'Performance Metrics' : '性能指標'}
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">95%</div>
+                  <div className="text-sm text-gray-300">
+                    {language === 'en-GB' ? 'Design Consistency' : '設計一致性'}
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-400 mb-2">100%</div>
+                  <div className="text-sm text-gray-300">
+                    {language === 'en-GB' ? 'Accessibility Score' : '無障礙性分數'}
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">85%</div>
+                  <div className="text-sm text-gray-300">
+                    {language === 'en-GB' ? 'Code Quality' : '代碼質量'}
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-purple-400 mb-2">90%</div>
+                  <div className="text-sm text-gray-300">
+                    {language === 'en-GB' ? 'Color System' : '顏色系統'}
+                  </div>
+                </div>
               </div>
             </div>
-            
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-2">90%</div>
-              <div className="text-sm text-gray-300">
-                {language === 'en' ? 'Color System' : '顏色系統'}
-              </div>
+
+            {/* 測試?? */}
+            <div className="flex gap-4 justify-center mt-12">
+              <button
+                onClick={() => window.location.reload()}
+                className="ai-bg-info text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              >
+                {language === 'en-GB' ? 'Rerun Tests' : '重新運行測試'}
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="ai-bg-secondary text-black px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              >
+                {language === 'en-GB' ? 'Print Report' : '打印報告'}
+              </button>
             </div>
           </div>
-        </div>
-
-        {/* 測試?��? */}
-        <div className="flex gap-4 justify-center mt-12">
-          <button
-            onClick={() => window.location.reload()}
-            className="ai-bg-info text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-          >
-            {language === 'en' ? 'Rerun Tests' : '?�新?��?測試'}
-          </button>
-          <button
-            onClick={() => window.print()}
-            className="ai-bg-secondary text-black px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-          >
-            {language === 'en' ? 'Print Report' : '?�印?��?'}
-          </button>
         </div>
       </div>
     </div>

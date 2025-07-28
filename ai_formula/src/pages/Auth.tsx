@@ -14,7 +14,7 @@ const Auth: React.FC = () => {
   }
 
   // 根據語言顯示不同的水印文字
-  const watermarkWords = language === 'en' 
+  const watermarkWords = language === 'en-GB' 
     ? ['KNOWLEDGE', 'SKILL', 'VISION']
     : ['知識', '技能', '視野']
 

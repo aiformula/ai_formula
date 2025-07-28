@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
         ]
       }
     },
-    'en': {
+    'en-GB': {
       quickLinks: {
         title: 'Quick Links',
         links: [
