@@ -261,7 +261,8 @@ const enTranslations: Translations = {
     'advertising-creative': 'Advertising Creative',
     'course-creator': 'Course Creator',
     'sales-team': 'Sales Team',
-    'student-developer': 'Student Developer'
+    'student-developer': 'Student Developer',
+    'enterprise-marketing-team': 'Enterprise Marketing Team'
   },
 
   button: {
@@ -928,7 +929,8 @@ const zhTranslations: Translations = {
     'advertising-creative': 'Advertising Creative',
     'course-creator': 'Course Creator',
     'sales-team': 'Sales Team',
-    'student-developer': 'Student Developer'
+    'student-developer': 'Student Developer',
+    'enterprise-marketing-team': 'Enterprise Marketing Team'
   },
 
   button: {
