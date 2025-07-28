@@ -124,6 +124,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '創業者': 'startup-founder',
     '企業主': 'business-owner',
     '小企業主': 'small-business-owner',
+    '小型企業主': 'small-business-owner', // Added this mapping
     '小型企業': 'small-business',
     '小企業': 'small-business',
     '營銷人員': 'marketer',
@@ -281,10 +282,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '任何使用多個網絡應用的人': 'multi-app-users',
     '任何需要快速建站的人': 'quick-website-builders',
     '任何需要快速獲取信息的人': 'information-seekers',
-    '希望使用 AI 的小型企業': 'ai-interested-small-business',
-    
-    // Missing mappings  
-    'AI 開發者': 'ai-developer'
+    '希望使用 AI 的小型企業': 'ai-interested-small-business'
   };
 
   // Helper function to convert targetAudience to userTags keys using mapping
