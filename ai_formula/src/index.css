@@ -2362,3 +2362,104 @@
 .neon-border-button-golden:hover::after {
   opacity: 0.8;
 }
+
+/* =======================================================
+   CUSTOM SCROLLBAR STYLES - Mobile Filter Drawer
+   ======================================================= */
+
+/* 自定義 scrollbar 樣式 - 黑金主題 */
+.custom-scrollbar {
+  /* Firefox 瀏覽器 */
+  scrollbar-width: thin;
+  scrollbar-color: #facc15 rgba(255, 255, 255, 0.1);
+}
+
+/* WebKit 瀏覽器 (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  margin: 4px 0; /* 上下留出間距，避免與邊框重疊 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #facc15;
+  border-radius: 6px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #eab308;
+  opacity: 1;
+  transform: scaleX(1.2);
+}
+
+/* 滾動條角落 */
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 響應式處理 - 移動端優化 */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #facc15;
+    border-radius: 4px;
+    opacity: 0.6;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:active {
+    background: #eab308;
+    opacity: 0.9;
+  }
+}
+
+/* 觸摸設備優化 */
+@media (hover: none) and (pointer: coarse) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(250, 204, 21, 0.8);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+}
+
+/* 高對比度模式支持 */
+@media (prefers-contrast: high) {
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #fbbf24;
+    border: 1px solid #92400e;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* 減動畫偏好設置支持 */
+@media (prefers-reduced-motion: reduce) {
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    transition: none;
+  }
+}

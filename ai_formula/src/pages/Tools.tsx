@@ -596,8 +596,15 @@ const Tools = () => {
                 </div>
               </div>
 
-              {/* Panel Content - 可滾動區域 */}
-              <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-track-black scrollbar-thumb-gray-800">
+              {/* Panel Content - 可滾動區域，自定義 scrollbar 樣式 */}
+              <div 
+                className="flex-1 overflow-y-auto custom-scrollbar"
+                style={{
+                  // WebKit browsers (Chrome, Safari, Edge)
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#facc15 rgba(255,255,255,0.1)',
+                }}
+              >
                 <div className="p-5">
                   <FilterContent isMobile={true} />
                 </div>
