@@ -255,7 +255,9 @@ const allTools: Tool[] = [
   {
     id: 'google-veo',
     title: 'Google Veo - 先進影片生成模型',
+    titleEn: 'Google Veo - Advanced Video Generation Model',
     description: '由 Google DeepMind 開發的最先進的影片生成模型，能夠根據文本、圖像和影片提示生成超過一分鐘的高質量 1080p 影片。',
+    descriptionEn: 'The most advanced video generation model developed by Google DeepMind, capable of generating over one minute of high-quality 1080p videos based on text, image, and video prompts.',
     tag: '影片生成',
     tags: ['影片生成', 'AI 模型', 'Google AI'],
     url: 'https://deepmind.google/models/veo/',
@@ -599,7 +601,9 @@ const allTools: Tool[] = [
   {
     id: 'photoshop-ai',
     title: 'Photoshop AI - Adobe創成式填充',
+    titleEn: 'Photoshop AI - Adobe Generative Fill',
     description: 'Adobe Photoshop內建的AI功能，包括創成式填充、擴展、物件移除等強大工具。',
+    descriptionEn: 'Built-in AI features in Adobe Photoshop, including generative fill, expansion, object removal, and other powerful tools.',
     tag: 'Photoshop AI',
     tags: ['Photoshop AI', '創成式填充', '專業編輯'],
     url: 'https://www.adobe.com/products/photoshop/generative-fill.html',
@@ -613,7 +617,9 @@ const allTools: Tool[] = [
   {
     id: 'remove-bg',
     title: 'remove.bg - AI 圖像去背工具',
+    titleEn: 'remove.bg - AI Background Removal Tool',
     description: '一個非常簡單易用的在線工具，使用 AI 技術可以在 5 秒內自動去除任何圖像的背景，效果精準快速。',
+    descriptionEn: 'A very simple and easy-to-use online tool that uses AI technology to automatically remove the background from any image in 5 seconds with precise and fast results.',
     tag: '圖像去背',
     tags: ['圖像去背', 'AI 圖像編輯', '在線工具'],
     url: 'https://www.remove.bg/zh',
@@ -697,7 +703,9 @@ const allTools: Tool[] = [
   {
     id: 'canva',
     title: 'Canva - AI 設計平台',
+    titleEn: 'Canva - AI Design Platform',
     description: '一個非常受歡迎的在線設計平台，提供海量模板和易於使用的拖放界面。其「Magic Studio」集成了多種 AI 功能。',
+    descriptionEn: 'A highly popular online design platform offering vast templates and an easy-to-use drag-and-drop interface. Its "Magic Studio" integrates various AI features.',
     tag: '平面設計',
     tags: ['平面設計', '模板', 'AI 設計'],
     url: 'https://www.canva.com/',
@@ -941,7 +949,9 @@ const allTools: Tool[] = [
   {
     id: 'grammarly',
     title: 'Grammarly - AI寫作助手',
+    titleEn: 'Grammarly - AI Writing Assistant',
     description: '全球領先的AI寫作助手，提供語法檢查、風格建議和寫作優化功能。',
+    descriptionEn: 'World-leading AI writing assistant that provides grammar checking, style suggestions, and writing optimisation features.',
     tag: '寫作助手',
     tags: ['寫作助手', '語法檢查', '寫作優化'],
     url: 'https://www.grammarly.com/',
@@ -971,7 +981,9 @@ const allTools: Tool[] = [
   {
     id: 'notion-ai',
     title: 'Notion AI - 智能筆記助手',
+    titleEn: 'Notion AI - Intelligent Note-Taking Assistant',
     description: 'Notion內建的AI助手，能幫助組織想法、撰寫內容和提升工作效率。',
+    descriptionEn: 'Built-in AI assistant in Notion that helps organise ideas, write content, and improve productivity.',
     tag: '智能筆記',
     tags: ['智能筆記', '生產力工具', 'AI助手'],
     url: 'https://www.notion.so/product/ai',
@@ -1075,7 +1087,9 @@ const allTools: Tool[] = [
   {
     id: 'otter-ai',
     title: 'Otter.ai - AI 語音轉文字工具',
+    titleEn: 'Otter.ai - AI Speech-to-Text Tool',
     description: '一個利用 AI 技術提供實時語音轉文字服務的工具，能夠準確地轉錄會議、訪談和講座，並能識別不同的發言者。',
+    descriptionEn: 'A tool that utilises AI technology to provide real-time speech-to-text services, accurately transcribing meetings, interviews, and lectures whilst identifying different speakers.',
     tag: '語音轉文字',
     tags: ['語音轉文字', '會議記錄', 'AI 轉錄'],
     url: 'https://otter.ai/',
@@ -1133,7 +1147,9 @@ const allTools: Tool[] = [
   {
     id: 'beautiful-ai',
     title: 'Beautiful.ai - 智能簡報製作工具',
+    titleEn: 'Beautiful.ai - Intelligent Presentation Creation Tool',
     description: '一款專注於自動化設計的演示文稿製作工具。它利用 AI 智能地為用戶佈局幻燈片，確保設計的一致性和美觀性。',
+    descriptionEn: 'A presentation creation tool focused on automated design. It utilises AI to intelligently layout slides for users, ensuring design consistency and aesthetic appeal.',
     tag: '演示文稿',
     tags: ['演示文稿', '智能設計', '簡報製作'],
     url: 'https://www.beautiful.ai/',
@@ -1261,7 +1277,9 @@ const allTools: Tool[] = [
   {
     id: 'google-analytics-ai',
     title: 'Google Analytics AI - 網站分析AI',
+    titleEn: 'Google Analytics AI - Website Analytics AI',
     description: 'Google Analytics的AI功能，提供智能洞察和預測性分析。',
+    descriptionEn: 'AI features in Google Analytics that provide intelligent insights and predictive analytics.',
     tag: '網站分析',
     tags: ['網站分析', '智能洞察', '預測分析'],
     url: 'https://analytics.google.com/',
@@ -1335,7 +1353,9 @@ const allTools: Tool[] = [
   {
     id: 'openai-cookbook',
     title: 'OpenAI Cookbook - AI 開發指南',
+    titleEn: 'OpenAI Cookbook - AI Development Guide',
     description: '一個官方嘅 OpenAI API 使用指南同範例集合，提供咗大量實用嘅程式碼範例同教學，幫助開發者快速上手 AI 應用開發。',
+    descriptionEn: 'An official OpenAI API usage guide and example collection, providing numerous practical code examples and tutorials to help developers quickly get started with AI application development.',
     tag: 'AI 開發',
     tags: ['AI 開發', '開發工具'],
     url: 'https://cookbook.openai.com/',
@@ -1561,7 +1581,9 @@ const allTools: Tool[] = [
   {
     id: 'perplexity-ai',
     title: 'Perplexity AI - AI搜索引擎',
+    titleEn: 'Perplexity AI - AI Search Engine',
     description: '新一代AI搜索引擎，提供實時信息搜索和智能問答功能，結合了搜索和對話的能力。',
+    descriptionEn: 'Next-generation AI search engine that provides real-time information search and intelligent Q&A functionality, combining search and conversational capabilities.',
     tag: 'AI搜索',
     tags: ['AI搜索', '智能問答', '實時信息'],
     url: 'https://www.perplexity.ai/',
@@ -1605,7 +1627,9 @@ const allTools: Tool[] = [
   {
     id: 'github-copilot',
     title: 'GitHub Copilot - AI程式助手',
+    titleEn: 'GitHub Copilot - AI Programming Assistant',
     description: 'GitHub和OpenAI合作的AI程式助手，提供智能代碼完成和建議。',
+    descriptionEn: 'AI programming assistant developed through collaboration between GitHub and OpenAI, providing intelligent code completion and suggestions.',
     tag: 'AI編程',
     tags: ['AI編程', '代碼完成', '程式助手'],
     url: 'https://github.com/features/copilot',
