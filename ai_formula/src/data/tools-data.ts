@@ -1219,7 +1219,9 @@ const allTools: Tool[] = [
   {
     id: 'fireflies-ai',
     title: 'Fireflies.ai - AI 會議助手',
+    titleEn: 'Fireflies.ai - AI Meeting Assistant',
     description: '一個 AI 會議助手，能自動加入您的線上會議，進行錄音、轉錄和總結。它能提取關鍵詞、行動項目和會議重點。',
+    descriptionEn: 'An AI meeting assistant that can automatically join your online meetings to record, transcribe, and summarise. It can extract keywords, action items, and meeting highlights.',
     tag: '會議助手',
     tags: ['會議助手', 'AI 轉錄', '任務管理'],
     url: 'https://fireflies.ai/',
@@ -1233,7 +1235,9 @@ const allTools: Tool[] = [
   {
     id: 'riverside',
     title: 'Riverside - 高品質遠程錄製平台',
+    titleEn: 'Riverside - High-Quality Remote Recording Platform',
     description: '一個高品質的遠程錄音和錄影平台，專為播客和訪談設計。它在本地錄製每個參與者的音視頻，確保錄音室質量的文件。',
+    descriptionEn: 'A high-quality remote audio and video recording platform designed specifically for podcasts and interviews. It records each participant\'s audio and video locally, ensuring studio-quality files.',
     tag: '遠程錄製',
     tags: ['遠程錄製', '播客製作', '高清錄影'],
     url: 'https://riverside.com/',
@@ -1455,7 +1459,9 @@ const allTools: Tool[] = [
   {
     id: 'seaweed-apt2',
     title: 'Seaweed APT2 - 高級威脅檢測工具',
+    titleEn: 'Seaweed APT2 - Advanced Threat Detection Tool',
     description: '一個先進嘅 AI 驅動網絡安全工具，專門用於檢測同分析高級持續威脅 (APT)，為企業提供全面嘅網絡安全防護。',
+    descriptionEn: 'An advanced AI-driven cybersecurity tool specifically designed for detecting and analysing Advanced Persistent Threats (APT), providing comprehensive network security protection for enterprises.',
     tag: '網絡安全',
     tags: ['網絡安全', 'AI 安全'],
     url: 'https://apt2.seaweedfs.com/',
@@ -1469,7 +1475,9 @@ const allTools: Tool[] = [
   {
     id: 'unstable-ml',
     title: 'Unstable ML - 機器學習實驗平台',
+    titleEn: 'Unstable ML - Machine Learning Experimental Platform',
     description: '一個為機器學習研究者同開發者設計嘅實驗平台，提供最新嘅 ML 模型同工具，支援快速原型開發同實驗。',
+    descriptionEn: 'An experimental platform designed for machine learning researchers and developers, providing the latest ML models and tools, supporting rapid prototyping and experimentation.',
     tag: '機器學習',
     tags: ['機器學習', 'AI 開發'],
     url: 'https://unstable.ml/',
@@ -1499,7 +1507,9 @@ const allTools: Tool[] = [
   {
     id: 'krisp',
     title: 'Krisp - AI降噪工具',
+    titleEn: 'Krisp - AI Noise Cancellation Tool',
     description: '強大的AI背景噪音消除工具，讓線上會議和錄音更加清晰專業。',
+    descriptionEn: 'Powerful AI background noise cancellation tool that makes online meetings and recordings clearer and more professional.',
     tag: 'AI降噪',
     tags: ['AI降噪', '會議工具', '音頻清理'],
     url: 'https://krisp.ai/',
@@ -1577,7 +1587,9 @@ const allTools: Tool[] = [
   {
     id: 'tweet-hunter',
     title: 'Tweet Hunter - Twitter (X) 增長工具',
+    titleEn: 'Tweet Hunter - Twitter (X) Growth Tool',
     description: '專為 Twitter (X) 設計的增長工具，提供 AI 寫作、帖子排程、自動化互動和靈感庫等功能。',
+    descriptionEn: 'A growth tool designed specifically for Twitter (X), providing AI writing, post scheduling, automated interactions, and inspiration library features.',
     tag: 'Twitter (X)',
     tags: ['Twitter (X)', '社交媒體增長', '內容創作'],
     url: 'https://tweethunter.io/',
@@ -1591,7 +1603,9 @@ const allTools: Tool[] = [
   {
     id: 'monday-ai',
     title: 'Monday.com AI - 工作管理AI',
+    titleEn: 'Monday.com AI - Work Management AI',
     description: '集成AI功能的工作管理平台，自動化項目追蹤和團隊協作。',
+    descriptionEn: 'A work management platform with integrated AI features that automates project tracking and team collaboration.',
     tag: '工作管理',
     tags: ['工作管理', '項目追蹤', '團隊協作'],
     url: 'https://monday.com/',
@@ -1605,7 +1619,9 @@ const allTools: Tool[] = [
   {
     id: 'salesforce-einstein',
     title: 'Salesforce Einstein - CRM AI',
+    titleEn: 'Salesforce Einstein - CRM AI',
     description: 'Salesforce的AI功能，提供智能銷售預測、客戶洞察和自動化營銷。',
+    descriptionEn: 'AI features in Salesforce that provide intelligent sales forecasting, customer insights, and automated marketing.',
     tag: 'CRM AI',
     tags: ['CRM AI', '銷售預測', '客戶洞察'],
     url: 'https://www.salesforce.com/products/einstein/',
@@ -1651,7 +1667,9 @@ const allTools: Tool[] = [
   {
     id: 'klaviyo-ai',
     title: 'Klaviyo AI - 電商營銷AI',
+    titleEn: 'Klaviyo AI - E-commerce Marketing AI',
     description: '專為電商設計的AI營銷平台，提供個性化推薦和客戶行為分析。',
+    descriptionEn: 'AI marketing platform designed specifically for e-commerce, providing personalised recommendations and customer behaviour analysis.',
     tag: '電商營銷',
     tags: ['電商營銷', '個性化推薦', '行為分析'],
     url: 'https://www.klaviyo.com/',
@@ -1665,7 +1683,9 @@ const allTools: Tool[] = [
   {
     id: 'typeform-ai',
     title: 'Typeform AI - 智能表單',
+    titleEn: 'Typeform AI - Intelligent Forms',
     description: '集成AI的表單建構平台，提供智能問題推薦和數據洞察。',
+    descriptionEn: 'AI-integrated form building platform that provides intelligent question recommendations and data insights.',
     tag: '智能表單',
     tags: ['智能表單', '數據收集', '用戶洞察'],
     url: 'https://www.typeform.com/',
@@ -1681,7 +1701,9 @@ const allTools: Tool[] = [
   {
     id: 'chipp-ai',
     title: 'Chipp.ai - 無代碼聊天機器人平台',
+    titleEn: 'Chipp.ai - No-Code Chatbot Platform',
     description: '一個讓非開發者也能輕鬆構建和部署自己 GPT 驅動的聊天機械人的平台。它提供了一個無代碼界面。',
+    descriptionEn: 'A platform that allows non-developers to easily build and deploy their own GPT-powered chatbots. It provides a no-code interface.',
     tag: '聊天機械人',
     tags: ['聊天機械人', '無代碼', 'GPT'],
     url: 'https://chipp.ai/',
@@ -1695,7 +1717,9 @@ const allTools: Tool[] = [
   {
     id: 'drift-ai',
     title: 'Drift AI - 對話營銷AI',
+    titleEn: 'Drift AI - Conversational Marketing AI',
     description: 'AI驅動的對話營銷平台，自動化客戶互動和潛在客戶開發。',
+    descriptionEn: 'AI-driven conversational marketing platform that automates customer interactions and lead generation.',
     tag: '對話營銷',
     tags: ['對話營銷', '客戶互動', '潛客開發'],
     url: 'https://www.drift.com/',
@@ -1709,7 +1733,9 @@ const allTools: Tool[] = [
   {
     id: 'intercom-ai',
     title: 'Intercom AI - 客服AI助手',
+    titleEn: 'Intercom AI - Customer Service AI Assistant',
     description: '智能客服平台，提供AI聊天機器人和自動化客戶支持。',
+    descriptionEn: 'Intelligent customer service platform that provides AI chatbots and automated customer support.',
     tag: '客服AI',
     tags: ['客服AI', '聊天機器人', '客戶支持'],
     url: 'https://www.intercom.com/',
@@ -1739,7 +1765,9 @@ const allTools: Tool[] = [
   {
     id: 'phind-ai',
     title: 'Phind - 開發者AI搜索',
+    titleEn: 'Phind - Developer AI Search',
     description: '專為開發者設計的AI搜索引擎，能夠理解編程問題並提供準確的代碼解決方案。',
+    descriptionEn: 'AI search engine designed specifically for developers that can understand programming questions and provide accurate code solutions.',
     tag: '開發者搜索',
     tags: ['開發者搜索', 'AI編程', '代碼解決方案'],
     url: 'https://www.phind.com/',
@@ -1755,7 +1783,9 @@ const allTools: Tool[] = [
   {
     id: 'cursor',
     title: 'Cursor - AI 代碼編輯器',
+    titleEn: 'Cursor - AI Code Editor',
     description: '一款專為與 AI 協作而設計的代碼編輯器。它深度集成了 AI 功能，可以幫助開發者更快地編寫、理解和重構代碼。',
+    descriptionEn: 'A code editor designed specifically for AI collaboration. It deeply integrates AI features to help developers write, understand, and refactor code more quickly.',
     tag: '代碼編輯器',
     tags: ['代碼編輯器', 'AI 編程', '開發工具'],
     url: 'https://cursor.com/cn',
@@ -1785,7 +1815,9 @@ const allTools: Tool[] = [
   {
     id: 'tabnine',
     title: 'Tabnine - AI代碼自動完成',
+    titleEn: 'Tabnine - AI Code Autocompletion',
     description: '先進的AI代碼自動完成工具，支援多種程式語言和IDE整合。',
+    descriptionEn: 'Advanced AI code autocompletion tool that supports multiple programming languages and IDE integration.',
     tag: '代碼完成',
     tags: ['代碼完成', 'IDE整合', '多語言支援'],
     url: 'https://www.tabnine.com/',
@@ -1799,7 +1831,9 @@ const allTools: Tool[] = [
   {
     id: 'replit-ai',
     title: 'Replit AI - 雲端編程AI',
+    titleEn: 'Replit AI - Cloud Programming AI',
     description: '整合AI的雲端開發環境，提供智能編程輔助和自動化部署。',
+    descriptionEn: 'AI-integrated cloud development environment that provides intelligent programming assistance and automated deployment.',
     tag: '雲端編程',
     tags: ['雲端編程', '智能輔助', '自動部署'],
     url: 'https://replit.com/',
@@ -1813,7 +1847,9 @@ const allTools: Tool[] = [
   {
     id: 'postman-ai',
     title: 'Postman AI - API測試AI',
+    titleEn: 'Postman AI - API Testing AI',
     description: 'Postman的AI功能，自動化API測試和文檔生成。',
+    descriptionEn: 'AI features in Postman that automate API testing and documentation generation.',
     tag: 'API測試',
     tags: ['API測試', '自動化測試', '文檔生成'],
     url: 'https://www.postman.com/',
@@ -1827,7 +1863,9 @@ const allTools: Tool[] = [
   {
     id: 'linear-ai',
     title: 'Linear AI - 項目管理AI',
+    titleEn: 'Linear AI - Project Management AI',
     description: '為開發團隊設計的AI項目管理工具，自動化工作流程和問題追蹤。',
+    descriptionEn: 'AI project management tool designed for development teams, automating workflows and issue tracking.',
     tag: '項目管理',
     tags: ['項目管理', '工作流程', '問題追蹤'],
     url: 'https://linear.app/',
@@ -1841,7 +1879,9 @@ const allTools: Tool[] = [
   {
     id: 'retool-ai',
     title: 'Retool AI - 低代碼開發AI',
+    titleEn: 'Retool AI - Low-Code Development AI',
     description: '集成AI的低代碼開發平台，快速構建內部工具和應用程式。',
+    descriptionEn: 'AI-integrated low-code development platform for rapidly building internal tools and applications.',
     tag: '低代碼',
     tags: ['低代碼', '快速開發', '內部工具'],
     url: 'https://retool.com/',
@@ -1855,7 +1895,9 @@ const allTools: Tool[] = [
   {
     id: 'v0-vercel',
     title: 'V0 by Vercel - AI界面生成器',
+    titleEn: 'V0 by Vercel - AI Interface Generator',
     description: 'Vercel推出的AI界面生成工具，能根據文字描述快速生成React組件和網頁界面代碼。',
+    descriptionEn: 'AI interface generation tool by Vercel that can quickly generate React components and web interface code based on text descriptions.',
     tag: 'AI界面生成',
     tags: ['AI界面生成', 'React組件', '前端開發'],
     url: 'https://v0.dev/',
