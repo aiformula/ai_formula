@@ -55,7 +55,13 @@ export const ViewCountProvider = ({ children }: { children: ReactNode }) => {
 export const useViewCount = () => {
   const context = useContext(ViewCountContext);
   if (context === undefined) {
-    throw new Error('useViewCount must be used within a ViewCountProvider');
+    // 提供 fallback 而不是拋出錯誤
+    console.warn('useViewCount must be used within a ViewCountProvider. Using fallback values.');
+    return {
+      viewCounts: {},
+      incrementView: () => {},
+      getViewCount: () => 0
+    };
   }
   return context;
 }; 

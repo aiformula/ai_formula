@@ -41,18 +41,43 @@ const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
 // Components
 const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, postId }) => {
   const { language } = useLanguage();
-  const { getViewCount, incrementView } = useViewCount();
+  
+  // 安全獲取 ViewCount context，加上 try-catch 保護
+  let viewCountHook;
+  try {
+    viewCountHook = useViewCount();
+  } catch (error) {
+    console.error('ViewCount context error:', error);
+    viewCountHook = {
+      getViewCount: () => 0,
+      incrementView: () => {}
+    };
+  }
+  
+  const { getViewCount, incrementView } = viewCountHook;
   const [isAnimating, setIsAnimating] = useState(false);
   
-  const currentViews = getViewCount(postId);
+  // 安全獲取 view counts
+  let currentViews = 0;
+  try {
+    currentViews = getViewCount(postId) || 0;
+  } catch (error) {
+    console.error('Error getting view count:', error);
+    currentViews = 0;
+  }
+  
   const baseViews = parseInt(initialViews) || 0;
   const displayViews = (baseViews + currentViews).toString();
   
   useEffect(() => {
-    incrementView(postId);
-    setIsAnimating(true);
-    const timer = setTimeout(() => setIsAnimating(false), 500);
-    return () => clearTimeout(timer);
+    try {
+      incrementView(postId);
+      setIsAnimating(true);
+      const timer = setTimeout(() => setIsAnimating(false), 500);
+      return () => clearTimeout(timer);
+    } catch (error) {
+      console.error('Error incrementing view:', error);
+    }
   }, [postId, incrementView]);
 
   return (
@@ -113,59 +138,78 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
 
   // 渲染多 section 內容
   const renderSections = (contentObj) => {
-    if (!contentObj || !contentObj.sections) return <p>Content not available.</p>;
-    return contentObj.sections.map((section, idx) => {
-      const text = isZhHK ? section.content : (section.contentEn || section.content);
-      // 保證 items 一定是陣列
-      const safeItems = Array.isArray(isZhHK ? section.items : section.itemsEn)
-        ? (isZhHK ? section.items : section.itemsEn)
-        : [];
-      if (section.type === 'heading') {
-        const Tag = `h${section.level || 2}`;
-        return React.createElement(Tag, { key: idx, className: 'font-bold mt-8 mb-4 text-2xl' }, text);
-      }
-      if (section.type === 'paragraph') {
-        return <p key={idx} className="mb-4 text-lg leading-relaxed">{text}</p>;
-      }
-      if (section.type === 'card') {
-        return (
-          <div key={idx} className="bg-yellow-50 dark:bg-yellow-900/10 border-l-4 border-yellow-400 rounded-lg p-4 mb-4">
-            <div className="font-semibold mb-2">{text}</div>
-            <ul className="list-disc pl-6">
+    if (!contentObj || !contentObj.sections || !Array.isArray(contentObj.sections)) {
+      return <p className="text-gray-500 italic">Content not available.</p>;
+    }
+    
+    try {
+      return contentObj.sections.map((section, idx) => {
+        if (!section || typeof section !== 'object') {
+          return <p key={idx} className="text-red-500">Invalid section data</p>;
+        }
+        
+        const text = isZhHK ? (section.content || '') : (section.contentEn || section.content || '');
+        
+        // 保證 items 一定是陣列
+        let safeItems = [];
+        try {
+          const rawItems = isZhHK ? section.items : (section.itemsEn || section.items);
+          safeItems = Array.isArray(rawItems) ? rawItems : [];
+        } catch (error) {
+          console.error('Error processing section items:', error);
+          safeItems = [];
+        }
+        
+        if (section.type === 'heading') {
+          const Tag = `h${section.level || 2}`;
+          return React.createElement(Tag, { key: idx, className: 'font-bold mt-8 mb-4 text-2xl' }, text);
+        }
+        if (section.type === 'paragraph') {
+          return <p key={idx} className="mb-4 text-lg leading-relaxed">{text}</p>;
+        }
+        if (section.type === 'card') {
+          return (
+            <div key={idx} className="bg-yellow-50 dark:bg-yellow-900/10 border-l-4 border-yellow-400 rounded-lg p-4 mb-4">
+              <div className="font-semibold mb-2">{text}</div>
+              <ul className="list-disc pl-6">
+                {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+              </ul>
+            </div>
+          );
+        }
+        if (section.type === 'highlight') {
+          return (
+            <div key={idx} className="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-400 rounded-lg p-4 mb-4">
+              <div className="font-semibold mb-2">{text}</div>
+              <ul className="list-disc pl-6">
+                {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+              </ul>
+            </div>
+          );
+        }
+        if (section.type === 'steps' || section.type === 'list') {
+          return (
+            <ol key={idx} className="list-decimal pl-6 mb-4">
               {safeItems.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
-          </div>
-        );
-      }
-      if (section.type === 'highlight') {
-        return (
-          <div key={idx} className="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-400 rounded-lg p-4 mb-4">
-            <div className="font-semibold mb-2">{text}</div>
-            <ul className="list-disc pl-6">
-              {safeItems.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
-          </div>
-        );
-      }
-      if (section.type === 'steps' || section.type === 'list') {
-        return (
-          <ol key={idx} className="list-decimal pl-6 mb-4">
-            {safeItems.map((item, i) => <li key={i}>{item}</li>)}
-          </ol>
-        );
-      }
-      if (section.type === 'conclusion') {
-        return (
-          <div key={idx} className="bg-green-50 dark:bg-green-900/10 border-l-4 border-green-400 rounded-lg p-4 mb-4">
-            <div className="font-semibold mb-2">{text}</div>
-            <ul className="list-disc pl-6">
-              {safeItems.map((item, i) => <li key={i}>{item}</li>)}
-            </ul>
-          </div>
-        );
-      }
-      return <p key={idx}>{text}</p>;
-    });
+            </ol>
+          );
+        }
+        if (section.type === 'conclusion') {
+          return (
+            <div key={idx} className="bg-green-50 dark:bg-green-900/10 border-l-4 border-green-400 rounded-lg p-4 mb-4">
+              <div className="font-semibold mb-2">{text}</div>
+              <ul className="list-disc pl-6">
+                {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+              </ul>
+            </div>
+          );
+        }
+        return <p key={idx}>{text}</p>;
+      });
+    } catch (error) {
+      console.error('Error rendering sections:', error);
+      return <p className="text-red-500">Error loading content. Please try again later.</p>;
+    }
   };
 
   return (
@@ -381,15 +425,39 @@ const BlogPost: React.FC = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const post = useMemo(() => {
-    const allPosts = getSortedPostsNewest();
-    const postId = parseInt(id || '1');
-    return allPosts.find(p => p.id === postId) || allPosts[0];
+    try {
+      const allPosts = getSortedPostsNewest();
+      if (!Array.isArray(allPosts) || allPosts.length === 0) {
+        console.error('No posts available');
+        return null;
+      }
+      
+      const postId = parseInt(id || '1');
+      if (isNaN(postId)) {
+        console.error('Invalid post ID:', id);
+        return allPosts[0] || null;
+      }
+      
+      return allPosts.find(p => p.id === postId) || allPosts[0] || null;
+    } catch (error) {
+      console.error('Error finding post:', error);
+      return null;
+    }
   }, [id]);
 
   // 取得對應內容
   const content = useMemo(() => {
     if (!post) return null;
-    return articleContents.find(a => a.id === post.id) || null;
+    try {
+      if (!Array.isArray(articleContents)) {
+        console.error('articleContents is not an array');
+        return null;
+      }
+      return articleContents.find(a => a && a.id === post.id) || null;
+    } catch (error) {
+      console.error('Error finding content:', error);
+      return null;
+    }
   }, [post]);
 
   // Scroll to top when post changes
@@ -398,10 +466,23 @@ const BlogPost: React.FC = () => {
   }, [id]);
 
   if (!post) {
-    return <div className="max-w-xl mx-auto py-24 text-center text-red-500 text-xl font-bold">Blog not found.</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+        <div className="max-w-xl mx-auto py-24 text-center text-red-500 text-xl font-bold">
+          Blog post not found.
+        </div>
+      </div>
+    );
   }
+  
   if (!content) {
-    return <div className="max-w-xl mx-auto py-24 text-center text-yellow-500 text-lg font-semibold">Blog content is missing or not yet published.</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+        <div className="max-w-xl mx-auto py-24 text-center text-yellow-500 text-lg font-semibold">
+          Blog content is loading or not yet published. Please try again later.
+        </div>
+      </div>
+    );
   }
 
   // 傳遞 content 給 BlogPostPage（如需渲染內容）
