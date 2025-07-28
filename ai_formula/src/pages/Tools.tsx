@@ -411,7 +411,7 @@ const Tools = () => {
     <div className="min-h-screen bg-black">
       <Navigation />
       
-      <div className="pt-20 pb-12">
+      <div className="page-content pb-12">
         <div className="container mx-auto px-4">
           {/* Page Header */}
           <motion.div {...fadeIn} className="text-center mb-16">
