@@ -68,14 +68,25 @@ const enTranslations: Translations = {
     'journalist': 'Journalist',
     'editor': 'Editor',
     'video-editor': 'Video Editor',
+    'video-creator': 'Video Creator',
+    'video-producer': 'Video Producer',
+    'animator': 'Animator',
+    'visual-artist': 'Visual Artist',
     'filmmaker': 'Filmmaker',
     'marketing-content-creator': 'Marketing Content Creator',
+    'media-company': 'Media Company',
+    'enterprise-marketing-team': 'Enterprise Marketing Team',
     
     // Business & Marketing
     'entrepreneur': 'Entrepreneur',
     'startup-founder': 'Startup Founder',
     'business-owner': 'Business Owner',
+    'small-business-owner': 'Small Business Owner',
     'marketer': 'Marketer',
+    'content-marketer': 'Content Marketer',
+    'digital-marketer': 'Digital Marketer',
+    'brand-manager': 'Brand Manager',
+    'marketing-team': 'Marketing Team',
     'sales-professional': 'Sales Professional',
     'consultant': 'Consultant',
     'freelancer': 'Freelancer',
@@ -84,6 +95,15 @@ const enTranslations: Translations = {
     'advertising-agency': 'Advertising Agency',
     'brand-team': 'Brand Team',
     'marketing-professional': 'Marketing Professional',
+    'enterprise-user': 'Enterprise User',
+    'corporate-training': 'Corporate Training',
+    'content-team': 'Content Team',
+    'design-team': 'Design Team',
+    'professional-editor': 'Professional Editor',
+    'beginner': 'Beginner',
+    'personal-creator': 'Personal Creator',
+    'remote-worker': 'Remote Worker',
+    'e-commerce': 'E-commerce',
     
     // Technology & Development
     'developer': 'Developer',
@@ -100,9 +120,15 @@ const enTranslations: Translations = {
     // Education & Research
     'teacher': 'Teacher',
     'educator': 'Educator',
+    'educational-institution': 'Educational Institution',
     'student': 'Student',
     'academic': 'Academic',
     'trainer': 'Trainer',
+    'academic-writing': 'Academic Writing',
+    'business-writing': 'Business Writing',
+    'english-learner': 'English Learner',
+    'technical-learner': 'Technical Learner',
+    'knowledge-worker': 'Knowledge Worker',
     
     // Other Professionals
     'analyst': 'Analyst',
@@ -111,8 +137,22 @@ const enTranslations: Translations = {
     'administrator': 'Administrator',
     'assistant': 'Assistant',
     'creative-explorer': 'Creative Explorer',
-    'small-business-owner': 'Small Business Owner',
-    'business-decision-maker': 'Business Decision Maker'
+    'business-decision-maker': 'Business Decision Maker',
+    'enterprise-team': 'Enterprise Team',
+    'business-consultant': 'Business Consultant',
+    'sales-personnel': 'Sales Personnel',
+    'founder': 'Founder',
+    'enterprise': 'Enterprise',
+    'gamer': 'Gamer',
+    
+    // Generic user types
+    'anyone-needing-screen-recording': 'Anyone Needing Screen Recording',
+    'meeting-professionals': 'Meeting Professionals',
+    'presentation-creators': 'Presentation Creators',
+    'productivity-seekers': 'Productivity Seekers',
+    'multi-app-users': 'Multi-App Users',
+    'quick-website-builders': 'Quick Website Builders',
+    'information-seekers': 'Information Seekers'
   },
 
   button: {
@@ -586,14 +626,25 @@ const zhTranslations: Translations = {
     'journalist': '記者',
     'editor': '編輯',
     'video-editor': '影片編輯',
+    'video-creator': '影片創作者',
+    'video-producer': '影片製作人',
+    'animator': '動畫師',
+    'visual-artist': '視覺藝術家',
     'filmmaker': '電影製作人',
     'marketing-content-creator': '營銷內容創作者',
+    'media-company': '媒體公司',
+    'enterprise-marketing-team': '企業行銷團隊',
     
     // 商業營銷
     'entrepreneur': '企業家',
     'startup-founder': '創業者',
     'business-owner': '企業主',
+    'small-business-owner': '小企業主',
     'marketer': '營銷人員',
+    'content-marketer': '內容營銷人員',
+    'digital-marketer': '數位營銷人員',
+    'brand-manager': '品牌經理',
+    'marketing-team': '行銷團隊',
     'sales-professional': '銷售專業人員',
     'consultant': '顧問',
     'freelancer': '自由職業者',
@@ -602,6 +653,15 @@ const zhTranslations: Translations = {
     'advertising-agency': '廣告公司',
     'brand-team': '品牌團隊',
     'marketing-professional': '市場營銷人員',
+    'enterprise-user': '企業用戶',
+    'corporate-training': '企業培訓',
+    'content-team': '內容團隊',
+    'design-team': '設計團隊',
+    'professional-editor': '專業編輯',
+    'beginner': '初學者',
+    'personal-creator': '個人創作者',
+    'remote-worker': '遠端工作者',
+    'e-commerce': '電子商務',
     
     // 技術開發
     'developer': '開發者',
@@ -618,9 +678,15 @@ const zhTranslations: Translations = {
     // 教育研究
     'teacher': '教師',
     'educator': '教育工作者',
+    'educational-institution': '教育機構',
     'student': '學生',
     'academic': '學者',
     'trainer': '培訓師',
+    'academic-writing': '學術寫作',
+    'business-writing': '商業寫作',
+    'english-learner': '英語學習者',
+    'technical-learner': '技術學習者',
+    'knowledge-worker': '知識工作者',
     
     // 其他專業人員
     'analyst': '分析師',
@@ -629,8 +695,22 @@ const zhTranslations: Translations = {
     'administrator': '管理員',
     'assistant': '助理',
     'creative-explorer': '創意探索者',
-    'small-business-owner': '小企業主',
-    'business-decision-maker': '企業決策者'
+    'business-decision-maker': '企業決策者',
+    'enterprise-team': '企業團隊',
+    'business-consultant': '商業顧問',
+    'sales-personnel': '銷售人員',
+    'founder': '創始人',
+    'enterprise': '企業',
+    'gamer': '遊戲玩家',
+    
+    // 通用用戶類型
+    'anyone-needing-screen-recording': '任何需要螢幕錄製的人',
+    'meeting-professionals': '會議專業人士',
+    'presentation-creators': '簡報創作者',
+    'productivity-seekers': '生產力追求者',
+    'multi-app-users': '多應用程式用戶',
+    'quick-website-builders': '快速網站建構者',
+    'information-seekers': '資訊尋求者'
   },
 
   button: {

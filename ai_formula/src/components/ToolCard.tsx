@@ -83,15 +83,26 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '記者': 'journalist',
     '編輯': 'editor',
     '影片編輯': 'video-editor',
+    '影片創作者': 'video-creator',
+    '影片製作者': 'video-producer',
+    '動畫師': 'animator',
+    '視覺藝術家': 'visual-artist',
     '電影製作人': 'filmmaker',
     '營銷內容創作者': 'marketing-content-creator',
     '自由攝影人': 'freelance-photographer',
+    '媒體公司': 'media-company',
+    '企業營銷團隊': 'enterprise-marketing-team',
     
     // Business & Marketing
     '企業家': 'entrepreneur',
     '創業者': 'startup-founder',
     '企業主': 'business-owner',
+    '小企業主': 'small-business-owner',
     '營銷人員': 'marketer',
+    '內容營銷人員': 'content-marketer',
+    '數字營銷人員': 'digital-marketer',
+    '品牌經理': 'brand-manager',
+    '營銷團隊': 'marketing-team',
     '銷售專業人員': 'sales-professional',
     '顧問': 'consultant',
     '自由職業者': 'freelancer',
@@ -100,6 +111,15 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '廣告公司': 'advertising-agency',
     '品牌團隊': 'brand-team',
     '市場營銷人員': 'marketing-professional',
+    '企業用戶': 'enterprise-user',
+    '企業培訓': 'corporate-training',
+    '內容團隊': 'content-team',
+    '設計團隊': 'design-team',
+    '專業編輯師': 'professional-editor',
+    '初學者': 'beginner',
+    '個人創作者': 'personal-creator',
+    '遠程工作者': 'remote-worker',
+    '電商': 'e-commerce',
     
     // Technology & Development
     '開發者': 'developer',
@@ -117,9 +137,15 @@ const ToolCard: React.FC<ToolCardProps> = ({
     // Education & Research  
     '教師': 'teacher',
     '教育工作者': 'educator',
+    '教育機構': 'educational-institution',
     '學生': 'student',
     '學者': 'academic',
     '培訓師': 'trainer',
+    '學術寫作': 'academic-writing',
+    '商業寫作': 'business-writing',
+    '英語學習者': 'english-learner',
+    '技術學習者': 'technical-learner',
+    '知識工作者': 'knowledge-worker',
     
     // Other Professionals
     '分析師': 'analyst',
@@ -127,8 +153,22 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '主管': 'executive',
     '管理員': 'administrator',
     '助理': 'assistant',
-    '小企業主': 'small-business-owner',
-    '企業決策者': 'business-decision-maker'
+    '企業決策者': 'business-decision-maker',
+    '企業團隊': 'enterprise-team',
+    '企業顧問': 'business-consultant',
+    '銷售人員': 'sales-personnel',
+    '創始人': 'founder',
+    '企業': 'enterprise',
+    '遊戲玩家': 'gamer',
+    
+    // Generic user types
+    '任何需要錄屏的人': 'anyone-needing-screen-recording',
+    '任何需要開會的專業人士': 'meeting-professionals',
+    '任何需要製作專業簡報的人': 'presentation-creators',
+    '任何希望提高生產力的人': 'productivity-seekers',
+    '任何使用多個網絡應用的人': 'multi-app-users',
+    '任何需要快速建站的人': 'quick-website-builders',
+    '任何需要快速獲取信息的人': 'information-seekers'
   };
 
   // Helper function to convert targetAudience to userTags keys using mapping
