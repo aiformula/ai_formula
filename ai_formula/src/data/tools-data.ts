@@ -519,7 +519,9 @@ const allTools: Tool[] = [
   {
     id: 'descript',
     title: 'Descript - 多功能影音編輯工具',
+    titleEn: 'Descript - Multifunction Audio-Video Editing Tool',
     description: '一個集影片和音頻編輯於一體的多功能工具，其獨特之處在於用戶可以像編輯 Word 文檔一樣編輯影片和音頻。',
+    descriptionEn: 'A multifunctional tool that combines video and audio editing, uniquely allowing users to edit videos and audio as easily as editing a Word document.',
     tag: '影片編輯',
     tags: ['影片編輯', '播客製作', 'AI 轉錄'],
     url: 'https://www.descript.com/',
@@ -1005,7 +1007,9 @@ const allTools: Tool[] = [
   {
     id: 'rytr',
     title: 'Rytr - 快速AI寫作',
+    titleEn: 'Rytr - Fast AI Writing',
     description: '快速AI寫作工具，支援多種內容類型和寫作風格，適合批量內容創作。',
+    descriptionEn: 'Fast AI writing tool that supports multiple content types and writing styles, suitable for bulk content creation.',
     tag: '快速寫作',
     tags: ['快速寫作', '批量創作', '多樣風格'],
     url: 'https://rytr.me/',
@@ -1019,7 +1023,9 @@ const allTools: Tool[] = [
   {
     id: 'wordtune',
     title: 'Wordtune - 文字重寫AI',
+    titleEn: 'Wordtune - Text Rewriting AI',
     description: '專注於文字重寫和改善的AI工具，讓你的文字更清晰、更有說服力。',
+    descriptionEn: 'AI tool focused on text rewriting and improvement, making your writing clearer and more persuasive.',
     tag: '文字重寫',
     tags: ['文字重寫', '文字改善', '表達優化'],
     url: 'https://www.wordtune.com/',
@@ -1033,7 +1039,9 @@ const allTools: Tool[] = [
   {
     id: 'quillbot',
     title: 'QuillBot - AI改寫工具',
+    titleEn: 'QuillBot - AI Rewriting Tool',
     description: '強大的AI文本改寫和同義詞替換工具，幫助改善文章流暢度和原創性。',
+    descriptionEn: 'Powerful AI text rewriting and synonym replacement tool that helps improve article fluency and originality.',
     tag: 'AI改寫',
     tags: ['AI改寫', '同義詞替換', '原創性檢查'],
     url: 'https://quillbot.com/',
@@ -1233,7 +1241,9 @@ const allTools: Tool[] = [
   {
     id: 'mem0',
     title: 'Mem0 - AI 記憶系統',
+    titleEn: 'Mem0 - AI Memory System',
     description: '個人化AI記憶平台，能夠學習和記住你的偏好，為每次對話提供更智能、更貼心的回應體驗。',
+    descriptionEn: 'Personalised AI memory platform that learns and remembers your preferences, providing more intelligent and thoughtful responses for every conversation.',
     tag: 'AI記憶',
     tags: ['AI記憶', '個人化AI', '智能助手'],
     url: 'https://mem0.ai/',
@@ -1395,7 +1405,9 @@ const allTools: Tool[] = [
   {
     id: 'bardeen',
     title: 'Bardeen - 瀏覽器自動化工具',
+    titleEn: 'Bardeen - Browser Automation Tool',
     description: '一款強大的瀏覽器自動化工具，它使用 AI 來幫助你自動化重複性的手動任務。無需編程，即可創建工作流程。',
+    descriptionEn: 'A powerful browser automation tool that uses AI to help you automate repetitive manual tasks. Create workflows without any programming required.',
     tag: '工作流程自動化',
     tags: ['工作流程自動化', '效率工具', '數據抓取'],
     url: 'https://www.bardeen.ai/',
@@ -1425,7 +1437,9 @@ const allTools: Tool[] = [
   {
     id: 'durable',
     title: 'Durable - AI 網站建設平台',
+    titleEn: 'Durable - AI Website Building Platform',
     description: '一個 AI 網站建設平台，號稱可以在 30 秒內為任何企業生成一個帶有文案、圖片和聯繫表單的完整網站。',
+    descriptionEn: 'An AI website building platform that claims to generate a complete website with copy, images, and contact forms for any business within 30 seconds.',
     tag: '網站建設',
     tags: ['網站建設', 'AI 建站', '小型企業'],
     url: 'https://durable.co/',
@@ -1439,7 +1453,9 @@ const allTools: Tool[] = [
   {
     id: 'taplio',
     title: 'Taplio - LinkedIn 增長工具',
+    titleEn: 'Taplio - LinkedIn Growth Tool',
     description: '一個專為 LinkedIn 內容創作和增長設計的 AI 工具。它可以幫助用戶尋找熱門話題、撰寫帖子、安排發布時間。',
+    descriptionEn: 'An AI tool specifically designed for LinkedIn content creation and growth. It helps users find trending topics, write posts, and schedule publication times.',
     tag: 'LinkedIn',
     tags: ['LinkedIn', '社交媒體管理', '個人品牌'],
     url: 'https://taplio.com/',
