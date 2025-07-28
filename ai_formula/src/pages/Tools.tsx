@@ -80,14 +80,9 @@ const Tools = () => {
     });
   }
 
-  // 🔁 全部工具隨機排序：當顯示所有工具時（無篩選），每次載入隨機化順序
-  // 當切換分類時也進行隨機化
-  if (selectedCategory === 'all' && selectedUserGroup === 'all-users') {
-    filteredTools = randomizeArray(filteredTools);
-  } else if (selectedCategory !== 'all' || selectedUserGroup !== 'all-users') {
-    // Randomize filtered results as well for variety
-    filteredTools = randomizeArray(filteredTools);
-  }
+  // 🔁 隨機排序：所有過濾後的工具都進行隨機化排序以提供多樣性
+  // 使用 Fisher-Yates 洗牌算法以獲得更好的隨機性
+  filteredTools = shuffleArray(filteredTools);
 
   // 智能排序：計算每個分類的工具數量
   const getSmartSortedCategories = () => {
@@ -489,7 +484,7 @@ const Tools = () => {
                 className="mb-6 flex justify-between items-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
+                transition={{ duration: 0.2 }}
               >
                 <p className="text-gray-400">
                   {selectedCategory !== 'all' && selectedUserGroup === 'all-users' && (
@@ -515,7 +510,7 @@ const Tools = () => {
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ duration: 0.2 }}
               >
                 {filteredTools.length > 0 ? (
                   filteredTools.map((tool, index) => (
@@ -526,7 +521,7 @@ const Tools = () => {
                     className="col-span-full text-center py-20"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="text-gray-500 text-lg mb-4">
                       {t('label.noToolsFound')}
@@ -551,7 +546,7 @@ const Tools = () => {
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+          transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
         >
           <Settings className="w-6 h-6 text-black" />
         </motion.button>

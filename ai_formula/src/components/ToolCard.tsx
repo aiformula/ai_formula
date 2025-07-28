@@ -47,7 +47,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, delay: index * 0.1 }
+    transition: { duration: 0.3 }
   };
 
   // 🛡️ 防禦性檢查：確保 tool 物件存在
@@ -465,7 +465,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
                         key={`${tool.id}-audience-${index}`}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 }}
+                        transition={{ duration: 0.2 }}
                         whileHover={{ 
                           scale: 1.05,
                           transition: { duration: 0.2 }
