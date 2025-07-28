@@ -88,6 +88,8 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '影片製作者': 'video-producer',
     '影片製作人': 'video-producer',
     '音樂創作者': 'music-creator',
+    '音樂製作人': 'music-producer',
+    '音頻工程師': 'audio-engineer',
     '動畫師': 'animator',
     '動畫創作人員': 'animation-creator',
     '視覺藝術家': 'visual-artist',

@@ -648,22 +648,6 @@ const allTools: Tool[] = [
     targetAudience: ['教師', '產品經理', '遊戲玩家', '任何需要錄屏的人'],
     userGroups: ['educator', 'data-analyst', 'productivity-user', 'content-creator']
   },
-  {
-    id: 'invideo-ai',
-    title: 'InVideo AI - 智能影片編輯',
-    titleEn: 'InVideo AI - Intelligent Video Editing',
-    description: '基於AI的影片編輯平台，只需輸入簡單描述就能自動生成專業級影片內容。',
-    descriptionEn: 'AI-based video editing platform that can automatically generate professional-grade video content from simple descriptions.',
-    tag: '智能編輯',
-    tags: ['智能編輯', '影片創作', '自動化'],
-    url: 'https://invideo.io/ai/',
-    imageUrl: '/placeholder.svg',
-    imageAlt: 'InVideo AI Logo',
-    category: 'video-generation',
-    categories: ['video-generation', 'video-editing'],
-    targetAudience: ['社交媒體經理', '小企業主', '內容營銷人員'],
-    userGroups: ['business-professional', 'content-creator']
-  },
 
   // === 圖片編輯類工具 (8個) ===
   {
