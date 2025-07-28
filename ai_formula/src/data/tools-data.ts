@@ -105,7 +105,7 @@ const allTools: Tool[] = [
     title: 'Adobe Firefly - 商業AI創意',
     titleEn: 'Adobe Firefly - Commercial AI Creative',
     description: 'Adobe推出的商業級AI創意工具，專為專業設計工作流程優化，版權安全。',
-    descriptionEn: 'Adobe\'s commercial-grade AI creative tool optimized for professional design workflows with copyright safety.',
+    descriptionEn: 'Adobe\'s commercial-grade AI creative tool optimised for professional design workflows with copyright safety.',
     tag: '商業AI',
     tags: ['商業AI', 'Adobe', '專業設計'],
     url: 'https://firefly.adobe.com/',
@@ -239,7 +239,9 @@ const allTools: Tool[] = [
   {
     id: 'runway-gen3',
     title: 'Runway Gen-3 Alpha - 頂級AI影片生成',
+    titleEn: 'Runway Gen-3 Alpha - Premium AI Video Generation',
     description: '最新的第三代AI影片生成模型，能創造極其逼真的高清影片，是專業創作者的首選工具。',
+    descriptionEn: 'The latest third-generation AI video generation model that creates extremely realistic high-definition videos, the preferred tool for professional creators.',
     tag: '影片生成',
     tags: ['影片生成', 'AI影片', '專業工具'],
     url: 'https://runwayml.com/research/gen-3-alpha',
@@ -309,7 +311,9 @@ const allTools: Tool[] = [
   {
     id: 'synthesia',
     title: 'Synthesia - AI 影片生成平台',
+    titleEn: 'Synthesia - AI Video Generation Platform',
     description: '領先的 AI 影片生成平台，可以通過輸入文本快速創建由虛擬 AI 主播講解的影片，支持多種語言。',
+    descriptionEn: 'Leading AI video generation platform that quickly creates videos with virtual AI presenters through text input, supporting multiple languages.',
     tag: 'AI 影片生成',
     tags: ['AI 影片生成', '虛擬主播', '文本轉影片'],
     url: 'https://www.synthesia.io/',
@@ -365,7 +369,9 @@ const allTools: Tool[] = [
   {
     id: 'lumen5',
     title: 'Lumen5 - 內容轉影片平台',
+    titleEn: 'Lumen5 - Content to Video Platform',
     description: '一個 AI 影片創作平台，能將博客文章、白皮書等長篇內容快速轉換為引人入勝的短影片。',
+    descriptionEn: 'An AI video creation platform that quickly transforms blog articles, white papers, and other long-form content into engaging short videos.',
     tag: '內容轉影片',
     tags: ['內容轉影片', 'AI 影片製作', '社交媒體影片'],
     url: 'https://lumen5.com/',
@@ -1053,7 +1059,9 @@ const allTools: Tool[] = [
   {
     id: 'writesonic',
     title: 'Writesonic - AI 內容創作套件',
+    titleEn: 'Writesonic - AI Content Creation Suite',
     description: '一款多功能的 AI 內容創作套件，提供從文章和博客寫作、文案改寫、到為 Google 廣告和社交媒體創建文案的各種工具。',
+    descriptionEn: 'A versatile AI content creation suite offering various tools from article and blog writing, copywriting, to creating copy for Google ads and social media.',
     tag: '內容創作',
     tags: ['內容創作', 'SEO', 'AI 寫作'],
     url: 'https://writesonic.com/',
@@ -1281,7 +1289,9 @@ const allTools: Tool[] = [
   {
     id: 'hubspot',
     title: 'HubSpot - CRM 系統',
+    titleEn: 'HubSpot - CRM System',
     description: '一個全面的客戶關係管理 (CRM) 平台，整合了市場營銷、銷售、客戶服務和內容管理軟件。其 AI 功能（如 ChatSpot）能協助自動化任務和數據分析。',
+    descriptionEn: 'A comprehensive Customer Relationship Management (CRM) platform that integrates marketing, sales, customer service, and content management software. Its AI features (like ChatSpot) assist with task automation and data analysis.',
     tag: 'CRM',
     tags: ['CRM', '市場營銷自動化', '銷售工具'],
     url: 'https://www.hubspot.com/',
