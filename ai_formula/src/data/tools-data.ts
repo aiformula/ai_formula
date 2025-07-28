@@ -209,7 +209,9 @@ const allTools: Tool[] = [
   {
     id: 'freepik',
     title: 'Freepik - AI 設計素材庫',
+    titleEn: 'Freepik - AI Design Resource Library',
     description: '提供海量免費和付費的AI生成設計素材，包括圖片、向量圖、PSD文件等，是設計師的創意寶庫。',
+    descriptionEn: 'Provides vast free and premium AI-generated design resources, including images, vector graphics, PSD files, and more, serving as a creative treasure trove for designers.',
     tag: '設計素材',
     tags: ['設計素材', 'AI素材', '向量圖'],
     url: 'https://www.freepik.com/',
@@ -329,7 +331,9 @@ const allTools: Tool[] = [
   {
     id: 'heygen',
     title: 'HeyGen - AI 虛擬人影片平台',
+    titleEn: 'HeyGen - AI Virtual Human Video Platform',
     description: '一個創新嘅 AI 虛擬人影片創作平台，可以快速製作出由逼真虛擬人物主講嘅影片內容，支援多種語言同風格選擇。',
+    descriptionEn: 'An innovative AI virtual human video creation platform that can quickly produce video content presented by realistic virtual characters, supporting multiple languages and style choices.',
     tag: 'AI 虛擬人',
     tags: ['AI 虛擬人', '影片生成'],
     url: 'https://www.heygen.com/',
@@ -735,7 +739,9 @@ const allTools: Tool[] = [
   {
     id: 'character-ai',
     title: 'Character.AI - AI角色對話',
+    titleEn: 'Character.AI - AI Character Conversations',
     description: '創建和與AI角色進行對話的平台，適合創意寫作和角色發展。',
+    descriptionEn: 'A platform for creating and conversing with AI characters, suitable for creative writing and character development.',
     tag: 'AI角色',
     tags: ['AI角色', '創意對話', '角色發展'],
     url: 'https://character.ai/',
@@ -807,7 +813,9 @@ const allTools: Tool[] = [
   {
     id: 'eleven-labs',
     title: 'Eleven Labs - AI 語音克隆平台',
+    titleEn: 'Eleven Labs - AI Voice Cloning Platform',
     description: '一個先進嘅 AI 語音克隆同生成平台，可以根據少量嘅語音樣本，產生出高度逼真嘅人聲，支援多種語言同情感表達。',
+    descriptionEn: 'An advanced AI voice cloning and generation platform that can produce highly realistic human voices based on small voice samples, supporting multiple languages and emotional expressions.',
     tag: '語音生成',
     tags: ['語音生成', 'AI 語音'],
     url: 'https://elevenlabs.io/',
@@ -1133,7 +1141,9 @@ const allTools: Tool[] = [
   {
     id: 'gamma',
     title: 'Gamma - AI 演示文稿生成器',
+    titleEn: 'Gamma - AI Presentation Generator',
     description: '一個利用 AI 快速生成演示文稿、文檔和網頁的創新工具。用戶只需提供一個主題，Gamma 就能自動創建出設計精美、內容完整的初稿。',
+    descriptionEn: 'An innovative tool that utilises AI to quickly generate presentations, documents, and web pages. Users simply provide a topic, and Gamma automatically creates beautifully designed, comprehensive drafts.',
     tag: '演示文稿',
     tags: ['演示文稿', 'AI 生成', '文件設計'],
     url: 'https://gamma.app/',
@@ -1207,7 +1217,9 @@ const allTools: Tool[] = [
   {
     id: 'chat4data',
     title: 'Chat4Data - 數據分析對話工具',
+    titleEn: 'Chat4Data - Data Analysis Conversation Tool',
     description: '一個智能嘅數據分析對話工具，用戶可以用自然語言提問，AI 會自動分析數據並提供洞察，令數據分析變得更加直觀易用。',
+    descriptionEn: 'An intelligent data analysis conversation tool where users can ask questions in natural language, and AI automatically analyses data and provides insights, making data analysis more intuitive and accessible.',
     tag: '數據分析',
     tags: ['數據分析', 'AI 數據'],
     url: 'https://chat4data.com/',
@@ -1397,7 +1409,9 @@ const allTools: Tool[] = [
   {
     id: 'zapier',
     title: 'Zapier - 應用集成自動化平台',
+    titleEn: 'Zapier - Application Integration Automation Platform',
     description: '領先的在線自動化工具，可以連接數千個不同的應用程序，讓它們協同工作。用戶可以創建 "Zaps" 來自動化工作流程。',
+    descriptionEn: 'Leading online automation tool that can connect thousands of different applications to work together. Users can create "Zaps" to automate workflows.',
     tag: '自動化',
     tags: ['自動化', '應用集成', '工作流程'],
     url: 'https://zapier.com/',
