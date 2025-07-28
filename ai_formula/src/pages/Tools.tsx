@@ -189,10 +189,10 @@ const Tools = () => {
             </p>
           </motion.div>
 
-          {/* Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Left Sidebar - Smart Filter - Normal Positioning with Expand/Collapse */}
-            <motion.div {...fadeIn} className="lg:col-span-1">
+          {/* Content Grid - 響應式佈局，大螢幕固定寬度，小螢幕堆疊 */}
+          <div className="grid grid-cols-1 xl:grid-cols-[340px_1fr] lg:grid-cols-[300px_1fr] gap-8">
+            {/* Left Sidebar - Smart Filter - 響應式寬度以容納完整文字 */}
+            <motion.div {...fadeIn} className="w-full">
               <Card className="bg-gray-900/50 border-gray-700/50 backdrop-blur-md">
                 {/* Filter Header with Expand/Collapse Button */}
                 <CardHeader className="pb-4">
@@ -266,7 +266,7 @@ const Tools = () => {
                                 >
                                   <div
                                     className={`
-                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full
+                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full min-w-[280px] sm:min-w-[300px]
                                       ${isActive 
                                         ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
                                         : isHover 
@@ -285,17 +285,17 @@ const Tools = () => {
                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
                                     )}
                                     
-                                    {/* 主要內容區域 - 使用 Grid 對齊，防止換行 */}
-                                    <div className="relative h-full grid grid-cols-[24px_1fr_auto] items-center gap-3 px-4 min-w-0">
+                                    {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
+                                    <div className="relative h-full flex items-center gap-3 px-4">
                                       {/* Icon 區域 - 固定寬度 */}
                                       <div className="flex-shrink-0 w-6 flex justify-center">
                                         {getFunctionIcon(category.id, isActive, isHover)}
                                       </div>
                                       
-                                      {/* 文字區域 - 單行顯示，支援截斷 */}
-                                      <div className="flex-1 text-left min-w-0">
+                                      {/* 文字區域 - 完整顯示，不截斷 */}
+                                      <div className="flex-1 text-left">
                                         <span className={`
-                                          font-medium text-sm transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
+                                          font-medium text-sm transition-colors duration-300 block
                                           ${isActive 
                                             ? 'text-white font-semibold' 
                                             : isHover 
@@ -308,7 +308,7 @@ const Tools = () => {
                                       </div>
                                       
                                       {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
-                                      <div className="flex-shrink-0">
+                                      <div className="flex-shrink-0 ml-2">
                                         <div className={`
                                           min-w-[24px] h-6 px-2 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
                                           ${isActive 
@@ -373,7 +373,7 @@ const Tools = () => {
                                 >
                                   <div
                                     className={`
-                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full
+                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full min-w-[280px] sm:min-w-[300px]
                                       ${isActive 
                                         ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
                                         : isHover 
@@ -392,8 +392,8 @@ const Tools = () => {
                                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
                                     )}
                                     
-                                    {/* 主要內容區域 - 使用 Grid 對齊，防止換行 */}
-                                    <div className="relative h-full grid grid-cols-[24px_1fr_auto] items-center gap-3 px-4 min-w-0">
+                                    {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
+                                    <div className="relative h-full flex items-center gap-3 px-4">
                                       {/* Icon 區域 - 固定寬度 */}
                                       <div className="flex-shrink-0 w-6 flex justify-center">
                                         <div className={`
@@ -409,10 +409,10 @@ const Tools = () => {
                                         </div>
                                       </div>
                                       
-                                      {/* 文字區域 - 單行顯示，支援截斷 */}
-                                      <div className="flex-1 text-left min-w-0">
+                                      {/* 文字區域 - 完整顯示，不截斷 */}
+                                      <div className="flex-1 text-left">
                                         <span className={`
-                                          font-medium text-sm transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
+                                          font-medium text-sm transition-colors duration-300 block
                                           ${isActive 
                                             ? 'text-white font-semibold' 
                                             : isHover 
@@ -425,7 +425,7 @@ const Tools = () => {
                                       </div>
                                       
                                       {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
-                                      <div className="flex-shrink-0">
+                                      <div className="flex-shrink-0 ml-2">
                                         <div className={`
                                           min-w-[24px] h-6 px-2 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
                                           ${isActive 
@@ -471,7 +471,7 @@ const Tools = () => {
             </motion.div>
 
             {/* Right Side - Tools Grid */}
-            <div className="lg:col-span-3">
+            <div className="w-full">
               {/* 結果統計 */}
               <motion.div 
                 className="mb-6 flex justify-between items-center"
