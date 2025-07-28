@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Share2, Bookmark, Eye, Calendar, Clock, User, Tag } from 'lucide-react';
+import { ArrowLeft, Share2, Bookmark, Eye, Calendar, Clock, User, Tag, AlertTriangle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -41,43 +41,18 @@ const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
 // Components
 const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, postId }) => {
   const { language } = useLanguage();
-  
-  // 安全獲取 ViewCount context，加上 try-catch 保護
-  let viewCountHook;
-  try {
-    viewCountHook = useViewCount();
-  } catch (error) {
-    console.error('ViewCount context error:', error);
-    viewCountHook = {
-      getViewCount: () => 0,
-      incrementView: () => {}
-    };
-  }
-  
-  const { getViewCount, incrementView } = viewCountHook;
+  const { getViewCount, incrementView } = useViewCount(); // 現在有fallback，不會報錯
   const [isAnimating, setIsAnimating] = useState(false);
   
-  // 安全獲取 view counts
-  let currentViews = 0;
-  try {
-    currentViews = getViewCount(postId) || 0;
-  } catch (error) {
-    console.error('Error getting view count:', error);
-    currentViews = 0;
-  }
-  
+  const currentViews = getViewCount(postId);
   const baseViews = parseInt(initialViews) || 0;
   const displayViews = (baseViews + currentViews).toString();
   
   useEffect(() => {
-    try {
-      incrementView(postId);
-      setIsAnimating(true);
-      const timer = setTimeout(() => setIsAnimating(false), 500);
-      return () => clearTimeout(timer);
-    } catch (error) {
-      console.error('Error incrementing view:', error);
-    }
+    incrementView(postId);
+    setIsAnimating(true);
+    const timer = setTimeout(() => setIsAnimating(false), 500);
+    return () => clearTimeout(timer);
   }, [postId, incrementView]);
 
   return (
@@ -418,6 +393,80 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
   );
 };
 
+// 專門為Blog頁面的ErrorBoundary
+class BlogErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean; error?: Error }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Blog page error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+          <div className="max-w-xl mx-auto py-24 text-center">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <AlertTriangle className="w-8 h-8 text-red-600" />
+              </div>
+              <h1 className="text-2xl font-bold text-red-900 dark:text-red-400 mb-2">
+                Blog Loading Error
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                There was an error loading this blog post. This might be due to:
+              </p>
+              <ul className="text-left text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-1">
+                <li>• Missing ViewCountContext</li>
+                <li>• Invalid blog post data</li>
+                <li>• Content parsing errors</li>
+                <li>• localStorage access issues</li>
+              </ul>
+              {this.state.error && (
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 mb-4">
+                  <p className="text-sm text-red-800 dark:text-red-400 font-medium">Technical Details:</p>
+                  <p className="text-xs text-red-700 dark:text-red-300 mt-1 font-mono">
+                    {this.state.error.message}
+                  </p>
+                </div>
+              )}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  onClick={() => window.location.reload()} 
+                  className="flex-1"
+                >
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Reload Page
+                </Button>
+                <Button 
+                  variant="outline" 
+                  onClick={() => window.location.href = '/blog'}
+                  className="flex-1"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Blog
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
 const BlogPost: React.FC = () => {
   const { language } = useLanguage();
   const { id } = useParams<{ id: string }>();
@@ -486,7 +535,11 @@ const BlogPost: React.FC = () => {
   }
 
   // 傳遞 content 給 BlogPostPage（如需渲染內容）
-  return <BlogPostPage post={post} isZhHK={isZhHK} content={content} />;
+  return (
+    <BlogErrorBoundary>
+      <BlogPostPage post={post} isZhHK={isZhHK} content={content} />
+    </BlogErrorBoundary>
+  );
 };
 
 export default BlogPost; 
