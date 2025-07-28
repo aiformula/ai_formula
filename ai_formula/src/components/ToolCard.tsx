@@ -30,10 +30,10 @@ const ToolCard: React.FC<ToolCardProps> = ({
   tool, 
   index 
 }) => {
-  const { t } = useLanguage(); // Get t function
+  const { t, language } = useLanguage(); // Get t function and language state
   
-  // Language-aware title and description
-  const isEnglish = t('nav.home') === 'Home'; // Check if current language is English
+  // Language-aware title and description - Use direct language state
+  const isEnglish = language === 'en-GB';
   const displayTitle = isEnglish && tool.titleEn ? tool.titleEn : tool.title;
   const displayDescription = isEnglish && tool.descriptionEn ? tool.descriptionEn : tool.description;
 
@@ -306,7 +306,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
                     if (translatedTag === `userTags.${tagKey}`) {
                       // For Chinese language, return original Chinese text
                       // For English language, try to provide English fallback
-                      if (t('nav.home') === '首頁') { // zh-HK check
+                      if (language === 'zh-HK') { // zh-HK check
                         translatedTag = audience; // Return original Chinese
                       } else {
                         // English fallback mapping

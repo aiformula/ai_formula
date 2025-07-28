@@ -1351,7 +1351,9 @@ const allTools: Tool[] = [
   {
     id: 'tableau-ai',
     title: 'Tableau AI - 數據可視化AI',
+    titleEn: 'Tableau AI - Data Visualisation AI',
     description: 'Tableau的AI功能，自動化數據分析和智能可視化建議。',
+    descriptionEn: 'AI features in Tableau that automate data analysis and provide intelligent visualisation recommendations.',
     tag: '數據可視化',
     tags: ['數據可視化', '智能分析', 'BI工具'],
     url: 'https://www.tableau.com/',
@@ -1381,7 +1383,9 @@ const allTools: Tool[] = [
   {
     id: 'databricks-ai',
     title: 'Databricks AI - 大數據AI平台',
+    titleEn: 'Databricks AI - Big Data AI Platform',
     description: '統一的大數據和機器學習平台，支援企業級AI應用開發。',
+    descriptionEn: 'Unified big data and machine learning platform that supports enterprise-level AI application development.',
     tag: '大數據AI',
     tags: ['大數據', '機器學習', '企業AI'],
     url: 'https://www.databricks.com/',
@@ -1411,7 +1415,9 @@ const allTools: Tool[] = [
   {
     id: 'seobot-ai',
     title: 'SEOBOT.ai - AI SEO 分析工具',
+    titleEn: 'SEOBOT.ai - AI SEO Analysis Tool',
     description: '一個利用 AI 進行網站 SEO（搜索引擎優化）分析的工具。它可以審核網站的技術問題、關鍵詞排名和內容質量。',
+    descriptionEn: 'An AI-powered tool for website SEO (Search Engine Optimisation) analysis. It can audit website technical issues, keyword rankings, and content quality.',
     tag: 'SEO',
     tags: ['SEO', '網站分析', '搜索引擎優化'],
     url: 'https://seobotai.com/',
