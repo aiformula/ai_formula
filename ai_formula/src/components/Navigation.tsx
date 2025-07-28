@@ -37,11 +37,11 @@ const Navigation = () => {
   
   // Define navigation items inside component to ensure re-evaluation on language change
   const navigationItems = [
-    { label: t('nav.home'), path: '/' },
-    { label: t('nav.about'), path: language === 'zh-HK' ? '/about-cht' : '/about' },
-    { label: t('nav.courses'), path: '/courses' },
-    { label: t('nav.tools'), path: '/tools' },
-    { label: t('nav.blog'), path: '/blog' }
+    { id: 'home', label: t('nav.home'), path: '/' },
+    { id: 'about', label: t('nav.about'), path: language === 'zh-HK' ? '/about-cht' : '/about' },
+    { id: 'courses', label: t('nav.courses'), path: '/courses' },
+    { id: 'tools', label: t('nav.tools'), path: '/tools' },
+    { id: 'blog', label: t('nav.blog'), path: '/blog' }
   ];
   
   return (
@@ -72,7 +72,7 @@ const Navigation = () => {
         >
           {navigationItems.map((item, index) => (
             <motion.div
-              key={item.path}
+              key={`${item.id}-${language}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
@@ -194,7 +194,7 @@ const Navigation = () => {
             {/* Mobile Navigation Links - Enhanced Typography */}
             {navigationItems.map((item) => (
               <Link
-                key={item.path}
+                key={`mobile-${item.id}-${language}`}
                 to={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block text-lg font-medium py-4 px-4 rounded-lg transition-colors duration-300 ${
