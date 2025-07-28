@@ -176,14 +176,14 @@ const Tools = () => {
 
   // Filter 內容組件 - 可重用於桌面端和移動端
   const FilterContent = ({ isMobile = false }) => (
-    <div className={`space-y-6 ${isMobile ? 'p-6' : ''}`}>
+    <div className={`space-y-8 ${isMobile ? '' : ''}`}>
       {/* 工具類型篩選區 */}
-      <div className="mb-8">
-        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-          <Palette className="w-5 h-5 text-yellow-400" />
+      <div>
+        <h3 className={`${isMobile ? 'text-base' : 'text-lg'} font-medium text-white mb-6 flex items-center gap-3 tracking-wide`}>
+          <Palette className="w-5 h-5 text-yellow-400 flex-shrink-0" />
           {t('label.toolType')}
         </h3>
-        <div className={`${isMobile ? 'grid grid-cols-1 gap-2' : 'space-y-2'}`}>
+        <div className={`${isMobile ? 'grid grid-cols-1 gap-3' : 'space-y-2'}`}>
           {displayedCategories.map((category) => {
             const [isHover, setIsHover] = React.useState(false);
             const isActive = selectedCategory === category.id;
@@ -206,43 +206,39 @@ const Tools = () => {
               >
                 <div
                   className={`
-                    relative rounded-xl ${isMobile ? 'h-12' : 'h-14'} transition-all duration-300 group overflow-hidden w-full ${isMobile ? 'min-w-0' : 'min-w-[280px] sm:min-w-[300px]'}
+                    relative rounded-2xl ${isMobile ? 'h-14' : 'h-14'} transition-all duration-300 group overflow-hidden w-full ${isMobile ? 'min-w-0' : 'min-w-[280px] sm:min-w-[300px]'}
                     ${isActive 
-                      ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
+                      ? 'bg-gradient-to-r from-yellow-500/15 to-yellow-400/8 shadow-lg shadow-yellow-500/10 ring-1 ring-yellow-400/20' 
                       : isHover 
-                      ? 'bg-yellow-500/5 shadow-md shadow-black/20' 
-                      : 'bg-gray-800/50 hover:bg-gray-700/50'
+                      ? 'bg-gray-900/60 shadow-md shadow-black/30 ring-1 ring-gray-700/40' 
+                      : 'bg-gray-950/80 hover:bg-gray-900/50'
                     }
-                    backdrop-blur-sm border
-                    ${isActive 
-                      ? 'border-yellow-400/30' 
-                      : 'border-gray-700/50 hover:border-gray-600/50'
-                    }
+                    backdrop-blur-sm border-0
                   `}
                 >
                   {/* Active indicator - 左邊亮黃色線 */}
                   {isActive && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
+                    <div className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full shadow-sm shadow-yellow-500/50"></div>
                   )}
                   
-                  {/* 主要內容區域 - 優化移動端水平對齊 */}
-                  <div className={`relative h-full flex items-center justify-between gap-3 px-4 ${isMobile ? 'min-w-0' : ''}`}>
+                  {/* 主要內容區域 - 現代極簡佈局 */}
+                  <div className={`relative h-full flex items-center justify-between gap-4 px-5 ${isMobile ? 'min-w-0' : ''}`}>
                     {/* 左側區域：Icon + 文字 */}
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
-                      {/* Icon 區域 - 固定寬度 */}
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
+                      {/* Icon 區域 - 統一樣式 */}
                       <div className="flex-shrink-0 w-5 flex justify-center">
                         {getFunctionIcon(category.id, isActive, isHover)}
                       </div>
                       
-                      {/* 文字區域 - 水平對齊，防止截斷 */}
+                      {/* 文字區域 - 完整顯示，無截斷 */}
                       <div className="flex-1 min-w-0">
                         <span className={`
-                          font-medium ${isMobile ? 'text-sm' : 'text-sm'} transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
+                          font-medium ${isMobile ? 'text-sm' : 'text-sm'} transition-colors duration-300 block leading-tight
                           ${isActive 
                             ? 'text-white font-semibold' 
                             : isHover 
-                            ? 'text-yellow-100' 
-                            : 'text-gray-300'
+                            ? 'text-gray-100' 
+                            : 'text-gray-200'
                           }
                         `}>
                           {getCategoryLabel(category.id)}
@@ -250,15 +246,15 @@ const Tools = () => {
                       </div>
                     </div>
                     
-                    {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
+                    {/* 數字 Badge 區域 - 現代化設計 */}
                     <div className="flex-shrink-0">
                       <div className={`
-                        min-w-[20px] ${isMobile ? 'h-5 px-1.5' : 'h-6 px-2'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-bold transition-all duration-300
+                        min-w-[24px] ${isMobile ? 'h-6 px-2.5' : 'h-6 px-2.5'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-semibold transition-all duration-300
                         ${isActive 
-                          ? 'bg-yellow-400/20 text-yellow-300 border border-yellow-400/30' 
+                          ? 'bg-yellow-400/25 text-yellow-200 ring-1 ring-yellow-400/40 shadow-sm shadow-yellow-500/20' 
                           : isHover 
-                          ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' 
-                          : 'bg-gray-700/50 text-gray-400 border border-gray-600/30'
+                          ? 'bg-yellow-500/15 text-yellow-300 ring-1 ring-yellow-500/30' 
+                          : 'bg-gray-800/60 text-gray-400 ring-1 ring-gray-700/50'
                         }
                       `}>
                         {category.count}
@@ -292,11 +288,11 @@ const Tools = () => {
 
       {/* 用戶角色篩選區 */}
       <div>
-        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-          <Users className="w-5 h-5 text-yellow-400" />
+        <h3 className={`${isMobile ? 'text-base' : 'text-lg'} font-medium text-white mb-6 flex items-center gap-3 tracking-wide`}>
+          <Users className="w-5 h-5 text-yellow-400 flex-shrink-0" />
           {t('label.userRole')}
         </h3>
-        <div className={`${isMobile ? 'grid grid-cols-1 gap-2' : 'space-y-2'}`}>
+        <div className={`${isMobile ? 'grid grid-cols-1 gap-3' : 'space-y-2'}`}>
           {displayedUserGroups.map((group) => {
             const [isHover, setIsHover] = React.useState(false);
             const isActive = selectedUserGroup === group.id;
@@ -319,30 +315,26 @@ const Tools = () => {
               >
                 <div
                   className={`
-                    relative rounded-xl ${isMobile ? 'h-12' : 'h-14'} transition-all duration-300 group overflow-hidden w-full ${isMobile ? 'min-w-0' : 'min-w-[280px] sm:min-w-[300px]'}
+                    relative rounded-2xl ${isMobile ? 'h-14' : 'h-14'} transition-all duration-300 group overflow-hidden w-full ${isMobile ? 'min-w-0' : 'min-w-[280px] sm:min-w-[300px]'}
                     ${isActive 
-                      ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
+                      ? 'bg-gradient-to-r from-yellow-500/15 to-yellow-400/8 shadow-lg shadow-yellow-500/10 ring-1 ring-yellow-400/20' 
                       : isHover 
-                      ? 'bg-yellow-500/5 shadow-md shadow-black/20' 
-                      : 'bg-gray-800/50 hover:bg-gray-700/50'
+                      ? 'bg-gray-900/60 shadow-md shadow-black/30 ring-1 ring-gray-700/40' 
+                      : 'bg-gray-950/80 hover:bg-gray-900/50'
                     }
-                    backdrop-blur-sm border
-                    ${isActive 
-                      ? 'border-yellow-400/30' 
-                      : 'border-gray-700/50 hover:border-gray-600/50'
-                    }
+                    backdrop-blur-sm border-0
                   `}
                 >
                   {/* Active indicator - 左邊亮黃色線 */}
                   {isActive && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
+                    <div className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full shadow-sm shadow-yellow-500/50"></div>
                   )}
                   
-                  {/* 主要內容區域 - 優化移動端水平對齊 */}
-                  <div className={`relative h-full flex items-center justify-between gap-3 px-4 ${isMobile ? 'min-w-0' : ''}`}>
+                  {/* 主要內容區域 - 現代極簡佈局 */}
+                  <div className={`relative h-full flex items-center justify-between gap-4 px-5 ${isMobile ? 'min-w-0' : ''}`}>
                     {/* 左側區域：Icon + 文字 */}
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
-                      {/* Icon 區域 - 固定寬度 */}
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
+                      {/* Icon 區域 - 統一樣式 */}
                       <div className="flex-shrink-0 w-5 flex justify-center">
                         <div className={`
                           text-sm transition-colors duration-300
@@ -350,22 +342,22 @@ const Tools = () => {
                             ? 'text-yellow-400' 
                             : isHover 
                             ? 'text-yellow-300' 
-                            : 'text-white'
+                            : 'text-gray-300'
                           }
                         `}>
                           {group.icon}
                         </div>
                       </div>
                       
-                      {/* 文字區域 - 水平對齊，防止截斷 */}
+                      {/* 文字區域 - 完整顯示，無截斷 */}
                       <div className="flex-1 min-w-0">
                         <span className={`
-                          font-medium ${isMobile ? 'text-sm' : 'text-sm'} transition-colors duration-300 block whitespace-nowrap overflow-hidden text-ellipsis
+                          font-medium ${isMobile ? 'text-sm' : 'text-sm'} transition-colors duration-300 block leading-tight
                           ${isActive 
                             ? 'text-white font-semibold' 
                             : isHover 
-                            ? 'text-yellow-100' 
-                            : 'text-gray-300'
+                            ? 'text-gray-100' 
+                            : 'text-gray-200'
                           }
                         `}>
                           {getUserGroupLabel(group.id)}
@@ -373,15 +365,15 @@ const Tools = () => {
                       </div>
                     </div>
                     
-                    {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
+                    {/* 數字 Badge 區域 - 現代化設計 */}
                     <div className="flex-shrink-0">
                       <div className={`
-                        min-w-[20px] ${isMobile ? 'h-5 px-1.5' : 'h-6 px-2'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-bold transition-all duration-300
+                        min-w-[24px] ${isMobile ? 'h-6 px-2.5' : 'h-6 px-2.5'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-semibold transition-all duration-300
                         ${isActive 
-                          ? 'bg-yellow-400/20 text-yellow-300 border border-yellow-400/30' 
+                          ? 'bg-yellow-400/25 text-yellow-200 ring-1 ring-yellow-400/40 shadow-sm shadow-yellow-500/20' 
                           : isHover 
-                          ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' 
-                          : 'bg-gray-700/50 text-gray-400 border border-gray-600/30'
+                          ? 'bg-yellow-500/15 text-yellow-300 ring-1 ring-yellow-500/30' 
+                          : 'bg-gray-800/60 text-gray-400 ring-1 ring-gray-700/50'
                         }
                       `}>
                         {group.count}
@@ -578,44 +570,44 @@ const Tools = () => {
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden"
             />
             
-            {/* Slide-in Panel */}
+            {/* Slide-in Panel - 重新設計為純黑+黃極簡風格 */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-[85vw] max-w-[400px] bg-gray-900/95 backdrop-blur-md border-l border-gray-700/50 z-50 lg:hidden overflow-hidden flex flex-col"
+              className="fixed right-0 top-0 bottom-0 w-[90vw] max-w-[420px] bg-black/98 backdrop-blur-xl border-l border-gray-800/80 z-50 lg:hidden overflow-hidden flex flex-col shadow-2xl"
             >
-              {/* Panel Header - 固定頂部 */}
-              <div className="flex-shrink-0 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 p-4">
-                <div className="flex items-center justify-between">
+              {/* Panel Header - 現代極簡設計 */}
+              <div className="flex-shrink-0 bg-black/95 backdrop-blur-md border-b border-gray-800/60 p-5">
+                <div className="flex items-center justify-between h-6">
                   <div className="flex items-center gap-3">
                     <Filter className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                    <h2 className="text-lg font-semibold text-white whitespace-nowrap">
+                    <h2 className="text-lg font-medium text-white tracking-wide">
                       {t('label.smartFilter')}
                     </h2>
                   </div>
                   <button
                     onClick={() => setIsMobileFilterOpen(false)}
-                    className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200 flex-shrink-0"
+                    className="p-2 rounded-xl hover:bg-gray-900/60 transition-all duration-200 flex-shrink-0 group"
                   >
-                    <X className="w-5 h-5 text-gray-400" />
+                    <X className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-200" />
                   </button>
                 </div>
               </div>
 
               {/* Panel Content - 可滾動區域 */}
-              <div className="flex-1 overflow-y-auto">
-                <div className="p-4">
+              <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-track-black scrollbar-thumb-gray-800">
+                <div className="p-5">
                   <FilterContent isMobile={true} />
                 </div>
               </div>
 
-              {/* Panel Footer - 固定底部 */}
-              <div className="flex-shrink-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50 p-4">
+              {/* Panel Footer - 現代化固定底部按鈕 */}
+              <div className="flex-shrink-0 bg-black/95 backdrop-blur-md border-t border-gray-800/60 p-5">
                 <Button 
                   onClick={() => setIsMobileFilterOpen(false)}
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-medium py-3 text-base"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-black font-semibold py-4 text-base rounded-2xl shadow-lg shadow-yellow-500/25 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-yellow-500/30"
                 >
                   {t('common.apply')}
                 </Button>
