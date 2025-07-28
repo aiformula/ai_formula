@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Palette, Brain, Video, Database, Wand2, Sparkles, Film, Users, Zap, TrendingUp, Filter } from "lucide-react";
+import { ExternalLink, Palette, Brain, Video, Database, Wand2, Sparkles, Film, Users, Zap, TrendingUp, Filter, X, Settings } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ToolCard from "@/components/ToolCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,6 +16,7 @@ const Tools = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [showAllUserGroups, setShowAllUserGroups] = useState(false);
   const [isFilterExpanded, setIsFilterExpanded] = useState(true); // Main filter expand/collapse
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false); // Mobile filter panel state
   const isZhTW = language === 'zh-HK';
 
   // Helper function to get translated category label
@@ -173,6 +174,241 @@ const Tools = () => {
     ? smartSortedUserGroups 
     : smartSortedUserGroups.slice(0, 4); // 預設顯示前4個
 
+  // Filter 內容組件 - 可重用於桌面端和移動端
+  const FilterContent = ({ isMobile = false }) => (
+    <div className={`space-y-6 ${isMobile ? 'p-6' : ''}`}>
+      {/* 工具類型篩選區 */}
+      <div className="mb-8">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+          <Palette className="w-5 h-5 text-yellow-400" />
+          {t('label.toolType')}
+        </h3>
+        <div className={`${isMobile ? 'grid grid-cols-1 gap-2' : 'space-y-2'}`}>
+          {displayedCategories.map((category) => {
+            const [isHover, setIsHover] = React.useState(false);
+            const isActive = selectedCategory === category.id;
+            
+            return (
+              <motion.div
+                key={category.id}
+                whileHover={{ scale: isMobile ? 1.01 : 1.02, y: isMobile ? 0 : -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="cursor-pointer"
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
+                onClick={() => {
+                  setSelectedCategory(category.id);
+                  setSelectedUserGroup('all-users');
+                  if (isMobile) {
+                    setIsMobileFilterOpen(false); // 移動端選擇後自動關閉
+                  }
+                }}
+              >
+                <div
+                  className={`
+                    relative rounded-xl ${isMobile ? 'h-12' : 'h-14'} transition-all duration-300 group overflow-hidden w-full ${isMobile ? 'min-w-0' : 'min-w-[280px] sm:min-w-[300px]'}
+                    ${isActive 
+                      ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
+                      : isHover 
+                      ? 'bg-yellow-500/5 shadow-md shadow-black/20' 
+                      : 'bg-gray-800/50 hover:bg-gray-700/50'
+                    }
+                    backdrop-blur-sm border
+                    ${isActive 
+                      ? 'border-yellow-400/30' 
+                      : 'border-gray-700/50 hover:border-gray-600/50'
+                    }
+                  `}
+                >
+                  {/* Active indicator - 左邊亮黃色線 */}
+                  {isActive && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
+                  )}
+                  
+                  {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
+                  <div className="relative h-full flex items-center gap-3 px-4">
+                    {/* Icon 區域 - 固定寬度 */}
+                    <div className="flex-shrink-0 w-6 flex justify-center">
+                      {getFunctionIcon(category.id, isActive, isHover)}
+                    </div>
+                    
+                    {/* 文字區域 - 完整顯示，不截斷 */}
+                    <div className="flex-1 text-left">
+                      <span className={`
+                        font-medium ${isMobile ? 'text-xs' : 'text-sm'} transition-colors duration-300 block
+                        ${isActive 
+                          ? 'text-white font-semibold' 
+                          : isHover 
+                          ? 'text-yellow-100' 
+                          : 'text-gray-300'
+                        }
+                      `}>
+                        {getCategoryLabel(category.id)}
+                      </span>
+                    </div>
+                    
+                    {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
+                    <div className="flex-shrink-0 ml-2">
+                      <div className={`
+                        min-w-[20px] ${isMobile ? 'h-5 px-1.5' : 'h-6 px-2'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-bold transition-all duration-300
+                        ${isActive 
+                          ? 'bg-yellow-400/20 text-yellow-300 border border-yellow-400/30' 
+                          : isHover 
+                          ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' 
+                          : 'bg-gray-700/50 text-gray-400 border border-gray-600/30'
+                        }
+                      `}>
+                        {category.count}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+          
+          {/* 顯示更多/更少按鈕 */}
+          {smartSortedCategories.length > 5 && !showAllCategories && (
+            <motion.div
+              whileHover={{ scale: isMobile ? 1.01 : 1.02, y: isMobile ? 0 : -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="cursor-pointer"
+              onClick={() => setShowAllCategories(true)}
+            >
+              <div className={`rounded-xl ${isMobile ? 'h-12' : 'h-14'} bg-gray-800/30 border border-gray-700/40 hover:bg-gray-700/30 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-sm shadow-md hover:shadow-lg`}>
+                <div className="h-full flex items-center justify-center">
+                  <span className={`text-yellow-400 font-medium ${isMobile ? 'text-xs' : 'text-sm'} hover:text-yellow-300 transition-colors duration-300`}>
+                    {t('button.showMore')} (+{smartSortedCategories.length - 5})
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </div>
+
+      {/* 用戶角色篩選區 */}
+      <div>
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+          <Users className="w-5 h-5 text-yellow-400" />
+          {t('label.userRole')}
+        </h3>
+        <div className={`${isMobile ? 'grid grid-cols-1 gap-2' : 'space-y-2'}`}>
+          {displayedUserGroups.map((group) => {
+            const [isHover, setIsHover] = React.useState(false);
+            const isActive = selectedUserGroup === group.id;
+            
+            return (
+              <motion.div
+                key={group.id}
+                whileHover={{ scale: isMobile ? 1.01 : 1.02, y: isMobile ? 0 : -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="cursor-pointer"
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
+                onClick={() => {
+                  setSelectedUserGroup(group.id);
+                  setSelectedCategory('all');
+                  if (isMobile) {
+                    setIsMobileFilterOpen(false); // 移動端選擇後自動關閉
+                  }
+                }}
+              >
+                <div
+                  className={`
+                    relative rounded-xl ${isMobile ? 'h-12' : 'h-14'} transition-all duration-300 group overflow-hidden w-full ${isMobile ? 'min-w-0' : 'min-w-[280px] sm:min-w-[300px]'}
+                    ${isActive 
+                      ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
+                      : isHover 
+                      ? 'bg-yellow-500/5 shadow-md shadow-black/20' 
+                      : 'bg-gray-800/50 hover:bg-gray-700/50'
+                    }
+                    backdrop-blur-sm border
+                    ${isActive 
+                      ? 'border-yellow-400/30' 
+                      : 'border-gray-700/50 hover:border-gray-600/50'
+                    }
+                  `}
+                >
+                  {/* Active indicator - 左邊亮黃色線 */}
+                  {isActive && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
+                  )}
+                  
+                  {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
+                  <div className="relative h-full flex items-center gap-3 px-4">
+                    {/* Icon 區域 - 固定寬度 */}
+                    <div className="flex-shrink-0 w-6 flex justify-center">
+                      <div className={`
+                        text-sm transition-colors duration-300
+                        ${isActive 
+                          ? 'text-yellow-400' 
+                          : isHover 
+                          ? 'text-yellow-300' 
+                          : 'text-white'
+                        }
+                      `}>
+                        {group.icon}
+                      </div>
+                    </div>
+                    
+                    {/* 文字區域 - 完整顯示，不截斷 */}
+                    <div className="flex-1 text-left">
+                      <span className={`
+                        font-medium ${isMobile ? 'text-xs' : 'text-sm'} transition-colors duration-300 block
+                        ${isActive 
+                          ? 'text-white font-semibold' 
+                          : isHover 
+                          ? 'text-yellow-100' 
+                          : 'text-gray-300'
+                        }
+                      `}>
+                        {getUserGroupLabel(group.id)}
+                      </span>
+                    </div>
+                    
+                    {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
+                    <div className="flex-shrink-0 ml-2">
+                      <div className={`
+                        min-w-[20px] ${isMobile ? 'h-5 px-1.5' : 'h-6 px-2'} rounded-full flex items-center justify-center ${isMobile ? 'text-xs' : 'text-xs'} font-bold transition-all duration-300
+                        ${isActive 
+                          ? 'bg-yellow-400/20 text-yellow-300 border border-yellow-400/30' 
+                          : isHover 
+                          ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' 
+                          : 'bg-gray-700/50 text-gray-400 border border-gray-600/30'
+                        }
+                      `}>
+                        {group.count}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+          
+          {/* 顯示更多/更少按鈕 */}
+          {smartSortedUserGroups.length > 4 && !showAllUserGroups && (
+            <motion.div
+              whileHover={{ scale: isMobile ? 1.01 : 1.02, y: isMobile ? 0 : -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="cursor-pointer"
+              onClick={() => setShowAllUserGroups(true)}
+            >
+              <div className={`rounded-xl ${isMobile ? 'h-12' : 'h-14'} bg-gray-800/30 border border-gray-700/40 hover:bg-gray-700/30 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-sm shadow-md hover:shadow-lg`}>
+                <div className="h-full flex items-center justify-center">
+                  <span className={`text-yellow-400 font-medium ${isMobile ? 'text-xs' : 'text-sm'} hover:text-yellow-300 transition-colors duration-300`}>
+                    {t('button.showMore')} (+{smartSortedUserGroups.length - 4})
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-black">
       <Navigation />
@@ -189,10 +425,10 @@ const Tools = () => {
             </p>
           </motion.div>
 
-          {/* Content Grid - 響應式佈局，大螢幕固定寬度，小螢幕堆疊 */}
+          {/* Content Grid - 桌面端有側邊欄，移動端只有工具網格 */}
           <div className="grid grid-cols-1 xl:grid-cols-[340px_1fr] lg:grid-cols-[300px_1fr] gap-8">
-            {/* Left Sidebar - Smart Filter - 響應式寬度以容納完整文字 */}
-            <motion.div {...fadeIn} className="w-full">
+            {/* Left Sidebar - Smart Filter - 只在桌面端顯示 */}
+            <motion.div {...fadeIn} className="w-full hidden lg:block">
               <Card className="bg-gray-900/50 border-gray-700/50 backdrop-blur-md">
                 {/* Filter Header with Expand/Collapse Button */}
                 <CardHeader className="pb-4">
@@ -239,230 +475,8 @@ const Tools = () => {
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <CardContent className="space-y-6">
-                        {/* 工具類型篩選區 */}
-                        <div className="mb-8">
-                          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                            <Palette className="w-5 h-5 text-yellow-400" />
-                            {t('label.toolType')}
-                          </h3>
-                          <div className="space-y-2">
-                            {displayedCategories.map((category) => {
-                              const [isHover, setIsHover] = React.useState(false);
-                              const isActive = selectedCategory === category.id;
-                              
-                              return (
-                                <motion.div
-                                  key={category.id}
-                                  whileHover={{ scale: 1.02, y: -2 }}
-                                  whileTap={{ scale: 0.98 }}
-                                  className="cursor-pointer"
-                                  onMouseEnter={() => setIsHover(true)}
-                                  onMouseLeave={() => setIsHover(false)}
-                                  onClick={() => {
-                                    setSelectedCategory(category.id);
-                                    setSelectedUserGroup('all-users');
-                                  }}
-                                >
-                                  <div
-                                    className={`
-                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full min-w-[280px] sm:min-w-[300px]
-                                      ${isActive 
-                                        ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
-                                        : isHover 
-                                        ? 'bg-yellow-500/5 shadow-md shadow-black/20' 
-                                        : 'bg-gray-800/50 hover:bg-gray-700/50'
-                                      }
-                                      backdrop-blur-sm border
-                                      ${isActive 
-                                        ? 'border-yellow-400/30' 
-                                        : 'border-gray-700/50 hover:border-gray-600/50'
-                                      }
-                                    `}
-                                  >
-                                    {/* Active indicator - 左邊亮黃色線 */}
-                                    {isActive && (
-                                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
-                                    )}
-                                    
-                                    {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
-                                    <div className="relative h-full flex items-center gap-3 px-4">
-                                      {/* Icon 區域 - 固定寬度 */}
-                                      <div className="flex-shrink-0 w-6 flex justify-center">
-                                        {getFunctionIcon(category.id, isActive, isHover)}
-                                      </div>
-                                      
-                                      {/* 文字區域 - 完整顯示，不截斷 */}
-                                      <div className="flex-1 text-left">
-                                        <span className={`
-                                          font-medium text-sm transition-colors duration-300 block
-                                          ${isActive 
-                                            ? 'text-white font-semibold' 
-                                            : isHover 
-                                            ? 'text-yellow-100' 
-                                            : 'text-gray-300'
-                                          }
-                                        `}>
-                                          {getCategoryLabel(category.id)}
-                                        </span>
-                                      </div>
-                                      
-                                      {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
-                                      <div className="flex-shrink-0 ml-2">
-                                        <div className={`
-                                          min-w-[24px] h-6 px-2 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-                                          ${isActive 
-                                            ? 'bg-yellow-400/20 text-yellow-300 border border-yellow-400/30' 
-                                            : isHover 
-                                            ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' 
-                                            : 'bg-gray-700/50 text-gray-400 border border-gray-600/30'
-                                          }
-                                        `}>
-                                          {category.count}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              );
-                            })}
-                            
-                            {/* 顯示更多/更少按鈕 */}
-                            {smartSortedCategories.length > 5 && !showAllCategories && (
-                              <motion.div
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="cursor-pointer"
-                                onClick={() => setShowAllCategories(true)}
-                              >
-                                <div className="rounded-xl h-14 bg-gray-800/30 border border-gray-700/40 hover:bg-gray-700/30 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-sm shadow-md hover:shadow-lg">
-                                  <div className="h-full flex items-center justify-center">
-                                    <span className="text-yellow-400 font-medium text-sm hover:text-yellow-300 transition-colors duration-300">
-                                      {t('button.showMore')} (+{smartSortedCategories.length - 5})
-                                    </span>
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* 用戶角色篩選區 */}
-                        <div>
-                          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                            <Users className="w-5 h-5 text-yellow-400" />
-                            {t('label.userRole')}
-                          </h3>
-                          <div className="space-y-2">
-                            {displayedUserGroups.map((group) => {
-                              const [isHover, setIsHover] = React.useState(false);
-                              const isActive = selectedUserGroup === group.id;
-                              
-                              return (
-                                <motion.div
-                                  key={group.id}
-                                  whileHover={{ scale: 1.02, y: -2 }}
-                                  whileTap={{ scale: 0.98 }}
-                                  className="cursor-pointer"
-                                  onMouseEnter={() => setIsHover(true)}
-                                  onMouseLeave={() => setIsHover(false)}
-                                  onClick={() => {
-                                    setSelectedUserGroup(group.id);
-                                    setSelectedCategory('all');
-                                  }}
-                                >
-                                  <div
-                                    className={`
-                                      relative rounded-xl h-14 transition-all duration-300 group overflow-hidden w-full min-w-[280px] sm:min-w-[300px]
-                                      ${isActive 
-                                        ? 'bg-gradient-to-r from-yellow-500/20 to-yellow-400/10 shadow-lg shadow-yellow-500/20' 
-                                        : isHover 
-                                        ? 'bg-yellow-500/5 shadow-md shadow-black/20' 
-                                        : 'bg-gray-800/50 hover:bg-gray-700/50'
-                                      }
-                                      backdrop-blur-sm border
-                                      ${isActive 
-                                        ? 'border-yellow-400/30' 
-                                        : 'border-gray-700/50 hover:border-gray-600/50'
-                                      }
-                                    `}
-                                  >
-                                    {/* Active indicator - 左邊亮黃色線 */}
-                                    {isActive && (
-                                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 to-yellow-500 rounded-r-full"></div>
-                                    )}
-                                    
-                                    {/* 主要內容區域 - 使用 Flex 對齊，允許文字完整顯示 */}
-                                    <div className="relative h-full flex items-center gap-3 px-4">
-                                      {/* Icon 區域 - 固定寬度 */}
-                                      <div className="flex-shrink-0 w-6 flex justify-center">
-                                        <div className={`
-                                          text-sm transition-colors duration-300
-                                          ${isActive 
-                                            ? 'text-yellow-400' 
-                                            : isHover 
-                                            ? 'text-yellow-300' 
-                                            : 'text-white'
-                                          }
-                                        `}>
-                                          {group.icon}
-                                        </div>
-                                      </div>
-                                      
-                                      {/* 文字區域 - 完整顯示，不截斷 */}
-                                      <div className="flex-1 text-left">
-                                        <span className={`
-                                          font-medium text-sm transition-colors duration-300 block
-                                          ${isActive 
-                                            ? 'text-white font-semibold' 
-                                            : isHover 
-                                            ? 'text-yellow-100' 
-                                            : 'text-gray-300'
-                                          }
-                                        `}>
-                                          {getUserGroupLabel(group.id)}
-                                        </span>
-                                      </div>
-                                      
-                                      {/* 數字 Badge 區域 - 右邊貼齊，固定寬度 */}
-                                      <div className="flex-shrink-0 ml-2">
-                                        <div className={`
-                                          min-w-[24px] h-6 px-2 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
-                                          ${isActive 
-                                            ? 'bg-yellow-400/20 text-yellow-300 border border-yellow-400/30' 
-                                            : isHover 
-                                            ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' 
-                                            : 'bg-gray-700/50 text-gray-400 border border-gray-600/30'
-                                          }
-                                        `}>
-                                          {group.count}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              );
-                            })}
-                            
-                            {/* 顯示更多/更少按鈕 */}
-                            {smartSortedUserGroups.length > 4 && !showAllUserGroups && (
-                              <motion.div
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="cursor-pointer"
-                                onClick={() => setShowAllUserGroups(true)}
-                              >
-                                <div className="rounded-xl h-14 bg-gray-800/30 border border-gray-700/40 hover:bg-gray-700/30 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-sm shadow-md hover:shadow-lg">
-                                  <div className="h-full flex items-center justify-center">
-                                    <span className="text-yellow-400 font-medium text-sm hover:text-yellow-300 transition-colors duration-300">
-                                      {t('button.showMore')} (+{smartSortedUserGroups.length - 4})
-                                    </span>
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
-                          </div>
-                        </div>
+                      <CardContent>
+                        <FilterContent isMobile={false} />
                       </CardContent>
                     </motion.div>
                   )}
@@ -492,62 +506,114 @@ const Tools = () => {
                   )}
                   {selectedCategory === 'all' && selectedUserGroup === 'all-users' && (
                     <>
-                      {t('label.resultsShowing')} <span className="text-white font-semibold">{t('label.resultsAll')} {filteredTools.length}</span> {t('label.toolsFound')}
+                      {t('label.resultsShowing')} {t('label.resultsAll')} <span className="text-white font-semibold">{filteredTools.length}</span> {t('label.toolsFound')}
                     </>
                   )}
                 </p>
-                
-                {(selectedCategory !== 'all' || selectedUserGroup !== 'all-users') && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSelectedCategory('all');
-                      setSelectedUserGroup('all-users');
-                    }}
-                    className="text-gray-400 border-gray-600 hover:text-white hover:border-gray-500"
-                  >
-                    {t('button.resetFilters')}
-                  </Button>
-                )}
               </motion.div>
 
-              {/* 工具卡片網格 */}
-              <AnimatePresence mode="wait">
-                <motion.div 
-                  key={`${selectedCategory}-${selectedUserGroup}`}
-                  className="grid md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto gap-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {filteredTools.map((tool, index) => (
-                    <ToolCard
-                      key={tool.id}
-                      tool={tool}
-                      index={index}
-                    />
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-
-              {filteredTools.length === 0 && (
-                <motion.div 
-                  className="text-center py-16"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <p className="text-gray-400 text-lg">
-                    沒有找到符合條件的工具，請嘗試其他篩選條件。
-                  </p>
-                </motion.div>
-              )}
+              {/* Tools Grid */}
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                {filteredTools.length > 0 ? (
+                  filteredTools.map((tool, index) => (
+                    <ToolCard key={tool.id} tool={tool} index={index} />
+                  ))
+                ) : (
+                  <motion.div 
+                    className="col-span-full text-center py-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <div className="text-gray-500 text-lg mb-4">
+                      {t('label.noToolsFound')}
+                    </div>
+                    <p className="text-gray-600">
+                      {t('label.noToolsMessage')}
+                    </p>
+                  </motion.div>
+                )}
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* 移動端浮動 Filter 按鈕 - 只在小螢幕顯示 */}
+      <div className="lg:hidden">
+        <motion.button
+          onClick={() => setIsMobileFilterOpen(true)}
+          className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl shadow-xl shadow-yellow-500/30 flex items-center justify-center z-40 hover:scale-110 transition-all duration-300"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+        >
+          <Settings className="w-6 h-6 text-black" />
+        </motion.button>
+      </div>
+
+      {/* 移動端 Filter Panel - Slide-in Drawer */}
+      <AnimatePresence>
+        {isMobileFilterOpen && (
+          <>
+            {/* 背景遮罩 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileFilterOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden"
+            />
+            
+            {/* Slide-in Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed right-0 top-0 bottom-0 w-80 max-w-[90vw] bg-gray-900/95 backdrop-blur-md border-l border-gray-700/50 z-50 lg:hidden overflow-y-auto"
+            >
+              {/* Panel Header */}
+              <div className="sticky top-0 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Filter className="w-5 h-5 text-yellow-400" />
+                  <h2 className="text-lg font-semibold text-white">
+                    {t('label.smartFilter')}
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200"
+                >
+                  <X className="w-5 h-5 text-gray-400" />
+                </button>
+              </div>
+
+              {/* Panel Content */}
+              <div className="p-4">
+                <FilterContent isMobile={true} />
+              </div>
+
+              {/* Panel Footer */}
+              <div className="sticky bottom-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50 p-4">
+                <Button 
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
+                >
+                  {t('button.apply') || 'Apply Filters'}
+                </Button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
