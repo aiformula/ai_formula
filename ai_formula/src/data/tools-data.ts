@@ -135,7 +135,9 @@ const allTools: Tool[] = [
   {
     id: 'playground-ai',
     title: 'Playground AI - 創意實驗平台',
+    titleEn: 'Playground AI - Creative Experimentation Platform',
     description: '提供多種AI模型的創意實驗平台，支援風格混合和高級編輯功能。',
+    descriptionEn: 'Creative experimentation platform offering multiple AI models, supporting style mixing and advanced editing features.',
     tag: '創意實驗',
     tags: ['創意實驗', '多模型', '風格混合'],
     url: 'https://playground.com/',
@@ -149,7 +151,9 @@ const allTools: Tool[] = [
   {
     id: 'artbreeder',
     title: 'Artbreeder - 圖像演化AI',
+    titleEn: 'Artbreeder - Image Evolution AI',
     description: '通過"繁殖"和混合圖像來創造新的藝術作品，獨特的協作創作平台。',
+    descriptionEn: 'Creates new artworks by "breeding" and mixing images, offering a unique collaborative creation platform.',
     tag: '圖像演化',
     tags: ['圖像演化', '協作創作', '藝術探索'],
     url: 'https://www.artbreeder.com/',
@@ -419,7 +423,9 @@ const allTools: Tool[] = [
   {
     id: 'revid',
     title: 'Revid - AI 影片創作平台',
+    titleEn: 'Revid - AI Video Creation Platform',
     description: '一個 AI 影片創作平台，專注於將您的想法、文章或提示轉化為帶有 AI 生成的畫外音和視覺效果的影片。',
+    descriptionEn: 'An AI video creation platform focused on transforming your ideas, articles, or prompts into videos with AI-generated voiceovers and visual effects.',
     tag: 'AI 影片創作',
     tags: ['AI 影片創作', '文本轉影片', '自動化內容'],
     url: 'https://www.revid.ai/',
@@ -535,7 +541,9 @@ const allTools: Tool[] = [
   {
     id: 'animoto',
     title: 'Animoto - 營銷影片AI',
+    titleEn: 'Animoto - Marketing Video AI',
     description: '專為品牌營銷設計的AI影片製作工具，提供豐富的商業模板和自動化編輯功能。',
+    descriptionEn: 'AI video creation tool designed specifically for brand marketing, offering rich commercial templates and automated editing features.',
     tag: '營銷影片',
     tags: ['營銷影片', '品牌宣傳', '商業模板'],
     url: 'https://animoto.com/',
@@ -591,7 +599,9 @@ const allTools: Tool[] = [
   {
     id: 'reccloud',
     title: 'RecCloud - 雲端錄屏編輯平台',
+    titleEn: 'RecCloud - Cloud Screen Recording & Editing Platform',
     description: '一個集屏幕錄製、影片編輯和雲端存儲於一體的在線平台。它利用 AI 提供自動字幕、影片摘要和智能編輯等功能。',
+    descriptionEn: 'An online platform that integrates screen recording, video editing, and cloud storage. It utilises AI to provide automatic subtitles, video summaries, and intelligent editing features.',
     tag: '屏幕錄製',
     tags: ['屏幕錄製', '雲端存儲', 'AI 影片編輯'],
     url: 'https://reccloud.com/',
@@ -601,6 +611,20 @@ const allTools: Tool[] = [
     categories: ['video-editing', 'creative-tools'],
     targetAudience: ['教師', '產品經理', '遊戲玩家', '任何需要錄屏的人'],
     userGroups: ['educator', 'data-analyst', 'productivity-user', 'content-creator']
+  },
+  {
+    id: 'invideo-ai',
+    title: 'InVideo AI - 智能影片編輯',
+    description: '基於AI的影片編輯平台，只需輸入簡單描述就能自動生成專業級影片內容。',
+    tag: '智能編輯',
+    tags: ['智能編輯', '影片創作', '自動化'],
+    url: 'https://invideo.io/ai/',
+    imageUrl: '/placeholder.svg',
+    imageAlt: 'InVideo AI Logo',
+    category: 'video-generation',
+    categories: ['video-generation', 'video-editing'],
+    targetAudience: ['社交媒體經理', '小企業主', '內容營銷人員'],
+    userGroups: ['business-professional', 'content-creator']
   },
 
   // === 圖片編輯類工具 (8個) ===
@@ -681,7 +705,9 @@ const allTools: Tool[] = [
   {
     id: 'facetune',
     title: 'Facetune - AI人像美化',
+    titleEn: 'Facetune - AI Portrait Enhancement',
     description: '專業的AI人像美化工具，提供自然的面部調整和背景編輯功能。',
+    descriptionEn: 'Professional AI portrait enhancement tool that provides natural facial adjustments and background editing features.',
     tag: '人像美化',
     tags: ['人像美化', 'AI美顏', '照片修圖'],
     url: 'https://www.facetune.com/',
@@ -799,7 +825,9 @@ const allTools: Tool[] = [
   {
     id: 'ai-dungeon',
     title: 'AI Dungeon - 互動故事AI',
-    description: '創新的AI驅動互動故事平台，讓你體驗無限可能的冒險故事。',
+    titleEn: 'AI Dungeon - Interactive Story AI',
+    description: '一個基於AI的互動故事遊戲平台，讓玩家可以創造無限可能的冒險故事。',
+    descriptionEn: 'An AI-powered interactive story gaming platform that allows players to create unlimited adventure stories.',
     tag: '互動故事',
     tags: ['互動故事', 'AI遊戲', '創意娛樂'],
     url: 'https://aidungeon.io/',
@@ -831,7 +859,9 @@ const allTools: Tool[] = [
   {
     id: 'murf-ai',
     title: 'Murf.ai - AI 文本轉語音生成器',
+    titleEn: 'Murf.ai - AI Text-to-Speech Generator',
     description: '一個多功能的 AI 文本轉語音生成器，提供大量聽起來非常自然的人聲選擇，支持多種語言和口音。',
+    descriptionEn: 'A versatile AI text-to-speech generator offering numerous natural-sounding voice options, supporting multiple languages and accents.',
     tag: '文本轉語音',
     tags: ['文本轉語音', 'AI 語音', '畫外音'],
     url: 'https://murf.ai/',
@@ -1271,7 +1301,9 @@ const allTools: Tool[] = [
   {
     id: 'power-bi-ai',
     title: 'Power BI AI - 微軟商業智能',
+    titleEn: 'Power BI AI - Microsoft Business Intelligence',
     description: 'Microsoft Power BI的AI功能，提供自動化洞察和預測分析。',
+    descriptionEn: 'AI features in Microsoft Power BI that provide automated insights and predictive analytics.',
     tag: '商業智能',
     tags: ['商業智能', '預測分析', '自動洞察'],
     url: 'https://powerbi.microsoft.com/',
@@ -1511,7 +1543,9 @@ const allTools: Tool[] = [
   {
     id: 'mailchimp-ai',
     title: 'Mailchimp AI - 郵件營銷AI',
+    titleEn: 'Mailchimp AI - Email Marketing AI',
     description: 'Mailchimp的AI功能，優化郵件內容、發送時間和客戶細分。',
+    descriptionEn: 'AI features in Mailchimp that optimise email content, sending times, and customer segmentation.',
     tag: '郵件營銷',
     tags: ['郵件營銷', '客戶細分', '內容優化'],
     url: 'https://mailchimp.com/',
@@ -1525,7 +1559,9 @@ const allTools: Tool[] = [
   {
     id: 'hootsuite-ai',
     title: 'Hootsuite AI - 社交媒體AI',
+    titleEn: 'Hootsuite AI - Social Media AI',
     description: '集成AI的社交媒體管理平台，優化發布時間和內容策略。',
+    descriptionEn: 'AI-integrated social media management platform that optimises posting times and content strategies.',
     tag: '社交媒體',
     tags: ['社交媒體', '內容策略', '發布優化'],
     url: 'https://www.hootsuite.com/',
