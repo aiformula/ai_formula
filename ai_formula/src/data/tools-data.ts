@@ -183,7 +183,9 @@ const allTools: Tool[] = [
   {
     id: 'lovart-ai',
     title: 'Lovart AI - AI 藝術創作工具',
+    titleEn: 'Lovart AI - AI Art Creation Tool',
     description: '一個專注於人工智能藝術創作的工具，可以根據用戶提供的提示快速生成圖像、音樂等各種類型的藝術作品。',
+    descriptionEn: 'An AI tool focused on artificial intelligence art creation that can quickly generate various types of artistic works including images and music based on user prompts.',
     tag: 'AI 繪圖',
     tags: ['AI 繪圖', '音樂生成', '創意工具'],
     url: 'https://www.lovart.ai/home',
@@ -279,7 +281,9 @@ const allTools: Tool[] = [
   {
     id: 'hailuo-ai-video',
     title: 'Hailuo AI Video (海螺AI) - AI 影片創作平台',
+    titleEn: 'Hailuo AI Video - AI Video Creation Platform',
     description: '一個專注於 AI 影片創作和編輯的平台，可以根據文本或圖片，快速生成高質量的短片、廣告或社交媒體影片。',
+    descriptionEn: 'A platform focused on AI video creation and editing that can quickly generate high-quality short films, advertisements, or social media videos based on text or images.',
     tag: '影片生成',
     tags: ['影片生成', 'AI 影片'],
     url: 'https://hailuoai.video/',
@@ -535,7 +539,9 @@ const allTools: Tool[] = [
   {
     id: 'opus-pro',
     title: 'Opus Pro - AI 影片再利用工具',
+    titleEn: 'Opus Pro - AI Video Repurposing Tool',
     description: '一個強大的 AI 影片再利用工具，能將一個長影片自動剪輯成多個病毒式傳播的短片，並為其評分、添加字幕。',
+    descriptionEn: 'A powerful AI video repurposing tool that can automatically edit long videos into multiple viral short clips, whilst scoring them and adding subtitles.',
     tag: '影片再利用',
     tags: ['影片再利用', 'AI 剪輯', '社交媒體影片'],
     url: 'https://www.opus.pro/',
@@ -581,7 +587,9 @@ const allTools: Tool[] = [
   {
     id: 'clipchamp',
     title: 'Clipchamp - 微軟AI影片編輯',
+    titleEn: 'Clipchamp - Microsoft AI Video Editing',
     description: 'Microsoft旗下的AI影片編輯工具，集成強大的AI功能，簡化專業影片製作流程。',
+    descriptionEn: 'Microsoft\'s AI video editing tool that integrates powerful AI features to simplify professional video production workflows.',
     tag: 'AI編輯',
     tags: ['AI編輯', '微軟工具', '專業編輯'],
     url: 'https://clipchamp.com/',
@@ -595,7 +603,9 @@ const allTools: Tool[] = [
   {
     id: 'kapwing-ai',
     title: 'Kapwing AI - 協作影片平台',
+    titleEn: 'Kapwing AI - Collaborative Video Platform',
     description: '支援團隊協作的AI影片編輯平台，提供智能字幕、背景移除、影片增強等功能。',
+    descriptionEn: 'AI video editing platform that supports team collaboration, offering intelligent subtitles, background removal, and video enhancement features.',
     tag: '協作編輯',
     tags: ['協作編輯', '團隊工具', 'AI增強'],
     url: 'https://www.kapwing.com/',
@@ -609,7 +619,9 @@ const allTools: Tool[] = [
   {
     id: 'flexclip-ai',
     title: 'FlexClip AI - 快速影片製作',
+    titleEn: 'FlexClip AI - Rapid Video Creation',
     description: '簡單易用的AI影片製作工具，提供豐富模板和智能編輯功能，適合快速內容製作。',
+    descriptionEn: 'Easy-to-use AI video creation tool that provides rich templates and intelligent editing features, perfect for rapid content production.',
     tag: '快速製作',
     tags: ['快速製作', '簡單易用', '豐富模板'],
     url: 'https://www.flexclip.com/',
@@ -819,7 +831,9 @@ const allTools: Tool[] = [
   {
     id: 'steve-ai',
     title: 'Steve AI - 企業影片解決方案',
+    titleEn: 'Steve AI - Enterprise Video Solutions',
     description: '為企業量身打造的AI影片製作平台，支援動畫、真人影片和培訓內容的自動生成。',
+    descriptionEn: 'AI video production platform tailored for enterprises, supporting automatic generation of animations, live-action videos, and training content.',
     tag: '企業影片',
     tags: ['企業影片', '動畫製作', '培訓內容'],
     url: 'https://www.steve.ai/',
@@ -833,7 +847,9 @@ const allTools: Tool[] = [
   {
     id: 'stitch-with-google',
     title: 'Stitch with Google - 創意編程平台',
+    titleEn: 'Stitch with Google - Creative Coding Platform',
     description: '一個由 Google 推出嘅創意編程平台，結合咗 AI 同傳統編程，讓用戶可以創作出互動藝術作品同創新應用。',
+    descriptionEn: 'A creative coding platform launched by Google that combines AI with traditional programming, enabling users to create interactive artworks and innovative applications.',
     tag: '創意編程',
     tags: ['創意編程', 'AI 工具'],
     url: 'https://stitch.google.com/',
@@ -847,7 +863,9 @@ const allTools: Tool[] = [
   {
     id: 'threejs',
     title: 'three.js - 3D 圖形 JavaScript 庫',
+    titleEn: 'three.js - 3D Graphics JavaScript Library',
     description: '一個跨瀏覽器的 JavaScript 庫和 API，用於在網頁瀏覽器中創建和顯示動畫 3D 計算機圖形。',
+    descriptionEn: 'A cross-browser JavaScript library and API for creating and displaying animated 3D computer graphics in web browsers.',
     tag: '3D 圖形',
     tags: ['3D 圖形', 'WebGL', 'JavaScript 庫'],
     url: 'https://threejs.org/',
@@ -911,7 +929,9 @@ const allTools: Tool[] = [
   {
     id: 'speechify',
     title: 'Speechify - 文字轉語音閱讀',
+    titleEn: 'Speechify - Text-to-Speech Reading',
     description: '強大的文字轉語音工具，支援多種語言和自然語音，提升閱讀效率。',
+    descriptionEn: 'Powerful text-to-speech tool that supports multiple languages and natural voices, enhancing reading efficiency.',
     tag: '語音閱讀',
     tags: ['語音閱讀', '文字轉語音', '學習工具'],
     url: 'https://speechify.com/',
@@ -925,7 +945,9 @@ const allTools: Tool[] = [
   {
     id: 'wellsaid-labs',
     title: 'WellSaid Labs - 企業級AI語音',
+    titleEn: 'WellSaid Labs - Enterprise-Grade AI Voice',
     description: '專為企業設計的高品質AI語音合成平台，提供自然流暢的商業級語音。',
+    descriptionEn: 'High-quality AI voice synthesis platform designed specifically for enterprises, providing natural and fluent business-grade voices.',
     tag: '企業語音',
     tags: ['企業語音', 'AI配音', '商業應用'],
     url: 'https://wellsaidlabs.com/',
@@ -939,7 +961,9 @@ const allTools: Tool[] = [
   {
     id: 'resemble-ai',
     title: 'Resemble AI - 自定義語音克隆',
+    titleEn: 'Resemble AI - Custom Voice Cloning',
     description: '先進的語音克隆技術，能夠創建個性化的AI語音模型，保護隱私安全。',
+    descriptionEn: 'Advanced voice cloning technology that can create personalised AI voice models whilst protecting privacy and security.',
     tag: '語音克隆',
     tags: ['語音克隆', '個性化語音', '隱私保護'],
     url: 'https://www.resemble.ai/',
@@ -953,7 +977,9 @@ const allTools: Tool[] = [
   {
     id: 'lalal-ai',
     title: 'LALAL.AI - AI音軌分離',
+    titleEn: 'LALAL.AI - AI Audio Track Separation',
     description: '專業的AI音軌分離工具，能將音樂中的人聲、樂器等元素精確分離。',
+    descriptionEn: 'Professional AI audio track separation tool that can precisely separate vocals, instruments, and other elements from music.',
     tag: '音軌分離',
     tags: ['音軌分離', '音頻處理', '音樂製作'],
     url: 'https://www.lalal.ai/',
@@ -967,7 +993,9 @@ const allTools: Tool[] = [
   {
     id: 'voicemod',
     title: 'Voicemod - 實時變聲器',
+    titleEn: 'Voicemod - Real-time Voice Changer',
     description: '實時語音變聲工具，提供豐富的聲音效果，適合遊戲、直播和內容創作。',
+    descriptionEn: 'Real-time voice changing tool that provides rich sound effects, perfect for gaming, livestreaming, and content creation.',
     tag: '變聲器',
     tags: ['變聲器', '實時語音', '遊戲工具'],
     url: 'https://www.voicemod.net/',
@@ -981,7 +1009,9 @@ const allTools: Tool[] = [
   {
     id: 'riffusion',
     title: 'Riffusion - AI音樂生成',
+    titleEn: 'Riffusion - AI Music Generation',
     description: '創新的AI音樂生成工具，能根據文字描述創作各種風格的音樂作品。',
+    descriptionEn: 'Innovative AI music generation tool that can create music works in various styles based on text descriptions.',
     tag: 'AI音樂',
     tags: ['AI音樂', '音樂創作', '創意工具'],
     url: 'https://www.riffusion.com/',
@@ -995,7 +1025,9 @@ const allTools: Tool[] = [
   {
     id: 'amper-music',
     title: 'Amper Music - AI背景音樂',
+    titleEn: 'Amper Music - AI Background Music',
     description: '專為內容創作者設計的AI背景音樂生成工具，快速創作免版權音樂。',
+    descriptionEn: 'AI background music generation tool designed specifically for content creators, enabling quick creation of royalty-free music.',
     tag: 'AI背景音樂',
     tags: ['AI背景音樂', '免版權音樂', '內容創作'],
     url: 'https://www.ampermusic.com/',
@@ -1009,7 +1041,9 @@ const allTools: Tool[] = [
   {
     id: 'cleanvoice-ai',
     title: 'Cleanvoice.ai - AI 音頻編輯工具',
+    titleEn: 'Cleanvoice.ai - AI Audio Editing Tool',
     description: '一款專為播客和音頻創作者設計的 AI 工具，能自動編輯音頻，去除填充詞和口吃，讓音頻聽起來更專業流暢。',
+    descriptionEn: 'An AI tool designed specifically for podcast and audio creators that can automatically edit audio, removing filler words and stutters to make audio sound more professional and fluent.',
     tag: '音頻編輯',
     tags: ['音頻編輯', '播客工具', '噪音消除'],
     url: 'https://cleanvoice.ai/',
@@ -1247,7 +1281,9 @@ const allTools: Tool[] = [
   {
     id: 'adcreative-ai',
     title: 'Adcreative.ai - AI 廣告創意平台',
+    titleEn: 'Adcreative.ai - AI Advertising Creative Platform',
     description: '一個專為廣告商設計的 AI 平台，能夠快速生成大量高轉化率的廣告創意，包括圖片、文案和影片。',
+    descriptionEn: 'An AI platform designed specifically for advertisers that can rapidly generate large volumes of high-conversion advertising creatives, including images, copy, and videos.',
     tag: '廣告創意',
     tags: ['廣告創意', 'AI 設計', '市場營銷'],
     url: 'https://www.adcreative.ai/',
@@ -1261,7 +1297,9 @@ const allTools: Tool[] = [
   {
     id: 'aicarousels',
     title: 'aicarousels.com - 社交媒體輪播圖生成器',
+    titleEn: 'aicarousels.com - Social Media Carousel Generator',
     description: '一個專門用來快速創建社交媒體輪播圖 (Carousels) 的 AI 工具。用戶只需輸入主題或文本，AI 就能自動生成設計精美的輪播圖。',
+    descriptionEn: 'An AI tool specialised in quickly creating social media carousels. Users simply input a topic or text, and AI automatically generates beautifully designed carousel graphics.',
     tag: '社交媒體設計',
     tags: ['社交媒體設計', '輪播圖', 'Instagram 營銷'],
     url: 'https://www.aicarousels.com/',
@@ -1275,7 +1313,9 @@ const allTools: Tool[] = [
   {
     id: 'magnetly',
     title: 'Magnetly - 潛在客戶磁鐵生成器',
+    titleEn: 'Magnetly - Lead Magnet Generator',
     description: '一個 AI 工具，專門幫助教練、顧問和創作者將他們的知識轉化為高價值的潛在客戶磁鐵 (Lead Magnets)，如電子書、指南等。',
+    descriptionEn: 'An AI tool that specialises in helping coaches, consultants, and creators transform their knowledge into high-value lead magnets such as e-books and guides.',
     tag: '潛在客戶開發',
     tags: ['潛在客戶開發', '電子書生成', '市場營銷'],
     url: 'https://www.magnetly.co/',
