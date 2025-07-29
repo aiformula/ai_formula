@@ -495,18 +495,6 @@ const EnhancedSidebar: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> 
   );
 };
 
-// Helper function to check if image exists and is valid
-const hasValidCoverImage = (imageUrl: string): boolean => {
-  // Check if it's a placeholder or default image
-  if (!imageUrl || 
-      imageUrl.includes('placeholder') || 
-      imageUrl.includes('default') ||
-      imageUrl.includes('/images/blog/blog-placeholder.svg')) {
-    return false;
-  }
-  return true;
-};
-
 // Enhanced BlogPost Page Component
 const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -522,7 +510,6 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
 
   const title = isZhHK ? post.title : post.titleEn;
   const excerpt = isZhHK ? post.excerpt : post.excerptEn;
-  const hasCoverImage = hasValidCoverImage(post.image);
 
   // Share functionality
   const shareData: ShareData = {
@@ -692,29 +679,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
               </Link>
             </motion.div>
 
-            {/* Hero Image - Conditional Rendering */}
-            {hasCoverImage && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-7xl mx-auto mb-12"
-              >
-                <div className="relative h-[50vh] md:h-[60vh] overflow-hidden rounded-3xl mb-8">
-                  <motion.img
-                    initial={{ scale: 1.05 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    src={post.image}
-                    alt={title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                </div>
-              </motion.div>
-            )}
-
-            {/* Title Section */}
+            {/* Title Section - Moved directly after back button */}
             <motion.div
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -729,11 +694,11 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
               </Badge>
               
               {/* Large Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
                 {title}
               </h1>
               
-              <p className="text-gray-300 text-xl md:text-2xl mb-8 leading-relaxed">
+              <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto">
                 {excerpt}
               </p>
               
