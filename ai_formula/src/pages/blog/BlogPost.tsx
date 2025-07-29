@@ -1,7 +1,22 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Share2, Bookmark, Eye, Calendar, Clock, User, Tag, AlertTriangle, RefreshCw } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ArrowLeft, 
+  Share2, 
+  Bookmark, 
+  Eye, 
+  Calendar, 
+  Clock, 
+  User, 
+  Tag, 
+  AlertTriangle, 
+  RefreshCw,
+  Globe,
+  Copy,
+  ExternalLink,
+  Heart
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -38,49 +53,72 @@ const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
   url: window.location.href
 });
 
-// Components
+// Modern ArticleViewCounter with animations
 const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, postId }) => {
   const { language } = useLanguage();
   const { getViewCount, incrementView } = useSafeViewCount();
   const [isAnimating, setIsAnimating] = useState(false);
+  const [hasIncremented, setHasIncremented] = useState(false);
   
   const currentViews = getViewCount(postId);
   const baseViews = parseInt(initialViews) || 0;
   const displayViews = (baseViews + currentViews).toString();
   
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && !hasIncremented) {
+      setHasIncremented(true);
       incrementView(postId);
       setIsAnimating(true);
-      const timer = setTimeout(() => setIsAnimating(false), 500);
+      const timer = setTimeout(() => setIsAnimating(false), 600);
       return () => clearTimeout(timer);
     }
-  }, [postId, incrementView]);
+  }, [postId, incrementView, hasIncremented]);
 
   return (
     <motion.div 
-      className="flex items-center gap-2 text-blue-600 dark:text-blue-400"
-      animate={{ scale: isAnimating ? [1, 1.1, 1] : 1 }}
-      transition={{ duration: 0.3 }}
+      className="flex items-center gap-2 text-yellow-400 font-medium"
+      animate={{ 
+        scale: isAnimating ? [1, 1.1, 1] : 1,
+        color: isAnimating ? '#FFD700' : '#FBBF24'
+      }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <Eye className="h-4 w-4" />
-      <span className="font-medium">{displayViews}</span>
-      <span className="text-sm opacity-75">
+      <span className="font-semibold">{displayViews}</span>
+      <span className="text-sm text-yellow-300/80">
         {language === 'zh-HK' ? '次瀏覽' : 'views'}
       </span>
     </motion.div>
   );
 };
 
-// Simple BlogPost Page Component
-const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) => {
-  const navigate = useNavigate();
-  const [shareData, setShareData] = useState<ShareData | null>(null);
+// Sticky Language Toggle Component
+const StickyLanguageToggle: React.FC = () => {
+  const { language, setLanguage } = useLanguage();
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="fixed top-24 right-6 z-50 bg-black/90 backdrop-blur-sm border border-yellow-400/30 rounded-full p-2 shadow-2xl"
+    >
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => setLanguage(language === 'zh-HK' ? 'en-GB' : 'zh-HK')}
+        className="text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 border-none rounded-full"
+      >
+        <Globe className="h-4 w-4 mr-1" />
+        {language === 'zh-HK' ? 'EN' : '中'}
+      </Button>
+    </motion.div>
+  );
+};
 
-  useEffect(() => {
-    setShareData(generateShareData(post, isZhHK));
-  }, [post, isZhHK]);
-
+// Sticky Share Button Component
+const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean }> = ({ shareData, isZhHK }) => {
+  const [showOptions, setShowOptions] = useState(false);
+  
   const handleShare = useCallback(async () => {
     if (!shareData) return;
 
@@ -91,14 +129,71 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
         console.error('Error sharing:', error);
       }
     } else {
-      navigator.clipboard.writeText(shareData.url);
-      alert(isZhHK ? '連結已複製到剪貼板' : 'Link copied to clipboard');
+      setShowOptions(!showOptions);
     }
-  }, [shareData, isZhHK]);
+  }, [shareData, showOptions]);
+
+  const copyToClipboard = useCallback(async () => {
+    if (shareData) {
+      await navigator.clipboard.writeText(shareData.url);
+      setShowOptions(false);
+      // Simple feedback could be added here
+    }
+  }, [shareData]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="fixed bottom-6 right-6 z-50"
+    >
+      <div className="relative">
+        <Button
+          onClick={handleShare}
+          className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full w-14 h-14 shadow-2xl hover:shadow-yellow-400/30 transition-all duration-300"
+        >
+          <Share2 className="h-5 w-5" />
+        </Button>
+        
+        <AnimatePresence>
+          {showOptions && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 20 }}
+              className="absolute bottom-16 right-0 bg-black/95 backdrop-blur-sm border border-yellow-400/30 rounded-lg p-2 min-w-48"
+            >
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={copyToClipboard}
+                className="w-full justify-start text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10"
+              >
+                <Copy className="h-4 w-4 mr-2" />
+                {isZhHK ? '複製連結' : 'Copy Link'}
+              </Button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+};
+
+// Modern BlogPost Page Component with Black & Yellow Theme
+const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) => {
+  const navigate = useNavigate();
+  const [shareData, setShareData] = useState<ShareData | null>(null);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    setShareData(generateShareData(post, isZhHK));
+  }, [post, isZhHK]);
 
   const handleBookmark = useCallback(() => {
-    console.log('Bookmark functionality will be implemented with user accounts');
-  }, []);
+    setIsLiked(!isLiked);
+    // Future: implement actual bookmark functionality
+  }, [isLiked]);
 
   const formatDate = (date: Date | string | undefined): string => {
     if (!date) return isZhHK ? '未知日期' : 'Unknown Date';
@@ -111,21 +206,26 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
   const title = isZhHK ? post.title : post.titleEn;
   const excerpt = isZhHK ? post.excerpt : post.excerptEn;
 
-  // 渲染內容
-  const renderSections = (contentObj) => {
+  // Enhanced content rendering with better error handling
+  const renderSections = useCallback((contentObj) => {
     if (!contentObj || !contentObj.sections || !Array.isArray(contentObj.sections)) {
-      return <p className="text-gray-500 italic">Content not available.</p>;
+      return (
+        <div className="text-center py-8">
+          <p className="text-gray-400 italic text-lg">
+            {isZhHK ? '內容載入中...' : 'Content loading...'}
+          </p>
+        </div>
+      );
     }
     
     try {
       return contentObj.sections.map((section, idx) => {
         if (!section || typeof section !== 'object') {
-          return <p key={idx} className="text-red-500">Invalid section data</p>;
+          return <div key={idx} className="text-red-400">Invalid section data</div>;
         }
         
         const text = isZhHK ? (section.content || '') : (section.contentEn || section.content || '');
         
-        // 保證 items 一定是陣列
         let safeItems = [];
         try {
           const rawItems = isZhHK ? section.items : (section.itemsEn || section.items);
@@ -135,60 +235,100 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
           safeItems = [];
         }
         
+        const sectionAnimation = {
+          initial: { opacity: 0, y: 30 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.6, delay: idx * 0.1 }
+        };
+        
         if (section.type === 'heading') {
-          const Tag = `h${section.level || 2}`;
-          return React.createElement(Tag, { key: idx, className: 'font-bold mt-8 mb-4 text-2xl' }, text);
+          const Tag = `h${section.level || 2}` as keyof JSX.IntrinsicElements;
+          return (
+            <motion.div key={idx} {...sectionAnimation}>
+              {React.createElement(Tag, { 
+                className: 'font-bold mt-12 mb-6 text-3xl text-yellow-400 leading-tight'
+              }, text)}
+            </motion.div>
+          );
         }
+        
         if (section.type === 'paragraph') {
-          return <p key={idx} className="mb-4 text-lg leading-relaxed">{text}</p>;
+          return (
+            <motion.p key={idx} {...sectionAnimation} className="mb-6 text-lg leading-relaxed text-gray-200">
+              {text}
+            </motion.p>
+          );
         }
+        
         if (section.type === 'card') {
           return (
-            <div key={idx} className="bg-yellow-50 dark:bg-yellow-900/10 border-l-4 border-yellow-400 rounded-lg p-4 mb-4">
-              <div className="font-semibold mb-2">{text}</div>
-              <ul className="list-disc pl-6">
-                {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+            <motion.div key={idx} {...sectionAnimation} className="bg-gradient-to-r from-yellow-400/10 to-yellow-600/5 border-l-4 border-yellow-400 rounded-lg p-6 mb-8 shadow-lg">
+              <div className="font-bold mb-4 text-yellow-400 text-xl">{text}</div>
+              <ul className="list-disc pl-6 space-y-2">
+                {safeItems.map((item, i) => (
+                  <li key={i} className="text-gray-200 leading-relaxed">{item}</li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
           );
         }
+        
         if (section.type === 'highlight') {
           return (
-            <div key={idx} className="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-400 rounded-lg p-4 mb-4">
-              <div className="font-semibold mb-2">{text}</div>
-              <ul className="list-disc pl-6">
-                {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+            <motion.div key={idx} {...sectionAnimation} className="bg-gradient-to-r from-blue-400/10 to-purple-600/5 border-l-4 border-blue-400 rounded-lg p-6 mb-8 shadow-lg">
+              <div className="font-bold mb-4 text-blue-400 text-xl">{text}</div>
+              <ul className="list-disc pl-6 space-y-2">
+                {safeItems.map((item, i) => (
+                  <li key={i} className="text-gray-200 leading-relaxed">{item}</li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
           );
         }
+        
         if (section.type === 'steps' || section.type === 'list') {
           return (
-            <ol key={idx} className="list-decimal pl-6 mb-4">
-              {safeItems.map((item, i) => <li key={i}>{item}</li>)}
-            </ol>
+            <motion.ol key={idx} {...sectionAnimation} className="list-decimal pl-6 mb-8 space-y-3">
+              {safeItems.map((item, i) => (
+                <li key={i} className="text-gray-200 leading-relaxed text-lg">{item}</li>
+              ))}
+            </motion.ol>
           );
         }
+        
         if (section.type === 'conclusion') {
           return (
-            <div key={idx} className="bg-green-50 dark:bg-green-900/10 border-l-4 border-green-400 rounded-lg p-4 mb-4">
-              <div className="font-semibold mb-2">{text}</div>
-              <ul className="list-disc pl-6">
-                {safeItems.map((item, i) => <li key={i}>{item}</li>)}
+            <motion.div key={idx} {...sectionAnimation} className="bg-gradient-to-r from-green-400/10 to-emerald-600/5 border-l-4 border-green-400 rounded-lg p-6 mb-8 shadow-lg">
+              <div className="font-bold mb-4 text-green-400 text-xl">{text}</div>
+              <ul className="list-disc pl-6 space-y-2">
+                {safeItems.map((item, i) => (
+                  <li key={i} className="text-gray-200 leading-relaxed">{item}</li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
           );
         }
-        return <p key={idx}>{text}</p>;
+        
+        return (
+          <motion.p key={idx} {...sectionAnimation} className="text-gray-200 mb-4">
+            {text}
+          </motion.p>
+        );
       });
     } catch (error) {
       console.error('Error rendering sections:', error);
-      return <p className="text-red-500">Error loading content. Please try again later.</p>;
+      return (
+        <div className="text-center py-8">
+          <p className="text-red-400">
+            {isZhHK ? '內容載入錯誤，請稍後再試。' : 'Error loading content. Please try again later.'}
+          </p>
+        </div>
+      );
     }
-  };
+  }, [isZhHK]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-black text-white">
       <Helmet>
         <title>{title} - AI Formula</title>
         <meta name="description" content={excerpt} />
@@ -205,120 +345,160 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
         <link rel="canonical" href={window.location.href} />
       </Helmet>
 
-      <div className="container mx-auto px-4 py-8">
+      {/* Sticky Controls */}
+      <StickyLanguageToggle />
+      <StickyShareButton shareData={shareData} isZhHK={isZhHK} />
+
+      {/* Main Content */}
+      <div className="relative">
+        {/* Header Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative bg-gradient-to-b from-black via-gray-900 to-black"
         >
-          <Link to="/blog">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="mb-4 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+          <div className="container mx-auto px-4 py-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
             >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              {isZhHK ? '返回部落格' : 'Back to Blog'}
-            </Button>
-          </Link>
+              <Link to="/blog">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="mb-6 text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 transition-all duration-300"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  {isZhHK ? '返回部落格' : 'Back to Blog'}
+                </Button>
+              </Link>
+            </motion.div>
+
+            <div className="max-w-4xl mx-auto">
+              <motion.article 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="bg-gradient-to-b from-gray-900/50 to-black/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
+              >
+                {/* Hero Image */}
+                <div className="relative h-[60vh] overflow-hidden">
+                  <motion.img
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    src={post.image}
+                    alt={title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  
+                  {/* Overlay Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.5 }}
+                    >
+                      <Badge 
+                        variant="secondary" 
+                        className="mb-4 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
+                      >
+                        {isZhHK ? post.category : post.categoryEn}
+                      </Badge>
+                      
+                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                        {title}
+                      </h1>
+                      
+                      <p className="text-gray-300 text-xl md:text-2xl max-w-3xl leading-relaxed">
+                        {excerpt}
+                      </p>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Article Meta */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="p-8 border-b border-yellow-400/20"
+                >
+                  <div className="flex flex-wrap items-center gap-8 text-sm">
+                    <div className="flex items-center gap-2 text-yellow-400">
+                      <User className="h-4 w-4" />
+                      <span className="font-medium">{post.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-400">
+                      <Calendar className="h-4 w-4" />
+                      <span>{formatDate(post.publishDate)}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-400">
+                      <Clock className="h-4 w-4" />
+                      <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
+                    </div>
+                    <ArticleViewCounter initialViews={post.views} postId={post.id} />
+                  </div>
+                </motion.div>
+
+                {/* Article Content */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                  className="p-8 md:p-12"
+                >
+                  <div className="prose prose-lg prose-invert max-w-none">
+                    {renderSections(content)}
+                  </div>
+                </motion.div>
+
+                {/* Article Actions */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  className="px-8 md:px-12 pb-8 md:pb-12"
+                >
+                  <Separator className="mb-8 bg-yellow-400/20" />
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div className="flex items-center gap-4">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleBookmark}
+                        className={`flex items-center gap-2 transition-all duration-300 ${
+                          isLiked 
+                            ? 'bg-yellow-400/20 text-yellow-400 border-yellow-400/30' 
+                            : 'text-gray-400 border-gray-600 hover:text-yellow-400 hover:border-yellow-400/50'
+                        }`}
+                      >
+                        <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
+                        {isZhHK ? '收藏' : 'Like'}
+                      </Button>
+                    </div>
+                    <div className="flex items-center gap-2 text-yellow-400">
+                      <Tag className="h-4 w-4" />
+                      <span className="text-sm font-medium">
+                        {isZhHK ? post.category : post.categoryEn}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.article>
+            </div>
+          </div>
         </motion.div>
-
-        {/* 簡化的單欄佈局 */}
-        <div className="max-w-4xl mx-auto">
-          <motion.article 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden"
-          >
-            {/* Hero Image */}
-            <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
-              <img
-                src={post.image}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <Badge variant="secondary" className="mb-3">
-                  {isZhHK ? post.category : post.categoryEn}
-                </Badge>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
-                  {title}
-                </h1>
-                <p className="text-gray-200 text-lg md:text-xl max-w-2xl">
-                  {excerpt}
-                </p>
-              </div>
-            </div>
-
-            {/* Article Meta */}
-            <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
-                <div className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  <span>{post.author}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>{formatDate(post.publishDate)}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
-                </div>
-                <ArticleViewCounter initialViews={post.views} postId={post.id} />
-              </div>
-            </div>
-
-            {/* Article Content */}
-            <div className="p-6 md:p-8">
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-                {renderSections(content)}
-              </div>
-            </div>
-
-            {/* Article Actions */}
-            <div className="px-6 md:px-8 pb-6 md:pb-8">
-              <Separator className="mb-6" />
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleShare}
-                    className="flex items-center gap-2"
-                  >
-                    <Share2 className="h-4 w-4" />
-                    {isZhHK ? '分享' : 'Share'}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleBookmark}
-                    className="flex items-center gap-2"
-                  >
-                    <Bookmark className="h-4 w-4" />
-                    {isZhHK ? '收藏' : 'Bookmark'}
-                  </Button>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-gray-500" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isZhHK ? post.category : post.categoryEn}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </motion.article>
-        </div>
       </div>
     </div>
   );
 };
 
-// Error Boundary for Blog
+// Enhanced Error Boundary for Blog
 class BlogErrorBoundary extends React.Component<
   { children: React.ReactNode },
   { hasError: boolean; error?: Error }
@@ -340,39 +520,47 @@ class BlogErrorBoundary extends React.Component<
     if (this.state.hasError) {
       const errorMessage = this.state.error?.message || 'Unknown error';
       const isViewCountError = errorMessage.includes('add') || errorMessage.includes('ViewCount');
-      const isContextError = errorMessage.includes('undefined') || errorMessage.includes('null');
+      const isHookError = errorMessage.includes('hook') || errorMessage.includes('Hook');
       
       return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
-          <div className="max-w-xl mx-auto py-24 text-center">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <AlertTriangle className="w-8 h-8 text-red-600" />
+        <div className="min-h-screen bg-black text-white flex items-center justify-center">
+          <div className="max-w-xl mx-auto p-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-gray-900 rounded-2xl shadow-2xl border border-red-400/30 p-8"
+            >
+              <div className="w-16 h-16 bg-red-400/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <AlertTriangle className="w-8 h-8 text-red-400" />
               </div>
-              <h1 className="text-2xl font-bold text-red-900 dark:text-red-400 mb-2">
-                {isViewCountError ? 'ViewCount Context Error' : 
-                 isContextError ? 'Missing Context Provider' : 
+              
+              <h1 className="text-2xl font-bold text-red-400 mb-4 text-center">
+                {isHookError ? 'Hook Error' : 
+                 isViewCountError ? 'ViewCount Error' : 
                  'Blog Loading Error'}
               </h1>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                {isViewCountError ? 
+              
+              <p className="text-gray-300 mb-6 text-center leading-relaxed">
+                {isHookError ? 
+                  'There was a React Hook usage error. This usually happens when hooks are called outside of React components.' :
+                  isViewCountError ?
                   'The view counting system encountered an error.' :
-                  isContextError ?
-                  'A required context provider is missing.' :
                   'There was an error loading this blog post.'}
               </p>
+              
               {this.state.error && (
-                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 mb-4">
-                  <p className="text-sm text-red-800 dark:text-red-400 font-medium">Technical Details:</p>
-                  <p className="text-xs text-red-700 dark:text-red-300 mt-1 font-mono break-all">
+                <div className="bg-red-400/10 border border-red-400/30 rounded-lg p-4 mb-6">
+                  <p className="text-sm text-red-400 font-medium mb-2">Technical Details:</p>
+                  <p className="text-xs text-red-300 font-mono break-all leading-relaxed">
                     {errorMessage}
                   </p>
                 </div>
               )}
+              
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button 
                   onClick={() => window.location.reload()} 
-                  className="flex-1"
+                  className="flex-1 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold"
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
                   Reload Page
@@ -380,13 +568,13 @@ class BlogErrorBoundary extends React.Component<
                 <Button 
                   variant="outline" 
                   onClick={() => window.location.href = '/blog'}
-                  className="flex-1"
+                  className="flex-1 border-gray-600 text-gray-300 hover:text-white hover:border-gray-500"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Blog
                 </Button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       );
@@ -396,15 +584,16 @@ class BlogErrorBoundary extends React.Component<
   }
 }
 
+// Main BlogPost Component with proper hook usage
 const BlogPost: React.FC = () => {
   const { language } = useLanguage();
   const { id } = useParams<{ id: string }>();
   const isZhHK = language === 'zh-HK';
   
-  // 正確的hook調用位置 - 在組件頂層
+  // Proper hook call at component top level - no conditional usage
   const { getViewCount } = useSafeViewCount();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Memoized post data
   const post = useMemo(() => {
     try {
       const allPosts = getSortedPostsNewest();
@@ -426,6 +615,7 @@ const BlogPost: React.FC = () => {
     }
   }, [id]);
 
+  // Memoized content data
   const content = useMemo(() => {
     if (!post) return null;
     try {
@@ -440,15 +630,29 @@ const BlogPost: React.FC = () => {
     }
   }, [post]);
 
+  // Scroll to top effect
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [id]);
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
-        <div className="max-w-xl mx-auto py-24 text-center text-red-500 text-xl font-bold">
-          Blog post not found.
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-gray-900 rounded-2xl p-8 max-w-md mx-auto"
+          >
+            <h1 className="text-2xl font-bold text-red-400 mb-4">Blog Not Found</h1>
+            <p className="text-gray-300 mb-6">The requested blog post could not be found.</p>
+            <Link to="/blog">
+              <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Blog
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </div>
     );
@@ -456,9 +660,22 @@ const BlogPost: React.FC = () => {
   
   if (!content) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
-        <div className="max-w-xl mx-auto py-24 text-center text-yellow-500 text-lg font-semibold">
-          Blog content is loading or not yet published. Please try again later.
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-gray-900 rounded-2xl p-8 max-w-md mx-auto"
+          >
+            <h1 className="text-2xl font-bold text-yellow-400 mb-4">Content Loading</h1>
+            <p className="text-gray-300 mb-6">Blog content is loading or not yet published. Please try again later.</p>
+            <Link to="/blog">
+              <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Blog
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </div>
     );
