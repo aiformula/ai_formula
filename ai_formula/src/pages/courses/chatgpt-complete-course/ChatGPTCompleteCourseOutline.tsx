@@ -154,16 +154,7 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
 
   // 可選課程（相關推薦）
   const availableCourses = [
-    {
-      id: "ai-business-automation",
-      title: isZhHK ? "AI商業自動化實戰" : "AI Business Automation Practical",
-      price: "HK$3,999",
-      students: 2500,
-      rating: 4.8,
-      image: "/images/courses/ai-business-course.jpg",
-      category: isZhHK ? "商業應用" : "Business Application",
-      instructor: "Kenneth Wong"
-    }
+    // 已移除 AI 商業自動化課程
   ];
 
   // 最新消息

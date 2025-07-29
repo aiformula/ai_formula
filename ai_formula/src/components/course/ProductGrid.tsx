@@ -42,9 +42,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     }
     
     // Navigate to the appropriate course outline page using React Router
-    if (product.category === 'business-automation') {
-      navigate('/courses/ai-business-automation');
-    } else if (product.category === 'chatgpt-complete-course') {
+    if (product.category === 'chatgpt-complete-course') {
       navigate('/courses/chatgpt-complete-course/outline');
     } else if (product.category === 'prompt-engineering') {
       navigate('/courses/prompt-engineering-outline');

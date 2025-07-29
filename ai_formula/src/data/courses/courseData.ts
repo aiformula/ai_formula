@@ -96,47 +96,6 @@ export const digitalProducts: DigitalProduct[] = [
       "AI 工具整合指南",
       "+4 更多項目"
     ]
-  },
-  {
-    id: 2,
-    title: "AI Business Automation Practice",
-    titleCht: "AI 商業自動化實戰課程",
-    description: "Master practical AI automation techniques to transform your business operations and drive growth through intelligent automation solutions.",
-    descriptionCht: "掌握實用的 AI 自動化技術，通過智能自動化解決方案轉型您的商業營運並推動增長。",
-    duration: "4.2 hours comprehensive training",
-    durationCht: "4.2 小時綜合培訓",
-    downloads: 1247,
-    rating: 4.8,
-    level: "Intermediate",
-    levelCht: "中級",
-    price: "免費",
-    originalPrice: "", // 免費課程不顯示原價
-    image: "🤖",
-    type: "Business Automation",
-    typeCht: "商業自動化",
-    category: "business-automation",
-    newProduct: true,
-    featured: true,
-    bestseller: true,
-    hotSelling: true,
-    includes: [
-      "5 Comprehensive Modules",
-      "Automation Implementation Playbook",
-      "AI Tool Integration Guides",
-      "1-on-1 Strategy Consultation",
-      "Private Community Access",
-      "Monthly Live Q&A Sessions",
-      "Advanced Templates & Scripts"
-    ],
-    includesCht: [
-      "5 個綜合模組",
-      "自動化實施手冊",
-      "AI 工具整合指南",
-      "一對一策略諮詢",
-      "私人社群訪問",
-      "每月實時問答",
-      "高級模板和腳本"
-    ]
   }
 ];
 

@@ -396,12 +396,8 @@ export class CourseManager {
    */
   private async loadCourseData(id: string): Promise<CourseDetail | null> {
     // This would typically load from a database or API
-    // Currently available courses: prompt engineering, AI business automation, and ChatGPT
+    // Currently available courses: ChatGPT
     switch (id) {
-      case 'ai-business-automation':
-        // Import dynamically to avoid circular dependencies
-        const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
-        return aiBusinessAutomationCourse;
       case 'chatgpt-complete-course':
         // Return a basic course structure for ChatGPT course
         return {
@@ -454,9 +450,6 @@ export class CourseManager {
     try {
       const promptCourse = await this.loadCourseData('prompt-engineering-learning');
       if (promptCourse) courses.push(promptCourse);
-      
-      const automationCourse = await this.loadCourseData('ai-business-automation');
-      if (automationCourse) courses.push(automationCourse);
       
       return courses;
     } catch (error) {

@@ -43,7 +43,6 @@ const Footer: React.FC = () => {
       services: {
         title: '服務項目',
         links: [
-          { name: 'AI 商業自動化', href: '/courses/ai-business-automation' },
           { name: '企業顧問服務', href: '/about#consulting' },
           { name: '一對一指導', href: '/about#mentoring' },
           { name: '工作坊培訓', href: '/about#workshops' }
@@ -84,7 +83,6 @@ const Footer: React.FC = () => {
       services: {
         title: 'Our Services',
         links: [
-          { name: 'AI Business Automation', href: '/courses/ai-business-automation' },
           { name: 'Enterprise Consulting', href: '/about#consulting' },
           { name: 'One-on-One Mentoring', href: '/about#mentoring' },
           { name: 'Workshop Training', href: '/about#workshops' }

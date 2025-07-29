@@ -39,21 +39,7 @@ interface CourseRegistry {
  * Course registry with lazy loading configuration
  */
 const courseRegistry: CourseRegistry = {
-  'ai-business-automation': {
-    loader: async () => {
-      const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
-      return aiBusinessAutomationCourse;
-    },
-    summary: {
-      id: 'ai-business-automation',
-      title: {
-        en: 'AI Business Automation Practice',
-        'zh-HK': 'AI 商業自動化實戰課程'
-      },
-      category: 'Business Automation',
-      difficulty: 'Intermediate'
-    }
-  }
+  // 移除了 ai-business-automation 課程
 };
 
 /**

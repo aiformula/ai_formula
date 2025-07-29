@@ -10,10 +10,6 @@ export * from '../../types/courseTypes';
 
 // Course registry for easy access
 export const ALL_COURSES = {
-  'ai-business-automation': async () => {
-    const { aiBusinessAutomationCourse } = await import('./aiBusinessAutomation');
-    return aiBusinessAutomationCourse;
-  },
   'chatgpt-complete-course': async () => {
     // For now, return a placeholder since we have the UI components but need course data structure
     return {
@@ -27,18 +23,6 @@ export const ALL_COURSES = {
 
 // Course metadata
 export const COURSE_METADATA = {
-  'ai-business-automation': {
-    id: 'ai-business-automation',
-    title: {
-      en: 'AI Business Automation Practice',
-      'zh-HK': 'AI 商業自動化實戰課程'
-    },
-    category: 'Business Automation',
-    difficulty: 'Intermediate',
-    estimatedDuration: '4.2 hours',
-    moduleCount: 3,
-    lessonCount: 5
-  },
   'chatgpt-complete-course': {
     id: 'chatgpt-complete-course',
     title: {
