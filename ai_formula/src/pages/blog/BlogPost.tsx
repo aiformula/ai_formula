@@ -162,7 +162,7 @@ const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean
   );
 };
 
-// AI Course Recommendation Component - 未來科技風格設計
+// AI Course Recommendation Component - 紫粉未來科技風格設計
 const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
   const randomCourse = useMemo(() => {
     // 從實際的課程數據中隨機選擇
@@ -173,28 +173,28 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
 
   if (!randomCourse) return null;
 
-  // 課程標籤生成邏輯和霓虹發光顏色
+  // 課程標籤生成邏輯和霓虹發光顏色 - 紫粉主題
   const getCourseTagsContent = (course: any) => {
     const tagConfigs = [];
     if (course.newProduct) tagConfigs.push({ 
       text: isZhHK ? '新品' : 'New', 
-      color: '#28C76F',
-      glowColor: '#28C76F'
+      color: '#A020F0',
+      glowColor: '#A020F0'
     });
     if (course.bestseller) tagConfigs.push({ 
       text: isZhHK ? '暢銷' : 'Best Seller', 
-      color: '#FF9F43',
-      glowColor: '#FF9F43'
+      color: '#FF4EDD',
+      glowColor: '#FF4EDD'
     });
     if (course.featured) tagConfigs.push({ 
       text: isZhHK ? '精選' : 'Featured', 
-      color: '#6C63FF',
-      glowColor: '#6C63FF'
+      color: '#D946EF',
+      glowColor: '#D946EF'
     });
     if (course.hotSelling) tagConfigs.push({ 
       text: isZhHK ? '熱銷' : 'Hot', 
-      color: '#EA5455',
-      glowColor: '#EA5455'
+      color: '#FF69B4',
+      glowColor: '#FF69B4'
     });
     return tagConfigs;
   };
@@ -231,26 +231,26 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
       <motion.div
         whileHover={{ 
           scale: 1.02,
-          boxShadow: '0 8px 20px rgba(0,0,0,0.25), 0 0 30px rgba(108, 99, 255, 0.15)'
+          boxShadow: '0 8px 20px rgba(0,0,0,0.25), 0 0 30px rgba(160, 32, 240, 0.15)'
         }}
         transition={{ duration: 0.3 }}
         onClick={handleCourseClick}
         className="cursor-pointer rounded-xl overflow-hidden relative"
         style={{ 
-          background: 'linear-gradient(135deg, #1E1E2F 0%, #0A0A12 100%)',
-          border: '1px solid rgba(108, 99, 255, 0.2)'
+          background: 'linear-gradient(135deg, #2A1A3A 0%, #1A0A2A 100%)',
+          border: '1px solid rgba(160, 32, 240, 0.2)'
         }}
       >
-        {/* 動畫背景粒子效果 */}
+        {/* 動畫背景粒子效果 - 紫粉主題 */}
         <div className="absolute inset-0 opacity-10">
           <div 
             className="absolute inset-0 animate-float"
             style={{
               backgroundImage: `
-                radial-gradient(circle at 20% 30%, rgba(108, 99, 255, 0.3) 1px, transparent 1px),
-                radial-gradient(circle at 60% 70%, rgba(0, 212, 255, 0.3) 1px, transparent 1px),
-                radial-gradient(circle at 80% 20%, rgba(40, 255, 191, 0.3) 1px, transparent 1px),
-                linear-gradient(45deg, transparent 24%, rgba(108, 99, 255, 0.1) 25%, rgba(108, 99, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.1) 75%, rgba(0, 212, 255, 0.1) 76%, transparent 77%)
+                radial-gradient(circle at 20% 30%, rgba(160, 32, 240, 0.3) 1px, transparent 1px),
+                radial-gradient(circle at 60% 70%, rgba(255, 78, 221, 0.3) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(217, 70, 239, 0.3) 1px, transparent 1px),
+                linear-gradient(45deg, transparent 24%, rgba(160, 32, 240, 0.1) 25%, rgba(160, 32, 240, 0.1) 26%, transparent 27%, transparent 74%, rgba(255, 78, 221, 0.1) 75%, rgba(255, 78, 221, 0.1) 76%, transparent 77%)
               `,
               backgroundSize: '50px 50px, 80px 80px, 60px 60px, 20px 20px'
             }}
@@ -258,7 +258,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
         </div>
 
         <div className="relative p-6 z-10">
-          {/* 課程標籤 - 霓虹發光效果 */}
+          {/* 課程標籤 - 紫粉霓虹發光效果 */}
           {courseTags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-4 justify-center">
               {courseTags.map((tag, index) => (
@@ -279,11 +279,11 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             </div>
           )}
           
-          {/* 課程名稱 - 漸變文字 */}
+          {/* 課程名稱 - 紫粉漸變文字 */}
           <h4 
             className="font-bold mb-6 text-lg leading-tight text-center"
             style={{
-              background: 'linear-gradient(135deg, #6C63FF 0%, #00D4FF 100%)',
+              background: 'linear-gradient(135deg, #A020F0 0%, #FF4EDD 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
@@ -292,7 +292,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             {courseTitle}
           </h4>
           
-          {/* 課程詳細資訊 - 向量圖示 + 霓虹發光 */}
+          {/* 課程詳細資訊 - 向量圖示 + 紫粉霓虹發光 */}
           <div className="space-y-4 mb-6">
             {/* 時長 */}
             <div className="flex items-center justify-center gap-3 text-sm">
@@ -301,10 +301,10 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                 className="w-5 h-5 flex items-center justify-center"
               >
                 <Clock 
-                  className="w-4 h-4 text-blue-400" 
+                  className="w-4 h-4 text-purple-400" 
                   style={{ 
-                    filter: 'drop-shadow(0 0 6px #3B82F6)',
-                    stroke: '#60A5FA'
+                    filter: 'drop-shadow(0 0 6px #A020F0)',
+                    stroke: '#A855F7'
                   }} 
                 />
               </motion.div>
@@ -320,10 +320,10 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                 className="w-5 h-5 flex items-center justify-center"
               >
                 <User 
-                  className="w-4 h-4 text-purple-400" 
+                  className="w-4 h-4 text-pink-400" 
                   style={{ 
-                    filter: 'drop-shadow(0 0 6px #A855F7)',
-                    stroke: '#C084FC'
+                    filter: 'drop-shadow(0 0 6px #FF4EDD)',
+                    stroke: '#F472B6'
                   }} 
                 />
               </motion.div>
@@ -339,10 +339,10 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                 className="w-5 h-5 flex items-center justify-center"
               >
                 <Star 
-                  className="w-4 h-4 text-yellow-400 fill-current" 
+                  className="w-4 h-4 text-fuchsia-400 fill-current" 
                   style={{ 
-                    filter: 'drop-shadow(0 0 6px #F59E0B)',
-                    stroke: '#FBBF24'
+                    filter: 'drop-shadow(0 0 6px #D946EF)',
+                    stroke: '#E879F9'
                   }} 
                 />
               </motion.div>
@@ -351,7 +351,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
               </span>
             </div>
             
-            {/* 價格 */}
+            {/* 價格 - 保持霓虹綠 */}
             <div className="flex items-center justify-center gap-3 text-sm">
               <motion.div 
                 whileHover={{ scale: 1.1 }}
@@ -391,17 +391,17 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             </div>
           </div>
           
-          {/* ⚡ 開始課程按鈕 - 漸變 + 發光效果 */}
+          {/* ⚡ 開始課程按鈕 - 紫粉漸變 + 發光效果 */}
           <motion.button
             onClick={handleCourseClick}
             className="w-full py-3 rounded-lg text-white font-bold text-sm transition-all duration-300 border relative overflow-hidden"
             style={{ 
-              background: 'linear-gradient(135deg, #6C63FF 0%, #00D4FF 100%)',
+              background: 'linear-gradient(135deg, #A020F0 0%, #FF4EDD 100%)',
               borderColor: 'transparent'
             }}
             whileHover={{ 
               scale: 1.02,
-              boxShadow: '0 0 20px rgba(108, 99, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3)',
+              boxShadow: '0 0 20px rgba(160, 32, 240, 0.5), 0 0 40px rgba(255, 78, 221, 0.3)',
               filter: 'brightness(1.1)'
             }}
             whileTap={{ scale: 0.98 }}
