@@ -162,7 +162,7 @@ const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean
   );
 };
 
-// AI Course Recommendation Component - 使用實際課程數據
+// AI Course Recommendation Component - 使用實際課程數據，全新設計
 const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
   const randomCourse = useMemo(() => {
     // 從實際的課程數據中隨機選擇
@@ -173,14 +173,26 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
 
   if (!randomCourse) return null;
 
-  // 課程標籤生成邏輯
+  // 課程標籤生成邏輯和顏色映射
   const getCourseTagsContent = (course: any) => {
-    const tags = [];
-    if (course.newProduct) tags.push(isZhHK ? '新品' : 'New');
-    if (course.bestseller) tags.push(isZhHK ? '暢銷' : 'Best Seller');
-    if (course.featured) tags.push(isZhHK ? '精選' : 'Featured');
-    if (course.hotSelling) tags.push(isZhHK ? '熱銷' : 'Hot');
-    return tags;
+    const tagConfigs = [];
+    if (course.newProduct) tagConfigs.push({ 
+      text: isZhHK ? '新品' : 'New', 
+      color: '#28C76F' 
+    });
+    if (course.bestseller) tagConfigs.push({ 
+      text: isZhHK ? '暢銷' : 'Best Seller', 
+      color: '#FF9F43' 
+    });
+    if (course.featured) tagConfigs.push({ 
+      text: isZhHK ? '精選' : 'Featured', 
+      color: '#00CFE8' 
+    });
+    if (course.hotSelling) tagConfigs.push({ 
+      text: isZhHK ? '熱銷' : 'Hot', 
+      color: '#EA5455' 
+    });
+    return tagConfigs;
   };
 
   const courseTags = getCourseTagsContent(randomCourse);
@@ -189,6 +201,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
   const courseLevel = isZhHK ? randomCourse.levelCht : randomCourse.level;
   const coursePrice = randomCourse.price;
   const courseRating = randomCourse.rating;
+  const isFree = coursePrice === '免費' || coursePrice === 'Free';
 
   // 導航到課程頁面
   const handleCourseClick = () => {
@@ -203,95 +216,120 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.4 }}
-      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6"
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6 mb-6"
     >
       <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
         <BookOpen className="h-5 w-5" />
         {isZhHK ? 'AI 課程推薦' : 'AI Course Recommendation'}
       </h3>
       
-      <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group overflow-hidden cursor-pointer">
-        <CardContent className="p-5">
+      <motion.div
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: '0 8px 20px rgba(0,0,0,0.25)'
+        }}
+        transition={{ duration: 0.2 }}
+        onClick={handleCourseClick}
+        className="cursor-pointer rounded-xl overflow-hidden"
+        style={{ backgroundColor: '#1C1C1E' }}
+      >
+        <div className="p-6">
           {/* 課程標籤 */}
           {courseTags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-3">
+            <div className="flex flex-wrap gap-2 mb-4 justify-center">
               {courseTags.map((tag, index) => (
-                <Badge 
+                <motion.span
                   key={index}
-                  variant="secondary" 
-                  className="bg-yellow-400/10 text-yellow-400 border-yellow-400/30 text-xs px-2 py-1"
+                  whileHover={{ scale: 1.1 }}
+                  className="px-3 py-1 rounded-full text-xs font-medium text-white"
+                  style={{ backgroundColor: tag.color }}
                 >
-                  {tag}
-                </Badge>
+                  {tag.text}
+                </motion.span>
               ))}
             </div>
           )}
           
           {/* 課程名稱 */}
-          <h4 className="font-bold text-white mb-4 text-lg leading-tight group-hover:text-yellow-300 transition-colors">
+          <h4 className="font-bold text-white mb-6 text-lg leading-tight text-center">
             {courseTitle}
           </h4>
           
-          {/* 課程詳細資訊 */}
-          <div className="space-y-3 mb-4">
+          {/* 課程詳細資訊 - 水平排列 */}
+          <div className="space-y-4 mb-6">
             {/* 時長 */}
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-400 flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                {isZhHK ? '課程時長' : 'Duration'}
+            <div className="flex items-center justify-center gap-3 text-sm">
+              <motion.span 
+                whileHover={{ scale: 1.1 }}
+                className="text-xl"
+              >
+                🕒
+              </motion.span>
+              <span className="text-gray-300 min-w-0 flex-1 text-center">
+                {courseDuration}
               </span>
-              <span className="text-white font-medium">{courseDuration}</span>
             </div>
             
             {/* 難度 */}
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-400 flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                {isZhHK ? '課程難度' : 'Level'}
+            <div className="flex items-center justify-center gap-3 text-sm">
+              <motion.span 
+                whileHover={{ scale: 1.1 }}
+                className="text-xl"
+              >
+                👤
+              </motion.span>
+              <span className="text-gray-300 min-w-0 flex-1 text-center">
+                {courseLevel}
               </span>
-              <span className="text-white font-medium">{courseLevel}</span>
             </div>
             
             {/* 評分 */}
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-400 flex items-center gap-2">
-                <Star className="h-4 w-4" />
-                {isZhHK ? '課程評分' : 'Rating'}
+            <div className="flex items-center justify-center gap-3 text-sm">
+              <motion.span 
+                whileHover={{ scale: 1.1 }}
+                className="text-xl"
+              >
+                ⭐
+              </motion.span>
+              <span className="text-gray-300 min-w-0 flex-1 text-center">
+                {courseRating} / 5.0
               </span>
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span className="text-white font-medium">{courseRating}</span>
-              </div>
             </div>
             
             {/* 價格 */}
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-400">
-                {isZhHK ? '課程價格' : 'Price'}
+            <div className="flex items-center justify-center gap-3 text-sm">
+              <motion.span 
+                whileHover={{ scale: 1.1 }}
+                className="text-xl"
+              >
+                💰
+              </motion.span>
+              <span 
+                className={`min-w-0 flex-1 text-center font-bold text-lg ${
+                  isFree ? 'text-green-400' : 'text-yellow-400'
+                }`}
+              >
+                {coursePrice}
               </span>
-              <div className="flex items-center gap-2">
-                <span className="text-yellow-400 font-bold text-lg">{coursePrice}</span>
-                {randomCourse.originalPrice && (
-                  <span className="text-gray-500 line-through text-sm">{randomCourse.originalPrice}</span>
-                )}
-              </div>
             </div>
           </div>
           
-          {/* 分隔線 */}
-          <Separator className="my-4 bg-gray-700/50" />
-          
-          {/* 立即購買按鈕 */}
-          <Button 
+          {/* 開始課程按鈕 */}
+          <motion.button
             onClick={handleCourseClick}
-            className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm py-2.5"
+            className="w-full py-3 rounded-lg text-black font-semibold text-sm transition-all duration-200"
+            style={{ backgroundColor: '#F6C90E' }}
+            whileHover={{ 
+              backgroundColor: '#E0B80D',
+              boxShadow: '0 4px 12px rgba(246, 201, 14, 0.3)'
+            }}
+            whileTap={{ scale: 0.98 }}
           >
-            {isZhHK ? '立即購買' : 'Buy Now'}
-            <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </CardContent>
-      </Card>
+            {isZhHK ? '開始課程' : 'Start Course'}
+          </motion.button>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -321,8 +359,8 @@ const SingleRelatedArticle: React.FC<{ currentPost: BlogPostType; isZhHK: boolea
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6 mb-6"
+      transition={{ duration: 0.6, delay: 0.4 }}
+      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6"
     >
       <h3 className="text-xl font-bold text-yellow-400 mb-4">
         {isZhHK ? '其他文章' : 'Other Articles'}
@@ -391,15 +429,15 @@ const SingleRelatedArticle: React.FC<{ currentPost: BlogPostType; isZhHK: boolea
   );
 };
 
-// Combined Sidebar Component - 調整順序：其他文章在上，AI課程推薦在下
+// Combined Sidebar Component - AI課程推薦在上，其他文章在下
 const BlogSidebar: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
   return (
     <div className="sticky top-8 space-y-6">
-      {/* 其他文章 */}
-      <SingleRelatedArticle currentPost={currentPost} isZhHK={isZhHK} />
-      
       {/* AI 課程推薦 */}
       <CourseRecommendation isZhHK={isZhHK} />
+      
+      {/* 其他文章 */}
+      <SingleRelatedArticle currentPost={currentPost} isZhHK={isZhHK} />
     </div>
   );
 };
