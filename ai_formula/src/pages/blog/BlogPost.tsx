@@ -700,7 +700,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
       <StickyShareButton shareData={shareData} isZhHK={isZhHK} />
 
       {/* Main Content */}
-      <div className="relative">
+      <div className="relative page-content">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
