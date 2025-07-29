@@ -92,29 +92,6 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   );
 };
 
-// Sticky Language Toggle Component
-const StickyLanguageToggle: React.FC = () => {
-  const { language, setLanguage } = useLanguage();
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="fixed top-24 right-6 z-50 bg-black/90 backdrop-blur-sm border border-yellow-400/30 rounded-full p-2 shadow-2xl"
-    >
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => setLanguage(language === 'zh-HK' ? 'en-GB' : 'zh-HK')}
-        className="text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 border-none rounded-full"
-      >
-        <Globe className="h-4 w-4 mr-1" />
-        {language === 'zh-HK' ? 'EN' : '中'}
-      </Button>
-    </motion.div>
-  );
-};
-
 // Sticky Share Button Component
 const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean }> = ({ shareData, isZhHK }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -180,7 +157,7 @@ const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean
   );
 };
 
-// Modern BlogPost Page Component with Black & Yellow Theme
+// Modern BlogPost Page Component with Black Theme
 const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) => {
   const navigate = useNavigate();
   const [shareData, setShareData] = useState<ShareData | null>(null);
@@ -345,20 +322,19 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
         <link rel="canonical" href={window.location.href} />
       </Helmet>
 
-      {/* Sticky Controls */}
-      <StickyLanguageToggle />
+      {/* Sticky Share Button Only */}
       <StickyShareButton shareData={shareData} isZhHK={isZhHK} />
 
       {/* Main Content */}
       <div className="relative">
-        {/* Header Section */}
+        {/* Header Section with Pure Black Background */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="relative bg-gradient-to-b from-black via-gray-900 to-black"
+          className="relative bg-black"
         >
-          <div className="container mx-auto px-4 py-8">
+          <div className="container mx-auto px-6 py-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -377,12 +353,13 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
               </Link>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto">
+            {/* Wider Content Area with Reduced Margins */}
+            <div className="max-w-6xl mx-auto">
               <motion.article 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="bg-gradient-to-b from-gray-900/50 to-black/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
+                className="bg-gray-900/30 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
               >
                 {/* Hero Image */}
                 <div className="relative h-[60vh] overflow-hidden">
@@ -414,7 +391,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                         {title}
                       </h1>
                       
-                      <p className="text-gray-300 text-xl md:text-2xl max-w-3xl leading-relaxed">
+                      <p className="text-gray-300 text-xl md:text-2xl max-w-4xl leading-relaxed">
                         {excerpt}
                       </p>
                     </motion.div>
@@ -426,7 +403,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.7 }}
-                  className="p-8 border-b border-yellow-400/20"
+                  className="p-8 md:p-12 border-b border-yellow-400/20"
                 >
                   <div className="flex flex-wrap items-center gap-8 text-sm">
                     <div className="flex items-center gap-2 text-yellow-400">
@@ -445,12 +422,12 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                   </div>
                 </motion.div>
 
-                {/* Article Content */}
+                {/* Article Content with Wider Layout */}
                 <motion.div 
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.9 }}
-                  className="p-8 md:p-12"
+                  className="p-8 md:p-12 lg:p-16"
                 >
                   <div className="prose prose-lg prose-invert max-w-none">
                     {renderSections(content)}
@@ -462,7 +439,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.1 }}
-                  className="px-8 md:px-12 pb-8 md:pb-12"
+                  className="px-8 md:px-12 lg:px-16 pb-8 md:pb-12"
                 >
                   <Separator className="mb-8 bg-yellow-400/20" />
                   <div className="flex items-center justify-between flex-wrap gap-4">
