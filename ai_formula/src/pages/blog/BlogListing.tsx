@@ -369,36 +369,6 @@ const BlogListing = () => {
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            <h3 className="text-3xl font-bold mb-4 text-white">
-              {isZhTW ? '訂閱AI Formula電子報' : 'Subscribe to AI Formula Newsletter'}
-            </h3>
-            <p className="text-gray-200 mb-8">
-              {isZhTW 
-                ? '獲得AI Formula最新的專業見解、實用教學和香港商業案例分析，助力您的AI轉型之路。'
-                : 'Get AI Formula\'s latest professional insights, practical tutorials and Hong Kong business case studies to accelerate your AI transformation journey.'
-              }
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input
-                placeholder={isZhTW ? "輸入您的電子郵件地址" : "Enter your email address"}
-                className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-300 focus:border-blue-400"
-              />
-              <Button className="bg-white text-black hover:bg-gray-100 font-semibold hover:shadow-lg hover:shadow-white/25 transition-all duration-300">
-                {isZhTW ? '訂閱' : 'Subscribe'}
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* 移除這裡的 Footer，因為 App.tsx 已經有全局 Footer */}
     </div>
   );
