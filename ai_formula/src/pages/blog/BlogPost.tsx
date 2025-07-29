@@ -22,7 +22,7 @@ interface ArticleViewCounterProps {
 interface BlogPostPageProps {
   post: BlogPostType;
   isZhHK: boolean;
-  content?: any; // ArticleContent 型別
+  content?: any;
 }
 
 interface ShareData {
@@ -41,7 +41,7 @@ const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
 // Components
 const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, postId }) => {
   const { language } = useLanguage();
-  const { getViewCount, incrementView } = useSafeViewCount(); // 使用安全的hook
+  const { getViewCount, incrementView } = useSafeViewCount();
   const [isAnimating, setIsAnimating] = useState(false);
   
   const currentViews = getViewCount(postId);
@@ -49,7 +49,6 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   const displayViews = (baseViews + currentViews).toString();
   
   useEffect(() => {
-    // 只在客戶端執行
     if (typeof window !== 'undefined') {
       incrementView(postId);
       setIsAnimating(true);
@@ -73,7 +72,7 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   );
 };
 
-// BlogPostPage: 修正內容渲染，支援多 section
+// Simple BlogPost Page Component
 const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) => {
   const navigate = useNavigate();
   const [shareData, setShareData] = useState<ShareData | null>(null);
@@ -92,14 +91,12 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
         console.error('Error sharing:', error);
       }
     } else {
-      // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(shareData.url);
       alert(isZhHK ? '連結已複製到剪貼板' : 'Link copied to clipboard');
     }
   }, [shareData, isZhHK]);
 
   const handleBookmark = useCallback(() => {
-    // Future Enhancement: Implement bookmark functionality with user accounts
     console.log('Bookmark functionality will be implemented with user accounts');
   }, []);
 
@@ -114,7 +111,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
   const title = isZhHK ? post.title : post.titleEn;
   const excerpt = isZhHK ? post.excerpt : post.excerptEn;
 
-  // 渲染多 section 內容
+  // 渲染內容
   const renderSections = (contentObj) => {
     if (!contentObj || !contentObj.sections || !Array.isArray(contentObj.sections)) {
       return <p className="text-gray-500 italic">Content not available.</p>;
@@ -227,176 +224,101 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
           </Link>
         </motion.div>
 
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            <motion.article 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden"
-            >
-              {/* Hero Image */}
-              <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <Badge variant="secondary" className="mb-3">
+        {/* 簡化的單欄佈局 */}
+        <div className="max-w-4xl mx-auto">
+          <motion.article 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden"
+          >
+            {/* Hero Image */}
+            <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+              <img
+                src={post.image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <Badge variant="secondary" className="mb-3">
+                  {isZhHK ? post.category : post.categoryEn}
+                </Badge>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+                  {title}
+                </h1>
+                <p className="text-gray-200 text-lg md:text-xl max-w-2xl">
+                  {excerpt}
+                </p>
+              </div>
+            </div>
+
+            {/* Article Meta */}
+            <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  <span>{post.author}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>{formatDate(post.publishDate)}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
+                </div>
+                <ArticleViewCounter initialViews={post.views} postId={post.id} />
+              </div>
+            </div>
+
+            {/* Article Content */}
+            <div className="p-6 md:p-8">
+              <div className="prose prose-lg dark:prose-invert max-w-none">
+                {renderSections(content)}
+              </div>
+            </div>
+
+            {/* Article Actions */}
+            <div className="px-6 md:px-8 pb-6 md:pb-8">
+              <Separator className="mb-6" />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleShare}
+                    className="flex items-center gap-2"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    {isZhHK ? '分享' : 'Share'}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleBookmark}
+                    className="flex items-center gap-2"
+                  >
+                    <Bookmark className="h-4 w-4" />
+                    {isZhHK ? '收藏' : 'Bookmark'}
+                  </Button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Tag className="h-4 w-4 text-gray-500" />
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
                     {isZhHK ? post.category : post.categoryEn}
-                  </Badge>
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
-                    {title}
-                  </h1>
-                  <p className="text-gray-200 text-lg md:text-xl max-w-2xl">
-                    {excerpt}
-                  </p>
+                  </span>
                 </div>
               </div>
-
-              {/* Article Meta */}
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
-                  <div className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
-                    <span>{post.author}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>{formatDate(post.publishDate)}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
-                  </div>
-                  <ArticleViewCounter initialViews={post.views} postId={post.id} />
-                </div>
-              </div>
-
-              {/* Article Content */}
-              <div className="p-6 md:p-8">
-                <div className="prose prose-lg dark:prose-invert max-w-none">
-                  {renderSections(content)}
-                </div>
-              </div>
-
-              {/* Article Actions */}
-              <div className="px-6 md:px-8 pb-6 md:pb-8">
-                <Separator className="mb-6" />
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleShare}
-                      className="flex items-center gap-2"
-                    >
-                      <Share2 className="h-4 w-4" />
-                      {isZhHK ? '分享' : 'Share'}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleBookmark}
-                      className="flex items-center gap-2"
-                    >
-                      <Bookmark className="h-4 w-4" />
-                      {isZhHK ? '收藏' : 'Bookmark'}
-                    </Button>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Tag className="h-4 w-4 text-gray-500" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
-                      {isZhHK ? post.category : post.categoryEn}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="sticky top-8 space-y-6"
-            >
-              {/* Author Info */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-3">
-                    {isZhHK ? '關於作者' : 'About Author'}
-                  </h3>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                      {post.author.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="font-medium">{post.author}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {isZhHK ? 'AI 專家' : 'AI Expert'}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {isZhHK 
-                      ? '專注於人工智能技術研究與實用應用，致力於分享前沿的AI知識與見解。'
-                      : 'Focused on AI research and practical applications, dedicated to sharing cutting-edge AI knowledge and insights.'
-                    }
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Related Posts */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-3">
-                    {isZhHK ? '相關文章' : 'Related Posts'}
-                  </h3>
-                  <div className="space-y-3">
-                    {getSortedPostsNewest()
-                      .filter(p => p.id !== post.id && p.category === post.category)
-                      .slice(0, 3)
-                      .map((relatedPost) => (
-                        <Link
-                          key={relatedPost.id}
-                          to={`/blog/${relatedPost.id}`}
-                          className="block group"
-                        >
-                          <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <img
-                              src={relatedPost.image}
-                              alt={isZhHK ? relatedPost.title : relatedPost.titleEn}
-                              className="w-16 h-16 object-cover rounded-lg"
-                            />
-                            <div className="flex-1">
-                              <h4 className="font-medium text-sm mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                {isZhHK ? relatedPost.title : relatedPost.titleEn}
-                              </h4>
-                              <p className="text-xs text-gray-600 dark:text-gray-400">
-                                {formatDate(relatedPost.publishDate)}
-                              </p>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
+            </div>
+          </motion.article>
         </div>
       </div>
     </div>
   );
 };
 
-// 專門為Blog頁面的ErrorBoundary
+// Error Boundary for Blog
 class BlogErrorBoundary extends React.Component<
   { children: React.ReactNode },
   { hasError: boolean; error?: Error }
@@ -434,28 +356,17 @@ class BlogErrorBoundary extends React.Component<
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
                 {isViewCountError ? 
-                  'The view counting system encountered an error. This is usually due to missing ViewCountProvider.' :
+                  'The view counting system encountered an error.' :
                   isContextError ?
-                  'A required context provider is missing from the component tree.' :
+                  'A required context provider is missing.' :
                   'There was an error loading this blog post.'}
               </p>
-              <ul className="text-left text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-1">
-                <li>• {isViewCountError ? 'Missing ViewCountContext (most likely)' : 'Missing ViewCountContext'}</li>
-                <li>• {isContextError ? 'Provider not wrapping the route (likely)' : 'Invalid blog post data'}</li>
-                <li>• Content parsing errors</li>
-                <li>• localStorage access issues (SSR)</li>
-              </ul>
               {this.state.error && (
                 <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 mb-4">
                   <p className="text-sm text-red-800 dark:text-red-400 font-medium">Technical Details:</p>
                   <p className="text-xs text-red-700 dark:text-red-300 mt-1 font-mono break-all">
                     {errorMessage}
                   </p>
-                  {isViewCountError && (
-                    <p className="text-xs text-red-600 dark:text-red-400 mt-2">
-                      → This error suggests ViewCountProvider is not properly wrapping the blog route.
-                    </p>
-                  )}
                 </div>
               )}
               <div className="flex flex-col sm:flex-row gap-3">
@@ -515,7 +426,6 @@ const BlogPost: React.FC = () => {
     }
   }, [id]);
 
-  // 取得對應內容
   const content = useMemo(() => {
     if (!post) return null;
     try {
@@ -530,7 +440,6 @@ const BlogPost: React.FC = () => {
     }
   }, [post]);
 
-  // Scroll to top when post changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -555,7 +464,6 @@ const BlogPost: React.FC = () => {
     );
   }
 
-  // 傳遞 content 給 BlogPostPage（如需渲染內容）
   return (
     <BlogErrorBoundary>
       <BlogPostPage post={post} isZhHK={isZhHK} content={content} />
