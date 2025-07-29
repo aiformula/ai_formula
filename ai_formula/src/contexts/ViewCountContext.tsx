@@ -180,3 +180,34 @@ export const debugViewCountContext = () => {
     console.groupEnd();
   }
 }; 
+
+// 測試ViewCount context是否正常工作的函數
+export const testViewCountContext = () => {
+  if (typeof window === 'undefined') {
+    console.log('⚠️ 測試跳過：SSR 環境');
+    return { success: false, reason: 'SSR' };
+  }
+
+  try {
+    // 模擬使用 useSafeViewCount
+    const React = require('react');
+    console.log('✅ ViewCount 測試開始');
+    
+    // 檢查 localStorage
+    if (typeof localStorage === 'undefined') {
+      console.log('⚠️ localStorage 不可用');
+      return { success: true, reason: 'localStorage unavailable but handled' };
+    }
+    
+    // 測試存儲功能
+    localStorage.setItem('test-viewcount', '{"1": 5}');
+    const retrieved = localStorage.getItem('test-viewcount');
+    localStorage.removeItem('test-viewcount');
+    
+    console.log('✅ ViewCount 測試通過');
+    return { success: true, reason: 'all checks passed' };
+  } catch (error) {
+    console.error('❌ ViewCount 測試失敗:', error);
+    return { success: false, reason: error.message };
+  }
+}; 

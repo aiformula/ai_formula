@@ -7,7 +7,7 @@ import { ArrowRight, Calendar, Clock, User, Search, Tag, TrendingUp, Eye, Rocket
 import Navigation from "@/components/Navigation";
 // 移除 Footer 導入，因為 App.tsx 已經有全局 Footer
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useViewCount } from "@/contexts/ViewCountContext";
+import { useSafeViewCount } from "@/contexts/ViewCountContext"; // 改為安全版本
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getFeaturedPosts, getRecentPosts, getSortedPostsNewest } from "@/data/blog/blogPosts";
@@ -45,14 +45,16 @@ const getRandomHoverColor = () => {
 
 // 全局瀏覽計數器組件
 const GlobalViewCounter = ({ postId, initialViews }: { postId: number, initialViews: string }) => {
-  const { getViewCount } = useViewCount();
-  const currentViews = getViewCount(postId, initialViews);
-
+  const { getViewCount } = useSafeViewCount();
+  const baseViews = parseInt(initialViews) || 0;
+  const additionalViews = getViewCount(postId);
+  const totalViews = baseViews + additionalViews;
+  
   return (
-    <Badge variant="outline" className="text-xs border-gray-400 text-gray-200">
-      <Eye className="h-3 w-3 mr-1" />
-      {currentViews}
-    </Badge>
+    <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400">
+      <Eye className="h-3 w-3" />
+      <span className="text-xs font-medium">{totalViews.toString()}</span>
+    </div>
   );
 };
 
