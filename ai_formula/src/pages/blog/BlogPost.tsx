@@ -15,7 +15,8 @@ import {
   Globe,
   Copy,
   ExternalLink,
-  Heart
+  Heart,
+  ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -152,6 +153,101 @@ const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+};
+
+// Related Articles Sidebar Component
+const RelatedArticlesSidebar: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
+  const relatedPosts = useMemo(() => {
+    try {
+      const allPosts = getSortedPostsNewest();
+      return allPosts
+        .filter(post => post.id !== currentPost.id)
+        .slice(0, 5); // 顯示最多5篇其他文章
+    } catch (error) {
+      console.error('Error getting related posts:', error);
+      return [];
+    }
+  }, [currentPost.id]);
+
+  if (relatedPosts.length === 0) {
+    return null;
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      className="sticky top-8 space-y-6"
+    >
+      {/* 其他文章標題 */}
+      <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6">
+        <h3 className="text-2xl font-bold text-yellow-400 mb-6">
+          {isZhHK ? '其他文章' : 'Other Articles'}
+        </h3>
+        
+        <div className="space-y-4">
+          {relatedPosts.map((post, index) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+            >
+              <Link to={`/blog/${post.id}`}>
+                <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group">
+                  <CardContent className="p-4">
+                    {/* 分類標籤 */}
+                    <Badge 
+                      variant="secondary" 
+                      className="mb-3 bg-yellow-400/10 text-yellow-400 border-yellow-400/30 text-xs"
+                    >
+                      {isZhHK ? post.category : post.categoryEn}
+                    </Badge>
+                    
+                    {/* 文章標題 */}
+                    <h4 className="font-semibold text-white mb-2 line-clamp-2 leading-tight group-hover:text-yellow-300 transition-colors">
+                      {isZhHK ? post.title : post.titleEn}
+                    </h4>
+                    
+                    {/* 文章摘要 */}
+                    <p className="text-gray-400 text-sm mb-3 line-clamp-2 leading-relaxed">
+                      {isZhHK ? post.excerpt : post.excerptEn}
+                    </p>
+                    
+                    {/* 文章資訊 */}
+                    <div className="flex items-center justify-between text-xs text-gray-500">
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        <span>{post.readTime} {isZhHK ? '分鐘' : 'min'}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-yellow-400/70 group-hover:text-yellow-400 transition-colors">
+                        <span>{isZhHK ? '閱讀更多' : 'Read more'}</span>
+                        <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+        
+        {/* 查看更多按鈕 */}
+        <div className="mt-6 pt-4 border-t border-gray-700/50">
+          <Link to="/blog">
+            <Button 
+              variant="outline" 
+              className="w-full text-yellow-400 border-yellow-400/50 hover:bg-yellow-400/10 hover:border-yellow-400 transition-all duration-300"
+            >
+              {isZhHK ? '查看所有文章' : 'View All Articles'}
+              <ChevronRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </motion.div>
   );
@@ -353,120 +449,130 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
               </Link>
             </motion.div>
 
-            {/* Wider Content Area with Reduced Margins */}
-            <div className="max-w-6xl mx-auto">
-              <motion.article 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="bg-gray-900/30 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
-              >
-                {/* Hero Image */}
-                <div className="relative h-[60vh] overflow-hidden">
-                  <motion.img
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    src={post.image}
-                    alt={title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  
-                  {/* Overlay Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                    <motion.div
-                      initial={{ opacity: 0, y: 50 }}
+            {/* Content with Sidebar Layout */}
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-12 gap-8">
+                {/* Main Article Content */}
+                <div className="lg:col-span-8">
+                  <motion.article 
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    className="bg-gray-900/30 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
+                  >
+                    {/* Hero Image */}
+                    <div className="relative h-[60vh] overflow-hidden">
+                      <motion.img
+                        initial={{ scale: 1.1 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        src={post.image}
+                        alt={title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                      
+                      {/* Overlay Content */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                        <motion.div
+                          initial={{ opacity: 0, y: 50 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: 0.5 }}
+                        >
+                          <Badge 
+                            variant="secondary" 
+                            className="mb-4 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
+                          >
+                            {isZhHK ? post.category : post.categoryEn}
+                          </Badge>
+                          
+                          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                            {title}
+                          </h1>
+                          
+                          <p className="text-gray-300 text-xl md:text-2xl max-w-4xl leading-relaxed">
+                            {excerpt}
+                          </p>
+                        </motion.div>
+                      </div>
+                    </div>
+
+                    {/* Article Meta */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
+                      transition={{ duration: 0.6, delay: 0.7 }}
+                      className="p-8 md:p-12 border-b border-yellow-400/20"
                     >
-                      <Badge 
-                        variant="secondary" 
-                        className="mb-4 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
-                      >
-                        {isZhHK ? post.category : post.categoryEn}
-                      </Badge>
-                      
-                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                        {title}
-                      </h1>
-                      
-                      <p className="text-gray-300 text-xl md:text-2xl max-w-4xl leading-relaxed">
-                        {excerpt}
-                      </p>
+                      <div className="flex flex-wrap items-center gap-8 text-sm">
+                        <div className="flex items-center gap-2 text-yellow-400">
+                          <User className="h-4 w-4" />
+                          <span className="font-medium">{post.author}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-400">
+                          <Calendar className="h-4 w-4" />
+                          <span>{formatDate(post.publishDate)}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-400">
+                          <Clock className="h-4 w-4" />
+                          <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
+                        </div>
+                        <ArticleViewCounter initialViews={post.views} postId={post.id} />
+                      </div>
                     </motion.div>
-                  </div>
+
+                    {/* Article Content */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.9 }}
+                      className="p-8 md:p-12 lg:p-16"
+                    >
+                      <div className="prose prose-lg prose-invert max-w-none">
+                        {renderSections(content)}
+                      </div>
+                    </motion.div>
+
+                    {/* Article Actions */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 1.1 }}
+                      className="px-8 md:px-12 lg:px-16 pb-8 md:pb-12"
+                    >
+                      <Separator className="mb-8 bg-yellow-400/20" />
+                      <div className="flex items-center justify-between flex-wrap gap-4">
+                        <div className="flex items-center gap-4">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={handleBookmark}
+                            className={`flex items-center gap-2 transition-all duration-300 ${
+                              isLiked 
+                                ? 'bg-yellow-400/20 text-yellow-400 border-yellow-400/30' 
+                                : 'text-gray-400 border-gray-600 hover:text-yellow-400 hover:border-yellow-400/50'
+                            }`}
+                          >
+                            <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
+                            {isZhHK ? '收藏' : 'Like'}
+                          </Button>
+                        </div>
+                        <div className="flex items-center gap-2 text-yellow-400">
+                          <Tag className="h-4 w-4" />
+                          <span className="text-sm font-medium">
+                            {isZhHK ? post.category : post.categoryEn}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.article>
                 </div>
 
-                {/* Article Meta */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  className="p-8 md:p-12 border-b border-yellow-400/20"
-                >
-                  <div className="flex flex-wrap items-center gap-8 text-sm">
-                    <div className="flex items-center gap-2 text-yellow-400">
-                      <User className="h-4 w-4" />
-                      <span className="font-medium">{post.author}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <Calendar className="h-4 w-4" />
-                      <span>{formatDate(post.publishDate)}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <Clock className="h-4 w-4" />
-                      <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
-                    </div>
-                    <ArticleViewCounter initialViews={post.views} postId={post.id} />
-                  </div>
-                </motion.div>
-
-                {/* Article Content with Wider Layout */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                  className="p-8 md:p-12 lg:p-16"
-                >
-                  <div className="prose prose-lg prose-invert max-w-none">
-                    {renderSections(content)}
-                  </div>
-                </motion.div>
-
-                {/* Article Actions */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.1 }}
-                  className="px-8 md:px-12 lg:px-16 pb-8 md:pb-12"
-                >
-                  <Separator className="mb-8 bg-yellow-400/20" />
-                  <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div className="flex items-center gap-4">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleBookmark}
-                        className={`flex items-center gap-2 transition-all duration-300 ${
-                          isLiked 
-                            ? 'bg-yellow-400/20 text-yellow-400 border-yellow-400/30' 
-                            : 'text-gray-400 border-gray-600 hover:text-yellow-400 hover:border-yellow-400/50'
-                        }`}
-                      >
-                        <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
-                        {isZhHK ? '收藏' : 'Like'}
-                      </Button>
-                    </div>
-                    <div className="flex items-center gap-2 text-yellow-400">
-                      <Tag className="h-4 w-4" />
-                      <span className="text-sm font-medium">
-                        {isZhHK ? post.category : post.categoryEn}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.article>
+                {/* Sidebar - 其他文章 */}
+                <div className="lg:col-span-4">
+                  <RelatedArticlesSidebar currentPost={post} isZhHK={isZhHK} />
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
