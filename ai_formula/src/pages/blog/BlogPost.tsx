@@ -32,6 +32,7 @@ import { useSafeViewCount } from '@/contexts/ViewCountContext';
 import { getSortedPostsNewest } from '@/data/blog/blogPosts';
 import { BlogPost as BlogPostType } from '@/data/blog/blogPosts';
 import { articleContents } from '@/data/blog/articleContent';
+import { digitalProducts } from '@/data/courses/courseData'; // 導入實際課程數據
 
 interface ArticleViewCounterProps {
   initialViews: string;
@@ -49,46 +50,6 @@ interface ShareData {
   text: string;
   url: string;
 }
-
-// Mock course data - 這裡可以替換為實際的課程數據
-const mockCourses = [
-  {
-    id: 1,
-    title: 'ChatGPT 完整掌握課程',
-    titleEn: 'Complete ChatGPT Mastery Course',
-    description: '從零開始學習 ChatGPT，掌握 AI 工具的核心技能，提升工作效率。',
-    descriptionEn: 'Learn ChatGPT from scratch, master core AI tool skills, and boost productivity.',
-    image: '/images/courses/chatgpt-course.jpg',
-    instructor: 'AI Formula Team',
-    students: 1200,
-    rating: 4.8,
-    link: '/courses/chatgpt-complete-course'
-  },
-  {
-    id: 2,
-    title: 'AI 自動化工作流程',
-    titleEn: 'AI Automation Workflows',
-    description: '學習如何運用 AI 技術自動化日常工作，節省時間並提升效率。',
-    descriptionEn: 'Learn to automate daily work with AI technology, save time and boost efficiency.',
-    image: '/images/courses/ai-automation.jpg',
-    instructor: 'AI Formula Team',
-    students: 890,
-    rating: 4.7,
-    link: '/courses/ai-automation'
-  },
-  {
-    id: 3,
-    title: '商業 AI 應用實戰',
-    titleEn: 'Business AI Applications',
-    description: '探索 AI 在商業環境中的實際應用，提升企業競爭力。',
-    descriptionEn: 'Explore practical AI applications in business environments to enhance competitiveness.',
-    image: '/images/courses/business-ai.jpg',
-    instructor: 'AI Formula Team',
-    students: 756,
-    rating: 4.9,
-    link: '/courses/business-ai'
-  }
-];
 
 // Utility functions
 const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
@@ -201,67 +162,136 @@ const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean
   );
 };
 
-// AI Course Recommendation Component
+// AI Course Recommendation Component - 使用實際課程數據
 const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
   const randomCourse = useMemo(() => {
-    const randomIndex = Math.floor(Math.random() * mockCourses.length);
-    return mockCourses[randomIndex];
+    // 從實際的課程數據中隨機選擇
+    if (digitalProducts.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * digitalProducts.length);
+    return digitalProducts[randomIndex];
   }, []);
+
+  if (!randomCourse) return null;
+
+  // 課程標籤生成邏輯
+  const getCourseTagsContent = (course: any) => {
+    const tags = [];
+    if (course.newProduct) tags.push(isZhHK ? '新品' : 'New');
+    if (course.bestseller) tags.push(isZhHK ? '暢銷' : 'Best Seller');
+    if (course.featured) tags.push(isZhHK ? '精選' : 'Featured');
+    if (course.hotSelling) tags.push(isZhHK ? '熱銷' : 'Hot');
+    return tags;
+  };
+
+  const courseTags = getCourseTagsContent(randomCourse);
+  const courseTitle = isZhHK ? randomCourse.titleCht : randomCourse.title;
+  const courseDuration = isZhHK ? randomCourse.durationCht : randomCourse.duration;
+  const courseLevel = isZhHK ? randomCourse.levelCht : randomCourse.level;
+  const coursePrice = randomCourse.price;
+  const courseRating = randomCourse.rating;
+
+  // 導航到課程頁面
+  const handleCourseClick = () => {
+    if (randomCourse.category === 'chatgpt-complete-course') {
+      window.open('/courses/chatgpt-complete-course/outline', '_blank');
+    } else {
+      window.open('/courses', '_blank');
+    }
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6 mb-6"
+      transition={{ duration: 0.6, delay: 0.4 }}
+      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6"
     >
       <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
         <BookOpen className="h-5 w-5" />
         {isZhHK ? 'AI 課程推薦' : 'AI Course Recommendation'}
       </h3>
       
-      <Link to={randomCourse.link}>
-        <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group overflow-hidden">
-          <div className="aspect-video relative overflow-hidden">
-            <img
-              src={randomCourse.image}
-              alt={isZhHK ? randomCourse.title : randomCourse.titleEn}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                // Fallback to placeholder if image fails to load
-                e.currentTarget.src = '/placeholder.svg';
-              }}
-            />
-            <div className="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
-              <Star className="h-3 w-3 fill-current" />
-              {randomCourse.rating}
+      <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group overflow-hidden cursor-pointer">
+        <CardContent className="p-5">
+          {/* 課程標籤 */}
+          {courseTags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-3">
+              {courseTags.map((tag, index) => (
+                <Badge 
+                  key={index}
+                  variant="secondary" 
+                  className="bg-yellow-400/10 text-yellow-400 border-yellow-400/30 text-xs px-2 py-1"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
+          
+          {/* 課程名稱 */}
+          <h4 className="font-bold text-white mb-4 text-lg leading-tight group-hover:text-yellow-300 transition-colors">
+            {courseTitle}
+          </h4>
+          
+          {/* 課程詳細資訊 */}
+          <div className="space-y-3 mb-4">
+            {/* 時長 */}
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-400 flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                {isZhHK ? '課程時長' : 'Duration'}
+              </span>
+              <span className="text-white font-medium">{courseDuration}</span>
+            </div>
+            
+            {/* 難度 */}
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-400 flex items-center gap-2">
+                <Users className="h-4 w-4" />
+                {isZhHK ? '課程難度' : 'Level'}
+              </span>
+              <span className="text-white font-medium">{courseLevel}</span>
+            </div>
+            
+            {/* 評分 */}
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-400 flex items-center gap-2">
+                <Star className="h-4 w-4" />
+                {isZhHK ? '課程評分' : 'Rating'}
+              </span>
+              <div className="flex items-center gap-1">
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <span className="text-white font-medium">{courseRating}</span>
+              </div>
+            </div>
+            
+            {/* 價格 */}
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-400">
+                {isZhHK ? '課程價格' : 'Price'}
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-400 font-bold text-lg">{coursePrice}</span>
+                {randomCourse.originalPrice && (
+                  <span className="text-gray-500 line-through text-sm">{randomCourse.originalPrice}</span>
+                )}
+              </div>
             </div>
           </div>
           
-          <CardContent className="p-4">
-            <h4 className="font-semibold text-white mb-2 leading-tight group-hover:text-yellow-300 transition-colors">
-              {isZhHK ? randomCourse.title : randomCourse.titleEn}
-            </h4>
-            
-            <p className="text-gray-400 text-sm mb-3 line-clamp-2 leading-relaxed">
-              {isZhHK ? randomCourse.description : randomCourse.descriptionEn}
-            </p>
-            
-            <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
-              <div className="flex items-center gap-1">
-                <Users className="h-3 w-3" />
-                <span>{randomCourse.students} {isZhHK ? '位學員' : 'students'}</span>
-              </div>
-              <span className="text-gray-400">{randomCourse.instructor}</span>
-            </div>
-            
-            <Button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm">
-              {isZhHK ? '立即報名' : 'Enroll Now'}
-              <ChevronRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </CardContent>
-        </Card>
-      </Link>
+          {/* 分隔線 */}
+          <Separator className="my-4 bg-gray-700/50" />
+          
+          {/* 立即購買按鈕 */}
+          <Button 
+            onClick={handleCourseClick}
+            className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm py-2.5"
+          >
+            {isZhHK ? '立即購買' : 'Buy Now'}
+            <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 };
@@ -291,8 +321,8 @@ const SingleRelatedArticle: React.FC<{ currentPost: BlogPostType; isZhHK: boolea
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.4 }}
-      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6"
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6 mb-6"
     >
       <h3 className="text-xl font-bold text-yellow-400 mb-4">
         {isZhHK ? '其他文章' : 'Other Articles'}
@@ -361,15 +391,15 @@ const SingleRelatedArticle: React.FC<{ currentPost: BlogPostType; isZhHK: boolea
   );
 };
 
-// Combined Sidebar Component
+// Combined Sidebar Component - 調整順序：其他文章在上，AI課程推薦在下
 const BlogSidebar: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
   return (
     <div className="sticky top-8 space-y-6">
-      {/* AI 課程推薦 */}
-      <CourseRecommendation isZhHK={isZhHK} />
-      
       {/* 其他文章 */}
       <SingleRelatedArticle currentPost={currentPost} isZhHK={isZhHK} />
+      
+      {/* AI 課程推薦 */}
+      <CourseRecommendation isZhHK={isZhHK} />
     </div>
   );
 };
