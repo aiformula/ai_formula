@@ -236,7 +236,6 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="sticky top-8"
     >
       <div className="mb-6">
         <h3 className="text-xl font-bold text-yellow-400 mb-4">
@@ -424,7 +423,6 @@ const RelatedArticles: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="sticky top-8"
     >
       <div className="mb-6">
         <h3 className="text-xl font-bold text-yellow-400 mb-4">
@@ -488,9 +486,9 @@ const RelatedArticles: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> 
 // New Enhanced Sidebar Component
 const EnhancedSidebar: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
   return (
-    <div className="space-y-8">
-      <RelatedArticles currentPost={currentPost} isZhHK={isZhHK} />
+    <div className="sticky top-8 space-y-8">
       <CourseRecommendation isZhHK={isZhHK} />
+      <RelatedArticles currentPost={currentPost} isZhHK={isZhHK} />
     </div>
   );
 };
