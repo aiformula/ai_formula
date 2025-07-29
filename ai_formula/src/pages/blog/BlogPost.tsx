@@ -162,7 +162,7 @@ const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean
   );
 };
 
-// AI Course Recommendation Component - 使用實際課程數據，全新設計
+// AI Course Recommendation Component - 未來科技風格設計
 const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
   const randomCourse = useMemo(() => {
     // 從實際的課程數據中隨機選擇
@@ -173,24 +173,28 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
 
   if (!randomCourse) return null;
 
-  // 課程標籤生成邏輯和顏色映射
+  // 課程標籤生成邏輯和霓虹發光顏色
   const getCourseTagsContent = (course: any) => {
     const tagConfigs = [];
     if (course.newProduct) tagConfigs.push({ 
       text: isZhHK ? '新品' : 'New', 
-      color: '#28C76F' 
+      color: '#28C76F',
+      glowColor: '#28C76F'
     });
     if (course.bestseller) tagConfigs.push({ 
       text: isZhHK ? '暢銷' : 'Best Seller', 
-      color: '#FF9F43' 
+      color: '#FF9F43',
+      glowColor: '#FF9F43'
     });
     if (course.featured) tagConfigs.push({ 
       text: isZhHK ? '精選' : 'Featured', 
-      color: '#00CFE8' 
+      color: '#6C63FF',
+      glowColor: '#6C63FF'
     });
     if (course.hotSelling) tagConfigs.push({ 
       text: isZhHK ? '熱銷' : 'Hot', 
-      color: '#EA5455' 
+      color: '#EA5455',
+      glowColor: '#EA5455'
     });
     return tagConfigs;
   };
@@ -227,23 +231,47 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
       <motion.div
         whileHover={{ 
           scale: 1.02,
-          boxShadow: '0 8px 20px rgba(0,0,0,0.25)'
+          boxShadow: '0 8px 20px rgba(0,0,0,0.25), 0 0 30px rgba(108, 99, 255, 0.15)'
         }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.3 }}
         onClick={handleCourseClick}
-        className="cursor-pointer rounded-xl overflow-hidden"
-        style={{ backgroundColor: '#1C1C1E' }}
+        className="cursor-pointer rounded-xl overflow-hidden relative"
+        style={{ 
+          background: 'linear-gradient(135deg, #1E1E2F 0%, #0A0A12 100%)',
+          border: '1px solid rgba(108, 99, 255, 0.2)'
+        }}
       >
-        <div className="p-6">
-          {/* 課程標籤 */}
+        {/* 動畫背景粒子效果 */}
+        <div className="absolute inset-0 opacity-10">
+          <div 
+            className="absolute inset-0 animate-float"
+            style={{
+              backgroundImage: `
+                radial-gradient(circle at 20% 30%, rgba(108, 99, 255, 0.3) 1px, transparent 1px),
+                radial-gradient(circle at 60% 70%, rgba(0, 212, 255, 0.3) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(40, 255, 191, 0.3) 1px, transparent 1px),
+                linear-gradient(45deg, transparent 24%, rgba(108, 99, 255, 0.1) 25%, rgba(108, 99, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.1) 75%, rgba(0, 212, 255, 0.1) 76%, transparent 77%)
+              `,
+              backgroundSize: '50px 50px, 80px 80px, 60px 60px, 20px 20px'
+            }}
+          />
+        </div>
+
+        <div className="relative p-6 z-10">
+          {/* 課程標籤 - 霓虹發光效果 */}
           {courseTags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-4 justify-center">
               {courseTags.map((tag, index) => (
                 <motion.span
                   key={index}
                   whileHover={{ scale: 1.1 }}
-                  className="px-3 py-1 rounded-full text-xs font-medium text-white"
-                  style={{ backgroundColor: tag.color }}
+                  className="px-3 py-1 rounded-full text-xs font-medium text-white border"
+                  style={{ 
+                    backgroundColor: `${tag.color}20`,
+                    borderColor: tag.color,
+                    boxShadow: `0 0 10px ${tag.glowColor}40, inset 0 0 10px ${tag.glowColor}20`,
+                    color: tag.color
+                  }}
                 >
                   {tag.text}
                 </motion.span>
@@ -251,21 +279,35 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             </div>
           )}
           
-          {/* 課程名稱 */}
-          <h4 className="font-bold text-white mb-6 text-lg leading-tight text-center">
+          {/* 課程名稱 - 漸變文字 */}
+          <h4 
+            className="font-bold mb-6 text-lg leading-tight text-center"
+            style={{
+              background: 'linear-gradient(135deg, #6C63FF 0%, #00D4FF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
+          >
             {courseTitle}
           </h4>
           
-          {/* 課程詳細資訊 - 水平排列 */}
+          {/* 課程詳細資訊 - 向量圖示 + 霓虹發光 */}
           <div className="space-y-4 mb-6">
             {/* 時長 */}
             <div className="flex items-center justify-center gap-3 text-sm">
-              <motion.span 
+              <motion.div 
                 whileHover={{ scale: 1.1 }}
-                className="text-xl"
+                className="w-5 h-5 flex items-center justify-center"
               >
-                🕒
-              </motion.span>
+                <Clock 
+                  className="w-4 h-4 text-blue-400" 
+                  style={{ 
+                    filter: 'drop-shadow(0 0 6px #3B82F6)',
+                    stroke: '#60A5FA'
+                  }} 
+                />
+              </motion.div>
               <span className="text-gray-300 min-w-0 flex-1 text-center">
                 {courseDuration}
               </span>
@@ -273,12 +315,18 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             
             {/* 難度 */}
             <div className="flex items-center justify-center gap-3 text-sm">
-              <motion.span 
+              <motion.div 
                 whileHover={{ scale: 1.1 }}
-                className="text-xl"
+                className="w-5 h-5 flex items-center justify-center"
               >
-                👤
-              </motion.span>
+                <User 
+                  className="w-4 h-4 text-purple-400" 
+                  style={{ 
+                    filter: 'drop-shadow(0 0 6px #A855F7)',
+                    stroke: '#C084FC'
+                  }} 
+                />
+              </motion.div>
               <span className="text-gray-300 min-w-0 flex-1 text-center">
                 {courseLevel}
               </span>
@@ -286,12 +334,18 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             
             {/* 評分 */}
             <div className="flex items-center justify-center gap-3 text-sm">
-              <motion.span 
+              <motion.div 
                 whileHover={{ scale: 1.1 }}
-                className="text-xl"
+                className="w-5 h-5 flex items-center justify-center"
               >
-                ⭐
-              </motion.span>
+                <Star 
+                  className="w-4 h-4 text-yellow-400 fill-current" 
+                  style={{ 
+                    filter: 'drop-shadow(0 0 6px #F59E0B)',
+                    stroke: '#FBBF24'
+                  }} 
+                />
+              </motion.div>
               <span className="text-gray-300 min-w-0 flex-1 text-center">
                 {courseRating} / 5.0
               </span>
@@ -299,34 +353,69 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             
             {/* 價格 */}
             <div className="flex items-center justify-center gap-3 text-sm">
-              <motion.span 
+              <motion.div 
                 whileHover={{ scale: 1.1 }}
-                className="text-xl"
+                className="w-5 h-5 flex items-center justify-center"
               >
-                💰
-              </motion.span>
+                {isFree ? (
+                  <BookOpen 
+                    className="w-4 h-4" 
+                    style={{ 
+                      filter: 'drop-shadow(0 0 6px #10B981)',
+                      stroke: '#34D399',
+                      color: '#34D399'
+                    }} 
+                  />
+                ) : (
+                  <span 
+                    className="text-lg font-bold"
+                    style={{ 
+                      filter: 'drop-shadow(0 0 6px #10B981)',
+                      color: '#34D399'
+                    }}
+                  >
+                    $
+                  </span>
+                )}
+              </motion.div>
               <span 
-                className={`min-w-0 flex-1 text-center font-bold text-lg ${
-                  isFree ? 'text-green-400' : 'text-yellow-400'
-                }`}
+                className="min-w-0 flex-1 text-center font-bold text-lg"
+                style={{
+                  color: '#28FFBF',
+                  textShadow: '0 0 10px #28FFBF40',
+                  filter: 'drop-shadow(0 0 4px #28FFBF)'
+                }}
               >
                 {coursePrice}
               </span>
             </div>
           </div>
           
-          {/* 開始課程按鈕 */}
+          {/* ⚡ 開始課程按鈕 - 漸變 + 發光效果 */}
           <motion.button
             onClick={handleCourseClick}
-            className="w-full py-3 rounded-lg text-black font-semibold text-sm transition-all duration-200"
-            style={{ backgroundColor: '#F6C90E' }}
+            className="w-full py-3 rounded-lg text-white font-bold text-sm transition-all duration-300 border relative overflow-hidden"
+            style={{ 
+              background: 'linear-gradient(135deg, #6C63FF 0%, #00D4FF 100%)',
+              borderColor: 'transparent'
+            }}
             whileHover={{ 
-              backgroundColor: '#E0B80D',
-              boxShadow: '0 4px 12px rgba(246, 201, 14, 0.3)'
+              scale: 1.02,
+              boxShadow: '0 0 20px rgba(108, 99, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3)',
+              filter: 'brightness(1.1)'
             }}
             whileTap={{ scale: 0.98 }}
           >
-            {isZhHK ? '開始課程' : 'Start Course'}
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              ⚡ {isZhHK ? '開始課程' : 'Start Course'}
+            </span>
+            {/* 按鈕內部光效 */}
+            <div 
+              className="absolute inset-0 opacity-0 hover:opacity-20 transition-opacity duration-300"
+              style={{
+                background: 'radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%)'
+              }}
+            />
           </motion.button>
         </div>
       </motion.div>
