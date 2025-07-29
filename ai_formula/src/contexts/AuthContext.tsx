@@ -1,131 +1,137 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { User, Session } from '@supabase/supabase-js'
-import { supabase, isSupabaseConfigured } from '@/lib/supabase'
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { User, Session } from '@supabase/supabase-js';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 interface AuthContextType {
-  user: User | null
-  session: Session | null
-  loading: boolean
-  signIn: (email: string, password: string) => Promise<{ error: any }>
-  signUp: (email: string, password: string) => Promise<{ error: any }>
-  signInWithGoogle: () => Promise<{ error: any }>
-  signOut: () => Promise<{ error: any }>
-  resetPassword: (email: string) => Promise<{ error: any }>
+  user: User | null;
+  session: Session | null;
+  loading: boolean;
+  signIn: (email: string, password: string) => Promise<{ error?: any }>;
+  signUp: (email: string, password: string) => Promise<{ error?: any }>;
+  signOut: () => Promise<void>;
+  isConfigured: boolean;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+// 創建帶有默認值的 Context
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// 安全的 useAuth hook
 export const useAuth = () => {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
+  
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider')
+    // 提供 fallback 而不是拋出錯誤
+    console.warn('useAuth must be used within an AuthProvider. Using fallback values.');
+    return {
+      user: null,
+      session: null,
+      loading: false,
+      signIn: async () => ({ error: new Error('Auth not configured') }),
+      signUp: async () => ({ error: new Error('Auth not configured') }),
+      signOut: async () => {},
+      isConfigured: false
+    };
   }
-  return context
-}
+  
+  return context;
+};
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null)
-  const [session, setSession] = useState<Session | null>(null)
-  const [loading, setLoading] = useState(true)
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // 只在 Supabase 配置正確時初始化
     if (!isSupabaseConfigured) {
-      console.warn('Supabase is not properly configured. Authentication will not work.')
-      setLoading(false)
-      return
+      setLoading(false);
+      console.warn('Supabase not configured, skipping auth initialization');
+      return;
     }
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-      setUser(session?.user ?? null)
-      setLoading(false)
-    }).catch((error) => {
-      console.error('Error getting session:', error)
-      setLoading(false)
-    })
+    let mounted = true;
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      setSession(session)
-      setUser(session?.user ?? null)
-      setLoading(false)
-    })
+    // 獲取初始 session
+    const getInitialSession = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (mounted) {
+          if (error) {
+            console.error('Error getting session:', error);
+          } else {
+            setSession(session);
+            setUser(session?.user ?? null);
+          }
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Failed to get initial session:', error);
+        if (mounted) {
+          setLoading(false);
+        }
+      }
+    };
 
-    return () => subscription.unsubscribe()
-  }, [])
+    getInitialSession();
+
+    // 監聽認證狀態變化
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (mounted) {
+          setSession(session);
+          setUser(session?.user ?? null);
+          setLoading(false);
+        }
+      }
+    );
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
 
   const signIn = async (email: string, password: string) => {
     if (!isSupabaseConfigured) {
-      return { error: { message: 'Supabase is not configured. Please check your environment variables.' } }
+      return { error: new Error('Authentication not configured') };
     }
+
     try {
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
-      return { error }
+      const result = await supabase.auth.signInWithPassword({ email, password });
+      return result;
     } catch (error) {
-      return { error: { message: 'Authentication service unavailable' } }
+      console.error('Sign in error:', error);
+      return { error };
     }
-  }
+  };
 
   const signUp = async (email: string, password: string) => {
     if (!isSupabaseConfigured) {
-      return { error: { message: 'Supabase is not configured. Please check your environment variables.' } }
+      return { error: new Error('Authentication not configured') };
     }
-    try {
-      const { error } = await supabase.auth.signUp({ email, password })
-      return { error }
-    } catch (error) {
-      return { error: { message: 'Authentication service unavailable' } }
-    }
-  }
 
-  const signInWithGoogle = async () => {
-    if (!isSupabaseConfigured) {
-      return { error: { message: 'Supabase is not configured. Please check your environment variables.' } }
-    }
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}`,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          }
-        }
-      })
-      return { error }
+      const result = await supabase.auth.signUp({ email, password });
+      return result;
     } catch (error) {
-      console.error('Google OAuth error:', error)
-      return { error: { message: 'Google authentication failed. Please check your OAuth configuration.' } }
+      console.error('Sign up error:', error);
+      return { error };
     }
-  }
+  };
 
   const signOut = async () => {
     if (!isSupabaseConfigured) {
-      return { error: null }
+      console.warn('Authentication not configured, cannot sign out');
+      return;
     }
-    try {
-      const { error } = await supabase.auth.signOut()
-      return { error }
-    } catch (error) {
-      return { error: { message: 'Sign out failed' } }
-    }
-  }
 
-  const resetPassword = async (email: string) => {
-    if (!isSupabaseConfigured) {
-      return { error: { message: 'Supabase is not configured. Please check your environment variables.' } }
-    }
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email)
-      return { error }
+      await supabase.auth.signOut();
     } catch (error) {
-      return { error: { message: 'Password reset service unavailable' } }
+      console.error('Sign out error:', error);
     }
-  }
+  };
 
   const value = {
     user,
@@ -133,10 +139,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     loading,
     signIn,
     signUp,
-    signInWithGoogle,
     signOut,
-    resetPassword,
-  }
+    isConfigured: isSupabaseConfigured
+  };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-} 
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
+}; 
