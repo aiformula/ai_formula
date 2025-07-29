@@ -268,22 +268,22 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
 
 // Single Related Article Component
 const SingleRelatedArticle: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
-  const relatedPost = useMemo(() => {
+  const relatedPosts = useMemo(() => {
     try {
       const allPosts = getSortedPostsNewest();
       const otherPosts = allPosts.filter(post => post.id !== currentPost.id);
-      if (otherPosts.length === 0) return null;
+      if (otherPosts.length === 0) return [];
       
-      // 隨機選擇一篇文章
-      const randomIndex = Math.floor(Math.random() * otherPosts.length);
-      return otherPosts[randomIndex];
+      // 隨機選擇3篇文章
+      const shuffled = [...otherPosts].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, 3);
     } catch (error) {
-      console.error('Error getting related post:', error);
-      return null;
+      console.error('Error getting related posts:', error);
+      return [];
     }
   }, [currentPost.id]);
 
-  if (!relatedPost) {
+  if (relatedPosts.length === 0) {
     return null;
   }
 
@@ -298,41 +298,65 @@ const SingleRelatedArticle: React.FC<{ currentPost: BlogPostType; isZhHK: boolea
         {isZhHK ? '其他文章' : 'Other Articles'}
       </h3>
       
-      <Link to={`/blog/${relatedPost.id}`}>
-        <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group">
-          <CardContent className="p-4">
-            {/* 分類標籤 */}
-            <Badge 
-              variant="secondary" 
-              className="mb-3 bg-yellow-400/10 text-yellow-400 border-yellow-400/30 text-xs"
-            >
-              {isZhHK ? relatedPost.category : relatedPost.categoryEn}
-            </Badge>
-            
-            {/* 文章標題 - 允許換行 */}
-            <h4 className="font-semibold text-white mb-2 leading-tight group-hover:text-yellow-300 transition-colors">
-              {isZhHK ? relatedPost.title : relatedPost.titleEn}
-            </h4>
-            
-            {/* 文章描述 - 截斷顯示 */}
-            <p className="text-gray-400 text-sm mb-3 line-clamp-3 leading-relaxed">
-              {isZhHK ? relatedPost.excerpt : relatedPost.excerptEn}
-            </p>
-            
-            {/* 文章資訊 */}
-            <div className="flex items-center justify-between text-xs text-gray-500">
-              <div className="flex items-center gap-1">
-                <Clock className="h-3 w-3" />
-                <span>{relatedPost.readTime} {isZhHK ? '分鐘' : 'min'}</span>
-              </div>
-              <div className="flex items-center gap-1 text-yellow-400/70 group-hover:text-yellow-400 transition-colors">
-                <span>{isZhHK ? '閱讀更多' : 'Read more'}</span>
-                <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </Link>
+      <div className="space-y-4">
+        {relatedPosts.map((relatedPost, index) => (
+          <motion.div
+            key={relatedPost.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 * index }}
+          >
+            <Link to={`/blog/${relatedPost.id}`}>
+              <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group">
+                <CardContent className="p-4">
+                  {/* 分類標籤 */}
+                  <Badge 
+                    variant="secondary" 
+                    className="mb-3 bg-yellow-400/10 text-yellow-400 border-yellow-400/30 text-xs"
+                  >
+                    {isZhHK ? relatedPost.category : relatedPost.categoryEn}
+                  </Badge>
+                  
+                  {/* 文章標題 - 允許換行 */}
+                  <h4 className="font-semibold text-white mb-2 leading-tight group-hover:text-yellow-300 transition-colors">
+                    {isZhHK ? relatedPost.title : relatedPost.titleEn}
+                  </h4>
+                  
+                  {/* 文章描述 - 截斷顯示 */}
+                  <p className="text-gray-400 text-sm mb-3 line-clamp-3 leading-relaxed">
+                    {isZhHK ? relatedPost.excerpt : relatedPost.excerptEn}
+                  </p>
+                  
+                  {/* 文章資訊 */}
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      <span>{relatedPost.readTime} {isZhHK ? '分鐘' : 'min'}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-yellow-400/70 group-hover:text-yellow-400 transition-colors">
+                      <span>{isZhHK ? '閱讀更多' : 'Read more'}</span>
+                      <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+      
+      {/* 查看更多按鈕 */}
+      <div className="mt-6 pt-4 border-t border-gray-700/50">
+        <Link to="/blog">
+          <Button 
+            variant="outline" 
+            className="w-full text-yellow-400 border-yellow-400/50 hover:bg-yellow-400/10 hover:border-yellow-400 transition-all duration-300"
+          >
+            {isZhHK ? '查看所有文章' : 'View All Articles'}
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
+      </div>
     </motion.div>
   );
 };
