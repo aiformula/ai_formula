@@ -16,7 +16,10 @@ import {
   Copy,
   ExternalLink,
   Heart,
-  ChevronRight
+  ChevronRight,
+  BookOpen,
+  Star,
+  Users
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -46,6 +49,46 @@ interface ShareData {
   text: string;
   url: string;
 }
+
+// Mock course data - 這裡可以替換為實際的課程數據
+const mockCourses = [
+  {
+    id: 1,
+    title: 'ChatGPT 完整掌握課程',
+    titleEn: 'Complete ChatGPT Mastery Course',
+    description: '從零開始學習 ChatGPT，掌握 AI 工具的核心技能，提升工作效率。',
+    descriptionEn: 'Learn ChatGPT from scratch, master core AI tool skills, and boost productivity.',
+    image: '/images/courses/chatgpt-course.jpg',
+    instructor: 'AI Formula Team',
+    students: 1200,
+    rating: 4.8,
+    link: '/courses/chatgpt-complete-course'
+  },
+  {
+    id: 2,
+    title: 'AI 自動化工作流程',
+    titleEn: 'AI Automation Workflows',
+    description: '學習如何運用 AI 技術自動化日常工作，節省時間並提升效率。',
+    descriptionEn: 'Learn to automate daily work with AI technology, save time and boost efficiency.',
+    image: '/images/courses/ai-automation.jpg',
+    instructor: 'AI Formula Team',
+    students: 890,
+    rating: 4.7,
+    link: '/courses/ai-automation'
+  },
+  {
+    id: 3,
+    title: '商業 AI 應用實戰',
+    titleEn: 'Business AI Applications',
+    description: '探索 AI 在商業環境中的實際應用，提升企業競爭力。',
+    descriptionEn: 'Explore practical AI applications in business environments to enhance competitiveness.',
+    image: '/images/courses/business-ai.jpg',
+    instructor: 'AI Formula Team',
+    students: 756,
+    rating: 4.9,
+    link: '/courses/business-ai'
+  }
+];
 
 // Utility functions
 const generateShareData = (post: BlogPostType, isZhHK: boolean): ShareData => ({
@@ -158,98 +201,152 @@ const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean
   );
 };
 
-// Related Articles Sidebar Component
-const RelatedArticlesSidebar: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
-  const relatedPosts = useMemo(() => {
+// AI Course Recommendation Component
+const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
+  const randomCourse = useMemo(() => {
+    const randomIndex = Math.floor(Math.random() * mockCourses.length);
+    return mockCourses[randomIndex];
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6 mb-6"
+    >
+      <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+        <BookOpen className="h-5 w-5" />
+        {isZhHK ? 'AI 課程推薦' : 'AI Course Recommendation'}
+      </h3>
+      
+      <Link to={randomCourse.link}>
+        <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group overflow-hidden">
+          <div className="aspect-video relative overflow-hidden">
+            <img
+              src={randomCourse.image}
+              alt={isZhHK ? randomCourse.title : randomCourse.titleEn}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                // Fallback to placeholder if image fails to load
+                e.currentTarget.src = '/placeholder.svg';
+              }}
+            />
+            <div className="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 rounded-md text-xs font-semibold flex items-center gap-1">
+              <Star className="h-3 w-3 fill-current" />
+              {randomCourse.rating}
+            </div>
+          </div>
+          
+          <CardContent className="p-4">
+            <h4 className="font-semibold text-white mb-2 leading-tight group-hover:text-yellow-300 transition-colors">
+              {isZhHK ? randomCourse.title : randomCourse.titleEn}
+            </h4>
+            
+            <p className="text-gray-400 text-sm mb-3 line-clamp-2 leading-relaxed">
+              {isZhHK ? randomCourse.description : randomCourse.descriptionEn}
+            </p>
+            
+            <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+              <div className="flex items-center gap-1">
+                <Users className="h-3 w-3" />
+                <span>{randomCourse.students} {isZhHK ? '位學員' : 'students'}</span>
+              </div>
+              <span className="text-gray-400">{randomCourse.instructor}</span>
+            </div>
+            
+            <Button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm">
+              {isZhHK ? '立即報名' : 'Enroll Now'}
+              <ChevronRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </CardContent>
+        </Card>
+      </Link>
+    </motion.div>
+  );
+};
+
+// Single Related Article Component
+const SingleRelatedArticle: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
+  const relatedPost = useMemo(() => {
     try {
       const allPosts = getSortedPostsNewest();
-      return allPosts
-        .filter(post => post.id !== currentPost.id)
-        .slice(0, 5); // 顯示最多5篇其他文章
+      const otherPosts = allPosts.filter(post => post.id !== currentPost.id);
+      if (otherPosts.length === 0) return null;
+      
+      // 隨機選擇一篇文章
+      const randomIndex = Math.floor(Math.random() * otherPosts.length);
+      return otherPosts[randomIndex];
     } catch (error) {
-      console.error('Error getting related posts:', error);
-      return [];
+      console.error('Error getting related post:', error);
+      return null;
     }
   }, [currentPost.id]);
 
-  if (relatedPosts.length === 0) {
+  if (!relatedPost) {
     return null;
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-      className="sticky top-8 space-y-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.4 }}
+      className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6"
     >
-      {/* 其他文章標題 */}
-      <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-6">
-        <h3 className="text-2xl font-bold text-yellow-400 mb-6">
-          {isZhHK ? '其他文章' : 'Other Articles'}
-        </h3>
-        
-        <div className="space-y-4">
-          {relatedPosts.map((post, index) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+      <h3 className="text-xl font-bold text-yellow-400 mb-4">
+        {isZhHK ? '其他文章' : 'Other Articles'}
+      </h3>
+      
+      <Link to={`/blog/${relatedPost.id}`}>
+        <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group">
+          <CardContent className="p-4">
+            {/* 分類標籤 */}
+            <Badge 
+              variant="secondary" 
+              className="mb-3 bg-yellow-400/10 text-yellow-400 border-yellow-400/30 text-xs"
             >
-              <Link to={`/blog/${post.id}`}>
-                <Card className="bg-gray-800/30 border-gray-700/50 hover:border-yellow-400/50 transition-all duration-300 hover:bg-gray-800/50 group">
-                  <CardContent className="p-4">
-                    {/* 分類標籤 */}
-                    <Badge 
-                      variant="secondary" 
-                      className="mb-3 bg-yellow-400/10 text-yellow-400 border-yellow-400/30 text-xs"
-                    >
-                      {isZhHK ? post.category : post.categoryEn}
-                    </Badge>
-                    
-                    {/* 文章標題 */}
-                    <h4 className="font-semibold text-white mb-2 line-clamp-2 leading-tight group-hover:text-yellow-300 transition-colors">
-                      {isZhHK ? post.title : post.titleEn}
-                    </h4>
-                    
-                    {/* 文章摘要 */}
-                    <p className="text-gray-400 text-sm mb-3 line-clamp-2 leading-relaxed">
-                      {isZhHK ? post.excerpt : post.excerptEn}
-                    </p>
-                    
-                    {/* 文章資訊 */}
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        <span>{post.readTime} {isZhHK ? '分鐘' : 'min'}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-yellow-400/70 group-hover:text-yellow-400 transition-colors">
-                        <span>{isZhHK ? '閱讀更多' : 'Read more'}</span>
-                        <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-        
-        {/* 查看更多按鈕 */}
-        <div className="mt-6 pt-4 border-t border-gray-700/50">
-          <Link to="/blog">
-            <Button 
-              variant="outline" 
-              className="w-full text-yellow-400 border-yellow-400/50 hover:bg-yellow-400/10 hover:border-yellow-400 transition-all duration-300"
-            >
-              {isZhHK ? '查看所有文章' : 'View All Articles'}
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
-      </div>
+              {isZhHK ? relatedPost.category : relatedPost.categoryEn}
+            </Badge>
+            
+            {/* 文章標題 - 允許換行 */}
+            <h4 className="font-semibold text-white mb-2 leading-tight group-hover:text-yellow-300 transition-colors">
+              {isZhHK ? relatedPost.title : relatedPost.titleEn}
+            </h4>
+            
+            {/* 文章描述 - 截斷顯示 */}
+            <p className="text-gray-400 text-sm mb-3 line-clamp-3 leading-relaxed">
+              {isZhHK ? relatedPost.excerpt : relatedPost.excerptEn}
+            </p>
+            
+            {/* 文章資訊 */}
+            <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="flex items-center gap-1">
+                <Clock className="h-3 w-3" />
+                <span>{relatedPost.readTime} {isZhHK ? '分鐘' : 'min'}</span>
+              </div>
+              <div className="flex items-center gap-1 text-yellow-400/70 group-hover:text-yellow-400 transition-colors">
+                <span>{isZhHK ? '閱讀更多' : 'Read more'}</span>
+                <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </Link>
     </motion.div>
+  );
+};
+
+// Combined Sidebar Component
+const BlogSidebar: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> = ({ currentPost, isZhHK }) => {
+  return (
+    <div className="sticky top-8 space-y-6">
+      {/* AI 課程推薦 */}
+      <CourseRecommendation isZhHK={isZhHK} />
+      
+      {/* 其他文章 */}
+      <SingleRelatedArticle currentPost={currentPost} isZhHK={isZhHK} />
+    </div>
   );
 };
 
@@ -418,12 +515,11 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
         <link rel="canonical" href={window.location.href} />
       </Helmet>
 
-      {/* Sticky Share Button Only */}
+      {/* Sticky Share Button */}
       <StickyShareButton shareData={shareData} isZhHK={isZhHK} />
 
       {/* Main Content */}
       <div className="relative">
-        {/* Header Section with Pure Black Background */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -431,6 +527,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
           className="relative bg-black"
         >
           <div className="container mx-auto px-6 py-8">
+            {/* Back Button */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -449,80 +546,64 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
               </Link>
             </motion.div>
 
-            {/* Full Width Title Section */}
-            <div className="max-w-7xl mx-auto mb-12">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="bg-gray-900/30 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
-              >
-                {/* Hero Image */}
-                <div className="relative h-[60vh] overflow-hidden">
-                  <motion.img
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    src={post.image}
-                    alt={title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  
-                  {/* Overlay Content - Full Width Title */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                    <motion.div
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                      className="w-full"
-                    >
-                      <Badge 
-                        variant="secondary" 
-                        className="mb-4 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
-                      >
-                        {isZhHK ? post.category : post.categoryEn}
-                      </Badge>
-                      
-                      {/* Full Width Title */}
-                      <h1 className="w-full text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                        {title}
-                      </h1>
-                      
-                      <p className="text-gray-300 text-xl md:text-2xl max-w-4xl leading-relaxed">
-                        {excerpt}
-                      </p>
-                    </motion.div>
-                  </div>
-                </div>
-
-                {/* Article Meta - Full Width */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  className="p-8 md:p-12 border-b border-yellow-400/20"
+            {/* Article Title Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="max-w-7xl mx-auto mb-12"
+            >
+              {/* Hero Image */}
+              <div className="relative h-[50vh] md:h-[60vh] overflow-hidden rounded-3xl mb-8">
+                <motion.img
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  src={post.image}
+                  alt={title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              </div>
+              
+              {/* Title and Meta Info */}
+              <div className="text-center max-w-4xl mx-auto">
+                <Badge 
+                  variant="secondary" 
+                  className="mb-4 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
                 >
-                  <div className="flex flex-wrap items-center gap-8 text-sm">
-                    <div className="flex items-center gap-2 text-yellow-400">
-                      <User className="h-4 w-4" />
-                      <span className="font-medium">{post.author}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <Calendar className="h-4 w-4" />
-                      <span>{formatDate(post.publishDate)}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <Clock className="h-4 w-4" />
-                      <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
-                    </div>
-                    <ArticleViewCounter initialViews={post.views} postId={post.id} />
+                  {isZhHK ? post.category : post.categoryEn}
+                </Badge>
+                
+                {/* Large Title */}
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                  {title}
+                </h1>
+                
+                <p className="text-gray-300 text-xl md:text-2xl mb-8 leading-relaxed">
+                  {excerpt}
+                </p>
+                
+                {/* Author Info */}
+                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-sm">
+                  <div className="flex items-center gap-2 text-yellow-400">
+                    <User className="h-4 w-4" />
+                    <span className="font-medium">{post.author}</span>
                   </div>
-                </motion.div>
-              </motion.div>
-            </div>
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Calendar className="h-4 w-4" />
+                    <span>{formatDate(post.publishDate)}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Clock className="h-4 w-4" />
+                    <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
+                  </div>
+                  <ArticleViewCounter initialViews={post.views} postId={post.id} />
+                </div>
+              </div>
+            </motion.div>
 
-            {/* Content with Sidebar Layout - Below Title */}
+            {/* Content Layout: Article + Sidebar */}
             <div className="max-w-7xl mx-auto">
               <div className="grid lg:grid-cols-12 gap-8">
                 {/* Main Article Content */}
@@ -580,9 +661,9 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                   </motion.article>
                 </div>
 
-                {/* Sidebar - 其他文章 (Below Title Level) */}
+                {/* Right Sidebar */}
                 <div className="lg:col-span-4">
-                  <RelatedArticlesSidebar currentPost={post} isZhHK={isZhHK} />
+                  <BlogSidebar currentPost={post} isZhHK={isZhHK} />
                 </div>
               </div>
             </div>
