@@ -449,7 +449,80 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
               </Link>
             </motion.div>
 
-            {/* Content with Sidebar Layout */}
+            {/* Full Width Title Section */}
+            <div className="max-w-7xl mx-auto mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="bg-gray-900/30 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
+              >
+                {/* Hero Image */}
+                <div className="relative h-[60vh] overflow-hidden">
+                  <motion.img
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    src={post.image}
+                    alt={title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  
+                  {/* Overlay Content - Full Width Title */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.5 }}
+                      className="w-full"
+                    >
+                      <Badge 
+                        variant="secondary" 
+                        className="mb-4 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
+                      >
+                        {isZhHK ? post.category : post.categoryEn}
+                      </Badge>
+                      
+                      {/* Full Width Title */}
+                      <h1 className="w-full text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                        {title}
+                      </h1>
+                      
+                      <p className="text-gray-300 text-xl md:text-2xl max-w-4xl leading-relaxed">
+                        {excerpt}
+                      </p>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Article Meta - Full Width */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="p-8 md:p-12 border-b border-yellow-400/20"
+                >
+                  <div className="flex flex-wrap items-center gap-8 text-sm">
+                    <div className="flex items-center gap-2 text-yellow-400">
+                      <User className="h-4 w-4" />
+                      <span className="font-medium">{post.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-400">
+                      <Calendar className="h-4 w-4" />
+                      <span>{formatDate(post.publishDate)}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-400">
+                      <Clock className="h-4 w-4" />
+                      <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
+                    </div>
+                    <ArticleViewCounter initialViews={post.views} postId={post.id} />
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Content with Sidebar Layout - Below Title */}
             <div className="max-w-7xl mx-auto">
               <div className="grid lg:grid-cols-12 gap-8">
                 {/* Main Article Content */}
@@ -457,75 +530,14 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                   <motion.article 
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.4 }}
                     className="bg-gray-900/30 backdrop-blur-sm rounded-3xl shadow-2xl border border-yellow-400/20 overflow-hidden"
                   >
-                    {/* Hero Image */}
-                    <div className="relative h-[60vh] overflow-hidden">
-                      <motion.img
-                        initial={{ scale: 1.1 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        src={post.image}
-                        alt={title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                      
-                      {/* Overlay Content */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                        <motion.div
-                          initial={{ opacity: 0, y: 50 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.8, delay: 0.5 }}
-                        >
-                          <Badge 
-                            variant="secondary" 
-                            className="mb-4 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
-                          >
-                            {isZhHK ? post.category : post.categoryEn}
-                          </Badge>
-                          
-                          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                            {title}
-                          </h1>
-                          
-                          <p className="text-gray-300 text-xl md:text-2xl max-w-4xl leading-relaxed">
-                            {excerpt}
-                          </p>
-                        </motion.div>
-                      </div>
-                    </div>
-
-                    {/* Article Meta */}
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.7 }}
-                      className="p-8 md:p-12 border-b border-yellow-400/20"
-                    >
-                      <div className="flex flex-wrap items-center gap-8 text-sm">
-                        <div className="flex items-center gap-2 text-yellow-400">
-                          <User className="h-4 w-4" />
-                          <span className="font-medium">{post.author}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-400">
-                          <Calendar className="h-4 w-4" />
-                          <span>{formatDate(post.publishDate)}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-400">
-                          <Clock className="h-4 w-4" />
-                          <span>{post.readTime} {isZhHK ? '分鐘閱讀' : 'min read'}</span>
-                        </div>
-                        <ArticleViewCounter initialViews={post.views} postId={post.id} />
-                      </div>
-                    </motion.div>
-
                     {/* Article Content */}
                     <motion.div 
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.9 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
                       className="p-8 md:p-12 lg:p-16"
                     >
                       <div className="prose prose-lg prose-invert max-w-none">
@@ -537,7 +549,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                     <motion.div 
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 1.1 }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
                       className="px-8 md:px-12 lg:px-16 pb-8 md:pb-12"
                     >
                       <Separator className="mb-8 bg-yellow-400/20" />
@@ -568,7 +580,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                   </motion.article>
                 </div>
 
-                {/* Sidebar - 其他文章 */}
+                {/* Sidebar - 其他文章 (Below Title Level) */}
                 <div className="lg:col-span-4">
                   <RelatedArticlesSidebar currentPost={post} isZhHK={isZhHK} />
                 </div>
