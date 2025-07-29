@@ -489,19 +489,9 @@ const BlogPost: React.FC = () => {
   const { language } = useLanguage();
   const { id } = useParams<{ id: string }>();
   const isZhHK = language === 'zh-HK';
-
-  // 調試：檢查ViewCount context狀態
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const { getViewCount } = useSafeViewCount();
-      console.log('🔍 BlogPost Debug:', {
-        postId: id,
-        language,
-        viewCountFunction: typeof getViewCount,
-        windowExists: typeof window !== 'undefined'
-      });
-    }
-  }, [id, language]);
+  
+  // 正確的hook調用位置 - 在組件頂層
+  const { getViewCount } = useSafeViewCount();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const post = useMemo(() => {
