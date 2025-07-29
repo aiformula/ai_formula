@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Calendar, Clock, User, Search, Tag, TrendingUp, Eye, Rocket, Star, Settings, Package, RotateCcw, Zap } from "lucide-react";
+import { ArrowRight, Calendar, Clock, User, Search, Tag, TrendingUp, Eye, Rocket, Star, Settings, Package, RotateCcw, Zap, BookOpen, PenTool, Lightbulb, Target } from "lucide-react";
 import Navigation from "@/components/Navigation";
 // 移除 Footer 導入，因為 App.tsx 已經有全局 Footer
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -15,7 +15,7 @@ import { getFeaturedPosts, getRecentPosts, getSortedPostsNewest } from "@/data/b
 // 圖標映射 - 用Lucide圖標替代emoji
 const getPostIcon = (image: string) => {
   const iconMap: { [key: string]: JSX.Element } = {
-    "🚀": <Rocket className="h-8 w-8 text-blue-400" />,
+    "🚀": <Rocket className="h-8 w-8 text-yellow-400" />,
     "⭐": <Star className="h-8 w-8 text-yellow-400" />,
     "⚙️": <Settings className="h-8 w-8 text-gray-400" />,
     "📦": <Package className="h-8 w-8 text-green-400" />,
@@ -23,18 +23,180 @@ const getPostIcon = (image: string) => {
     "⚡": <Zap className="h-8 w-8 text-orange-400" />
   };
   
-  return iconMap[image] || <Star className="h-8 w-8 text-blue-400" />;
+  return iconMap[image] || <Star className="h-8 w-8 text-yellow-400" />;
 };
 
-// 隨機顏色配置 - 只用於hover效果
+// Feature Cards Data
+const featureCards = [
+  {
+    id: 1,
+    icon: BookOpen,
+    title: "深度學習指南",
+    titleEn: "Deep Learning Guide",
+    description: "專業AI知識分享，從基礎到進階的完整學習路徑",
+    descriptionEn: "Professional AI knowledge sharing, complete learning path from basics to advanced",
+    gradient: "from-yellow-400/20 to-amber-500/20"
+  },
+  {
+    id: 2,
+    icon: PenTool,
+    title: "實戰案例分析",
+    titleEn: "Practical Case Studies",
+    description: "真實商業案例解析，讓您快速掌握AI應用精髓",
+    descriptionEn: "Real business case analysis to help you quickly master AI application essentials",
+    gradient: "from-amber-400/20 to-yellow-600/20"
+  },
+  {
+    id: 3,
+    icon: Lightbulb,
+    title: "創新思維啟發",
+    titleEn: "Innovation Inspiration",
+    description: "探索AI前沿趨勢，激發無限創意可能性",
+    descriptionEn: "Explore cutting-edge AI trends and inspire unlimited creative possibilities",
+    gradient: "from-yellow-500/20 to-amber-400/20"
+  },
+  {
+    id: 4,
+    icon: Target,
+    title: "精準解決方案",
+    titleEn: "Targeted Solutions",
+    description: "針對具體業務需求，提供量身定制的AI解決方案",
+    descriptionEn: "Provide customized AI solutions for specific business needs",
+    gradient: "from-amber-500/20 to-yellow-500/20"
+  }
+];
+
+// Feature Cards Component
+const FeatureCards = ({ isZhTW }: { isZhTW: boolean }) => {
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
+            {isZhTW ? '功能模塊' : 'Feature Modules'}
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            {isZhTW 
+              ? '探索我們的核心功能，提升您的AI學習體驗'
+              : 'Explore our core features to enhance your AI learning experience'
+            }
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {featureCards.map((feature, index) => (
+            <motion.div
+              key={feature.id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 * index }}
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 5,
+                z: 50
+              }}
+              className="group perspective-1000"
+            >
+              <div className={`
+                relative overflow-hidden rounded-2xl p-8 h-full
+                bg-gradient-to-br ${feature.gradient}
+                backdrop-blur-xl border border-yellow-400/30
+                shadow-2xl shadow-yellow-500/10
+                hover:shadow-yellow-400/20 hover:border-yellow-400/50
+                transition-all duration-500 ease-out
+                before:absolute before:inset-0 
+                before:bg-gradient-to-br before:from-yellow-400/5 before:to-transparent
+                before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500
+              `}>
+                {/* Metallic border effect */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-600/20 opacity-50 group-hover:opacity-100 transition-opacity duration-500" 
+                     style={{ 
+                       mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                       maskComposite: 'xor',
+                       WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                       WebkitMaskComposite: 'xor'
+                     }} />
+
+                {/* Glow effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 to-amber-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Icon */}
+                  <div className="mb-6">
+                    <div className="relative">
+                      <feature.icon 
+                        className="h-12 w-12 text-yellow-400 group-hover:text-yellow-300 transition-all duration-300"
+                        style={{
+                          filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.3)) drop-shadow(0 0 16px rgba(250, 204, 21, 0.1))',
+                          stroke: 'url(#goldGradient)',
+                          strokeWidth: '1.5px'
+                        }}
+                      />
+                      {/* Icon glow */}
+                      <div className="absolute inset-0">
+                        <feature.icon 
+                          className="h-12 w-12 text-yellow-400/30 blur-sm group-hover:text-yellow-400/50 transition-all duration-300" 
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-bold mb-4 text-white group-hover:text-yellow-100 transition-colors duration-300">
+                    {isZhTW ? feature.title : feature.titleEn}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                    {isZhTW ? feature.description : feature.descriptionEn}
+                  </p>
+
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 right-4 w-2 h-2 bg-yellow-400/50 rounded-full group-hover:bg-yellow-400 transition-colors duration-300" />
+                  <div className="absolute bottom-4 left-4 w-1 h-1 bg-amber-400/50 rounded-full group-hover:bg-amber-400 transition-colors duration-300" />
+                </div>
+
+                {/* Animated background particles */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-yellow-400/20 rounded-full animate-pulse" />
+                  <div className="absolute top-3/4 right-1/3 w-0.5 h-0.5 bg-amber-400/30 rounded-full animate-pulse delay-1000" />
+                  <div className="absolute bottom-1/3 left-2/3 w-0.5 h-0.5 bg-yellow-500/25 rounded-full animate-pulse delay-2000" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* SVG Gradients for icons */}
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FBBF24" />
+              <stop offset="50%" stopColor="#F59E0B" />
+              <stop offset="100%" stopColor="#D97706" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </section>
+  );
+};
+
+// 隨機顏色配置 - 移除藍色，改為金色主題
 const tagHoverColors = [
-  'hover:bg-blue-500/20 hover:border-blue-400 hover:text-blue-200',
+  'hover:bg-yellow-500/20 hover:border-yellow-400 hover:text-yellow-200',
+  'hover:bg-amber-500/20 hover:border-amber-400 hover:text-amber-200',
+  'hover:bg-orange-500/20 hover:border-orange-400 hover:text-orange-200',
   'hover:bg-green-500/20 hover:border-green-400 hover:text-green-200',
   'hover:bg-purple-500/20 hover:border-purple-400 hover:text-purple-200',
-  'hover:bg-orange-500/20 hover:border-orange-400 hover:text-orange-200',
   'hover:bg-pink-500/20 hover:border-pink-400 hover:text-pink-200',
   'hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-cyan-200',
-  'hover:bg-yellow-500/20 hover:border-yellow-400 hover:text-yellow-200',
   'hover:bg-red-500/20 hover:border-red-400 hover:text-red-200',
 ];
 
@@ -43,7 +205,7 @@ const getRandomHoverColor = () => {
   return tagHoverColors[Math.floor(Math.random() * tagHoverColors.length)];
 };
 
-// 全局瀏覽計數器組件
+// 全局瀏覽計數器組件 - 改為金色主題
 const GlobalViewCounter = ({ postId, initialViews }: { postId: number, initialViews: string }) => {
   const { getViewCount } = useSafeViewCount();
   const baseViews = parseInt(initialViews) || 0;
@@ -51,7 +213,7 @@ const GlobalViewCounter = ({ postId, initialViews }: { postId: number, initialVi
   const totalViews = baseViews + additionalViews;
   
   return (
-    <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400">
+    <div className="flex items-center gap-1 text-yellow-500 dark:text-yellow-400">
       <Eye className="h-3 w-3" />
       <span className="text-xs font-medium">{totalViews.toString()}</span>
     </div>
@@ -127,10 +289,10 @@ const BlogListing = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <Badge variant="secondary" className="mb-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 border-blue-400">
+            <Badge variant="secondary" className="mb-4 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 text-yellow-200 border-yellow-400">
               {isZhTW ? '最新見解與更新' : 'Latest Insights & Updates'}
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
               {isZhTW ? 'AI Formula 博客' : 'AI Formula Blog'}
             </h1>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
@@ -145,7 +307,7 @@ const BlogListing = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 h-4 w-4" />
               <Input
                 placeholder={isZhTW ? "搜尋文章..." : "Search articles..."}
-                className="pl-10 bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-300 focus:border-blue-400"
+                className="pl-10 bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-300 focus:border-yellow-400"
               />
             </div>
           </motion.div>
@@ -173,7 +335,7 @@ const BlogListing = () => {
                 transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
                 whileHover={{ y: -5 }}
               >
-                <Card className="bg-gray-900/50 border-gray-700 h-full hover:border-blue-400 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 group">
+                <Card className="bg-gray-900/50 border-gray-700 h-full hover:border-yellow-400 transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/20 group">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
                       <div className="p-2 bg-gray-800/50 rounded-lg">
@@ -184,7 +346,7 @@ const BlogListing = () => {
                         <GlobalViewCounter postId={post.id} initialViews={post.views} />
                       </div>
                     </div>
-                    <CardTitle className="text-2xl mb-3 leading-tight text-white group-hover:text-blue-300 transition-colors duration-300">
+                    <CardTitle className="text-2xl mb-3 leading-tight text-white group-hover:text-yellow-300 transition-colors duration-300">
                       {isZhTW ? post.title : post.titleEn}
                     </CardTitle>
                     <CardDescription className="text-gray-200 text-base leading-relaxed">
@@ -233,6 +395,9 @@ const BlogListing = () => {
         </div>
       </section>
 
+      {/* Feature Cards Section */}
+      <FeatureCards isZhTW={isZhTW} />
+
       {/* Main Content */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -255,7 +420,7 @@ const BlogListing = () => {
                 <CardContent>
                   <div className="space-y-3">
                     {categories.map((category) => (
-                      <div key={category.name} className="flex items-center justify-between hover:text-blue-300 cursor-pointer transition-colors text-gray-200">
+                      <div key={category.name} className="flex items-center justify-between hover:text-yellow-300 cursor-pointer transition-colors text-gray-200">
                         <span>{isZhTW ? category.name : category.nameEn}</span>
                         <Badge variant="secondary" className="text-xs bg-gray-700 text-gray-200">
                           {category.count}
@@ -305,7 +470,7 @@ const BlogListing = () => {
                     transition={{ duration: 0.8, delay: 1 + index * 0.1 }}
                     whileHover={{ y: -3 }}
                   >
-                    <Card className="bg-gray-900/50 border-gray-700 h-full hover:border-purple-400 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 group">
+                    <Card className="bg-gray-900/50 border-gray-700 h-full hover:border-amber-400 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/20 group">
                       <CardHeader>
                         <div className="flex items-start justify-between mb-4">
                           <div className="p-2 bg-gray-800/50 rounded-lg">
@@ -318,7 +483,7 @@ const BlogListing = () => {
                             <GlobalViewCounter postId={post.id} initialViews={post.views} />
                           </div>
                         </div>
-                        <CardTitle className="text-lg mb-2 leading-tight text-white group-hover:text-purple-300 transition-colors duration-300">
+                        <CardTitle className="text-lg mb-2 leading-tight text-white group-hover:text-amber-300 transition-colors duration-300">
                           {isZhTW ? post.title : post.titleEn}
                         </CardTitle>
                         <CardDescription className="text-gray-200 text-sm leading-relaxed">
