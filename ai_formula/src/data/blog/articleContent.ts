@@ -329,83 +329,209 @@ const articleContents: ArticleContent[] = [
     id: 3,
     sections: [
       {
-        type: 'heading',
-        level: 2,
-        content: '什麼是 Make.com？',
-        contentEn: 'What is Make.com?'
+        type: 'paragraph',
+        content: '在今日分秒必爭的商業環境中，您是否仍將寶貴的人力浪費在重複性的手動工作上？例如，每日從電郵中複製訂單資料到 Excel、手動發送客戶跟進電郵、或是在不同社交媒體平台之間重複發布相同內容。這些工作不僅耗時，更容易出錯。現在，是時候認識 Make (前身為 Integromat)，這個正徹底改變香港中小企工作模式的強大自動化平台。',
+        contentEn: 'In today\'s fast-paced business world, are you still dedicating precious human hours to repetitive manual tasks? Think about copying order details from emails into a spreadsheet, manually sending follow-up emails to clients, or posting the same content across multiple social media platforms. These tasks are not only time-consuming but are also prone to human error. It\'s time to get acquainted with Make (formerly Integromat), the powerful automation platform that is revolutionising how Hong Kong SMEs operate.'
       },
       {
         type: 'paragraph',
-        content: 'Make.com（原為 Integromat）是一個強大的視覺化自動化平台，讓企業能輕鬆連接各種應用程式與服務，創建複雜的自動化工作流程。無論您想要自動化客服、資料處理或行銷活動，Make.com 提供直覺且強大的解決方案。',
-        contentEn: 'Make.com (formerly Integromat) is a powerful visual automation platform that enables businesses to easily connect various applications and services to create complex automated workflows. Whether you want to automate customer service, data processing, or marketing campaigns, Make.com provides intuitive and powerful solutions.'
+        content: '這篇終極指南將由淺入深，全面介紹 Make 的核心功能，並透過大量香港本地化的應用案例，向您展示即使沒有任何編程背景，您也能輕鬆上手，將業務流程化繁為簡，釋放團隊的真正潛力。',
+        contentEn: 'This ultimate guide will take you from the basics to advanced applications, demonstrating how, even with zero programming knowledge, you can easily use Make to simplify complex business processes and unlock your team\'s true potential.'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '什麼是 Make？它為何如此強大？',
+        contentEn: 'What is Make? And Why is it Such a Game-Changer?'
+      },
+      {
+        type: 'paragraph',
+        content: '想像一下，Make 就像您業務的數位神經中樞。它是一個視覺化的「無程式碼」(No-Code) 平台，讓您可以像砌積木一樣，將日常使用的各種應用程式 (Apps) 和服務 (Services) 連接起來，創建自動化的工作流程 (Workflow)。',
+        contentEn: 'Imagine Make as the digital nervous system for your business. It is a visual, "no-code" platform that allows you to connect the various apps and services you use daily and build automated workflows, much like building with LEGO bricks.'
+      },
+      {
+        type: 'paragraph',
+        content: '當「事件 A」在某個 App 發生時，Make 會自動觸發「動作 B、C、D」在其他 Apps 中執行。整個過程完全自動，無需人手干預。它的強大之處在於其直觀性和無限的可能性，真正實現了「讓機器為您工作」的理念。',
+        contentEn: 'When "Event A" happens in one app, Make automatically triggers "Actions B, C, and D" to be performed in other apps. The entire process is fully automated, requiring no manual intervention. Its power lies in its intuitive nature and limitless possibilities, truly embodying the philosophy of "letting a robot do the work for you."'
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '零基礎也能掌握：為什麼 Make 對新手極其友善？',
+        contentEn: 'Perfect for Beginners: Why Make is Exceptionally User-Friendly'
+      },
+      {
+        type: 'paragraph',
+        content: '對於許多中小企老闆或員工來說，「自動化」聽起來可能很複雜，似乎是 IT 專才的領域。但 Make 的核心設計理念，就是打破這個迷思。',
+        contentEn: 'For many SME owners and their staff, the term "automation" can sound intimidating—a domain reserved for IT experts. Make was fundamentally designed to shatter this myth.'
+      },
+      {
+        type: 'list',
+        content: '新手友善特點',
+        contentEn: 'Beginner-Friendly Features',
+        items: [
+          '視覺化拖放介面 (Drag-and-Drop Builder): 這是 Make 最具革命性的特點。您無需編寫一行程式碼。整個建立流程的過程，就是在一個畫布上，用滑鼠將代表不同 App 的圓形模組 (Modules) 拖曳出來，再將它們連接起來。每個模組代表一個步驟，整個工作流程一目了然，極其直觀。',
+          '清晰的引導與模板 (Clear Guidance & Templates): Make 提供了數以千計的預設模板。無論您想自動化什麼流程，很可能已經有現成的模板供您參考或直接使用。您只需根據自己的帳戶和需求稍作修改，就能快速啟動第一個自動化場景。',
+          '即時測試與除錯 (Real-time Testing & Debugging): 在啟用您的自動化流程前，您可以點擊「執行一次」(Run once)，Make 會實時顯示數據如何在模組之間流動。如果某個環節出錯，系統會清晰地標示出來，讓您能輕鬆找出問題所在並修正，大大降低了學習門檻。'
+        ],
+        itemsEn: [
+          'The Visual Drag-and-Drop Builder: This is Make\'s most revolutionary feature. You don\'t write a single line of code. The entire process of building a workflow (which Make calls a \'scenario\') involves dragging and dropping circular modules representing different apps onto a canvas and linking them together. Each module is a step, making the entire workflow visually clear and incredibly intuitive.',
+          'Clear Guidance & Templates: Make offers thousands of pre-built templates. Whatever process you want to automate, there\'s a high chance a template already exists for it. You can simply select a template, customise it with your own accounts and needs, and launch your first automation in minutes.',
+          'Real-time Testing & Debugging: Before activating your scenario, you can click "Run once" and watch in real-time as the data flows between the modules. If a step fails, Make clearly highlights where the error occurred, allowing you to easily diagnose and fix the problem. This drastically lowers the learning curve.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: 'Make 的核心功能：自動化的四大支柱',
+        contentEn: 'The Core Features of Make: The Four Pillars of Automation'
       },
       {
         type: 'card',
-        content: 'Make.com 核心功能',
-        contentEn: 'Core Features of Make.com',
+        content: '超廣泛的應用程式整合 (Extensive App Integration)',
+        contentEn: 'Extensive App Integration',
         items: [
-          '🔌 應用程式整合：連接 1000+ 應用程式與服務',
-          '🎨 視覺化設計：拖放介面，無需程式設計知識',
-          '🔄 即時執行：即時觸發與工作流程處理',
-          '🔄 資料轉換：強大的資料處理與格式轉換能力'
+          'Make 已連接超過 1,700 種全球及本地常用的應用程式，涵蓋您工作的方方面面，例如：',
+          '通訊: Gmail, Slack, Telegram, WhatsApp',
+          '電商: Shopify, WooCommerce, Stripe',
+          '雲端儲存: Google Drive, Dropbox, OneDrive',
+          '試算表: Google Sheets, Microsoft Excel',
+          '社交媒體: Facebook, Instagram, LinkedIn, X (Twitter)',
+          '項目管理: Trello, Asana, ClickUp'
         ],
         itemsEn: [
-          '🔌 App Integration: Connect 1000+ applications and services',
-          '🎨 Visual Design: Drag-and-drop interface, no programming knowledge required',
-          '🔄 Real-time Execution: Real-time triggering and workflow processing',
-          '🔄 Data Transformation: Powerful data processing and format conversion capabilities'
+          'Make connects with over 1,700 of the world\'s most popular apps and services, covering every aspect of your work. This includes:',
+          'Communication: Gmail, Slack, Telegram, WhatsApp',
+          'E-commerce: Shopify, WooCommerce, Stripe',
+          'Cloud Storage: Google Drive, Dropbox, OneDrive',
+          'Spreadsheets: Google Sheets, Microsoft Excel',
+          'Social Media: Facebook, Instagram, LinkedIn, X (Twitter)',
+          'Project Management: Trello, Asana, ClickUp'
         ]
+      },
+      {
+        type: 'list',
+        content: '其他核心功能',
+        contentEn: 'Other Core Features',
+        items: [
+          '強大的數據處理能力 (Powerful Data Transformation): Make 不僅能傳輸數據，更能處理數據。您可以在流程中加入工具模組，進行文字格式轉換、日期計算、數字運算等，確保數據以您需要的格式傳遞到下一個應用程式。',
+          '靈活的觸發與排程 (Flexible Triggers & Scheduling): 您的自動化流程可以被即時觸發 (例如：一收到新電郵就立即執行)，也可以按預設時間排程執行 (例如：每日凌晨自動生成報告)。',
+          '視覺化的工作流程設計 (Visual Workflow Design): 如前所述，所有複雜的邏輯都以簡單的圖形化介面呈現，讓您能輕鬆設計、理解和維護您的自動化流程。'
+        ],
+        itemsEn: [
+          'Powerful Data Transformation: Make doesn\'t just pass data; it can manipulate it. You can add \'Tools\' modules within your workflow to format text, perform calculations with dates and numbers, and much more, ensuring the data arrives in the next app in the exact format you need.',
+          'Flexible Triggers & Scheduling: Your automations can be triggered instantly (e.g., the moment a new email arrives) or run on a schedule you define (e.g., generate a report every day at midnight).',
+          'Visual Workflow Design: As mentioned, all complex logic is represented in a simple, graphical interface, allowing you to design, understand, and maintain your automations with ease.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '香港企業的 Make 自動化應用實例 (詳細版)',
+        contentEn: 'Practical Automation Scenarios for Hong Kong Businesses (Detailed Examples)'
+      },
+      {
+        type: 'paragraph',
+        content: '理論很美好，但實際應用才能體現價值。以下是一些專為香港企業設計的 Make 自動化場景，看看您能如何應用：',
+        contentEn: 'Theory is great, but practical application is where the value lies. Here are some detailed automation scenarios, tailored for Hong Kong businesses, to inspire you.'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        content: '電商與零售業：自動化訂單處理流程',
+        contentEn: 'E-commerce & Retail: Automated Order Fulfilment Workflow'
+      },
+      {
+        type: 'paragraph',
+        content: '場景： 客戶在您的 Shopify 網站下單。',
+        contentEn: 'Scenario: A customer places an order on your Shopify store.'
       },
       {
         type: 'steps',
-        content: 'Make.com 使用指南',
-        contentEn: 'Make.com Usage Guide',
+        content: '自動化流程步驟',
+        contentEn: 'Automation Workflow Steps',
         items: [
-          '👤 註冊帳戶並選擇適當的訂閱方案',
-          '🔔 選擇觸發應用程式（如 Gmail、Slack 等）',
-          '⚙️ 設置觸發條件與參數',
-          '➕ 新增動作模組並配置對應操作',
-          '🧪 測試工作流程，確保正常運作',
-          '🚀 啟用自動化並監控執行狀態'
+          '觸發 (Trigger): Shopify 收到新訂單。',
+          '動作一： 自動在 Google Sheets 中新增一列，記錄訂單詳情 (客戶姓名、產品、金額、地址)。',
+          '動作二： 即時發送一條 Slack 通知到您的 #orders 頻道，提醒出貨團隊。',
+          '動作三： 將客戶的電郵地址自動添加到 Mailchimp 的「已購買客戶」名單中，方便日後再行銷。',
+          '動作四： 5 天後，自動發送一封個人化的電郵給客戶，邀請他們留下產品評價。'
         ],
         itemsEn: [
-          '👤 Register an account and choose an appropriate subscription plan',
-          '🔔 Select trigger applications (such as Gmail, Slack, etc.)',
-          '⚙️ Set trigger conditions and parameters',
-          '➕ Add action modules and configure corresponding operations',
-          '🧪 Test the workflow to ensure it runs properly',
-          '🚀 Activate automation and monitor execution status'
+          'Trigger: New order is received in Shopify.',
+          'Action 1: Create a new row in a Google Sheet to log the order details (customer name, product, price, address).',
+          'Action 2: Instantly send a Slack notification to your #orders channel to alert the fulfilment team.',
+          'Action 3: Add the customer\'s email to a "Purchased" list in your Mailchimp account for future marketing campaigns.',
+          'Action 4: After 5 days, automatically send a personalised email to the customer, asking for a product review.'
         ]
       },
       {
-        type: 'highlight',
-        content: '香港企業應用案例',
-        contentEn: 'Hong Kong Business Use Cases',
+        type: 'heading',
+        level: 3,
+        content: '專業服務 (會計/設計/顧問)：自動化報價及發票流程',
+        contentEn: 'Professional Services (Accounting/Design/Consulting): Automated Quoting & Invoicing'
+      },
+      {
+        type: 'paragraph',
+        content: '場景： 您在 Google Forms 上收到客戶的服務查詢。',
+        contentEn: 'Scenario: You receive a new service enquiry via a Google Form on your website.'
+      },
+      {
+        type: 'steps',
+        content: '自動化流程步驟',
+        contentEn: 'Automation Workflow Steps',
         items: [
-          '📦 電商自動化：自動化訂單處理、庫存管理、客戶通知',
-          '💰 財務管理：自動化發票生成、費用追蹤、報表產生',
-          '👥 客戶服務：自動化查詢回覆、工單指派、滿意度調查',
-          '📈 行銷活動：自動化電子郵件行銷、社群媒體發布、潛在客戶培育'
+          '觸發 (Trigger): Google Forms 有新的回覆提交。',
+          '動作一： Make 根據表單內容，自動在 Google Docs 中生成一份標準化的報價單 (Quotation)。',
+          '動作二： 將生成好的報價單 (PDF格式) 儲存到指定的 Google Drive 文件夾。',
+          '動作三： 自動透過 Gmail 將報價單發送給客戶，並 BCC 給您自己備份。',
+          '動作四： 在您的 Trello 或 Asana 看板上，自動創建一個新的任務卡，標題為「跟進 [客戶名稱] 的報價」，並設定到期日。'
         ],
         itemsEn: [
-          'E-commerce Automation: Automatic order processing, inventory management, customer notifications',
-          'Financial Management: Automated invoice generation, expense tracking, report generation',
-          'Customer Service: Automatic query replies, ticket assignment, satisfaction surveys',
-          'Marketing Campaigns: Automated email marketing, social media posting, lead nurturing'
+          'Trigger: A new response is submitted in Google Forms.',
+          'Action 1: Based on the form inputs, Make generates a standardised quotation using a Google Docs template.',
+          'Action 2: The newly created quotation (as a PDF) is saved to a specific folder in Google Drive.',
+          'Action 3: An email is automatically sent via Gmail to the potential client with the quotation attached, and you are BCC\'d for your records.',
+          'Action 4: A new card is automatically created in your Trello or Asana board titled "Follow up on quote for [Client Name]" with a due date.'
         ]
+      },
+      {
+        type: 'heading',
+        level: 3,
+        content: '市場推廣：自動化社交媒體內容分發',
+        contentEn: 'Marketing: Automated Social Media Content Distribution'
+      },
+      {
+        type: 'paragraph',
+        content: '場景： 您希望將一篇網誌文章或推廣活動同步發布到多個平台。',
+        contentEn: 'Scenario: You want to syndicate a new blog post or promotion across all your channels.'
+      },
+      {
+        type: 'steps',
+        content: '自動化流程步驟',
+        contentEn: 'Automation Workflow Steps',
+        items: [
+          '觸發 (Trigger): 在一個特定的 Google Sheets 表格中新增一行，包含標題、內文和圖片連結。',
+          '動作一： 自動將內容發布到您的 Facebook 專頁。',
+          '動作二： 自動將內容和圖片發布到您的 Instagram 帳戶。',
+          '動作三： 自動將標題和網誌連結發布到您的 LinkedIn 和 X (Twitter)。'
+        ],
+        itemsEn: [
+          'Trigger: A new row is added to a specific Google Sheet, containing a title, caption, and an image URL.',
+          'Action 1: The content is automatically posted to your Facebook Page.',
+          'Action 2: The image and caption are automatically posted to your Instagram account.',
+          'Action 3: The title and a link to the post are automatically shared on your LinkedIn and X (Twitter) profiles.'
+        ]
+      },
+      {
+        type: 'paragraph',
+        content: '效果： 只需更新一次試算表，即可完成所有平台的內容分發，節省大量時間。',
+        contentEn: 'The Result: Update one spreadsheet, and your content is distributed everywhere, saving immense amounts of time.'
       },
       {
         type: 'conclusion',
-        content: '開始使用 Make.com',
-        contentEn: 'Getting Started with Make.com',
-        items: [
-          'Make.com 為香港企業提供一個強大且靈活的自動化平台。無論您是小型創業公司或大型企業，您都可以透過 Make.com 實現工作流程自動化，提升效率並降低成本。',
-          '開始您的自動化旅程，讓技術為您的業務創造更多價值！'
-        ],
-        itemsEn: [
-          'Make.com provides a powerful and flexible automation platform for Hong Kong businesses. Whether you are a small startup or a large enterprise, you can achieve workflow automation through Make.com, improve efficiency and reduce costs.',
-          'Start your automation journey and let technology create more value for your business!'
-        ]
+        content: 'Make 不僅僅是一個工具，它是一種全新的工作思維模式。它讓香港的中小企業，即使在資源有限的情況下，也能夠擁有媲美大企業的營運效率。從自動化繁瑣的日常任務開始，您將會驚訝地發現，您和您的團隊可以釋放出多少時間和創造力，去專注於真正能推動業務增長的核心事務上。\n\n不要再猶豫了。立即前往 Make.com 註冊一個免費帳戶，從一個簡單的模板開始，親身體驗自動化為您帶來的巨大改變。',
+        contentEn: 'Make is more than just a tool; it\'s a new mindset for work. It empowers Hong Kong SMEs, even with limited resources, to achieve an operational efficiency that can rival large corporations. By starting with the automation of small, tedious daily tasks, you will be amazed at how much time and creativity you and your team can unlock to focus on what truly matters: growing your business.\n\nDon\'t wait. Head over to Make.com to sign up for a free account, start with a simple template, and experience firsthand the transformative power of automation.'
       }
     ]
   },
