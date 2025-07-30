@@ -6,7 +6,6 @@ import { useCourseData } from "@/hooks/useCourseData";
 import CourseErrorBoundary from "@/components/course/ErrorBoundary";
 import LearningPlansSection from "@/components/course/LearningPlansSection";
 import { ProductGrid } from "@/components/course";
-import CTASection from "@/components/course/CTASection";
 import { Alert, AlertDescription, PageLoadingSpinner } from "@/components/ui";
 import { AlertTriangle } from "lucide-react";
 import 'atropos/css';
@@ -100,9 +99,6 @@ const Course: React.FC = () => {
               onCategoryChange={handleCategoryChange}
               onProductClick={handleProductClick}
             />
-
-            {/* CTA Section */}
-            <CTASection isZhTW={isZhTW} />
           </main>
         </Suspense>
         
