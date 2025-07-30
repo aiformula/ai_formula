@@ -179,83 +179,149 @@ const articleContents: ArticleContent[] = [
     id: 2,
     sections: [
       {
-        type: 'heading',
-        level: 2,
-        content: '五大核心優勢',
-        contentEn: 'Five Core Advantages'
+        type: 'paragraph',
+        content: '在芸芸 AI 自動化服務供應商中，為何越來越多具前瞻視野的香港企業，從初創公司到行業翹楚，都選擇 AI Formula 作為他們數碼轉型的領航員？答案不僅在於我們領先的技術，更在於我們植根香港、與客戶並肩作戰的核心價值。',
+        contentEn: 'Among a sea of AI automation providers, why is it that a growing number of forward-thinking Hong Kong enterprises, from agile startups to established industry leaders, choose AI Formula to navigate their digital transformation? The answer lies not just in our advanced technology, but in our core values: a deep-rooted local presence and a commitment to walking alongside our clients.'
       },
       {
         type: 'paragraph',
-        content: '眾多 AI 自動化服務供應商中，AI Formula 已成為香港企業最青睞的合作夥伴。以下是我們的五大優勢：',
-        contentEn: 'Among numerous AI automation service providers, AI Formula has become the preferred partner for Hong Kong businesses with its unique advantages and professional capabilities. Here are five reasons to choose us:'
+        content: '這篇文章將深入剖析選擇 AI Formula 的五大核心理由，揭示我們如何憑藉本地化洞察、頂尖專業團隊、深度合作的成功經驗、全天候的支援承諾以及最具成本效益的方案，成為您在 AI 時代無可替代的競爭優勢。',
+        contentEn: 'This article provides a deep dive into the five core reasons to choose AI Formula, revealing how our blend of localised insight, elite professional teams, profound partnership success, unwavering support, and cost-effective solutions makes us your indispensable competitive advantage in the AI era.'
       },
       {
-        type: 'card',
-        content: '我們的競爭優勢',
-        contentEn: 'Our Competitive Advantages',
-        items: [
-          '🇭🇰 本地化服務：深入了解香港市場與商業環境',
-          '👥 專業團隊：豐富的 AI 與自動化專家經驗',
-          '📊 成功案例：超過 100 家企業的成功實施經驗',
-          '🔄 持續支援：24/7 技術支援與定期系統優化',
-          '💰 合理價格：最具成本效益的自動化解決方案'
-        ],
-        itemsEn: [
-          '🇭🇰 Localized Service: Deep understanding of Hong Kong market and business environment',
-          '👥 Professional Team: Experienced AI and automation experts',
-          '📊 Success Stories: Over 100 successful implementation experiences',
-          '🔄 Ongoing Support: 24/7 technical support and regular system optimization',
-          '💰 Reasonable Pricing: Most cost-effective automation solutions'
-        ]
+        type: 'heading',
+        level: 2,
+        content: '1. 真正「貼地」的本地化服務：我們比任何人都懂香港',
+        contentEn: '1. Truly Localised Service: We Understand Hong Kong Better Than Anyone'
       },
       {
-        type: 'highlight',
-        content: '客戶成功指標',
-        contentEn: 'Customer Success Metrics',
-        items: [
-          '平均效率提升：65%',
-          '平均成本節省：40%',
-          '客戶滿意度：98%',
-          '專案成功率：100%'
-        ],
-        itemsEn: [
-          'Average Efficiency Improvement: 65%',
-          'Average Cost Savings: 40%',
-          'Customer Satisfaction: 98%',
-          'Project Success Rate: 100%'
-        ]
+        type: 'paragraph',
+        content: '數碼轉型，從來不是將海外方案生搬硬套。香港擁有獨特的商業生態、法規環境和中英雙語並行的溝通模式。AI Formula 的最大優勢，正在於我們是土生土長的香港團隊。',
+        contentEn: 'Digital transformation is never about a simple copy-paste of overseas solutions. Hong Kong has a unique business ecosystem, a distinct regulatory landscape, and a fluid bilingual communication style. The greatest advantage of AI Formula is that we are a homegrown Hong Kong team.'
       },
       {
         type: 'list',
-        content: '我們的服務特色',
-        contentEn: 'Our Service Features',
+        content: '本地化優勢',
+        contentEn: 'Localisation Advantages',
         items: [
-          '🔧 量身定制解決方案：完全符合您的業務需求',
-          '🔗 無縫整合現有系統，最小化業務中斷',
-          '👥 完整培訓與技術支援，確保團隊順利過渡',
-          '💰 靈活支付方案與合理定價策略',
-          '🔄 持續系統優化與功能升級'
+          '洞悉市場脈搏： 我們了解香港零售業的租金壓力、金融服務業的合規要求、製造業對效率的極致追求。我們的方案，是為解決您在香港營商的真實痛點而設計。',
+          '無縫語言溝通： 無論是與您的管理層進行粵語戰略會議，還是與 IT 團隊進行英語技術對接，我們都能確保溝通零障礙，完美傳達每一個細節。',
+          '熟悉法規環境： 我們熟悉《個人資料（私隱）條例》等本地法規，確保您的 AI 自動化方案在高效運作的同時，完全合法合規，讓您安枕無憂。'
         ],
         itemsEn: [
-          'Customized solutions that perfectly match your business needs',
-          'Seamless integration with existing systems, minimizing business disruption',
-          'Comprehensive training and technical support for smooth team transition',
-          'Flexible payment options and reasonable pricing strategies',
-          'Continuous system optimization and feature upgrades'
+          'Insight into the Market\'s Pulse: We understand the rent pressures in Hong Kong\'s retail sector, the compliance demands of its financial services industry, and the relentless pursuit of efficiency in manufacturing. Our solutions are engineered to solve the real-world pain points of doing business in this city.',
+          'Seamless Bilingual Communication: Whether conducting a strategic meeting in Cantonese with your management or a technical deep-dive in English with your IT department, we ensure zero communication barriers and flawless conveyance of every detail.',
+          'Regulatory Familiarity: We are well-versed in local regulations like the Personal Data (Privacy) Ordinance (PDPO), ensuring your AI automation solution is not only highly efficient but also fully compliant, giving you complete peace of mind.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '2. 頂尖專業團隊：我們是技術專家，更是您的業務顧問',
+        contentEn: '2. An Elite Professional Team: We Are Technologists and Business Consultants'
+      },
+      {
+        type: 'paragraph',
+        content: '一個成功的 AI 項目，需要的不僅是程式碼，更是對業務流程的深刻理解。AI Formula 的團隊由一群經驗豐富的 AI 科學家、數據分析師及業務流程顧問組成，我們致力於成為連接尖端科技與商業目標之間的橋樑。',
+        contentEn: 'A successful AI project requires more than just code; it demands a profound understanding of business processes. The AI Formula team comprises seasoned AI scientists, data analysts, and business process consultants dedicated to bridging the gap between cutting-edge technology and strategic business goals.'
+      },
+      {
+        type: 'list',
+        content: '專業團隊優勢',
+        contentEn: 'Professional Team Advantages',
+        items: [
+          '跨領域專才： 我們的團隊不僅精通機器學習、自然語言處理 (NLP) 等核心 AI 技術，更具備跨行業的流程優化經驗。',
+          '以終為始： 我們的工作方式，是先聆聽、後分析、再建議。我們關心的不只是「如何建構系統」，而是「此系統如何為您帶來 65% 的效率提升和 40% 的成本節省」。',
+          '98% 客戶滿意度 的背後，是我們團隊對每一個項目細節的極致追求和專業承諾。'
+        ],
+        itemsEn: [
+          'Cross-Disciplinary Expertise: Our team is not only proficient in core AI technologies like Machine Learning and Natural Language Processing (NLP) but also possesses extensive cross-industry experience in process optimisation.',
+          'Beginning with the End in Mind: Our methodology is to listen first, then analyse, then advise. We are concerned not just with "how to build the system," but with "how this system will deliver a 65% average efficiency gain and a 40% cost saving" for you.',
+          'Our 98% customer satisfaction rate is a direct result of our team\'s meticulous attention to detail and unwavering professional commitment to every project.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '3. 深度合作的成功經驗：與 4+ 家先驅企業共同成長',
+        contentEn: '3. Deep Partnership & Proven Success: Growing with 4+ Pioneer Companies'
+      },
+      {
+        type: 'paragraph',
+        content: '我們不追求客戶數量，我們追求的是每一個合作的深度與成功。AI Formula 自豪地宣布，我們已與超過 4 家來自不同行業的先驅企業建立了深度的合作夥伴關係。這不僅是數字，更是我們實力的證明。',
+        contentEn: 'We don\'t chase a high volume of clients; we pursue depth and success in every partnership. AI Formula is proud to have established deep, collaborative partnerships with over 4+ pioneer companies across diverse industries. This isn\'t just a number; it\'s a testament to our capability.'
+      },
+      {
+        type: 'list',
+        content: '合作成功經驗',
+        contentEn: 'Partnership Success Experience',
+        items: [
+          '重質不重量： 我們將每一位客戶都視為長期夥伴。透過與這 4+ 家企業的緊密合作，我們共同面對挑戰，一同慶祝由 AI 自動化帶來的真實業務增長。',
+          '100% 項目成功率： 我們的往績記錄完美無瑕。這份信心來自於我們量身定制的解決方案、嚴謹的項目管理以及對客戶成功的共同承諾。這意味著，您的投資將得到確切的回報。',
+          '實例勝於雄辯： 我們樂於分享這些合作案例（在保護客戶隱私的前提下），讓您親眼看見 AI Formula 如何將理論轉化為可量度的商業價值。'
+        ],
+        itemsEn: [
+          'Quality Over Quantity: We treat every client as a long-term partner. Through our close collaboration with these 4+ enterprises, we have tackled challenges together and celebrated the tangible business growth driven by AI automation.',
+          'A 100% Project Success Rate: Our track record is flawless. This confidence stems from our bespoke solutions, rigorous project management, and a shared commitment to our clients\' success. It means your investment will yield a guaranteed return.',
+          'Results Speak Louder Than Words: We are happy to share insights from these partnerships (while respecting client confidentiality) so you can see firsthand how AI Formula translates theory into measurable commercial value.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '4. 全天候持續支援：您的業務不息，我們的支援不止',
+        contentEn: '4. Continuous, Round-the-Clock Support: Your Business Never Stops, Neither Does Our Support'
+      },
+      {
+        type: 'paragraph',
+        content: 'AI 系統的價值在於其持續、穩定、高效的運作。AI Formula 深明此道，因此我們提供的不僅是項目交付，更是一份長期的安心承諾。',
+        contentEn: 'The value of an AI system lies in its continuous, stable, and efficient operation. AI Formula understands this implicitly, which is why we provide not just a project delivery, but a long-term promise of security.'
+      },
+      {
+        type: 'list',
+        content: '持續支援承諾',
+        contentEn: 'Continuous Support Commitment',
+        items: [
+          '24/7 技術後盾： 我們的支援團隊全年無休，隨時準備應對任何突發技術問題，確保您的業務營運不因系統問題而中斷。',
+          '主動系統優化： 我們會定期監控您的 AI 系統表現，主動提出優化建議。隨著您的業務發展，我們將持續為您升級系統功能，確保它永遠處於最佳狀態，與您共同成長。',
+          '無縫團隊過渡： 我們提供完整且易於理解的培訓，確保您的團隊能快速上手，真正將 AI 工具的潛力發揮到極致。'
+        ],
+        itemsEn: [
+          '24/7 Technical Backbone: Our support team is available around the clock, ready to address any emergent technical issues and ensure your business operations are never disrupted.',
+          'Proactive System Optimisation: We proactively monitor your AI system\'s performance and provide recommendations for enhancement. As your business evolves, we continuously upgrade system functionalities to ensure it remains in peak condition, growing with you.',
+          'Seamless Team Onboarding: We provide comprehensive and accessible training to ensure your team can quickly master the new tools and truly unleash the full potential of AI.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '5. 真正有用的知識傳承：絕非空談的實用課程',
+        contentEn: '5. Genuinely Useful Knowledge Transfer: Actionable Courses, Not Empty Talk'
+      },
+      {
+        type: 'paragraph',
+        content: '在 AI Formula，我們深信「授人以魚，不如授人以漁」。我們致力於提升客戶團隊的整體 AI 素養，因此我們提供的課程與資訊，都秉持一個核心原則：絕對實用，絕不空談。',
+        contentEn: 'At AI Formula, we believe in the principle of "teaching you how to fish." We are dedicated to enhancing the overall AI literacy of our clients\' teams. Therefore, the courses and information we provide adhere to one core principle: be practical, not platitudinous.'
+      },
+      {
+        type: 'list',
+        content: '知識傳承優勢',
+        contentEn: 'Knowledge Transfer Advantages',
+        items: [
+          '即學即用，可複製的技能： 我們的免費及付費課程，內容都經過精心設計。我們分享的 AI 工具和工作流程，都是您可以立即複製、儲存並應用於日常工作中的。我們教您的是方法，是能真正提升您個人及團隊技能的知識。',
+          '告別網絡雜訊： 您無需再浪費時間篩選海量的 AI 資訊。AI Formula 為您精選、測試並驗證最有效的工具和最新趨勢，確保您得到的每一份資訊都是高價值、可信賴的。',
+          '輕鬆分享，共同進步： 我們的教學資源設計得易於理解和分享，助您輕鬆在企業內部推廣 AI 文化，讓整個團隊一同升級。'
+        ],
+        itemsEn: [
+          'Actionable, Replicable Skills: The content of our free and paid courses is meticulously designed. The AI tools and workflows we share are resources you can immediately copy, save, and apply to your daily work. We teach methodologies that deliver a real, tangible upgrade to your and your team\'s skills.',
+          'Cutting Through the Noise: Stop wasting time sifting through endless AI information online. AI Formula selects, tests, and verifies the most effective tools and latest trends, ensuring every piece of information you receive is high-value and trustworthy.',
+          'Easy to Share & Upskill Together: Our educational resources are designed for easy comprehension and sharing, helping you to effortlessly champion an AI culture within your organisation and upgrade your entire team.'
         ]
       },
       {
         type: 'conclusion',
-        content: '選擇 AI Formula 的理由',
-        contentEn: 'Reasons to Choose AI Formula',
-        items: [
-          '我們不僅是技術供應商，更是您事業成功的夥伴。選擇 AI Formula，您將獲得最專業的服務、最先進的技術，以及最可靠的支援。',
-          '讓我們一起開始您的 AI 自動化旅程，實現突破性的業務成長！'
-        ],
-        itemsEn: [
-          'We are not just technology providers, but partners in your business success. Choose AI Formula, and you will receive the most professional service, the most advanced technology, and the most reliable support.',
-          'Let us start your AI automation journey together and achieve breakthrough business growth!'
-        ]
+        content: '綜合以上五大理由——無可比擬的本地化優勢、兼具技術與商業智慧的專業團隊、重質重深度的成功經驗、永續的技術支援，以及真正賦能於您的知識分享——AI Formula 無疑是香港中小企在邁向 AI 自動化道路上，最明智、最可靠的選擇。\n\n不要再讓繁瑣的流程拖慢您業務發展的腳步。立即聯繫 AI Formula，讓我們為您展示，一個為您量身定制的 AI 自動化未來是何等觸手可及。',
+        contentEn: 'Considering these five core reasons—unmatched local advantage, an expert team with both technical and business acumen, a track record of deep and successful partnerships, perpetual support, and a commitment to genuine knowledge sharing—AI Formula stands out as the wisest and most reliable choice for Hong Kong SMEs on their journey to AI automation.\n\nDon\'t let cumbersome processes impede your growth any longer. Contact AI Formula today, and let us show you how a bespoke AI-automated future is well within your reach.'
       }
     ]
   },
