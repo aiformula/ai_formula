@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Calendar, Clock, User, Search, Tag, TrendingUp, Eye, Rocket, Star, Settings, Package, RotateCcw, Zap, BookOpen, PenTool, Lightbulb, Target } from "lucide-react";
+import { ArrowRight, Calendar, Clock, User, Search, Tag, TrendingUp, Eye, Rocket, Star, Settings, Package, RotateCcw, Zap } from "lucide-react";
 import Navigation from "@/components/Navigation";
 // 移除 Footer 導入，因為 App.tsx 已經有全局 Footer
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -24,168 +24,6 @@ const getPostIcon = (image: string) => {
   };
   
   return iconMap[image] || <Star className="h-8 w-8 text-yellow-400" />;
-};
-
-// Feature Cards Data
-const featureCards = [
-  {
-    id: 1,
-    icon: BookOpen,
-    title: "深度學習指南",
-    titleEn: "Deep Learning Guide",
-    description: "專業AI知識分享，從基礎到進階的完整學習路徑",
-    descriptionEn: "Professional AI knowledge sharing, complete learning path from basics to advanced",
-    gradient: "from-yellow-400/20 to-amber-500/20"
-  },
-  {
-    id: 2,
-    icon: PenTool,
-    title: "實戰案例分析",
-    titleEn: "Practical Case Studies",
-    description: "真實商業案例解析，讓您快速掌握AI應用精髓",
-    descriptionEn: "Real business case analysis to help you quickly master AI application essentials",
-    gradient: "from-amber-400/20 to-yellow-600/20"
-  },
-  {
-    id: 3,
-    icon: Lightbulb,
-    title: "創新思維啟發",
-    titleEn: "Innovation Inspiration",
-    description: "探索AI前沿趨勢，激發無限創意可能性",
-    descriptionEn: "Explore cutting-edge AI trends and inspire unlimited creative possibilities",
-    gradient: "from-yellow-500/20 to-amber-400/20"
-  },
-  {
-    id: 4,
-    icon: Target,
-    title: "精準解決方案",
-    titleEn: "Targeted Solutions",
-    description: "針對具體業務需求，提供量身定制的AI解決方案",
-    descriptionEn: "Provide customized AI solutions for specific business needs",
-    gradient: "from-amber-500/20 to-yellow-500/20"
-  }
-];
-
-// Feature Cards Component
-const FeatureCards = ({ isZhTW }: { isZhTW: boolean }) => {
-  return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
-            {isZhTW ? '功能模塊' : 'Feature Modules'}
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {isZhTW 
-              ? '探索我們的核心功能，提升您的AI學習體驗'
-              : 'Explore our core features to enhance your AI learning experience'
-            }
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featureCards.map((feature, index) => (
-            <motion.div
-              key={feature.id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 * index }}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                z: 50
-              }}
-              className="group perspective-1000"
-            >
-              <div className={`
-                relative overflow-hidden rounded-2xl p-8 h-full
-                bg-gradient-to-br ${feature.gradient}
-                backdrop-blur-xl border border-yellow-400/30
-                shadow-2xl shadow-yellow-500/10
-                hover:shadow-yellow-400/20 hover:border-yellow-400/50
-                transition-all duration-500 ease-out
-                before:absolute before:inset-0 
-                before:bg-gradient-to-br before:from-yellow-400/5 before:to-transparent
-                before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500
-              `}>
-                {/* Metallic border effect */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-600/20 opacity-50 group-hover:opacity-100 transition-opacity duration-500" 
-                     style={{ 
-                       mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                       maskComposite: 'xor',
-                       WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                       WebkitMaskComposite: 'xor'
-                     }} />
-
-                {/* Glow effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 to-amber-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div className="mb-6">
-                    <div className="relative">
-                      <feature.icon 
-                        className="h-12 w-12 text-yellow-400 group-hover:text-yellow-300 transition-all duration-300"
-                        style={{
-                          filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.3)) drop-shadow(0 0 16px rgba(250, 204, 21, 0.1))',
-                          stroke: 'url(#goldGradient)',
-                          strokeWidth: '1.5px'
-                        }}
-                      />
-                      {/* Icon glow */}
-                      <div className="absolute inset-0">
-                        <feature.icon 
-                          className="h-12 w-12 text-yellow-400/30 blur-sm group-hover:text-yellow-400/50 transition-all duration-300" 
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-bold mb-4 text-white group-hover:text-yellow-100 transition-colors duration-300">
-                    {isZhTW ? feature.title : feature.titleEn}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                    {isZhTW ? feature.description : feature.descriptionEn}
-                  </p>
-
-                  {/* Decorative elements */}
-                  <div className="absolute top-4 right-4 w-2 h-2 bg-yellow-400/50 rounded-full group-hover:bg-yellow-400 transition-colors duration-300" />
-                  <div className="absolute bottom-4 left-4 w-1 h-1 bg-amber-400/50 rounded-full group-hover:bg-amber-400 transition-colors duration-300" />
-                </div>
-
-                {/* Animated background particles */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-yellow-400/20 rounded-full animate-pulse" />
-                  <div className="absolute top-3/4 right-1/3 w-0.5 h-0.5 bg-amber-400/30 rounded-full animate-pulse delay-1000" />
-                  <div className="absolute bottom-1/3 left-2/3 w-0.5 h-0.5 bg-yellow-500/25 rounded-full animate-pulse delay-2000" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* SVG Gradients for icons */}
-        <svg width="0" height="0" className="absolute">
-          <defs>
-            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FBBF24" />
-              <stop offset="50%" stopColor="#F59E0B" />
-              <stop offset="100%" stopColor="#D97706" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </section>
-  );
 };
 
 // 隨機顏色配置 - 移除藍色，改為金色主題
@@ -394,9 +232,6 @@ const BlogListing = () => {
           </div>
         </div>
       </section>
-
-      {/* Feature Cards Section */}
-      <FeatureCards isZhTW={isZhTW} />
 
       {/* Main Content */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">

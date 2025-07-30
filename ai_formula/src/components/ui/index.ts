@@ -2,6 +2,7 @@
 export * from './button'
 export * from './learning-button'
 export * from './course-card'
+export * from './dynamic-course-card'
 export * from './card'
 export * from './badge'
 export * from './input'
