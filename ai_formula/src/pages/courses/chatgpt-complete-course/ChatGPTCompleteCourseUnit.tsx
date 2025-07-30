@@ -233,7 +233,17 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
 
   // Navigation handlers
   const handleNavigateBack = useCallback(() => {
-    navigate('/courses/chatgpt-complete-course/learning');
+    // 🎯 動態生成返回路徑：從當前 URL 提取課程 slug
+    const currentPath = window.location.pathname;
+    const courseSlugMatch = currentPath.match(/\/courses\/([^\/]+)\//);
+    
+    if (courseSlugMatch) {
+      const courseSlug = courseSlugMatch[1];
+      navigate(`/courses/${courseSlug}/learning`);
+    } else {
+      // 備用方案：如果無法提取 slug，使用預設路徑
+      navigate('/courses/chatgpt-complete-course/learning');
+    }
   }, [navigate]);
 
   const handleNavigateNext = useCallback(() => {
@@ -374,12 +384,12 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
   }
 
                   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <Navigation />
-      
-      {/* Main Content */}
-      <div className="pt-20 lg:pt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="min-h-screen bg-[#121212] text-white">
+    <Navigation />
+    
+    {/* Main Content */}
+    <div className="page-content">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header Section */}
           <motion.div 
@@ -394,7 +404,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                 className="btn-ai-secondary flex items-center space-x-2"
                     >
                 <ArrowLeft className="w-4 h-4" />
-                <span>{isZhHK ? '返回課程' : 'Back to Course'}</span>
+                <span>{isZhHK ? '返回課程大綱' : 'Back to Course Outline'}</span>
                     </Button>
               
               <div className="text-right">
