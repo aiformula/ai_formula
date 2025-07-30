@@ -17,6 +17,7 @@ export interface DigitalProduct {
   type: string;
   typeCht: string;
   category: string;
+  themeColor?: string; // 新增動態主題顏色屬性
   newProduct?: boolean;
   bestseller?: boolean;
   featured?: boolean;
@@ -80,6 +81,7 @@ export const digitalProducts: DigitalProduct[] = [
     type: "AI Application",
     typeCht: "AI 應用",
     category: "chatgpt-complete-course",
+    themeColor: "#10a37f", // ChatGPT 綠色
     newProduct: true,
     featured: true,
     bestseller: true,
@@ -94,6 +96,114 @@ export const digitalProducts: DigitalProduct[] = [
       "6 個綜合模組",
       "高效 Prompt 實戰手冊",
       "AI 工具整合指南",
+      "+4 更多項目"
+    ]
+  },
+  {
+    id: 2,
+    title: "Midjourney AI Art Mastery",
+    titleCht: "Midjourney AI 繪圖精通",
+    description: "Learn to create stunning AI artwork with Midjourney, from basic prompts to advanced techniques.",
+    descriptionCht: "學習使用 Midjourney 創作令人驚豔的AI藝術作品，從基礎提示到進階技巧。",
+    duration: "6 hours comprehensive training",
+    durationCht: "6 小時",
+    downloads: 25,
+    rating: 4.8,
+    level: "Beginner to Advanced",
+    levelCht: "初學者到進階",
+    price: "HK$899",
+    originalPrice: "HK$1299",
+    image: "🎨",
+    type: "AI Art",
+    typeCht: "AI 藝術",
+    category: "midjourney-course",
+    themeColor: "#8A2BE2", // Midjourney 紫色
+    newProduct: false,
+    featured: true,
+    bestseller: true,
+    hotSelling: false,
+    includes: [
+      "Advanced Prompt Engineering",
+      "Style Reference Guide",
+      "Commercial Usage Rights",
+      "+3 More Items"
+    ],
+    includesCht: [
+      "進階提示工程",
+      "風格參考指南",
+      "商業使用權限",
+      "+3 更多項目"
+    ]
+  },
+  {
+    id: 3,
+    title: "Claude 3 API Development",
+    titleCht: "Claude 3 API 應用開發",
+    description: "Build powerful applications using Claude 3 API with practical examples and best practices.",
+    descriptionCht: "使用 Claude 3 API 構建強大的應用程序，包含實用範例和最佳實踐。",
+    duration: "8 hours comprehensive training",
+    durationCht: "8 小時",
+    downloads: 15,
+    rating: 4.9,
+    level: "Intermediate to Advanced",
+    levelCht: "中級到進階",
+    price: "免費",
+    originalPrice: "",
+    image: "🤖",
+    type: "API Development",
+    typeCht: "API 開發",
+    category: "claude-api-course",
+    themeColor: "#FF6B35", // Claude 橙色
+    newProduct: true,
+    featured: true,
+    bestseller: false,
+    hotSelling: true,
+    includes: [
+      "API Integration Guide",
+      "Code Examples & Templates",
+      "Best Practices Manual",
+      "+5 More Items"
+    ],
+    includesCht: [
+      "API 整合指南",
+      "程式碼範例與模板",
+      "最佳實踐手冊",
+      "+5 更多項目"
+    ]
+  },
+  {
+    id: 4,
+    title: "AI Business Automation",
+    titleCht: "AI 商業自動化",
+    description: "Automate your business processes with AI tools and increase efficiency dramatically.",
+    descriptionCht: "使用 AI 工具自動化您的商業流程，大幅提升工作效率。",
+    duration: "5 hours comprehensive training",
+    durationCht: "5 小時",
+    downloads: 20,
+    rating: 4.7,
+    level: "All Levels",
+    levelCht: "適合所有級別",
+    price: "HK$699",
+    originalPrice: "HK$999",
+    image: "⚡",
+    type: "Business Automation",
+    typeCht: "商業自動化",
+    category: "ai-automation-course",
+    themeColor: "#FBBF24", // 預設金色
+    newProduct: false,
+    featured: false,
+    bestseller: true,
+    hotSelling: true,
+    includes: [
+      "Automation Workflow Design",
+      "Tool Integration Guide",
+      "ROI Calculation Methods",
+      "+4 More Items"
+    ],
+    includesCht: [
+      "自動化工作流程設計",
+      "工具整合指南",
+      "投資回報率計算方法",
       "+4 更多項目"
     ]
   }

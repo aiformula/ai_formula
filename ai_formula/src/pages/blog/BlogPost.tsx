@@ -34,6 +34,26 @@ import { BlogPost as BlogPostType } from '@/data/blog/blogPosts';
 import { articleContents } from '@/data/blog/articleContent';
 import { digitalProducts } from '@/data/courses/courseData'; // 導入實際課程數據
 
+// 顏色工具函數
+const adjustBrightness = (hex: string, percent: number): string => {
+  const num = parseInt(hex.replace("#", ""), 16);
+  const amt = Math.round(2.55 * percent);
+  const R = (num >> 16) + amt;
+  const G = (num >> 8 & 0x00FF) + amt;
+  const B = (num & 0x0000FF) + amt;
+  return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+    (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+    (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+};
+
+const adjustOpacity = (hex: string, opacity: number): string => {
+  const num = parseInt(hex.replace("#", ""), 16);
+  const R = num >> 16;
+  const G = num >> 8 & 0x00FF;
+  const B = num & 0x0000FF;
+  return `rgba(${R}, ${G}, ${B}, ${opacity})`;
+};
+
 interface ArticleViewCounterProps {
   initialViews: string;
   postId: number;
@@ -177,6 +197,13 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
 
   if (!randomCourse) return null;
 
+  // 獲取動態主題顏色，預設為金色
+  const themeColor = randomCourse.themeColor || '#FBBF24';
+  const themeColorDark = adjustBrightness(themeColor, -20);
+  const themeColorLight = adjustBrightness(themeColor, 20);
+  const themeColorGlow = adjustOpacity(themeColor, 0.4);
+  const themeColorBorder = adjustOpacity(themeColor, 0.2);
+
   const courseTitle = isZhHK ? randomCourse.titleCht : randomCourse.title;
   const courseDescription = isZhHK ? randomCourse.descriptionCht : randomCourse.description;
   const isFree = randomCourse.price === '0' || randomCourse.price === 'Free' || randomCourse.price === '免費';
@@ -187,35 +214,35 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
     ? (isZhHK ? '免費' : 'Free')
     : `${randomCourse.price}`;
 
-  // Generate course tags
+  // Generate course tags with dynamic theme colors
   const getCourseTagsContent = () => {
     const tagConfigs = [];
     if (randomCourse.newProduct) {
       tagConfigs.push({
         text: isZhHK ? '新品' : 'New',
-        color: '#F6B73C',
-        glowColor: 'rgba(246, 183, 60, 0.4)'
+        color: themeColor,
+        glowColor: themeColorGlow
       });
     }
     if (randomCourse.bestseller) {
       tagConfigs.push({
         text: isZhHK ? '暢銷' : 'Best Seller',
-        color: '#FF9800',
-        glowColor: 'rgba(255, 152, 0, 0.4)'
+        color: adjustBrightness(themeColor, 10),
+        glowColor: themeColorGlow
       });
     }
     if (randomCourse.featured) {
       tagConfigs.push({
         text: isZhHK ? '精選' : 'Featured',
-        color: '#FFC857',
-        glowColor: 'rgba(255, 200, 87, 0.4)'
+        color: adjustBrightness(themeColor, -10),
+        glowColor: themeColorGlow
       });
     }
     if (randomCourse.hotSelling) {
       tagConfigs.push({
         text: isZhHK ? '熱銷' : 'Hot',
-        color: '#E6A700',
-        glowColor: 'rgba(230, 167, 0, 0.4)'
+        color: themeColorDark,
+        glowColor: themeColorGlow
       });
     }
     return tagConfigs;
@@ -238,7 +265,10 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
       transition={{ duration: 0.6, delay: 0.2 }}
     >
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-yellow-400 mb-4">
+        <h3 
+          className="text-xl font-bold mb-4"
+          style={{ color: themeColor }}
+        >
           {isZhHK ? 'AI 課程推薦' : 'AI Course Recommendation'}
         </h3>
         
@@ -246,11 +276,11 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
           className="relative overflow-hidden rounded-xl border cursor-pointer animate-float"
           style={{
             background: 'linear-gradient(135deg, #1C1C1C 0%, #0D0D0D 100%)',
-            borderColor: 'rgba(246, 183, 60, 0.2)'
+            borderColor: themeColorBorder
           }}
           whileHover={{
             scale: 1.02,
-            boxShadow: '0 8px 20px rgba(246, 183, 60, 0.15)'
+            boxShadow: `0 8px 20px ${adjustOpacity(themeColor, 0.15)}`
           }}
           onClick={handleCourseClick}
         >
@@ -258,9 +288,9 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
           <div 
             className="absolute inset-0 opacity-10"
             style={{
-              backgroundImage: `radial-gradient(circle at 20% 50%, rgba(246, 183, 60, 0.2) 0%, transparent 50%),
-                               radial-gradient(circle at 80% 20%, rgba(255, 152, 0, 0.2) 0%, transparent 50%),
-                               radial-gradient(circle at 40% 80%, rgba(255, 200, 87, 0.1) 0%, transparent 50%)`,
+              backgroundImage: `radial-gradient(circle at 20% 50%, ${adjustOpacity(themeColor, 0.2)} 0%, transparent 50%),
+                               radial-gradient(circle at 80% 20%, ${adjustOpacity(themeColorLight, 0.2)} 0%, transparent 50%),
+                               radial-gradient(circle at 40% 80%, ${adjustOpacity(themeColorDark, 0.1)} 0%, transparent 50%)`,
             }}
           />
           
@@ -289,7 +319,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             <h4 
               className="font-bold text-white mb-4 text-lg leading-tight text-center"
               style={{
-                background: 'linear-gradient(135deg, #F6B73C 0%, #FF9800 100%)',
+                background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColorDark} 100%)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -307,8 +337,8 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                 <Clock 
                   className="h-4 w-4" 
                   style={{ 
-                    color: '#F6B73C',
-                    filter: 'drop-shadow(0 0 4px rgba(246, 183, 60, 0.6))'
+                    color: themeColor,
+                    filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                   }} 
                 />
                 <span className="text-gray-300 text-sm">{courseDuration}</span>
@@ -321,8 +351,8 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                 <User 
                   className="h-4 w-4" 
                   style={{ 
-                    color: '#FF9800',
-                    filter: 'drop-shadow(0 0 4px rgba(255, 152, 0, 0.6))'
+                    color: themeColorLight,
+                    filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                   }} 
                 />
                 <span className="text-gray-300 text-sm">{courseLevel}</span>
@@ -335,8 +365,8 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                 <Star 
                   className="h-4 w-4" 
                   style={{ 
-                    color: '#E6A700',
-                    filter: 'drop-shadow(0 0 4px rgba(230, 167, 0, 0.6))'
+                    color: themeColorDark,
+                    filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                   }} 
                 />
                 <span className="text-gray-300 text-sm">{courseRating}/5</span>
@@ -350,17 +380,17 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                   <BookOpen 
                     className="h-4 w-4" 
                     style={{ 
-                      color: '#FFD95C',
-                      filter: 'drop-shadow(0 0 4px rgba(255, 217, 92, 0.8))'
+                      color: themeColorLight,
+                      filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                     }} 
                   />
                 ) : (
                   <span 
                     className="text-sm font-bold"
                     style={{ 
-                      color: '#FFD95C',
-                      textShadow: '0 0 8px rgba(255, 217, 92, 0.8)',
-                      filter: 'drop-shadow(0 0 4px rgba(255, 217, 92, 0.6))'
+                      color: themeColorLight,
+                      textShadow: `0 0 8px ${themeColorGlow}`,
+                      filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                     }}
                   >
                     $
@@ -369,9 +399,9 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                 <span 
                   className={`text-sm font-bold ${isFree ? 'text-white' : 'text-white'}`}
                   style={{
-                    color: isFree ? '#FFD95C' : '#FFD95C',
-                    textShadow: isFree ? '0 0 8px rgba(255, 217, 92, 0.8)' : '0 0 8px rgba(255, 217, 92, 0.8)',
-                    filter: 'drop-shadow(0 0 4px rgba(255, 217, 92, 0.6))'
+                    color: themeColorLight,
+                    textShadow: `0 0 8px ${themeColorGlow}`,
+                    filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                   }}
                 >
                   {coursePrice}
@@ -383,11 +413,11 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
             <motion.button
               className="w-full py-3 rounded-lg text-black font-semibold text-sm transition-all duration-300"
               style={{
-                background: 'linear-gradient(135deg, #F6B73C 0%, #FF9800 100%)'
+                background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColorDark} 100%)`
               }}
               whileHover={{
-                background: 'linear-gradient(135deg, #E6A700 0%, #F57C00 100%)',
-                boxShadow: '0 4px 12px rgba(246, 183, 60, 0.4)'
+                background: `linear-gradient(135deg, ${themeColorDark} 0%, ${adjustBrightness(themeColor, -30)} 100%)`,
+                boxShadow: `0 4px 12px ${themeColorGlow}`
               }}
               whileTap={{ scale: 0.98 }}
             >
