@@ -539,102 +539,193 @@ const articleContents: ArticleContent[] = [
     id: 4,
     sections: [
       {
-        type: 'heading',
-        level: 2,
-        content: '探索 n8n：開源自動化力量',
-        contentEn: 'Exploring n8n: The Power of Open Source Automation'
+        type: 'paragraph',
+        content: '當 Make.com 和 Zapier 等雲端平台讓「自動化」變得普及，一群對數據安全、成本控制和功能自訂有著更高要求的企業和開發者，正將目光投向一個更強大的選擇——n8n。這不僅僅是另一個自動化工具，它是一個開源的、可自行託管的「工作流程自動化引擎」。',
+        contentEn: 'While cloud platforms like Make.com and Zapier have made automation accessible to the masses, a distinct group of businesses and developers with higher demands for data security, cost control, and deep customisation are turning to a more powerful alternative: n8n. This isn\'t just another automation tool; it\'s an open-source, self-hostable "workflow automation engine."'
       },
       {
         type: 'paragraph',
-        content: 'n8n 是一個強大的開源自動化平台，為企業提供完整的控制與自訂能力。與傳統雲端自動化服務不同，n8n 可以自行託管，讓您完全掌握資料安全與隱私保護。',
-        contentEn: 'n8n is a powerful open-source automation platform that provides businesses with complete control and customization capabilities. Unlike traditional cloud automation services, n8n can be self-hosted, giving you full control over data security and privacy protection.'
+        content: '本指南將深入探索 n8n 的世界，解釋它為何被譽為「開發者級」的自動化平台，它與主流雲端工具有何本質區別，並透過真實的企業級應用場景，展示為何許多追求極致效能的香港企業，最終選擇了 n8n。',
+        contentEn: 'This guide delves into the world of n8n, explaining why it\'s often considered the "developer\'s choice" for automation, how it fundamentally differs from mainstream cloud tools, and why many Hong Kong businesses with a need for ultimate performance are choosing it.'
       },
       {
-        type: 'card',
-        content: 'n8n 獨特優勢',
-        contentEn: 'Unique Advantages of n8n',
-        items: [
-          '💰 開源免費：完全開源，無需昂貴的授權費用',
-          '🏠 自行託管：完全掌握資料與基礎設施',
-          '🔧 高度可自訂：可依需求修改與擴充功能',
-          '🔄 豐富整合：支援 200+ 應用程式與服務連接'
-        ],
-        itemsEn: [
-          '💰 Open Source & Free: Completely open source, no expensive licensing fees',
-          '🏠 Self-hosted: Complete control over data and infrastructure',
-          '🔧 Highly Customizable: Can modify and extend functionality as needed',
-          '🔄 Rich Integration: Supports 200+ application and service connections'
-        ]
+        type: 'heading',
+        level: 2,
+        content: '什麼是 n8n？它為何與眾不同？',
+        contentEn: 'What is n8n? And What Makes It Different?'
       },
       {
-        type: 'steps',
-        content: 'n8n 部署指南',
-        contentEn: 'n8n Deployment Guide',
-        items: [
-          '🔍 選擇適當的主機環境（本地伺服器或雲端）',
-          '💻 安裝 Docker 或直接安裝 n8n',
-          '🔧 設定資料庫與環境變數',
-          '🔐 設置 SSL 憑證與網域名稱',
-          '👤 建立用戶帳號與權限管理',
-          '🚀 開始建立您的第一個工作流程'
-        ],
-        itemsEn: [
-          '🔍 Choose appropriate hosting environment (local server or cloud)',
-          '💻 Install Docker or install n8n directly',
-          '🔧 Configure database and environment variables',
-          '🔐 Set up SSL certificates and domain names',
-          '👤 Create user accounts and permission management',
-          '🚀 Start creating your first workflow'
-        ]
+        type: 'paragraph',
+        content: 'n8n (讀作 an-eight-an) 是一個採用「公平代碼」(Fair-Code) 授權的開源自動化平台。與 Make.com 等商業 SaaS (軟件即服務) 平台最大的不同在於，n8n 賦予您選擇的權利：您可以選擇使用他們的雲端版本，或者，更重要的是，您可以將整個平台免費下載並部署在您自己的伺服器上（即自行託管 Self-hosting）。',
+        contentEn: 'n8n (pronounced an-eight-an) is an open-source automation platform distributed under a "fair-code" license. The single most significant difference from commercial SaaS (Software as a Service) platforms like Make.com is that n8n gives you a choice: you can use their cloud version, or, more importantly, you can download the entire platform for free and deploy it on your own servers (self-hosting).'
       },
       {
-        type: 'highlight',
-        content: '企業級應用場景',
-        contentEn: 'Enterprise Application Scenarios',
-        items: [
-          '🔄 同步資料：自動同步不同系統間的資料',
-          '👁️ 監控警報：系統狀態監控與自動警報通知',
-          '🔄 批次處理：自動化處理與分析大量資料',
-          '🔗 API 整合：將不同 API 服務串聯成完整商業流程'
-        ],
-        itemsEn: [
-          'Data Synchronization: Automatically sync data between different systems',
-          'Monitoring Alerts: System status monitoring and automatic alert notifications',
-          'Batch Processing: Automated processing and analysis of large amounts of data',
-          'API Integration: Connect different API services into complete business processes'
-        ]
+        type: 'paragraph',
+        content: '這個「自行託管」的特性，正是 n8n 的靈魂所在。它意味著：',
+        contentEn: 'This self-hosting capability is the soul of n8n. It translates to:'
       },
       {
         type: 'list',
-        content: 'n8n 與其他自動化工具比較',
-        contentEn: 'n8n vs Other Automation Tools',
+        content: '自行託管的核心優勢',
+        contentEn: 'Core Advantages of Self-hosting',
         items: [
-          '💰 成本效益：開源免費，長期使用成本低',
-          '🔐 資料安全：自主管理，完全掌握資料安全',
-          '🔧 靈活性：可自訂節點與功能擴充',
-          '👥 社群支援：活躍的開源社群與豐富資源',
-          '🔗 無供應商鎖定：不依賴特定供應商'
+          '數據的絕對主權： 您的所有工作流程、數據和憑證 (Credentials) 都保存在您自己的基礎設施內，無需經由第三方服務器。對於處理敏感客戶資料的金融、醫療或法律行業來說，這一點至關重要。',
+          '成本的極致控制： 您無需為執行的任務次數支付昂貴的月費。您的主要成本僅為伺服器託管費用，無論您的業務規模擴大，執行百萬次還是千萬次任務，軟件本身都是免費的。',
+          '功能的無限擴展： 作為開源項目，您可以深入源代碼，甚至創建自己的「節點」(Node)，與公司內部的私有系統或任何未被官方支持的 API 進行整合。'
         ],
         itemsEn: [
-          'Cost-effectiveness: Open source and free, low long-term usage costs',
-          'Data Security: Self-hosted, complete control over data security',
-          'Flexibility: Customizable nodes and feature extensions',
-          'Community Support: Active open source community and rich resources',
-          'No vendor lock-in: Not dependent on specific vendors'
+          'Absolute Data Sovereignty: All your workflows, data, and credentials remain within your own infrastructure, never passing through third-party servers. This is a non-negotiable feature for industries handling sensitive client data, such as finance, healthcare, or legal services.',
+          'Ultimate Cost Control: You don\'t pay expensive monthly fees based on the number of tasks you run. Your primary cost is server hosting, which is fixed regardless of whether you execute a million or ten million tasks as your business scales.',
+          'Limitless Extensibility: As an open-source project, you can dive into the source code and even create your own custom \'nodes\' to integrate with internal, proprietary systems or any API not officially supported.'
         ]
       },
       {
-        type: 'conclusion',
-        content: '選擇 n8n 的理由',
-        contentEn: 'Reasons to Choose n8n',
+        type: 'heading',
+        level: 2,
+        content: 'n8n vs. Make/Zapier：為何 n8n 更強大，也更具挑戰性？',
+        contentEn: 'n8n vs. Make/Zapier: Why n8n is More Powerful, but Also More Challenging'
+      },
+      {
+        type: 'paragraph',
+        content: '將 n8n 與 Make.com 比較，就像比較一部手動擋的高性能跑車與一部自動擋的豪華房車。兩者都能載您到達目的地，但駕駛體驗和所能達到的極限截然不同。',
+        contentEn: 'Comparing n8n to Make.com is like comparing a high-performance manual sports car to an automatic luxury saloon. Both will get you to your destination, but the driving experience and the limits of what you can achieve are vastly different.'
+      },
+      {
+        type: 'card',
+        content: '功能對比：Make/Zapier vs n8n',
+        contentEn: 'Feature Comparison: Make/Zapier vs n8n',
         items: [
-          'n8n 追求數據安全與成本控制，提供完整的解決方案。如果您的事業需要高度自訂化的自動化解決方案，並且希望完全掌握資料與基礎設施，n8n 是您的理想選擇。',
-          '擁抱開源自動化，讓 n8n 成為您的數位轉型助手！'
+          '特性 | Make.com / Zapier (雲端平台) | n8n (開源引擎)',
+          '---|---|---',
+          '核心理念 | 易用性優先 | 控制權與靈活性優先',
+          '上手難度 | 極低，為市場、營銷人員設計 | 中等至高，為開發者、技術人員設計',
+          '數據隱私 | 數據流經第三方雲端服務器 | 最高，數據可完全保留在自己的伺服器內',
+          '成本模式 | 按任務執行次數收費，用量大時昂貴 | 軟件免費，只需支付伺服器成本，性價比極高',
+          '自訂能力 | 有限，受平台提供的功能限制 | 極高，可編寫程式碼、自訂節點、修改源碼',
+          '適用對象 | 追求快速、便捷實現標準化流程的新手或中小企 | 對數據安全、成本和功能有嚴格要求的技術團隊、成長型企業'
         ],
         itemsEn: [
-          'n8n provides the perfect solution for businesses seeking data security and cost control. If your business needs highly customized automation solutions and wants complete control over data and infrastructure, n8n is the ideal choice.',
-          'Embrace the power of open source automation and let n8n become your digital transformation assistant!'
+          'Feature | Make.com / Zapier (Cloud Platforms) | n8n (Open-Source Engine)',
+          '---|---|---',
+          'Core Philosophy | Ease of Use First | Control & Flexibility First',
+          'Learning Curve | Very Low, designed for marketers | Medium to High, designed for developers',
+          'Data Privacy | Data flows through third-party servers | Highest, data kept on-premise',
+          'Cost Model | Pay-per-execution, expensive at scale | Software is free, pay only for servers',
+          'Customisation | Limited to platform features | Extremely High, can write code, build nodes',
+          'Target User | Beginners or SMEs for standard tasks | Technical teams for complex, secure needs'
         ]
+      },
+      {
+        type: 'heading',
+        level: 3,
+        content: '為什麼 n8n 不太適合新手？',
+        contentEn: 'Why is n8n "Not for New Guys"?'
+      },
+      {
+        type: 'paragraph',
+        content: 'n8n 的強大，源於其技術深度。新手可能會在以下方面遇到挑戰：',
+        contentEn: 'n8n\'s power is derived from its technical depth. A complete beginner may face challenges in these areas:'
+      },
+      {
+        type: 'list',
+        content: '新手面臨的挑戰',
+        contentEn: 'Challenges for Beginners',
+        items: [
+          '部署與維護： 「自行託管」意味著您需要具備基本的伺服器管理知識，例如如何使用 Docker、設定數據庫和環境變數、配置 SSL 安全憑證等。這對非技術人員來說是一個顯著的門檻。',
+          '節點邏輯更複雜： 雖然同為視覺化界面，但 n8n 的節點 (Node) 設計更接近編程邏輯。數據以 JSON 格式在節點間傳遞，用戶經常需要使用表達式 (Expressions) 來處理和提取特定數據，這需要一定的學習。',
+          '編寫程式碼的能力： 要發揮 n8n 的終極潛力，例如執行複雜的數據轉換或與非標準 API 交互，您通常需要在 Function 節點中編寫少量 JavaScript 程式碼。'
+        ],
+        itemsEn: [
+          'Deployment & Maintenance: Self-hosting requires a foundational understanding of server management. You\'ll need to be comfortable with concepts like Docker, setting up databases and environment variables, and configuring SSL certificates. This is a significant hurdle for non-technical users.',
+          'More Complex Node Logic: While it has a visual interface, n8n\'s node design is closer to programming logic. Data is passed between nodes in JSON format, and users frequently need to use Expressions (a simplified way to reference data) to manipulate and extract specific pieces of information, which requires learning.',
+          'The Option to Code: To unlock the ultimate potential of n8n, such as performing complex data transformations or interacting with non-standard APIs, you will often find yourself writing small JavaScript snippets in the Function node.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '解鎖企業級應用：n8n 能做到而其他工具很難做到的事',
+        contentEn: 'Unlocking Enterprise-Grade Scenarios: What n8n Can Do That Others Struggle With'
+      },
+      {
+        type: 'paragraph',
+        content: '正因為其技術深度，n8n 能處理許多超乎標準自動化範疇的複雜任務。',
+        contentEn: 'Because of its technical depth, n8n can handle complex tasks that are far beyond the scope of standard automation tools.'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        content: '案例一：自動化用戶數據擴充與評分系統',
+        contentEn: 'Example 1: Automated User Data Enrichment & Lead Scoring'
+      },
+      {
+        type: 'paragraph',
+        content: '場景： 一家 B2B 軟件公司希望自動化潛在客戶 (Lead) 的資格評定流程。',
+        contentEn: 'Scenario: A B2B software company wants to automate its lead qualification process.'
+      },
+      {
+        type: 'steps',
+        content: '自動化流程步驟',
+        contentEn: 'Automation Workflow Steps',
+        items: [
+          '觸發： 從 CRM (如 HubSpot) 獲取新註冊的用戶電郵。',
+          '數據擴充： 調用 Clearbit 或類似 API，根據用戶電郵獲取其公司規模、行業、職位等詳細信息。',
+          '內部數據庫查詢： 連接到公司的 PostgreSQL 數據庫，檢查該用戶是否已有過往的互動記錄。',
+          '邏輯判斷與評分 (Function Node)： 使用自訂的 JavaScript 程式碼，根據公司規模、職位等級和互動歷史，為該 Lead 計算一個評分 (1-100分)。',
+          '智能分派： 如果評分 > 70，則在 Slack 的 #key-accounts 頻道通知資深銷售員，並在 CRM 中將其標記為「高價值線索」；如果評分 < 30，則自動將其加入一個基礎的電郵培育序列。'
+        ],
+        itemsEn: [
+          'Trigger: A new user signs up, captured from a HubSpot CRM trigger.',
+          'Data Enrichment: An HTTP Request node calls the Clearbit API to enrich the user\'s email with company size, industry, job title, etc.',
+          'Internal DB Query: A PostgreSQL node connects to the company\'s internal database to check for past interactions with that user\'s domain.',
+          'Logic & Scoring (Function Node): A custom JavaScript function calculates a lead score (1-100) based on company size, job title seniority, and interaction history.',
+          'Intelligent Routing: An IF node checks the score. If > 70, a message is sent to the #key-accounts Slack channel to alert a senior salesperson, and the lead is tagged in the CRM as "high-value." If < 30, the lead is automatically added to a basic email nurturing sequence.'
+        ]
+      },
+      {
+        type: 'paragraph',
+        content: '為何選 n8n： 這個流程涉及與多個 API 的複雜交互、自訂的業務邏輯運算 (評分模型) 和與內部數據庫的連接，這些都是 n8n 的強項。',
+        contentEn: 'Why n8n: This workflow involves complex API interactions, custom business logic (the scoring model), and direct connections to an internal database—all strong suits of n8n.'
+      },
+      {
+        type: 'heading',
+        level: 3,
+        content: '案例二：系統監控與自動化報告生成',
+        contentEn: 'Example 2: System Monitoring & Automated Reporting'
+      },
+      {
+        type: 'paragraph',
+        content: '場景： 一家電商公司需要 24/7 監控其網站、支付網關和關鍵 API 的健康狀況。',
+        contentEn: 'Scenario: An e-commerce company needs 24/7 monitoring of its website, payment gateway, and critical APIs.'
+      },
+      {
+        type: 'steps',
+        content: '自動化流程步驟',
+        contentEn: 'Automation Workflow Steps',
+        items: [
+          '定時觸發 (Cron Job)： 每 5 分鐘執行一次。',
+          'HTTP 請求節點 (HTTP Request)： 分別向網站首頁、API 端點發送請求。',
+          '條件判斷 (IF Node)： 檢查返回的狀態碼 (Status Code)。如果不是 200 (代表正常)，則立即執行下一步。',
+          '緊急警報： 透過 Telegram Bot 或 PagerDuty，向技術團隊發送緊急警報，附上錯誤詳情。',
+          '數據匯總與報告： 無論成功或失敗，都將結果記錄到一個 Google Sheets。在每日結束時，自動觸發另一個流程，匯總全天的監控數據，生成一份 PDF 格式的正常運行時間報告，並透過電郵發送給管理層。'
+        ],
+        itemsEn: [
+          'Schedule Trigger (Cron Job): Runs every 5 minutes.',
+          'HTTP Request Nodes: Make parallel requests to the website homepage and key API endpoints.',
+          'Conditional Logic (IF Node): Checks the returned status code. If it\'s not 200 (OK), the workflow proceeds down the \'false\' branch.',
+          'Emergency Alert: A Telegram node sends an instant alert to the tech team\'s channel with the specific error details.',
+          'Data Aggregation & Reporting: All results (success or fail) are logged to a Google Sheet. At the end of each day, a separate workflow is triggered to aggregate the day\'s data, generate a PDF uptime report, and email it to management.'
+        ]
+      },
+      {
+        type: 'paragraph',
+        content: '為何選 n8n： 高頻率的定時任務在其他平台可能迅速消耗任務額度，而 n8n 的成本固定。此外，生成客製化 PDF 報告等功能也更為靈活。',
+        contentEn: 'Why n8n: High-frequency cron jobs can quickly burn through execution quotas on other platforms, whereas costs are fixed with n8n. Furthermore, creating highly customised outputs like a formatted PDF report is far more flexible.'
+      },
+      {
+        type: 'conclusion',
+        content: '對於香港的企業而言，選擇哪種自動化工具，取決於您的團隊技能、業務需求和長遠規劃。\n\n如果您是一家初創公司或非技術團隊，希望快速解決一些標準化的流程問題，Make.com 可能是更合適的起點。但如果您的企業具備一定的技術能力，對數據安全有著絕不妥協的要求，厭倦了被 SaaS 平台的各種限制所束縛，並希望打造一個能夠隨著業務無限擴展的、完全客製化的自動化中樞，那麼，n8n 無疑是您的不二之選。\n\n選擇 n8n，不僅是選擇一個工具，更是選擇一種理念：將自動化的力量，牢牢掌握在自己手中。',
+        contentEn: 'For businesses in Hong Kong, the choice of automation tool depends on your team\'s skillset, business needs, and long-term vision.\n\nIf you are a startup or a non-technical team looking for a quick fix for standard process issues, Make.com is likely a more suitable starting point. However, if your business has technical talent in-house, holds data security as a non-negotiable priority, is tired of being constrained by the limits of SaaS platforms, and wants to build a fully customised, infinitely scalable automation hub, then n8n is, without question, the superior choice.\n\nChoosing n8n is more than selecting a tool; it\'s embracing a philosophy: putting the power of automation firmly back in your own hands.'
       }
     ]
   },
