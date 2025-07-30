@@ -21,79 +21,157 @@ const articleContents: ArticleContent[] = [
     id: 1,
     sections: [
       {
+        type: 'paragraph',
+        content: '在瞬息萬變的數碼化浪潮中，香港中小企業正站在一個充滿挑戰與機遇的十字路口。面對日益激烈的市場競爭和不斷上漲的營運成本，如何利用尖端科技實現轉型升級，已成為企業可持續發展的關鍵。AI Formula 正是您最值得信賴的合作夥伴，我們專注為香港中小企提供量身定制的 AI 自動化解決方案，助您化挑戰為機遇，提升效率、降低成本，穩佔市場領先地位。',
+        contentEn: 'In the dynamic digital era, Small and Medium-sized Enterprises (SMEs) in Hong Kong stand at a crossroads of unprecedented challenges and opportunities. With escalating market competition and rising operational costs, leveraging cutting-edge technology for transformation is no longer an option, but a necessity for sustainable growth. AI Formula is your trusted partner on this journey, specialising in bespoke AI automation solutions tailored for Hong Kong SMEs to boost efficiency, reduce costs, and secure a competitive edge.'
+      },
+      {
         type: 'heading',
         level: 2,
-        content: '為什麼選擇 AI Formula？',
-        contentEn: 'Why Choose AI Formula?'
+        content: '為什麼 AI 自動化對您的業務至關重要？',
+        contentEn: 'Why is AI Automation Crucial for Your Business?'
       },
       {
         type: 'paragraph',
-        content: '在數位轉型浪潮中，香港中小企業面臨前所未有的挑戰與機遇。AI Formula 專注為香港中小企量身定制 AI 自動化解決方案，幫助企業提升效率、降低成本，並在激烈市場競爭中保持優勢。',
-        contentEn: 'In the wave of digital transformation, Hong Kong SMEs face unprecedented challenges and opportunities. AI Formula focuses on providing customized AI automation solutions for Hong Kong SMEs, helping businesses improve efficiency, reduce costs, and maintain competitive advantages in fierce market competition.'
+        content: '您是否正被日常瑣碎的行政工作、重複性的數據輸入、或效率低下的人手流程所困擾？AI 自動化並非遙不可及的未來科技，而是當下解決這些營運痛點的最佳良方。從自動化客戶服務、智能管理庫存、到優化生產流程，AI 能將您的團隊從繁複的工作中解放出來，專注於更具價值的創新與業務拓展。',
+        contentEn: 'Are you bogged down by mundane administrative tasks, repetitive data entry, or inefficient manual processes? AI automation is not a distant future technology; it is the immediate solution to these persistent operational pain points. From automating customer service and intelligently managing inventory to optimising production workflows, AI liberates your team from repetitive labour, allowing them to focus on high-value activities like innovation and business development.'
       },
       {
-        type: 'card',
-        content: '我們的核心服務',
-        contentEn: 'Our Core Services',
+        type: 'heading',
+        level: 2,
+        content: '為什麼選擇 AI Formula？我們不僅是供應商，更是您的轉型夥伴',
+        contentEn: 'Why Choose AI Formula? We Are More Than a Vendor; We Are Your Transformation Partner.'
+      },
+      {
+        type: 'paragraph',
+        content: '選擇 AI 服務供應商，不僅是技術的考量，更是對合作夥伴理念和承諾的信任。AI Formula 以「與客戶共同成長」為核心理念，我們深信，最成功的 AI 方案，源於對您業務的深入理解。',
+        contentEn: 'Selecting an AI service provider goes beyond technical specifications; it\'s about trusting a partner\'s philosophy and commitment. At AI Formula, our core principle is to "grow with our clients." We firmly believe that the most successful AI solutions stem from a profound understanding of your unique business.'
+      },
+      {
+        type: 'list',
+        content: '我們的核心優勢',
+        contentEn: 'Our Core Advantages',
         items: [
-          '🔍 諮詢服務：深入了解您的業務需求，制定個人化自動化策略',
-          '🔗 系統整合：無縫銜接現有系統，確保平穩過渡',
-          '🚀 實施部署：專業團隊負責完整部署與上線流程',
-          '♻️ 持續優化：定期監控與優化，確保系統持續高效運作'
+          '專為香港中小企而設 (Made for Hong Kong SMEs): 我們的團隊植根香港，深刻理解本地市場的獨特性和中小企的營運實況。我們摒棄「一刀切」的標準化方案，堅持提供最「貼地」的顧問服務和解決方案。',
+          '端到端的完整服務流程 (End-to-End Service): 從最初的免費諮詢到最終的系統部署和持續優化，我們提供一站式無憂服務。您無需擔心複雜的技術對接，我們的專業團隊將為您鋪平自動化轉型的每一步。',
+          '實戰經驗，成功驗證 (Proven Success): 我們不僅有理論，更有實績。我們的解決方案已成功幫助不同行業的客戶實現顯著的業務增長。'
         ],
         itemsEn: [
-          '🔍 Consultation Services: Deep understanding of your business needs, develop personalized automation strategies',
-          '🔗 System Integration: Seamless integration with existing systems, ensuring smooth transition',
-          '🚀 Implementation: Professional team responsible for complete deployment and launch process',
-          '♻️ Continuous Optimization: Regular monitoring and optimization to ensure continuous efficient operation'
+          'Made for Hong Kong SMEs: Rooted in Hong Kong, our team possesses an intrinsic understanding of the local market dynamics and the specific operational realities of SMEs. We reject one-size-fits-all solutions, insisting on providing consulting and systems that are truly fit for purpose in the local context.',
+          'End-to-End Service: From the initial, no-obligation consultation to final deployment and continuous optimisation, we offer a seamless, one-stop service. You can rest assured that our professional team will navigate the technical complexities, paving a smooth path for your automation transformation.',
+          'Proven Success & Practical Experience: We deliver results, not just theories. Our solutions have a proven track record of helping clients across various industries achieve significant, measurable growth.'
         ]
       },
       {
-        type: 'highlight',
-        content: '成功案例分享',
-        contentEn: 'Success Stories',
-        items: [
-          '零售業客戶透過我們的解決方案，將客服回應時間縮短 70%，客戶滿意度提升 45%',
-          '一家製造業公司實施我們系統後，生產效率提升 60%，人力成本降低 35%'
-        ],
-        itemsEn: [
-          'A retail company reduced customer service response time by 70% and increased customer satisfaction by 45% through our automation solutions.',
-          'A manufacturing company improved production efficiency by 60% and reduced labor costs by 35% after implementing our system.'
-        ]
+        type: 'heading',
+        level: 2,
+        content: '我們的核心服務：從理念到實踐的完整旅程',
+        contentEn: 'Our Core Services: A Complete Journey from Concept to Reality'
+      },
+      {
+        type: 'paragraph',
+        content: 'AI Formula 採用一套嚴謹而靈活的方法論，確保每個項目都能精準滿足您的需求：',
+        contentEn: 'AI Formula employs a methodology that is both rigorous and agile, ensuring every project is precisely aligned with your needs:'
       },
       {
         type: 'steps',
         content: '我們的服務流程',
         contentEn: 'Our Service Process',
         items: [
-          '初步諮詢 - 了解業務需求與目標',
-          '需求分析 - 深入分析現有流程與痛點',
-          '方案設計 - 制定個人化自動化解決方案',
-          '系統開發 - 按照方案進行系統開發與測試',
-          '部署實施 - 專業團隊負責系統部署與上線',
-          '培訓支援 - 提供完整用戶培訓與技術支援'
+          '初步諮詢 (Initial Consultation): 一切從溝通開始。我們將與您進行深入對話，不僅聆聽您的需求，更會引導您發掘潛在的自動化機會，共同確立清晰的業務目標。',
+          '需求分析 (In-depth Analysis): 我們的專家團隊會深入剖析您現有的工作流程，找出效率瓶頸和痛點，並進行數據驅動的可行性評估。',
+          '方案設計 (Custom Solution Design): 根據分析結果，我們將為您量身設計一套個人化的 AI 自動化解決方案。方案將清晰闡述技術架構、預期效益 (ROI) 及實施時間表，確保您在投入前有全面了解。',
+          '系統開發與整合 (Development & Integration): 我們著手進行系統開發與嚴格測試，並能無縫銜接您現有的 CRM、ERP 等系統，確保數據暢通，平穩過渡。',
+          '部署實施 (Deployment): 我們的專業技術團隊會負責完整的部署與上線流程，將對您日常營運的影響減至最低。',
+          '培訓與持續支援 (Training & Ongoing Support): 我們深明「人」是成功的關鍵。因此，我們提供全面的用戶培訓，確保您的團隊能純熟運用新系統。系統上線後，我們更會提供持續的技術支援及定期監控，並根據業務發展進行優化，確保系統持續高效運作。'
         ],
         itemsEn: [
-          'Initial Consultation - Understanding your business needs and goals',
-          'Requirements Analysis - In-depth analysis of existing processes and pain points',
-          'Solution Design - Develop personalized automation solutions',
-          'System Development - Develop and test systems according to the solution',
-          'Deployment - Professional team responsible for system deployment and launch',
-          'Training Support - Provide complete user training and technical support'
+          'Initial Consultation: The journey begins with a conversation. We engage in an in-depth dialogue to not only listen to your requirements but also to help you uncover latent automation opportunities, co-creating clear and achievable business objectives.',
+          'In-depth Analysis: Our expert team conducts a thorough analysis of your existing workflows to identify efficiency bottlenecks and pain points, performing a data-driven feasibility assessment.',
+          'Custom Solution Design: Based on the analysis, we design a personalised AI automation solution blueprint. This plan will clearly articulate the technical architecture, projected Return on Investment (ROI), and implementation timeline, ensuring you have a comprehensive understanding before commitment.',
+          'Development & Integration: We proceed with system development and rigorous testing. Our solutions are designed to integrate seamlessly with your existing systems, such as CRM and ERP, ensuring smooth data flow and a stable transition.',
+          'Deployment: Our dedicated technical team manages the entire deployment and go-live process, minimising disruption to your daily operations.',
+          'Training & Ongoing Support: We understand that people are the key to success. Therefore, we provide comprehensive user training to ensure your team is proficient with the new system. Post-launch, we offer continuous technical support and regular performance monitoring, optimising the system as your business evolves to ensure sustained high efficiency.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '成功案例分享：真實的業務增長',
+        contentEn: 'Success Stories: Real-World Business Growth'
+      },
+      {
+        type: 'list',
+        content: '客戶成功案例',
+        contentEn: 'Customer Success Stories',
+        items: [
+          '零售業客戶： 透過我們部署的 AI 客服聊天機器人 (AI Chatbot) 及自動化訂單處理系統，成功將客戶服務回應時間縮短 70%，訂單處理錯誤率降低 90%，最終帶來客戶滿意度提升 45% 的驕人成績。',
+          '製造業公司： 實施了我們的 AI 驅動的生產排程及預測性維護系統後，整體生產效率提升了 60%，同時因減少了非預期停機時間及優化人力分配，人力成本顯著降低了 35%。'
+        ],
+        itemsEn: [
+          'Retail Sector Client: By implementing our AI Chatbot and automated order processing system, the client successfully reduced customer service response times by 70% and lowered order processing errors by 90%, leading to a remarkable 45% increase in customer satisfaction.',
+          'Manufacturing Company: After adopting our AI-driven production scheduling and predictive maintenance system, the company saw a 60% boost in overall production efficiency. By minimising unplanned downtime and optimising labour allocation, they also achieved a significant 35% reduction in manpower costs.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '不僅是方案提供者，更是知識傳授者：AI Formula 企業培訓課程',
+        contentEn: 'More Than a Provider, An Educator: AI Formula Corporate Training'
+      },
+      {
+        type: 'paragraph',
+        content: '我們相信，提升整個團隊的 AI 素養，是企業成功轉型的基石。因此，AI Formula 特別開設了企業內部培訓課程。我們已為超過 4 間企業 提供即場的 Live Workshop (實時工作坊)，由淺入深，向您的團隊分享最新的 AI 趨勢、實用的 AI 工具以及如何將 AI 思維融入日常工作。',
+        contentEn: 'We believe that upskilling your entire team in AI literacy is fundamental to a successful transformation. That\'s why AI Formula offers exclusive in-house corporate training programmes. We have already delivered on-site Live Workshops to over 4 companies, sharing the latest AI trends, practical tools, and methodologies to embed an AI-first mindset into their daily operations.'
+      },
+      {
+        type: 'paragraph',
+        content: '我們的課程涵蓋：',
+        contentEn: 'Our Educational Offerings Include:'
+      },
+      {
+        type: 'list',
+        content: '培訓課程類型',
+        contentEn: 'Training Course Types',
+        items: [
+          '免費增值課程 (Free Courses): 定期舉辦線上線下分享會，介紹 AI 基礎知識及實用小工具。',
+          '企業付費內訓 (Paid Corporate Training): 針對您企業的特定需求和行業特點，設計專屬的培訓內容和實戰演練。'
+        ],
+        itemsEn: [
+          'Free Courses: We regularly host complimentary online and offline seminars covering AI fundamentals and handy productivity tools.',
+          'Paid Corporate Training: We design bespoke training modules and hands-on workshops tailored to your company\'s specific industry and needs.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '時刻走在最前線：您的專屬 AI 資訊站',
+        contentEn: 'Stay Ahead of the Curve: Your Dedicated AI Intelligence Hub'
+      },
+      {
+        type: 'paragraph',
+        content: 'AI 世界日新月異，為了讓您時刻掌握最新動態，AI Formula 將持續為您分享：',
+        contentEn: 'The world of AI is in constant flux. To keep you at the forefront, AI Formula is committed to sharing:'
+      },
+      {
+        type: 'list',
+        content: 'AI 資訊服務',
+        contentEn: 'AI Information Services',
+        items: [
+          '最新 AI 新聞 (Latest AI News): 為您剖析行業發展，解讀最新技術對中小企的影響。',
+          '實用 AI 工具推薦 (AI Tools Showcase): 無論是免費或付費的效率工具，我們都會親身測試，為您精選最好用的。',
+          '獨家課程資訊 (Exclusive Course Info): 第一時間獲取我們免費及付費課程的最新消息。'
+        ],
+        itemsEn: [
+          'The Latest AI News: We analyse industry developments and decipher the impact of new technologies on SMEs.',
+          'AI Tools Showcase: We personally test and curate the best free and paid efficiency tools for your business.',
+          'Exclusive Course Information: Be the first to know about our upcoming free and paid courses.'
         ]
       },
       {
         type: 'conclusion',
-        content: '攜手創造未來',
-        contentEn: 'Creating the Future Together',
-        items: [
-          'AI Formula 致力成為香港中小企最值得信賴的 AI 自動化夥伴。我們相信，透過先進技術與專業服務，能幫助每一家企業在數位轉型中取得成功。',
-          '讓我們一起擁抱 AI 時代，共創更美好的未來！'
-        ],
-        itemsEn: [
-          'AI Formula is committed to becoming the most trusted AI automation partner for Hong Kong SMEs. We believe that through advanced technology and professional services, we can help every business succeed in digital transformation.',
-          'Let us embrace the AI era together and create a better future!'
-        ]
+        content: '數碼轉型並非一道選擇題，而是關乎未來生存的必答題。猶豫不決只會錯失先機。AI Formula 致力成為您最可靠的嚮導，以專業的知識、貼身的服務和對成功的共同承諾，引領您的業務安全、高效地邁向自動化新時代。\n\n立即聯繫我們，預約一次免費初步諮詢，讓我們一同探討如何為您的業務注入 AI 的強大動力，攜手創造更輝煌的未來。',
+        contentEn: 'Digital transformation is not a multiple-choice question; it\'s a compulsory one for future survival. Hesitation only leads to missed opportunities. AI Formula is dedicated to being your most reliable guide, leading your business safely and efficiently into the new era of automation with our professional expertise, personalised service, and a shared commitment to your success.\n\nContact us today to book a free initial consultation. Let\'s explore how we can inject the power of AI into your business and co-create a more brilliant future, together.'
       }
     ]
   },
@@ -201,7 +279,7 @@ const articleContents: ArticleContent[] = [
         contentEn: 'Core Features of Make.com',
         items: [
           '🔌 應用程式整合：連接 1000+ 應用程式與服務',
-          '�� 視覺化設計：拖放介面，無需程式設計知識',
+          '🎨 視覺化設計：拖放介面，無需程式設計知識',
           '🔄 即時執行：即時觸發與工作流程處理',
           '🔄 資料轉換：強大的資料處理與格式轉換能力'
         ],
@@ -302,7 +380,7 @@ const articleContents: ArticleContent[] = [
         contentEn: 'n8n Deployment Guide',
         items: [
           '🔍 選擇適當的主機環境（本地伺服器或雲端）',
-          '�� 安裝 Docker 或直接安裝 n8n',
+          '💻 安裝 Docker 或直接安裝 n8n',
           '🔧 設定資料庫與環境變數',
           '🔐 設置 SSL 憑證與網域名稱',
           '👤 建立用戶帳號與權限管理',

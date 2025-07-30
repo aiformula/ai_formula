@@ -22,10 +22,10 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "AI Formula 如何幫助香港中小企實現業務自動化轉型",
-    titleEn: "How AI Formula Helps Hong Kong SMEs Achieve Business Automation Transformation",
-    excerpt: "深入了解AI Formula的服務理念和方法論，我們如何為香港中小企業提供量身定制的AI自動化解決方案，從諮詢到實施的完整流程。",
-    excerptEn: "Learn about AI Formula's service philosophy and methodology, how we provide customized AI automation solutions for Hong Kong SMEs, from consultation to implementation.",
+    title: "AI Formula：引領香港中小企邁向業務自動化新紀元，釋放無限潛能",
+    titleEn: "AI Formula: Empowering Hong Kong SMEs with Business Automation Transformation",
+    excerpt: "在瞬息萬變的數碼化浪潮中，香港中小企業正站在一個充滿挑戰與機遇的十字路口。面對日益激烈的市場競爭和不斷上漲的營運成本，如何利用尖端科技實現轉型升級，已成為企業可持續發展的關鍵。AI Formula 正是您最值得信賴的合作夥伴，我們專注為香港中小企提供量身定制的 AI 自動化解決方案，助您化挑戰為機遇。",
+    excerptEn: "In the dynamic digital era, Small and Medium-sized Enterprises (SMEs) in Hong Kong stand at a crossroads of unprecedented challenges and opportunities. AI Formula is your trusted partner on this journey, specialising in bespoke AI automation solutions tailored for Hong Kong SMEs to boost efficiency, reduce costs, and secure a competitive edge.",
     author: "Kenneth",
     date: "2025年5月15日",
     dateEn: "May 15, 2025",
