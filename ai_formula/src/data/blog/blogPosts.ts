@@ -122,13 +122,13 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 6,
-    title: "Neuralink的下一步：從腦機介面到人機融合，我們離科幻有多遠？",
-    titleEn: "Neuralink's Next Step: From Mind Gaming to Human-Machine Fusion, How Far Are We from a Sci-Fi Future?",
-    excerpt: "深入分析Neuralink最新的腦機介面突破，從七名志願者目前的成功案例到2028年實現腦-AI高速整合的宏大願景，探討這項顛覆性技術背後的機遇和倫理挑戰。",
-    excerptEn: "In-depth analysis of Neuralink's latest brain-computer interface breakthroughs, from current success stories of seven volunteers to the grand vision of high-speed brain-AI integration by 2028, exploring the opportunities and ethical challenges behind this disruptive technology.",
+    title: "頭條分析：Neuralink 的下一步——七名志願者數據公佈，我們距離「人機融合」的未來還有多遠？",
+    titleEn: "News Analysis: Neuralink's Next Chapter – With Seven Volunteers In, How Far Are We From a Human-AI Future?",
+    excerpt: "2025年7月30日，隨著 Neuralink 首批人類臨床試驗的驚人進展公佈，一個曾經只存在於小說中的未來，正以前所未有的速度向我們逼近。本篇深度分析將剖析 Neuralink 的最新突破，解構其2028年的宏大願景，並探討這項顛覆性技術背後，香港乃至全世界都必須面對的機遇與倫理挑戰。",
+    excerptEn: "HONG KONG, 30 July 2025 – With the announcement of startling progress from its first human clinical trials, a future once confined to novels is approaching with unprecedented speed. This in-depth analysis will dissect Neuralink's latest breakthroughs and explore the opportunities and ethical challenges.",
     author: "Kenneth",
-    date: "2025年6月29日",
-    dateEn: "June 29, 2025",
+    date: "2025年6月20日",
+    dateEn: "June 20, 2025",
     readTime: "15分鐘閱讀",
     readTimeEn: "15 min read",
     category: "科技創新",
@@ -138,7 +138,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["Neuralink", "腦機介面", "人工智慧", "科技倫理", "未來科技"],
     tagsEn: ["Neuralink", "Brain-Computer Interface", "Artificial Intelligence", "Tech Ethics", "Future Technology"],
     views: "0",
-    publishDate: new Date('2025-06-29')
+    publishDate: new Date('2025-06-20')
   }
 ];
 

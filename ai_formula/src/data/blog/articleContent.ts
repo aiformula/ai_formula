@@ -873,119 +873,143 @@ const articleContents: ArticleContent[] = [
     id: 6,
     sections: [
       {
-        type: 'heading',
-        level: 2,
-        content: 'Neuralink：重新定義人機互動',
-        contentEn: 'Neuralink: Redefining Human-Machine Interaction'
+        type: 'paragraph',
+        content: '2025年7月30日，香港 — 在科技界億萬富翁伊隆·馬斯克 (Elon Musk) 的眾多野心勃勃的項目中，沒有一個比 Neuralink 更具科幻色彩，也更引發爭議。自2016年成立以來，這家神秘的公司一直致力於開發一種終極的腦機介面 (Brain-Computer Interface, BCI)。如今，隨著首批人類臨床試驗的驚人進展公佈，一個曾經只存在於小說中的未來，正以前所未有的速度向我們逼近。',
+        contentEn: 'HONG KONG, 30 July 2025 – Of all the ambitious ventures helmed by tech billionaire Elon Musk, none is more science-fiction-esque, nor more controversial, than Neuralink. Since its inception in 2016, the secretive company has been dedicated to developing the ultimate brain-computer interface (BCI). Today, with the announcement of startling progress from its first human clinical trials, a future once confined to novels is approaching with unprecedented speed.'
       },
       {
         type: 'paragraph',
-        content: 'Elon Musk 的 Neuralink 正在革新腦機介面技術，透過植入式晶片實現人腦與電腦之間的直接連接。這項技術不僅能幫助殘疾人士恢復控制，也預示著人類與 AI 整合的未來。',
-        contentEn: 'Elon Musk\'s Neuralink is revolutionizing brain-computer interface technology by achieving direct connection between the human brain and computers through implantable chips. This technology not only helps disabled individuals regain control but also foreshadows a future of human-AI integration.'
+        content: '根據 Neuralink 的最新報告，已有七名四肢癱瘓的志願者成功植入了其 N1 晶片，初步數據顯示成功率遠超95%。從首位聞名全球的患者諾蘭·阿爾博 (Noland Arbaugh) 用意念下棋，到其他志願者展現出日益複雜的多工操作能力，Neuralink 不僅僅是在治療疾病，更是在叩問一個根本問題：人類的下一步進化，是否就是與 AI 的融合？本篇深度分析將剖析 Neuralink 的最新突破，解構其2028年的宏大願景，並探討這項顛覆性技術背後，香港乃至全世界都必須面對的機遇與倫理挑戰。',
+        contentEn: 'According to Neuralink\'s latest report, seven quadriplegic volunteers have now been successfully implanted with its N1 chip, with initial data showing a success rate far exceeding 95%. From the first globally recognised patient, Noland Arbaugh, playing chess with his mind, to other volunteers demonstrating increasingly complex multitasking abilities, Neuralink is not merely treating a condition; it is posing a fundamental question: is the next step in human evolution a merger with AI? This in-depth analysis will dissect Neuralink\'s latest breakthroughs, deconstruct its grand vision for 2028, and explore the opportunities and ethical challenges that Hong Kong, and the world, must confront.'
       },
       {
-        type: 'card',
-        content: '當前技術突破',
-        contentEn: 'Current Technology Breakthroughs',
-        items: [
-          '🧠 神經元讀取：即時監控與解讀大腦神經信號',
-          '🧠 腦控：用腦波控制電腦與遊戲',
-          '🔄 高速傳輸：1024 電極進行高頻率資料傳輸',
-          '🔬 微創手術：全自動化機器人手術系統'
-        ],
-        itemsEn: [
-          '🧠 Neuron Reading: Real-time monitoring and interpretation of brain neural signals',
-          '🧠 Mind Control: Control computers and games with thoughts',
-          '🔄 High-speed Transmission: 1024 electrodes for high-frequency data transmission',
-          '🔬 Minimally Invasive Surgery: Fully automated robotic surgical system'
-        ]
+        type: 'heading',
+        level: 2,
+        content: '公司背景：馬斯克的「防禦性」賭注',
+        contentEn: 'Company Background: Musk\'s "Defensive" Wager'
       },
       {
-        type: 'highlight',
-        content: '七位誌願者成功案例',
-        contentEn: 'Success Stories of Seven Volunteers',
-        items: [
-          '第一位誌願者 Noland Arbaugh 成功用意念控制滑鼠與鍵盤',
-          '第二位誌願者 Alex 能同時執行多工操作',
-          '五位其他誌願者展示不同程度的腦機介面控制能力',
-          '平均成功率超過 95%，遠超預期目標'
-        ],
-        itemsEn: [
-          'First volunteer Noland Arbaugh successfully controlled mouse and keyboard with thoughts',
-          'Second volunteer Alex can perform multitasking operations simultaneously',
-          'Five other volunteers demonstrated varying degrees of brain-computer interface control',
-          'Average success rate exceeds 95%, far exceeding expected targets'
-        ]
+        type: 'paragraph',
+        content: 'Neuralink 於2016年由馬斯克與一群頂尖的神經科學家和工程師共同創立。其公開的使命是為患有嚴重腦部疾病及癱瘓的病人提供幫助。然而，在馬斯克的長遠藍圖中，這僅僅是第一步。他曾多次公開表示，創立 Neuralink 的深層動機是「防禦性的」——在未來通用人工智能 (AGI) 超越人類智慧時，確保人類不會淪為「家貓」一樣的附屬品。唯一的出路，就是通過一個高頻寬的腦機介面，實現人類與 AI 的共生。這使得 Neuralink 從一家醫療科技公司，蒙上了一層關乎人類存亡的哲學色彩。',
+        contentEn: 'Neuralink was co-founded in 2016 by Musk and a team of leading neuroscientists and engineers. Its public-facing mission is to help people with severe neurological conditions and paralysis. In Musk\'s long-term vision, however, this is merely the first step. He has repeatedly stated that his deeper motivation for creating Neuralink is "defensive"—to ensure humanity is not relegated to the status of a "house cat" when Artificial General Intelligence (AGI) surpasses human intellect. The only way to prevent this, he argues, is to achieve a symbiotic relationship with AI via a high-bandwidth BCI. This context elevates Neuralink from a medical tech company to a philosophical venture concerning the very future of humanity.'
       },
       {
-        type: 'steps',
-        content: '2028 年宏大願景',
-        contentEn: '2028 Grand Vision',
-        items: [
-          '實現人腦與 AI 高速資訊交換',
-          '發展直接介面於虛擬與擴增實境',
-          '治療帕金森氏症、阿茲海默症等神經退化性疾病',
-          '增強人類認知能力與記憶',
-          '實現真正的人機融合體驗',
-          '開啟人類進化新篇章'
-        ],
-        itemsEn: [
-          'Achieve high-speed information exchange between human brain and AI',
-          'Develop direct interfaces for virtual and augmented reality',
-          'Treat neurological diseases like Parkinson\'s and Alzheimer\'s',
-          'Enhance human cognitive abilities and memory',
-          'Achieve true human-machine fusion experience',
-          'Open a new chapter in human evolution'
-        ]
+        type: 'heading',
+        level: 2,
+        content: '技術突破：N1 晶片如何重新定義 BCI',
+        contentEn: 'The Technological Breakthrough: How the N1 Chip Redefines the BCI'
       },
       {
-        type: 'highlight',
-        content: '倫理與安全考量',
-        contentEn: 'Ethical and Safety Considerations',
-        items: [
-          '🔐 隱私：如何保護最私密的思維與記憶',
-          '👥 社會平等：科技會否加劇社會不平等',
-          '🧠 身份認知：當人機界限模糊，何謂人性',
-          '🔧 監管框架：需要建立全面且完善的法律與監管系統'
-        ],
-        itemsEn: [
-          'Data Privacy: How to protect the most private thoughts and memories',
-          'Social Equity: Will technology exacerbate social inequality?',
-          'Human Identity: When human-machine boundaries blur, what defines humanity?',
-          'Regulatory Framework: Need to establish comprehensive legal and regulatory systems'
-        ]
+        type: 'paragraph',
+        content: '過去數十年，BCI 技術一直存在，但受限於電極數量少、帶寬低和植入創傷大等瓶頸。Neuralink 的方法堪稱革命性：',
+        contentEn: 'For decades, BCI technology has existed but has been constrained by a low number of electrodes, limited bandwidth, and invasive surgery. Neuralink\'s approach is revolutionary:'
       },
       {
         type: 'list',
-        content: '對未來的影響',
-        contentEn: 'Impact on the Future',
+        content: '技術突破要點',
+        contentEn: 'Key Technological Breakthroughs',
         items: [
-          '👥 醫療革命：革新神經疾病治療方法',
-          '👥 教育變革：直接下載知識與技能',
-          '🔄 工作模式：人機協作達到新高度',
-          '🎮 娛樂體驗：沉浸式虛擬實境體驗',
-          '👥 社會結構：重新定義人類社會組織形式'
+          '高通量神經元讀取： 其 N1 晶片通過1024根比頭髮還細的柔性「線程」電極，植入大腦運動皮層。這使得它能夠以前所未有的精度和速度，實時監控和解讀成千上萬個神經元的信號。',
+          '腦控的現實： 正是這種高頻寬的數據傳輸，讓諾蘭·阿爾博不僅能控制電腦鼠標，更能玩《文明帝國VI》等複雜的策略遊戲。近期報告更指出，第二位志願者 Alex 已能同時操作多個應用程式，證明了系統處理複雜意念的能力。',
+          '微創自動化手術： 整個植入過程由一台名為 R1 的全自動化手術機械人完成。它能在極短時間內精準地將線程植入大腦，最大限度地減少了手術創傷和人為錯誤，這是該技術能夠規模化的關鍵。'
         ],
         itemsEn: [
-          'Medical Revolution: Revolutionize treatment methods for neurological diseases',
-          'Educational Transformation: Direct download of knowledge and skills',
-          'Work Patterns: Human-machine collaboration reaches new heights',
-          'Entertainment Experience: Immersive virtual reality experiences',
-          'Social Structure: Redefine the organizational forms of human society'
+          'High-Throughput Neuron Reading: Its N1 chip is implanted in the brain\'s motor cortex via 1,024 flexible "threads," each thinner than a human hair. This allows it to monitor and decode signals from thousands of neurons in real-time with unprecedented precision and speed.',
+          'Mind Control Made Real: It is this high-bandwidth data transmission that allowed Noland Arbaugh not only to control a computer cursor but to play complex strategy games like Civilization VI. Recent reports indicate that the second volunteer, Alex, can now multitask between applications, proving the system\'s ability to process complex intent.',
+          'Minimally Invasive Robotic Surgery: The entire implantation procedure is performed by a fully autonomous surgical robot, the R1. It can precisely insert the threads in a matter of minutes, minimising surgical trauma and human error—a critical factor for the technology\'s scalability.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '2028 宏大願景：從治療到增強',
+        contentEn: 'The 2028 Grand Vision: From Therapy to Enhancement'
+      },
+      {
+        type: 'paragraph',
+        content: 'Neuralink 的路線圖分為兩個階段。短期目標是醫療應用，預計在未來數年內，這項技術將能幫助失明者重見光明、讓癱瘓者重新行走，並為柏金遜症、阿茲海默症等神經退化性疾病提供革命性的治療方案。',
+        contentEn: 'Neuralink\'s roadmap is twofold. The short-term goal is medical application. In the coming years, the technology is expected to help the blind see, the paralysed walk, and provide revolutionary treatments for neurodegenerative diseases like Parkinson\'s and Alzheimer\'s.'
+      },
+      {
+        type: 'paragraph',
+        content: '然而，其更長遠、也更具爭議性的目標直指2028年——實現人腦與 AI 的高速資訊交換。這意味著：',
+        contentEn: 'However, its longer-term and more contentious objective is aimed squarely at 2028—achieving high-speed information exchange between the human brain and AI. This implies:'
+      },
+      {
+        type: 'list',
+        content: '2028年願景要點',
+        contentEn: '2028 Vision Points',
+        items: [
+          '增強認知能力： 理論上，人類將能夠瞬間搜尋互聯網、學習新技能，甚至直接「下載」知識，極大地擴展記憶和分析能力。',
+          '沉浸式虛擬體驗： 發展出與虛擬實境 (VR) 和擴增實境 (AR) 的直接介面，創造出無法分辨真假的感官體驗。',
+          '實現人機融合： 當思維可以直接與機器溝通，當記憶可以被儲存和編輯，人類與機器的界線將變得模糊，開啟一個全新的「超人類」時代。'
+        ],
+        itemsEn: [
+          'Cognitive Enhancement: In theory, humans could access the internet instantaneously, learn new skills in moments, and even "download" knowledge, dramatically expanding memory and analytical capabilities.',
+          'Immersive Virtual Experiences: The development of a direct interface with virtual (VR) and augmented reality (AR), creating sensory experiences indistinguishable from reality.',
+          'Achieving Human-Machine Symbiosis: When thoughts can communicate directly with machines, and when memories can be stored and edited, the line between human and machine will blur, heralding a new era of "transhumanism."'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '倫理風暴：我們準備好了嗎？',
+        contentEn: 'The Ethical Minefield: Are We Ready?'
+      },
+      {
+        type: 'paragraph',
+        content: 'Neuralink 的每一次進步，都伴隨著巨大的倫理和安全拷問。這不僅是技術問題，更是社會和哲學問題。',
+        contentEn: 'Every advance Neuralink makes is accompanied by profound ethical and safety questions. These are not just technical problems but societal and philosophical ones.'
+      },
+      {
+        type: 'list',
+        content: '關鍵倫理挑戰',
+        contentEn: 'Key Ethical Challenges',
+        items: [
+          '🔐 思想的隱私權： 當你最私密的想法和記憶能夠被讀取甚至儲存時，誰擁有這些數據？如何防止它們被濫用、被駭客攻擊？這將是終極的隱私挑戰。',
+          '👥 社會的割裂： 如果 Neuralink 技術價格高昂，是否會創造出一個「認知精英」階層和未經增強的「普通人」階層？這將是史無前例的社會不平等。',
+          '🧠 "我"是誰？——身份認知危機： 當你的部分記憶來自雲端，當你的決策受到 AI 輔助，那個「你」還是原來的你嗎？人性的定義將面臨根本性的挑戰。',
+          '🔧 監管的真空地帶： 現有的法律和監管框架，完全沒有為這種級別的技術做好準備。我們需要在技術失控前，建立一個全球性的、全面的監管體系。'
+        ],
+        itemsEn: [
+          '🔐 The Privacy of Thought: When your most private thoughts and memories can be read and even stored, who owns that data? How can it be protected from misuse or hacking? This is the ultimate privacy challenge.',
+          '👥 A Divided Society: If Neuralink technology is expensive, will it create a new "cognitive elite" and a class of un-enhanced "naturals"? This would be an unprecedented form of social inequality.',
+          '🧠 "Who Am I?" – The Identity Crisis: When part of your memory is cloud-based and your decisions are augmented by AI, is the "you" the same you? The very definition of humanity will be fundamentally challenged.',
+          '🔧 The Regulatory Vacuum: Our current legal and regulatory frameworks are completely unprepared for technology of this magnitude. A global, comprehensive regulatory system must be established before the technology becomes uncontrollable.'
+        ]
+      },
+      {
+        type: 'heading',
+        level: 2,
+        content: '對未來的影響：一場全面的社會結構重塑',
+        contentEn: 'Impact on the Future: A Complete Societal Restructuring'
+      },
+      {
+        type: 'paragraph',
+        content: '如果 Neuralink 的願景得以實現，其影響將是深遠且無孔不入的：',
+        contentEn: 'If Neuralink\'s vision is realised, its impact will be profound and all-pervasive:'
+      },
+      {
+        type: 'list',
+        content: '社會影響層面',
+        contentEn: 'Societal Impact Areas',
+        items: [
+          '醫療革命： 神經系統疾病將從「不治之症」變為「可治之症」。',
+          '教育變革： 傳統的學習模式可能被顛覆，教育的重點將從「記憶知識」轉向「運用知識和培養創造力」。',
+          '工作新模式： 人機協作將達到前所未有的高度，極大提升生產力，但也可能導致大量傳統白領工作的消失。',
+          '社會結構的重塑： 人類社會的組織形式、溝通方式甚至家庭觀念，都可能因這項技術而發生根本性改變。'
+        ],
+        itemsEn: [
+          'A Medical Revolution: Neurological conditions could transform from "incurable" to "treatable."',
+          'An Educational Transformation: Traditional learning models may be upended, with the focus shifting from "memorising knowledge" to "applying knowledge and fostering creativity."',
+          'New Paradigms of Work: Human-machine collaboration will reach new heights, massively boosting productivity but also potentially rendering many traditional white-collar jobs obsolete.',
+          'Reshaping Social Structures: The very fabric of human society—our methods of communication, our concept of family—could be fundamentally altered.'
         ]
       },
       {
         type: 'conclusion',
-        content: '迎接人機整合時代',
-        contentEn: 'Welcoming the Era of Human-Machine Integration',
-        items: [
-          'Neuralink 代表人類技術發展的新里程碑。儘管面臨諸多挑戰與倫理問題，此技術的潛力無限。我們正站在人類歷史的轉折點上，準備迎接一個新的人機整合時代。',
-          '科技進步永不停歇，讓我們一起探索這個充滿無限可能的未來！'
-        ],
-        itemsEn: [
-          'Neuralink represents a new milestone in human technological development. Despite facing numerous challenges and ethical issues, the potential of this technology is limitless. We are standing at a turning point in human history, ready to welcome a new era of human-machine integration.',
-          'The progress of technology never stops, let us explore this future full of infinite possibilities together!'
-        ]
+        content: 'Neuralink 的成功，標誌著我們正站在一個全新時代的門檻上。它既是無數患者的希望之光，也可能是一個潘多拉的盒子。從香港這個國際科技樞紐的視角看，我們不僅要關注其商業和技術潛力，更要積極參與到關於其倫理和監管的全球對話中。\n\n七名志願者的勇氣，為我們揭開了未來的冰山一角。而冰山之下，是關乎全人類命運的巨大機遇和未知風險。我們離科幻有多遠？答案可能比任何人想像的都要近。',
+        contentEn: 'Neuralink\'s success signals that we are standing on the threshold of a new era. It is a beacon of hope for countless patients, yet it could also be a Pandora\'s box. From the perspective of an international tech hub like Hong Kong, it is vital not only to monitor its commercial and technical potential but also to actively participate in the global dialogue surrounding its ethics and regulation.\n\nThe courage of seven volunteers has revealed the tip of a futuristic iceberg. Beneath the surface lie immense opportunities and unknown risks for all of humankind. How far are we from science fiction? The answer may be closer than anyone thinks.'
       }
     ]
   }
