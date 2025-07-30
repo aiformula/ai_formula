@@ -3,6 +3,8 @@ export * from './button'
 export * from './learning-button'
 export * from './course-card'
 export * from './dynamic-course-card'
+export { default as DynamicCourseCard } from './dynamic-course-card';
+export { default as TeamMemberCard } from './team-member-card';
 export * from './card'
 export * from './badge'
 export * from './input'

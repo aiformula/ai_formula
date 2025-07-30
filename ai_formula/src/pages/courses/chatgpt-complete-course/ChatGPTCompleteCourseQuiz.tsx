@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowLeft, CheckCircle, AlertCircle, Trophy, Timer, 
-  BookOpen, Target, ArrowRight, RotateCcw, Star,
-  Brain, Lightbulb, Award, Zap, ThumbsUp, ChevronRight, Play
+  ArrowLeft, ArrowRight, RotateCcw, CheckCircle, XCircle, Clock, 
+  Trophy, Target, Star, BookOpen, Users, TrendingUp, Award, Zap, Check,
+  Brain, Play
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
@@ -624,7 +624,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
               <span>{totalQuestions} [題目]</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Timer className="w-5 h-5 text-green-400" />
+              <Clock className="w-5 h-5 text-green-400" />
               <span>{currentQuiz.timeLimit} [分鐘]</span>
             </div>
             <div className="flex items-center space-x-2">
@@ -657,7 +657,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                   <p className="text-sm text-white/60">[選擇題形式]</p>
                 </div>
                 <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
-                  <Timer className="w-8 h-8 text-green-400 mx-auto mb-2" />
+                  <Clock className="w-8 h-8 text-green-400 mx-auto mb-2" />
                   <h3 className="font-semibold text-white mb-1">{currentQuiz.timeLimit} [分鐘]</h3>
                   <p className="text-sm text-white/60">[限時完成]</p>
                 </div>
@@ -691,7 +691,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                     [題目] {currentQuestion + 1} of {totalQuestions}
                   </span>
                   <div className="flex items-center space-x-2 text-white/70 text-sm">
-                    <Timer className="w-4 h-4" />
+                    <Clock className="w-4 h-4" />
                     <span className={timeRemaining < 300 ? 'text-red-400' : ''}>
                       {formatTime(timeRemaining)}
                     </span>
@@ -727,30 +727,71 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
 
                 {/* Options */}
                 <div className="space-y-3 mb-8">
-                  {currentQuestionData?.options.map((option, index) => (
-                    <motion.button
-                      key={index}
-                      className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${
-                        selectedAnswers[currentQuestion] === index
-                          ? 'border-gray-500 bg-gray-700/50 text-white'
-                          : 'border-gray-600 bg-gray-700/20 text-white/80 hover:border-gray-500 hover:bg-gray-600/20'
-                      }`}
-                      onClick={() => selectAnswer(index)}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold ${
-                          selectedAnswers[currentQuestion] === index
-                            ? 'border-gray-600 bg-gray-700 text-white'
-                            : 'border-gray-400 text-gray-400'
-                        }`}>
-                          {String.fromCharCode(65 + index)}
+                  {currentQuestionData?.options.map((option, index) => {
+                    const isSelected = selectedAnswers[currentQuestion] === index;
+                    
+                    return (
+                      <motion.button
+                        key={index}
+                        className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-300 group relative ${
+                          isSelected
+                            ? 'border-yellow-400 bg-yellow-400/10 text-white transform scale-105'
+                            : 'border-gray-600 bg-gray-700/20 text-white/80 hover:border-yellow-400 hover:bg-gray-600/20'
+                        }`}
+                        style={{
+                          boxShadow: isSelected 
+                            ? '0 0 20px rgba(251, 191, 36, 0.3)' 
+                            : 'none'
+                        }}
+                        onClick={() => selectAnswer(index)}
+                        whileHover={!isSelected ? { 
+                          scale: 1.01,
+                          boxShadow: '0 0 15px rgba(251, 191, 36, 0.2)'
+                        } : {}}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3 flex-1">
+                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                              isSelected
+                                ? 'border-yellow-400 bg-yellow-400 text-black'
+                                : 'border-gray-400 text-gray-400 group-hover:border-yellow-400'
+                            }`}>
+                              {isSelected ? (
+                                <motion.div
+                                  initial={{ scale: 0, opacity: 0 }}
+                                  animate={{ scale: 1, opacity: 1 }}
+                                  transition={{ duration: 0.2, delay: 0.1 }}
+                                  className="text-black font-bold"
+                                >
+                                  {String.fromCharCode(65 + index)}
+                                </motion.div>
+                              ) : (
+                                String.fromCharCode(65 + index)
+                              )}
+                            </div>
+                            <span className="flex-1">{option}</span>
+                          </div>
+                          
+                          {/* 剔號圖標 */}
+                          <AnimatePresence>
+                            {isSelected && (
+                              <motion.div
+                                initial={{ scale: 0, opacity: 0, rotate: -90 }}
+                                animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                                exit={{ scale: 0, opacity: 0, rotate: 90 }}
+                                transition={{ duration: 0.3, type: "spring", bounce: 0.5 }}
+                                className="ml-3"
+                              >
+                                <Check className="w-5 h-5 text-yellow-400" />
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
-                        <span>{option}</span>
-                      </div>
-                    </motion.button>
-                  ))}
+                      </motion.button>
+                    );
+                  })}
                 </div>
 
                 {/* Navigation */}
@@ -815,7 +856,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15 }}
                   >
-                    <AlertCircle className="w-20 h-20 text-red-400 mx-auto mb-4" />
+                    <XCircle className="w-20 h-20 text-red-400 mx-auto mb-4" />
                     <h2 className="text-3xl font-bold text-red-400 mb-2">
                       {isZhHK ? '[未達標準]' : '[Not Passed]'}
                     </h2>
@@ -836,7 +877,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                   </p>
                 </div>
                                   <div className="bg-gray-800/50 border border-gray-600/30 rounded-lg p-6">
-                                      <Timer className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                                      <Clock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                     <h3 className="font-semibold text-white mb-1">[完成時間]</h3>
                     <p className="text-2xl font-bold text-gray-300">
                     {formatTime((currentQuiz.timeLimit * 60) - timeRemaining)}
@@ -866,7 +907,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                     }}
                   >
                                           {currentThemeId < 6 ? (isZhHK ? '下一主題' : 'Next Theme') : (isZhHK ? '完成課程' : 'Complete Course')}
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 )}
               </div>

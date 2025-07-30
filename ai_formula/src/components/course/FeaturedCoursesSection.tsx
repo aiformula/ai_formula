@@ -1,177 +1,391 @@
-/**
- * Featured Courses Section Component
- * @fileoverview Clean featured courses section showing only the prompt engineering course by Leung Ming
- * @author AI Formula Team
- * @version 1.0.0
- */
-
-import React, { useState, useEffect } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { getFeaturedProducts } from '@/data/courses/courseData';
-import type { DigitalProduct } from '@/data/courses/courseData';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Clock, Users, Star, ArrowRight, Download } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, Clock, Users, Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
-/**
- * Featured Courses Section Component
- */
-const FeaturedCoursesSection: React.FC = () => {
-  const { language } = useLanguage();
-  const isZhHK = language === 'zh-HK';
-  const [featuredCourses, setFeaturedCourses] = useState<DigitalProduct[]>([]);
+const coursesData = [
+  {
+    id: 'chatgpt-complete-course',
+    title: 'ChatGPT 完整教學實戰',
+    titleCht: 'ChatGPT 完整教學實戰',
+    description: '掌握 ChatGPT 的完整應用，從日常辦公到創意專案，全面提升您的數位能力。',
+    descriptionCht: '掌握 ChatGPT 的完整應用，從日常辦公到創意專案，全面提升您的數位能力。',
+    image: '💬',
+    duration: '4 小時',
+    durationCht: '4 小時',
+    downloads: 163,
+    rating: 4.9,
+    level: '適合所有級別',
+    newCourse: true,
+    bestseller: true,
+    featured: true,
+    content: [
+      '6 個綜合模組',
+      '高效 Prompt 實戰手冊',
+      'AI 工具整合指南',
+      '+4 更多項目',
+    ],
+    price: '免費',
+  },
+];
 
-  useEffect(() => {
-    setFeaturedCourses(getFeaturedProducts());
-  }, []);
-
-  const sectionTitle = isZhHK ? '精選課程' : 'Featured Courses';
-  const sectionSubtitle = isZhHK 
-    ? '掌握AI技術，提升商業競爭力' 
-    : 'Master AI Technology, Boost Your Business Competitiveness';
-
-  const enrollText = isZhHK ? '立即報名' : 'Enroll Now';
-  const studentsText = isZhHK ? '學員' : 'students';
-  const downloadsText = isZhHK ? '下載' : 'downloads';
+const CourseCard = ({ course, isZhTW = true }) => {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    navigate(`/courses/${course.id}/outline`);
+  };
 
   return (
-    <section className="py-20" style={{ backgroundColor: '#121212' }}>
-      <div className="container mx-auto px-6">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            {sectionTitle}
-          </h2>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            {sectionSubtitle}
-          </p>
-        </div>
-
-        {/* Course Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {featuredCourses.map((course) => (
-            <Card key={course.id} className="bg-slate-800 border-slate-700 hover:border-blue-500 transition-all duration-300 group">
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="text-3xl">{course.image}</div>
-                  <div className="flex gap-2">
-                    {course.bestseller && (
-                      <Badge variant="destructive" className="text-xs">
-                        {isZhHK ? '暢銷' : 'Bestseller'}
-                      </Badge>
-                    )}
-                    {course.newProduct && (
-                      <Badge variant="secondary" className="text-xs">
-                        {isZhHK ? '新品' : 'New'}
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-                
-                <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">
-                  {isZhHK ? course.titleCht : course.title}
-                </CardTitle>
-                
-                <CardDescription className="text-slate-300 leading-relaxed">
-                  {isZhHK ? course.descriptionCht : course.description}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="pb-4">
-                {/* Course Stats */}
-                <div className="flex items-center gap-4 mb-4 text-sm text-slate-400">
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {isZhHK ? course.durationCht : course.duration}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-yellow-400" />
-                    {course.rating}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    {course.downloads.toLocaleString()} {studentsText}
-                  </div>
-                </div>
-
-                {/* Course Level */}
-                <div className="flex items-center gap-2 mb-4">
-                  <Badge variant="outline" className="text-blue-400 border-blue-400">
-                    {isZhHK ? course.levelCht : course.level}
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.9, rotateX: -15 }}
+      animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+      transition={{ 
+        duration: 1.0, 
+        delay: Math.random() * 0.5,
+        ease: "easeOut",
+        type: "spring",
+        bounce: 0.3
+      }}
+      whileHover={{ 
+        scale: 1.05, 
+        y: -15,
+        rotateY: 5,
+        rotateX: 5,
+        transition: { duration: 0.4, ease: "easeOut" }
+      }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <Card className="bg-gray-900/50 border-gray-800 h-full hover:border-yellow-500 transition-all duration-500 cursor-pointer relative overflow-hidden" onClick={handleClick}>
+        {/* Animated Background Gradient */}
+        <motion.div
+          className="absolute inset-0 opacity-5"
+          style={{
+            background: 'linear-gradient(45deg, #FFD700, #FFA500, #FF6347, #FFD700)',
+            backgroundSize: '400% 400%'
+          }}
+          animate={{
+            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'linear'
+          }}
+        />
+        
+        <CardHeader className="relative z-10">
+          <div className="flex items-start justify-between mb-4">
+            <motion.div 
+              className="text-4xl" 
+              role="img" 
+              aria-label="Course icon"
+              whileHover={{ 
+                scale: 1.3, 
+                rotate: 15,
+                transition: { duration: 0.3 }
+              }}
+              animate={{ 
+                rotate: [0, 5, 0, -5, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              {course.image}
+            </motion.div>
+            <div className="flex flex-col gap-2">
+              {course.newCourse && (
+                <motion.div
+                  initial={{ x: 50, opacity: 0, scale: 0 }}
+                  animate={{ x: 0, opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.3,
+                    type: "spring",
+                    bounce: 0.4
+                  }}
+                  whileHover={{ scale: 1.15, x: -8, rotate: 5 }}
+                >
+                  <Badge variant="outline" className="text-green-400 border-green-400 text-xs">
+                    {isZhTW ? '新品' : 'New'}
                   </Badge>
-                  <Badge variant="outline" className="text-green-400 border-green-400">
-                    {isZhHK ? course.typeCht : course.type}
+                </motion.div>
+              )}
+              {course.bestseller && (
+                <motion.div
+                  initial={{ x: 50, opacity: 0, scale: 0 }}
+                  animate={{ x: 0, opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.5,
+                    type: "spring",
+                    bounce: 0.4
+                  }}
+                  whileHover={{ scale: 1.15, x: -8, rotate: -5 }}
+                >
+                  <Badge variant="outline" className="text-red-400 border-red-400 text-xs">
+                    {isZhTW ? '熱銷' : 'Hot'}
                   </Badge>
-                </div>
+                </motion.div>
+              )}
+              {course.featured && (
+                <motion.div
+                  initial={{ x: 50, opacity: 0, scale: 0 }}
+                  animate={{ x: 0, opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.7,
+                    type: "spring",
+                    bounce: 0.4
+                  }}
+                  whileHover={{ scale: 1.15, x: -8, rotate: 5 }}
+                >
+                  <Badge variant="outline" className="text-orange-400 border-orange-400 text-xs">
+                    {isZhTW ? '精選' : 'Featured'}
+                  </Badge>
+                </motion.div>
+              )}
+            </div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <CardTitle className="text-xl mb-2 text-white">
+              {isZhTW ? course.titleCht : course.title}
+            </CardTitle>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <CardDescription className="text-gray-200">
+              {isZhTW ? course.descriptionCht : course.description}
+            </CardDescription>
+          </motion.div>
+        </CardHeader>
+        <CardContent className="relative z-10">
+          <div className="space-y-4">
+            <motion.div 
+              className="flex items-center justify-between text-sm text-gray-200"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <div className="flex items-center gap-4">
+                <motion.div 
+                  className="flex items-center gap-1"
+                  whileHover={{ x: 5, scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Clock className="h-4 w-4 text-yellow-400" strokeWidth={1} fill="none" />
+                  </motion.div>
+                  <span>{isZhTW ? course.durationCht : course.duration}</span>
+                </motion.div>
+                <motion.div 
+                  className="flex items-center gap-1"
+                  whileHover={{ x: 5, scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.3, rotate: 15 }}
+                    transition={{ duration: 0.3 }}
+                    animate={{ y: [0, -2, 0] }}
+                  >
+                    <Users className="h-4 w-4 text-yellow-400" strokeWidth={1} fill="none" />
+                  </motion.div>
+                  <span>163 下載</span>
+                </motion.div>
+              </div>
+              <motion.div 
+                className="flex items-center gap-1"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                </motion.div>
+                <span className="text-white">{course.rating}</span>
+              </motion.div>
+            </motion.div>
 
-                {/* Course Includes */}
-                <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-white">
-                    {isZhHK ? '課程包含：' : 'Course Includes:'}
-                  </h4>
-                  <div className="space-y-1">
-                    {(isZhHK ? course.includesCht : course.includes).slice(0, 3).map((item, index) => (
-                      <div key={index} className="flex items-center gap-2 text-sm text-slate-300">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                        {item}
-                      </div>
-                    ))}
-                    {(isZhHK ? course.includesCht : course.includes).length > 3 && (
-                      <div className="text-xs text-slate-400">
-                        +{(isZhHK ? course.includesCht : course.includes).length - 3} {isZhHK ? '更多項目' : 'more items'}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
+            {/* Level Badge */}
+            <motion.div 
+              className="mb-4"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+            >
+              <Badge variant="outline" className="text-yellow-400 border-yellow-400 text-xs">
+                適合所有級別
+              </Badge>
+            </motion.div>
 
-              <CardFooter className="pt-4 border-t border-slate-700">
-                <div className="w-full">
-                  {/* Pricing */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold text-white">{course.price}</span>
-                        <span className="text-sm text-slate-400 line-through">{course.originalPrice}</span>
-                      </div>
-                      <div className="text-xs text-green-400">
-                        {isZhHK ? `節省 ${Math.round(((parseInt(course.originalPrice.replace(/[^0-9]/g, '')) - parseInt(course.price.replace(/[^0-9]/g, ''))) / parseInt(course.originalPrice.replace(/[^0-9]/g, ''))) * 100)}%` 
-                                 : `Save ${Math.round(((parseInt(course.originalPrice.replace(/[^0-9]/g, '')) - parseInt(course.price.replace(/[^0-9]/g, ''))) / parseInt(course.originalPrice.replace(/[^0-9]/g, ''))) * 100)}%`}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CTA Button */}
-                  <Button 
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3"
-                    onClick={() => {
-                      // Handle course enrollment
-                      console.log('Enrolling in course:', course.id);
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              <h4 className="font-semibold mb-2 text-white">
+                包含內容：
+              </h4>
+              <ul className="text-sm text-gray-200 space-y-1">
+                {[
+                  '6 個綜合模組',
+                  '高效 Prompt 實戰手冊',
+                  'AI 工具整合指南',
+                  '+1 更多項目'
+                ].map((item, i) => (
+                  <motion.li 
+                    key={i}
+                    className="flex items-center gap-2"
+                    initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: 1.4 + i * 0.1,
+                      ease: "easeOut"
                     }}
                   >
-                    {enrollText} →
-                  </Button>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+                    <motion.div 
+                      className="w-1.5 h-1.5 bg-yellow-400 rounded-full"
+                      animate={{ scale: [1, 1.5, 1] }}
+                      transition={{ 
+                        duration: 2, 
+                        repeat: Infinity, 
+                        delay: i * 0.2 
+                      }}
+                    />
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-slate-300 mb-6">
-            {isZhHK 
-              ? '準備好用AI轉型您的業務嗎？' 
-              : 'Ready to transform your business with AI?'}
+            {/* Bottom Split Layout - Green Free + Orange Button */}
+            <motion.div 
+              className="flex items-center justify-between pt-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
+            >
+              {/* Left: Green Free Text */}
+              <motion.div 
+                className="flex flex-col gap-1"
+                whileHover={{ scale: 1.1, x: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-2xl font-bold text-green-400"
+                  animate={{ 
+                    textShadow: [
+                      '0 0 5px rgba(34, 197, 94, 0.5)',
+                      '0 0 20px rgba(34, 197, 94, 0.8)',
+                      '0 0 5px rgba(34, 197, 94, 0.5)'
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  免費
+                </motion.div>
+              </motion.div>
+              
+              {/* Right: Orange Purchase Button */}
+              <motion.div
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -3,
+                  transition: { duration: 0.3 }
+                }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 2.0,
+                  type: "spring",
+                  bounce: 0.4
+                }}
+              >
+                <Button 
+                  className="relative overflow-hidden font-semibold"
+                  style={{
+                    background: 'linear-gradient(135deg, #f97316 0%, #eab308 100%)'
+                  }}
+                  onClick={handleClick}
+                >
+                  {/* Button Background Animation */}
+                  <motion.div
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(45deg, #f97316, #eab308, #f59e0b, #f97316)',
+                      backgroundSize: '400% 400%'
+                    }}
+                    animate={{
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'linear'
+                    }}
+                  />
+                  
+                  <div className="relative z-10 flex items-center">
+                    <span>立即購買</span>
+                    <motion.div
+                      className="ml-2"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </motion.div>
+                  </div>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
+
+const FeaturedCoursesSection = () => {
+  return (
+    <section className="text-white py-16 sm:py-24" style={{ backgroundColor: '#121212' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            精選 AI 課程
+          </h2>
+          <p className="mt-4 text-lg text-gray-400">
+            掌握 AI 技術，提升商業競爭力
           </p>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white"
-          >
-            {isZhHK ? '瀏覽所有課程' : 'Browse All Courses'}
-          </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {coursesData.map(course => (
+            <CourseCard key={course.id} course={course} />
+          ))}
         </div>
       </div>
     </section>

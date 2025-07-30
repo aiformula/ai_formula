@@ -5,12 +5,12 @@
  * @version 1.0.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowLeft, CheckCircle, XCircle, RotateCcw, Target, 
-  Trophy, Award, Clock, Brain, Zap
+  ArrowLeft, ArrowRight, RotateCcw, CheckCircle, Check, XCircle, 
+  Trophy, Award, Clock, Brain, Zap, Target
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
@@ -252,30 +252,68 @@ const CourseQuiz: React.FC<CourseQuizProps> = ({
                       </h3>
                       
                       <div className="space-y-3">
-                        {currentQuestion.options.map((option, index) => (
-                          <button
-                            key={index}
-                            onClick={() => handleAnswerSelect(index)}
-                            className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${
-                              selectedAnswers[currentQuestionIndex] === index
-                                ? `border-${themeColor}-500 bg-${themeColor}-500/10 text-white`
-                                : 'border-gray-600 bg-gray-700/50 text-gray-300 hover:border-gray-500 hover:bg-gray-700'
-                            }`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                                selectedAnswers[currentQuestionIndex] === index
-                                  ? `border-${themeColor}-500 bg-${themeColor}-500 text-white`
-                                  : 'border-gray-500'
-                              }`}>
-                                {selectedAnswers[currentQuestionIndex] === index && (
-                                  <div className="w-2 h-2 bg-white rounded-full" />
-                                )}
+                        {currentQuestion.options.map((option, index) => {
+                          const isSelected = selectedAnswers[currentQuestionIndex] === index;
+                          
+                          return (
+                            <motion.button
+                              key={index}
+                              onClick={() => handleAnswerSelect(index)}
+                              className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-300 group relative ${
+                                isSelected
+                                  ? 'border-yellow-400 bg-yellow-400/10 text-white transform scale-105'
+                                  : 'border-gray-600 bg-gray-700/50 text-gray-300 hover:border-yellow-400 hover:bg-gray-700'
+                              }`}
+                              style={{
+                                boxShadow: isSelected 
+                                  ? '0 0 20px rgba(251, 191, 36, 0.3)' 
+                                  : 'none'
+                              }}
+                              whileHover={!isSelected ? { 
+                                scale: 1.01,
+                                boxShadow: '0 0 15px rgba(251, 191, 36, 0.2)'
+                              } : {}}
+                              whileTap={{ scale: 0.98 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3 flex-1">
+                                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                                    isSelected
+                                      ? 'border-yellow-400 bg-yellow-400 text-black'
+                                      : 'border-gray-500 group-hover:border-yellow-400'
+                                  }`}>
+                                    {isSelected && (
+                                      <motion.div
+                                        initial={{ scale: 0, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        transition={{ duration: 0.2, delay: 0.1 }}
+                                      >
+                                        <div className="w-2 h-2 bg-black rounded-full" />
+                                      </motion.div>
+                                    )}
+                                  </div>
+                                  <span className="flex-1">{option}</span>
+                                </div>
+                                
+                                {/* 剔號圖標 */}
+                                <AnimatePresence>
+                                  {isSelected && (
+                                    <motion.div
+                                      initial={{ scale: 0, opacity: 0, rotate: -90 }}
+                                      animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                                      exit={{ scale: 0, opacity: 0, rotate: 90 }}
+                                      transition={{ duration: 0.3, type: "spring", bounce: 0.5 }}
+                                      className="ml-3"
+                                    >
+                                      <Check className="w-5 h-5 text-yellow-400" />
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
                               </div>
-                              <span>{option}</span>
-                            </div>
-                          </button>
-                        ))}
+                            </motion.button>
+                          );
+                        })}
                       </div>
 
                       <div className="flex justify-between pt-4">

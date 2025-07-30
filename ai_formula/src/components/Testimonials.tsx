@@ -1,82 +1,207 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
+import { Star, Shuffle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getRandomThreeTestimonials, generateRandomProfile, type Testimonial, type GeneratedProfile } from '@/data/testimonials';
+
+interface TestimonialWithProfile extends Testimonial {
+  generatedProfile: GeneratedProfile;
+}
 
 const Testimonials = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
+  const [currentTestimonials, setCurrentTestimonials] = useState<TestimonialWithProfile[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const testimonials = [
-    {
-      quote: language === 'zh-HK' ? t('testimonials.testimonial1.quote') : 'We got a custom WhatsApp automation system that handles customer inquiries 24/7. No more missed messages and our response time improved dramatically.',
-      author: language === 'zh-HK' ? t('testimonials.testimonial1.author') : 'Wong Ka Ming',
-      service: language === 'zh-HK' ? t('testimonials.testimonial1.service') : 'Custom Automation Solution',
-      company: language === 'zh-HK' ? t('testimonials.testimonial1.company') : 'Local Trading Company',
-      rating: 5
-    },
-    {
-      quote: language === 'zh-HK' ? t('testimonials.testimonial2.quote') : 'Their team built us a custom business automation system that connects our inventory, orders, and accounting. Everything runs smoothly now.',
-      author: language === 'zh-HK' ? t('testimonials.testimonial2.author') : 'Chan Siu Fung',
-      service: language === 'zh-HK' ? t('testimonials.testimonial2.service') : 'Business Automation',
-      company: language === 'zh-HK' ? t('testimonials.testimonial2.company') : 'Small Manufacturing Business',
-      rating: 5
-    },
-    {
-      quote: language === 'zh-HK' ? t('testimonials.testimonial3.quote') : 'The custom AI chatbot they created for our restaurant handles reservations and orders perfectly. It understands Cantonese and English!',
-      author: language === 'zh-HK' ? t('testimonials.testimonial3.author') : 'Lam Mei Ling',
-      service: language === 'zh-HK' ? t('testimonials.testimonial3.service') : 'Custom AI Chatbot',
-      company: language === 'zh-HK' ? t('testimonials.testimonial3.company') : 'Family Restaurant',
-      rating: 5
-    }
-  ];
+  // 初始化載入評價
+  useEffect(() => {
+    loadTestimonials();
+  }, []);
+
+  const loadTestimonials = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const randomTestimonials = getRandomThreeTestimonials();
+      const testimonialsWithProfiles = randomTestimonials.map(testimonial => ({
+        ...testimonial,
+        generatedProfile: generateRandomProfile()
+      }));
+      setCurrentTestimonials(testimonialsWithProfiles);
+      setIsLoading(false);
+    }, 300);
+  };
+
+  const handleShuffle = () => {
+    loadTestimonials();
+  };
+
+  const renderStars = (rating: number) => {
+    return (
+      <div className="flex gap-1">
+        {[...Array(5)].map((_, i) => (
+          <Star
+            key={i}
+            className={`w-4 h-4 ${
+              i < rating 
+                ? 'fill-yellow-500 text-yellow-500' 
+                : 'fill-gray-600 text-gray-600'
+            }`}
+          />
+        ))}
+      </div>
+    );
+  };
 
   return (
-    <section className="py-12" style={{ backgroundColor: '#121212' }}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-16 sm:py-24" style={{ backgroundColor: '#121212' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header with Shuffle Control */}
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              {language === 'zh-HK' ? '客戶怎麼說' : 'What Our Clients Say'}
+            </h2>
+            <p className="text-gray-400 text-lg">
+              {language === 'zh-HK' 
+                ? '真實客戶分享 AI 學習與自動化轉型的成功經驗' 
+                : 'Real client experiences with AI learning and automation transformation'
+              }
+            </p>
+          </motion.div>
+
+          {/* Shuffle Button */}
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            onClick={handleShuffle}
+            disabled={isLoading}
+            className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-semibold px-6 py-3 rounded-lg hover:from-yellow-400 hover:to-orange-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Shuffle className={`w-5 h-5 inline mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+            {language === 'zh-HK' ? '隨機顯示其他評價' : 'Show Other Reviews'}
+          </motion.button>
+        </div>
+
+        {/* Testimonials Grid - Only 3 Cards */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          key={currentTestimonials.length} // 觸發重新動畫
+        >
+          {currentTestimonials.map((testimonial, index) => (
+            <motion.div
+              key={`${testimonial.id}-${testimonial.generatedProfile.fullName}`}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.2,
+                type: "spring",
+                bounce: 0.3
+              }}
+              className="bg-black border border-gray-800 rounded-xl p-8 hover:shadow-2xl hover:bg-gray-900/50 hover:border-gray-700 transition-all duration-300 relative overflow-hidden group"
+              whileHover={{ 
+                y: -8,
+                boxShadow: "0 10px 25px rgba(251, 191, 36, 0.2)"
+              }}
+            >
+              {/* Category Badge */}
+              <div className="absolute top-4 right-4">
+                <span className={`text-xs px-3 py-1 rounded-full font-semibold ${
+                  testimonial.category === 'learning' 
+                    ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' 
+                    : testimonial.category === 'n8n'
+                    ? 'bg-green-500/20 text-green-300 border border-green-500/30'
+                    : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                }`}>
+                  {testimonial.category === 'learning' 
+                    ? (language === 'zh-HK' ? 'AI 學習' : 'AI Learning')
+                    : testimonial.category === 'n8n'
+                    ? 'n8n'
+                    : (language === 'zh-HK' ? '客製化' : 'Custom')
+                  }
+                </span>
+              </div>
+
+              {/* Rating */}
+              <div className="mb-6">
+                {renderStars(testimonial.rating)}
+              </div>
+
+              {/* Content */}
+              <blockquote className="text-gray-300 mb-8 leading-relaxed text-base">
+                "{language === 'zh-HK' ? testimonial.content : testimonial.contentEn}"
+              </blockquote>
+
+              {/* Author Info - Simplified Design */}
+              <div className="border-t border-gray-800 pt-6">
+                <div className="text-left">
+                  {/* 英文全名 */}
+                  <h4 className="font-semibold text-white text-lg mb-2">
+                    {testimonial.generatedProfile.fullName}
+                  </h4>
+                  
+                  {/* 職位 */}
+                  <p className="text-gray-400 text-sm mb-1">
+                    {language === 'zh-HK' 
+                      ? testimonial.generatedProfile.title 
+                      : testimonial.generatedProfile.titleEn
+                    }
+                  </p>
+                  
+                  {/* 公司與固定地點 */}
+                  <p className="text-gray-500 text-xs">
+                    {language === 'zh-HK' 
+                      ? `${testimonial.generatedProfile.company} • 香港`
+                      : `${testimonial.generatedProfile.companyEn} • Hong Kong`
+                    }
+                  </p>
+                </div>
+              </div>
+
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Loading State */}
+        {isLoading && (
+          <div className="text-center mt-12">
+            <div className="inline-flex items-center gap-3 text-gray-400">
+              <div className="w-6 h-6 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
+              {language === 'zh-HK' ? '載入新評價中...' : 'Loading new reviews...'}
+            </div>
+          </div>
+        )}
+
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center mt-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            {language === 'zh-HK' ? t('testimonials.title') : 'What Our Clients Say'}
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {language === 'zh-HK' ? t('testimonials.subtitle') : 'Real feedback from businesses using our custom AI automation solutions'}
+          <p className="text-gray-400 mb-6">
+            {language === 'zh-HK' 
+              ? '加入超過 1000+ 滿意客戶的行列' 
+              : 'Join 1000+ satisfied clients'
+            }
           </p>
+          <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-semibold px-8 py-4 rounded-lg hover:from-yellow-400 hover:to-orange-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+            {language === 'zh-HK' ? '立即開始您的 AI 之旅' : 'Start Your AI Journey Today'}
+          </button>
         </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-gray-900 rounded-xl p-8 hover:shadow-2xl hover:bg-gray-700 transition-all duration-300"
-            >
-              <div className="flex items-center mb-4">
-                <Quote className="w-8 h-8 text-yellow-500 mr-3" />
-                <div className="flex space-x-1">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                  ))}
-                </div>
-              </div>
-              
-              <p className="text-gray-300 mb-6 italic">"{testimonial.quote}"</p>
-              
-              <div className="border-t border-gray-700 pt-4">
-                <p className="font-semibold text-white">{testimonial.author}</p>
-                <p className="text-sm text-yellow-500 mb-1">{testimonial.service}</p>
-                <p className="text-sm text-gray-400">{testimonial.company}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );

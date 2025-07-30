@@ -18,6 +18,8 @@ const courseModules = [
         duration: "15分鐘",
         type: "text" as const,
         description: "深入了解大型語言模型的核心概念、工作原理和技術特徵，為後續學習打下堅實基礎。",
+        image: "/images/courses/chatgpt-complete-course/unit-images/llm-concept.png",
+        imageAlt: "大型語言模型概念圖解",
         transcript: `大型語言模型（Large Language Model, LLM）是一種尖端的人工智能（AI）程式，經過海量文本數據的訓練，從而學會了理解、生成、總結、翻譯人類語言以及執行其他複雜的文本相關任務。從根本上說，LLM 是一個深度學習模型，它並非真正地進行人類意義上的「思考」，而是基於極其複雜的概率計算，來預測一個文本序列中接下來最可能出現的詞語。
 
 「大型」這個詞彙主要體現在兩個維度：其一是訓練數據集的規模，這些數據集往往來源於互聯網的廣泛文本，例如包含數十億網頁的 Common Crawl 數據庫和擁有數千萬頁面的維基百科；其二是模型本身的複雜度，即其包含的「參數」數量，這些參數可視為模型在學習過程中調整的內部變量，數量可高達數千億甚至更多。

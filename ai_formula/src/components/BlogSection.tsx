@@ -57,13 +57,13 @@ const BlogSection = () => {
         return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50'
       case '工具指南':
       case 'Tool Guide':
-        return 'bg-blue-500/20 text-blue-300 border-blue-500/50'
+        return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50'
       case '基礎知識':
       case 'Fundamentals':
         return 'bg-green-500/20 text-green-300 border-green-500/50'
       case '科技前瞻':
       case 'Tech Innovation':
-        return 'bg-purple-500/20 text-purple-300 border-purple-500/50'
+        return 'bg-orange-500/20 text-orange-300 border-orange-500/50'
       default:
         return 'bg-gray-500/20 text-gray-300 border-gray-500/50'
     }
@@ -79,13 +79,13 @@ const BlogSection = () => {
         return 'text-yellow-400'
       case '工具指南':
       case 'Tool Guide':
-        return 'text-blue-400'
+        return 'text-yellow-400'
       case '基礎知識':
       case 'Fundamentals':
         return 'text-green-400'
       case '科技前瞻':
       case 'Tech Innovation':
-        return 'text-purple-400'
+        return 'text-orange-400'
       default:
         return 'text-gray-400'
     }
@@ -101,13 +101,13 @@ const BlogSection = () => {
         return 'bg-gradient-to-br from-yellow-500/20 to-orange-500/20'
       case '工具指南':
       case 'Tool Guide':
-        return 'bg-gradient-to-br from-blue-500/20 to-cyan-500/20'
+        return 'bg-gradient-to-br from-yellow-500/20 to-orange-500/20'
       case '基礎知識':
       case 'Fundamentals':
         return 'bg-gradient-to-br from-green-500/20 to-emerald-500/20'
       case '科技前瞻':
       case 'Tech Innovation':
-        return 'bg-gradient-to-br from-purple-500/20 to-indigo-500/20'
+        return 'bg-gradient-to-br from-orange-500/20 to-red-500/20'
       default:
         return 'bg-gradient-to-br from-gray-500/20 to-slate-500/20'
     }
@@ -124,7 +124,7 @@ const BlogSection = () => {
           className="mb-16"
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
               {isZhTW ? 'AI 策略資訊' : 'AI Strategy & Information'}
             </h2>
             <p className="text-xl text-gray-300 lg:text-right lg:max-w-md">
@@ -144,7 +144,7 @@ const BlogSection = () => {
             <Card className="bg-gray-800/50 border-gray-700 h-full flex flex-col">
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-white flex items-center">
-                  <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
+                  <TrendingUp className="h-5 w-5 mr-2 text-yellow-400" />
                   {isZhTW ? '最新AI 資訊' : 'Latest AI Information'}
                 </CardTitle>
               </CardHeader>
@@ -159,7 +159,7 @@ const BlogSection = () => {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
-                        className="flex space-x-4 p-4 rounded-lg bg-gray-700/30 hover:bg-gray-700/50 transition-all duration-300 group cursor-pointer border border-gray-600/20 hover:border-blue-500/30"
+                        className="flex space-x-4 p-4 rounded-lg bg-gray-700/30 hover:bg-yellow-500/10 transition-all duration-300 group cursor-pointer border border-gray-600/20 hover:border-yellow-500/40"
                       >
                         <div className="flex-shrink-0">
                           <div className={`w-10 h-10 ${getCategoryIconBackground(post.category)} rounded-lg flex items-center justify-center`}>
@@ -172,7 +172,7 @@ const BlogSection = () => {
                               {isZhTW ? post.category : post.categoryEn}
                             </Badge>
                           </div>
-                          <h4 className="text-sm font-medium text-white group-hover:text-blue-300 transition-colors line-clamp-2 mb-2">
+                          <h4 className="text-sm font-medium text-white group-hover:text-yellow-300 transition-colors line-clamp-2 mb-2">
                             {isZhTW ? post.title : post.titleEn}
                           </h4>
                           <p className="text-xs text-gray-300">
@@ -195,9 +195,9 @@ const BlogSection = () => {
             className="lg:col-span-2"
           >
             {featuredPost && (
-              <Card className="bg-gray-800/50 border-gray-700 hover:border-blue-500/50 transition-all duration-300 group overflow-hidden h-full flex flex-col">
+              <Card className="bg-gray-800/50 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden h-full flex flex-col">
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/20 to-orange-600/20 flex items-center justify-center">
                     <div className="text-6xl opacity-20">📊</div>
                   </div>
                   <div className="absolute top-4 left-4">
@@ -212,13 +212,13 @@ const BlogSection = () => {
                     <span className="mr-6">{isZhTW ? featuredPost.date : featuredPost.dateEn}</span>
                     <span>{isZhTW ? featuredPost.readTime : featuredPost.readTimeEn}</span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 group-hover:text-blue-300 transition-colors leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 group-hover:text-yellow-300 transition-colors leading-tight">
                     {isZhTW ? featuredPost.title : featuredPost.titleEn}
                   </h3>
                   <p className="text-gray-200 text-lg leading-relaxed mb-8 flex-1">
                     {isZhTW ? featuredPost.excerpt : featuredPost.excerptEn}
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200 transition-colors mt-auto pt-4">
+                  <div className="flex items-center text-yellow-300 font-medium group-hover:text-yellow-200 transition-colors mt-auto pt-4">
                     <span className="mr-2">{isZhTW ? '閱讀更多' : 'Read More'}</span>
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>

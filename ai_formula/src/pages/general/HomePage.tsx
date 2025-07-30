@@ -9,7 +9,6 @@ import AutomationJourney from '@/components/AutomationJourney'
 import BlogSection from '@/components/BlogSection'
 import Testimonials from '@/components/Testimonials'
 import ContactSection from '@/components/ContactSection'
-import CourseRecommendationSection from '@/components/CourseRecommendationSection'
 
 const Index = () => {
   return (
@@ -17,9 +16,6 @@ const Index = () => {
       <MainHero />
       <AudiencePathwaysSection />
       <FeaturedCoursesSection />
-      
-      {/* AI 課程推薦區塊 - 使用獨立組件 */}
-      <CourseRecommendationSection />
       
       <InstructorSection />
       <TechnologyShowcase />

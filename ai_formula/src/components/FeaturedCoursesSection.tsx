@@ -1,209 +1,510 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Clock, Star, Download } from 'lucide-react';
+import Atropos from 'atropos/react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Star, Users, Clock, ArrowRight, TrendingUp, Award, Download } from 'lucide-react';
-import { getFeaturedProducts } from '@/data/courses/courseData';
 
-const FeaturedCoursesSection = () => {
+const coursesData = [
+  {
+    id: '1',
+    image: '🤖',
+    title: 'ChatGPT 完整教學實戰',
+    titleCht: 'ChatGPT 完整教學實戰',
+    description: 'Master ChatGPT with comprehensive hands-on training',
+    descriptionCht: '從基礎到進階，全面掌握 ChatGPT 的實戰應用技巧',
+    duration: '6 小時',
+    durationCht: '6 小時',
+    rating: 4.9,
+    downloads: 163,
+    newProduct: true,
+    bestseller: true,
+    featured: true,
+    includes: [
+      '6 個綜合模組',
+      '高效 Prompt 實戰手冊',
+      'AI 工具整合指南',
+      '+1 更多項目'
+    ]
+  }
+];
+
+const FeaturedCoursesSection: React.FC = () => {
   const { language } = useLanguage();
   const isZhTW = language === 'zh-HK';
-  const featuredCourses = getFeaturedProducts().slice(0, 3); // Show top 3 featured courses
+
+  // Container animations with doubled effects
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Card animations with doubled effects
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9,
+      rotateX: -15
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 1.0,
+        ease: "easeOut",
+        type: "spring",
+        bounce: 0.3
+      }
+    },
+    hover: {
+      y: -15,
+      scale: 1.05,
+      rotateY: 5,
+      rotateX: 5,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Icon animations with doubled effects
+  const iconVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: { 
+      scale: 1, 
+      rotate: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        type: "spring",
+        bounce: 0.4
+      }
+    },
+    hover: {
+      scale: 1.2,
+      rotate: 15,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Tag animations with doubled effects
+  const tagVariants = {
+    hidden: { x: 50, opacity: 0 },
+    visible: (i: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        delay: 0.3 + i * 0.2,
+        ease: "easeOut"
+      }
+    }),
+    hover: {
+      scale: 1.1,
+      x: -5,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  // Text animations with doubled effects
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (delay: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay: delay,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  // Button animations with doubled effects
+  const buttonVariants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        delay: 1.2,
+        ease: "easeOut",
+        type: "spring",
+        bounce: 0.4
+      }
+    },
+    hover: {
+      scale: 1.05,
+      y: -3,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    },
+    tap: {
+      scale: 0.95,
+      transition: {
+        duration: 0.1
+      }
+    }
+  };
+
+  // Info item animations with doubled effects
+  const infoVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        delay: 0.8 + i * 0.15,
+        ease: "easeOut"
+      }
+    }),
+    hover: {
+      x: 5,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  // List item animations with doubled effects
+  const listItemVariants = {
+    hidden: { opacity: 0, x: -20, scale: 0.8 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        delay: 1.0 + i * 0.1,
+        ease: "easeOut"
+      }
+    })
+  };
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#121212' }}>
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-orange-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-amber-500/20 rounded-full blur-2xl animate-pulse delay-2000"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
+    <section className="py-20 px-4" style={{ backgroundColor: '#121212' }}>
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/20 rounded-full mb-6"
+          {/* Section Header with doubled animations */}
+          <motion.div 
+            className="text-center mb-16"
+            variants={textVariants}
+            custom={0}
           >
-            <TrendingUp className="w-5 h-5 text-yellow-400" />
-            <span className="text-yellow-300 font-medium">
-              {isZhTW ? '推薦' : 'Featured'}
-            </span>
-          </motion.div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-amber-300 bg-clip-text text-transparent">
-              {isZhTW ? '精選課程瀏覽' : 'Featured Course Preview'}
-            </span>
-          </h2>
-          
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            {isZhTW 
-              ? '發掘我們最受歡迎的AI課程，從基礎到進階，幫助您在AI領域建立紮實的技能基礎。'
-              : 'Discover our most popular AI courses, from basics to advanced, helping you build solid skills in the AI field.'
-            }
-          </p>
-        </motion.div>
-
-        {/* Featured Courses Grid */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
-          {featuredCourses.map((course, index) => (
-            <motion.div
-              key={course.id}
-              initial={{ opacity: 0, y: 50, rotateX: 10 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: index * 0.2,
-                type: "spring",
-                stiffness: 100
-              }}
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-white mb-4"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              whileHover={{ 
-                y: -10, 
-                scale: 1.03,
-                transition: { duration: 0.3 }
-              }}
-              className="group cursor-pointer"
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <Card className="bg-gray-800/50 border border-gray-700 hover:border-yellow-500/50 transition-all duration-500 overflow-hidden h-full backdrop-blur-sm relative">
-                {/* Card Glow Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-orange-500/10 to-amber-500/10 rounded-lg blur-xl"></div>
-                </div>
+              {isZhTW ? '精選課程' : 'Featured Courses'}
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-gray-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
+              {isZhTW ? '開始您的 AI 學習之旅' : 'Start Your AI Learning Journey'}
+            </motion.p>
+          </motion.div>
 
-                <CardHeader className="relative z-10">
-                  {/* Course Icon & Badges */}
-                  <div className="flex items-start justify-between mb-4">
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-4xl p-3 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl border border-yellow-500/30"
-                    >
-                      {course.image}
-                    </motion.div>
-                    <div className="flex flex-col gap-2">
-                      {course.bestseller && (
-                        <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/50">
-                          <Award className="w-3 h-3 mr-1" />
-                          {isZhTW ? '暢銷' : 'Bestseller'}
-                        </Badge>
-                      )}
-                      {course.featured && (
-                        <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/50">
-                          {isZhTW ? '精選' : 'Featured'}
-                        </Badge>
-                      )}
-                      {course.newProduct && (
-                        <Badge className="bg-green-500/20 text-green-300 border-green-500/50">
-                          {isZhTW ? '新品' : 'New'}
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Course Title */}
-                  <CardTitle className="text-xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors duration-300">
-                    {isZhTW ? course.titleCht : course.title}
-                  </CardTitle>
-
-                  {/* Course Description */}
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                    {isZhTW ? course.descriptionCht : course.description}
-                  </p>
-
-                  {/* Course Stats */}
-                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-yellow-400">{course.rating}</span>
-                      <span>(100+)</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Download className="w-4 h-4" />
-                      <span>{course.downloads.toLocaleString()}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{isZhTW ? course.durationCht : course.duration}</span>
-                    </div>
-                  </div>
-
-                  {/* Course Level */}
-                  <div className="mb-4">
-                    <Badge className={`
-                      ${course.level === 'Beginner' ? 'bg-green-500/20 text-green-300 border-green-500/50' : 
-                        course.level === 'Intermediate' ? 'bg-blue-500/20 text-blue-300 border-blue-500/50' : 
-                        'bg-red-500/20 text-red-300 border-red-500/50'}
-                    `}>
-                      {isZhTW ? course.levelCht : course.level}
-                    </Badge>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="relative z-10 pt-0">
-                  {/* Price */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="text-2xl font-bold text-white">
-                      {course.price}
-                    </span>
-                    {course.originalPrice && course.originalPrice !== course.price && (
-                      <span className="text-lg text-gray-500 line-through">
-                        {course.originalPrice}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* CTA Button */}
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+          {/* Course Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {coursesData.map((course, index) => (
+              <motion.div
+                key={course.id}
+                variants={cardVariants}
+                whileHover="hover"
+                className="w-full h-full"
+              >
+                <Atropos
+                  className="w-full h-full"
+                  activeOffset={60}
+                  shadowScale={1.2}
+                  rotateXMax={20}
+                  rotateYMax={20}
+                  duration={600}
+                >
+                  <motion.div 
+                    className="bg-black border border-yellow-400 rounded-xl p-6 h-full flex flex-col relative overflow-hidden"
+                    style={{
+                      background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
+                    }}
+                    whileHover={{
+                      borderColor: '#FFD700',
+                      boxShadow: '0 0 30px rgba(255, 215, 0, 0.3)',
+                      transition: { duration: 0.3 }
+                    }}
                   >
-                    <Button 
-                      className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group"
-                    >
-                      {isZhTW ? '立即註冊' : 'Enroll Now'}
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </Button>
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                    {/* Animated Background Gradient */}
+                    <motion.div
+                      className="absolute inset-0 opacity-5"
+                      style={{
+                        background: 'linear-gradient(45deg, #FFD700, #FFA500, #FF6347, #FFD700)',
+                        backgroundSize: '400% 400%'
+                      }}
+                      animate={{
+                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                      }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: 'linear'
+                      }}
+                    />
 
-        {/* View All Courses CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <Button 
-            variant="outline"
-            size="lg"
-            className="bg-transparent border-2 border-yellow-500/50 text-yellow-300 hover:bg-yellow-500/10 hover:border-yellow-400 transition-all duration-300 px-8 py-3"
-          >
-            {isZhTW ? '查看所有課程' : 'View All Courses'}
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+                    {/* Header with Icon and Tags */}
+                    <div className="flex items-start justify-between mb-6 relative z-10">
+                      <motion.div 
+                        className="text-5xl"
+                        variants={iconVariants}
+                        whileHover="hover"
+                      >
+                        {course.image}
+                      </motion.div>
+                      
+                      <div className="flex flex-col gap-2">
+                        <AnimatePresence>
+                          {course.newProduct && (
+                            <motion.div
+                              variants={tagVariants}
+                              custom={0}
+                              initial="hidden"
+                              animate="visible"
+                              whileHover="hover"
+                              className="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold"
+                            >
+                              {isZhTW ? '新品' : 'New'}
+                            </motion.div>
+                          )}
+                          {course.bestseller && (
+                            <motion.div
+                              variants={tagVariants}
+                              custom={1}
+                              initial="hidden"
+                              animate="visible"
+                              whileHover="hover"
+                              className="bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold"
+                            >
+                              {isZhTW ? '熱銷' : 'Hot'}
+                            </motion.div>
+                          )}
+                          {course.featured && (
+                            <motion.div
+                              variants={tagVariants}
+                              custom={2}
+                              initial="hidden"
+                              animate="visible"
+                              whileHover="hover"
+                              className="bg-orange-500 text-white text-xs px-3 py-1 rounded-full font-semibold"
+                            >
+                              {isZhTW ? '精選' : 'Featured'}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+
+                    {/* Title and Description */}
+                    <motion.h3 
+                      className="text-xl font-bold text-white mb-3"
+                      variants={textVariants}
+                      custom={0.4}
+                    >
+                      {isZhTW ? course.titleCht : course.title}
+                    </motion.h3>
+                    
+                    <motion.p 
+                      className="text-gray-300 text-sm mb-6 flex-grow"
+                      variants={textVariants}
+                      custom={0.6}
+                    >
+                      {isZhTW ? course.descriptionCht : course.description}
+                    </motion.p>
+
+                    {/* Course Info */}
+                    <motion.div 
+                      className="flex items-center justify-between text-sm text-gray-300 mb-4"
+                      variants={textVariants}
+                      custom={0.8}
+                    >
+                      <div className="flex items-center gap-4">
+                        <motion.div 
+                          className="flex items-center gap-1"
+                          variants={infoVariants}
+                          custom={0}
+                          whileHover="hover"
+                        >
+                          <motion.div
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.6 }}
+                          >
+                            <Clock className="h-4 w-4 text-yellow-400" strokeWidth={1} fill="none" />
+                          </motion.div>
+                          <span>{course.duration}</span>
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="flex items-center gap-1"
+                          variants={infoVariants}
+                          custom={1}
+                          whileHover="hover"
+                        >
+                          <motion.div
+                            whileHover={{ scale: 1.3, rotate: 15 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Download className="h-4 w-4 text-yellow-400" strokeWidth={1} fill="none" />
+                          </motion.div>
+                          <span>{course.downloads} 下載</span>
+                        </motion.div>
+                      </div>
+                      
+                      <motion.div 
+                        className="flex items-center gap-1"
+                        variants={infoVariants}
+                        custom={2}
+                        whileHover="hover"
+                      >
+                        <motion.div
+                          animate={{ rotate: [0, 10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        </motion.div>
+                        <span className="text-white font-semibold">{course.rating}</span>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Course Content List */}
+                    <motion.div 
+                      className="mb-6"
+                      variants={textVariants}
+                      custom={1.0}
+                    >
+                      <h4 className="font-semibold mb-3 text-white">
+                        包含內容：
+                      </h4>
+                      <ul className="text-sm text-gray-300 space-y-2">
+                        {course.includes.map((item, i) => (
+                          <motion.li 
+                            key={i}
+                            className="flex items-center gap-2"
+                            variants={listItemVariants}
+                            custom={i}
+                          >
+                            <motion.div 
+                              className="w-1.5 h-1.5 bg-yellow-400 rounded-full"
+                              animate={{ scale: [1, 1.5, 1] }}
+                              transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                            />
+                            <span>{item}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+
+                    {/* Bottom Section - Split Layout */}
+                    <motion.div 
+                      className="flex items-center justify-between mt-auto"
+                      variants={textVariants}
+                      custom={1.2}
+                    >
+                      {/* Left: Green Free Text */}
+                      <motion.div 
+                        className="flex flex-col gap-1"
+                        whileHover={{ scale: 1.1, x: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <motion.div 
+                          className="text-2xl font-bold text-green-400"
+                          animate={{ 
+                            textShadow: [
+                              '0 0 5px rgba(34, 197, 94, 0.5)',
+                              '0 0 20px rgba(34, 197, 94, 0.8)',
+                              '0 0 5px rgba(34, 197, 94, 0.5)'
+                            ]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          免費
+                        </motion.div>
+                      </motion.div>
+                      
+                      {/* Right: Orange Purchase Button */}
+                      <motion.button
+                        variants={buttonVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                        className="px-6 py-3 rounded-lg font-semibold text-white relative overflow-hidden"
+                        style={{
+                          background: 'linear-gradient(135deg, #f97316 0%, #eab308 100%)'
+                        }}
+                      >
+                        {/* Button Background Animation */}
+                        <motion.div
+                          className="absolute inset-0"
+                          style={{
+                            background: 'linear-gradient(45deg, #f97316, #eab308, #f59e0b, #f97316)',
+                            backgroundSize: '400% 400%'
+                          }}
+                          animate={{
+                            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: 'linear'
+                          }}
+                        />
+                        
+                        <div className="relative z-10 flex items-center gap-2">
+                          <span>立即購買</span>
+                          <motion.div
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          >
+                            <ArrowRight className="h-4 w-4" />
+                          </motion.div>
+                        </div>
+                      </motion.button>
+                    </motion.div>
+                  </motion.div>
+                </Atropos>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default FeaturedCoursesSection; 
+export default FeaturedCoursesSection;

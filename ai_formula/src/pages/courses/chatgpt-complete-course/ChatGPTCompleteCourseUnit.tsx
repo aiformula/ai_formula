@@ -83,6 +83,7 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
     
     console.log(`✅ Found lesson: ${currentLesson.title}`);
     console.log(`📖 Lesson ID: ${currentLesson.id}, Duration: ${currentLesson.duration}`);
+    console.log(`🖼️ Lesson image: ${currentLesson.image}`);
 
     // 返回包含完整信息的單元對象
     return {
@@ -448,12 +449,42 @@ const ChatGPTCompleteCourseUnit: React.FC = () => {
                       <FileText className="w-5 h-5 mr-2 text-blue-400" />
                       {isZhHK ? '主要內容' : 'Main Content'}
                     </h3>
+                    
+                    {/* Unit Image - if available */}
+                    {currentUnit.image && (
+                      <div className="mb-8">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          className="relative rounded-xl overflow-hidden shadow-2xl bg-gray-800 border border-gray-700"
+                        >
+                          <img
+                            src={currentUnit.image}
+                            alt={currentUnit.imageAlt || (isZhHK ? '課程相關圖片' : 'Course related image')}
+                            className="w-full h-auto object-cover"
+                            style={{ maxHeight: '500px' }}
+                            onError={(e) => {
+                              // 如果圖片載入失敗，隱藏圖片容器
+                              const target = e.target as HTMLImageElement;
+                              const container = target.closest('div');
+                              if (container) {
+                                container.style.display = 'none';
+                              }
+                            }}
+                          />
+                          {/* Image overlay with subtle gradient */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+                        </motion.div>
+                      </div>
+                    )}
+                    
                     <div className="prose prose-invert prose-lg max-w-none">
                       <p className="text-gray-300 leading-relaxed whitespace-pre-line">
                         {currentUnit.transcript}
                       </p>
-              </div>
-            </div>
+                    </div>
+                  </div>
 
                   {/* Key Points */}
                   <div>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ChevronRight, Star, Award, BookOpen } from 'lucide-react';
+import { Star, Award, BookOpen } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const InstructorSection = () => {
@@ -315,33 +315,6 @@ const InstructorSection = () => {
                     </div>
                   </div>
 
-                  {/* 🎯 統一按鈕設計 */}
-                  <div 
-                    style={{ marginTop: 'var(--space-6)' }}
-                  >
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-300"
-                      style={{
-                        height: 'var(--btn-height-md)', // 40px 統一按鈕高度
-                        padding: '0 var(--btn-padding-x-md)', // 0 16px 統一按鈕內邊距
-                        fontSize: 'var(--text-sm)', // 14px 統一按鈕字體
-                        fontWeight: 'var(--font-medium)',
-                        borderRadius: 'var(--radius-md)', // 8px 統一按鈕圓角
-                        width: '100%'
-                      }}
-                    >
-                      {language === 'zh-HK' ? t('instructors.viewProfile') : 'View Full Profile'}
-                      <ChevronRight 
-                        style={{ 
-                          width: 'var(--space-4)', 
-                          height: 'var(--space-4)',
-                          marginLeft: 'var(--space-2)'
-                        }} 
-                      />
-                    </Button>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
