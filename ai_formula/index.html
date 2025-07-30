@@ -4,6 +4,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com;
+      font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
+      img-src 'self' data: https: blob:;
+      connect-src 'self' https://api.supabase.io https://*.supabase.co https://fonts.googleapis.com https://www.google-analytics.com;
+      object-src 'none';
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    ">
+    
     <title>AI Formula - Master AI. Automate Your Business.</title>
     <meta name="description" content="AI Formula provides expert-led AI learning materials and builds bespoke automation solutions to drive growth and efficiency. Transform your business with professional AI training and custom automation." />
     <meta name="author" content="AI Formula" />
