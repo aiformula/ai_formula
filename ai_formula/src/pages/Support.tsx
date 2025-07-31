@@ -178,13 +178,52 @@ const Support: React.FC = () => {
         }
       />
 
-      {/* 背景容器 */}
-      <div className="fixed inset-0 bg-black">
-        {/* 簡單漸變背景 */}
-        <div className="absolute inset-0 bg-gray-900" />
-      </div>
+      {/* 自定義CSS動畫 */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        /* 手機優化 */
+        @media (max-width: 768px) {
+          .support-card {
+            margin-bottom: 1.5rem;
+          }
+          
+          .support-card:hover {
+            transform: translateY(-4px) scale(1.02) !important;
+          }
+          
+          /* 減少手機上的動畫複雜度以提升性能 */
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+        }
+        
+        /* 確保在小屏幕上文字可讀性 */
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2.5rem !important;
+          }
+          
+          .hero-description {
+            font-size: 1rem !important;
+            padding: 0 1rem;
+          }
+          
+          .support-card-title {
+            font-size: 1.25rem !important;
+          }
+          
+          .support-card-description {
+            font-size: 0.875rem !important;
+          }
+        }
+      `}</style>
 
-      <div className="min-h-screen bg-black text-white relative overflow-hidden font-['Montserrat',sans-serif]">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative font-['Montserrat',sans-serif]">
         {/* 主要內容 */}
         <motion.div
           className="relative z-10 container mx-auto px-4 pt-24 pb-16"
@@ -390,51 +429,6 @@ const Support: React.FC = () => {
           )}
         </AnimatePresence>
       </div>
-
-      {/* 自定義CSS動畫 */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
-        
-        /* 手機優化 */
-        @media (max-width: 768px) {
-          .support-card {
-            margin-bottom: 1.5rem;
-          }
-          
-          .support-card:hover {
-            transform: translateY(-4px) scale(1.02) !important;
-          }
-          
-          /* 減少手機上的動畫複雜度以提升性能 */
-          @media (prefers-reduced-motion: reduce) {
-            * {
-              animation-duration: 0.01ms !important;
-              animation-iteration-count: 1 !important;
-              transition-duration: 0.01ms !important;
-            }
-          }
-        }
-        
-        /* 確保在小屏幕上文字可讀性 */
-        @media (max-width: 480px) {
-          .hero-title {
-            font-size: 2.5rem !important;
-          }
-          
-          .hero-description {
-            font-size: 1rem !important;
-            padding: 0 1rem;
-          }
-          
-          .support-card-title {
-            font-size: 1.25rem !important;
-          }
-          
-          .support-card-description {
-            font-size: 0.875rem !important;
-          }
-        }
-      `}</style>
     </>
   );
 };
