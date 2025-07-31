@@ -399,7 +399,7 @@ const Enterprise: React.FC = () => {
                       onClick={() => handlePathSelection(path)}
                       whileHover={{ y: -10 }}
                     >
-                      <div className="bg-gray-900 h-full p-12 rounded-3xl border border-gray-800 transition-all duration-500 group-hover:border-yellow-400 group-hover:shadow-[0_0_50px_rgba(255,215,0,0.3)] relative overflow-hidden">
+                      <div className="bg-black h-full p-12 rounded-3xl border border-gray-700 transition-all duration-500 group-hover:border-yellow-400 group-hover:shadow-[0_0_50px_rgba(255,215,0,0.3)] relative overflow-hidden">
                         {/* Background Glow Effect */}
                         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/0 to-yellow-400/0 group-hover:from-yellow-400/5 group-hover:to-yellow-400/10 transition-all duration-500 rounded-3xl"></div>
                         
@@ -467,7 +467,7 @@ const Enterprise: React.FC = () => {
                 </div>
 
                 {/* Question Card */}
-                <div className="bg-gray-900 border border-gray-800 rounded-3xl p-12">
+                <div className="bg-black border border-gray-700 rounded-3xl p-12">
                   <motion.div
                     key={currentQuestion}
                     initial={{ opacity: 0, y: 20 }}
@@ -487,13 +487,13 @@ const Enterprise: React.FC = () => {
                             className={`w-full p-6 text-left rounded-xl border-2 transition-all duration-300 ${
                               answers[currentQuestionData.id] === option
                                 ? 'border-yellow-400 bg-yellow-400/10 text-white shadow-[0_0_20px_rgba(255,215,0,0.2)]'
-                                : 'border-gray-700 hover:border-gray-600 text-gray-300 hover:bg-gray-800'
+                                : 'border-gray-600 hover:border-gray-500 text-white hover:bg-gray-800'
                             }`}
                             onClick={() => handleAnswer(currentQuestionData.id, option)}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <span className="text-lg">
+                            <span className="text-lg font-medium">
                               {isZhHK ? option : currentQuestionData.optionsEn?.[index]}
                             </span>
                           </motion.button>
@@ -511,7 +511,7 @@ const Enterprise: React.FC = () => {
                               className={`w-full p-6 text-left rounded-xl border-2 transition-all duration-300 ${
                                 isSelected
                                   ? 'border-yellow-400 bg-yellow-400/10 text-white shadow-[0_0_20px_rgba(255,215,0,0.2)]'
-                                  : 'border-gray-700 hover:border-gray-600 text-gray-300 hover:bg-gray-800'
+                                  : 'border-gray-600 hover:border-gray-500 text-white hover:bg-gray-800'
                               }`}
                               onClick={() => {
                                 const currentAnswers = answers[currentQuestionData.id] || [];
@@ -529,7 +529,9 @@ const Enterprise: React.FC = () => {
                                 }`}>
                                   {isSelected && <CheckCircle className="w-4 h-4 text-black" />}
                                 </div>
-                                {isZhHK ? option : currentQuestionData.optionsEn?.[index]}
+                                <span className="font-medium">
+                                  {isZhHK ? option : currentQuestionData.optionsEn?.[index]}
+                                </span>
                               </div>
                             </motion.button>
                           );
@@ -539,7 +541,7 @@ const Enterprise: React.FC = () => {
 
                     {currentQuestionData?.type === 'scale' && (
                       <div className="space-y-6">
-                        <div className="flex justify-between text-lg text-gray-400">
+                        <div className="flex justify-between text-lg text-gray-300">
                           <span>{isZhHK ? '不重要' : 'Not Important'}</span>
                           <span>{isZhHK ? '非常重要' : 'Very Important'}</span>
                         </div>
@@ -550,7 +552,7 @@ const Enterprise: React.FC = () => {
                               className={`w-12 h-12 rounded-full border-2 text-lg font-bold transition-all duration-300 ${
                                 answers[currentQuestionData.id] === value
                                   ? 'border-yellow-400 bg-yellow-400 text-black shadow-[0_0_15px_rgba(255,215,0,0.3)]'
-                                  : 'border-gray-600 hover:border-gray-500 text-gray-400 hover:bg-gray-800'
+                                  : 'border-gray-500 hover:border-gray-400 text-white hover:bg-gray-800'
                               }`}
                               onClick={() => handleAnswer(currentQuestionData.id, value)}
                               whileHover={{ scale: 1.1 }}
@@ -571,7 +573,7 @@ const Enterprise: React.FC = () => {
                     variant="outline"
                     onClick={prevQuestion}
                     disabled={currentQuestion === 0}
-                    className="border-gray-600 text-gray-300 hover:border-gray-500 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl"
+                    className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
                   >
                     <ArrowLeft className="w-5 h-5 mr-2" />
                     {isZhHK ? '上一題' : 'Previous'}
@@ -581,13 +583,17 @@ const Enterprise: React.FC = () => {
                     <Button
                       variant="outline"
                       onClick={resetForm}
-                      className="border-gray-600 text-gray-300 hover:border-gray-500 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl"
+                      className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
                     >
                       {isZhHK ? '重新開始' : 'Restart'}
                     </Button>
 
                     <Button
-                      onClick={nextQuestion}
+                      onClick={() => {
+                        // Scroll to top when going to next question
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        nextQuestion();
+                      }}
                       disabled={!answers[currentQuestionData?.id || '']}
                       className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] transform hover:scale-105"
                     >
@@ -634,7 +640,7 @@ const Enterprise: React.FC = () => {
               className="py-24 px-4"
             >
               <div className="max-w-4xl mx-auto">
-                <div className="bg-gray-900 border border-yellow-400/30 rounded-3xl p-12">
+                <div className="bg-black border border-yellow-400/30 rounded-3xl p-12">
                   <div className="text-center mb-12">
                     <motion.div
                       initial={{ scale: 0 }}
@@ -647,7 +653,7 @@ const Enterprise: React.FC = () => {
                     <h2 className="text-4xl font-bold mb-6 text-white">
                       {isZhHK ? '評估完成！' : 'Assessment Complete!'}
                     </h2>
-                    <p className="text-xl text-gray-400">
+                    <p className="text-xl text-gray-300">
                       {isZhHK ? '基於您的回答，我們為您準備了專屬建議' : 'Based on your responses, we have prepared customized recommendations for you'}
                     </p>
                   </div>
@@ -656,7 +662,7 @@ const Enterprise: React.FC = () => {
                     <h3 className="text-2xl font-bold mb-6 text-yellow-400">
                       {isZhHK ? '我們的建議' : 'Our Recommendations'}
                     </h3>
-                    <p className="text-lg text-gray-300 leading-relaxed">
+                    <p className="text-lg text-gray-200 leading-relaxed">
                       {getRecommendation()}
                     </p>
                   </div>
@@ -667,7 +673,7 @@ const Enterprise: React.FC = () => {
                       <h4 className="text-xl font-bold text-yellow-400 mb-2">
                         {isZhHK ? '精準匹配' : 'Precise Match'}
                       </h4>
-                      <p className="text-gray-400">
+                      <p className="text-gray-300">
                         {isZhHK ? '根據需求量身定制' : 'Customized to your needs'}
                       </p>
                     </div>
@@ -676,7 +682,7 @@ const Enterprise: React.FC = () => {
                       <h4 className="text-xl font-bold text-yellow-400 mb-2">
                         {isZhHK ? '效果提升' : 'Performance Boost'}
                       </h4>
-                      <p className="text-gray-400">
+                      <p className="text-gray-300">
                         {isZhHK ? '顯著改善業務效率' : 'Significantly improve efficiency'}
                       </p>
                     </div>
@@ -685,7 +691,7 @@ const Enterprise: React.FC = () => {
                       <h4 className="text-xl font-bold text-yellow-400 mb-2">
                         {isZhHK ? '專業支援' : 'Professional Support'}
                       </h4>
-                      <p className="text-gray-400">
+                      <p className="text-gray-300">
                         {isZhHK ? '全程專家指導' : 'Expert guidance throughout'}
                       </p>
                     </div>
@@ -699,16 +705,16 @@ const Enterprise: React.FC = () => {
                       <Calendar className="w-6 h-6 mr-3" />
                       {isZhHK ? '預約免費諮詢' : 'Book Free Consultation'}
                     </Button>
-                    <p className="text-gray-400">
+                    <p className="text-gray-300">
                       {isZhHK ? '30分鐘專業諮詢，無任何費用' : '30-minute professional consultation, completely free'}
                     </p>
                   </div>
 
-                  <div className="mt-12 pt-8 border-t border-gray-800 text-center">
+                  <div className="mt-12 pt-8 border-t border-gray-700 text-center">
                     <Button
                       variant="outline"
                       onClick={resetForm}
-                      className="border-gray-600 text-gray-400 hover:border-gray-500 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl"
+                      className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
                     >
                       {isZhHK ? '重新評估' : 'Start New Assessment'}
                     </Button>
