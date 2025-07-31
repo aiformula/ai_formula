@@ -10,10 +10,35 @@ const Support: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, size: number, speed: number}>>([]);
+  const [typingText, setTypingText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
   const { language } = useLanguage();
   const navigate = useNavigate();
 
   const isZhHK = language === 'zh-HK';
+
+  // 打字機效果文字
+  const promiseText = isZhHK 
+    ? '我哋承諾畀你一個順暢嘅學習體驗，有咩問題隨時搵我哋！'
+    : 'We promise to provide you with a smooth learning experience. Feel free to contact us anytime!';
+
+  // 打字機效果
+  useEffect(() => {
+    if (typingText.length < promiseText.length) {
+      const timeout = setTimeout(() => {
+        setTypingText(promiseText.slice(0, typingText.length + 1));
+      }, 80); // 打字速度
+      return () => clearTimeout(timeout);
+    } else {
+      setIsTypingComplete(true);
+    }
+  }, [typingText, promiseText]);
+
+  // 重置打字機效果當語言改變時
+  useEffect(() => {
+    setTypingText('');
+    setIsTypingComplete(false);
+  }, [language]);
 
   // 初始化粒子系統
   useEffect(() => {
@@ -328,7 +353,7 @@ const Support: React.FC = () => {
             >
               <Sparkles className="w-8 h-8 text-yellow-400" />
               <motion.h1 
-                className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-amber-300 to-orange-400 bg-clip-text text-transparent"
+                className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-amber-300 to-orange-400 bg-clip-text text-transparent hero-title"
                 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}
                 animate={{
                   textShadow: [
@@ -345,7 +370,7 @@ const Support: React.FC = () => {
             </motion.div>
             
             <motion.p 
-              className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed hero-description"
               style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -359,14 +384,14 @@ const Support: React.FC = () => {
           </motion.div>
 
           {/* 支援選項卡片 */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
             {supportOptions.map((option, index) => (
               <motion.div
                 key={option.id}
                 className={`
-                  relative group cursor-pointer rounded-2xl p-8 
+                  relative group cursor-pointer rounded-2xl p-6 md:p-8 
                   border border-yellow-500/20 backdrop-blur-sm
-                  transition-all duration-500
+                  transition-all duration-500 support-card mobile-touch-feedback
                   ${activeSection === option.id ? 'ring-2 ring-yellow-400 scale-105' : ''}
                 `}
                 style={{
@@ -378,16 +403,16 @@ const Support: React.FC = () => {
                 animate="animate"
                 custom={index}
                 whileHover={{ 
-                  scale: 1.05, 
-                  y: -12,
-                  rotateY: 5,
+                  scale: [1.02, 1.05, 1.02], 
+                  y: [-8, -12, -8],
+                  rotateY: [0, 5, 0],
                   boxShadow: [
                     '0 20px 40px rgba(251, 191, 36, 0.2)',
                     '0 25px 50px rgba(251, 191, 36, 0.3)',
                     '0 30px 60px rgba(251, 191, 36, 0.4)'
                   ],
                   borderColor: 'rgba(251, 191, 36, 0.8)',
-                  transition: { duration: 0.4 }
+                  transition: { duration: 0.6, ease: "easeInOut" }
                 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleCardClick(option.id, option.action)}
@@ -516,31 +541,58 @@ const Support: React.FC = () => {
               <h3 className="text-2xl font-bold text-yellow-400 mb-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
                 {isZhHK ? '我哋嘅承諾' : 'Our Promise'}
               </h3>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}>
-                {isZhHK 
-                  ? '我哋承諾畀你一個順暢嘅學習體驗，有咩問題隨時搵我哋！'
-                  : 'We promise to provide you with a smooth learning experience. Feel free to contact us anytime!'
-                }
-              </p>
+              <div className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed relative" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}>
+                <span>{typingText}</span>
+                {!isTypingComplete && (
+                  <motion.span
+                    className="inline-block w-0.5 h-6 bg-yellow-400 ml-1"
+                    animate={{
+                      opacity: [1, 0, 1],
+                    }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                )}
+                {/* AI 提示 */}
+                {!isTypingComplete && (
+                  <motion.div
+                    className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-yellow-400/60 flex items-center gap-2"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                    <span>{isZhHK ? 'AI 正在輸入...' : 'AI is typing...'}</span>
+                  </motion.div>
+                )}
+              </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* 增強版浮動支援按鈕 */}
+        {/* 增強版浮動支援按鈕 - 手機優化 */}
         <motion.button
-          className="fixed bottom-8 right-8 w-18 h-18 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-2xl z-[60] flex items-center justify-center border-2 border-yellow-300/50"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 md:w-18 md:h-18 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-2xl z-[60] flex items-center justify-center border-2 border-yellow-300/50 floating-support-btn"
           variants={floatingButtonVariants}
           initial="initial"
           animate="animate"
           whileHover="hover"
           whileTap={{ scale: 0.9 }}
           onClick={handleFloatingButtonClick}
+          style={{
+            // 確保手機上的觸控區域足夠大
+            minWidth: '56px',
+            minHeight: '56px'
+          }}
         >
           <motion.div
             animate={{ rotate: isFloatingModalOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Settings className="w-10 h-10 text-black filter drop-shadow-sm" />
+            <Settings className="w-7 h-7 md:w-10 md:h-10 text-black filter drop-shadow-sm" />
           </motion.div>
         </motion.button>
 
@@ -666,6 +718,67 @@ const Support: React.FC = () => {
         }
         
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        /* 手機優化 */
+        @media (max-width: 768px) {
+          .support-card {
+            margin-bottom: 1.5rem;
+          }
+          
+          .support-card:hover {
+            transform: translateY(-4px) scale(1.02) !important;
+          }
+          
+          /* 確保觸控區域足夠大 */
+          .floating-support-btn {
+            min-width: 56px;
+            min-height: 56px;
+            touch-action: manipulation;
+          }
+          
+          /* 增強手機上的視覺反饋 */
+          .mobile-touch-feedback:active {
+            transform: scale(0.95);
+            transition: transform 0.1s ease;
+          }
+          
+          /* 減少手機上的動畫複雜度以提升性能 */
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+        }
+        
+        /* 高DPI屏幕優化 */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          .support-icon {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+          }
+        }
+        
+        /* 確保在小屏幕上文字可讀性 */
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2.5rem !important;
+          }
+          
+          .hero-description {
+            font-size: 1rem !important;
+            padding: 0 1rem;
+          }
+          
+          .support-card-title {
+            font-size: 1.25rem !important;
+          }
+          
+          .support-card-description {
+            font-size: 0.875rem !important;
+          }
+        }
       `}</style>
     </>
   );
