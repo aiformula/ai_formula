@@ -7,11 +7,7 @@ import {
   GraduationCap, 
   Bot, 
   Wrench, 
-  MessageCircle, 
-  Phone,
-  Mail,
-  ArrowLeft,
-  X
+  ArrowLeft
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -31,7 +27,6 @@ const FAQ: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('all');
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showSupportModal, setShowSupportModal] = useState(false);
   const { language } = useLanguage();
   const navigate = useNavigate();
 
@@ -315,7 +310,7 @@ const FAQ: React.FC = () => {
 
       <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
         {/* 返回按鈕 */}
-        <div className="container mx-auto px-4 pt-32">
+        <div className="container mx-auto px-4 pt-40">
           <motion.button
             onClick={() => navigate('/support')}
             className="flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors mb-8 group"
@@ -466,78 +461,6 @@ const FAQ: React.FC = () => {
             </AnimatePresence>
           </motion.div>
         </div>
-
-        {/* 懸浮支援按鈕 */}
-        <motion.button
-          onClick={() => setShowSupportModal(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full shadow-2xl z-50 flex items-center justify-center text-black hover:scale-110 transition-transform"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 1, type: "spring", stiffness: 200 }}
-        >
-          <MessageCircle className="w-7 h-7" />
-        </motion.button>
-
-        {/* 支援彈窗 */}
-        <AnimatePresence>
-          {showSupportModal && (
-            <motion.div
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowSupportModal(false)}
-            >
-              <motion.div
-                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 max-w-md w-full border border-yellow-500/30 relative"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => setShowSupportModal(false)}
-                  className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                    <MessageCircle className="w-8 h-8 text-black" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-yellow-400 mb-2">
-                    {isZhHK ? '聯絡支援團隊' : 'Contact Support Team'}
-                  </h3>
-                  <p className="text-gray-300 mb-6">
-                    {isZhHK ? '我哋隨時為你提供幫助！' : 'We\'re here to help you anytime!'}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    <button
-                      onClick={() => window.open('mailto:support@aiformula.com', '_blank')}
-                      className="w-full flex items-center gap-3 p-4 bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors"
-                    >
-                      <Mail className="w-5 h-5" />
-                      <span className="font-medium">support@aiformula.com</span>
-                    </button>
-                    
-                    <button
-                      onClick={() => window.open('tel:+85212345678', '_self')}
-                      className="w-full flex items-center gap-3 p-4 bg-green-600 hover:bg-green-700 rounded-xl transition-colors"
-                    >
-                      <Phone className="w-5 h-5" />
-                      <span className="font-medium">+852 1234 5678</span>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </>
   );
