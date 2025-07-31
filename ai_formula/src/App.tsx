@@ -194,7 +194,7 @@ function App() {
                   <Route path="/support" element={<Support />} />
                   
                   {/* FAQ Page */}
-                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/support/faq" element={<FAQ />} />
                   
                   {/* Legal Pages */}
                   <Route path="/legal/terms-of-service" element={<TermsOfService />} />

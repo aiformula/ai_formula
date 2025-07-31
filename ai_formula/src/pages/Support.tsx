@@ -132,7 +132,7 @@ const Support: React.FC = () => {
       description: isZhHK 
         ? '唔知點樣登入、睇課程或者上載作業？去我哋嘅FAQ頁面搵答案！' 
         : 'Don\'t know how to login, view courses or upload assignments? Check our FAQ page!',
-      action: () => navigate('/faq'),
+      action: () => navigate('/support/faq'),
       color: 'from-amber-400 to-orange-500',
       iconColor: 'text-orange-900'
     },
