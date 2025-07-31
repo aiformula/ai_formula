@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 
@@ -44,7 +43,6 @@ const Footer: React.FC = () => {
         title: '服務項目',
         links: [
           { name: '企業顧問服務', href: '/about#consulting' },
-          { name: '一對一指導', href: '/about#mentoring' },
           { name: '工作坊培訓', href: '/about#workshops' }
         ]
       },
@@ -52,10 +50,8 @@ const Footer: React.FC = () => {
         title: '學習資源',
         links: [
           { name: '免費教學', href: '/blog?category=tutorial' },
-          { name: 'AI工具評測', href: '/blog?category=tools' },
-          { name: '案例研究', href: '/blog?category=case-study' },
-          { name: '常見問題', href: '/support/faq' },
-          { name: '學習指南', href: '/blog?category=guide' }
+          { name: 'AI工具評測', href: '/tools' },
+          { name: '常見問題', href: '/support/faq' }
         ]
       },
       support: {
@@ -63,8 +59,6 @@ const Footer: React.FC = () => {
         links: [
           { name: '聯絡我們', href: '/contact' },
           { name: '技術支援', href: '/support' },
-          { name: '課程支援', href: '/support/courses' },
-          { name: '帳戶幫助', href: '/support/account' },
           { name: '建議反饋', href: '/feedback' }
         ]
       }
@@ -84,7 +78,6 @@ const Footer: React.FC = () => {
         title: 'Our Services',
         links: [
           { name: 'Enterprise Consulting', href: '/about#consulting' },
-          { name: 'One-on-One Mentoring', href: '/about#mentoring' },
           { name: 'Workshop Training', href: '/about#workshops' }
         ]
       },
@@ -92,10 +85,8 @@ const Footer: React.FC = () => {
         title: 'Learning Resources',
         links: [
           { name: 'Free Tutorials', href: '/blog?category=tutorial' },
-          { name: 'AI Tool Reviews', href: '/blog?category=tools' },
-          { name: 'Case Studies', href: '/blog?category=case-study' },
-          { name: 'FAQ', href: '/support/faq' },
-          { name: 'Learning Guides', href: '/blog?category=guide' }
+          { name: 'AI Tool Reviews', href: '/tools' },
+          { name: 'FAQ', href: '/support/faq' }
         ]
       },
       support: {
@@ -103,8 +94,6 @@ const Footer: React.FC = () => {
         links: [
           { name: 'Contact Us', href: '/contact' },
           { name: 'Technical Support', href: '/support' },
-          { name: 'Course Support', href: '/support/courses' },
-          { name: 'Account Help', href: '/support/account' },
           { name: 'Feedback', href: '/feedback' }
         ]
       }
@@ -173,30 +162,6 @@ const Footer: React.FC = () => {
                 : 'Practical AI training platform designed for Hong Kong professionals. We are committed to providing the latest and most practical AI knowledge and skills to help you stay competitive in the digital transformation era.'
               }
             </p>
-            
-            {/* Social Media Links */}
-            <div className="space-y-3">
-              <h4 className="text-label text-yellow-400">
-                {isZhHK ? '關注我們' : 'Follow Us'}
-              </h4>
-              <div className="flex space-x-4">
-                <a href="https://instagram.com/aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Instagram size={20} />
-                </a>
-                <a href="https://facebook.com/aiformula.hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Facebook size={20} />
-                </a>
-                <a href="https://twitter.com/aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Twitter size={20} />
-                </a>
-                <a href="https://linkedin.com/company/aiformula" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Linkedin size={20} />
-                </a>
-                <a href="https://youtube.com/@aiformula_hk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 transition-colors transform hover:scale-110">
-                  <Youtube size={20} />
-                </a>
-              </div>
-            </div>
           </div>
 
           {/* REARRANGED SECTIONS - Swapped positions */}
