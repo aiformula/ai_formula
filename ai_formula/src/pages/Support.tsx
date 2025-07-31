@@ -8,35 +8,15 @@ import { useNavigate } from 'react-router-dom';
 const Support: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [typingText, setTypingText] = useState('');
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
   const { language } = useLanguage();
   const navigate = useNavigate();
 
   const isZhHK = language === 'zh-HK';
 
-  // 打字機效果文字
+  // 承諾文字
   const promiseText = isZhHK 
     ? '我哋承諾畀你一個順暢嘅學習體驗，有咩問題隨時搵我哋！'
     : 'We promise to provide you with a smooth learning experience. Feel free to contact us anytime!';
-
-  // 打字機效果
-  useEffect(() => {
-    if (typingText.length < promiseText.length) {
-      const timeout = setTimeout(() => {
-        setTypingText(promiseText.slice(0, typingText.length + 1));
-      }, 80); // 打字速度
-      return () => clearTimeout(timeout);
-    } else {
-      setIsTypingComplete(true);
-    }
-  }, [typingText, promiseText]);
-
-  // 重置打字機效果當語言改變時
-  useEffect(() => {
-    setTypingText('');
-    setIsTypingComplete(false);
-  }, [language]);
 
   // 頁面載入動畫
   const pageVariants = {
@@ -412,33 +392,8 @@ const Support: React.FC = () => {
               <h3 className="text-2xl font-bold text-yellow-400 mb-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
                 {isZhHK ? '我哋嘅承諾' : 'Our Promise'}
               </h3>
-              <div className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed relative" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}>
-                <span>{typingText}</span>
-                {!isTypingComplete && (
-                  <motion.span
-                    className="inline-block w-0.5 h-6 bg-yellow-400 ml-1"
-                    animate={{
-                      opacity: [1, 0, 1],
-                    }}
-                    transition={{
-                      duration: 1,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                )}
-                {/* AI 提示 */}
-                {!isTypingComplete && (
-                  <motion.div
-                    className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-yellow-400/60 flex items-center gap-2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
-                    <span>{isZhHK ? 'AI 正在輸入...' : 'AI is typing...'}</span>
-                  </motion.div>
-                )}
+              <div className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}>
+                <span>{promiseText}</span>
               </div>
             </div>
           </motion.div>
