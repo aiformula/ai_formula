@@ -41,6 +41,7 @@ const Auth: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 0.5 }}
+          style={{ zIndex: 1 }}
         >
           {watermarkWords.map((word, index) => (
             <motion.h1
@@ -51,6 +52,18 @@ const Auth: React.FC = () => {
                 duration: 1.5, 
                 delay: 0.8 + index * 0.3,
                 ease: "easeOut"
+              }}
+              style={{ 
+                color: 'rgba(255, 255, 255, 0.06)',
+                fontFamily: 'Source Code Pro, IBM Plex Mono, SF Mono, Monaco, Cascadia Code, Roboto Mono, Consolas, Courier New, monospace',
+                fontSize: 'clamp(3rem, 10vw, 8rem)',
+                fontWeight: 700,
+                lineHeight: 1.0,
+                textTransform: 'uppercase',
+                userSelect: 'none',
+                margin: 0,
+                padding: 0,
+                letterSpacing: '0.05em'
               }}
             >
               {word}

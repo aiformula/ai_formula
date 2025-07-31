@@ -204,10 +204,9 @@ const enTranslations: Translations = {
     'enterprise-team': 'Enterprise Team',
     'business-decision-maker': 'Business Decision Maker',
     
-    // Other Professionals
-    'analyst': 'Analyst',
-    'manager': 'Manager',
-    'executive': 'Executive',
+          // Other Professionals  
+      'manager': 'Manager',
+      'executive': 'Executive',
     'administrator': 'Administrator',
     'assistant': 'Assistant',
     'creative-explorer': 'Creative Explorer',

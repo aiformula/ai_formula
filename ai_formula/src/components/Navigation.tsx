@@ -41,8 +41,7 @@ const Navigation = () => {
     { id: 'about', label: t('nav.about'), path: language === 'zh-HK' ? '/about-cht' : '/about' },
     { id: 'courses', label: t('nav.courses'), path: '/courses' },
     { id: 'tools', label: t('nav.tools'), path: '/tools' },
-    { id: 'blog', label: t('nav.blog'), path: '/blog' },
-    { id: 'support', label: t('nav.support'), path: '/support' }
+    { id: 'blog', label: t('nav.blog'), path: '/blog' }
   ];
   
   return (
