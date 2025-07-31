@@ -151,8 +151,6 @@ const ChatGPTQuizValidator: React.FC = () => {
   return <ChatGPTCompleteCourseQuiz />;
 };
 
-import Enterprise from '@/pages/Enterprise';
-
 function App() {
   return (
     <ErrorBoundary>
