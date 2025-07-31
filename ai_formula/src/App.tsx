@@ -38,6 +38,12 @@ import ChatGPTCompleteCourseOutline from '@/pages/courses/chatgpt-complete-cours
 // Tools Page
 import Tools from '@/pages/Tools';
 
+// Support Page
+import Support from '@/pages/Support';
+
+// FAQ Page
+import FAQ from '@/pages/FAQ';
+
 // Design System Demo
 import DesignSystemDemo from '@/pages/DesignSystemDemo';
 
@@ -183,6 +189,12 @@ function App() {
                   
                   {/* Tools Page */}
                   <Route path="/tools" element={<Tools />} />
+                  
+                  {/* Support Page */}
+                  <Route path="/support" element={<Support />} />
+                  
+                  {/* FAQ Page */}
+                  <Route path="/faq" element={<FAQ />} />
                   
                   {/* Legal Pages */}
                   <Route path="/legal/terms-of-service" element={<TermsOfService />} />
