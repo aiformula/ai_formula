@@ -298,67 +298,69 @@ const Enterprise: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Header Cover */}
-      <motion.div 
-        className="relative h-screen flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent transform -skew-y-12"></div>
-        </div>
-        
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <motion.h1 
-            className="text-7xl md:text-8xl font-bold mb-8 tracking-tight"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <span className="text-white">企業</span>
-            <span className="text-yellow-400 ml-4">顧問服務</span>
-          </motion.h1>
-          
-          <motion.p 
-            className="text-2xl md:text-3xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            專業 AI 顧問團隊，為企業量身打造 AI 課程同自動化解決方案
-          </motion.p>
-          
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-          >
-            <Button 
-              size="lg" 
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-12 py-6 text-xl rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transform hover:scale-105"
-              onClick={() => {
-                document.getElementById('services-section')?.scrollIntoView({ 
-                  behavior: 'smooth' 
-                });
-              }}
-            >
-              立即開始
-              <ChevronRight className="w-6 h-6 ml-2" />
-            </Button>
-          </motion.div>
-        </div>
-        
-        {/* Scroll Indicator */}
+      {/* Header Cover - Only show when no path is selected and not showing results */}
+      {!currentPath && !showResult && (
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="relative h-screen flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
-          <div className="w-1 h-16 bg-gradient-to-b from-yellow-400 to-transparent rounded-full"></div>
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent transform -skew-y-12"></div>
+          </div>
+          
+          <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
+            <motion.h1 
+              className="text-7xl md:text-8xl font-bold mb-8 tracking-tight"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              <span className="text-white">企業</span>
+              <span className="text-yellow-400 ml-4">顧問服務</span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-2xl md:text-3xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              專業 AI 顧問團隊，為企業量身打造 AI 課程同自動化解決方案
+            </motion.p>
+            
+            <motion.div
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+            >
+              <Button 
+                size="lg" 
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-12 py-6 text-xl rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transform hover:scale-105"
+                onClick={() => {
+                  document.getElementById('services-section')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
+              >
+                立即開始
+                <ChevronRight className="w-6 h-6 ml-2" />
+              </Button>
+            </motion.div>
+          </div>
+          
+          {/* Scroll Indicator */}
+          <motion.div 
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <div className="w-1 h-16 bg-gradient-to-b from-yellow-400 to-transparent rounded-full"></div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
 
       <div className="relative">
         <AnimatePresence mode="wait">
@@ -443,7 +445,7 @@ const Enterprise: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
-              className="py-24 px-4"
+              className="min-h-screen py-24 px-4"
             >
               <div className="max-w-4xl mx-auto">
                 {/* Progress Bar */}
@@ -615,19 +617,21 @@ const Enterprise: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="py-32 text-center"
+              className="min-h-screen flex items-center justify-center"
             >
-              <motion.div 
-                className="w-20 h-20 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-8"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              />
-              <h3 className="text-3xl font-bold text-yellow-400 mb-4">
-                {isZhHK ? '正在分析您的需求...' : 'Analyzing your requirements...'}
-              </h3>
-              <p className="text-xl text-gray-400">
-                {isZhHK ? '請稍候，我們正在為您制定專屬建議' : 'Please wait, we are creating customized recommendations for you'}
-              </p>
+              <div className="text-center">
+                <motion.div 
+                  className="w-20 h-20 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-8"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+                <h3 className="text-3xl font-bold text-yellow-400 mb-4">
+                  {isZhHK ? '正在分析您的需求...' : 'Analyzing your requirements...'}
+                </h3>
+                <p className="text-xl text-gray-400">
+                  {isZhHK ? '請稍候，我們正在為您制定專屬建議' : 'Please wait, we are creating customized recommendations for you'}
+                </p>
+              </div>
             </motion.div>
           )}
 
@@ -637,7 +641,7 @@ const Enterprise: React.FC = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="py-24 px-4"
+              className="min-h-screen py-24 px-4"
             >
               <div className="max-w-4xl mx-auto">
                 <div className="bg-black border border-yellow-400/30 rounded-3xl p-12">
