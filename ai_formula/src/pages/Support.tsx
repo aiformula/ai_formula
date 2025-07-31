@@ -156,7 +156,7 @@ const Support: React.FC = () => {
 
         {/* 主要內容 */}
         <motion.div
-          className="relative z-10 container mx-auto px-4 py-16"
+          className="relative z-10 container mx-auto px-4 pt-24 pb-16"
           variants={pageVariants}
           initial="initial"
           animate="animate"
@@ -274,7 +274,7 @@ const Support: React.FC = () => {
 
         {/* 浮動支援按鈕 */}
         <motion.button
-          className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-lg z-50 flex items-center justify-center"
+          className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-lg z-[60] flex items-center justify-center"
           variants={floatingButtonVariants}
           initial="initial"
           animate="animate"
@@ -289,7 +289,7 @@ const Support: React.FC = () => {
         <AnimatePresence>
           {isFloatingModalOpen && (
             <motion.div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[70] flex items-center justify-center p-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
