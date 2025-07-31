@@ -6,6 +6,168 @@
 
 **English:** AI Formula is an AI automation solution platform designed specifically for Hong Kong businesses, providing professional AI technology services, educational courses, and business application guides. This project has completed **three major upgrade phases**: structural refactoring, visual unification, and the **latest experience optimization**, now becoming a truly modern, accessible, and high-performance learning platform.
 
+## 🏢 **企業顧問服務頁面** / **Enterprise Consulting Services**
+
+### 📍 **頁面訪問 / Page Access**
+- **URL**: `/enterprise`
+- **導航位置**: 主導航菜單（部落格後）
+- **Footer鏈接**: 服務項目 → 企業顧問服務
+
+### 🎯 **核心功能 / Core Features**
+
+#### **1. 品牌設計系統 / Brand Design System**
+- **主色調**: 純黑背景 (#000000) + 黃色重點 (#FFD700)
+- **視覺風格**: 簡潔專業、現代化設計
+- **互動效果**: 黃色光暈、縮放動畫、平滑過渡
+
+#### **2. 全屏Hero區域 / Full-Screen Hero Section**
+```jsx
+特色功能:
+✓ 響應式大標題: "企業" (白色) + "顧問服務" (黃色)
+✓ 專業副標題: 服務介紹文案
+✓ 黃色CTA按鈕: "立即開始" 帶光暈效果
+✓ 滾動指示器: 底部黃色動畫線條
+✓ 自動隱藏: 選擇服務後完全隱藏
+```
+
+#### **3. 雙服務路徑 / Dual Service Paths**
+
+**AI Custom 課程 / AI Custom Training**
+- 📖 圖示: 書本 (BookOpen)
+- 🎯 目標: 企業AI培訓定制
+- 📋 問卷: 8個問題
+  - 公司規模、行業類型
+  - AI經驗水平、培訓目標
+  - 培訓形式、時程規劃
+  - 預算範圍、成功指標
+
+**AI 自動化服務 / AI Automation Services**
+- ⚙️ 圖示: 齒輪 (Cog)
+- 🎯 目標: 業務流程自動化
+- 📋 問卷: 9個問題
+  - 業務領域、痛點分析
+  - 現有系統、優先級評估
+  - 數據量、系統整合需求
+  - 實施時程、投資預算、ROI期望
+
+#### **4. 智能問卷系統 / Intelligent Questionnaire System**
+
+**問題類型 / Question Types:**
+```typescript
+- Single Choice: 單選題 (圓形選項卡片)
+- Multiple Choice: 多選題 (複選框 + 圓形勾選)
+- Scale Rating: 評分題 (1-10數字按鈕)
+```
+
+**互動體驗 / Interactive Experience:**
+- ✅ 實時進度條: 百分比 + 視覺進度
+- ✅ 自動滾動: 每題完成後滾動到頂部
+- ✅ 狀態保存: 答案實時保存
+- ✅ 導航控制: 上一題/下一題/重新開始
+
+#### **5. 個性化結果頁面 / Personalized Results Page**
+
+**智能推薦引擎 / Smart Recommendation Engine:**
+```javascript
+基於用戶回答生成：
+- 課程類型建議 (全面 vs 專項)
+- 目標群體定位 (零基礎 vs 進階)
+- 企業規模適配 (中小企業 vs 大型企業)
+- 實施策略建議 (分階段 vs 一次性)
+- 效率提升預期 (30-50%)
+```
+
+**行動呼籲 / Call-to-Action:**
+- 📅 **預約免費諮詢**: 30分鐘專業諮詢
+- 🔄 **重新評估**: 重新開始問卷
+- ⭐ **三大保證**: 精準匹配、效果提升、專業支援
+
+### 🛠️ **技術實現 / Technical Implementation**
+
+#### **狀態管理 / State Management**
+```typescript
+const [currentPath, setCurrentPath] = useState<ServicePath | null>(null);
+const [currentQuestion, setCurrentQuestion] = useState(0);
+const [answers, setAnswers] = useState<Record<string, any>>({});
+const [showResult, setShowResult] = useState(false);
+const [isLoading, setIsLoading] = useState(false);
+```
+
+#### **頁面流程 / Page Flow**
+```mermaid
+flowchart TD
+    A[Landing Page] --> B[Service Selection]
+    B --> C[Questionnaire]
+    C --> D[Loading Analysis]
+    D --> E[Results & Recommendations]
+    E --> F[CTA / Restart]
+```
+
+#### **響應式設計 / Responsive Design**
+- 📱 **移動端**: 卡片垂直堆疊、觸控友善按鈕
+- 💻 **桌面端**: 雙列佈局、大型卡片設計
+- 🎯 **一致性**: 跨設備統一體驗
+
+#### **動畫系統 / Animation System**
+```jsx
+Framer Motion 實現:
+- Page transitions: 淡入淡出、滑動效果
+- Hover animations: 卡片上升、按鈕縮放
+- Loading states: 旋轉加載、進度動畫
+- Stagger effects: 選項依序出現
+```
+
+### 📊 **數據結構 / Data Structure**
+
+#### **問卷數據模型 / Question Data Model**
+```typescript
+interface Question {
+  id: string;                    // 問題唯一ID
+  question: string;              // 中文問題
+  questionEn: string;            // 英文問題
+  type: 'single' | 'multiple' | 'scale' | 'text';
+  options?: string[];            // 中文選項
+  optionsEn?: string[];          // 英文選項
+  required: boolean;             // 必填標記
+}
+```
+
+#### **Firebase/Supabase 就緒 / Database Ready**
+```json
+用戶回答數據結構:
+{
+  "userId": "unique_user_id",
+  "servicePath": "custom-course | automation-service",
+  "timestamp": "2024-01-01T00:00:00Z",
+  "answers": {
+    "company-size": "51-200人",
+    "industry": "科技/軟件",
+    "ai-experience": "有基礎了解",
+    "training-goals": ["ChatGPT應用技巧", "數據分析AI"]
+  },
+  "recommendation": "generated_recommendation_text",
+  "completed": true
+}
+```
+
+### 🔧 **最新修復 / Latest Fixes**
+
+#### **Hero區域隱藏問題 / Hero Section Hiding Issue**
+```javascript
+問題: 選擇服務類型後Hero區域仍然顯示
+解決: 重構AnimatePresence邏輯
+- 將Hero和服務選擇合併為單一landing-page組件
+- 嚴格的條件渲染: !currentPath && !showResult && !isLoading
+- 確保選擇服務後完全隱藏Hero內容
+```
+
+#### **用戶體驗改進 / UX Improvements**
+- ✅ **卡片背景**: 藍灰色 → 純黑色
+- ✅ **文字對比**: 改善可讀性，白色文字
+- ✅ **按鈕可見性**: 增強邊框和懸停狀態
+- ✅ **自動滾動**: 每題完成後回到頂部
+- ✅ **Footer鏈接**: 企業顧問服務 → /enterprise
+
 ## 🎯 最新重大更新 / Latest Major Updates
 
 ### 🚀 **Phase 3: 體驗優化完成** / **Phase 3: Experience Optimization Complete**
