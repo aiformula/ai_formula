@@ -223,10 +223,10 @@ const Support: React.FC = () => {
         }
       `}</style>
 
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative font-['Montserrat',sans-serif]">
+      <div className="min-h-screen text-white relative font-['Montserrat',sans-serif]" style={{ backgroundColor: '#121212' }}>
         {/* 主要內容 */}
         <motion.div
-          className="relative z-10 container mx-auto px-4 pt-24 pb-16"
+          className="relative z-10 container mx-auto px-4 pt-40 pb-16"
           variants={pageVariants}
           initial="initial"
           animate="animate"
