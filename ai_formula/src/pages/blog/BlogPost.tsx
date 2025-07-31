@@ -852,6 +852,10 @@ class BlogErrorBoundary extends React.Component<
       const isViewCountError = errorMessage.includes('add') || errorMessage.includes('ViewCount');
       const isHookError = errorMessage.includes('hook') || errorMessage.includes('Hook');
       
+      // Detect language from URL or browser - simple detection since we can't use hooks in class component
+      const isZhHK = window.location.pathname.includes('/blog') && 
+        (window.navigator.language.includes('zh') || window.navigator.language.includes('hk'));
+      
       return (
         <div className="min-h-screen bg-black text-white flex items-center justify-center">
           <div className="max-w-xl mx-auto p-8">
@@ -865,22 +869,25 @@ class BlogErrorBoundary extends React.Component<
               </div>
               
               <h1 className="text-2xl font-bold text-red-400 mb-4 text-center">
-                {isHookError ? 'Hook Error' : 
-                 isViewCountError ? 'ViewCount Error' : 
-                 'Blog Loading Error'}
+                {isHookError ? (isZhHK ? 'Hook 錯誤' : 'Hook Error') : 
+                 isViewCountError ? (isZhHK ? '瀏覽計數錯誤' : 'ViewCount Error') : 
+                 (isZhHK ? '部落格載入錯誤' : 'Blog Loading Error')}
               </h1>
               
               <p className="text-gray-300 mb-6 text-center leading-relaxed">
                 {isHookError ? 
-                  'There was a React Hook usage error. This usually happens when hooks are called outside of React components.' :
+                  (isZhHK ? '發生 React Hook 使用錯誤。這通常發生在 hooks 在 React 組件外調用時。' : 
+                   'There was a React Hook usage error. This usually happens when hooks are called outside of React components.') :
                   isViewCountError ?
-                  'The view counting system encountered an error.' :
-                  'There was an error loading this blog post.'}
+                  (isZhHK ? '瀏覽計數系統發生錯誤。' : 'The view counting system encountered an error.') :
+                  (isZhHK ? '載入此部落格文章時發生錯誤。' : 'There was an error loading this blog post.')}
               </p>
               
               {this.state.error && (
                 <div className="bg-red-400/10 border border-red-400/30 rounded-lg p-4 mb-6">
-                  <p className="text-sm text-red-400 font-medium mb-2">Technical Details:</p>
+                  <p className="text-sm text-red-400 font-medium mb-2">
+                    {isZhHK ? '技術細節：' : 'Technical Details:'}
+                  </p>
                   <p className="text-xs text-red-300 font-mono break-all leading-relaxed">
                     {errorMessage}
                   </p>
@@ -893,7 +900,7 @@ class BlogErrorBoundary extends React.Component<
                   className="flex-1 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold"
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  Reload Page
+                  {isZhHK ? '重新載入頁面' : 'Reload Page'}
                 </Button>
                 <Button 
                   variant="outline" 
@@ -901,7 +908,7 @@ class BlogErrorBoundary extends React.Component<
                   className="flex-1 border-gray-600 text-gray-300 hover:text-white hover:border-gray-500"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Blog
+                  {isZhHK ? '返回部落格' : 'Back to Blog'}
                 </Button>
               </div>
             </motion.div>
@@ -974,12 +981,16 @@ const BlogPost: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-gray-900 rounded-2xl p-8 max-w-md mx-auto"
           >
-            <h1 className="text-2xl font-bold text-red-400 mb-4">Blog Not Found</h1>
-            <p className="text-gray-300 mb-6">The requested blog post could not be found.</p>
+            <h1 className="text-2xl font-bold text-red-400 mb-4">
+              {isZhHK ? '找不到文章' : 'Blog Not Found'}
+            </h1>
+            <p className="text-gray-300 mb-6">
+              {isZhHK ? '找不到您要求的文章。' : 'The requested blog post could not be found.'}
+            </p>
             <Link to="/blog">
               <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Blog
+                {isZhHK ? '返回部落格' : 'Back to Blog'}
               </Button>
             </Link>
           </motion.div>
@@ -997,12 +1008,16 @@ const BlogPost: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-gray-900 rounded-2xl p-8 max-w-md mx-auto"
           >
-            <h1 className="text-2xl font-bold text-yellow-400 mb-4">Content Loading</h1>
-            <p className="text-gray-300 mb-6">Blog content is loading or not yet published. Please try again later.</p>
+            <h1 className="text-2xl font-bold text-yellow-400 mb-4">
+              {isZhHK ? '內容載入中' : 'Content Loading'}
+            </h1>
+            <p className="text-gray-300 mb-6">
+              {isZhHK ? '文章內容正在載入或尚未發布，請稍後再試。' : 'Blog content is loading or not yet published. Please try again later.'}
+            </p>
             <Link to="/blog">
               <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Blog
+                {isZhHK ? '返回部落格' : 'Back to Blog'}
               </Button>
             </Link>
           </motion.div>

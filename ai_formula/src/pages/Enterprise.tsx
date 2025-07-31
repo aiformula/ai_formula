@@ -228,6 +228,8 @@ const Enterprise: React.FC = () => {
   ];
 
   const resetForm = () => {
+    // Scroll to top when resetting the form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setCurrentPath(null);
     setCurrentQuestion(0);
     setAnswers({});
@@ -235,6 +237,8 @@ const Enterprise: React.FC = () => {
   };
 
   const handlePathSelection = (path: ServicePath) => {
+    // Scroll to top when selecting a service path
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setCurrentPath(path);
     setCurrentQuestion(0);
     setAnswers({});
@@ -254,6 +258,8 @@ const Enterprise: React.FC = () => {
 
   const prevQuestion = () => {
     if (currentQuestion > 0) {
+      // Scroll to top when going to previous question
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       setCurrentQuestion(prev => prev - 1);
     }
   };
@@ -327,8 +333,8 @@ const Enterprise: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
                 >
-                  <span className="text-white">企業</span>
-                  <span className="text-yellow-400 ml-4">顧問服務</span>
+                  <span className="text-white">{isZhHK ? '企業' : 'Enterprise'}</span>
+                  <span className="text-yellow-400 ml-4">{isZhHK ? '顧問服務' : 'Consultation'}</span>
                 </motion.h1>
                 
                 <motion.p 
@@ -337,7 +343,10 @@ const Enterprise: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  專業 AI 顧問團隊，為企業量身打造 AI 課程同自動化解決方案
+                  {isZhHK 
+                    ? '專業 AI 顧問團隊，為企業量身打造 AI 課程同自動化解決方案'
+                    : 'Professional AI consulting team, creating customized AI courses and automation solutions for enterprises'
+                  }
                 </motion.p>
                 
                 <motion.div
@@ -354,7 +363,7 @@ const Enterprise: React.FC = () => {
                       });
                     }}
                   >
-                    立即開始
+                    {isZhHK ? '立即開始' : 'Get Started'}
                     <ChevronRight className="w-6 h-6 ml-2" />
                   </Button>
                 </motion.div>
@@ -380,11 +389,14 @@ const Enterprise: React.FC = () => {
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
                   <h2 className="text-5xl font-bold mb-6 text-white">
-                    選擇您的{' '}
-                    <span className="text-yellow-400">服務類型</span>
+                    {isZhHK ? '選擇您的' : 'Choose Your'}{' '}
+                    <span className="text-yellow-400">{isZhHK ? '服務類型' : 'Service Type'}</span>
                   </h2>
                   <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                    請選擇最符合您需求的服務路徑，我們將為您提供專業的AI解決方案
+                    {isZhHK 
+                      ? '請選擇最符合您需求的服務路徑，我們將為您提供專業的AI解決方案'
+                      : 'Please select the service path that best meets your needs, and we will provide you with professional AI solutions'
+                    }
                   </p>
                 </motion.div>
 
@@ -424,7 +436,7 @@ const Enterprise: React.FC = () => {
                           <Button 
                             className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] transform group-hover:scale-105"
                           >
-                            開始評估
+                            {isZhHK ? '開始評估' : 'Start Assessment'}
                             <ChevronRight className="w-5 h-5 ml-2" />
                           </Button>
                         </div>
@@ -445,7 +457,7 @@ const Enterprise: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen py-24 px-4"
+            className="min-h-screen pt-40 pb-24 px-4"
           >
             <div className="max-w-4xl mx-auto">
               {/* Progress Bar */}
@@ -618,7 +630,7 @@ const Enterprise: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="min-h-screen flex items-center justify-center"
+            className="min-h-screen pt-20 flex items-center justify-center"
           >
             <div className="text-center">
               <motion.div 
@@ -643,7 +655,7 @@ const Enterprise: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="min-h-screen py-24 px-4"
+            className="min-h-screen pt-40 pb-24 px-4"
           >
             <div className="max-w-4xl mx-auto">
               <div className="bg-black border border-yellow-400/30 rounded-3xl p-12">
