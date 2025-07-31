@@ -41,6 +41,9 @@ import Tools from '@/pages/Tools';
 // Support Page
 import Support from '@/pages/Support';
 
+// Enterprise Page
+import Enterprise from '@/pages/Enterprise';
+
 // FAQ Page
 import FAQ from '@/pages/FAQ';
 
@@ -148,6 +151,8 @@ const ChatGPTQuizValidator: React.FC = () => {
   return <ChatGPTCompleteCourseQuiz />;
 };
 
+import Enterprise from '@/pages/Enterprise';
+
 function App() {
   return (
     <ErrorBoundary>
@@ -192,6 +197,9 @@ function App() {
                   
                   {/* Support Page */}
                   <Route path="/support" element={<Support />} />
+                  
+                  {/* Enterprise Page */}
+                  <Route path="/enterprise" element={<Enterprise />} />
                   
                   {/* FAQ Page */}
                   <Route path="/support/faq" element={<FAQ />} />

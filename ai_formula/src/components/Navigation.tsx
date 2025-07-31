@@ -40,6 +40,7 @@ const Navigation = () => {
     { id: 'home', label: t('nav.home'), path: '/' },
     { id: 'about', label: t('nav.about'), path: language === 'zh-HK' ? '/about-cht' : '/about' },
     { id: 'courses', label: t('nav.courses'), path: '/courses' },
+    { id: 'enterprise', label: language === 'zh-HK' ? '企業服務' : 'Enterprise', path: '/enterprise' },
     { id: 'tools', label: t('nav.tools'), path: '/tools' },
     { id: 'blog', label: t('nav.blog'), path: '/blog' }
   ];
