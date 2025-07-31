@@ -546,14 +546,14 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                     for (const theme of courseData.themes) {
                       const currentUnitIndex = theme.units.findIndex(unit => unit.current);
                       if (currentUnitIndex !== -1) {
-                        console.log(`Header Continue: theme ${theme.id}, unit ${currentUnitIndex + 1}`);
+                        console.log(`Header Continue: theme ${theme.id}, lesson ID ${currentUnitIndex + 1} (unit index ${currentUnitIndex})`);
                         navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${currentUnitIndex + 1}`);
                         return;
                       }
                     }
-                    // 如果沒有找到當前單元，導航到第一個主題
-                    console.log('No current unit found, navigating to theme 1');
-                    navigate('/courses/chatgpt-complete-course/theme/1');
+                    // 如果沒有找到當前單元，導航到第一個主題的第一個課程
+                    console.log('No current unit found, navigating to theme 1 lesson 1');
+                    navigate('/courses/chatgpt-complete-course/theme/1/unit/1');
                   }}
                 >
                   <Play className="w-5 h-5 mr-2" />
@@ -732,8 +732,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                       }`}
                                       onClick={() => {
                                         if (!isLocked) {
-                                          console.log(`Navigating to theme ${theme.id}, unit ${unitIndex + 1}`);
-                                          navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${unitIndex + 1}`);
+                                          const actualLessonId = theme.units[unitIndex]?.id || unitIndex + 1;
+                                          console.log(`Navigating to theme ${theme.id}, lesson ID ${actualLessonId} (unit index ${unitIndex})`);
+                                          navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${actualLessonId}`);
                                         }
                                       }}
                                     >
@@ -806,8 +807,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                                 className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2"
                                                 onClick={(e) => {
                                                   e.stopPropagation();
-                                                  console.log(`Continue Learning: theme ${theme.id}, unit ${unitIndex + 1}`);
-                                                  navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${unitIndex + 1}`);
+                                                  const actualLessonId = theme.units[unitIndex]?.id || unitIndex + 1;
+                                                  console.log(`Continue Learning: theme ${theme.id}, lesson ID ${actualLessonId} (unit index ${unitIndex})`);
+                                                  navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${actualLessonId}`);
                                                 }}
                                               >
                                                 <Play className="w-4 h-4 mr-2" />
@@ -819,8 +821,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                                 className="border-gray-500 text-gray-300 hover:bg-gray-700 hover:border-gray-400 hover:text-gray-200 px-4 py-2"
                                                 onClick={(e) => {
                                                   e.stopPropagation();
-                                                  console.log(`Start Learning: theme ${theme.id}, unit ${unitIndex + 1}`);
-                                                  navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${unitIndex + 1}`);
+                                                  const actualLessonId = theme.units[unitIndex]?.id || unitIndex + 1;
+                                                  console.log(`Start Learning: theme ${theme.id}, lesson ID ${actualLessonId} (unit index ${unitIndex})`);
+                                                  navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${actualLessonId}`);
                                                 }}
                                               >
                                                 <Play className="w-4 h-4 mr-2" />
@@ -1055,12 +1058,13 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                       for (const theme of courseData.themes) {
                         const currentUnitIndex = theme.units.findIndex(unit => unit.current);
                         if (currentUnitIndex !== -1) {
-                          console.log(`Sidebar Continue: theme ${theme.id}, unit ${currentUnitIndex + 1}`);
-                          navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${currentUnitIndex + 1}`);
+                          const actualLessonId = theme.units[currentUnitIndex]?.id || currentUnitIndex + 1;
+                          console.log(`Sidebar Continue: theme ${theme.id}, lesson ID ${actualLessonId} (unit index ${currentUnitIndex})`);
+                          navigate(`/courses/chatgpt-complete-course/theme/${theme.id}/unit/${actualLessonId}`);
                           return;
                         }
                       }
-                      console.log('Sidebar fallback: navigating to theme 1 unit 1');
+                      console.log('Sidebar fallback: navigating to theme 1 lesson 1');
                       navigate('/courses/chatgpt-complete-course/theme/1/unit/1');
                     }}
                       >

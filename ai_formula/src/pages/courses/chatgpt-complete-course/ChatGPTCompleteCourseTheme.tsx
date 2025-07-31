@@ -597,7 +597,11 @@ const ChatGPTCompleteCourseTheme: React.FC = () => {
                       unit.current ? 'border-gray-500/50 bg-gray-800/50' : 
                       'border-gray-600/30 bg-gray-700/20'
                     }`}
-                    onClick={() => navigate(`/courses/chatgpt-complete-course/theme/${themeId}/unit/${index + 1}`)}
+                    onClick={() => {
+                      const actualLessonId = unit.id || index + 1;
+                      console.log(`Theme page navigation: theme ${themeId}, lesson ID ${actualLessonId} (unit index ${index})`);
+                      navigate(`/courses/chatgpt-complete-course/theme/${themeId}/unit/${actualLessonId}`);
+                    }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + index * 0.1 }}
