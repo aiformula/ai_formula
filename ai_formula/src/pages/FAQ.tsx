@@ -169,9 +169,9 @@ const FAQ: React.FC = () => {
         }
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+      <div className="min-h-screen text-white" style={{ backgroundColor: '#121212' }}>
         {/* 返回按鈕 */}
-        <div className="container mx-auto px-4 pt-24">
+        <div className="container mx-auto px-4 pt-32">
           <motion.button
             onClick={() => navigate('/support')}
             className="flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors mb-8 group"
