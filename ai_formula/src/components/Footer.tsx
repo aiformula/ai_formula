@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
       services: {
         title: '服務項目',
         links: [
-          { name: '企業顧問服務', href: '/about#consulting' },
+          { name: '企業顧問服務', href: '/enterprise' },
           { name: '工作坊培訓', href: '/about#workshops' }
         ]
       },
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
       services: {
         title: 'Our Services',
         links: [
-          { name: 'Enterprise Consulting', href: '/about#consulting' },
+          { name: 'Enterprise Consulting', href: '/enterprise' },
           { name: 'Workshop Training', href: '/about#workshops' }
         ]
       },

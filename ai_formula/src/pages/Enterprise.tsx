@@ -298,82 +298,80 @@ const Enterprise: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Header Cover - Only show when no path is selected and not showing results */}
-      {!currentPath && !showResult && (
-        <motion.div 
-          className="relative h-screen flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent transform -skew-y-12"></div>
-          </div>
-          
-          <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-            <motion.h1 
-              className="text-7xl md:text-8xl font-bold mb-8 tracking-tight"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              <span className="text-white">企業</span>
-              <span className="text-yellow-400 ml-4">顧問服務</span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-2xl md:text-3xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              專業 AI 顧問團隊，為企業量身打造 AI 課程同自動化解決方案
-            </motion.p>
-            
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.8 }}
-            >
-              <Button 
-                size="lg" 
-                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-12 py-6 text-xl rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transform hover:scale-105"
-                onClick={() => {
-                  document.getElementById('services-section')?.scrollIntoView({ 
-                    behavior: 'smooth' 
-                  });
-                }}
-              >
-                立即開始
-                <ChevronRight className="w-6 h-6 ml-2" />
-              </Button>
-            </motion.div>
-          </div>
-          
-          {/* Scroll Indicator */}
-          <motion.div 
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+      <AnimatePresence mode="wait">
+        {/* Initial Landing Page - Hero + Service Selection */}
+        {!currentPath && !showResult && !isLoading && (
+          <motion.div
+            key="landing-page"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="w-1 h-16 bg-gradient-to-b from-yellow-400 to-transparent rounded-full"></div>
-          </motion.div>
-        </motion.div>
-      )}
-
-      <div className="relative">
-        <AnimatePresence mode="wait">
-          {!currentPath && !showResult && (
-            <motion.div
-              key="service-selection"
-              id="services-section"
-              className="py-24 px-4"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.8 }}
+            {/* Header Cover */}
+            <motion.div 
+              className="relative h-screen flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
             >
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent transform -skew-y-12"></div>
+              </div>
+              
+              <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
+                <motion.h1 
+                  className="text-7xl md:text-8xl font-bold mb-8 tracking-tight"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                >
+                  <span className="text-white">企業</span>
+                  <span className="text-yellow-400 ml-4">顧問服務</span>
+                </motion.h1>
+                
+                <motion.p 
+                  className="text-2xl md:text-3xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                >
+                  專業 AI 顧問團隊，為企業量身打造 AI 課程同自動化解決方案
+                </motion.p>
+                
+                <motion.div
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.9, duration: 0.8 }}
+                >
+                  <Button 
+                    size="lg" 
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-12 py-6 text-xl rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transform hover:scale-105"
+                    onClick={() => {
+                      document.getElementById('services-section')?.scrollIntoView({ 
+                        behavior: 'smooth' 
+                      });
+                    }}
+                  >
+                    立即開始
+                    <ChevronRight className="w-6 h-6 ml-2" />
+                  </Button>
+                </motion.div>
+              </div>
+              
+              {/* Scroll Indicator */}
+              <motion.div 
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <div className="w-1 h-16 bg-gradient-to-b from-yellow-400 to-transparent rounded-full"></div>
+              </motion.div>
+            </motion.div>
+
+            {/* Service Selection Section */}
+            <div id="services-section" className="py-24 px-4">
               <div className="max-w-7xl mx-auto">
                 <motion.div 
                   className="text-center mb-16"
@@ -435,300 +433,303 @@ const Enterprise: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </motion.div>
-          )}
+            </div>
+          </motion.div>
+        )}
 
-          {currentPath && !showResult && !isLoading && (
-            <motion.div
-              key="questionnaire"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
-              className="min-h-screen py-24 px-4"
-            >
-              <div className="max-w-4xl mx-auto">
-                {/* Progress Bar */}
-                <div className="mb-12">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-lg text-gray-400">
-                      {isZhHK ? '進度' : 'Progress'}: {currentQuestion + 1} / {currentPath.questions.length}
-                    </span>
-                    <span className="text-lg text-yellow-400 font-bold">
-                      {Math.round(progress)}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-800 rounded-full h-3">
-                    <motion.div 
-                      className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-3 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${progress}%` }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </div>
+        {/* Questionnaire */}
+        {currentPath && !showResult && !isLoading && (
+          <motion.div
+            key="questionnaire"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            className="min-h-screen py-24 px-4"
+          >
+            <div className="max-w-4xl mx-auto">
+              {/* Progress Bar */}
+              <div className="mb-12">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-lg text-gray-400">
+                    {isZhHK ? '進度' : 'Progress'}: {currentQuestion + 1} / {currentPath.questions.length}
+                  </span>
+                  <span className="text-lg text-yellow-400 font-bold">
+                    {Math.round(progress)}%
+                  </span>
                 </div>
+                <div className="w-full bg-gray-800 rounded-full h-3">
+                  <motion.div 
+                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-3 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progress}%` }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </div>
+              </div>
 
-                {/* Question Card */}
-                <div className="bg-black border border-gray-700 rounded-3xl p-12">
-                  <motion.div
-                    key={currentQuestion}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="text-3xl font-bold mb-8 text-white">
-                      {isZhHK ? currentQuestionData?.question : currentQuestionData?.questionEn}
-                    </h3>
+              {/* Question Card */}
+              <div className="bg-black border border-gray-700 rounded-3xl p-12">
+                <motion.div
+                  key={currentQuestion}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="text-3xl font-bold mb-8 text-white">
+                    {isZhHK ? currentQuestionData?.question : currentQuestionData?.questionEn}
+                  </h3>
 
-                    {/* Question Types */}
-                    {currentQuestionData?.type === 'single' && (
-                      <div className="space-y-4">
-                        {currentQuestionData.options?.map((option, index) => (
+                  {/* Question Types */}
+                  {currentQuestionData?.type === 'single' && (
+                    <div className="space-y-4">
+                      {currentQuestionData.options?.map((option, index) => (
+                        <motion.button
+                          key={index}
+                          className={`w-full p-6 text-left rounded-xl border-2 transition-all duration-300 ${
+                            answers[currentQuestionData.id] === option
+                              ? 'border-yellow-400 bg-yellow-400/10 text-white shadow-[0_0_20px_rgba(255,215,0,0.2)]'
+                              : 'border-gray-600 hover:border-gray-500 text-white hover:bg-gray-800'
+                          }`}
+                          onClick={() => handleAnswer(currentQuestionData.id, option)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <span className="text-lg font-medium">
+                            {isZhHK ? option : currentQuestionData.optionsEn?.[index]}
+                          </span>
+                        </motion.button>
+                      ))}
+                    </div>
+                  )}
+
+                  {currentQuestionData?.type === 'multiple' && (
+                    <div className="space-y-4">
+                      {currentQuestionData.options?.map((option, index) => {
+                        const isSelected = answers[currentQuestionData.id]?.includes(option);
+                        return (
                           <motion.button
                             key={index}
                             className={`w-full p-6 text-left rounded-xl border-2 transition-all duration-300 ${
-                              answers[currentQuestionData.id] === option
+                              isSelected
                                 ? 'border-yellow-400 bg-yellow-400/10 text-white shadow-[0_0_20px_rgba(255,215,0,0.2)]'
                                 : 'border-gray-600 hover:border-gray-500 text-white hover:bg-gray-800'
                             }`}
-                            onClick={() => handleAnswer(currentQuestionData.id, option)}
+                            onClick={() => {
+                              const currentAnswers = answers[currentQuestionData.id] || [];
+                              const newAnswers = isSelected
+                                ? currentAnswers.filter((a: string) => a !== option)
+                                : [...currentAnswers, option];
+                              handleAnswer(currentQuestionData.id, newAnswers);
+                            }}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <span className="text-lg font-medium">
-                              {isZhHK ? option : currentQuestionData.optionsEn?.[index]}
-                            </span>
+                            <div className="flex items-center text-lg">
+                              <div className={`w-6 h-6 rounded border-2 mr-4 flex items-center justify-center ${
+                                isSelected ? 'bg-yellow-400 border-yellow-400' : 'border-gray-500'
+                              }`}>
+                                {isSelected && <CheckCircle className="w-4 h-4 text-black" />}
+                              </div>
+                              <span className="font-medium">
+                                {isZhHK ? option : currentQuestionData.optionsEn?.[index]}
+                              </span>
+                            </div>
+                          </motion.button>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {currentQuestionData?.type === 'scale' && (
+                    <div className="space-y-6">
+                      <div className="flex justify-between text-lg text-gray-300">
+                        <span>{isZhHK ? '不重要' : 'Not Important'}</span>
+                        <span>{isZhHK ? '非常重要' : 'Very Important'}</span>
+                      </div>
+                      <div className="flex space-x-3">
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                          <motion.button
+                            key={value}
+                            className={`w-12 h-12 rounded-full border-2 text-lg font-bold transition-all duration-300 ${
+                              answers[currentQuestionData.id] === value
+                                ? 'border-yellow-400 bg-yellow-400 text-black shadow-[0_0_15px_rgba(255,215,0,0.3)]'
+                                : 'border-gray-500 hover:border-gray-400 text-white hover:bg-gray-800'
+                            }`}
+                            onClick={() => handleAnswer(currentQuestionData.id, value)}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            {value}
                           </motion.button>
                         ))}
                       </div>
-                    )}
+                    </div>
+                  )}
+                </motion.div>
+              </div>
 
-                    {currentQuestionData?.type === 'multiple' && (
-                      <div className="space-y-4">
-                        {currentQuestionData.options?.map((option, index) => {
-                          const isSelected = answers[currentQuestionData.id]?.includes(option);
-                          return (
-                            <motion.button
-                              key={index}
-                              className={`w-full p-6 text-left rounded-xl border-2 transition-all duration-300 ${
-                                isSelected
-                                  ? 'border-yellow-400 bg-yellow-400/10 text-white shadow-[0_0_20px_rgba(255,215,0,0.2)]'
-                                  : 'border-gray-600 hover:border-gray-500 text-white hover:bg-gray-800'
-                              }`}
-                              onClick={() => {
-                                const currentAnswers = answers[currentQuestionData.id] || [];
-                                const newAnswers = isSelected
-                                  ? currentAnswers.filter((a: string) => a !== option)
-                                  : [...currentAnswers, option];
-                                handleAnswer(currentQuestionData.id, newAnswers);
-                              }}
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <div className="flex items-center text-lg">
-                                <div className={`w-6 h-6 rounded border-2 mr-4 flex items-center justify-center ${
-                                  isSelected ? 'bg-yellow-400 border-yellow-400' : 'border-gray-500'
-                                }`}>
-                                  {isSelected && <CheckCircle className="w-4 h-4 text-black" />}
-                                </div>
-                                <span className="font-medium">
-                                  {isZhHK ? option : currentQuestionData.optionsEn?.[index]}
-                                </span>
-                              </div>
-                            </motion.button>
-                          );
-                        })}
-                      </div>
-                    )}
+              {/* Navigation Buttons */}
+              <div className="flex justify-between mt-12">
+                <Button
+                  variant="outline"
+                  onClick={prevQuestion}
+                  disabled={currentQuestion === 0}
+                  className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
+                >
+                  <ArrowLeft className="w-5 h-5 mr-2" />
+                  {isZhHK ? '上一題' : 'Previous'}
+                </Button>
 
-                    {currentQuestionData?.type === 'scale' && (
-                      <div className="space-y-6">
-                        <div className="flex justify-between text-lg text-gray-300">
-                          <span>{isZhHK ? '不重要' : 'Not Important'}</span>
-                          <span>{isZhHK ? '非常重要' : 'Very Important'}</span>
-                        </div>
-                        <div className="flex space-x-3">
-                          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-                            <motion.button
-                              key={value}
-                              className={`w-12 h-12 rounded-full border-2 text-lg font-bold transition-all duration-300 ${
-                                answers[currentQuestionData.id] === value
-                                  ? 'border-yellow-400 bg-yellow-400 text-black shadow-[0_0_15px_rgba(255,215,0,0.3)]'
-                                  : 'border-gray-500 hover:border-gray-400 text-white hover:bg-gray-800'
-                              }`}
-                              onClick={() => handleAnswer(currentQuestionData.id, value)}
-                              whileHover={{ scale: 1.1 }}
-                              whileTap={{ scale: 0.9 }}
-                            >
-                              {value}
-                            </motion.button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                </div>
-
-                {/* Navigation Buttons */}
-                <div className="flex justify-between mt-12">
+                <div className="space-x-6">
                   <Button
                     variant="outline"
-                    onClick={prevQuestion}
-                    disabled={currentQuestion === 0}
+                    onClick={resetForm}
                     className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
                   >
-                    <ArrowLeft className="w-5 h-5 mr-2" />
-                    {isZhHK ? '上一題' : 'Previous'}
+                    {isZhHK ? '重新開始' : 'Restart'}
                   </Button>
 
-                  <div className="space-x-6">
-                    <Button
-                      variant="outline"
-                      onClick={resetForm}
-                      className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
-                    >
-                      {isZhHK ? '重新開始' : 'Restart'}
-                    </Button>
-
-                    <Button
-                      onClick={() => {
-                        // Scroll to top when going to next question
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        nextQuestion();
-                      }}
-                      disabled={!answers[currentQuestionData?.id || '']}
-                      className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] transform hover:scale-105"
-                    >
-                      {currentQuestion === currentPath.questions.length - 1 
-                        ? (isZhHK ? '完成評估' : 'Complete Assessment')
-                        : (isZhHK ? '下一題' : 'Next')
-                      }
-                      <ChevronRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </div>
+                  <Button
+                    onClick={() => {
+                      // Scroll to top when going to next question
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      nextQuestion();
+                    }}
+                    disabled={!answers[currentQuestionData?.id || '']}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] transform hover:scale-105"
+                  >
+                    {currentQuestion === currentPath.questions.length - 1 
+                      ? (isZhHK ? '完成評估' : 'Complete Assessment')
+                      : (isZhHK ? '下一題' : 'Next')
+                    }
+                    <ChevronRight className="w-5 h-5 ml-2" />
+                  </Button>
                 </div>
               </div>
-            </motion.div>
-          )}
+            </div>
+          </motion.div>
+        )}
 
-          {isLoading && (
-            <motion.div
-              key="loading"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="min-h-screen flex items-center justify-center"
-            >
-              <div className="text-center">
-                <motion.div 
-                  className="w-20 h-20 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-8"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-                <h3 className="text-3xl font-bold text-yellow-400 mb-4">
-                  {isZhHK ? '正在分析您的需求...' : 'Analyzing your requirements...'}
-                </h3>
-                <p className="text-xl text-gray-400">
-                  {isZhHK ? '請稍候，我們正在為您制定專屬建議' : 'Please wait, we are creating customized recommendations for you'}
-                </p>
-              </div>
-            </motion.div>
-          )}
+        {/* Loading */}
+        {isLoading && (
+          <motion.div
+            key="loading"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="min-h-screen flex items-center justify-center"
+          >
+            <div className="text-center">
+              <motion.div 
+                className="w-20 h-20 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-8"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+              <h3 className="text-3xl font-bold text-yellow-400 mb-4">
+                {isZhHK ? '正在分析您的需求...' : 'Analyzing your requirements...'}
+              </h3>
+              <p className="text-xl text-gray-400">
+                {isZhHK ? '請稍候，我們正在為您制定專屬建議' : 'Please wait, we are creating customized recommendations for you'}
+              </p>
+            </div>
+          </motion.div>
+        )}
 
-          {showResult && (
-            <motion.div
-              key="result"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="min-h-screen py-24 px-4"
-            >
-              <div className="max-w-4xl mx-auto">
-                <div className="bg-black border border-yellow-400/30 rounded-3xl p-12">
-                  <div className="text-center mb-12">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                      className="w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6"
-                    >
-                      <Award className="w-12 h-12 text-black" />
-                    </motion.div>
-                    <h2 className="text-4xl font-bold mb-6 text-white">
-                      {isZhHK ? '評估完成！' : 'Assessment Complete!'}
-                    </h2>
-                    <p className="text-xl text-gray-300">
-                      {isZhHK ? '基於您的回答，我們為您準備了專屬建議' : 'Based on your responses, we have prepared customized recommendations for you'}
-                    </p>
-                  </div>
+        {/* Results */}
+        {showResult && (
+          <motion.div
+            key="result"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="min-h-screen py-24 px-4"
+          >
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-black border border-yellow-400/30 rounded-3xl p-12">
+                <div className="text-center mb-12">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                    className="w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6"
+                  >
+                    <Award className="w-12 h-12 text-black" />
+                  </motion.div>
+                  <h2 className="text-4xl font-bold mb-6 text-white">
+                    {isZhHK ? '評估完成！' : 'Assessment Complete!'}
+                  </h2>
+                  <p className="text-xl text-gray-300">
+                    {isZhHK ? '基於您的回答，我們為您準備了專屬建議' : 'Based on your responses, we have prepared customized recommendations for you'}
+                  </p>
+                </div>
 
-                  <div className="bg-gray-800 rounded-2xl p-8 mb-12">
-                    <h3 className="text-2xl font-bold mb-6 text-yellow-400">
-                      {isZhHK ? '我們的建議' : 'Our Recommendations'}
-                    </h3>
-                    <p className="text-lg text-gray-200 leading-relaxed">
-                      {getRecommendation()}
-                    </p>
-                  </div>
+                <div className="bg-gray-800 rounded-2xl p-8 mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-yellow-400">
+                    {isZhHK ? '我們的建議' : 'Our Recommendations'}
+                  </h3>
+                  <p className="text-lg text-gray-200 leading-relaxed">
+                    {getRecommendation()}
+                  </p>
+                </div>
 
-                  <div className="grid md:grid-cols-3 gap-8 mb-12">
-                    <div className="text-center">
-                      <Target className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-                      <h4 className="text-xl font-bold text-yellow-400 mb-2">
-                        {isZhHK ? '精準匹配' : 'Precise Match'}
-                      </h4>
-                      <p className="text-gray-300">
-                        {isZhHK ? '根據需求量身定制' : 'Customized to your needs'}
-                      </p>
-                    </div>
-                    <div className="text-center">
-                      <TrendingUp className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-                      <h4 className="text-xl font-bold text-yellow-400 mb-2">
-                        {isZhHK ? '效果提升' : 'Performance Boost'}
-                      </h4>
-                      <p className="text-gray-300">
-                        {isZhHK ? '顯著改善業務效率' : 'Significantly improve efficiency'}
-                      </p>
-                    </div>
-                    <div className="text-center">
-                      <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-                      <h4 className="text-xl font-bold text-yellow-400 mb-2">
-                        {isZhHK ? '專業支援' : 'Professional Support'}
-                      </h4>
-                      <p className="text-gray-300">
-                        {isZhHK ? '全程專家指導' : 'Expert guidance throughout'}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="text-center space-y-6">
-                    <Button 
-                      size="lg"
-                      className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-12 py-6 text-xl rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transform hover:scale-105"
-                    >
-                      <Calendar className="w-6 h-6 mr-3" />
-                      {isZhHK ? '預約免費諮詢' : 'Book Free Consultation'}
-                    </Button>
+                <div className="grid md:grid-cols-3 gap-8 mb-12">
+                  <div className="text-center">
+                    <Target className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+                    <h4 className="text-xl font-bold text-yellow-400 mb-2">
+                      {isZhHK ? '精準匹配' : 'Precise Match'}
+                    </h4>
                     <p className="text-gray-300">
-                      {isZhHK ? '30分鐘專業諮詢，無任何費用' : '30-minute professional consultation, completely free'}
+                      {isZhHK ? '根據需求量身定制' : 'Customized to your needs'}
                     </p>
                   </div>
-
-                  <div className="mt-12 pt-8 border-t border-gray-700 text-center">
-                    <Button
-                      variant="outline"
-                      onClick={resetForm}
-                      className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
-                    >
-                      {isZhHK ? '重新評估' : 'Start New Assessment'}
-                    </Button>
+                  <div className="text-center">
+                    <TrendingUp className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+                    <h4 className="text-xl font-bold text-yellow-400 mb-2">
+                      {isZhHK ? '效果提升' : 'Performance Boost'}
+                    </h4>
+                    <p className="text-gray-300">
+                      {isZhHK ? '顯著改善業務效率' : 'Significantly improve efficiency'}
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+                    <h4 className="text-xl font-bold text-yellow-400 mb-2">
+                      {isZhHK ? '專業支援' : 'Professional Support'}
+                    </h4>
+                    <p className="text-gray-300">
+                      {isZhHK ? '全程專家指導' : 'Expert guidance throughout'}
+                    </p>
                   </div>
                 </div>
+
+                <div className="text-center space-y-6">
+                  <Button 
+                    size="lg"
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-12 py-6 text-xl rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transform hover:scale-105"
+                  >
+                    <Calendar className="w-6 h-6 mr-3" />
+                    {isZhHK ? '預約免費諮詢' : 'Book Free Consultation'}
+                  </Button>
+                  <p className="text-gray-300">
+                    {isZhHK ? '30分鐘專業諮詢，無任何費用' : '30-minute professional consultation, completely free'}
+                  </p>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-gray-700 text-center">
+                  <Button
+                    variant="outline"
+                    onClick={resetForm}
+                    className="border-gray-500 text-white hover:border-gray-400 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl font-medium"
+                  >
+                    {isZhHK ? '重新評估' : 'Start New Assessment'}
+                  </Button>
+                </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
