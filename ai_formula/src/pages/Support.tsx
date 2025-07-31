@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Settings, Mail, Phone, HelpCircle, X, Clock, CheckCircle, ArrowRight } from 'lucide-react';
+import { Settings, Mail, Phone, HelpCircle, X, Clock, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { SEOHead } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
@@ -8,66 +8,163 @@ import { useNavigate } from 'react-router-dom';
 const Support: React.FC = () => {
   const [isFloatingModalOpen, setIsFloatingModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, size: number, speed: number}>>([]);
   const { language } = useLanguage();
   const navigate = useNavigate();
 
   const isZhHK = language === 'zh-HK';
 
+  // 初始化粒子系統
+  useEffect(() => {
+    const generateParticles = () => {
+      const newParticles = Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        size: Math.random() * 3 + 1,
+        speed: Math.random() * 0.5 + 0.2
+      }));
+      setParticles(newParticles);
+    };
+
+    generateParticles();
+    window.addEventListener('resize', generateParticles);
+    return () => window.removeEventListener('resize', generateParticles);
+  }, []);
+
+  // 粒子動畫
+  useEffect(() => {
+    const animateParticles = () => {
+      setParticles(prev => prev.map(particle => ({
+        ...particle,
+        y: particle.y - particle.speed,
+        x: particle.x + Math.sin(particle.y * 0.01) * 0.5,
+        // 重置粒子位置當它們移出視窗
+        ...(particle.y < -10 ? {
+          y: window.innerHeight + 10,
+          x: Math.random() * window.innerWidth
+        } : {})
+      })));
+    };
+
+    const interval = setInterval(animateParticles, 50);
+    return () => clearInterval(interval);
+  }, []);
+
   // 頁面載入動畫
   const pageVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 }
+    initial: { opacity: 0 },
+    animate: { 
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.2
+      }
+    },
+    exit: { opacity: 0 }
   };
 
-  // 浮動按鈕動畫
-  const floatingButtonVariants = {
-    initial: { scale: 1 },
+  // 標題動畫
+  const titleVariants = {
+    initial: { opacity: 0, y: -50, scale: 0.9 },
     animate: { 
-      scale: [1, 1.05, 1],
-      rotate: [0, 5, -5, 0],
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
       transition: {
-        duration: 2,
+        type: "spring" as const,
+        damping: 20,
+        stiffness: 300,
+        duration: 1.2
+      }
+    }
+  };
+
+  // 卡片動畫（由下而上滑入 + 彈跳）
+  const cardVariants = {
+    initial: { opacity: 0, y: 60, scale: 0.9 },
+    animate: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring" as const,
+        damping: 15,
+        stiffness: 200,
+        delay: 0.3 + index * 0.2,
+        duration: 0.8
+      }
+    })
+  };
+
+  // 浮動按鈕動畫（增強版）
+  const floatingButtonVariants = {
+    initial: { scale: 1, rotate: 0 },
+    animate: { 
+      scale: [1, 1.1, 1],
+      rotate: [0, 10, -10, 0],
+      boxShadow: [
+        "0 10px 30px rgba(251, 191, 36, 0.3)",
+        "0 15px 40px rgba(251, 191, 36, 0.5)",
+        "0 10px 30px rgba(251, 191, 36, 0.3)"
+      ],
+      transition: {
+        duration: 3,
         repeat: Infinity,
         ease: "easeInOut" as const
       }
     },
-    hover: { scale: 1.1, rotate: 15 }
+    hover: { 
+      scale: 1.2, 
+      rotate: 20,
+      boxShadow: "0 20px 50px rgba(251, 191, 36, 0.6)",
+      transition: { duration: 0.3 }
+    }
   };
 
-  // 彈出框動畫
+  // 彈出框動畫（增強版）
   const modalVariants = {
-    initial: { opacity: 0, scale: 0.8, y: 50 },
+    initial: { opacity: 0, scale: 0.7, y: 100, rotateX: -15 },
+    animate: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      rotateX: 0,
+      transition: {
+        type: "spring" as const,
+        damping: 25,
+        stiffness: 400,
+        duration: 0.6
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.7, 
+      y: 100,
+      rotateX: 15,
+      transition: { duration: 0.4 }
+    }
+  };
+
+  // 成功訊息動畫
+  const successVariants = {
+    initial: { opacity: 0, scale: 0.5, y: 50 },
     animate: { 
       opacity: 1, 
       scale: 1, 
       y: 0,
       transition: {
         type: "spring" as const,
-        damping: 25,
-        stiffness: 300
+        damping: 15,
+        stiffness: 400
       }
     },
     exit: { 
       opacity: 0, 
-      scale: 0.8, 
-      y: 50,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
-
-  // 卡片進入動畫
-  const cardVariants = {
-    initial: { opacity: 0, y: 30 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const
-      }
+      scale: 0.5, 
+      y: -50,
+      transition: { duration: 0.5 }
     }
   };
 
@@ -80,8 +177,12 @@ const Support: React.FC = () => {
       description: isZhHK 
         ? '有問題？寄電郵到 support@aiformula.com，我哋會喺24小時內回覆你！' 
         : 'Got questions? Email us at support@aiformula.com, we\'ll reply within 24 hours!',
-      action: () => window.open('mailto:support@aiformula.com', '_blank'),
-      color: 'from-yellow-400 to-amber-500'
+      action: () => {
+        window.open('mailto:support@aiformula.com', '_blank');
+        showSuccess();
+      },
+      color: 'from-yellow-400 to-amber-500',
+      iconColor: 'text-amber-900'
     },
     {
       id: 'faq',
@@ -91,7 +192,8 @@ const Support: React.FC = () => {
         ? '唔知點樣登入、睇課程或者上載作業？去我哋嘅FAQ頁面搵答案！' 
         : 'Don\'t know how to login, view courses or upload assignments? Check our FAQ page!',
       action: () => navigate('/faq'),
-      color: 'from-amber-400 to-orange-500'
+      color: 'from-amber-400 to-orange-500',
+      iconColor: 'text-orange-900'
     },
     {
       id: 'hotline',
@@ -100,8 +202,12 @@ const Support: React.FC = () => {
       description: isZhHK 
         ? '有緊急問題？即刻打熱線 +852 1234 5678，我哋24/7為你服務！' 
         : 'Got urgent issues? Call our hotline +852 1234 5678, we\'re here 24/7!',
-      action: () => window.open('tel:+85212345678', '_self'),
-      color: 'from-orange-400 to-red-500'
+      action: () => {
+        window.open('tel:+85212345678', '_self');
+        showSuccess();
+      },
+      color: 'from-orange-400 to-red-500',
+      iconColor: 'text-red-900'
     }
   ];
 
@@ -117,6 +223,12 @@ const Support: React.FC = () => {
     setTimeout(() => setActiveSection(null), 1000);
   };
 
+  // 顯示成功訊息
+  const showSuccess = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 3000);
+  };
+
   return (
     <>
       <SEOHead 
@@ -127,30 +239,73 @@ const Support: React.FC = () => {
         }
       />
 
-      <div className="min-h-screen bg-black text-white relative overflow-hidden">
-        {/* 背景效果 */}
+      <div className="min-h-screen bg-black text-white relative overflow-hidden font-['Montserrat',sans-serif]">
+        {/* 增強背景效果 */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/20 via-black to-amber-900/20" />
-          <div className="absolute top-0 left-0 w-full h-full">
-            {/* 動態背景點陣 */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="grid grid-cols-12 h-full">
-                {Array.from({ length: 144 }).map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="border-r border-b border-yellow-500/20"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 0.3, 0] }}
-                    transition={{
-                      duration: 3,
-                      delay: (i % 12) * 0.1,
-                      repeat: Infinity,
-                      repeatDelay: 2
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+          {/* 科幻漸變背景 */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-yellow-900/10 via-transparent to-amber-900/10" />
+          
+          {/* 星空效果 */}
+          <div className="absolute inset-0">
+            {Array.from({ length: 100 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  opacity: [0.2, 1, 0.2],
+                  scale: [0.5, 1.2, 0.5],
+                }}
+                transition={{
+                  duration: Math.random() * 3 + 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* AI 數據流粒子 */}
+          <div className="absolute inset-0 pointer-events-none">
+            {particles.map((particle) => (
+              <motion.div
+                key={particle.id}
+                className="absolute bg-yellow-400/30 rounded-full"
+                style={{
+                  left: particle.x,
+                  top: particle.y,
+                  width: particle.size,
+                  height: particle.size,
+                }}
+                animate={{
+                  opacity: [0, 0.7, 0],
+                  scale: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* 動態網格背景 */}
+          <div className="absolute inset-0 opacity-5">
+            <div 
+              className="w-full h-full"
+              style={{
+                backgroundImage: `
+                  linear-gradient(rgba(251, 191, 36, 0.3) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(251, 191, 36, 0.3) 1px, transparent 1px)
+                `,
+                backgroundSize: '60px 60px',
+                animation: 'gridFloat 20s linear infinite'
+              }}
+            />
           </div>
         </div>
 
@@ -165,24 +320,36 @@ const Support: React.FC = () => {
           {/* 標題區域 */}
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={titleVariants}
           >
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-amber-300 to-orange-400 bg-clip-text text-transparent"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+            <motion.div
+              className="flex items-center justify-center gap-4 mb-6"
+              whileHover={{ scale: 1.05 }}
             >
-              {isZhHK ? '技術支援' : 'Technical Support'}
-            </motion.h1>
+              <Sparkles className="w-8 h-8 text-yellow-400" />
+              <motion.h1 
+                className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-amber-300 to-orange-400 bg-clip-text text-transparent"
+                style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}
+                animate={{
+                  textShadow: [
+                    "0 0 20px rgba(251, 191, 36, 0.3)",
+                    "0 0 30px rgba(251, 191, 36, 0.5)", 
+                    "0 0 20px rgba(251, 191, 36, 0.3)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                {isZhHK ? '技術支援' : 'Technical Support'}
+              </motion.h1>
+              <Sparkles className="w-8 h-8 text-orange-400" />
+            </motion.div>
             
             <motion.p 
               className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+              style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
             >
               {isZhHK 
                 ? '喺學習AI嘅路上，遇到技術問題？唔使擔心！我哋嘅專業技術支援團隊隨時幫到你！'
@@ -198,83 +365,170 @@ const Support: React.FC = () => {
                 key={option.id}
                 className={`
                   relative group cursor-pointer rounded-2xl p-8 
-                  border border-yellow-500/30 backdrop-blur-sm
-                  transition-all duration-300 hover:border-yellow-400/60
-                  ${activeSection === option.id ? 'ring-2 ring-yellow-400' : ''}
+                  border border-yellow-500/20 backdrop-blur-sm
+                  transition-all duration-500
+                  ${activeSection === option.id ? 'ring-2 ring-yellow-400 scale-105' : ''}
                 `}
                 style={{
-                  background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(20,20,20,0.8) 100%)'
+                  background: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(30,30,30,0.9) 100%)',
+                  fontFamily: 'Roboto, sans-serif'
                 }}
                 variants={cardVariants}
                 initial="initial"
                 animate="animate"
                 custom={index}
                 whileHover={{ 
-                  scale: 1.02, 
-                  y: -5,
-                  boxShadow: '0 20px 40px rgba(251, 191, 36, 0.2)'
+                  scale: 1.05, 
+                  y: -12,
+                  rotateY: 5,
+                  boxShadow: [
+                    '0 20px 40px rgba(251, 191, 36, 0.2)',
+                    '0 25px 50px rgba(251, 191, 36, 0.3)',
+                    '0 30px 60px rgba(251, 191, 36, 0.4)'
+                  ],
+                  borderColor: 'rgba(251, 191, 36, 0.8)',
+                  transition: { duration: 0.4 }
                 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleCardClick(option.id, option.action)}
               >
-                {/* 背景漸變效果 */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${option.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
+                {/* 動態背景光暈 */}
+                <motion.div 
+                  className={`absolute inset-0 bg-gradient-to-br ${option.color} opacity-0 rounded-2xl`}
+                  whileHover={{ opacity: 0.1 }}
+                  transition={{ duration: 0.4 }}
+                />
                 
-                {/* 圖標 */}
+                {/* 圖標區域 */}
                 <motion.div
-                  className="relative z-10 mb-6"
-                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  className="relative z-10 mb-6 flex justify-center"
+                  whileHover={{ 
+                    rotate: [0, -10, 10, 0],
+                    scale: 1.2
+                  }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-br ${option.color} p-4 shadow-lg`}>
-                    <option.icon className="w-full h-full text-black" />
-                  </div>
+                  <motion.div 
+                    className={`w-20 h-20 rounded-full bg-gradient-to-br ${option.color} p-5 shadow-2xl`}
+                    whileHover={{
+                      boxShadow: [
+                        '0 10px 25px rgba(251, 191, 36, 0.4)',
+                        '0 15px 35px rgba(251, 191, 36, 0.6)',
+                        '0 20px 45px rgba(251, 191, 36, 0.8)'
+                      ]
+                    }}
+                    animate={{
+                      boxShadow: [
+                        '0 5px 15px rgba(251, 191, 36, 0.2)',
+                        '0 10px 25px rgba(251, 191, 36, 0.4)',
+                        '0 5px 15px rgba(251, 191, 36, 0.2)'
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <option.icon className={`w-full h-full ${option.iconColor}`} />
+                  </motion.div>
                 </motion.div>
 
-                {/* 內容 */}
+                {/* 內容區域 */}
                 <div className="relative z-10 text-center">
-                  <h3 className="text-xl font-bold text-yellow-400 mb-4 group-hover:text-yellow-300 transition-colors">
+                  <motion.h3 
+                    className="text-xl font-bold text-yellow-400 mb-4 transition-colors duration-300"
+                    style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
+                    whileHover={{ 
+                      color: '#F59E0B',
+                      textShadow: '0 0 10px rgba(251, 191, 36, 0.8)'
+                    }}
+                  >
                     {option.title}
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white transition-colors leading-relaxed">
+                  </motion.h3>
+                  <motion.p 
+                    className="text-gray-300 leading-relaxed transition-colors duration-300"
+                    style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
+                    whileHover={{ color: '#ffffff' }}
+                  >
                     {option.description}
-                  </p>
+                  </motion.p>
                 </div>
 
                 {/* 箭頭指示器 */}
                 <motion.div
-                  className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                  initial={{ x: -10 }}
-                  whileHover={{ x: 0 }}
+                  className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100"
+                  initial={{ x: -10, opacity: 0 }}
+                  whileHover={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <ArrowRight className="w-5 h-5 text-yellow-400" />
+                  <ArrowRight className="w-6 h-6 text-yellow-400" />
                 </motion.div>
+
+                {/* 發光邊框效果 */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 border-transparent"
+                  whileHover={{
+                    borderImage: 'linear-gradient(45deg, rgba(251, 191, 36, 0.8), rgba(247, 147, 26, 0.8)) 1',
+                    opacity: 1
+                  }}
+                  initial={{ opacity: 0 }}
+                />
               </motion.div>
             ))}
           </div>
 
           {/* 承諾區域 */}
           <motion.div
-            className="text-center bg-gradient-to-r from-yellow-900/20 via-amber-900/20 to-orange-900/20 rounded-2xl p-8 border border-yellow-500/30"
+            className="bg-gradient-to-r from-yellow-900/20 via-amber-900/20 to-orange-900/20 rounded-2xl p-8 border border-yellow-500/30 relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            whileHover={{ 
+              scale: 1.02,
+              boxShadow: '0 20px 40px rgba(251, 191, 36, 0.2)'
+            }}
           >
-            <CheckCircle className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">
-              {isZhHK ? '我哋嘅承諾' : 'Our Promise'}
-            </h3>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              {isZhHK 
-                ? '我哋承諾畀你一個順暢嘅學習體驗，有咩問題隨時搵我哋！'
-                : 'We promise to provide you with a smooth learning experience. Feel free to contact us anytime!'
-              }
-            </p>
+            {/* 背景動畫效果 */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-yellow-400/5 via-amber-400/5 to-orange-400/5"
+              animate={{
+                x: ['-100%', '100%'],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+            
+            <div className="relative z-10 text-center">
+              <motion.div
+                className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-2xl"
+                animate={{
+                  rotate: [0, 360],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  rotate: { duration: 10, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 2, repeat: Infinity }
+                }}
+              >
+                <CheckCircle className="w-8 h-8 text-black" />
+              </motion.div>
+              
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
+                {isZhHK ? '我哋嘅承諾' : 'Our Promise'}
+              </h3>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}>
+                {isZhHK 
+                  ? '我哋承諾畀你一個順暢嘅學習體驗，有咩問題隨時搵我哋！'
+                  : 'We promise to provide you with a smooth learning experience. Feel free to contact us anytime!'
+                }
+              </p>
+            </div>
           </motion.div>
         </motion.div>
 
-        {/* 浮動支援按鈕 */}
+        {/* 增強版浮動支援按鈕 */}
         <motion.button
-          className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-lg z-[60] flex items-center justify-center"
+          className="fixed bottom-8 right-8 w-18 h-18 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-2xl z-[60] flex items-center justify-center border-2 border-yellow-300/50"
           variants={floatingButtonVariants}
           initial="initial"
           animate="animate"
@@ -282,76 +536,137 @@ const Support: React.FC = () => {
           whileTap={{ scale: 0.9 }}
           onClick={handleFloatingButtonClick}
         >
-          <Settings className="w-8 h-8 text-black" />
+          <motion.div
+            animate={{ rotate: isFloatingModalOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Settings className="w-10 h-10 text-black filter drop-shadow-sm" />
+          </motion.div>
         </motion.button>
 
-        {/* 浮動彈出框 */}
+        {/* 增強版浮動彈出框 */}
         <AnimatePresence>
           {isFloatingModalOpen && (
             <motion.div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[70] flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/60 backdrop-blur-lg z-[70] flex items-center justify-center p-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsFloatingModalOpen(false)}
             >
               <motion.div
-                className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 max-w-md w-full border border-yellow-500/30 relative"
+                className="bg-gradient-to-br from-gray-900 via-black to-gray-800 rounded-3xl p-8 max-w-md w-full border border-yellow-500/40 relative shadow-2xl"
                 variants={modalVariants}
                 initial="initial"
                 animate="animate"
                 exit="exit"
                 onClick={(e) => e.stopPropagation()}
+                style={{ fontFamily: 'Roboto, sans-serif' }}
               >
                 {/* 關閉按鈕 */}
-                <button
-                  className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                <motion.button
+                  className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
                   onClick={() => setIsFloatingModalOpen(false)}
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <X className="w-6 h-6" />
-                </button>
+                </motion.button>
 
                 {/* 彈出框內容 */}
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center">
-                    <Settings className="w-8 h-8 text-black" />
-                  </div>
+                  <motion.div 
+                    className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-2xl"
+                    animate={{
+                      boxShadow: [
+                        '0 10px 25px rgba(251, 191, 36, 0.3)',
+                        '0 15px 35px rgba(251, 191, 36, 0.5)',
+                        '0 10px 25px rgba(251, 191, 36, 0.3)'
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Settings className="w-10 h-10 text-black" />
+                  </motion.div>
                   
-                  <h3 className="text-xl font-bold text-yellow-400 mb-4">
+                  <h3 className="text-2xl font-bold text-yellow-400 mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
                     {isZhHK ? '快速支援' : 'Quick Support'}
                   </h3>
                   
-                  <div className="space-y-3">
-                    <button
-                      className="w-full p-3 bg-yellow-500/20 hover:bg-yellow-500/30 rounded-lg text-left transition-colors flex items-center gap-3"
-                      onClick={() => window.open('mailto:support@aiformula.com', '_blank')}
-                    >
-                      <Mail className="w-5 h-5 text-yellow-400" />
-                      <span>{isZhHK ? '發送電郵' : 'Send Email'}</span>
-                    </button>
-                    
-                    <button
-                      className="w-full p-3 bg-yellow-500/20 hover:bg-yellow-500/30 rounded-lg text-left transition-colors flex items-center gap-3"
-                      onClick={() => window.open('tel:+85212345678', '_self')}
-                    >
-                      <Phone className="w-5 h-5 text-yellow-400" />
-                      <span>{isZhHK ? '致電熱線' : 'Call Hotline'}</span>
-                    </button>
-                    
-                    <button
-                      className="w-full p-3 bg-yellow-500/20 hover:bg-yellow-500/30 rounded-lg text-left transition-colors flex items-center gap-3"
-                      onClick={() => navigate('/faq')}
-                    >
-                      <HelpCircle className="w-5 h-5 text-yellow-400" />
-                      <span>{isZhHK ? '查看FAQ' : 'View FAQ'}</span>
-                    </button>
+                  <div className="space-y-4">
+                    {[
+                      { icon: Mail, text: isZhHK ? '發送電郵' : 'Send Email', action: () => window.open('mailto:support@aiformula.com', '_blank') },
+                      { icon: Phone, text: isZhHK ? '致電熱線' : 'Call Hotline', action: () => window.open('tel:+85212345678', '_self') },
+                      { icon: HelpCircle, text: isZhHK ? '查看FAQ' : 'View FAQ', action: () => navigate('/faq') }
+                    ].map((item, index) => (
+                      <motion.button
+                        key={index}
+                        className="w-full p-4 bg-yellow-500/20 hover:bg-yellow-500/30 rounded-xl text-left transition-all duration-300 flex items-center gap-4 border border-yellow-500/20 hover:border-yellow-500/40"
+                        onClick={() => {
+                          item.action();
+                          showSuccess();
+                          setIsFloatingModalOpen(false);
+                        }}
+                        whileHover={{ 
+                          scale: 1.02,
+                          x: 5,
+                          boxShadow: '0 5px 15px rgba(251, 191, 36, 0.3)'
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <motion.div
+                          className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center"
+                          whileHover={{ rotate: 10, scale: 1.1 }}
+                        >
+                          <item.icon className="w-6 h-6 text-black" />
+                        </motion.div>
+                        <span className="font-medium">{item.text}</span>
+                      </motion.button>
+                    ))}
                   </div>
                 </div>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* 成功提示訊息 */}
+        <AnimatePresence>
+          {showSuccessMessage && (
+            <motion.div
+              className="fixed top-8 right-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 rounded-2xl shadow-2xl z-[80] flex items-center gap-3"
+              variants={successVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <motion.div
+                animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+                transition={{ duration: 0.6 }}
+              >
+                <CheckCircle className="w-6 h-6" />
+              </motion.div>
+              <span className="font-semibold">
+                {isZhHK ? '操作成功！' : 'Success!'}
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
+
+      {/* 自定義CSS動畫 */}
+      <style>{`
+        @keyframes gridFloat {
+          0% { transform: translate(0, 0); }
+          50% { transform: translate(30px, 30px); }
+          100% { transform: translate(0, 0); }
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+      `}</style>
     </>
   );
 };
