@@ -351,43 +351,11 @@ const Support: React.FC = () => {
           </div>
 
           {/* 承諾區域 */}
-          <motion.div
-            className="bg-gradient-to-r from-yellow-900/20 via-amber-900/20 to-orange-900/20 rounded-2xl p-8 border border-yellow-500/30 relative overflow-hidden"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            whileHover={{ 
-              scale: 1.02,
-              boxShadow: '0 20px 40px rgba(251, 191, 36, 0.2)'
-            }}
-          >
-            {/* 背景動畫效果 */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-yellow-400/5 via-amber-400/5 to-orange-400/5"
-              animate={{
-                x: ['-100%', '100%'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
-            
-            <div className="relative z-10 text-center">
-              <motion.div
-                className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-2xl"
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  rotate: { duration: 10, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 2, repeat: Infinity }
-                }}
-              >
+          <div className="bg-gradient-to-r from-yellow-900/20 via-amber-900/20 to-orange-900/20 rounded-2xl p-8 border border-yellow-500/30">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-2xl">
                 <CheckCircle className="w-8 h-8 text-black" />
-              </motion.div>
+              </div>
               
               <h3 className="text-2xl font-bold text-yellow-400 mb-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
                 {isZhHK ? '我哋嘅承諾' : 'Our Promise'}
@@ -396,7 +364,7 @@ const Support: React.FC = () => {
                 <span>{promiseText}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* 成功提示訊息 */}
