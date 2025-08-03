@@ -780,7 +780,6 @@ const zhTranslations: Translations = {
     'development-team': '開發團隊',
     'marketing-promoter': '市場推廣人員',
     'market-research': '市場研究',
-    'analyst': '分析師',
     'media-company': '媒體公司',
     
     // 商業營銷

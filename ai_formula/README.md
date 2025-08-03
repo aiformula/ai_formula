@@ -6,6 +6,151 @@
 
 **English:** AI Formula is an AI automation solution platform designed specifically for Hong Kong businesses, providing professional AI technology services, educational courses, and business application guides. This project has completed **three major upgrade phases**: structural refactoring, visual unification, and the **latest experience optimization**, now becoming a truly modern, accessible, and high-performance learning platform.
 
+## 🚀 **最新重大更新：Midjourney 課程完整實現** / **Latest Major Update: Complete Midjourney Course Implementation**
+
+### 🎯 **核心成就 / Core Achievements**
+
+#### ✅ **1. 完整 Midjourney 課程系統 / Complete Midjourney Course System**
+- **📚 7章節體系**: 從基礎概念到高級工作流程的完整學習路徑
+- **🎓 47個測驗問題**: 涵蓋所有章節的專業測驗系統
+- **🌍 雙語支持**: 正體中文 (zh-HK) 和英式英語 (en-GB) 完整翻譯
+- **🎨 ChatGPT 主題設計**: 100% 複製 ChatGPT 課程的深色主題和設計風格
+
+#### ✅ **2. 革命性測驗系統優化 / Revolutionary Quiz System Optimization**
+- **❌ 移除「查看解釋」功能**: 簡化用戶界面，提升學習體驗
+- **🎯 智能通過標準**: 7題答對5題即可通過 (71.4%)，更合理的評估標準
+- **⚡ 性能優化**: 移除不必要的UI元素，提升載入速度
+
+#### ✅ **3. CourseThemeTemplate 完全重寫 / Complete CourseThemeTemplate Rewrite**
+- **🎨 100% ChatGPT 設計複製**: 完全匹配 ChatGPT 課程的視覺設計和用戶體驗
+- **🌙 深色主題實現**: `#121212` 背景，`bg-gray-800/50` 半透明卡片
+- **📱 響應式佈局**: 三欄桌面佈局，移動端優化
+- **✨ 動畫系統**: Framer Motion 平滑過渡和懸停效果
+
+### 📊 **詳細技術實現 / Detailed Technical Implementation**
+
+#### **Midjourney 課程結構 / Midjourney Course Structure**
+```typescript
+📖 Midjourney 權威指南：從入門到精通
+├── 第一章：基礎概念與準備 (5單元 + 7題測驗)
+├── 第二章：首次接觸 - 你的第一張 AI 圖像 (5單元 + 7題測驗)  
+├── 第三章：提示詞工程學 (5單元 + 7題測驗)
+├── 第四章：參數的力量 (5單元 + 7題測驗)
+├── 第五章：參考與一致性 (5單元 + 5題測驗)
+├── 第六章：進階編輯與後製 (1單元 + 7題測驗)
+└── 第七章：工作流程與資源管理 (1單元 + 7題測驗)
+
+總計：27個單元 + 47個測驗問題
+```
+
+#### **測驗系統改進 / Quiz System Improvements**
+```typescript
+// CourseQuizTemplate.tsx 核心改進
+const passingScore = Math.max(71, Math.round((5 / Math.max(totalQuestions, 7)) * 100));
+
+// 移除的功能：
+- showExplanation 狀態管理
+- 解釋顯示區域 JSX
+- "查看解釋" 按鈕
+
+// 優化結果：
+✓ 更清潔的UI界面
+✓ 更快的載入速度
+✓ 更直觀的測驗體驗
+```
+
+#### **主題模板革新 / Theme Template Revolution**
+```tsx
+// CourseThemeTemplate.tsx 完全重寫
+<div className="min-h-screen chatgpt-theme-page" style={{ backgroundColor: '#121212' }}>
+  <div className="ai-container pt-40 pb-8">
+    {/* 麵包屑導航 */}
+    <motion.div className="breadcrumb mb-8">
+      
+    {/* 主題標題區 */}
+    <motion.div className="content-section bg-gray-800/50 backdrop-blur-sm border border-white/10">
+      
+    {/* 三欄佈局 */}
+    <div className="grid lg:grid-cols-3 gap-8">
+      {/* 課程單元 */}
+      <div className="lg:col-span-2">
+        <motion.div className="content-section">
+          
+      {/* 右側邊欄 */}
+      <div className="space-y-6">
+```
+
+#### **設計系統統一 / Unified Design System**
+```css
+/* 使用的 CSS 類別 */
+.text-h1, .text-h2, .text-h3        /* 標題層級 */
+.text-unit-title                    /* 單元標題 */
+.text-data                          /* 數據顯示 */
+.text-body, .text-caption          /* 內文和說明文字 */
+.content-section                    /* 內容區塊 */
+.ai-container                       /* 主容器 */
+.breadcrumb-item                    /* 麵包屑導航 */
+```
+
+### 🎨 **視覺設計對比 / Visual Design Comparison**
+
+#### **之前 vs 現在 / Before vs Now**
+```diff
+- 溫暖金色主題 (#c2b280)          + 深色藍綠主題 (#121212)
+- 淺色卡片背景                    + 半透明深色卡片 (bg-gray-800/50)
+- 基本佈局結構                    + ChatGPT 完全複製佈局
+- 簡單顏色配置                    + 完整設計系統整合
+- 單一主題風格                    + 響應式動畫系統
+```
+
+#### **色彩系統更新 / Color System Update**
+```typescript
+// courseRegistry.ts 更新
+'midjourney': {
+  themeColor: '#10a37f',     // ChatGPT 綠色
+  accentColor: '#059669',    // 深綠色
+  baseRoute: '/courses/midjourney-course',
+  cssPrefix: 'midjourney'
+}
+
+// CourseThemeTemplate.tsx 動態樣式
+primary: 'from-blue-900 to-slate-800',
+accent: 'text-green-500',
+button: 'bg-green-600 hover:bg-green-700 text-white',
+card: 'bg-slate-800 border-slate-700',
+text: 'text-white'
+```
+
+### 📈 **性能和用戶體驗提升 / Performance and UX Improvements**
+
+#### **測驗系統性能 / Quiz System Performance**
+- ⚡ **載入速度提升**: 移除不必要的解釋功能
+- 🎯 **智能評分**: 5/7 題通過標準更符合學習曲線
+- 📱 **移動端優化**: 更好的觸控體驗
+
+#### **主題頁面性能 / Theme Page Performance**
+- 🚀 **GPU 加速**: `transform3d` 硬件加速動畫
+- 💾 **記憶體優化**: `useCallback` 和 `useMemo` 優化
+- 🎨 **視覺流暢度**: 統一的過渡時間和緩動函數
+
+### 🔗 **課程訪問路徑 / Course Access Paths**
+```bash
+# Midjourney 課程完整路由
+/courses/midjourney-course/outline           # 課程大綱
+/courses/midjourney-course/learning          # 學習總覽  
+/courses/midjourney-course/theme/1           # 第一章
+/courses/midjourney-course/theme/1/unit/1    # 第一單元
+/courses/midjourney-course/theme/1/quiz      # 第一章測驗
+```
+
+### 🎯 **下一步發展 / Next Steps**
+1. **課程內容擴展**: 添加更多 AI 工具課程 (Claude, Stable Diffusion)
+2. **進階功能**: 學習筆記、書籤系統、學習路徑建議
+3. **社群功能**: 討論區、作品分享、同儕互評
+4. **認證系統**: 完課證書、技能徽章、專業認證
+
+---
+
 ## 🏢 **企業顧問服務頁面** / **Enterprise Consulting Services**
 
 ### 📍 **頁面訪問 / Page Access**
@@ -1302,3 +1447,148 @@ interface ArticleSection {
 - ✅ **移動響應**: 各尺寸設備語言正確
 
 ---
+
+## 🌍 Language Support / 語言支援
+
+本專案支援雙語切換（繁體中文 / UK English），包含：
+
+### ✅ 已完成語言切換的功能
+- **Blog 系統** - 完整支援雙語內容，包括：
+  - 文章標題、摘要、內容
+  - 日期格式（中文：2025年5月15日 / 英文：15 May 2025）
+  - 分類、標籤、閱讀時間
+  - 課程推薦區域
+  - 相關文章區域
+
+- **首頁組件** - 所有主要區域支援語言切換：
+  - 精選 AI 課程區域
+  - 課程卡片（標題、描述、內容列表、價格）
+  - 導航選單
+  - 頁腳資訊
+
+- **課程頁面** - 完整課程系統：
+  - 課程大綱、學習頁面、單元頁面
+  - 進度追蹤、測驗系統
+  - 課程推薦
+
+### 🎯 UK English 標準
+所有英文內容均採用 **英式英語 (UK English)** 標準：
+- **拼寫**：specialising, organisation, colour, centre, realise
+- **日期格式**：15 May 2025, 20 June 2025
+- **例子用法**：e.g., for example
+- **貨幣**：英式表達方式
+
+### 🔧 語言切換實現
+- 使用 `useLanguage()` context hook
+- 支援 `zh-HK` (繁體中文) 和 `en` (英文) 切換
+- 自動根據選擇語言顯示對應內容
+- 所有組件均支援 `isZhHK` 條件渲染
+
+## 📱 最近修復
+
+### Blog 系統修復 (2024)
+- ✅ 修復 `BlogPost.tsx` 的 `renderSections` 函數，正確根據語言顯示內容
+- ✅ 所有 blog 文章內容支援 `contentEn` 和 `itemsEn` 欄位
+- ✅ 批量轉換所有英文內容為 UK English 標準
+- ✅ 修復日期格式為英式標準
+
+### 首頁組件修復 (2024)
+- ✅ 修復 `FeaturedCoursesSection.tsx` 語言切換功能
+- ✅ 添加所有課程內容的英文版本 (`titleEn`, `descriptionEn`, `contentEn` 等)
+- ✅ 修復課程卡片的語言條件渲染
+- ✅ 統一標籤和按鈕的雙語支援
+
+### 課程推薦修復 (2024)
+- ✅ 修復 Perplexity 課程卡片文字顏色對比度問題
+- ✅ 為深色主題課程提供智能文字顏色調整
+- ✅ 修復 blog 頁面課程推薦區域背景和文字顏色
+
+## 🚀 開發指南
+
+### 添加新的雙語內容
+1. **定義資料結構**：
+```typescript
+interface Content {
+  title: string;
+  titleEn: string;
+  description: string;
+  descriptionEn: string;
+  // ... 其他欄位
+}
+```
+
+2. **組件中使用**：
+```typescript
+const { language } = useLanguage();
+const isZhHK = language === 'zh-HK';
+
+return (
+  <div>
+    <h1>{isZhHK ? content.title : content.titleEn}</h1>
+    <p>{isZhHK ? content.description : content.descriptionEn}</p>
+  </div>
+);
+```
+
+3. **英文內容標準**：
+- 使用英式拼寫 (UK English)
+- 日期格式：`DD Month YYYY` (例如：15 May 2025)
+- 避免美式拼寫 (-ize 改為 -ise, -or 改為 -our)
+
+## 📝 內容管理
+
+### Blog 文章
+- 文章內容存放於 `src/data/blog/articleContent.ts`
+- 文章元數據存放於 `src/data/blog/blogPosts.ts`
+- 所有內容均需提供中英文版本
+
+### 課程資料
+- 課程資料存放於 `src/data/courses/`
+- 支援完整的雙語課程系統
+- 包含進度追蹤、測驗等功能
+
+## 🔍 測試語言切換
+
+1. 啟動開發伺服器：`npm run dev`
+2. 點擊右上角語言切換按鈕 (EN/中文)
+3. 驗證以下頁面的語言切換：
+   - 首頁 (`/`)
+   - 課程頁面 (`/courses`)
+   - Blog 頁面 (`/blog`, `/blog/1`, `/blog/2` 等)
+   - 課程詳情頁面
+
+## 🌟 技術架構
+
+- **前端框架**: React + TypeScript + Vite
+- **樣式**: Tailwind CSS + Shadcn UI
+- **動畫**: Framer Motion
+- **路由**: React Router
+- **狀態管理**: React Context (Language, Progress)
+- **部署**: Vercel
+
+## 📦 安裝與使用
+
+```bash
+# 安裝依賴
+npm install
+
+# 開發模式
+npm run dev
+
+# 建置
+npm run build
+
+# 預覽建置結果
+npm run preview
+```
+
+## 🤝 貢獻指南
+
+1. 新增功能時請確保支援雙語
+2. 英文內容請使用 UK English 標準
+3. 測試語言切換功能正常運作
+4. 更新相關文檔
+
+---
+
+**AI Formula** - 專為香港中小企提供 AI 自動化解決方案

@@ -185,6 +185,8 @@ export const useCourseData = (isZhHK: boolean) => {
         navigate('/perplexity-tools/overview');
       } else if (product.category === 'chatgpt-complete-course') {
         navigate('/courses/chatgpt-complete-course');
+      } else if (product.category === 'perplexity-complete-course') {
+        navigate('/courses/perplexity-complete-course');
       } else {
         navigate(`/course/${product.category}`);
       }

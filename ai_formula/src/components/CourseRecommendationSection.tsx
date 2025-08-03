@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import DynamicCourseCard from '@/components/ui/dynamic-course-card';
 
 interface CourseData {
@@ -10,9 +11,12 @@ interface CourseData {
   duration: string;
   price: string;
   themeColor: string;
+  studentCount: number; // 新增學員數量
 }
 
 const CourseRecommendationSection: React.FC = () => {
+  const navigate = useNavigate();
+
   // AI 課程數據源
   const aiCourses: CourseData[] = [
     {
@@ -22,7 +26,18 @@ const CourseRecommendationSection: React.FC = () => {
       level: '適合所有級別',
       duration: '4 hours comprehensive training 小時',
       price: '免費',
-      themeColor: '#10a37f' // ChatGPT 綠色
+      themeColor: '#10a37f', // ChatGPT 綠色
+      studentCount: 163
+    },
+    {
+      id: 'perplexity-01',
+      title: 'Perplexity AI 終極大師課程',
+      rating: '4.8/5',
+      level: '適合所有級別',
+      duration: '8 hours comprehensive training 小時',
+      price: '免費',
+      themeColor: '#1a1a1a', // Perplexity 黑色主題
+      studentCount: 280
     },
     {
       id: 'midjourney-01',
@@ -31,7 +46,8 @@ const CourseRecommendationSection: React.FC = () => {
       level: '適合初學者',
       duration: '6 hours comprehensive training 小時',
       price: '付費',
-      themeColor: '#8A2BE2' // Midjourney 紫色
+      themeColor: '#8A2BE2', // Midjourney 紫色
+      studentCount: 150
     },
     {
       id: 'claude-01',
@@ -40,14 +56,23 @@ const CourseRecommendationSection: React.FC = () => {
       level: '適合開發者',
       duration: '8 hours comprehensive training 小時',
       price: '免費',
-      themeColor: '#FF6B35' // Claude 橙色
+      themeColor: '#FF6B35', // Claude 橙色
+      studentCount: 95
     }
   ];
 
   const handleStartCourse = (courseName: string) => {
     console.log(`開始課程: ${courseName}`);
-    // 這裡可以添加實際的導航邏輯
-    // 例如：navigate(`/courses/${courseId}`)
+    
+    // 根據課程名稱導航到對應的課程頁面
+    if (courseName.includes('ChatGPT')) {
+      navigate('/courses/chatgpt-complete-course/outline');
+    } else if (courseName.includes('Perplexity')) {
+      navigate('/courses/perplexity-complete-course/outline');
+    } else {
+      // 對於其他課程，導航到課程列表頁
+      navigate('/courses');
+    }
   };
 
   return (
@@ -85,6 +110,7 @@ const CourseRecommendationSection: React.FC = () => {
                 price={course.price === '免費' ? 0 : 899}
                 isFree={course.price === '免費'}
                 themeColor={course.themeColor}
+                studentCount={course.studentCount}
                 tags={[
                   { 
                     text: course.price === '免費' ? '免費' : '精選', 

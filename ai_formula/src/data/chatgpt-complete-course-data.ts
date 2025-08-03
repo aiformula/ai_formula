@@ -1586,23 +1586,33 @@ OpenAI會收集用戶的對話內容用於模型改進，除非用戶主動選�
 const faqData = [
   {
     question: "這個課程適合完全沒有AI經驗的新手嗎？",
-    answer: "絕對適合！本課程從最基礎的概念開始，逐步深入到高級應用。我們會詳細解釋每個專業術語，並提供大量實戰案例，確保零基礎學員也能輕鬆跟上。"
+    questionEn: "Is this course suitable for complete beginners with no AI experience?",
+    answer: "絕對適合！本課程從最基礎的概念開始，逐步深入到高級應用。我們會詳細解釋每個專業術語，並提供大量實戰案例，確保零基礎學員也能輕鬆跟上。",
+    answerEn: "Absolutely! This course starts from the most fundamental concepts and gradually progresses to advanced applications. We explain every technical term in detail and provide numerous practical examples to ensure that even complete beginners can follow along easily."
   },
   {
     question: "學完這個課程後，我能達到什麼水平？",
-    answer: "學完後，您將能夠：1) 深度理解ChatGPT的技術原理；2) 熟練運用各種高級提示工程技巧；3) 創建和管理自訂GPT；4) 在工作中有效應用AI工具提升效率；5) 具備AI倫理和隱私保護意識。"
+    questionEn: "What level will I achieve after completing this course?",
+    answer: "學完後，您將能夠：1) 深度理解ChatGPT的技術原理；2) 熟練運用各種高級提示工程技巧；3) 創建和管理自訂GPT；4) 在工作中有效應用AI工具提升效率；5) 具備AI倫理和隱私保護意識。",
+    answerEn: "Upon completion, you will be able to: 1) Deeply understand ChatGPT's technical principles; 2) Proficiently apply various advanced prompt engineering techniques; 3) Create and manage custom GPTs; 4) Effectively apply AI tools in your work to enhance efficiency; 5) Possess AI ethics and privacy protection awareness."
   },
   {
     question: "課程內容會定期更新嗎？",
-    answer: "是的！AI技術發展迅速，我們會密切關注OpenAI的更新，及時調整課程內容。當有重大功能更新時（如新模型發布、新功能上線），我們會免費提供補充內容。"
+    questionEn: "Will the course content be regularly updated?",
+    answer: "是的！AI技術發展迅速，我們會密切關注OpenAI的更新，及時調整課程內容。當有重大功能更新時（如新模型發布、新功能上線），我們會免費提供補充內容。",
+    answerEn: "Yes! AI technology develops rapidly, and we closely monitor OpenAI's updates to adjust course content promptly. When there are major functional updates (such as new model releases or new features going live), we will provide supplementary content free of charge."
   },
   {
     question: "我需要付費訂閱ChatGPT Plus才能學習嗎？",
-    answer: "不是必需的。課程涵蓋免費版和付費版的功能，我們會明確標註哪些是付費功能。不過，如果您希望實踐所有高級功能（如自訂GPT、高級數據分析等），建議考慮訂閱Plus版本。"
+    questionEn: "Do I need to pay for a ChatGPT Plus subscription to study this course?",
+    answer: "不是必需的。課程涵蓋免費版和付費版的功能，我們會明確標註哪些是付費功能。不過，如果您希望實踐所有高級功能（如自訂GPT、高級數據分析等），建議考慮訂閱Plus版本。",
+    answerEn: "It's not necessary. The course covers both free and paid version features, and we clearly mark which are paid features. However, if you wish to practise all advanced features (such as custom GPTs, advanced data analysis, etc.), we recommend considering a Plus subscription."
   },
   {
     question: "學習這個課程需要多長時間？",
-    answer: "課程總時長約15小時，建議按照章節順序學習。如果您每天投入1-2小時，大約1-2週可以完成。重要的是理解和實踐，而不是速度。"
+    questionEn: "How long does it take to complete this course?",
+    answer: "課程總時長約15小時，建議按照章節順序學習。如果您每天投入1-2小時，大約1-2週可以完成。重要的是理解和實踐，而不是速度。",
+    answerEn: "The total course duration is approximately 15 hours, and we recommend studying in chapter order. If you dedicate 1-2 hours per day, you can complete it in about 1-2 weeks. What's important is understanding and practice, not speed."
   }
 ];
 
@@ -1610,13 +1620,19 @@ const faqData = [
 export const chatGPTCourseData = {
   courseInfo: {
     badge: "免費完整課程",
+    badgeEn: "Free Complete Course",
     title: "ChatGPT 完整教學實戰",
+    titleEn: "ChatGPT Complete Practical Course",
     subtitle: "從基礎概念到高級應用，全面掌握ChatGPT的核心技術與實戰技巧，成為AI時代的數位專家。",
+    subtitleEn: "From fundamental concepts to advanced applications, comprehensively master ChatGPT's core technologies and practical techniques to become a digital expert in the AI era.",
     instructor: "AI Formula Team",
+    instructorEn: "AI Formula Team",
     instructorTitle: "AI 應用專家與提示工程師",
+    instructorTitleEn: "AI Application Specialists and Prompt Engineers",
     rating: 4.9,
     students: 50000,
-    duration: "15+ 小時"
+    duration: "15+ 小時",
+    durationEn: "15+ Hours"
   },
   courseModules,
   faqData,

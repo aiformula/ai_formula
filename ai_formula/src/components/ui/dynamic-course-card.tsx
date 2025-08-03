@@ -19,6 +19,7 @@ interface CourseCardProps {
   isFree?: boolean;
   tags?: CourseTag[];
   themeColor?: string;
+  studentCount?: number; // 新增學員數量
   onStartCourse?: () => void;
   className?: string;
 }
@@ -32,9 +33,41 @@ const DynamicCourseCard: React.FC<CourseCardProps> = ({
   isFree = false,
   tags = [],
   themeColor = '#FBBF24',
+  studentCount = 30, // 預設值
   onStartCourse,
   className = ''
 }) => {
+  // 根據主題色決定文字顏色
+  const getTextColorsByTheme = (themeColor: string) => {
+    // 如果是 Perplexity 的黑色主題，使用白色文字
+    if (themeColor === '#1a1a1a') {
+      return {
+        primary: 'text-white',
+        secondary: 'text-gray-100',
+        description: 'text-gray-100'
+      };
+    }
+    // 其他主題使用原來的顏色
+    return {
+      primary: 'text-white',
+      secondary: 'text-gray-200',
+      description: 'text-gray-200'
+    };
+  };
+
+  // 根據主題色決定卡片背景
+  const getCardBackground = (themeColor: string) => {
+    // 如果是 Perplexity 的黑色主題，使用更亮的背景確保文字可見
+    if (themeColor === '#1a1a1a') {
+      return 'bg-gray-800/80 border border-gray-600';
+    }
+    // 其他主題使用原來的背景
+    return 'bg-gray-900/50 border border-gray-800';
+  };
+
+  const textColors = getTextColorsByTheme(themeColor);
+  const cardBackground = getCardBackground(themeColor);
+
   // 標籤類型對應的顏色和圖標
   const getTagStyle = (type: string) => {
     switch (type) {
@@ -62,7 +95,7 @@ const DynamicCourseCard: React.FC<CourseCardProps> = ({
   return (
     <div className={`relative w-full max-w-[320px] mx-auto ${className}`}>
       <motion.div
-        className="bg-gray-900/50 border border-gray-800 rounded-lg overflow-hidden h-full hover:border-blue-500 transition-colors"
+        className={`${cardBackground} rounded-lg overflow-hidden h-full hover:border-blue-500 transition-colors`}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -100,12 +133,12 @@ const DynamicCourseCard: React.FC<CourseCardProps> = ({
           </div>
           
           {/* 課程標題 */}
-          <h3 className="text-xl font-bold text-white mb-2 leading-tight">
+          <h3 className={`text-xl font-bold ${textColors.primary} mb-2 leading-tight`}>
             {courseName}
           </h3>
           
           {/* 課程描述 */}
-          <p className="text-gray-200 text-sm mb-4">
+          <p className={`${textColors.description} text-sm mb-4`}>
             掌握 ChatGPT 的完整應用，從日常辦公到創意專案，全面提升您的數位能力。
           </p>
         </div>
@@ -114,7 +147,7 @@ const DynamicCourseCard: React.FC<CourseCardProps> = ({
         <div className="px-6 pb-6">
           <div className="space-y-4">
             {/* 核心資訊區域 */}
-            <div className="flex items-center justify-between text-sm text-gray-200">
+            <div className={`flex items-center justify-between text-sm ${textColors.secondary}`}>
               <div className="flex items-center gap-4">
                 {/* 時長 */}
                 <div className="flex items-center gap-1">
@@ -125,23 +158,23 @@ const DynamicCourseCard: React.FC<CourseCardProps> = ({
                 {/* 學員人數 */}
                 <div className="flex items-center gap-1">
                   <Users className="h-4 w-4 text-gray-300" fill="currentColor" />
-                  <span>30 學員</span>
+                  <span>{studentCount} 學員</span>
                 </div>
               </div>
               
               {/* 評分 */}
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                <span className="text-white">{rating}</span>
+                <span className={textColors.primary}>{rating}</span>
               </div>
             </div>
 
             {/* 課程包含內容 */}
             <div>
-              <h4 className="font-semibold mb-2 text-white">
+              <h4 className={`font-semibold mb-2 ${textColors.primary}`}>
                 課程包含：
               </h4>
-              <ul className="text-sm text-gray-200 space-y-1">
+              <ul className={`text-sm ${textColors.secondary} space-y-1`}>
                 {includesList.map((item, idx) => (
                   <li key={idx} className="flex items-center gap-2">
                     <Play className="h-3 w-3 text-blue-400" fill="currentColor" />
@@ -156,10 +189,10 @@ const DynamicCourseCard: React.FC<CourseCardProps> = ({
               {/* 價格顯示 */}
               <div className="mb-4">
                 {isFree ? (
-                  <div className="text-white text-sm">免費</div>
+                  <div className={`${textColors.primary} text-sm`}>免費</div>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-white">
+                    <div className={`text-2xl font-bold ${textColors.primary}`}>
                       HK${price}
                     </div>
                   </div>

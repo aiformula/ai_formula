@@ -358,3 +358,316 @@
     height: 14px;
   }
 } 
+
+/* ===== ChatGPT Learning 頁面專用樣式 ===== */
+
+/* 頁面基礎樣式 */
+.chatgpt-learning-page {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* 返回按鈕 */
+.breadcrumb-item {
+  @apply text-white/70 hover:text-white transition-all duration-200;
+}
+
+/* 標題樣式 */
+.text-h1 {
+  @apply text-2xl font-bold text-white;
+}
+
+.text-status {
+  @apply text-gray-300 text-sm;
+}
+
+.text-body {
+  @apply text-gray-400 text-sm;
+}
+
+/* 統計卡片樣式 */
+.stat-card-header {
+  @apply flex items-center justify-center text-gray-400 text-xs font-medium mb-1;
+}
+
+.text-stat-label {
+  @apply text-xs font-medium;
+}
+
+.text-stat-value {
+  @apply text-xl font-bold text-white;
+}
+
+.text-stat-sublabel {
+  @apply text-xs text-gray-500;
+}
+
+/* 按鈕樣式 */
+.cta-button {
+  @apply w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+}
+
+.secondary-button {
+  @apply w-full border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 py-3 px-6 rounded-lg transition-all duration-200;
+}
+
+/* 進度條樣式 */
+.progress-bar {
+  @apply h-2 bg-gray-700 rounded-full overflow-hidden;
+}
+
+.progress-bar .progress-fill {
+  @apply bg-yellow-500 h-full rounded-full;
+}
+
+.text-progress-label {
+  @apply text-sm text-gray-300;
+}
+
+.text-progress-value {
+  @apply text-sm text-white font-medium;
+}
+
+/* 章節標題 */
+.section-header {
+  @apply flex items-center;
+}
+
+.section-title {
+  @apply text-xl font-bold text-white;
+}
+
+/* 課程主題卡片 */
+.course-theme-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl backdrop-blur-sm;
+}
+
+.theme-header {
+  @apply p-6;
+}
+
+.theme-number {
+  @apply w-12 h-12 bg-gray-700 text-white rounded-full flex items-center justify-center font-bold text-lg;
+}
+
+.theme-title {
+  @apply text-lg font-semibold text-white mb-1;
+}
+
+.theme-description {
+  @apply text-gray-400 text-sm;
+}
+
+.theme-progress-container {
+  @apply flex items-center space-x-3;
+}
+
+.theme-progress-text {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.theme-chevron {
+  @apply w-5 h-5 text-gray-400 transition-transform duration-200;
+}
+
+.theme-chevron.expanded {
+  @apply rotate-180;
+}
+
+/* 主題內容 */
+.theme-content {
+  @apply border-t border-gray-700 px-6 pb-6;
+}
+
+.theme-progress-bar {
+  @apply pt-4;
+}
+
+.progress-label-row {
+  @apply flex items-center justify-between mb-2;
+}
+
+.progress-main-label {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.progress-fraction {
+  @apply text-xs text-gray-500;
+}
+
+.progress-bar-green {
+  @apply h-2 bg-gray-700 rounded-full overflow-hidden;
+}
+
+.progress-bar-green .progress-fill {
+  @apply bg-green-500 h-full rounded-full;
+}
+
+/* 單元網格 - 修正為列表格式 */
+.units-grid {
+  @apply space-y-2;
+}
+
+.lesson-item {
+  @apply block;
+}
+
+.lesson-completed {
+  @apply border-green-400/30 bg-green-400/5;
+}
+
+.lesson-current {
+  @apply border-gray-500/50 bg-gray-800/50;
+}
+
+.lesson-todo {
+  @apply border-gray-600/30 bg-gray-700/20;
+}
+
+.lesson-locked {
+  @apply border-gray-600 bg-gray-800/30 opacity-60;
+}
+
+/* 單元卡片 */
+.unit-card {
+  @apply bg-gray-900/50 border border-gray-600 rounded-lg p-4 flex items-center space-x-3 cursor-pointer transition-all duration-200 hover:bg-gray-800/50 hover:border-gray-500;
+}
+
+.unit-card.completed {
+  @apply bg-green-900/20 border-green-600;
+}
+
+.unit-card.current {
+  @apply bg-blue-900/20 border-blue-600;
+}
+
+.unit-card.locked {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.unit-number {
+  @apply w-8 h-8 bg-gray-700 text-white rounded-full flex items-center justify-center text-xs font-medium;
+}
+
+.unit-content {
+  @apply flex-1 min-w-0;
+}
+
+.unit-title {
+  @apply text-sm font-medium text-white mb-1 truncate;
+}
+
+.unit-meta {
+  @apply flex items-center space-x-2 text-xs text-gray-400;
+}
+
+/* 右側邊欄 */
+.achievement-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm;
+}
+
+.achievement-header {
+  @apply flex items-center mb-4;
+}
+
+.achievement-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.achievement-grid {
+  @apply space-y-4;
+}
+
+.achievement-item {
+  @apply flex items-center space-x-3;
+}
+
+.achievement-icon {
+  @apply w-12 h-12 rounded-full flex items-center justify-center;
+}
+
+.achievement-icon.gold {
+  @apply bg-yellow-500/20 text-yellow-500;
+}
+
+.achievement-icon.silver {
+  @apply bg-gray-500/20 text-gray-400;
+}
+
+.achievement-info {
+  @apply flex-1;
+}
+
+.achievement-name {
+  @apply text-sm font-medium text-white;
+}
+
+.achievement-desc {
+  @apply text-xs text-gray-400;
+}
+
+/* 技能卡片 */
+.skills-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm;
+}
+
+.skills-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.skills-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.skills-percentage {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.skills-list {
+  @apply space-y-3;
+}
+
+.skill-item {
+  @apply space-y-2;
+}
+
+.skill-info {
+  @apply flex items-center justify-between;
+}
+
+.skill-name {
+  @apply text-sm text-gray-300;
+}
+
+.skill-level {
+  @apply text-xs text-gray-500;
+}
+
+.skill-progress {
+  @apply h-1.5 bg-gray-700 rounded-full overflow-hidden;
+}
+
+.skill-progress .progress-fill {
+  @apply bg-green-500 h-full rounded-full;
+}
+
+/* 學習助手卡片 */
+.assistant-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm;
+}
+
+.assistant-header {
+  @apply flex items-center mb-4;
+}
+
+.assistant-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.assistant-content {
+  @apply space-y-3;
+}
+
+.assistant-text {
+  @apply text-sm text-gray-300 leading-relaxed;
+} 

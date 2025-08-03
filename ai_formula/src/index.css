@@ -2515,3 +2515,35 @@
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* Perplexity Course Specific Overrides */
+.perplexity-tab-active {
+  background-color: #374151 !important; /* gray-700 */
+  color: white !important;
+}
+
+.perplexity-tab-active:hover {
+  background-color: #1f2937 !important; /* gray-800 */
+}
+
+.perplexity-button {
+  background-color: #374151 !important; /* gray-700 */
+  color: white !important;
+}
+
+.perplexity-button:hover {
+  background-color: #1f2937 !important; /* gray-800 */
+}
+
+/* Force override any conflicting styles */
+[data-perplexity="true"] .bg-green-500,
+[data-perplexity="true"] .bg-green-600,
+[data-perplexity="true"] .bg-green-700 {
+  background-color: #374151 !important;
+}
+
+[data-perplexity="true"] .hover\\:bg-green-500:hover,
+[data-perplexity="true"] .hover\\:bg-green-600:hover,
+[data-perplexity="true"] .hover\\:bg-green-700:hover {
+  background-color: #1f2937 !important;
+}

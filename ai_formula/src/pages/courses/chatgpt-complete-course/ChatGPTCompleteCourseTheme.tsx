@@ -508,7 +508,7 @@ const ChatGPTCompleteCourseTheme: React.FC = () => {
     <div className="min-h-screen chatgpt-theme-page" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="ai-container py-8">
+      <div className="ai-container pt-40 pb-8">
         {/* Breadcrumb */}
         <motion.div 
           className="breadcrumb mb-8"
@@ -701,36 +701,68 @@ const ChatGPTCompleteCourseTheme: React.FC = () => {
 
           {/* Right Column - Tips & Progress */}
           <div className="space-y-6">
-            {/* Tips Section - IMPROVED */}
+            {/* Tips Section - CLEAN TEXT-FOCUSED DESIGN */}
             <motion.div 
-              className="sidebar-container bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6"
+              className="bg-gradient-to-br from-gray-800/70 to-gray-900/50 backdrop-blur-lg border border-gray-700/60 rounded-3xl p-8 shadow-2xl"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <div className="sidebar-header mb-6">
-                <h3 className="text-h3 flex items-center">
-                  <Lightbulb className="w-5 h-5 mr-2 text-yellow-400" />
-                  {isZhHK ? '本章小提示 (Note & Tips)' : 'Chapter Tips (Note & Tips)'}
-                </h3>
-              </div>
-              <div className="sidebar-content">
-                <div className="space-y-4">
-                  {currentTheme.tips.map((tip, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex items-start space-x-3 p-4 bg-gray-800/50 rounded-lg border border-gray-600/30"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
-                    >
-                                              <div className="w-6 h-6 bg-gray-600/50 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                          <span className="text-gray-300 text-caption font-bold">{index + 1}</span>
-                        </div>
-                      <p className="text-body leading-relaxed">{tip}</p>
-                    </motion.div>
-                  ))}
+              {/* Enhanced Header */}
+              <div className="flex items-center mb-10">
+                <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mr-5 shadow-xl">
+                  <Lightbulb className="w-7 h-7 text-white" />
                 </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {isZhHK ? '學習要訣' : 'Key Learning Points'}
+                  </h3>
+                  <p className="text-base text-gray-300 font-medium">
+                    {isZhHK ? '本章核心提示' : 'Essential chapter tips'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Clean Text-Based Tips */}
+              <div className="space-y-6">
+                {currentTheme.tips.map((tip, index) => (
+                  <motion.div
+                    key={index}
+                    className="group relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + index * 0.15 }}
+                  >
+                    {/* Hover Glow Effect */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                    
+                    {/* Clean Card Design */}
+                    <div className="relative bg-gradient-to-br from-gray-800/60 to-gray-900/40 border border-gray-600/30 rounded-2xl p-6 hover:border-yellow-400/40 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+                      {/* Simple Left-Aligned Content */}
+                      <div className="flex items-start">
+                        {/* Minimal Bullet Point */}
+                        <div className="w-2 h-2 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                        
+                        {/* Clean Text Content */}
+                        <div className="flex-1">
+                          <p className="text-gray-100 text-lg leading-relaxed font-medium text-left">
+                            {tip}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Subtle Left Border Accent */}
+                      <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-yellow-400/0 via-yellow-400/40 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-r-full"></div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Simple Bottom Section */}
+              <div className="mt-10 pt-6 border-t border-gray-700/40">
+                <p className="text-center text-gray-400 text-sm font-medium">
+                  {isZhHK ? '掌握這些要點，學習更有效率' : 'Master these points for better learning'}
+                </p>
               </div>
             </motion.div>
 

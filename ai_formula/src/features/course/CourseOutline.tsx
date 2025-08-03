@@ -54,14 +54,16 @@ import {
 
 // 類型定義
 interface CourseInfo {
-  badge: string;
+  badge?: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
+  description?: string; // 新增字段
   instructor: string;
   instructorTitle: string;
   rating?: number;
   students?: number;
   duration?: string;
+  lastUpdated?: string;
 }
 
 interface CourseStat {
@@ -205,7 +207,59 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
 
   // 根據免費/付費課程和導師名稱定義顏色主題
   const getInstructorTheme = () => {
+    // Debug current course info
+    console.log('CourseOutline Debug:', {
+      title: courseInfo?.title,
+      subtitle: courseInfo?.subtitle,
+      instructor: courseInfo?.instructor,
+      pathname: window.location.pathname,
+      isFree: isFree
+    });
+    
+    // Perplexity 課程檢測 - 暗黑主題（最高優先級，必須非常具體）
+    const isPerplexityCourse = 
+      (courseInfo?.title && courseInfo.title.includes('Perplexity')) ||
+      (courseInfo?.subtitle && courseInfo.subtitle.includes('Perplexity')) ||
+      window.location.pathname.includes('perplexity-complete-course');
+    
+    console.log('Perplexity Detection Result:', isPerplexityCourse);
+    
+    // 只有 Perplexity 課程使用暗黑主題
+    if (isPerplexityCourse) {
+      console.log('Using Perplexity Dark Theme');
+      return {
+        gradient: 'from-[#121212] to-[#1F1F1F]',           // 深灰到炭灰的漸變
+        primary: 'text-white',                             // 主要文字用白色
+        secondary: 'bg-[#1F1F1F] hover:bg-[#2A2A2A]',     // 點綴色：深炭灰 + hover稍亮
+        accent: 'text-white border-[#1F1F1F]',             // 邊框和強調文字用白色
+        badge: 'bg-[#1F1F1F] text-white',                  // 藥丸形標籤：深炭灰背景+白字
+        numberCircle: 'bg-[#1F1F1F] text-white'           // 數字圓圈：深炭灰背景+白字
+      };
+    }
+    
+    // Midjourney 課程檢測 - 白色主題
+    const isMidjourneyCourse = 
+      (courseInfo?.title && courseInfo.title.includes('Midjourney')) ||
+      (courseInfo?.subtitle && courseInfo.subtitle.includes('Midjourney')) ||
+      window.location.pathname.includes('midjourney-course');
+    
+    console.log('Midjourney Detection Result:', isMidjourneyCourse);
+    
+    if (isMidjourneyCourse) {
+      console.log('Using Midjourney Warm Gold Theme');
+      return {
+        gradient: 'from-[#c2b280] to-[#d4c4a0]',            // 暖金色到淺金色的漸變
+        primary: 'text-[#8b7355]',                           // 主要文字用深棕金色
+        secondary: 'bg-[#c2b280] hover:bg-[#d4c4a0] border border-[#a0956b]', // 點綴色：暖金色背景 + 邊框
+        accent: 'text-[#8b7355] border-[#8b7355]',           // 邊框和強調文字用深棕金色
+        badge: 'bg-[#8b7355] text-white',                    // 藥丸形標籤：深棕金色背景+白字
+        numberCircle: 'bg-[#8b7355] text-white'             // 數字圓圈：深棕金色背景+白字
+      };
+    }
+    
+    // ChatGPT 和其他免費課程使用綠色主題
     if (isFree) {
+      console.log('Using Free Course Theme (Green)');
       return {
         gradient: 'from-[#10a37f] to-[#0d8a69]',
         primary: 'text-[#10a37f]',
@@ -215,6 +269,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
     }
     
     // 付費課程可以根據講師名稱或其他條件設定不同主題
+    console.log('Using Paid Course Theme');
     switch (courseInfo.instructor.toLowerCase()) {
       case 'kenneth':
         return {
@@ -323,9 +378,18 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "費用" : "Price"}</span>
                           <span className={`font-semibold ${instructorTheme.primary}`}>
-                            {isFree ? (isZhHK ? "完全免費" : "Completely Free") : pricingInfo.price}
+                            {isFree ? (isZhHK ? "完全免費" : "Completely Free") : (pricingInfo?.price || (isZhHK ? "請聯繫我們" : "Contact Us"))}
                           </span>
                         </div>
+                        {courseInfo.lastUpdated && (
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-300 flex items-center gap-2">
+                              <Calendar className="w-4 h-4" />
+                              {isZhHK ? "最後更新" : "Last Updated"}
+                            </span>
+                            <span className="text-white font-semibold">{courseInfo.lastUpdated}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -571,7 +635,11 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4">
-                            <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center text-white font-bold`}>
+                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold ${
+                              courseInfo?.title?.includes('Perplexity')
+                                ? 'bg-[#1F1F1F]' // Perplexity暗黑主題：深炭灰背景
+                                : `bg-gradient-to-br ${instructorTheme.gradient}` // 其他課程使用漸變
+                            }`}>
                               {index + 1}
                             </div>
                             <div>
@@ -756,7 +824,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                 </h3>
                 
                 <div className="text-sm opacity-90">
-                  {courseInfo.subtitle.slice(0, 120)}...
+                  {courseInfo.subtitle ? courseInfo.subtitle.slice(0, 120) + '...' : (courseInfo.description ? courseInfo.description.slice(0, 120) + '...' : '')}
                 </div>
               </CardContent>
             </Card>
@@ -778,15 +846,19 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                 <div className="space-y-3">
                   <div className={`text-center p-4 ${isFree ? 'bg-gray-700 border border-gray-600' : instructorTheme.secondary} rounded-lg`}>
                     <div className="text-2xl font-bold text-white mb-1">
-                      {isFree ? (isZhHK ? "完全免費" : "Completely Free") : pricingInfo.price}
+                      {isFree ? (isZhHK ? "完全免費" : "Completely Free") : (pricingInfo?.price || (isZhHK ? "請聯繫我們" : "Contact Us"))}
                     </div>
                     <div className="text-sm text-white/80">
-                      {isFree ? (isZhHK ? "永久觀看權限" : "Lifetime Access") : pricingInfo.aiInOne}
+                      {isFree ? (isZhHK ? "永久觀看權限" : "Lifetime Access") : (pricingInfo?.aiInOne || (isZhHK ? "專業版權限" : "Professional Access"))}
                     </div>
                   </div>
 
                   <Button 
-                    className={`w-full ${isFree ? 'bg-[#10a37f] hover:bg-[#0d8a69]' : instructorTheme.secondary} text-white py-3 mb-4`}
+                    className={`w-full ${
+                      courseInfo?.title?.includes('Perplexity') 
+                        ? 'bg-[#1F1F1F] hover:bg-[#2A2A2A] text-white' // 只有 Perplexity 用暗黑主題
+                        : instructorTheme.secondary // ChatGPT 和其他課程用正常主題
+                    } text-white py-3 mb-4`}
                     onClick={onStartLearning}
                   >
                     <PlayCircle className="w-4 h-4 mr-2" />
@@ -826,7 +898,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         {isZhHK ? "企業培訓方案" : "Enterprise Training"}
                       </div>
                       <div className="text-xs text-blue-400 cursor-pointer" onClick={handleWhatsApp}>
-                        {pricingInfo.enterprise} →
+                        {pricingInfo?.enterprise || (isZhHK ? "聯繫我們了解更多" : "Contact us for more")} →
                       </div>
                     </div>
                   )}
@@ -882,10 +954,18 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
           {/* Right Content */}
           <div className="lg:col-span-2 flex flex-col">
             <div className="mb-6">
-              <Badge className={`${isFree ? 'bg-[#10a37f] hover:bg-[#0d8a69]' : instructorTheme.secondary} text-white mb-4`}>
+              <Badge className={`${
+                courseInfo?.title?.includes('Perplexity') 
+                  ? 'bg-[#1F1F1F] hover:bg-[#2A2A2A] text-white' // 只有 Perplexity 用暗黑主題
+                  : instructorTheme.secondary // ChatGPT 和其他課程用正常主題
+              } text-white mb-4`}>
                 {courseInfo.badge}
                 {isFree && (
-                  <span className="ml-2 px-2 py-1 bg-white/20 rounded text-xs">
+                  <span className={`ml-2 px-2 py-1 rounded text-xs ${
+                    courseInfo?.title?.includes('Perplexity')
+                      ? 'bg-white/20 text-white' // Perplexity的"免費"標籤
+                      : 'bg-white/20 text-white'  // 其他免費課程的"免費"標籤
+                  }`}>
                     {isZhHK ? '免費' : 'FREE'}
                   </span>
                 )}
@@ -894,7 +974,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                 {courseInfo.title}
               </h1>
               <p className="text-lg text-gray-300 leading-relaxed">
-                {courseInfo.subtitle}
+                {courseInfo.subtitle || courseInfo.description || ''}
               </p>
             </div>
 
@@ -907,7 +987,9 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${
                       activeTab === tab.id
-                        ? `${instructorTheme.secondary} text-white shadow-md`
+                        ? courseInfo?.title?.includes('Perplexity') 
+                          ? 'bg-[#1F1F1F] hover:bg-[#2A2A2A] text-white shadow-md' // 只有 Perplexity 用暗黑主題
+                          : `${instructorTheme.secondary} text-white shadow-md` // ChatGPT 和其他課程用正常主題
                         : 'text-gray-400 hover:text-white hover:bg-gray-700'
                     }`}
                   >

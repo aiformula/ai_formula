@@ -35,6 +35,20 @@ import ChatGPTCompleteCourseUnit from '@/pages/courses/chatgpt-complete-course/C
 import ChatGPTCompleteCourseQuiz from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseQuiz';
 import ChatGPTCompleteCourseOutline from '@/pages/courses/chatgpt-complete-course/ChatGPTCompleteCourseOutline';
 
+// Perplexity Course Pages
+import PerplexityCompleteCourseLearning from '@/pages/courses/perplexity-complete-course/PerplexityCompleteCourseLearning';
+import PerplexityCompleteCourseTheme from '@/pages/courses/perplexity-complete-course/PerplexityCompleteCourseTheme';
+import PerplexityCompleteCourseUnit from '@/pages/courses/perplexity-complete-course/PerplexityCompleteCourseUnit';
+import PerplexityCompleteCourseQuiz from '@/pages/courses/perplexity-complete-course/PerplexityCompleteCourseQuiz';
+import PerplexityCompleteCourseOutline from '@/pages/courses/perplexity-complete-course/PerplexityCompleteCourseOutline';
+
+// Template System Pages
+import CourseOutlinePage from '@/pages/courses/CourseOutlinePage';
+import CourseLearningPage from '@/pages/courses/CourseLearningPage';
+import CourseThemePage from '@/pages/courses/CourseThemePage';
+import CourseUnitPage from '@/pages/courses/CourseUnitPage';
+import CourseQuizPage from '@/pages/courses/CourseQuizPage';
+
 // Tools Page
 import Tools from '@/pages/Tools';
 
@@ -186,6 +200,26 @@ function App() {
                   <Route path="/courses/chatgpt-complete-course/theme/:themeId/quiz" element={<ChatGPTQuizValidator />} />
                   {/* 無效路由重定向 - 作為最後的保障 */}
                   <Route path="/courses/chatgpt-complete-course/*" element={<Navigate to="/courses/chatgpt-complete-course/theme/1/unit/1" replace />} />
+                  
+                  {/* Perplexity Course Routes */}
+                  <Route path="/courses/perplexity-complete-course" element={<Navigate to="/courses/perplexity-complete-course/outline" replace />} />
+                  <Route path="/courses/perplexity-complete-course/learning" element={<PerplexityCompleteCourseLearning />} />
+                  <Route path="/courses/perplexity-complete-course/outline" element={<PerplexityCompleteCourseOutline />} />
+                  <Route path="/courses/perplexity-complete-course/theme/:themeId" element={<PerplexityCompleteCourseTheme />} />
+                  <Route path="/courses/perplexity-complete-course/theme/:themeId/unit/:unitId" element={<PerplexityCompleteCourseUnit />} />
+                  <Route path="/courses/perplexity-complete-course/theme/:themeId/quiz" element={<PerplexityCompleteCourseQuiz />} />
+                  {/* 無效路由重定向 - 作為最後的保障 */}
+                  <Route path="/courses/perplexity-complete-course/*" element={<Navigate to="/courses/perplexity-complete-course/theme/1/unit/1" replace />} />
+                  
+                  {/* Midjourney Course Routes - 使用模板系統 */}
+                  <Route path="/courses/midjourney-course" element={<Navigate to="/courses/midjourney-course/outline" replace />} />
+                  <Route path="/courses/midjourney-course/outline" element={<CourseOutlinePage />} />
+                  <Route path="/courses/midjourney-course/learning" element={<CourseLearningPage />} />
+                  <Route path="/courses/midjourney-course/theme/:themeId" element={<CourseThemePage />} />
+                  <Route path="/courses/midjourney-course/theme/:themeId/unit/:unitId" element={<CourseUnitPage />} />
+                  <Route path="/courses/midjourney-course/theme/:themeId/quiz" element={<CourseQuizPage />} />
+                  {/* 無效路由重定向 - 作為最後的保障 */}
+                  <Route path="/courses/midjourney-course/*" element={<Navigate to="/courses/midjourney-course/outline" replace />} />
                   
                   {/* Design System Demo */}
                   <Route path="/design-system" element={<DesignSystemDemo />} />

@@ -92,10 +92,10 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
   useEffect(() => {
     if (typeof window !== 'undefined' && !hasIncremented) {
       setHasIncremented(true);
-      incrementView(postId);
-      setIsAnimating(true);
+    incrementView(postId);
+    setIsAnimating(true);
       const timer = setTimeout(() => setIsAnimating(false), 600);
-      return () => clearTimeout(timer);
+    return () => clearTimeout(timer);
     }
   }, [postId, incrementView, hasIncremented]);
 
@@ -120,7 +120,7 @@ const ArticleViewCounter: React.FC<ArticleViewCounterProps> = ({ initialViews, p
 // Sticky Share Button Component
 const StickyShareButton: React.FC<{ shareData: ShareData | null; isZhHK: boolean }> = ({ shareData, isZhHK }) => {
   const [showOptions, setShowOptions] = useState(false);
-  
+
   const handleShare = useCallback(async () => {
     if (!shareData) return;
 
@@ -202,7 +202,49 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
   const themeColorDark = adjustBrightness(themeColor, -20);
   const themeColorLight = adjustBrightness(themeColor, 20);
   const themeColorGlow = adjustOpacity(themeColor, 0.4);
-  const themeColorBorder = adjustOpacity(themeColor, 0.2);
+  
+  // 根據主題色決定邊框顏色
+  const getBorderColor = (themeColor: string) => {
+    // 如果是 Perplexity 的黑色主題，使用更明顯的邊框
+    if (themeColor === '#1a1a1a') {
+      return '#4A4A4A'; // 明顯的灰色邊框
+    }
+    // 其他主題使用原來的邊框
+    return adjustOpacity(themeColor, 0.2);
+  };
+  
+  const themeColorBorder = getBorderColor(themeColor);
+
+  // 根據主題色決定文字顏色
+  const getTextColorsByTheme = (themeColor: string) => {
+    // 如果是 Perplexity 的黑色主題，使用純白色文字
+    if (themeColor === '#1a1a1a') {
+      return {
+        primary: 'text-white',
+        secondary: 'text-white',     // 改為純白色
+        tertiary: 'text-white'       // 改為純白色
+      };
+    }
+    // 其他主題使用原來的顏色
+    return {
+      primary: 'text-white',
+      secondary: 'text-gray-300',
+      tertiary: 'text-gray-400'
+    };
+  };
+
+  // 根據主題色決定卡片背景
+  const getCardBackground = (themeColor: string) => {
+    // 如果是 Perplexity 的黑色主題，使用更亮的背景
+    if (themeColor === '#1a1a1a') {
+      return 'linear-gradient(135deg, #2D2D2D 0%, #1F1F1F 100%)';
+    }
+    // 其他主題使用原來的背景
+    return 'linear-gradient(135deg, #1C1C1C 0%, #0D0D0D 100%)';
+  };
+
+  const textColors = getTextColorsByTheme(themeColor);
+  const cardBackground = getCardBackground(themeColor);
 
   const courseTitle = isZhHK ? randomCourse.titleCht : randomCourse.title;
   const courseDescription = isZhHK ? randomCourse.descriptionCht : randomCourse.description;
@@ -267,7 +309,9 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
       <div className="mb-6">
         <h3 
           className="text-xl font-bold mb-4"
-          style={{ color: themeColor }}
+          style={{ 
+            color: themeColor === '#1a1a1a' ? '#FFFFFF' : themeColor 
+          }}
         >
           {isZhHK ? 'AI 課程推薦' : 'AI Course Recommendation'}
         </h3>
@@ -275,7 +319,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
         <motion.div
           className="relative overflow-hidden rounded-xl border cursor-pointer animate-float"
           style={{
-            background: 'linear-gradient(135deg, #1C1C1C 0%, #0D0D0D 100%)',
+            background: cardBackground,
             borderColor: themeColorBorder
           }}
           whileHover={{
@@ -317,13 +361,13 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
 
             {/* Course Title */}
             <h4 
-              className="font-bold text-white mb-4 text-lg leading-tight text-center"
-              style={{
+              className={`font-bold ${textColors.primary} mb-4 text-lg leading-tight text-center`}
+              style={themeColor !== '#1a1a1a' ? {
                 background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColorDark} 100%)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}
+              } : {}}
             >
               {courseTitle}
             </h4>
@@ -341,7 +385,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                     filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                   }} 
                 />
-                <span className="text-gray-300 text-sm">{courseDuration}</span>
+                <span className={`${textColors.secondary} text-sm`}>{courseDuration}</span>
               </motion.div>
               
               <motion.div 
@@ -355,7 +399,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                     filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                   }} 
                 />
-                <span className="text-gray-300 text-sm">{courseLevel}</span>
+                <span className={`${textColors.secondary} text-sm`}>{courseLevel}</span>
               </motion.div>
               
               <motion.div 
@@ -369,7 +413,7 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                     filter: `drop-shadow(0 0 4px ${themeColorGlow})`
                   }} 
                 />
-                <span className="text-gray-300 text-sm">{courseRating}/5</span>
+                <span className={`${textColors.secondary} text-sm`}>{courseRating}/5</span>
               </motion.div>
               
               <motion.div 
@@ -397,11 +441,13 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
                   </span>
                 )}
                 <span 
-                  className={`text-sm font-bold ${isFree ? 'text-white' : 'text-white'}`}
-                  style={{
+                  className={`text-sm font-bold ${textColors.primary}`}
+                  style={themeColor !== '#1a1a1a' ? {
                     color: themeColorLight,
                     textShadow: `0 0 8px ${themeColorGlow}`,
                     filter: `drop-shadow(0 0 4px ${themeColorGlow})`
+                  } : {
+                    color: '#FFFFFF'
                   }}
                 >
                   {coursePrice}
@@ -411,12 +457,18 @@ const CourseRecommendation: React.FC<{ isZhHK: boolean }> = ({ isZhHK }) => {
 
             {/* CTA Button */}
             <motion.button
-              className="w-full py-3 rounded-lg text-black font-semibold text-sm transition-all duration-300"
+              className={`w-full py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                themeColor === '#1a1a1a' ? 'text-white' : 'text-black'
+              }`}
               style={{
-                background: `linear-gradient(135deg, ${themeColor} 0%, ${themeColorDark} 100%)`
+                background: themeColor === '#1a1a1a' 
+                  ? 'linear-gradient(135deg, #4A4A4A 0%, #2D2D2D 100%)'
+                  : `linear-gradient(135deg, ${themeColor} 0%, ${themeColorDark} 100%)`
               }}
               whileHover={{
-                background: `linear-gradient(135deg, ${themeColorDark} 0%, ${adjustBrightness(themeColor, -30)} 100%)`,
+                background: themeColor === '#1a1a1a'
+                  ? 'linear-gradient(135deg, #5A5A5A 0%, #3D3D3D 100%)'
+                  : `linear-gradient(135deg, ${themeColorDark} 0%, ${adjustBrightness(themeColor, -30)} 100%)`,
                 boxShadow: `0 4px 12px ${themeColorGlow}`
               }}
               whileTap={{ scale: 0.98 }}
@@ -463,7 +515,7 @@ const RelatedArticles: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> 
           {relatedPosts.map((post, index) => (
             <Link key={post.id} to={`/blog/${post.id}`}>
               <motion.div
-                className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-yellow-400/20 p-4 hover:border-yellow-400/40 transition-all duration-300"
+                className="bg-gray-800/90 rounded-2xl border border-gray-600/30 p-4 hover:border-gray-500/50 transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -471,12 +523,12 @@ const RelatedArticles: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> 
               >
                 <Badge 
                   variant="secondary" 
-                  className="mb-2 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 text-xs"
+                  className="mb-2 bg-gray-600/30 text-gray-300 border-gray-500/40 text-xs"
                 >
                   {isZhHK ? post.category : post.categoryEn}
                 </Badge>
                 
-                <h4 className="font-semibold text-white mb-2 text-sm leading-tight hover:text-yellow-400 transition-colors">
+                <h4 className="font-semibold text-white mb-2 text-sm leading-tight hover:text-gray-300 transition-colors">
                   {isZhHK ? post.title : post.titleEn}
                 </h4>
                 
@@ -489,7 +541,7 @@ const RelatedArticles: React.FC<{ currentPost: BlogPostType; isZhHK: boolean }> 
                     <Clock className="h-3 w-3" />
                     <span>{isZhHK ? post.readTime : post.readTimeEn}</span>
                   </div>
-                  <ChevronRight className="h-3 w-3 text-yellow-400" />
+                  <ChevronRight className="h-3 w-3 text-gray-400" />
                 </div>
               </motion.div>
             </Link>
@@ -551,16 +603,16 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
     if (!date || !(date instanceof Date)) return '';
     if (isZhHK) {
       return date.toLocaleDateString('zh-HK', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
       });
     } else {
       return date.toLocaleDateString('en-GB', {
-        year: 'numeric',
-        month: 'long', 
-        day: 'numeric'
-      });
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
     }
   };
 
@@ -580,8 +632,11 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
         transition: { duration: 0.6, delay: 0.1 * idx }
       };
 
-      const text = section.content || '';
-      const safeItems = Array.isArray(section.items) ? section.items : [];
+      // Use appropriate language content
+      const text = isZhHK ? (section.content || '') : (section.contentEn || section.content || '');
+      const safeItems = isZhHK 
+        ? (Array.isArray(section.items) ? section.items : [])
+        : (Array.isArray(section.itemsEn) ? section.itemsEn : Array.isArray(section.items) ? section.items : []);
       
       if (section.type === 'heading') {
         const HeadingTag = section.level === 1 ? 'h1' : 
@@ -689,23 +744,23 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
         >
           <div className="container mx-auto px-6 py-8">
             {/* Back Button */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
-            >
-              <Link to="/blog">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <Link to="/blog">
+            <Button 
+              variant="ghost" 
+              size="sm" 
                   className="mb-6 text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 transition-all duration-300"
-                >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  {isZhHK ? '返回部落格' : 'Back to Blog'}
-                </Button>
-              </Link>
-            </motion.div>
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              {isZhHK ? '返回部落格' : 'Back to Blog'}
+            </Button>
+          </Link>
+        </motion.div>
 
             {/* Title Section - Moved directly after back button */}
             <motion.div
@@ -716,19 +771,19 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
             >
               <Badge 
                 variant="secondary" 
-                className="mb-6 bg-yellow-400/20 text-yellow-400 border-yellow-400/30 backdrop-blur-sm"
+                className="mb-6 bg-gray-600/30 text-gray-300 border-gray-500/40 backdrop-blur-sm"
               >
-                {isZhHK ? post.category : post.categoryEn}
-              </Badge>
+                    {isZhHK ? post.category : post.categoryEn}
+                  </Badge>
               
               {/* Large Title */}
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                {title}
-              </h1>
+                    {title}
+                  </h1>
               
               <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto">
-                {excerpt}
-              </p>
+                    {excerpt}
+                  </p>
               
               {/* Author Info */}
               <motion.div 
@@ -742,7 +797,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                   <span className="font-medium">{post.author}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
-                  <Calendar className="h-4 w-4" />
+                    <Calendar className="h-4 w-4" />
                   <span>{formatDate(post.publishDate)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
@@ -776,11 +831,11 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                           <p className="text-gray-400 text-lg">
                             {isZhHK ? '內容正在載入中...' : 'Content is loading...'}
                           </p>
-                        </div>
+              </div>
                       )}
                     </motion.div>
 
-                    {/* Article Actions */}
+              {/* Article Actions */}
                     <motion.div 
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -788,11 +843,11 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                       className="px-8 py-6 md:px-12 lg:px-16 border-t border-yellow-400/20 bg-black/20"
                     >
                       <Separator className="mb-6 bg-yellow-400/20" />
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <Button
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <Button
                             variant="ghost"
-                            size="sm"
+                      size="sm"
                             onClick={() => setIsLiked(!isLiked)}
                             className={`transition-all duration-300 ${
                               isLiked 
@@ -802,14 +857,14 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, isZhHK, content }) =>
                           >
                             <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
                             {isZhHK ? '收藏' : 'Like'}
-                          </Button>
-                        </div>
+                    </Button>
+                  </div>
                         <div className="flex items-center gap-2 text-yellow-400">
                           <Tag className="h-4 w-4" />
                           <span className="text-sm font-medium">
-                            {isZhHK ? post.category : post.categoryEn}
-                          </span>
-                        </div>
+                      {isZhHK ? post.category : post.categoryEn}
+                    </span>
+                  </div>
                       </div>
                     </motion.div>
                   </motion.article>
@@ -866,7 +921,7 @@ class BlogErrorBoundary extends React.Component<
             >
               <div className="w-16 h-16 bg-red-400/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <AlertTriangle className="w-8 h-8 text-red-400" />
-              </div>
+                    </div>
               
               <h1 className="text-2xl font-bold text-red-400 mb-4 text-center">
                 {isHookError ? (isZhHK ? 'Hook 錯誤' : 'Hook Error') : 
@@ -890,8 +945,8 @@ class BlogErrorBoundary extends React.Component<
                   </p>
                   <p className="text-xs text-red-300 font-mono break-all leading-relaxed">
                     {errorMessage}
-                  </p>
-                </div>
+                              </p>
+                            </div>
               )}
               
               <div className="flex flex-col sm:flex-row gap-3">
@@ -910,11 +965,11 @@ class BlogErrorBoundary extends React.Component<
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   {isZhHK ? '返回部落格' : 'Back to Blog'}
                 </Button>
-              </div>
+                  </div>
             </motion.div>
-          </div>
-        </div>
-      );
+      </div>
+    </div>
+  );
     }
 
     return this.props.children;
@@ -926,20 +981,20 @@ const BlogPost: React.FC = () => {
   const { language } = useLanguage();
   const { id } = useParams<{ id: string }>();
   const isZhHK = language === 'zh-HK';
-  
+
   // Proper hook call at component top level - no conditional usage
   const { getViewCount } = useSafeViewCount();
 
   // Memoized post data
   const post = useMemo(() => {
     try {
-      const allPosts = getSortedPostsNewest();
+    const allPosts = getSortedPostsNewest();
       if (!Array.isArray(allPosts) || allPosts.length === 0) {
         console.error('No posts available');
         return null;
       }
       
-      const postId = parseInt(id || '1');
+    const postId = parseInt(id || '1');
       if (isNaN(postId)) {
         console.error('Invalid post ID:', id);
         return allPosts[0] || null;

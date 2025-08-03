@@ -99,7 +99,7 @@ const Tools = () => {
       }
       return { ...category, count };
     });
-
+    
     // 排序：全部工具第一，然後按工具數量降序
     return categoriesWithCount.sort((a, b) => {
       if (a.id === 'all') return -1;
@@ -116,11 +116,11 @@ const Tools = () => {
       } else {
         count = validTools.filter(tool => 
           tool.userGroups && tool.userGroups.includes(group.id)
-        ).length;
+      ).length;
       }
       return { ...group, count };
     });
-
+    
     // 排序：全部用戶第一，然後按工具數量降序
     return userGroupsWithCount.sort((a, b) => {
       if (a.id === 'all-users') return -1;
@@ -183,7 +183,7 @@ const Tools = () => {
             const [isHover, setIsHover] = React.useState(false);
             const isActive = selectedCategory === category.id;
             
-            return (
+    return (
               <motion.div
                 key={category.id}
                 whileHover={{ scale: isMobile ? 1.01 : 1.02, y: isMobile ? 0 : -2 }}
@@ -200,7 +200,7 @@ const Tools = () => {
                 }}
               >
                 <div
-                  className={`
+        className={`
                     relative rounded-2xl ${isMobile ? 'h-14' : 'h-14'} transition-all duration-300 group overflow-hidden w-full ${isMobile ? 'min-w-0' : 'min-w-[280px] sm:min-w-[300px]'}
                     ${isActive 
                       ? 'bg-gradient-to-r from-yellow-500/15 to-yellow-400/8 shadow-lg shadow-yellow-500/10 ring-1 ring-yellow-400/20' 
@@ -223,11 +223,11 @@ const Tools = () => {
                       {/* Icon 區域 - 統一樣式 */}
                       <div className="flex-shrink-0 w-5 flex justify-center">
                         {getFunctionIcon(category.id, isActive, isHover)}
-                      </div>
+          </div>
                       
                       {/* 文字區域 - 完整顯示，無截斷 */}
                       <div className="flex-1 min-w-0">
-                        <span className={`
+        <span className={`
                           font-medium ${isMobile ? 'text-sm' : 'text-sm'} transition-colors duration-300 block leading-tight
                           ${isActive 
                             ? 'text-white font-semibold' 
@@ -237,10 +237,10 @@ const Tools = () => {
                           }
                         `}>
                           {getCategoryLabel(category.id)}
-                        </span>
-                      </div>
-                    </div>
-                    
+        </span>
+      </div>
+        </div>
+        
                     {/* 數字 Badge 區域 - 現代化設計 */}
                     <div className="flex-shrink-0">
                       <div className={`
@@ -286,7 +286,7 @@ const Tools = () => {
         <h3 className={`${isMobile ? 'text-base' : 'text-lg'} font-medium text-white mb-6 flex items-center gap-3 tracking-wide`}>
           <Users className="w-5 h-5 text-yellow-400 flex-shrink-0" />
           {t('label.userRole')}
-        </h3>
+          </h3>
         <div className={`${isMobile ? 'grid grid-cols-1 gap-3' : 'space-y-2'}`}>
           {displayedUserGroups.map((group) => {
             const [isHover, setIsHover] = React.useState(false);
@@ -302,7 +302,7 @@ const Tools = () => {
                 onMouseLeave={() => setIsHover(false)}
                 onClick={() => {
                   setSelectedUserGroup(group.id);
-                  setSelectedCategory('all');
+                setSelectedCategory('all');
                   if (isMobile) {
                     setIsMobileFilterOpen(false); // 移動端選擇後自動關閉
                   }
@@ -342,8 +342,8 @@ const Tools = () => {
                         `}>
                           {group.icon}
                         </div>
-                      </div>
-                      
+        </div>
+        
                       {/* 文字區域 - 完整顯示，無截斷 */}
                       <div className="flex-1 min-w-0">
                         <span className={`
@@ -372,17 +372,17 @@ const Tools = () => {
                         }
                       `}>
                         {group.count}
-                      </div>
-                    </div>
+              </div>
+      </div>
                   </div>
                 </div>
               </motion.div>
             );
           })}
-          
+
           {/* 顯示更多/更少按鈕 */}
           {smartSortedUserGroups.length > 4 && !showAllUserGroups && (
-            <motion.div
+        <motion.div
               whileHover={{ scale: isMobile ? 1.01 : 1.02, y: isMobile ? 0 : -2 }}
               whileTap={{ scale: 0.98 }}
               className="cursor-pointer"
@@ -392,11 +392,11 @@ const Tools = () => {
                 <div className="h-full flex items-center justify-center">
                   <span className={`text-yellow-400 font-medium ${isMobile ? 'text-xs' : 'text-sm'} hover:text-yellow-300 transition-colors duration-300`}>
                     {t('button.showMore')} (+{smartSortedUserGroups.length - 4})
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          )}
+              </span>
+            </div>
+          </div>
+        </motion.div>
+      )}
         </div>
       </div>
     </div>
@@ -405,18 +405,18 @@ const Tools = () => {
   return (
     <div className="min-h-screen bg-black">
       <Navigation />
-      
+
       <div className="page-content pb-12">
         <div className="container mx-auto px-4">
           {/* Page Header */}
           <motion.div {...fadeIn} className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
               {t('page.title')}
-            </h1>
+          </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               {t('page.subtitle')}
-            </p>
-          </motion.div>
+          </p>
+        </motion.div>
 
           {/* Content Grid - 桌面端有側邊欄，移動端只有工具網格 */}
           <div className="grid grid-cols-1 xl:grid-cols-[340px_1fr] lg:grid-cols-[300px_1fr] gap-8">
@@ -431,14 +431,14 @@ const Tools = () => {
                       <CardTitle className="text-white">
                         {t('label.smartFilter')}
                       </CardTitle>
-                    </div>
+            </div>
                     <button
                       onClick={() => setIsFilterExpanded(!isFilterExpanded)}
                       className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200"
                       title={isFilterExpanded ? t('button.collapse') : t('button.expand')}
                       aria-label={isFilterExpanded ? t('button.collapse') : t('button.expand')}
                     >
-                      <motion.div
+          <motion.div
                         animate={{ rotate: isFilterExpanded ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -452,7 +452,7 @@ const Tools = () => {
                         </svg>
                       </motion.div>
                     </button>
-                  </div>
+                          </div>
                   <CardDescription className="text-gray-400">
                     {t('label.filterDescription')}
                   </CardDescription>
@@ -525,18 +525,18 @@ const Tools = () => {
                   >
                     <div className="text-gray-500 text-lg mb-4">
                       {t('label.noToolsFound')}
-                    </div>
+                      </div>
                     <p className="text-gray-600">
                       {t('label.noToolsMessage')}
                     </p>
-                  </motion.div>
-                )}
+                    </motion.div>
+                  )}
               </motion.div>
-            </div>
+              </div>
           </div>
         </div>
-      </div>
-
+                </div>
+                
       {/* 移動端浮動 Filter 按鈕 - 只在小螢幕顯示 */}
       <div className="lg:hidden">
         <motion.button
@@ -550,7 +550,7 @@ const Tools = () => {
         >
           <Settings className="w-6 h-6 text-black" />
         </motion.button>
-      </div>
+                          </div>
 
       {/* 移動端 Filter Panel - Slide-in Drawer */}
       <AnimatePresence>
@@ -566,7 +566,7 @@ const Tools = () => {
             />
             
             {/* Slide-in Panel - 重新設計為純黑+黃極簡風格 */}
-            <motion.div
+                    <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -588,13 +588,13 @@ const Tools = () => {
                   >
                     <X className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-200" />
                   </button>
-                </div>
+                                </div>
               </div>
 
               {/* Panel Content - 可滾動區域，自定義 scrollbar 樣式 */}
               <div 
                 className="flex-1 overflow-y-auto custom-scrollbar"
-                style={{
+                                  style={{
                   // WebKit browsers (Chrome, Safari, Edge)
                   scrollbarWidth: 'thin',
                   scrollbarColor: '#facc15 rgba(255,255,255,0.1)',
@@ -602,19 +602,19 @@ const Tools = () => {
               >
                 <div className="p-5">
                   <FilterContent isMobile={true} />
-                </div>
+                      </div>
               </div>
 
               {/* Panel Footer - 現代化固定底部按鈕 */}
               <div className="flex-shrink-0 bg-black/95 backdrop-blur-md border-t border-gray-800/60 p-5">
-                <Button 
+                    <Button
                   onClick={() => setIsMobileFilterOpen(false)}
                   className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-black font-semibold py-4 text-base rounded-2xl shadow-lg shadow-yellow-500/25 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-yellow-500/30"
                 >
                   {t('common.apply')}
-                </Button>
-              </div>
-            </motion.div>
+                    </Button>
+                  </div>
+                </motion.div>
           </>
         )}
       </AnimatePresence>
