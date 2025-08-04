@@ -1,6 +1,6 @@
 /**
  * Midjourney 權威指南：從入門到精通的終極課程
- * @description 完整的 Midjourney AI 藝術創作課程數據
+ * @description 完整的 Midjourney AI 藝術創作課程資料
  * @author AI Formula Team
  * @version 1.0.0
  */
@@ -842,7 +842,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
 基礎：a dog
 加入主體細節：A happy golden retriever
 加入環境同光線：A happy golden retriever, in a sunlit park, soft lighting
-加入媒介同構圖：Photorealistic portrait of a happy golden retriever, in a sunlit park, soft lighting, vibrant colors, close-up shot
+加入媒介同構圖：Photorealistic portrait of a happy golden retriever, in a sunlit park, soft lighting, vibrant colours, close-up shot
 
 透過逐層疊加呢啲元素，你可以由一個模糊嘅概念，逐步構建出一幅具體而豐富嘅畫面。`,
           keyPoints: [
@@ -2210,8 +2210,8 @@ Optimisation strategies:
             options: [
               'Search and Filter',
               'Download All',
-              'Add to Favorites',
-              'Personalized Style'
+              'Add to Favourites',
+              'Personalised Style'
             ],
             optionsEn: [
               'Search and Filter',
