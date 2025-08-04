@@ -403,16 +403,27 @@ Understanding these scenarios ensures you use Perplexity effectively whilst reco
       ],
       quiz: {
         title: '第一章測驗：Perplexity AI 入門',
+        titleEn: 'Chapter 1 Quiz: Perplexity AI Fundamentals',
+        titleEn: 'Chapter 1 Quiz: Perplexity AI Fundamentals',
         description: '測試你對 Perplexity AI 基礎概念的理解。',
+        descriptionEn: 'Test your understanding of Perplexity AI fundamental concepts.',
+        descriptionEn: 'Test your understanding of Perplexity AI fundamental concepts.',
         timeLimit: 15,
         questions: [
           {
             question: 'Perplexity AI 將自己定位為「答案引擎」，這與傳統搜索引擎最主要的區別是什麼？',
+            questionEn: 'Perplexity AI positions itself as an "Answer Engine." What is the main difference from traditional search engines?',
             options: [
               'Perplexity 的頁面是藍色的，而 Google 是白色的。',
               'Perplexity 只搜索學術網站。',
               'Perplexity 提供一個直接、綜合且附有引用來源的答案，而非僅僅是一個網頁連結列表。',
               'Perplexity 完全離線運作，不連接互聯網。'
+            ],
+            optionsEn: [
+              'Perplexity\'s pages are blue, while Google\'s are white.',
+              'Perplexity only searches academic websites.',
+              'Perplexity provides direct, comprehensive answers with cited sources, rather than just a list of web links.',
+              'Perplexity operates completely offline without internet connection.'
             ],
             correctAnswer: 2,
             explanation: 'Perplexity 提供直接、綜合且有引用來源的答案，這是最大分別。'
@@ -950,6 +961,7 @@ Understanding platform differences enables you to maximise Perplexity's effectiv
       ],
       quiz: {
         title: '第二章測驗：掌握介面',
+        titleEn: 'Chapter 2 Quiz: Mastering the Interface',
         description: '測試你對 Perplexity 介面的理解。',
         timeLimit: 10,
         questions: [

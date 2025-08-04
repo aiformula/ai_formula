@@ -217,7 +217,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
     'SEO 專業人員': 'seo-specialist',
     '網站管理員': 'website-administrator',
     '網站管理': 'website-management',
-    '網絡安全專家': 'cybersecurity-specialist',
+    '網絡保安專家': 'cybersecurity-specialist',
     '測試工程師': 'test-engineer',
     'CRM管理員': 'crm-administrator',
     'IT 管理員': 'it-administrator',
@@ -279,7 +279,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
     '任何需要開會的專業人士': 'meeting-professionals',
     '任何需要製作專業簡報的人': 'presentation-creators',
     '任何希望提高生產力的人': 'productivity-seekers',
-    '任何使用多個網絡應用的人': 'multi-app-users',
+    '任何使用多個網絡應用程式的人': 'multi-app-users',
     '任何需要快速建站的人': 'quick-website-builders',
     '任何需要快速獲取信息的人': 'information-seekers',
     '希望使用 AI 的小型企業': 'ai-interested-small-business'

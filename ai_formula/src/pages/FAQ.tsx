@@ -49,7 +49,7 @@ const FAQ: React.FC = () => {
       icon: Bot,
       question: 'AI 工具會唔會需要安裝？定係網頁直接用？',
       questionEn: 'Do AI tools require installation or can I use them directly on the web?',
-      answer: '我哋嘅 AI 工具全部都係網頁版，唔需要安裝任何軟件。只要有瀏覽器同網絡連接，隨時隨地都可以使用。支援電腦、平板同手機。',
+      answer: '我哋嘅 AI 工具全部都係網頁版，唔需要安裝任何軟體。只要有瀏覽器同網路連線，隨時隨地都可以使用。支援電腦、平板同手機。',
       answerEn: 'All our AI tools are web-based and require no software installation. You can use them anytime, anywhere with just a browser and internet connection. Supports computers, tablets, and mobile phones.'
     },
     {

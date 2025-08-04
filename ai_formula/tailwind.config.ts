@@ -12,7 +12,7 @@ export default {
 	prefix: "",
 	theme: {
 		container: {
-			center: true,
+			centre: true,
 			padding: '2rem',
 			screens: {
 				'2xl': '1400px'
@@ -22,7 +22,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 			},
-			colors: {
+			colours: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

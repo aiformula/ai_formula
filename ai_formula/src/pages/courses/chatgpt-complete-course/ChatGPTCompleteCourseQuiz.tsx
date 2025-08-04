@@ -394,7 +394,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
           id: 4,
           question: isZhHK ? '除咗寫故仔，ChatGPT 喺創意方面可以點樣幫一個畫家或者設計師？' : 'Besides writing stories, how can ChatGPT help a painter or designer creatively?',
           options: [
-            isZhHK ? '幫佢調校電腦螢幕嘅顏色' : 'Help adjust computer screen colors',
+            isZhHK ? '幫佢調校電腦螢幕嘅顏色' : 'Help adjust computer screen colours',
             isZhHK ? '直接取代畫家，畫出完美嘅作品' : 'Directly replace the painter and create perfect artwork',
             isZhHK ? '為佢嘅作品提供文字描述、創作理念，或者根據一個主題（例如「孤獨嘅城市」）提供畫面構圖嘅靈感同想法' : 'Provide text descriptions and creative concepts for their work, or offer composition inspiration and ideas based on themes (e.g., "lonely city")',
             isZhHK ? '幫佢登記作品版權' : 'Help register artwork copyrights'
@@ -621,11 +621,11 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
           <div className="flex items-center justify-center space-x-8 text-white/70">
             <div className="flex items-center space-x-2">
                                 <BookOpen className="w-5 h-5 text-gray-400" />
-              <span>{totalQuestions} {isZhHK ? '[題目]' : '[Questions]'}</span>
+              <span>{totalQuestions} {isZhHK ? '題目' : 'Questions'}</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Clock className="w-5 h-5 text-green-400" />
-              <span>{currentQuiz.timeLimit} {isZhHK ? '[分鐘]' : '[Minutes]'}</span>
+              <Clock className="w-5 h-5 text-yellow-400" />
+              <span>{currentQuiz.timeLimit} {isZhHK ? '分鐘' : 'minutes'}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Target className="w-5 h-5 text-yellow-400" />
@@ -643,22 +643,22 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
             >
                               <Brain className="w-16 h-16 text-gray-400 mx-auto mb-6" />
-              <h2 className="text-2xl font-bold text-white mb-4">
-                {isZhHK ? '[準備開始測驗]' : '[Ready to Start Quiz]'}
+              <h2 className="text-3xl font-bold text-white mb-4">
+                {isZhHK ? '準備開始測驗' : 'Ready to Start Quiz'}
               </h2>
-              <p className="text-white/70 mb-8">
-                {isZhHK ? '[測驗說明]' : '[Quiz Instructions]'}
+              <p className="text-gray-300 text-lg mb-8">
+                {isZhHK ? '測驗說明' : 'Quiz Instructions'}
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-gray-800/50 border border-gray-600/30 rounded-lg p-4">
                                       <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{totalQuestions} {isZhHK ? '[題目]' : '[Questions]'}</h3>
+                  <h3 className="font-semibold text-white mb-1">{totalQuestions} {isZhHK ? '題目' : 'Questions'}</h3>
                   <p className="text-sm text-white/60">{isZhHK ? '[選擇題形式]' : '[Multiple Choice Format]'}</p>
                 </div>
                 <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
                   <Clock className="w-8 h-8 text-green-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{currentQuiz.timeLimit} {isZhHK ? '[分鐘]' : '[Minutes]'}</h3>
+                  <h3 className="font-semibold text-white mb-1">{currentQuiz.timeLimit} {isZhHK ? '分鐘' : 'minutes'}</h3>
                   <p className="text-sm text-white/60">{isZhHK ? '[限時完成]' : '[Time Limited]'}</p>
                 </div>
                 <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">

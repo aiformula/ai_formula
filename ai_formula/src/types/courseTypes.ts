@@ -472,7 +472,7 @@ export interface LessonPart {
   title: string;
   titleCht: string;
   icon: string;
-  color: string;
+  colour: string;
   description: string;
   descriptionCht: string;
   duration: string;

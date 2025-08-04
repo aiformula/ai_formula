@@ -151,26 +151,30 @@ const PerplexityCompleteCourseQuiz: React.FC = () => {
 
         {/* Quiz Header */}
         <motion.div
-          className="text-center mb-8"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <BookOpen className="w-8 h-8 text-yellow-400" />
-            <h1 className="text-3xl font-bold text-white">
-              {quizData.title}
-            </h1>
-          </div>
-          <p className="text-lg text-white/80 mb-6">{quizData.description}</p>
+          <Badge variant="secondary" className="mb-4 bg-blue-600/20 text-blue-300 border-blue-500/30">
+            {isZhHK ? `第 ${currentThemeId} 章` : `Chapter ${currentThemeId}`}
+          </Badge>
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            {isZhHK ? quizData.title : (quizData.titleEn || quizData.title)}
+          </h1>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            {isZhHK ? quizData.description : (quizData.descriptionEn || quizData.description)}
+          </p>
           {/* Quiz Stats */}
           <div className="flex items-center justify-center space-x-8 text-white/70">
-            <div className="flex items-center space-x-2">
-              <BookOpen className="w-5 h-5 text-gray-400" />
-              <span>{totalQuestions} 題目</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Clock className="w-5 h-5 text-yellow-400" />
-              <span>{quizData.timeLimit} 分鐘</span>
+            <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-2">
+                  <BookOpen className="w-5 h-5 text-yellow-400" />
+                  <span>{totalQuestions} {isZhHK ? '題目' : 'Questions'}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock className="w-5 h-5 text-blue-400" />
+                  <span>{quizData.timeLimit} {isZhHK ? '分鐘' : 'minutes'}</span>
+                </div>
             </div>
             <div className="flex items-center space-x-2">
               <Target className="w-5 h-5 text-yellow-400" />
@@ -197,18 +201,18 @@ const PerplexityCompleteCourseQuiz: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-[#232329] border border-gray-600/30 rounded-lg p-4">
                   <BookOpen className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{totalQuestions} 題目</h3>
-                  <p className="text-sm text-white/60">選擇題形式</p>
+                  <h3 className="font-semibold text-white mb-1">{totalQuestions} {isZhHK ? '題目' : 'Questions'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '選擇題形式' : 'Multiple Choice Format'}</p>
                 </div>
                 <div className="bg-yellow-400/10 border border-yellow-400/20 rounded-lg p-4">
                   <Clock className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{quizData.timeLimit} 分鐘</h3>
-                  <p className="text-sm text-white/60">限時完成</p>
+                  <h3 className="font-semibold text-white mb-1">{quizData.timeLimit} {isZhHK ? '分鐘' : 'minutes'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '測驗時間' : 'Time Limit'}</p>
                 </div>
                 <div className="bg-yellow-400/10 border border-yellow-400/20 rounded-lg p-4">
                   <Target className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{PASSING_SCORE}% 及格</h3>
-                  <p className="text-sm text-white/60">通過標準</p>
+                  <h3 className="font-semibold text-white mb-1">{PASSING_SCORE}%</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '通過標準' : 'Passing Score'}</p>
                 </div>
               </div>
               <Button
@@ -231,9 +235,9 @@ const PerplexityCompleteCourseQuiz: React.FC = () => {
               {/* Quiz Progress */}
               <div className="bg-[#18181b] p-4 border-b border-[#232329]">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-white/70 text-sm">
-                    題目 {currentQuestion + 1} of {totalQuestions}
-                  </span>
+                  <div className="text-center text-gray-400 mb-4">
+                    {isZhHK ? `題目 ${currentQuestion + 1} of ${totalQuestions}` : `Question ${currentQuestion + 1} of ${totalQuestions}`}
+                  </div>
                   <div className="flex items-center space-x-2 text-white/70 text-sm">
                     <Clock className="w-4 h-4" />
                     <span className={timeRemaining < 300 ? 'text-red-400' : ''}>
@@ -258,12 +262,12 @@ const PerplexityCompleteCourseQuiz: React.FC = () => {
                     </Badge>
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-6">
-                    {currentQuestionData.question}
+                    {isZhHK ? currentQuestionData.question : (currentQuestionData.questionEn || currentQuestionData.question)}
                   </h3>
                 </div>
                 {/* Options */}
                 <div className="space-y-3 mb-8">
-                  {currentQuestionData.options.map((option: string, index: number) => {
+                  {(isZhHK ? currentQuestionData.options : (currentQuestionData.optionsEn || currentQuestionData.options)).map((option: string, index: number) => {
                     const isSelected = selectedAnswers[currentQuestion] === index;
                     return (
                       <motion.button
@@ -346,7 +350,7 @@ const PerplexityCompleteCourseQuiz: React.FC = () => {
                         disabled={Object.keys(selectedAnswers).length !== totalQuestions}
                       >
                         <CheckCircle className="w-4 h-4 mr-2" />
-                        提交測驗
+                        {isZhHK ? '提交測驗' : 'Submit Quiz'}
                       </Button>
                     ) : (
                       <Button
@@ -354,8 +358,8 @@ const PerplexityCompleteCourseQuiz: React.FC = () => {
                         onClick={nextQuestion}
                         disabled={selectedAnswers[currentQuestion] === undefined}
                       >
-                        下一題
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        <ArrowRight className="w-4 h-4 mr-2" />
+                        {isZhHK ? '下一題' : 'Next'}
                       </Button>
                     )}
                   </div>

@@ -299,7 +299,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           },
           {
             id: 23,
-            title: isZhHK ? 'Web Browse (實時網絡瀏覽)： 結合即時網絡資訊，進行市場調查與新聞總結' : 'Web Browse: Real-time Web Information for Market Research',
+            title: isZhHK ? 'Web Browse (實時網路瀏覽)： 結合即時網路資訊，進行市場調查與新聞總結' : 'Web Browse: Real-time Web Information for Market Research',
             duration: isZhHK ? '20分鐘' : '20 minutes',
             completed: getThemeProgress(5)?.completedUnits.includes(23) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(22) || false) && !(getThemeProgress(5)?.completedUnits.includes(23) || false)

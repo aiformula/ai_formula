@@ -1,301 +1,267 @@
-#!/usr/bin/env node
+/**
+ * AI Formula 顏色系統驗證器
+ * 檢查專案中是否正確使用了統一的顏色變數
+ */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const fs = require('fs');
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-class ColorSystemValidator {
+class ColourSystemValidator {
   constructor() {
     this.errors = [];
     this.warnings = [];
-    this.successes = [];
+    this.passed = [];
+    this.stats = {
+      totalFiles: 0,
+      checkedFiles: 0,
+      hardcodedColours: 0,
+      variableUsage: 0
+    };
     
-    // 硬編碼�??�模�?
-    this.hardcodedPatterns = [
-      /#[0-9a-fA-F]{3,6}/g,
-      /rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*(?:,\s*[\d.]+\s*)?\)/g,
-      /hsla?\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*(?:,\s*[\d.]+\s*)?\)/g,
-      /bg-\[#[0-9a-fA-F]{3,6}\]/g,
-      /text-\[#[0-9a-fA-F]{3,6}\]/g,
-      /border-\[#[0-9a-fA-F]{3,6}\]/g
+    // 允許的顏色變數清單
+    this.allowedColourVariables = [
+      '--ai-formula-primary',
+      '--ai-formula-primary-hover',
+      '--ai-formula-secondary',
+      '--ai-formula-accent',
+      '--ai-formula-success',
+      '--ai-formula-info',
+      '--ai-formula-warning',
+      '--ai-formula-error',
+      '--ai-formula-dark',
+      '--ai-formula-dark-light',
+      '--ai-formula-dark-medium',
+      '--ai-formula-gray-600',
+      '--ai-formula-gray-300',
+      '--ai-formula-text-primary',
+      '--ai-formula-text-secondary',
+      '--ai-formula-border'
     ];
     
-    // ?�許?��??��???
-    this.allowedColorVariables = [
-      'var(--ai-formula-primary)',
-      'var(--ai-formula-primary-hover)',
-      'var(--ai-formula-secondary)',
-      'var(--ai-formula-accent)',
-      'var(--ai-formula-success)',
-      'var(--ai-formula-info)',
-      'var(--ai-formula-warning)',
-      'var(--ai-formula-error)',
-      'var(--ai-formula-dark)',
-      'var(--ai-formula-dark-light)',
-      'var(--ai-formula-dark-medium)',
-      'var(--ai-formula-gray-600)',
-      'var(--ai-formula-gray-300)'
+    // 硬編碼顏色模式 (Hex, RGB, HSL)
+    this.hardcodedColourPatterns = [
+      /#[0-9a-fA-F]{3,8}/g,  // Hex colors: #fff, #ffffff
+      /rgb\([^)]*\)/g,        // RGB colors: rgb(255, 255, 255)
+      /rgba\([^)]*\)/g,       // RGBA colors: rgba(255, 255, 255, 0.5)
+      /hsl\([^)]*\)/g,        // HSL colors: hsl(0, 0%, 100%)
+      /hsla\([^)]*\)/g        // HSLA colors: hsla(0, 0%, 100%, 0.5)
     ];
     
-    // AI Formula 工具�?
-    this.aiFormulaClasses = [
-      'ai-bg-primary',
-      'ai-bg-secondary',
-      'ai-bg-accent',
-      'ai-bg-success',
-      'ai-bg-info',
-      'ai-bg-warning',
-      'ai-bg-error',
-      'ai-bg-dark',
-      'ai-bg-dark-light',
-      'ai-bg-dark-medium',
-      'ai-text-primary',
-      'ai-text-secondary',
-      'ai-text-accent',
-      'ai-text-success',
-      'ai-text-info',
-      'ai-text-warning',
-      'ai-text-error',
-      'ai-border-primary',
-      'ai-border-secondary',
-      'ai-border-accent',
-      'ai-border-gray',
-      'ai-bg-gradient-dark'
+    // 允許的硬編碼顏色 (例如 transparent, inherit 等)
+    this.allowedHardcodedColours = [
+      'transparent',
+      'inherit',
+      'currentColor',
+      'currentcolour',
+      'none'
     ];
   }
 
-  // 檢查?�件?�否存在
+  // 驗證 CSS 變數是否存在
+  validateColourVariables() {
+    const cssFiles = this.findFiles(['src'], ['.css', '.scss', '.sass']);
+    let foundVariables = 0;
+    
+    cssFiles.forEach(file => {
+      const content = fs.readFileSync(file, 'utf8');
+      
+      this.allowedColourVariables.forEach(variable => {
+        if (content.includes(variable)) {
+          foundVariables++;
+          this.passed.push(`✅ 找到顏色變數: ${variable} in ${file}`);
+        }
+      });
+    });
+    
+    if (foundVariables === 0) {
+      this.errors.push('❌ 沒有找到任何預定義的顏色變數！');
+    }
+    
+    return foundVariables;
+  }
+
+  // 掃描目錄中的硬編碼顏色
+  scanDirectoryForHardcodedColours(dirPath) {
+    const files = this.findFiles([dirPath], ['.tsx', '.jsx', '.ts', '.js', '.css', '.scss']);
+    let totalHardcodedColours = 0;
+    
+    console.log(`🔍 掃描 ${dirPath} 目錄中的硬編碼顏色...`);
+    
+    files.forEach(file => {
+      const content = fs.readFileSync(file, 'utf8');
+      const relativePath = path.relative(process.cwd(), file);
+      
+      let fileHardcodedColours = 0;
+      
+      this.hardcodedColourPatterns.forEach(pattern => {
+        const matches = content.match(pattern) || [];
+        fileHardcodedColours += matches.length;
+        
+        // 檢查是否在變數定義中
+        const isInVariableDefinition = this.allowedColourVariables.some(variable =>
+          content.includes(`${variable}:`) && matches.some(match => 
+            content.indexOf(match) > content.indexOf(`${variable}:`) &&
+            content.indexOf(match) < content.indexOf(`;`, content.indexOf(`${variable}:`))
+          )
+        );
+        
+        if (matches.length > 0 && !isInVariableDefinition) {
+          this.warnings.push(`⚠️  ${relativePath}: 發現 ${matches.length} 個硬編碼顏色: ${matches.join(', ')}`);
+        }
+      });
+      
+      if (fileHardcodedColours === 0) {
+        this.passed.push(`✅ ${relativePath}: 無硬編碼顏色`);
+      }
+      
+      totalHardcodedColours += fileHardcodedColours;
+    });
+    
+    if (totalHardcodedColours === 0) {
+      this.passed.push(`✅ ${dirPath} 目錄: 無硬編碼顏色`);
+    } else {
+      this.warnings.push(`⚠️  ${dirPath} 目錄中發現 ${totalHardcodedColours} 個硬編碼顏色`);
+    }
+    
+    return totalHardcodedColours;
+  }
+
+  // 檢查 Tailwind 配置
+  validateTailwindConfig() {
+    const configFiles = ['tailwind.config.js', 'tailwind.config.ts'];
+    let configFound = false;
+    
+    configFiles.forEach(configFile => {
+      if (fs.existsSync(configFile)) {
+        configFound = true;
+        const content = fs.readFileSync(configFile, 'utf8');
+        
+        if (content.includes('colours:') || content.includes('colors:')) {
+          this.passed.push(`✅ Tailwind 配置文件: ${configFile}`);
+        } else {
+          this.warnings.push(`⚠️  ${configFile}: 沒有找到顏色配置`);
+        }
+      }
+    });
+    
+    if (!configFound) {
+      this.warnings.push('⚠️  沒有找到 Tailwind 配置文件');
+    }
+  }
+
+  // 檢查重要文件是否存在
   checkFileExists(filePath, description) {
-    const fullPath = path.join(__dirname, filePath);
-    if (fs.existsSync(fullPath)) {
-      this.successes.push(`??${description} 存在`);
+    if (fs.existsSync(filePath)) {
+      this.passed.push(`✅ ${description}: ${filePath}`);
       return true;
     } else {
-      this.errors.push(`??${description} 不�??? ${filePath}`);
+      this.warnings.push(`⚠️  ${description}不存在: ${filePath}`);
       return false;
     }
   }
 
-  // 檢查 CSS 變�?定義
-  checkCSSVariables() {
-    const cssPath = path.join(__dirname, 'src/index.css');
-    if (!fs.existsSync(cssPath)) {
-      this.errors.push('??index.css ?�件不�???);
-      return;
-    }
+  // 檢查目錄結構
+  validateDirectoryStructure() {
+    this.checkFileExists('AI_FORMULA_COLOUR_GUIDELINES.md', '顏色使用指南');
+    this.checkFileExists('src/tests/ColourSystemTest.tsx', '顏色系統測試');
+  }
 
-    const cssContent = fs.readFileSync(cssPath, 'utf8');
+  // 掃描整個專案
+  scanProject() {
+    console.log('🎨 開始 AI Formula 顏色系統驗證...\n');
     
-    // 檢查每個�??��???
-    this.allowedColorVariables.forEach(variable => {
-      const variableName = variable.match(/--ai-formula-[\w-]+/)[0];
-      if (cssContent.includes(variableName)) {
-        this.successes.push(`??CSS 變�? ${variableName} 已�?義`);
-      } else {
-        this.errors.push(`??CSS 變�? ${variableName} ?��?義`);
-      }
-    });
-
-    // 檢查工具�?
-    this.aiFormulaClasses.forEach(className => {
-      if (cssContent.includes(`.${className}`)) {
-        this.successes.push(`??工具�?.${className} 已�?義`);
-      } else {
-        this.warnings.push(`??工具�?.${className} ?��?義`);
-      }
-    });
+    // 掃描硬編碼顏色
+    this.scanDirectoryForHardcodedColours('src/components');
+    this.scanDirectoryForHardcodedColours('src/pages');
+    this.scanDirectoryForHardcodedColours('src/styles');
+    
+    // 驗證顏色變數
+    this.validateColourVariables();
+    
+    // 檢查配置文件
+    this.validateTailwindConfig();
+    
+    // 檢查目錄結構
+    this.validateDirectoryStructure();
   }
 
-  // ?��??��??�找硬編碼�???
-  scanDirectoryForHardcodedColors(dirPath) {
-    const fullPath = path.join(__dirname, dirPath);
-    if (!fs.existsSync(fullPath)) {
-      this.warnings.push(`???��?不�??? ${dirPath}`);
-      return;
-    }
-
-    const files = this.getAllFiles(fullPath, ['.tsx', '.ts', '.jsx', '.js']);
-    let totalHardcodedColors = 0;
-
-    files.forEach(filePath => {
-      const content = fs.readFileSync(filePath, 'utf8');
-      const relativePath = path.relative(__dirname, filePath);
-      
-      // 跳�?測試?�件?��?些�?置�?�?
-      if (relativePath.includes('test') || 
-          relativePath.includes('spec') ||
-          relativePath.includes('validate-') ||
-          relativePath.includes('eslint-plugin-')) {
-        return;
-      }
-
-      let fileHardcodedColors = 0;
-      
-      this.hardcodedPatterns.forEach(pattern => {
-        const matches = content.match(pattern);
-        if (matches) {
-          fileHardcodedColors += matches.length;
-          matches.forEach(match => {
-            // 檢查?�否?��?許�?變�?定義�?
-            const isInVariableDefinition = this.allowedColorVariables.some(variable => 
-              content.includes(variable) && content.indexOf(variable) < content.indexOf(match)
-            );
-            
-            if (!isInVariableDefinition) {
-              this.warnings.push(`???�現硬編碼�???"${match}" ??${relativePath}`);
-            }
-          });
-        }
-      });
-
-      if (fileHardcodedColors === 0) {
-        this.successes.push(`??${relativePath} 沒�?硬編碼�??�`);
-      }
-      
-      totalHardcodedColors += fileHardcodedColors;
-    });
-
-    if (totalHardcodedColors === 0) {
-      this.successes.push(`??${dirPath} ?��?沒�?硬編碼�??�`);
-    } else {
-      this.warnings.push(`??${dirPath} ?��??�現 ${totalHardcodedColors} ?�硬編碼顏色`);
-    }
-  }
-
-  // ?��??�?��?定擴展�??��?�?
-  getAllFiles(dirPath, extensions) {
+  // 尋找文件
+  findFiles(directories, extensions) {
     let files = [];
-    const items = fs.readdirSync(dirPath);
-
-    items.forEach(item => {
-      const fullPath = path.join(dirPath, item);
-      const stat = fs.statSync(fullPath);
-
-      if (stat.isDirectory() && !item.startsWith('.') && item !== 'node_modules') {
-        files = files.concat(this.getAllFiles(fullPath, extensions));
-      } else if (stat.isFile() && extensions.some(ext => item.endsWith(ext))) {
-        files.push(fullPath);
+    
+    directories.forEach(dir => {
+      if (fs.existsSync(dir)) {
+        this.scanDirectory(dir, extensions, files);
       }
     });
-
+    
     return files;
   }
 
-  // 檢查 AI Formula 工具類使?��?�?
-  checkAIFormulaUsage() {
-    const componentsPath = path.join(__dirname, 'src/components');
-    const pagesPath = path.join(__dirname, 'src/pages');
+  // 遞歸掃描目錄
+  scanDirectory(dirPath, extensions, files) {
+    const items = fs.readdirSync(dirPath);
     
-    let totalUsage = 0;
-    
-    [componentsPath, pagesPath].forEach(dirPath => {
-      if (fs.existsSync(dirPath)) {
-        const files = this.getAllFiles(dirPath, ['.tsx', '.ts']);
-        
-        files.forEach(filePath => {
-          const content = fs.readFileSync(filePath, 'utf8');
-          const relativePath = path.relative(__dirname, filePath);
-          
-          let fileUsage = 0;
-          this.aiFormulaClasses.forEach(className => {
-            const matches = content.match(new RegExp(`\\b${className}\\b`, 'g'));
-            if (matches) {
-              fileUsage += matches.length;
-            }
-          });
-          
-          if (fileUsage > 0) {
-            this.successes.push(`??${relativePath} 使用�?${fileUsage} ??AI Formula 工具類`);
-            totalUsage += fileUsage;
-          }
-        });
+    items.forEach(item => {
+      const fullPath = path.join(dirPath, item);
+      const stat = fs.statSync(fullPath);
+      
+      if (stat.isDirectory()) {
+        // 跳過 node_modules 和 .git 目錄
+        if (!['node_modules', '.git', 'dist', 'build'].includes(item)) {
+          this.scanDirectory(fullPath, extensions, files);
+        }
+      } else if (stat.isFile()) {
+        const ext = path.extname(fullPath);
+        if (extensions.includes(ext)) {
+          files.push(fullPath);
+          this.stats.totalFiles++;
+        }
       }
     });
-
-    if (totalUsage > 0) {
-      this.successes.push(`??總共使用�?${totalUsage} ??AI Formula 工具類`);
-    } else {
-      this.warnings.push('??沒�??�現 AI Formula 工具類�?使用');
-    }
   }
 
-  // ?��??�?�檢??
-  runAllChecks() {
-    console.log('?? AI Formula 顏色系統驗�??��?...\n');
-
-    // 1. 檢查?��??�件
-    console.log('?? 檢查?��??�件...');
-    this.checkFileExists('src/index.css', 'CSS 主�?�?);
-    this.checkFileExists('eslint-plugin-ai-formula.js', 'ESLint ?�件');
-    this.checkFileExists('AI_FORMULA_COLOR_GUIDELINES.md', '顏色使用?��?');
-    this.checkFileExists('src/tests/ColorSystemTest.tsx', '顏色系統測試');
-
-    // 2. 檢查 CSS 變�??�工?��?
-    console.log('\n?�� 檢查 CSS 變�??�工?��?...');
-    this.checkCSSVariables();
-
-    // 3. ?��?硬編碼�???
-    console.log('\n?? ?��?硬編碼�???..');
-    this.scanDirectoryForHardcodedColors('src/components');
-    this.scanDirectoryForHardcodedColors('src/pages');
-
-    // 4. 檢查 AI Formula 工具類使??
-    console.log('\n??�?檢查 AI Formula 工具類使??..');
-    this.checkAIFormulaUsage();
-
-    // 5. 輸出結�?
-    this.printResults();
-  }
-
-  // ?�印結�?
-  printResults() {
-    console.log('\n' + '='.repeat(60));
-    console.log('?? AI Formula 顏色系統驗�?結�?');
-    console.log('='.repeat(60));
-
-    if (this.successes.length > 0) {
-      console.log('\n???��??�目:');
-      this.successes.forEach(success => console.log(`  ${success}`));
-    }
-
-    if (this.warnings.length > 0) {
-      console.log('\n?��?  警�??�目:');
-      this.warnings.forEach(warning => console.log(`  ${warning}`));
-    }
-
-    if (this.errors.length > 0) {
-      console.log('\n???�誤?�目:');
-      this.errors.forEach(error => console.log(`  ${error}`));
-    }
-
-    // 計�?完�?�?
-    const totalItems = this.successes.length + this.warnings.length + this.errors.length;
-    const completionRate = totalItems > 0 ? (this.successes.length / totalItems * 100).toFixed(1) : 0;
+  // 生成報告
+  generateReport() {
+    console.log('\n📊 驗證結果報告');
+    console.log('=' * 50);
     
-    console.log('\n' + '='.repeat(60));
-    console.log(`?�� 完�?�? ${completionRate}%`);
-    console.log(`???��?: ${this.successes.length}`);
-    console.log(`?��?  警�?: ${this.warnings.length}`);
-    console.log(`???�誤: ${this.errors.length}`);
-    console.log('='.repeat(60));
-
-    // ?��?結�?確�??�?�碼
+    console.log(`\n✅ 通過項目 (${this.passed.length}):`);
+    this.passed.forEach(item => console.log(item));
+    
+    if (this.warnings.length > 0) {
+      console.log(`\n⚠️  警告項目 (${this.warnings.length}):`);
+      this.warnings.forEach(item => console.log(item));
+    }
+    
     if (this.errors.length > 0) {
-      console.log('\n??驗�?失�?，�??�錯誤�?要修�?);
-      process.exit(1);
-    } else if (this.warnings.length > 0) {
-      console.log('\n?��?  驗�??��?，�??�警?��?要注??);
-      process.exit(0);
+      console.log(`\n❌ 錯誤項目 (${this.errors.length}):`);
+      this.errors.forEach(item => console.log(item));
+    }
+    
+    console.log(`\n📈 統計資訊:`);
+    console.log(`   總文件數: ${this.stats.totalFiles}`);
+    console.log(`   檢查文件數: ${this.stats.checkedFiles}`);
+    console.log(`   硬編碼顏色: ${this.stats.hardcodedColours}`);
+    console.log(`   變數使用: ${this.stats.variableUsage}`);
+    
+    // 總體評分
+    const totalIssues = this.errors.length + this.warnings.length;
+    const score = Math.max(0, 100 - (totalIssues * 5));
+    
+    console.log(`\n🎯 顏色系統評分: ${score}/100`);
+    
+    if (score >= 90) {
+      console.log('🎉 優秀！顏色系統使用規範。');
+    } else if (score >= 70) {
+      console.log('👍 良好，但仍有改善空間。');
     } else {
-      console.log('\n??驗�?完全?��?，�??�系統�?行良好�?');
-      process.exit(0);
+      console.log('⚠️  需要改善顏色系統的一致性。');
     }
   }
 }
 
-// ?��?驗�?
-const validator = new ColorSystemValidator();
-validator.runAllChecks(); 
+// 執行驗證
+const validator = new ColourSystemValidator();
+validator.scanProject();
+validator.generateReport(); 

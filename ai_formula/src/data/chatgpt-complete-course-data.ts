@@ -55,19 +55,15 @@ In the hierarchy of artificial intelligence technology, LLMs sit at the pinnacle
       },
       {
         id: 2,
-        title: "1.2 Transformer 架構：神經網絡與自注意力機制 (Self-Attention)",
+        title: "1.2 Transformer 架構：神經網路與自注意力機制 (Self-Attention)",
         duration: "18分鐘",
         type: "text" as const,
-        description: "探索LLM的建構基礎神經網絡以及革命性Transformer架構的核心創新自注意力機制。",
-        transcript: `LLM 的構建基石是人工神經網絡，這是一種模仿生物大腦中神經元相互連接和傳遞信號方式的計算模型。它由多個層級的節點組成，包括輸入層、輸出層以及一層或多層位於兩者之間的「隱藏層」。
+        description: "探索LLM的建構基礎神經網路以及革命性Transformer架構的核心創新自注意力機制。",
+        transcript: `LLM 的構建基石是人工神經網路，這是一種模仿生物大腦中神經元相互連接和傳遞信號方式的計算模型。它由多個層級的節點組成，包括輸入層、輸出層以及一層或多層位於兩者之間的「隱藏層」。
 
 然而，LLM 能力實現質的飛躍，其真正的技術突破在於 2017 年被提出的 Transformer 架構。在 Transformer 出現之前，主流的序列處理模型（如循環神經網絡 RNN）必須按順序逐字處理文本，這極大地限制了訓練速度和處理長文本的能力。Transformer 架構則引入了並行處理機制，可以同時分析整個輸入序列，從而能夠利用現代 GPU 的強大並行計算能力，大幅縮短訓練時間。
 
-Transformer 架構的核心是其獨創的「自注意力機制」（Self-Attention Mechanism）。這個機制使得模型在處理序列中的某個單詞時，能夠權衡輸入文本中所有其他單詞對該單詞的重要性，並給予不同的「注意力」權重。這讓模型能夠捕捉到詞語之間複雜的、長距離的依賴關係，從而更深刻地理解上下文。例如，在句子「貓咪追著老鼠，因为它饿了」中，自注意力機制能幫助模型準確地將代詞「它」與主語「貓咪」聯繫起來，而不是「老鼠」。
-
-為了讓神經網絡能夠處理語言，LLM 採用了「詞嵌入」（Word Embeddings）技術來表示單詞。傳統的機器學習方法可能使用孤立的數字來代表每個詞，無法表達詞語間的語義關係。詞嵌入則將每個單詞映射到一個高維的向量空間中。在這個空間裡，意思或用法相近的詞語（例如「國王」與「女王」，或「走路」與「奔跑」）在向量上的距離會更近。這種表示方式使得模型能夠捕捉到單詞之間細微的語義和句法關係，為理解複雜語言奠定了數學基礎。
-
-這種從順序處理到並行處理的範式轉移，是近年來 AI 發展突然加速的根本原因。它使得在海量數據上訓練具有數千億參數的超大規模模型成為可能，最終催生了具備強大能力的 ChatGPT。`,
+為了讓神經網路能夠處理語言，LLM 採用了「詞嵌入」（Word Embeddings）技術來表示單詞。傳統的機器學習方法可能使用孤立的數字來代表每個詞，無法表達詞語間的語義關係。詞嵌入則將每個單詞映射到一個高維的向量空間中。在這個空間裡，意思或用法相近的詞語（例如「國王」與「女王」，或「走路」與「奔跑」）在向量上的距離會更近。這種表示方式使得模型能夠捕捉到單詞之間細微的語義和句法關係，為理解複雜語言奠定了數學基礎。`,
         transcriptEn: `The core of the Transformer architecture is its innovative self-attention mechanism. This mechanism allows the model to weigh the importance of each word in the input text to the current word, giving different "attention" weights. This allows the model to capture the complex, long-distance dependencies between words, allowing it to understand the context more deeply. For example, in the sentence "貓咪追著老鼠，因为它饿了", the self-attention mechanism helps the model accurately associate the pronoun "它" with the subject "貓咪", rather than "老鼠".
 
 To allow the neural network to process language, LLM uses "word embeddings" technology to represent words. Traditional machine learning methods might use isolated numbers to represent each word, unable to express the semantic relationship between words. Word embeddings map each word into a high-dimensional vector space. In this space, words with similar meanings or usages (e.g., "king" and "queen", or "walking" and "running") are closer to each other. This representation allows the model to capture subtle semantic and syntactic relationships between words, laying the groundwork for understanding complex language.
@@ -1521,7 +1517,7 @@ Please provide:
 - 目標受眾：[專業人士/一般大眾/學生]
 - 語調：[正式/非正式/友善/權威]
 - 專業領域：[醫學/法律/技術/商業/文學]
-- 地區偏好：[美式/英式/繁體/簡體]
+- 地區偏好：[美式/英式/繁體/簡體中文]
 
 請提供：
 1. 直譯版本

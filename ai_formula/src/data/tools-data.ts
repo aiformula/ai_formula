@@ -1450,16 +1450,16 @@ const allTools: Tool[] = [
     id: 'seaweed-apt2',
     title: 'Seaweed APT2 - 高級威脅檢測工具',
     titleEn: 'Seaweed APT2 - Advanced Threat Detection Tool',
-    description: '一個先進嘅 AI 驅動網絡安全工具，專門用於檢測同分析高級持續威脅 (APT)，為企業提供全面嘅網絡安全防護。',
+    description: '一個先進嘅 AI 驅動網絡保安工具，專門用於檢測同分析高級持續威脅 (APT)，為企業提供全面嘅網絡保安防護。',
     descriptionEn: 'An advanced AI-driven cybersecurity tool specifically designed for detecting and analysing Advanced Persistent Threats (APT), providing comprehensive network security protection for enterprises.',
-    tag: '網絡安全',
-    tags: ['網絡安全', 'AI 安全'],
+    tag: '網絡保安',
+    tags: ['網絡保安', 'AI 安全'],
     url: 'https://apt2.seaweedfs.com/',
     imageUrl: '/aitools/seaweed.png',
     imageAlt: 'Seaweed APT2 Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
-    targetAudience: ['網絡安全專家', 'IT 管理員', '企業安全團隊'],
+    targetAudience: ['網絡保安專家', 'IT 管理員', '企業安全團隊'],
     userGroups: ['tech-developer', 'enterprise-manager']
   },
   {
@@ -1539,7 +1539,7 @@ const allTools: Tool[] = [
     imageAlt: 'Zapier Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
-    targetAudience: ['企業', '營銷團隊', '任何使用多個網絡應用的人', '項目經理'],
+    targetAudience: ['企業', '營銷團隊', '任何使用多個網絡應用程式的人', '項目經理'],
     userGroups: ['business-professional', 'data-analyst', 'productivity-user', 'enterprise-manager']
   },
   {

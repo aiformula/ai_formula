@@ -767,7 +767,7 @@ const zhTranslations: Translations = {
     'ai-developer': 'AI開發者',
     'tech-team': '技術團隊',
     'tech-leader': '技術主管',
-    'cybersecurity-specialist': '網絡安全專家',
+    'cybersecurity-specialist': '網絡保安專家',
     'test-engineer': '測試工程師',
     'crm-administrator': 'CRM管理員',
     'it-administrator': 'IT管理員',
