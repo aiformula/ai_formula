@@ -11,6 +11,8 @@ import { ChevronDown } from 'lucide-react';
 interface FAQItem {
   question: string;
   answer: string;
+  questionEn?: string;
+  answerEn?: string;
 }
 
 interface AnimatedFAQProps {
@@ -192,7 +194,7 @@ const AnimatedFAQ: React.FC<AnimatedFAQProps> = ({
                       }`}
                       layout
                     >
-                      {faq.question}
+                      {isZhTW ? faq.question : (faq.questionEn || faq.question)}
                     </motion.h3>
                     
                     {/* 動畫箭頭 */}
@@ -233,7 +235,7 @@ const AnimatedFAQ: React.FC<AnimatedFAQProps> = ({
                         {/* 答案文字 */}
                         <div className="prose prose-invert max-w-none">
                           <p className="text-gray-300 text-lg leading-relaxed">
-                            {faq.answer}
+                            {isZhTW ? faq.answer : (faq.answerEn || faq.answer)}
                           </p>
                         </div>
 

@@ -98,35 +98,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
     {
       id: 1,
             title: isZhHK ? '歡迎來到 AI 新紀元： 課程簡介與學習地圖' : 'Welcome to the New AI Era: Course Introduction & Learning Map',
-            duration: '15分鐘',
+            duration: isZhHK ? '15分鐘' : '15 minutes',
             completed: getThemeProgress(1)?.completedUnits.includes(1) || false,
             current: !getThemeProgress(1)?.completedUnits.includes(1)
           },
           {
             id: 2,
             title: isZhHK ? 'ChatGPT 是什麼？ 白話拆解大型語言模型 (LLM) 核心概念' : 'What is ChatGPT? Breaking Down Large Language Model (LLM) Core Concepts',
-            duration: '25分鐘',
+            duration: isZhHK ? '25分鐘' : '25 minutes',
             completed: getThemeProgress(1)?.completedUnits.includes(2) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(1) || false) && !(getThemeProgress(1)?.completedUnits.includes(2) || false)
           },
           {
             id: 3,
             title: isZhHK ? 'GPT 的演進史： 從 GPT-3.5 到 GPT-4o 的關鍵差異' : 'Evolution of GPT: Key Differences from GPT-3.5 to GPT-4o',
-            duration: '20分鐘',
+            duration: isZhHK ? '20分鐘' : '20 minutes',
             completed: getThemeProgress(1)?.completedUnits.includes(3) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(2) || false) && !(getThemeProgress(1)?.completedUnits.includes(3) || false)
           },
           {
             id: 4,
             title: isZhHK ? '免費版 vs. Plus 版： 功能比較與選擇策略，哪一個更適合你？' : 'Free vs. Plus: Feature Comparison & Selection Strategy',
-            duration: '18分鐘',
+            duration: isZhHK ? '18分鐘' : '18 minutes',
             completed: getThemeProgress(1)?.completedUnits.includes(4) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(3) || false) && !(getThemeProgress(1)?.completedUnits.includes(4) || false)
           },
           {
             id: 5,
             title: isZhHK ? '帳戶註冊與安全設定： 逐步完成註冊，保障你的帳戶安全' : 'Account Registration & Security Settings: Step-by-step Registration',
-            duration: '12分鐘',
+            duration: isZhHK ? '12分鐘' : '12 minutes',
             completed: getThemeProgress(1)?.completedUnits.includes(5) || false,
             current: (getThemeProgress(1)?.completedUnits.includes(4) || false) && !(getThemeProgress(1)?.completedUnits.includes(5) || false)
           }
@@ -145,35 +145,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 6,
             title: isZhHK ? '主介面深度導覽： 對話視窗、歷史紀錄 (History) 與設定區' : 'Main Interface Deep Tour: Chat Window, History & Settings',
-            duration: '30分鐘',
+            duration: isZhHK ? '30分鐘' : '30 minutes',
             completed: getThemeProgress(2)?.completedUnits.includes(6) || false,
             current: isThemeCompleted(1) && !(getThemeProgress(2)?.completedUnits.includes(6) || false)
           },
           {
             id: 7,
             title: isZhHK ? '對話管理技巧： 如何有效命名 (Rename)、分享 (Share) 與刪除 (Delete) 對話' : 'Conversation Management: Rename, Share & Delete Conversations',
-            duration: '22分鐘',
+            duration: isZhHK ? '22分鐘' : '22 minutes',
             completed: getThemeProgress(2)?.completedUnits.includes(7) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(6) || false) && !(getThemeProgress(2)?.completedUnits.includes(7) || false)
           },
           {
             id: 8,
             title: isZhHK ? 'Custom Instructions (自訂指令)： 打造你的個人化 AI 助教，讓每次回答更貼心' : 'Custom Instructions: Create Your Personal AI Assistant',
-            duration: '28分鐘',
+            duration: isZhHK ? '28分鐘' : '28 minutes',
             completed: getThemeProgress(2)?.completedUnits.includes(8) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(7) || false) && !(getThemeProgress(2)?.completedUnits.includes(8) || false)
           },
           {
             id: 9,
             title: isZhHK ? '手機 App 獨有功能： 語音對話與圖像辨識實戰' : 'Mobile App Exclusive Features: Voice Chat & Image Recognition',
-            duration: '35分鐘',
+            duration: isZhHK ? '35分鐘' : '35 minutes',
             completed: getThemeProgress(2)?.completedUnits.includes(9) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(8) || false) && !(getThemeProgress(2)?.completedUnits.includes(9) || false)
           },
           {
             id: 10,
             title: isZhHK ? '探索 GPT Store： 如何尋找、評估及使用別人建立的優秀 GPTs' : 'Exploring GPT Store: Finding, Evaluating & Using GPTs',
-            duration: '25分鐘',
+            duration: isZhHK ? '25分鐘' : '25 minutes',
             completed: getThemeProgress(2)?.completedUnits.includes(10) || false,
             current: (getThemeProgress(2)?.completedUnits.includes(9) || false) && !(getThemeProgress(2)?.completedUnits.includes(10) || false)
           }
@@ -192,42 +192,42 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 11,
             title: isZhHK ? '優質指令的四大基石： 角色 (Role)、任務 (Task)、脈絡 (Context)、格式 (Format)' : 'Four Pillars of Quality Prompts: Role, Task, Context, Format',
-            duration: '32分鐘',
+            duration: isZhHK ? '32分鐘' : '32 minutes',
             completed: getThemeProgress(3)?.completedUnits.includes(11) || false,
             current: isThemeCompleted(2) && !(getThemeProgress(3)?.completedUnits.includes(11) || false)
           },
           {
             id: 12,
             title: isZhHK ? '角色扮演法： 讓 ChatGPT 成為你的私人律師、程式設計師或行銷專家' : 'Role-Playing Method: Make ChatGPT Your Personal Lawyer, Programmer or Marketing Expert',
-            duration: '28分鐘',
+            duration: isZhHK ? '28分鐘' : '28 minutes',
             completed: getThemeProgress(3)?.completedUnits.includes(12) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(11) || false) && !(getThemeProgress(3)?.completedUnits.includes(12) || false)
           },
           {
             id: 13,
             title: isZhHK ? '範例引導法 (Few-Shot Prompting)： 給予 AI 範例，讓它模仿你的風格與格式' : 'Few-Shot Prompting: Give AI Examples to Mimic Your Style',
-            duration: '26分鐘',
+            duration: isZhHK ? '26分鐘' : '26 minutes',
             completed: getThemeProgress(3)?.completedUnits.includes(13) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(12) || false) && !(getThemeProgress(3)?.completedUnits.includes(13) || false)
           },
           {
             id: 14,
             title: isZhHK ? '思維鏈技巧 (Chain of Thought)： 引導 AI 一步步思考，解決複雜問題' : 'Chain of Thought: Guide AI to Think Step by Step',
-            duration: '30分鐘',
+            duration: isZhHK ? '30分鐘' : '30 minutes',
             completed: getThemeProgress(3)?.completedUnits.includes(14) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(13) || false) && !(getThemeProgress(3)?.completedUnits.includes(14) || false)
           },
           {
             id: 15,
             title: isZhHK ? '迭代與追問： 如何透過追問，從 60 分的答案優化到 95 分' : 'Iteration & Follow-up: Optimise from 60-point to 95-point Answers',
-            duration: '24分鐘',
+            duration: isZhHK ? '24分鐘' : '24 minutes',
             completed: getThemeProgress(3)?.completedUnits.includes(15) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(14) || false) && !(getThemeProgress(3)?.completedUnits.includes(15) || false)
           },
           {
             id: 16,
             title: isZhHK ? '指令範本庫： 提供 20+ 個常用高效指令範本，即學即用' : 'Prompt Template Library: 20+ High-Efficiency Templates Ready to Use',
-            duration: '18分鐘',
+            duration: isZhHK ? '18分鐘' : '18 minutes',
             completed: getThemeProgress(3)?.completedUnits.includes(16) || false,
             current: (getThemeProgress(3)?.completedUnits.includes(15) || false) && !(getThemeProgress(3)?.completedUnits.includes(16) || false)
           }
@@ -246,35 +246,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 17,
             title: isZhHK ? '實戰項目 (一) 內容創作引擎： 自動生成高質素的社交媒體貼文、廣告文案與電子郵件' : 'Project 1: Content Creation Engine - Social Media, Ads & Email',
-            duration: '35分鐘',
+            duration: isZhHK ? '35分鐘' : '35 minutes',
             completed: getThemeProgress(4)?.completedUnits.includes(17) || false,
             current: isThemeCompleted(3) && !(getThemeProgress(4)?.completedUnits.includes(17) || false)
           },
           {
             id: 18,
             title: isZhHK ? '實戰項目 (二) 學習研究加速器： 快速總結論文、報告，並用簡單方式解釋複雜概念' : 'Project 2: Learning Research Accelerator - Summarize Papers & Reports',
-            duration: '28分鐘',
+            duration: isZhHK ? '28分鐘' : '28 minutes',
             completed: getThemeProgress(4)?.completedUnits.includes(18) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(17) || false) && !(getThemeProgress(4)?.completedUnits.includes(18) || false)
           },
           {
             id: 19,
             title: isZhHK ? '實戰項目 (三) 創意腦震盪夥伴： 從零開始規劃旅行、活動流程或商業點子' : 'Project 3: Creative Brainstorming Partner - Travel, Events & Business Ideas',
-            duration: '22分鐘',
+            duration: isZhHK ? '22分鐘' : '22 minutes',
             completed: getThemeProgress(4)?.completedUnits.includes(19) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(18) || false) && !(getThemeProgress(4)?.completedUnits.includes(19) || false)
           },
           {
             id: 20,
             title: isZhHK ? '實戰項目 (四) 程式設計超級助手： 解釋程式碼、除錯 (Debug) 與編寫簡單腳本' : 'Project 4: Programming Super Assistant - Code Explanation & Debugging',
-            duration: '40分鐘',
+            duration: isZhHK ? '40分鐘' : '40 minutes',
             completed: getThemeProgress(4)?.completedUnits.includes(20) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(19) || false) && !(getThemeProgress(4)?.completedUnits.includes(20) || false)
           },
           {
             id: 21,
             title: isZhHK ? '實戰項目 (五) 語言翻譯與潤飾大師： 進行多國語言精準翻譯與專業級文章校對' : 'Project 5: Language Translation & Polishing Master - Professional Translation & Proofreading',
-            duration: '25分鐘',
+            duration: isZhHK ? '25分鐘' : '25 minutes',
             completed: getThemeProgress(4)?.completedUnits.includes(21) || false,
             current: (getThemeProgress(4)?.completedUnits.includes(20) || false) && !(getThemeProgress(4)?.completedUnits.includes(21) || false)
           }
@@ -293,35 +293,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 22,
             title: isZhHK ? 'Advanced Data Analysis (數據分析大師)： 上傳 Excel/CSV/PDF，進行數據分析與圖表製作' : 'Advanced Data Analysis Master: Upload Excel/CSV/PDF for Data Analysis',
-            duration: '38分鐘',
+            duration: isZhHK ? '38分鐘' : '38 minutes',
             completed: getThemeProgress(5)?.completedUnits.includes(22) || false,
             current: isThemeCompleted(4) && !(getThemeProgress(5)?.completedUnits.includes(22) || false)
           },
           {
             id: 23,
             title: isZhHK ? 'Web Browse (實時網絡瀏覽)： 結合即時網絡資訊，進行市場調查與新聞總結' : 'Web Browse: Real-time Web Information for Market Research',
-            duration: '20分鐘',
+            duration: isZhHK ? '20分鐘' : '20 minutes',
             completed: getThemeProgress(5)?.completedUnits.includes(23) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(22) || false) && !(getThemeProgress(5)?.completedUnits.includes(23) || false)
           },
           {
             id: 24,
             title: isZhHK ? 'DALL-E 3 圖像生成： 用文字創造出專業級的商業插圖、簡報圖片與藝術作品' : 'DALL-E 3 Image Generation: Create Professional Business Illustrations',
-            duration: '32分鐘',
+            duration: isZhHK ? '32分鐘' : '32 minutes',
             completed: getThemeProgress(5)?.completedUnits.includes(24) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(23) || false) && !(getThemeProgress(5)?.completedUnits.includes(24) || false)
           },
           {
             id: 25,
             title: isZhHK ? '創建你的第一個 Custom GPT： 無需編程，手把手教你打造個人專屬的 AI 應用' : 'Create Your First Custom GPT: Build Personal AI Applications Without Programming',
-            duration: '45分鐘',
+            duration: isZhHK ? '45分鐘' : '45 minutes',
             completed: getThemeProgress(5)?.completedUnits.includes(25) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(24) || false) && !(getThemeProgress(5)?.completedUnits.includes(25) || false)
           },
           {
             id: 26,
             title: isZhHK ? 'GPTs 應用商店的秘密： 如何發佈你的 GPT，甚至未來可能從中獲利' : 'GPTs App Store Secrets: How to Publish Your GPT and Potentially Profit',
-            duration: '22分鐘',
+            duration: isZhHK ? '22分鐘' : '22 minutes',
             completed: getThemeProgress(5)?.completedUnits.includes(26) || false,
             current: (getThemeProgress(5)?.completedUnits.includes(25) || false) && !(getThemeProgress(5)?.completedUnits.includes(26) || false)
           }
@@ -340,35 +340,35 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           {
             id: 27,
             title: isZhHK ? 'AI 的「幻覺」現象： 如何識別並查證 AI 生成的虛假資訊' : 'AI "Hallucination" Phenomenon: Identify and Verify AI-generated False Information',
-            duration: '18分鐘',
+            duration: isZhHK ? '18分鐘' : '18 minutes',
             completed: getThemeProgress(6)?.completedUnits.includes(27) || false,
             current: isThemeCompleted(5) && !(getThemeProgress(6)?.completedUnits.includes(27) || false)
           },
           {
             id: 28,
             title: isZhHK ? '數據私隱與安全： 你的對話安全嗎？如何管理你的數據' : 'Data Privacy & Security: Are Your Conversations Safe? Managing Your Data',
-            duration: '15分鐘',
+            duration: isZhHK ? '15分鐘' : '15 minutes',
             completed: getThemeProgress(6)?.completedUnits.includes(28) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(27) || false) && !(getThemeProgress(6)?.completedUnits.includes(28) || false)
           },
           {
             id: 29,
             title: isZhHK ? 'AI 的偏見問題： 認識訓練數據帶來的潛在影響，並學習如何應對' : 'AI Bias Issues: Understanding Training Data Impact and How to Respond',
-            duration: '22分鐘',
+            duration: isZhHK ? '22分鐘' : '22 minutes',
             completed: getThemeProgress(6)?.completedUnits.includes(29) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(28) || false) && !(getThemeProgress(6)?.completedUnits.includes(29) || false)
           },
           {
             id: 30,
             title: isZhHK ? '負責任地使用 AI： 在學術、工作與創作中應遵守的倫理界線' : 'Responsible AI Use: Ethical Boundaries in Academia, Work & Creation',
-            duration: '20分鐘',
+            duration: isZhHK ? '20分鐘' : '20 minutes',
             completed: getThemeProgress(6)?.completedUnits.includes(30) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(29) || false) && !(getThemeProgress(6)?.completedUnits.includes(30) || false)
           },
           {
             id: 31,
             title: isZhHK ? '人工智能的未來： 展望 GPT 的下一步發展與對社會的長遠影響' : 'The Future of AI: GPT\'s Next Development and Long-term Social Impact',
-            duration: '25分鐘',
+            duration: isZhHK ? '25分鐘' : '25 minutes',
             completed: getThemeProgress(6)?.completedUnits.includes(31) || false,
             current: (getThemeProgress(6)?.completedUnits.includes(30) || false) && !(getThemeProgress(6)?.completedUnits.includes(31) || false)
           }
@@ -502,7 +502,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                   </div>
                   <div className="text-2xl font-bold mb-1 text-white">{stats.totalProgress}%</div>
                   <div className="text-caption">
-                    {stats.totalProgress === 100 ? '已達成目標' : '持續進步中'}
+                    {stats.totalProgress === 100 ? (isZhHK ? '已達成目標' : 'Goal Achieved') : (isZhHK ? '持續進步中' : 'In Progress')}
                   </div>
                 </div>
 
@@ -510,23 +510,23 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="stat-card-header mb-2">
                     <Clock className="w-5 h-5 text-green-400 mr-1" />
-                    <span className="stat-card-title text-label">學習時間</span>
+                    <span className="stat-card-title text-label">{isZhHK ? '學習時間' : 'Study Time'}</span>
                   </div>
-                  <div className="text-2xl font-bold mb-1 font-mono text-white">{formattedLearningTime || `${totalLearningMinutes}分鐘`}</div>
-                  <div className="text-caption">累積時長</div>
+                  <div className="text-2xl font-bold mb-1 font-mono text-white">{formattedLearningTime || `${totalLearningMinutes}${isZhHK ? '分鐘' : ' min'}`}</div>
+                  <div className="text-caption">{isZhHK ? '累積時長' : 'Total Time'}</div>
                 </div>
 
                 {/* Completed Themes Stat */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="stat-card-header mb-2">
                     <BookOpen className="w-5 h-5 text-gray-400 mr-1" />
-                    <span className="stat-card-title text-label">完成主題</span>
+                    <span className="stat-card-title text-label">{isZhHK ? '完成主題' : 'Completed Themes'}</span>
                   </div>
                   <div className="text-2xl font-bold mb-1 text-white">
                     {stats.completedThemes}/{stats.totalThemes}
                   </div>
                   <div className="text-caption">
-                    {stats.completedThemes === stats.totalThemes ? '全部完成' : '學習中'}
+                    {stats.completedThemes === stats.totalThemes ? (isZhHK ? '全部完成' : 'All Complete') : (isZhHK ? '學習中' : 'Learning')}
                   </div>
                 </div>
 
@@ -588,10 +588,10 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
               <span className="text-body">
-                整體學習進度
+                {isZhHK ? '整體學習進度' : 'Overall Learning Progress'}
               </span>
               <span className="text-body">
-                {stats.totalProgress}% 已完成
+                {stats.totalProgress}% {isZhHK ? '已完成' : 'completed'}
               </span>
             </div>
             <div className="progress-bar progress-bar-large">
@@ -615,7 +615,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
             >
               <div className="content-section-header">
                 <BookOpen className="w-6 h-6 text-gray-400 mr-3" />
-                <h3 className="text-h2">課程模塊</h3>
+                <h3 className="text-h2">{isZhHK ? '課程模塊' : 'Course Modules'}</h3>
               </div>
 
               {/* 🎯 NEW: Accordion Style Course Modules */}
@@ -669,9 +669,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                           {/* Progress Section */}
                           <div className="ml-16">
                             <div className="flex items-center justify-between mb-2">
-                              <span className="text-label">主題進度</span>
+                              <span className="text-label">{isZhHK ? '主題進度' : 'Theme Progress'}</span>
                               <span className="text-caption text-gray-400">
-                                {theme.units.filter(u => u.completed).length}/{theme.units.length} 完成 ({theme.progress}%)
+                                {theme.units.filter(u => u.completed).length}/{theme.units.length} {isZhHK ? '完成' : 'completed'} ({theme.progress}%)
                               </span>
                             </div>
                             <div className="w-full bg-gray-700 rounded-full h-2">
@@ -780,11 +780,11 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                               isLocked ? 'text-gray-600' : 'text-gray-400'
                                             }`}>
                                               <Clock className="w-4 h-4 mr-1" />
-                                              <span>{unit.duration || '30分鐘'}</span>
+                                              <span>{unit.duration || (isZhHK ? '30分鐘' : '30 minutes')}</span>
                                               {unit.current && (
                                                 <>
                                                   <span className="mx-2">•</span>
-                                                  <span className="text-caption text-gray-300">進行中</span>
+                                                  <span className="text-caption text-gray-300">{isZhHK ? '進行中' : 'In Progress'}</span>
                                                 </>
                                               )}
                                             </div>
@@ -795,12 +795,12 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                             {isLocked ? (
                                               <span className="inline-flex items-center px-3 py-1.5 rounded-md text-caption bg-gray-700 text-gray-400">
                                                 <Lock className="w-4 h-4 mr-1" />
-                                                已鎖定
+                                                {isZhHK ? '已鎖定' : 'Locked'}
                               </span>
                                             ) : unit.completed ? (
                                               <span className="inline-flex items-center px-3 py-1.5 rounded-md text-caption bg-green-100 text-green-700">
                                                 <CheckCircle className="w-4 h-4 mr-1" />
-                                                已完成
+                                                {isZhHK ? '已完成' : 'Completed'}
                               </span>
                                             ) : unit.current ? (
                                               <Button
@@ -813,7 +813,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                                                 }}
                                               >
                                                 <Play className="w-4 h-4 mr-2" />
-                                                繼續學習
+                                                {isZhHK ? '繼續學習' : 'Continue Learning'}
                                               </Button>
                                             ) : (
                                               <Button
@@ -961,7 +961,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-h2 flex items-center">
                   <BarChart3 className="w-5 h-5 mr-2 text-gray-400" />
-                  技能發展追蹤
+                  {isZhHK ? '技能發展追蹤' : 'Skills Development Tracking'}
                 </h3>
                 <div className="learning-progress-percentage text-white">
                   {stats.totalProgress}%
@@ -996,7 +996,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
               <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg border border-yellow-500/20">
                 <div className="flex items-center space-x-2 text-yellow-400 mb-2">
                   <Trophy className="w-4 h-4" />
-                  <span className="text-h3">學習成就</span>
+                  <span className="text-h3">{isZhHK ? '學習成就' : 'Learning Achievements'}</span>
                 </div>
                 <p className="text-caption">ChatGPT 完整教學實戰課程</p>
               </div>
@@ -1011,17 +1011,17 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
             >
               <h3 className="text-h2 flex items-center mb-6">
                 <Calendar className="w-5 h-5 mr-2 text-green-400" />
-                學習進度總覽
+                {isZhHK ? '學習進度總覽' : 'Learning Progress Overview'}
               </h3>
               
               <div className="grid grid-cols-2 gap-4 mb-6">
                                     <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
                                       <div className="text-data text-gray-300 mb-1">{stats.completedThemes}</div>
-                  <div className="text-label">已完成主題</div>
+                  <div className="text-label">{isZhHK ? '已完成主題' : 'Completed Themes'}</div>
                 </div>
                                   <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
                                       <div className="text-data text-gray-300 mb-1">{stats.totalThemes - stats.completedThemes}</div>
-                  <div className="text-label">剩餘主題</div>
+                  <div className="text-label">{isZhHK ? '剩餘主題' : 'Remaining Themes'}</div>
                 </div>
               </div>
 
@@ -1034,7 +1034,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                 <div className="learning-streak border border-orange-500/20 bg-orange-500/10">
                   <Zap className="learning-streak-icon text-orange-400" />
                   <span className="learning-streak-text text-orange-300">
-                    下一步
+                    {isZhHK ? '下一步' : 'Next Step'}
                   </span>
                     </div>
                     
@@ -1091,7 +1091,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
             >
               <h3 className="text-h2 mb-4 flex items-center">
                 <Award className="w-5 h-5 mr-2 text-yellow-400" />
-                成就徽章
+                {isZhHK ? '成就徽章' : 'Achievement Badges'}
               </h3>
               
               <div className="space-y-3">

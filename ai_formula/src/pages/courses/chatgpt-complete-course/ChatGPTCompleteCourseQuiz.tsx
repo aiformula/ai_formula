@@ -621,15 +621,15 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
           <div className="flex items-center justify-center space-x-8 text-white/70">
             <div className="flex items-center space-x-2">
                                 <BookOpen className="w-5 h-5 text-gray-400" />
-              <span>{totalQuestions} [題目]</span>
+              <span>{totalQuestions} {isZhHK ? '[題目]' : '[Questions]'}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Clock className="w-5 h-5 text-green-400" />
-              <span>{currentQuiz.timeLimit} [分鐘]</span>
+              <span>{currentQuiz.timeLimit} {isZhHK ? '[分鐘]' : '[Minutes]'}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Target className="w-5 h-5 text-yellow-400" />
-              <span>{currentQuiz.passingScore}% [及格]</span>
+              <span>{currentQuiz.passingScore}% {isZhHK ? '[及格]' : '[Pass Rate]'}</span>
             </div>
           </div>
         </motion.div>
@@ -653,18 +653,18 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-gray-800/50 border border-gray-600/30 rounded-lg p-4">
                                       <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{totalQuestions} [題目]</h3>
-                  <p className="text-sm text-white/60">[選擇題形式]</p>
+                  <h3 className="font-semibold text-white mb-1">{totalQuestions} {isZhHK ? '[題目]' : '[Questions]'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[選擇題形式]' : '[Multiple Choice Format]'}</p>
                 </div>
                 <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
                   <Clock className="w-8 h-8 text-green-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{currentQuiz.timeLimit} [分鐘]</h3>
-                  <p className="text-sm text-white/60">[限時完成]</p>
+                  <h3 className="font-semibold text-white mb-1">{currentQuiz.timeLimit} {isZhHK ? '[分鐘]' : '[Minutes]'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[限時完成]' : '[Time Limited]'}</p>
                 </div>
                 <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
                   <Target className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                  <h3 className="font-semibold text-white mb-1">{currentQuiz.passingScore}% [及格]</h3>
-                  <p className="text-sm text-white/60">[通過標準]</p>
+                  <h3 className="font-semibold text-white mb-1">{currentQuiz.passingScore}% {isZhHK ? '[及格]' : '[Pass Rate]'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[通過標準]' : '[Passing Standard]'}</p>
                 </div>
               </div>
 
@@ -688,7 +688,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
               <div className="bg-gray-900/50 p-4 border-b border-white/10">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-white/70 text-sm">
-                    [題目] {currentQuestion + 1} of {totalQuestions}
+                    {isZhHK ? '[題目]' : '[Question]'} {currentQuestion + 1} of {totalQuestions}
                   </span>
                   <div className="flex items-center space-x-2 text-white/70 text-sm">
                     <Clock className="w-4 h-4" />
@@ -864,7 +864,7 @@ const ChatGPTCompleteCourseQuiz: React.FC = () => {
                 )}
                 
                 <p className="text-xl text-white/80 mb-6">
-                  [您的得分]: {score}% ({currentQuiz.passingScore}% [及格])
+                  {isZhHK ? '[您的得分]' : '[Your Score]'}: {score}% ({currentQuiz.passingScore}% {isZhHK ? '[及格]' : '[Pass]'})
                 </p>
               </div>
 

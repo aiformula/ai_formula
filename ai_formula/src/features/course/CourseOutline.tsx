@@ -55,11 +55,16 @@ import {
 // 類型定義
 interface CourseInfo {
   badge?: string;
+  badgeEn?: string;
   title: string;
+  titleEn?: string;
   subtitle?: string;
+  subtitleEn?: string;
   description?: string; // 新增字段
+  descriptionEn?: string;
   instructor: string;
   instructorTitle: string;
+  instructorTitleEn?: string;
   rating?: number;
   students?: number;
   duration?: string;
@@ -643,8 +648,12 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                               {index + 1}
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-white">{module.title}</h3>
-                              <p className="text-gray-400 mt-1">{module.description}</p>
+                              <h3 className="text-xl font-bold text-white">
+                                {isZhHK ? module.title : (module.titleEn || module.title)}
+                              </h3>
+                              <p className="text-gray-400 mt-1">
+                                {isZhHK ? module.description : (module.descriptionEn || module.description)}
+                              </p>
                             </div>
                           </div>
                           {openAccordion === module.id ? (
@@ -665,7 +674,9 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                                   {lesson.type === 'practice' && <Target className="h-4 w-4 text-white" />}
                                 </div>
                                 <div>
-                                  <p className="text-white font-medium">{lesson.title}</p>
+                                  <p className="text-white font-medium">
+                                    {isZhHK ? lesson.title : (lesson.titleEn || lesson.title)}
+                                  </p>
                                   <p className="text-gray-400 text-sm">{lesson.duration}</p>
                                 </div>
                               </div>
@@ -721,7 +732,9 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                     <div className="flex-1 text-center md:text-left">
                       <h2 className="text-3xl font-bold text-white mb-2">{courseInfo.instructor}</h2>
-                      <p className="text-xl text-gray-300 mb-4">{courseInfo.instructorTitle}</p>
+                      <p className="text-xl text-gray-300 mb-4">
+                        {isZhHK ? courseInfo.instructorTitle : (courseInfo.instructorTitleEn || courseInfo.instructorTitle)}
+                      </p>
                       <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
                         <Badge className={`${instructorTheme.secondary} text-white`}>
                           {isZhHK ? "AI 專家" : "AI Expert"}
@@ -770,7 +783,9 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                     <div className="flex items-center gap-3 mt-6">
                       <div>
                         <div className="font-semibold text-white">{courseInfo.instructor}</div>
-                        <div className="text-sm text-white/80">{courseInfo.instructorTitle}</div>
+                        <div className="text-sm text-white/80">
+                          {isZhHK ? courseInfo.instructorTitle : (courseInfo.instructorTitleEn || courseInfo.instructorTitle)}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -814,17 +829,23 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                     <span className="text-white font-bold text-xl">{courseInfo.instructor.charAt(0)}</span>
                   </div>
                   <div>
-                    <div className="text-sm opacity-90">{courseInfo.instructorTitle}</div>
+                    <div className="text-sm opacity-90">
+                      {isZhHK ? courseInfo.instructorTitle : (courseInfo.instructorTitleEn || courseInfo.instructorTitle)}
+                    </div>
                     <div className="font-semibold">{courseInfo.instructor}</div>
                   </div>
                 </div>
                 
                 <h3 className="text-lg font-bold mb-3">
-                  {courseInfo.title}
+                  {isZhHK ? courseInfo.title : (courseInfo.titleEn || courseInfo.title)}
                 </h3>
                 
                 <div className="text-sm opacity-90">
-                  {courseInfo.subtitle ? courseInfo.subtitle.slice(0, 120) + '...' : (courseInfo.description ? courseInfo.description.slice(0, 120) + '...' : '')}
+                  {(() => {
+                    const subtitle = isZhHK ? courseInfo.subtitle : (courseInfo.subtitleEn || courseInfo.subtitle);
+                    const description = isZhHK ? courseInfo.description : (courseInfo.descriptionEn || courseInfo.description);
+                    return subtitle ? subtitle.slice(0, 120) + '...' : (description ? description.slice(0, 120) + '...' : '');
+                  })()}
                 </div>
               </CardContent>
             </Card>
@@ -833,12 +854,16 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
             <Card className="mb-6 bg-gray-800 border-gray-700">
               <CardContent className="p-6">
                 <div className="text-center mb-4">
-                  <div className="text-lg font-bold text-white">{courseInfo.title}</div>
+                  <div className="text-lg font-bold text-white">
+                    {isZhHK ? courseInfo.title : (courseInfo.titleEn || courseInfo.title)}
+                  </div>
                   {courseInfo.rating && courseInfo.students && (
                     <div className="flex items-center justify-center gap-2 mt-2">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="text-white font-semibold">{courseInfo.rating}</span>
-                      <span className="text-gray-400">({courseInfo.students} 學員)</span>
+                      <span className="text-gray-400">
+                        ({courseInfo.students >= 300 ? '300+' : courseInfo.students} {isZhHK ? '學員' : 'students'})
+                      </span>
                     </div>
                   )}
                 </div>
@@ -959,7 +984,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                   ? 'bg-[#1F1F1F] hover:bg-[#2A2A2A] text-white' // 只有 Perplexity 用暗黑主題
                   : instructorTheme.secondary // ChatGPT 和其他課程用正常主題
               } text-white mb-4`}>
-                {courseInfo.badge}
+                {isZhHK ? courseInfo.badge : (courseInfo.badgeEn || courseInfo.badge)}
                 {isFree && (
                   <span className={`ml-2 px-2 py-1 rounded text-xs ${
                     courseInfo?.title?.includes('Perplexity')
@@ -971,10 +996,14 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                 )}
               </Badge>
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {courseInfo.title}
+                {isZhHK ? courseInfo.title : (courseInfo.titleEn || courseInfo.title)}
               </h1>
               <p className="text-lg text-gray-300 leading-relaxed">
-                {courseInfo.subtitle || courseInfo.description || ''}
+                {(() => {
+                  const subtitle = isZhHK ? courseInfo.subtitle : (courseInfo.subtitleEn || courseInfo.subtitle);
+                  const description = isZhHK ? courseInfo.description : (courseInfo.descriptionEn || courseInfo.description);
+                  return subtitle || description || '';
+                })()}
               </p>
             </div>
 

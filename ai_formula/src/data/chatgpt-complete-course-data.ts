@@ -410,7 +410,9 @@ Paid users can also create their own professional GPTs, uploading knowledge docu
   {
     id: 3,
     title: "第三章：核心功能實戰 — 掌握日常互動技巧",
+    titleEn: "Chapter 3: Mastering Communication — The Art of Effective Prompting",
     description: "帶領學員親手實踐ChatGPT的各項核心功能，探索其作為強大多模態工具的潛力。",
+    descriptionEn: "Master the core skills of communicating with AI, learning how to write clear, precise, and effective prompts to obtain high-quality responses.",
     lessons: [
       {
         id: 11,
@@ -894,7 +896,9 @@ Each template can be adjusted according to specific needs, but the key is to mai
   {
     id: 4,
     title: "第四章：精通之道 — 高級提示工程 (Prompt Engineering)",
+    titleEn: "Chapter 4: Advanced Applications — Professional Techniques and Custom GPTs",
     description: "學會如何設計和優化輸入提示，引導AI模型產生高質量、高相關性的輸出。",
+    descriptionEn: "Explore advanced ChatGPT features, including custom GPT creation, plugin usage, and professional application scenarios.",
     lessons: [
       {
         id: 17,
@@ -1716,7 +1720,9 @@ Please provide original content and ensure:
   {
     id: 5,
     title: "第五章：打造專屬 AI — 個人化與 GPT 商店",
+    titleEn: "Chapter 5: Practical Automation — Workflow Integration and Business Applications",
     description: "學習如何將ChatGPT從通用工具轉變為真正懂您、為您量身定做的私人AI助手。",
+    descriptionEn: "Learn how to integrate ChatGPT into actual work scenarios, building efficient AI-assisted workflows to enhance productivity.",
     lessons: [
       {
         id: 22,
@@ -2204,7 +2210,9 @@ Studying the success factors of popular GPTs, learning from best practices, avoi
   {
     id: 6,
     title: "第六章：展望未來 — 應用、倫理與挑戰",
+    titleEn: "Chapter 6: Responsible Usage — Limitations, Ethics and Future Developments",
     description: "從宏觀視角審視ChatGPT及其背後的技術，探討應用前景、倫理挑戰和未來發展。",
+    descriptionEn: "Understand AI limitations, learn responsible usage practices, and explore future developments in artificial intelligence.",
     lessons: [
       {
         id: 27,
@@ -2737,7 +2745,7 @@ export const chatGPTCourseData = {
     instructorTitle: "AI 應用專家與提示工程師",
     instructorTitleEn: "AI Application Specialists and Prompt Engineers",
     rating: 4.9,
-    students: 50000,
+    students: 300,
     duration: "15+ 小時",
     durationEn: "15+ Hours"
   },

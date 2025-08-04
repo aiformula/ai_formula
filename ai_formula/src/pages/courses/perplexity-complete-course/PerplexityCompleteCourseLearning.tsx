@@ -126,11 +126,11 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
 
   // 🎯 技能評估數據 (與 ChatGPT 結構相同)
   const skills = [
-    { name: '搜尋策略設計', percentage: stats.totalProgress * 0.8 },
-    { name: '資訊驗證能力', percentage: stats.totalProgress * 0.9 },
-    { name: 'AI 工具整合', percentage: stats.totalProgress * 0.7 },
-    { name: '知識管理技巧', percentage: stats.totalProgress * 0.85 },
-    { name: '批判思維應用', percentage: stats.totalProgress * 0.75 }
+    { name: isZhHK ? '搜尋策略設計' : 'Search Strategy Design', percentage: stats.totalProgress * 0.8 },
+    { name: isZhHK ? '資訊驗證能力' : 'Information Verification', percentage: stats.totalProgress * 0.9 },
+    { name: isZhHK ? 'AI 工具整合' : 'AI Tool Integration', percentage: stats.totalProgress * 0.7 },
+    { name: isZhHK ? '知識管理技巧' : 'Knowledge Management', percentage: stats.totalProgress * 0.85 },
+    { name: isZhHK ? '批判思維應用' : 'Critical Thinking', percentage: stats.totalProgress * 0.75 }
   ];
 
   // 🎯 成就系統 - 100% ChatGPT Design
@@ -168,7 +168,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
             <div className="lg:col-span-4">
               <div className="min-w-0">
                 <h1 className="text-h1 mb-1 truncate">
-                  Perplexity 完整教學實戰課程
+                  {isZhHK ? 'Perplexity 完整教學實戰課程' : 'Perplexity Complete Course'}
                 </h1>
                 <div className="flex items-center space-x-2 mb-1">
                   {stats.totalProgress === 100 ? (
@@ -206,30 +206,30 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="stat-card-header mb-2">
                     <BarChart3 className="w-5 h-5 text-gray-400 mr-1" />
-                    <span className="text-label">總進度</span>
+                    <span className="text-label">{isZhHK ? '總進度' : 'Progress'}</span>
                   </div>
                   <div className="text-data text-white mb-1">{stats.totalProgress}%</div>
-                  <div className="text-caption">已完成課程</div>
+                  <div className="text-caption">{isZhHK ? '已完成課程' : 'Course Progress'}</div>
                 </div>
                 
                 {/* Time Stat */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="stat-card-header mb-2">
                     <Clock className="w-5 h-5 text-gray-400 mr-1" />
-                    <span className="text-label">學習時間</span>
+                    <span className="text-label">{isZhHK ? '學習時間' : 'Study Time'}</span>
                   </div>
                   <div className="text-data text-white mb-1">{formattedLearningTime}</div>
-                  <div className="text-caption">累計時間</div>
+                  <div className="text-caption">{isZhHK ? '累計時間' : 'Total Time'}</div>
                 </div>
                 
                 {/* Themes Stat */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
                   <div className="stat-card-header mb-2">
                     <Users className="w-5 h-5 text-gray-400 mr-1" />
-                    <span className="text-label">完成主題</span>
+                    <span className="text-label">{isZhHK ? '已完成主題' : 'Completed Themes'}</span>
                   </div>
                   <div className="text-data text-white mb-1">{stats.completedThemes}/{stats.totalThemes}</div>
-                  <div className="text-caption">主題進度</div>
+                  <div className="text-caption">{isZhHK ? '主題進度' : 'Theme Progress'}</div>
                 </div>
                 
               </div>
@@ -294,10 +294,10 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
               <span className="text-body">
-                整體學習進度
+                {isZhHK ? '整體學習進度' : 'Overall Learning Progress'}
               </span>
               <span className="text-body">
-                {stats.totalProgress}% 已完成
+                {stats.totalProgress}% {isZhHK ? '已完成' : 'completed'}
               </span>
             </div>
             <div className="progress-bar progress-bar-large">
@@ -321,7 +321,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
             >
               <div className="content-section-header">
                 <BookOpen className="w-6 h-6 text-gray-400 mr-3" />
-                <h3 className="text-h2">課程模塊</h3>
+                <h3 className="text-h2">{isZhHK ? '課程模塊' : 'Course Modules'}</h3>
               </div>
 
               {/* 🎯 NEW: Accordion Style Course Modules */}
@@ -364,7 +364,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                             {/* Module Title & Description */}
                             <div className="min-w-0 flex-1">
                               <h3 className="text-theme-title leading-tight mb-1">
-                                第{theme.id}大主題・{theme.title}
+                                {isZhHK ? `第${theme.id}大主題・${theme.title}` : `Chapter ${theme.id}: ${theme.title}`}
                               </h3>
                               <p className="text-body leading-relaxed line-clamp-2">
                                 {theme.description}
@@ -375,9 +375,9 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                           {/* Progress Section */}
                           <div className="ml-16">
                             <div className="flex items-center justify-between mb-2">
-                              <span className="text-label">主題進度</span>
+                              <span className="text-label">{isZhHK ? '主題進度' : 'Theme Progress'}</span>
                               <span className="text-caption text-gray-400">
-                                {theme.lessons.filter(l => l.completed).length}/{theme.lessons.length} 完成 ({theme.progress}%)
+                                {theme.lessons.filter(l => l.completed).length}/{theme.lessons.length} {isZhHK ? '完成' : 'completed'} ({theme.progress}%)
                               </span>
                             </div>
                             <div className="w-full bg-gray-700 rounded-full h-2">
@@ -479,11 +479,11 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                                               isLocked ? 'text-gray-600' : 'text-gray-400'
                                             }`}>
                                               <Clock className="w-4 h-4 mr-1" />
-                                              <span>{lesson.duration || '30分鐘'}</span>
+                                              <span>{lesson.duration || (isZhHK ? '30分鐘' : '30 minutes')}</span>
                                               {lesson.current && (
                                                 <>
                                                   <span className="mx-2">•</span>
-                                                  <span className="text-caption text-gray-300">進行中</span>
+                                                  <span className="text-caption text-gray-300">{isZhHK ? '進行中' : 'In Progress'}</span>
                                                 </>
                                               )}
                                             </div>
@@ -494,12 +494,12 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                                             {isLocked ? (
                                               <span className="inline-flex items-center px-3 py-1.5 rounded-md text-caption bg-gray-700 text-gray-400">
                                                 <Lock className="w-4 h-4 mr-1" />
-                                                已鎖定
+                                                {isZhHK ? '已鎖定' : 'Locked'}
                                               </span>
                                             ) : lesson.completed ? (
                                               <span className="inline-flex items-center px-3 py-1.5 rounded-md text-caption bg-green-100 text-green-700">
                                                 <CheckCircle className="w-4 h-4 mr-1" />
-                                                已完成
+                                                {isZhHK ? '已完成' : 'Completed'}
                                               </span>
                                             ) : lesson.current ? (
                                               <Button
@@ -512,7 +512,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                                                 }}
                                               >
                                                 <Play className="w-4 h-4 mr-2" />
-                                                繼續學習
+                                                {isZhHK ? '繼續學習' : 'Continue Learning'}
                                               </Button>
                                             ) : (
                                               <Button
@@ -526,7 +526,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                                                 }}
                                               >
                                                 <Play className="w-4 h-4 mr-2" />
-                                                開始學習
+                                                {isZhHK ? '開始學習' : 'Start Learning'}
                                               </Button>
                                             )}
                                           </div>
@@ -605,7 +605,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-h2 flex items-center">
                   <BarChart3 className="w-5 h-5 mr-2 text-gray-400" />
-                  技能發展追蹤
+                  {isZhHK ? '技能發展追蹤' : 'Skills Development Tracking'}
                 </h3>
                 <div className="learning-progress-percentage text-white">
                   {stats.totalProgress}%
@@ -640,9 +640,9 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
               <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg border border-yellow-500/20">
                 <div className="flex items-center space-x-2 text-yellow-400 mb-2">
                   <Trophy className="w-4 h-4" />
-                  <span className="text-h3">學習成就</span>
+                  <span className="text-h3">{isZhHK ? '學習成就' : 'Learning Achievements'}</span>
                 </div>
-                <p className="text-caption">Perplexity 完整教學實戰課程</p>
+                <p className="text-caption">{isZhHK ? 'Perplexity 完整教學實戰課程' : 'Perplexity Complete Course'}</p>
               </div>
             </motion.div>
 
@@ -655,30 +655,30 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
             >
               <h3 className="text-h2 flex items-center mb-6">
                 <Calendar className="w-5 h-5 mr-2 text-green-400" />
-                學習進度總覽
+                {isZhHK ? '學習進度總覽' : 'Learning Progress Overview'}
               </h3>
               
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
                   <div className="text-data text-gray-300 mb-1">{stats.completedThemes}</div>
-                  <div className="text-label">已完成主題</div>
+                  <div className="text-label">{isZhHK ? '已完成' : 'Completed'}主題</div>
                 </div>
                 <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
                   <div className="text-data text-gray-300 mb-1">{stats.totalThemes - stats.completedThemes}</div>
-                  <div className="text-label">剩餘主題</div>
+                  <div className="text-label">{isZhHK ? '剩餘主題' : 'Remaining Themes'}</div>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-caption">學習時間</span>
+                  <span className="text-caption">{isZhHK ? '學習時間' : 'Study Time'}</span>
                   <span className="text-body">{formattedLearningTime}</span>
                 </div>
                 
                 <div className="learning-streak border border-orange-500/20 bg-orange-500/10">
                   <Zap className="learning-streak-icon text-orange-400" />
                   <span className="learning-streak-text text-orange-300">
-                    下一步
+                    {isZhHK ? '下一步' : 'Next Step'}
                   </span>
                 </div>
                     
@@ -689,10 +689,10 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                       for (const theme of courseData.themes) {
                         const currentLesson = theme.lessons.find(lesson => lesson.current);
                         if (currentLesson) {
-                          return `單元 ${currentLesson.id}：${currentLesson.title.slice(0, 15)}...`;
+                          return isZhHK ? `單元 ${currentLesson.id}：${currentLesson.title.slice(0, 15)}...` : `Unit ${currentLesson.id}: ${currentLesson.title.slice(0, 15)}...`;
                         }
                       }
-                      return '所有單元已完成！';
+                      return isZhHK ? '所有單元已完成！' : 'All units completed!';
                     })()}
                   </p>
                   <Button
@@ -713,7 +713,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                     }}
                   >
                     <Play className="w-4 h-4 mr-2" />
-                    繼續學習
+                    {isZhHK ? '繼續學習' : 'Continue Learning'}
                   </Button>
                 </div>
               </div>
@@ -721,7 +721,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
               <div className="mt-6 p-3 bg-gradient-to-r from-green-500/10 to-gray-700/30 rounded-lg border border-green-500/20">
                 <div className="flex items-center space-x-2 text-green-400 text-caption">
                   <Target className="w-4 h-4" />
-                  <span>6大學習里程碑</span>
+                  <span>{isZhHK ? '6大學習里程碑' : '6 Learning Milestones'}</span>
                 </div>
               </div>
             </motion.div>
@@ -735,7 +735,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
             >
               <h3 className="text-h2 mb-4 flex items-center">
                 <Award className="w-5 h-5 mr-2 text-yellow-400" />
-                成就徽章
+                {isZhHK ? '成就徽章' : 'Achievement Badges'}
               </h3>
               
               <div className="space-y-3">

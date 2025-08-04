@@ -135,7 +135,7 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
         return {
           id: lesson.id,
           title: lesson.title,
-          duration: lesson.duration || '30分鐘',
+          duration: lesson.duration || (isZhHK ? '30分鐘' : '30 minutes'),
           completed: isCompleted,
           current: false, // Will be calculated below
           description: lesson.description
