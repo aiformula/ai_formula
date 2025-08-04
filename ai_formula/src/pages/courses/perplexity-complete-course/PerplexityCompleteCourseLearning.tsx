@@ -488,7 +488,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                                               isLocked ? 'text-gray-600' : 'text-gray-400'
                                             }`}>
                                               <Clock className="w-4 h-4 mr-1" />
-                                              <span>{lesson.duration || (isZhHK ? '30分鐘' : '30 minutes')}</span>
+                                              <span>{isZhHK ? (lesson.duration || '30分鐘') : ((lesson as any).durationEn || lesson.duration || '30 minutes')}</span>
                                               {lesson.current && (
                                                 <>
                                                   <span className="mx-2">•</span>

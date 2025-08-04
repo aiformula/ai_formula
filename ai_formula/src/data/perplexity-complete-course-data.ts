@@ -49,9 +49,12 @@ export const perplexityCourseData = {
         {
           id: 1,
           title: '1.1 什麼是 Perplexity AI？——「答案引擎」vs 搜索引擎',
+          titleEn: '1.1 What is Perplexity AI? — "Answer Engine" vs Search Engine',
           duration: '15 分鐘',
+          durationEn: '15 minutes',
           type: 'text' as const,
           description: '深入了解 Perplexity AI 的核心概念、工作原理和獨特定位，理解它與傳統搜索引擎的根本差異。',
+          descriptionEn: 'Gain deep understanding of Perplexity AI\'s core concepts, working principles, and unique positioning, and comprehend its fundamental differences from traditional search engines.',
           image: '/images/courses/perplexity-complete-course/unit-images/perplexity-concept.png',
           imageAlt: 'Perplexity AI 答案引擎概念圖解',
           transcript: `Perplexity AI 將自己定位為「答案引擎」（Answer Engine），這個稱呼並非僅僅是營銷術語，而是對其核心價值主張的精確描述。與傳統搜索引擎（如 Google、Bing）提供網頁連結列表不同，Perplexity 致力於為用戶提供一個直接、綜合且附有引用來源的答案。
@@ -74,9 +77,12 @@ Perplexity 的核心使命是「將知識的獲取民主化」（Democratizing A
         {
           id: 2,
           title: '1.2 Perplexity 的核心使命：知識民主化',
+          titleEn: '1.2 Perplexity\'s Core Mission: Democratizing Knowledge',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'text' as const,
           description: '探討 Perplexity 的願景和使命，理解它如何通過技術創新實現知識獲取的民主化。',
+          descriptionEn: 'Explore Perplexity\'s vision and mission, understanding how it democratizes knowledge acquisition through technological innovation.',
           image: '/images/courses/perplexity-complete-course/unit-images/knowledge-democratization.png',
           imageAlt: '知識民主化概念圖',
           transcript: `「知識民主化」是 Perplexity AI 的核心理念，這個概念遠超出了技術本身，涉及到資訊公平性、教育機會均等以及認知負擔的降低。在傳統的資訊獲取模式中，獲得高質量、準確資訊往往需要特定的技能：知道如何使用正確的關鍵詞、理解如何評估來源可靠性、具備整合多個資訊源的能力。這些技能上的門檻創造了「資訊鴻溝」，讓一些人比其他人更容易獲得所需的知識。
@@ -97,9 +103,12 @@ Perplexity 通過其先進的 AI 技術，大幅降低了這些門檻。用戶�
         {
           id: 3,
           title: '1.3 與 ChatGPT、Google 的差異化競爭優勢',
+          titleEn: '1.3 Competitive Advantages vs ChatGPT and Google',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'text' as const,
           description: '深入比較 Perplexity AI 與主流競爭對手的核心差異，理解各自的優勢和適用場景。',
+          descriptionEn: 'Deep comparison of Perplexity AI with mainstream competitors, understanding their respective advantages and applicable scenarios.',
           image: '/images/courses/perplexity-complete-course/unit-images/ai-comparison.png',
           imageAlt: 'AI 工具比較分析圖',
           transcript: `要真正理解 Perplexity AI 的價值，我們需要將它與當前市場上的主要競爭對手進行深入比較。主要的競爭對手包括傳統搜索引擎（如 Google）和生成式 AI 工具（如 ChatGPT）。
@@ -127,9 +136,12 @@ Perplexity 最大的優勢在於它結合了搜索引擎的即時性和生成式
         {
           id: 4,
           title: '1.4 Citations 的重要性：建立可信的資訊來源',
+          titleEn: '1.4 The Importance of Citations: Building Reliable Information Sources',
           duration: '17 分鐘',
+          durationEn: '17 minutes',
           type: 'text' as const,
           description: '深入了解 Perplexity 的引用系統如何確保資訊可靠性，以及如何有效利用這個功能。',
+          descriptionEn: 'Understand how Perplexity\'s citation system ensures information reliability and how to effectively utilize this feature.',
           image: '/images/courses/perplexity-complete-course/unit-images/citations-system.png',
           imageAlt: '引用來源系統示意圖',
           transcript: `Citations（引用來源）是 Perplexity AI 最具革命性的功能之一，它不僅是技術特色，更是建立用戶信任和確保資訊質量的核心機制。在資訊爆炸的時代，辨別真假資訊變得越來越困難，而 Perplexity 的引用系統為這個問題提供了一個優雅的解決方案。
