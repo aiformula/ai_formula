@@ -12,7 +12,7 @@ export default {
 	prefix: "",
 	theme: {
 		container: {
-			centre: true,
+			center: true,
 			padding: '2rem',
 			screens: {
 				'2xl': '1400px'
@@ -22,7 +22,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 			},
-			colours: {
+			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -67,7 +67,7 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				'brand-yellow': '#FFD600',
-				// AI Formula 顏色系統
+				// AI Formula color system
 				'ai-primary': 'var(--ai-formula-primary)',
 				'ai-primary-hover': 'var(--ai-formula-primary-hover)',
 				'ai-dark': 'var(--ai-formula-dark)',
@@ -134,7 +134,7 @@ export default {
 				'12': '96px',    // 頁面級間距
 				'16': '128px',   // 超大間距
 			},
-			// 統???體大小系�?
+			// 統一字體大小系統
 			fontSize: {
 				'ai-xs': ['0.75rem', { lineHeight: '1rem' }],      // 12px
 				'ai-sm': ['0.875rem', { lineHeight: '1.25rem' }],  // 14px
@@ -148,7 +148,7 @@ export default {
 				'ai-6xl': ['3.75rem', { lineHeight: '1' }],        // 60px
 				'ai-hero': ['4.5rem', { lineHeight: '1' }],        // 72px
 			},
-			// 統�??�陰影系�?
+			// 統一陰影系統
 			boxShadow: {
 				'ai-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
 				'ai-md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
