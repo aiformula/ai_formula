@@ -63,7 +63,7 @@ export const perplexityCourseData = {
 
 Perplexity 的革命性在於它改變了這個流程：用戶輸入問題 → Perplexity 即時搜索、分析並整合多個來源 → 直接提供一個結構化、有引用來源的綜合答案。這種模式讓用戶能夠在幾秒鐘內獲得高質量、可驗證的資訊，大幅提升了資訊獲取的效率。
 
-Perplexity 的核心使命是「將知識的獲取民主化」（Democratizing Access to Knowledge）。這意味著無論用戶的技術背景如何，都能輕鬆獲得高質量、準確的資訊。通過結合先進的大型語言模型和即時網絡搜索，Perplexity 打破了傳統搜索的局限性，讓知識變得更加觸手可及。
+Perplexity 的核心使命是「將知識的獲取民主化」（Democratizing Access to Knowledge）。這意味著無論用戶的技術背景如何，都能輕鬆獲得高質量、準確的資訊。通過結合先進的大型語言模型和即時網路搜尋，Perplexity 打破了傳統搜索的局限性，讓知識變得更加觸手可及。
 
 在實際應用中，Perplexity 特別擅長處理複雜的、需要多源整合的查詢。例如，當你問「2024年人工智能領域最重要的突破是什麼？」時，Perplexity 會搜索最新的新聞報導、學術論文和技術報告，然後提供一個結構化的答案，並標明每個論點的具體來源。`,
           transcriptEn: `Perplexity AI positions itself as an "Answer Engine," a designation that goes beyond mere marketing terminology and represents an accurate description of its core value proposition. Unlike traditional search engines (such as Google and Bing) that provide lists of web links, Perplexity is dedicated to providing users with direct, comprehensive answers that include cited sources.
@@ -1121,8 +1121,8 @@ Mastering question formulation is the foundation of effective Perplexity usage, 
         },
         {
           id: 12,
-          title: '3.2 Focus 模式深度解析：Academic、Writing、Math、Programming',
-          titleEn: '3.2 Focus Mode Deep Analysis: Academic, Writing, Math, Programming',
+          title: '3.2 Focus 模式深度解析：Academic、Writing、Math、Coding',
+    titleEn: '3.2 Focus Mode Deep Analysis: Academic, Writing, Math, Coding',
           duration: '25 分鐘',
           durationEn: '25 minutes',
           type: 'text' as const,
@@ -1158,7 +1158,7 @@ Math Focus（數學模式）：
 
 最適用場景：數學問題解決、科學計算、統計分析、工程計算
 
-Programming Focus（程式設計模式）：
+Coding Focus（程式設計模式）：
 為開發者和程式設計學習者優化。功能包括：
 - 提供更準確的代碼範例和解釋
 - 關注最佳實踐和代碼優化
