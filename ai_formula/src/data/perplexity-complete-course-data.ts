@@ -82,6 +82,24 @@ In practical applications, Perplexity excels particularly at handling complex qu
             '特別擅長處理複雜的、需要多源整合的查詢，提供結構化且有引用來源的答案'
           ],
           keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
+          keyPointsEn: [
             'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
             'Revolutionarily changes information acquisition workflow: from "search→browse→integrate" to "ask→get answer"',
             'Core mission is democratizing knowledge access, enabling all users to easily obtain high-quality information',
@@ -112,6 +130,24 @@ Perplexity 通過其先進的 AI 技術，大幅降低了這些門檻。用戶�
             '降低了資訊獲取的技能門檻，用戶只需用自然語言提問即可獲得專業級答案',
             '引用系統確保資訊透明度和可驗證性，培養用戶的批判性思維',
             '在教育、學術研究和專業決策領域具有特別重要的意義和價值'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -145,6 +181,24 @@ Perplexity 最大的優勢在於它結合了搜索引擎的即時性和生成式
             'ChatGPT 知識有時效限制且可能產生幻覺，Perplexity 通過即時搜索和引用來源解決這些問題',
             'Perplexity 結合了搜索引擎的即時性和生成式 AI 的理解能力',
             '特別適合事實密集型、需要最新資訊的研究任務，如學術研究、新聞追蹤、市場分析'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -192,6 +246,24 @@ Perplexity 提出了「信任三角」的概念，包括三個核心要素：
             '「信任三角」包括綜合、引用、控制三個要素，建立完整的信任框架',
             '大大簡化學術研究和專業分析的文獻綜述過程',
             '培養用戶批判性思維，促進多角度思考和深度理解'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -248,6 +320,24 @@ Perplexity 主要關注事實性資訊，對於需要情感理解或個人化對
             '不適合創意寫作、深度程式設計、個人對話等需要創造力或個人化的任務',
             '應作為研究起點，結合其他工具創建混合工作流程',
             '始終驗證重要資訊，充分利用引用功能深入了解原始來源'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         }
@@ -366,6 +456,24 @@ Perplexity 主要關注事實性資訊，對於需要情感理解或個人化對
             '右上角功能區提供帳戶管理、設定和 Pro 用戶專屬功能',
             '響應式設計確保跨裝置一致的使用體驗'
           ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
           completed: false
         },
         {
@@ -401,6 +509,24 @@ Perplexity 提供了詳細的隱私控制選項。你可以選擇是否保存搜
             '語言與地區設定影響介面語言和內容本地化',
             '搜索偏好配置可優化 AI 搜索和答案整理的優先級',
             '隱私設定提供詳細的數據控制選項，保護個人隱私'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -442,6 +568,24 @@ Pro 版每月約 $20 美元，對於重度使用者、研究人員、內容創�
             'Pro 版提供更強大的 AI 模型、Pro Search、無限模型切換等進階功能',
             'Pro 版每月約 $20，對重度使用者和專業人士具有良好的投資回報',
             '建議先體驗免費版，確認需求後再考慮升級至 Pro 版'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -492,6 +636,24 @@ Pages 快速生成：
             '使用自然語言提問，指定時間範圍和來源類型可獲得更精準結果',
             '善用 Library 標籤和 Spaces 分類功能，建立個人知識管理系統',
             '瀏覽器擴充功能讓你在任何網頁上都能快速使用 Perplexity'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -545,6 +707,24 @@ Pages 快速生成：
             '移動端適合隨時查詢，支援語音輸入、相機整合、推送通知',
             '核心功能跨平台一致，但複雜操作在桌面端體驗更佳',
             '雲端同步讓你可以在不同裝置間無縫切換，延續研究工作'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         }
@@ -664,6 +844,24 @@ Pages 快速生成：
             '使用分層、對比、假設性等進階提問技巧',
             '避免過於寬泛或多重問題，一次專注一個重點'
           ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
           completed: false
         },
         {
@@ -727,6 +925,24 @@ Pro 用戶可以自由切換所有 Focus 模式，而免費用戶可能有使用
             'Writing 模式注重創意和表達，適合內容創作和文案寫作',
             'Math 模式提供詳細數學推導，支援複雜計算和科學分析',
             'Programming 模式優化代碼範例，提供最佳實踐和技術建議'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -795,6 +1011,24 @@ Pro 用戶通常享有更大的檔案大小限制、更快的處理速度，以�
             '適用於學術論文分析、合約審查、數據圖表解讀等場景',
             '結合明確提問和網路搜索，可進行深度對比分析'
           ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
           completed: false
         },
         {
@@ -859,6 +1093,24 @@ Copilot 的建議過程實際上遵循了良好的研究方法論：從廣泛探
             '提供深度探索、廣度延伸、實務應用、對比分析等多種建議類型',
             '特別有助於探索「未知的未知」，突破原有知識框架',
             '結合問題鏈式探索和跨域思考，提升研究的系統性和創新性'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -958,6 +1210,24 @@ Copilot 的建議過程實際上遵循了良好的研究方法論：從廣泛探
             '根據需求選擇適當來源：學術期刊、新聞媒體、政府機構、專業組織',
             '善用多語言搜索和跨語言比較，獲得更全面的國際視野',
             '結合時間、來源、語言等多維度限制，形成精確的綜合查詢策略'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         }
@@ -1090,6 +1360,24 @@ Library 內建強大的搜索功能，可以根據關鍵詞、時間範圍、主
             '支援內容創作和分享，可生成 Pages 並產生分享連結',
             '內建搜索功能，支援關鍵詞、時間、主題等多維度檢索'
           ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
           completed: false
         },
         {
@@ -1148,6 +1436,24 @@ Spaces（新版）：
             '支援項目式研究理念，圍繞特定主題進行持續性、系統性探索',
             '新增自定義 AI 指令、協作分享、Pages 整合等強大功能',
             '適用於學術研究、商業分析、內容創作、學習進修等多種場景'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -1212,6 +1518,24 @@ Spaces 的設計也考慮到了團隊合作的需求。用戶可以邀請同事�
             '自定義指令是核心功能，可為每個 Space 設定專屬的 AI 行為模式',
             '支援團隊協作，提供成員管理、即時同步、評論系統等功能',
             '有效管理需要明確命名、定期整理、權限分級和善用搜索功能'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -1305,6 +1629,24 @@ Pages 與 Spaces 和 Library 形成了完整的知識管理循環：
             '支援自動生成和手動創建兩種模式，提供靈活的內容組織方式',
             '具備專業排版、智能引用、互動元素等特色，適合各種專業場景',
             '提供協作編輯、版本控制、多種分享模式等進階功能'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         }
@@ -1472,6 +1814,24 @@ Perplexity 通常提供免費試用期，建議在試用期間：
             '時間成本節省往往能超過訂閱費用，具有良好的投資回報',
             '建議利用免費試用期充分測試功能，根據實際需求決定是否訂閱'
           ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
           completed: false
         },
         {
@@ -1584,6 +1944,24 @@ Pro Search 是為需要高質量、深度研究的用戶設計的高級功能。
             '特別適合重要決策研究、學術寫作、商業分析等高質量需求',
             '處理時間較長但結果品質顯著提升，需要平衡效率和品質',
             '與 Spaces、Pages 整合良好，支援完整的專業研究工作流程'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -1723,6 +2101,24 @@ AI 模型持續更新，要定期重新評估各模型的表現。
             '可採用單一模型深度使用或多模型對比驗證的策略',
             '沒有絕對最佳選擇，關鍵是匹配具體任務需求和個人偏好'
           ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
           completed: false
         },
         {
@@ -1852,6 +2248,24 @@ API 呼叫限制：
             '需要考慮 API 限制、資料處理、安全性等技術實施要點',
             '可與 Slack、Notion、Zapier 等現有工具平台無縫整合',
             '建議從小規模試點開始，逐步擴展並持續優化自動化流程'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         }
@@ -2077,6 +2491,24 @@ Perplexity 能夠搜索和分析不同語言的學術文獻，特別有助於：
             '支援跨學科和多語言文獻整合，擴大研究視野',
             '大幅提升研究效率，文獻搜索時間減少 60-80%，整合效率提升 3-5倍'
           ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
+          ],
           completed: false
         },
         {
@@ -2241,6 +2673,24 @@ SWOT 分析增強：
             '強化競爭分析和 SWOT 分析，建立客觀的競爭情報系統',
             '支援趨勢預測和機會識別，提供決策支援和風險預警',
             '大幅提升商業分析效率，市場調研成本降低 50-70%，決策速度提升 5-10倍'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -2427,6 +2877,24 @@ d) ChatGPT：協助實踐和問題解決
             '建立研究→創作、分析→決策、學習→應用等標準協同工作流程',
             '採用序列式、並行式、迭代式、驗證式等不同協同策略',
             '合理協同可提升工作效率 150-300%，決策準確性提升 40-80%'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         },
@@ -2663,6 +3131,24 @@ d) ChatGPT：協助實踐和問題解決
             '技術發展趨勢包括更強推理能力、更深個人化、更廣整合能力',
             '帶來知識民主化和效率提升，但也面臨依賴性、隱私、社會結構變化等挑戰',
             '個人和組織需要培養AI素養、批判思維，制定適應策略和倫理準則'
+          ],
+          keyPointsEn: [
+            'Master main interface navigation: search box, sidebar, and feature areas',
+            'Understand Library, Collections, and Spaces for research organisation',
+            'Learn Focus modes and advanced search capabilities for targeted results',
+            'Optimise workflow efficiency through strategic interface utilisation'
+          ],
+          keyPointsEn: [
+            'Knowledge democratisation eliminates information gaps, enabling equal access to high-quality information',
+            'Reduces skill barriers for information access through natural language querying',
+            'Citation system ensures transparency and verifiability whilst developing critical thinking',
+            'Particularly valuable in education, academic research, and professional decision-making'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratising knowledge access for all users to obtain high-quality information easily',
+            'Excels at complex queries requiring multi-source integration with structured, cited answers'
           ],
           completed: false
         }
