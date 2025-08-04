@@ -12,9 +12,9 @@ export const midjourneyCourseData: CourseData = {
     title: 'Midjourney 權威指南：從入門到精通的終極課程',
     titleEn: 'Midjourney Authority Guide: Ultimate Course from Beginner to Expert',
     subtitle: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
-    subtitleEn: 'Beyond basic operations, from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
+    subtitleEn: 'Beyond basic operations, from dual-platform features to advanced creative techniques, master the powerful tools for AI art creation',
     description: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
-    descriptionEn: 'Beyond basic operations, from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
+    descriptionEn: 'Beyond basic operations, from dual-platform features to advanced creative techniques, master the powerful tools for AI art creation',
     duration: '7+ 小時',
     durationEn: '7+ Hours',
     level: 'beginner_to_advanced',
@@ -75,7 +75,7 @@ export const midjourneyCourseData: CourseData = {
       title: '第一章：Midjourney 基礎概念與準備',
       titleEn: 'Chapter 1: Midjourney Basic Concepts and Preparation',
       description: '為初學者奠定堅實的基礎，超越基本操作，從一開始就介紹 Midjourney 的雙平台特性（網站與 Discord），並優先建立私人伺服器。這個關鍵步驟能夠顯著改善學習體驗，為學員的創作旅程掃除初期障礙。',
-      descriptionEn: 'Lay a solid foundation for beginners, go beyond basic operations, introduce Midjourney\'s dual-platform features (website and Discord) from the start, and prioritise establishing a private server. This key step can significantly improve the learning experience and remove initial barriers to students\' creative journey.',
+      descriptionEn: 'Lay a solid foundation for beginners, go beyond basic operations, introduce Midjourney\'s dual-platform features (website and Discord) from the outset, and prioritise establishing a private server. This key step can significantly improve the learning experience and remove initial barriers to students\' creative journey.',
       duration: '90 分鐘',
       durationEn: '90 Minutes',
       lessons: [
@@ -123,7 +123,7 @@ Midjourney's core advantage lies in its powerful stylistic diversity and detaile
           durationEn: '20 Minutes',
           type: 'interactive' as const,
           description: '了解 Discord 和官方網站兩個平台的差別和優勢，根據不同需求選擇最佳工具',
-          descriptionEn: 'Understand the differences and advantages of Discord and the official website platforms, and choose the best tool according to different needs',
+          descriptionEn: 'Understand the differences and advantages between Discord and the official website platforms, choosing the best tool according to different requirements',
           image: '/images/courses/midjourney-course/unit-images/platforms-comparison.png',
           imageAlt: 'Discord 與 Midjourney 網站比較',
           imageAltEn: 'Comparison between Discord and Midjourney website',
@@ -159,7 +159,7 @@ At the same time, Discord remains an indispensable part of the Midjourney ecosys
           durationEn: '25 Minutes',
           type: 'interactive' as const,
           description: '學習如何註冊帳戶並選擇最適合的訂閱計劃，了解不同計劃的功能差異',
-          descriptionEn: 'Learn how to register an account and choose the most suitable subscription plan, understanding the functional differences between different plans',
+          descriptionEn: 'Learn how to register an account and choose the most suitable subscription plan, whilst understanding the functional differences between various plans',
           image: '/images/courses/midjourney-course/unit-images/subscription-plans.png',
           imageAlt: '訂閱計劃比較',
           imageAltEn: 'Subscription plan comparison',
@@ -195,7 +195,7 @@ Midjourney offers various subscription plans to meet the needs of different user
           durationEn: '20 Minutes',
           type: 'interactive' as const,
           description: '完成必要的 Discord 設定，學習如何加入 Midjourney 伺服器並接受服務條款',
-          descriptionEn: 'Complete the necessary Discord setup, learn how to join Midjourney servers and accept terms of service',
+          descriptionEn: 'Complete the necessary Discord setup, learn how to join Midjourney servers, and accept the terms of service',
           image: '/images/courses/midjourney-course/unit-images/discord-setup.png',
           imageAlt: 'Discord 設置指南',
           imageAltEn: 'Discord setup guide',
@@ -235,7 +235,7 @@ Accepting Terms of Service (ToS): Before you attempt to generate your first imag
           durationEn: '30 Minutes',
           type: 'interactive' as const,
           description: '學習建立私人 Discord 伺服器，邀請 Midjourney Bot，創造專屬的創作環境',
-          descriptionEn: 'Learn to create a private Discord server, invite Midjourney Bot, and create your own dedicated creative environment',
+          descriptionEn: 'Learn to create a private Discord server, invite Midjourney Bot, and establish your own dedicated creative environment',
           image: '/images/courses/midjourney-course/unit-images/private-server.png',
           imageAlt: '私人伺服器設定',
           imageAltEn: 'Private server setup',
@@ -424,7 +424,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
       title: '第二章：首次接觸：你的第一張 AI 圖像',
       titleEn: 'Chapter 2: First Contact: Your First AI Image',
       description: '引導你完成第一個完整的圖像生成週期。我們將會專注於建立自信，透過拆解核心指令和介面元素，確保你能成功地創造、選擇並保存你的第一張 AI 作品。',
-      descriptionEn: 'Guide you through your first complete image generation cycle. We will focus on building confidence by breaking down core commands and interface elements to ensure you can successfully create, select and save your first AI artwork.',
+      descriptionEn: 'Guide you through your first complete image generation cycle. We shall focus on building confidence by breaking down core commands and interface elements to ensure you can successfully create, select, and save your first AI artwork.',
       duration: '90 分鐘',
       durationEn: '90 Minutes',
       lessons: [
@@ -454,7 +454,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
 
 The sole purpose of the /imagine command is to initiate the image generation process. It's like a spell that tells the AI artist: "Get ready, I want you to draw!"
 
-The usage is very simple:
+Using it is very straightforward:
 1. In any text channel input box of your private server, type a forward slash /
 2. A command list will pop up. Continue typing "imagine", or directly click the /imagine command in the list
 3. After clicking, a prompt field will appear in the input box. This is where we will input our prompts later
@@ -665,7 +665,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
         title: '第二章測驗：首次接觸：你的第一張 AI 圖像',
         titleEn: 'Chapter 2 Quiz: First Encounter: Your First AI Image',
         description: '測試您對 Midjourney 基本操作流程的掌握',
-        descriptionEn: 'Test your mastery of Midjourney basic operational procedures',
+        descriptionEn: 'Test your mastery of Midjourney\'s basic operational procedures',
         timeLimit: 12,
         passingScore: 80,
         questions: [
@@ -817,7 +817,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
       title: '第三章：提示詞工程學：與 AI 溝通嘅藝術',
       titleEn: 'Chapter 3: Prompt Engineering: The Art of AI Communication',
       description: '學習「提示詞工程學」（Prompt Engineering）。呢個唔單止係寫句子，而係學習一種同 AI 溝通嘅獨特語言，有佢自己嘅語法同邏輯。',
-      descriptionEn: 'Learn "Prompt Engineering". This is not just about writing sentences, but learning a unique language to communicate with AI, with its own syntax and logic.',
+      descriptionEn: 'Learn \'Prompt Engineering\'. This isn\'t simply about writing sentences, but rather learning a unique language for communicating with AI, complete with its own syntax and logic.',
       duration: '110 分鐘',
       lessons: [
         {
@@ -983,7 +983,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
         title: '第三章測驗：提示詞工程學：與 AI 溝通的藝術',
         titleEn: 'Chapter 3 Quiz: Prompt Engineering: The Art of AI Communication',
         description: '測試您對提示詞構建和進階語法的掌握',
-        descriptionEn: 'Test your mastery of prompt construction and advanced syntax',
+        descriptionEn: 'Test your mastery of prompt construction and advanced syntax techniques',
         timeLimit: 15,
         passingScore: 71,
         questions: [
@@ -1135,7 +1135,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
       title: '第四章：參數嘅力量：精準控制圖像生成',
       titleEn: 'Chapter 4: The Power of Parameters: Precise Image Generation Control',
       description: 'Midjourney 提供咗一系列以 –- 開頭嘅「參數」（Parameters）。呢啲參數就好似相機上嘅各種設定按鈕，可以讓你喺提示詞之外，更精準地控制圖像生成嘅各個方面。',
-      descriptionEn: 'Midjourney provides a series of "Parameters" starting with --. These parameters are like various setting buttons on a camera, allowing you to control various aspects of image generation more precisely beyond prompts.',
+      descriptionEn: 'Midjourney provides a series of \'Parameters\' beginning with --. These parameters are rather like various setting buttons on a camera, allowing you to control various aspects of image generation more precisely beyond prompts.',
       duration: '95 分鐘',
       lessons: [
         {
@@ -1470,7 +1470,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
       title: '第五章：參考與一致性：創造連續角色與風格',
       titleEn: 'Chapter 5: Reference & Consistency: Creating Continuous Characters & Styles',
       description: '學習使用 --sref 同 --cref 參數解決一致性挑戰。令同一個角色出現喺唔同嘅故事場景，為一系列作品保持統一嘅藝術風格。',
-      descriptionEn: 'Learn to use --sref and --cref parameters to solve consistency challenges. Make the same character appear in different story scenes and maintain unified artistic styles for a series of works.',
+      descriptionEn: 'Learn to use --sref and --cref parameters to address consistency challenges. Enable the same character to appear in different story scenes whilst maintaining unified artistic styles for a series of works.',
       duration: '85 分鐘',
       lessons: [
         {
@@ -2008,7 +2008,7 @@ Important notes:
       title: '第七章：工作流程與資源管理',
       titleEn: 'Chapter 7: Workflow and Resource Management',
       description: '學習高效的 Midjourney 工作流程，包括 GPU 時間管理、批量操作和圖庫組織等專業技能。',
-      descriptionEn: 'Learn efficient Midjourney workflows, including GPU time management, batch operations and gallery organisation professional skills.',
+      descriptionEn: 'Learn efficient Midjourney workflows, including GPU time management, batch operations, and gallery organisation professional skills.',
       duration: '100 分鐘',
       durationEn: '100 Minutes',
       lessons: [
