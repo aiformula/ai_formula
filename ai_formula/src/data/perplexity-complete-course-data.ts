@@ -141,7 +141,7 @@ Perplexity 最大的優勢在於它結合了搜索引擎的即時性和生成式
           durationEn: '17 minutes',
           type: 'text' as const,
           description: '深入了解 Perplexity 的引用系統如何確保資訊可靠性，以及如何有效利用這個功能。',
-          descriptionEn: 'Understand how Perplexity\'s citation system ensures information reliability and how to effectively utilize this feature.',
+          descriptionEn: 'Understand how Perplexity\'s citation system ensures information reliability and how to effectively utilise this feature.',
           image: '/images/courses/perplexity-complete-course/unit-images/citations-system.png',
           imageAlt: '引用來源系統示意圖',
           transcript: `Citations（引用來源）是 Perplexity AI 最具革命性的功能之一，它不僅是技術特色，更是建立用戶信任和確保資訊質量的核心機制。在資訊爆炸的時代，辨別真假資訊變得越來越困難，而 Perplexity 的引用系統為這個問題提供了一個優雅的解決方案。
@@ -183,7 +183,9 @@ Perplexity 提出了「信任三角」的概念，包括三個核心要素：
         {
           id: 5,
           title: '1.5 適用場景分析：何時選擇 Perplexity？',
+          titleEn: '1.5 Use Case Analysis: When to Choose Perplexity?',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'text' as const,
           description: '掌握 Perplexity AI 的最佳使用場景，學會在不同情況下選擇最合適的 AI 工具。',
           image: '/images/courses/perplexity-complete-course/unit-images/use-cases.png',
@@ -320,7 +322,9 @@ Perplexity 主要關注事實性資訊，對於需要情感理解或個人化對
         {
           id: 6,
           title: '2.1 主介面導覽：搜索框、側邊欄與功能區',
+          titleEn: '2.1 Main Interface Navigation: Search Box, Sidebar & Feature Areas',
           duration: '15 分鐘',
+          durationEn: '15 minutes',
           type: 'text' as const,
           description: '深入了解 Perplexity AI 的主介面設計，掌握搜索框、側邊欄和各功能區的使用方法。',
           image: '/images/courses/perplexity-complete-course/unit-images/main-interface.png',
@@ -352,7 +356,9 @@ Perplexity 主要關注事實性資訊，對於需要情感理解或個人化對
         {
           id: 7,
           title: '2.2 帳戶設定與個人化選項',
+          titleEn: '2.2 Account Settings & Personalisation Options',
           duration: '12 分鐘',
+          durationEn: '12 minutes',
           type: 'text' as const,
           description: '學習如何配置 Perplexity AI 的個人化設定，優化使用體驗。',
           image: '/images/courses/perplexity-complete-course/unit-images/account-settings.png',
@@ -386,7 +392,9 @@ Perplexity 提供了詳細的隱私控制選項。你可以選擇是否保存搜
         {
           id: 8,
           title: '2.3 免費 vs Pro 功能對比一覽',
+          titleEn: '2.3 Free vs Pro Feature Comparison Overview',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'text' as const,
           description: '全面比較 Perplexity AI 免費版與 Pro 版的功能差異，幫助你做出最適合的選擇。',
           image: '/images/courses/perplexity-complete-course/unit-images/free-vs-pro.png',
@@ -425,7 +433,9 @@ Pro 版每月約 $20 美元，對於重度使用者、研究人員、內容創�
         {
           id: 9,
           title: '2.4 快捷鍵與效率技巧',
+          titleEn: '2.4 Keyboard Shortcuts & Efficiency Tips',
           duration: '15 分鐘',
+          durationEn: '15 minutes',
           type: 'text' as const,
           description: '掌握 Perplexity AI 的快捷鍵和效率技巧，大幅提升使用速度。',
           image: '/images/courses/perplexity-complete-course/unit-images/shortcuts-tips.png',
@@ -473,9 +483,12 @@ Pages 快速生成：
         {
           id: 10,
           title: '2.5 移動端 vs 桌面端體驗差異',
+          titleEn: '2.5 Mobile vs Desktop Experience Differences',
           duration: '12 分鐘',
+          durationEn: '12 minutes',
           type: 'text' as const,
           description: '了解 Perplexity AI 在不同裝置上的使用體驗差異，學會跨平台高效使用。',
+          descriptionEn: 'Understand feature differences between platforms to maximise Perplexity\'s effectiveness on any device.',
           image: '/images/courses/perplexity-complete-course/unit-images/mobile-vs-desktop.png',
           imageAlt: 'Perplexity AI 移動端與桌面端比較',
           transcript: `Perplexity AI 提供了出色的跨平台體驗，但不同裝置有其獨特的優勢和限制。了解這些差異能幫你在不同情境下選擇最適合的使用方式。
@@ -595,7 +608,9 @@ Pages 快速生成：
         {
           id: 11,
           title: '3.1 基礎搜索：如何問出好問題',
+          titleEn: '3.1 Basic Search: How to Ask Good Questions',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'text' as const,
           description: '掌握有效提問的技巧和原則，學會如何與 AI 進行高效對話。',
           image: '/images/courses/perplexity-complete-course/unit-images/effective-questioning.png',
@@ -639,7 +654,9 @@ Pages 快速生成：
         {
           id: 12,
           title: '3.2 Focus 模式深度解析：Academic、Writing、Math、Programming',
+          titleEn: '3.2 Focus Mode Deep Analysis: Academic, Writing, Math, Programming',
           duration: '25 分鐘',
+          durationEn: '25 minutes',
           type: 'text' as const,
           description: '深入了解不同 Focus 模式的特點和應用場景，學會根據任務選擇最適合的模式。',
           image: '/images/courses/perplexity-complete-course/unit-images/focus-modes.png',
@@ -701,7 +718,9 @@ Pro 用戶可以自由切換所有 Focus 模式，而免費用戶可能有使用
         {
           id: 13,
           title: '3.3 上傳檔案功能：PDF、圖片、文檔的智能解析',
+          titleEn: '3.3 File Upload Feature: Smart Analysis of PDFs, Images & Documents',
           duration: '22 分鐘',
+          durationEn: '22 minutes',
           type: 'text' as const,
           description: '學習如何有效利用檔案上傳功能進行深度分析，支援多種格式的文檔處理。',
           image: '/images/courses/perplexity-complete-course/unit-images/file-upload.png',
@@ -766,7 +785,9 @@ Pro 用戶通常享有更大的檔案大小限制、更快的處理速度，以�
         {
           id: 14,
           title: '3.4 Copilot 建議系統：讓 AI 引導你的探索',
+          titleEn: '3.4 Copilot Suggestion System: Let AI Guide Your Exploration',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'text' as const,
           description: '利用 Copilot 獲得智能搜索建議和後續問題，提升研究的深度和廣度。',
           image: '/images/courses/perplexity-complete-course/unit-images/copilot-suggestions.png',
@@ -829,7 +850,9 @@ Copilot 的建議過程實際上遵循了良好的研究方法論：從廣泛探
         {
           id: 15,
           title: '3.5 高級搜索技巧：時間限制、來源過濾、語言設定',
+          titleEn: '3.5 Advanced Search Techniques: Time Limits, Source Filtering & Language Settings',
           duration: '23 分鐘',
+          durationEn: '23 minutes',
           type: 'text' as const,
           description: '掌握進階搜索參數，精確控制搜索範圍和結果品質。',
           image: '/images/courses/perplexity-complete-course/unit-images/advanced-search.png',
@@ -1009,7 +1032,9 @@ Copilot 的建議過程實際上遵循了良好的研究方法論：從廣泛探
         {
           id: 16,
           title: '4.1 「Library」入門：你的個人研究資料庫',
+          titleEn: '4.1 "Library" Introduction: Your Personal Research Database',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'text' as const,
           description: '深入了解 Library 功能，學會建立和管理個人研究資料庫。',
           image: '/images/courses/perplexity-complete-course/unit-images/library-intro.png',
@@ -1055,7 +1080,9 @@ Library 內建強大的搜索功能，可以根據關鍵詞、時間範圍、主
         {
           id: 17,
           title: '4.2 從「Collections」到「Spaces」：項目式研究的演進',
+          titleEn: '4.2 From "Collections" to "Spaces": Evolution of Project-Based Research',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'text' as const,
           description: '理解 Spaces 設計理念和與舊版 Collections 的差異，掌握項目式研究方法。',
           image: '/images/courses/perplexity-complete-course/unit-images/collections-to-spaces.png',
@@ -1112,7 +1139,9 @@ Spaces（新版）：
         {
           id: 18,
           title: '4.3 如何建立與管理 Spaces：設定專屬指令與協作',
+          titleEn: '4.3 How to Create & Manage Spaces: Setting Custom Instructions & Collaboration',
           duration: '25 分鐘',
+          durationEn: '25 minutes',
           type: 'text' as const,
           description: '掌握 Spaces 的創建、配置和團隊協作功能，學會設定自定義 AI 指令。',
           image: '/images/courses/perplexity-complete-course/unit-images/spaces-management.png',
@@ -1174,7 +1203,9 @@ Spaces 的設計也考慮到了團隊合作的需求。用戶可以邀請同事�
         {
           id: 19,
           title: '4.4 Pages 功能：將研究轉化為精美報告',
+          titleEn: '4.4 Pages Feature: Transform Research into Beautiful Reports',
           duration: '22 分鐘',
+          durationEn: '22 minutes',
           type: 'text' as const,
           description: '學習使用 Pages 功能創建和分享專業報告，將研究成果可視化呈現。',
           image: '/images/courses/perplexity-complete-course/unit-images/pages-creation.png',
@@ -1348,7 +1379,9 @@ Pages 與 Spaces 和 Library 形成了完整的知識管理循環：
         {
           id: 20,
           title: '5.1 Pro 訂閱方案詳解：功能對比與投資回報分析',
+          titleEn: '5.1 Pro Subscription Detailed Analysis: Feature Comparison & ROI Analysis',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'text' as const,
           description: '深入分析 Perplexity Pro 的完整功能和價值，幫助你做出明智的訂閱決策。',
           image: '/images/courses/perplexity-complete-course/unit-images/pro-subscription.png',
@@ -1429,7 +1462,9 @@ Perplexity 通常提供免費試用期，建議在試用期間：
         {
           id: 21,
           title: '5.2 Pro Search：更深度的查詢與更精準的結果',
+          titleEn: '5.2 Pro Search: Deeper Queries & More Precise Results',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'text' as const,
           description: '探索 Pro Search 的高級算法和搜索能力，了解其與標準搜索的差異。',
           image: '/images/courses/perplexity-complete-course/unit-images/pro-search.png',
@@ -1540,7 +1575,9 @@ Pro Search 是為需要高質量、深度研究的用戶設計的高級功能。
         {
           id: 22,
           title: '5.3 AI 模型選擇：GPT-4、Claude、Gemini 的戰略性運用',
+          titleEn: '5.3 AI Model Selection: Strategic Use of GPT-4, Claude & Gemini',
           duration: '22 分鐘',
+          durationEn: '22 minutes',
           type: 'text' as const,
           description: '學習如何根據不同任務需求選擇最適合的 AI 模型，最大化使用效果。',
           image: '/images/courses/perplexity-complete-course/unit-images/ai-models.png',
@@ -1676,7 +1713,9 @@ AI 模型持續更新，要定期重新評估各模型的表現。
         {
           id: 23,
           title: '5.4 API 整合與自動化工作流程',
+          titleEn: '5.4 API Integration & Automated Workflows',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'text' as const,
           description: '學習如何將 Perplexity 整合到現有工作流程中，實現自動化和效率提升。',
           image: '/images/courses/perplexity-complete-course/unit-images/api-integration.png',
@@ -1898,7 +1937,9 @@ API 呼叫限制：
         {
           id: 24,
           title: '6.1 學術研究實戰：文獻綜述與引用管理',
+          titleEn: '6.1 Academic Research Practice: Literature Review & Citation Management',
           duration: '25 分鐘',
+          durationEn: '25 minutes',
           type: 'text' as const,
           description: '學習在學術環境中充分發揮 Perplexity 的價值，提升研究效率和品質。',
           image: '/images/courses/perplexity-complete-course/unit-images/academic-research.png',
@@ -2026,7 +2067,9 @@ Perplexity 能夠搜索和分析不同語言的學術文獻，特別有助於：
         {
           id: 25,
           title: '6.2 商業應用案例：市場調研、競爭分析、趨勢預測',
+          titleEn: '6.2 Business Use Cases: Market Research, Competitive Analysis & Trend Forecasting',
           duration: '28 分鐘',
+          durationEn: '28 minutes',
           type: 'text' as const,
           description: '探討 Perplexity 在商業環境中的實際應用，提升決策品質和競爭優勢。',
           image: '/images/courses/perplexity-complete-course/unit-images/business-applications.png',
@@ -2189,7 +2232,9 @@ SWOT 分析增強：
         {
           id: 26,
           title: '6.3 與其他 AI 工具的協同：ChatGPT + Perplexity 混合工作流',
+          titleEn: '6.3 Collaboration with Other AI Tools: ChatGPT + Perplexity Hybrid Workflows',
           duration: '22 分鐘',
+          durationEn: '22 minutes',
           type: 'text' as const,
           description: '學習建立高效的多工具協作策略，發揮不同 AI 工具的組合優勢。',
           image: '/images/courses/perplexity-complete-course/unit-images/ai-collaboration.png',
@@ -2373,7 +2418,9 @@ d) ChatGPT：協助實踐和問題解決
         {
           id: 27,
           title: '6.4 未來展望：「答案引擎」將如何重塑資訊獲取',
+          titleEn: '6.4 Future Outlook: How "Answer Engines" Will Reshape Information Access',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'text' as const,
           description: '探討 AI 搜索的未來趨勢和對知識工作、教育、決策的深遠影響。',
           image: '/images/courses/perplexity-complete-course/unit-images/future-outlook.png',
