@@ -2220,5 +2220,26 @@ Optimisation strategies:
         ]
       }
     }
-  ]
+  ],
+  faqData: [
+    {
+      question: '這個課程適合完全沒有 AI 藝術創作經驗的新手嗎？',
+      questionEn: 'Is this course suitable for complete beginners with no AI art creation experience?',
+      answer: '絕對適合。本課程從最基礎的概念開始，逐步深入到高級應用。我們會詳細解釋每個功能，並提供大量實戰案例，確保零基礎學員也能輕鬆跟上。',
+      answerEn: 'Absolutely suitable. This course starts from the most basic concepts and gradually progresses to advanced applications. We will explain each feature in detail and provide plenty of practical examples to ensure that even beginners can easily follow along.'
+    },
+    {
+      question: '學習這個課程需要多長時間？',
+      questionEn: 'How long does it take to complete this course?',
+      answer: '課程包含超過 7 小時的核心內容。由於是線上自學模式，您可以根據自己的進度安排學習。為了達到最佳效果，我們建議每週投入 2-3 小時，在一個月內完成課程。',
+      answerEn: 'The course contains over 7 hours of core content. Since it is an online self-study format, you can arrange your learning according to your own pace. For optimal results, we recommend investing 2-3 hours per week to complete the course within one month.'
+    },
+    {
+      question: '我需要付費訂閱 Midjourney 才能學習嗎？',
+      questionEn: 'Do I need to pay for Midjourney subscription to learn?',
+      answer: '是的，Midjourney 目前需要付費訂閱才能使用。我們會在課程中詳細介紹各種訂閱計劃的差異，幫助您選擇最適合的方案。',
+      answerEn: 'Yes, Midjourney currently requires a paid subscription to use. We will explain the differences between various subscription plans in detail in the course to help you choose the most suitable option.'
+    }
+  ],
+  isFree: true
 }; 

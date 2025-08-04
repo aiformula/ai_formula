@@ -163,11 +163,14 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
   // 轉換課程模組格式
   const courseModules = dataSource.courseModules.map((module: any) => ({
     id: module.id,
-    title: module.title,
-    description: module.description,
+    title: isZhHK ? module.title : (module.titleEn || module.title),
+    titleEn: module.titleEn,
+    description: isZhHK ? module.description : (module.descriptionEn || module.description),
+    descriptionEn: module.descriptionEn,
     lessons: module.lessons.map((lesson: any) => ({
       id: lesson.id,
-      title: lesson.title,
+      title: isZhHK ? lesson.title : (lesson.titleEn || lesson.title),
+      titleEn: lesson.titleEn,
       duration: lesson.duration,
       type: 'reading' as const,
       isPreview: false
