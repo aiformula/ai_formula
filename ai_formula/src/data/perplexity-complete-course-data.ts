@@ -41,7 +41,9 @@ export const perplexityCourseData = {
     {
       id: 1,
       title: '第一章：Perplexity AI 入門',
+      titleEn: 'Chapter 1: Perplexity AI Fundamentals',
       description: '重新定義資訊搜索',
+      descriptionEn: 'Redefining Information Search',
       duration: '1.5 小時',
       lessons: [
         {
@@ -298,7 +300,9 @@ Perplexity 主要關注事實性資訊，對於需要情感理解或個人化對
     {
       id: 2,
       title: '第二章：掌握介面',
+      titleEn: 'Chapter 2: Mastering the Interface',
       description: '全面功能導覽',
+      descriptionEn: 'Comprehensive Feature Tour',
       duration: '1.2 小時',
       lessons: [
         {
@@ -571,7 +575,9 @@ Pages 快速生成：
     {
       id: 3,
       title: '第三章：核心搜索功能詳解',
+      titleEn: 'Chapter 3: Core Search Features Deep Dive',
       description: '精準獲取答案的藝術',
+      descriptionEn: 'The Art of Precise Answer Retrieval',
       duration: '1.8 小時',
       lessons: [
         {
@@ -983,7 +989,9 @@ Copilot 的建議過程實際上遵循了良好的研究方法論：從廣泛探
     {
       id: 4,
       title: '第四章：知識管理與分享',
+      titleEn: 'Chapter 4: Knowledge Management & Sharing',
       description: '善用 Library、Spaces 與 Pages',
+      descriptionEn: 'Mastering Library, Spaces & Pages',
       duration: '1.5 小時',
       lessons: [
         {
@@ -1320,7 +1328,9 @@ Pages 與 Spaces 和 Library 形成了完整的知識管理循環：
     {
       id: 5,
       title: '第五章：釋放全部潛力',
+      titleEn: 'Chapter 5: Unlocking Full Potential',
       description: 'Perplexity Pro 進階功能與訂閱方案',
+      descriptionEn: 'Perplexity Pro Advanced Features & Subscription Plans',
       duration: '1.3 小時',
       lessons: [
         {
@@ -1868,7 +1878,9 @@ API 呼叫限制：
     {
       id: 6,
       title: '第六章：實戰與比較',
+      titleEn: 'Chapter 6: Practical Applications & Comparisons',
       description: 'Perplexity 在 AI 工具生態中的定位',
+      descriptionEn: "Perplexity's Position in the AI Tools Ecosystem",
       duration: '1.7 小時',
       lessons: [
         {
@@ -2681,23 +2693,33 @@ d) ChatGPT：協助實踐和問題解決
   faqData: [
     {
       question: '這個課程適合完全沒有 AI 經驗的新手嗎？',
-      answer: '絕對適合。本課程專為所有水平的學習者設計。我們從最基礎的「什麼是答案引擎？」等概念講起，引導您循序漸進。無需任何技術或 AI 背景知識。'
+      questionEn: 'Is this course suitable for complete beginners with no AI experience?',
+      answer: '絕對適合。本課程專為所有水平的學習者設計。我們從最基礎的「什麼是答案引擎？」等概念講起，引導您循序漸進。無需任何技術或 AI 背景知識。',
+      answerEn: 'Absolutely suitable. This course is designed for learners of all levels. We start from the most basic concepts like "What is an answer engine?" and guide you step by step. No technical or AI background knowledge required.'
     },
     {
       question: '學完這個課程後，我能達到什麼水平？',
-      answer: '完成課程後，您將成為 Perplexity 的高階用戶。您將能熟練地運用它進行高效研究，使用 Library 和 Spaces 管理複雜項目，透過 Pages 創建精美的報告，並能戰略性地將 Perplexity 整合到與 ChatGPT 等其他 AI 工具的協作流程中。'
+      questionEn: 'What level can I achieve after completing this course?',
+      answer: '完成課程後，您將成為 Perplexity 的高階用戶。您將能熟練地運用它進行高效研究，使用 Library 和 Spaces 管理複雜項目，透過 Pages 創建精美的報告，並能戰略性地將 Perplexity 整合到與 ChatGPT 等其他 AI 工具的協作流程中。',
+      answerEn: 'Upon completion, you will become an advanced Perplexity user. You will be able to skilfully use it for efficient research, manage complex projects using Library and Spaces, create beautiful reports through Pages, and strategically integrate Perplexity into collaborative workflows with other AI tools like ChatGPT.'
     },
     {
       question: '課程內容會定期更新嗎？',
-      answer: '會的。AI 的世界發展一日千里。本課程內容將定期更新，以反映 Perplexity 的最新功能、新增的 AI 模型以及業界最新的趨勢與策略，確保課程的長期價值。'
+      questionEn: 'Will the course content be updated regularly?',
+      answer: '會的。AI 的世界發展一日千里。本課程內容將定期更新，以反映 Perplexity 的最新功能、新增的 AI 模型以及業界最新的趨勢與策略，確保課程的長期價值。',
+      answerEn: 'Yes. The AI world develops at lightning speed. This course content will be updated regularly to reflect the latest features of Perplexity, new AI models, and the latest industry trends and strategies, ensuring the long-term value of the course.'
     },
     {
       question: '我需要付費訂閱 Perplexity Pro 才能學習嗎？',
-      answer: '完全不需要。整個課程的設計讓您可以使用免費版的 Perplexity 進行有效的學習和練習。第五章將詳細介紹 Pro 訂閱的強大功能，擁有訂閱將能讓您跟隨操作那些進階功能，但這並非學習的必要條件。'
+      questionEn: 'Do I need to pay for Perplexity Pro subscription to learn?',
+      answer: '完全不需要。整個課程的設計讓您可以使用免費版的 Perplexity 進行有效的學習和練習。第五章將詳細介紹 Pro 訂閱的強大功能，擁有訂閱將能讓您跟隨操作那些進階功能，但這並非學習的必要條件。',
+      answerEn: 'Not at all. The entire course is designed so you can effectively learn and practise using the free version of Perplexity. Chapter 5 will introduce the powerful features of Pro subscription in detail. Having a subscription will allow you to follow along with those advanced features, but it is not a requirement for learning.'
     },
     {
       question: '學習這個課程需要多長時間？',
-      answer: '課程包含超過 8 小時的核心內容。由於是線上自學模式，您可以根據自己的進度安排學習。為了達到最佳效果，我們建議每週投入 2-3 小時，在一個月內完成課程。'
+      questionEn: 'How long does it take to complete this course?',
+      answer: '課程包含超過 8 小時的核心內容。由於是線上自學模式，您可以根據自己的進度安排學習。為了達到最佳效果，我們建議每週投入 2-3 小時，在一個月內完成課程。',
+      answerEn: 'The course contains over 8 hours of core content. Since it is an online self-study format, you can arrange your learning according to your own pace. For optimal results, we recommend investing 2-3 hours per week to complete the course within one month.'
     }
   ],
   isFree: true
