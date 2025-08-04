@@ -66,11 +66,26 @@ Perplexity 的革命性在於它改變了這個流程：用戶輸入問題 → P
 Perplexity 的核心使命是「將知識的獲取民主化」（Democratizing Access to Knowledge）。這意味著無論用戶的技術背景如何，都能輕鬆獲得高質量、準確的資訊。通過結合先進的大型語言模型和即時網絡搜索，Perplexity 打破了傳統搜索的局限性，讓知識變得更加觸手可及。
 
 在實際應用中，Perplexity 特別擅長處理複雜的、需要多源整合的查詢。例如，當你問「2024年人工智能領域最重要的突破是什麼？」時，Perplexity 會搜索最新的新聞報導、學術論文和技術報告，然後提供一個結構化的答案，並標明每個論點的具體來源。`,
+          transcriptEn: `Perplexity AI positions itself as an "Answer Engine," a designation that goes beyond mere marketing terminology and represents an accurate description of its core value proposition. Unlike traditional search engines (such as Google and Bing) that provide lists of web links, Perplexity is dedicated to providing users with direct, comprehensive answers that include cited sources.
+
+The traditional search engine workflow operates as follows: user inputs query → search engine returns relevant web page list → user needs to click multiple links, read different sources, and integrate information independently. This process is often time-consuming and inefficient, particularly when users need rapid access to accurate answers.
+
+Perplexity's revolutionary approach changes this workflow: user inputs question → Perplexity searches, analyses, and integrates multiple sources in real-time → directly provides a structured, cited comprehensive answer. This model allows users to obtain high-quality, verifiable information within seconds, dramatically improving information acquisition efficiency.
+
+Perplexity's core mission is "Democratizing Access to Knowledge." This means that regardless of users' technical backgrounds, they can easily access high-quality, accurate information. By combining advanced large language models with real-time web search, Perplexity breaks through traditional search limitations, making knowledge more accessible.
+
+In practical applications, Perplexity excels particularly at handling complex queries requiring multi-source integration. For example, when you ask "What are the most important breakthroughs in artificial intelligence in 2024?", Perplexity searches the latest news reports, academic papers, and technical reports, then provides a structured answer with specific sources cited for each point.`,
           keyPoints: [
             'Perplexity AI 定位為「答案引擎」，直接提供綜合答案而非網頁連結列表',
             '革命性地改變了資訊獲取流程：從「搜索→瀏覽→整合」變為「提問→獲得答案」',
             '核心使命是將知識獲取民主化，讓所有用戶都能輕鬆獲得高質量資訊',
             '特別擅長處理複雜的、需要多源整合的查詢，提供結構化且有引用來源的答案'
+          ],
+          keyPointsEn: [
+            'Perplexity AI positions itself as an "Answer Engine," providing comprehensive answers rather than web link lists',
+            'Revolutionarily changes information acquisition workflow: from "search→browse→integrate" to "ask→get answer"',
+            'Core mission is democratizing knowledge access, enabling all users to easily obtain high-quality information',
+            'Particularly excels at handling complex queries requiring multi-source integration, providing structured answers with cited sources'
           ],
           completed: false
         },

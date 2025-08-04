@@ -341,9 +341,9 @@ const PerplexityCompleteCourseUnit: React.FC = () => {
               <Badge className="bg-[#1F1F1F] text-white mb-4">
                 {isZhHK ? `第 ${currentUnit.themeId} 章` : `Chapter ${currentUnit.themeId}`}
               </Badge>
-              <h1 className="text-3xl lg:text-4xl font-bold mb-4">
-                {currentUnit.title}
-              </h1>
+              <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+                  {isZhHK ? currentUnit.title : ((currentUnit as any).titleEn || currentUnit.title)}
+                </h1>
               <p className="text-gray-300 text-lg max-w-3xl mx-auto">
                 {currentUnit.description}
               </p>
@@ -402,7 +402,7 @@ const PerplexityCompleteCourseUnit: React.FC = () => {
                     
                     <div className="prose prose-invert prose-lg max-w-none">
                       <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                        {currentUnit.transcript}
+                        {isZhHK ? currentUnit.transcript : ((currentUnit as any).transcriptEn || currentUnit.transcript)}
                       </p>
                     </div>
                   </div>
@@ -414,18 +414,14 @@ const PerplexityCompleteCourseUnit: React.FC = () => {
                       {isZhHK ? '重點整理' : 'Key Points'}
                     </h3>
                     <ul className="space-y-3">
-                      <li className="flex items-start">
-                        <span className="text-white mr-3 mt-1">•</span>
-                        <span className="text-gray-300">{isZhHK ? '學習 Perplexity 的核心功能與操作技巧' : 'Learn Perplexity core functions and operation techniques'}</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-white mr-3 mt-1">•</span>
-                        <span className="text-gray-300">{isZhHK ? '掌握高效搜尋與資訊驗證方法' : 'Master efficient search and information verification methods'}</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-white mr-3 mt-1">•</span>
-                        <span className="text-gray-300">{isZhHK ? '了解 AI 搜尋引擎的運作原理' : 'Understand how AI search engines work'}</span>
-                      </li>
+                      {currentUnit.keyPoints && currentUnit.keyPoints.map((point: string, index: number) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-white mr-3 mt-1">•</span>
+                          <span className="text-gray-300">
+                            {isZhHK ? point : ((currentUnit as any).keyPointsEn?.[index] || point)}
+                          </span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
 
@@ -772,7 +768,7 @@ const PerplexityCompleteCourseUnit: React.FC = () => {
                   <div className="space-y-3">
                 <div className="flex items-center justify-between">
                       <span className="text-gray-400">{isZhHK ? '時長' : 'Duration'}</span>
-                      <span className="text-white font-medium">{currentUnit.duration}</span>
+                      <span className="text-white font-medium">{isZhHK ? currentUnit.duration : ((currentUnit as any).durationEn || currentUnit.duration)}</span>
                     </div>
                 <div className="flex items-center justify-between">
                       <span className="text-gray-400">{isZhHK ? '類型' : 'Type'}</span>
