@@ -79,7 +79,16 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
   // Perplexity 完整教學課程規劃大綱
   const courseData = {
     ...perplexityCourseData.courseInfo,
-    themes: perplexityCourseData.courseModules,
+    themes: perplexityCourseData.courseModules.map((module: any) => ({
+      ...module,
+      title: isZhHK ? module.title : (module.titleEn || module.title),
+      description: isZhHK ? module.description : (module.descriptionEn || module.description),
+      lessons: module.lessons.map((lesson: any) => ({
+        ...lesson,
+        title: isZhHK ? lesson.title : (lesson.titleEn || lesson.title),
+        description: isZhHK ? lesson.description : (lesson.descriptionEn || lesson.description)
+      }))
+    })),
     faqData: perplexityCourseData.faqData,
     isFree: perplexityCourseData.isFree
   };
@@ -472,7 +481,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
                                                 lesson.completed ? 'text-gray-300 line-through decoration-gray-500' : 
                                                 lesson.current ? 'text-white' : 'text-white group-hover:text-gray-200'
                                               }`}>
-                                                {lesson.title}
+                                                {isZhHK ? lesson.title : (lesson.titleEn || lesson.title)}
                                               </h4>
                                             </div>
                                             <div className={`flex items-center text-caption ${
@@ -661,7 +670,7 @@ const PerplexityCompleteCourseLearning: React.FC = () => {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
                   <div className="text-data text-gray-300 mb-1">{stats.completedThemes}</div>
-                  <div className="text-label">{isZhHK ? '已完成' : 'Completed'}主題</div>
+                  <div className="text-label">{isZhHK ? '已完成主題' : 'Completed Themes'}</div>
                 </div>
                 <div className="text-center p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
                   <div className="text-data text-gray-300 mb-1">{stats.totalThemes - stats.completedThemes}</div>
