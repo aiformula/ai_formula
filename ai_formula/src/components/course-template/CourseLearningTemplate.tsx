@@ -118,8 +118,8 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
     
     themes: dataSource.courseModules.map((module: any) => ({
       id: module.id,
-      title: module.title,
-      description: module.description,
+      title: isZhHK ? module.title : (module.titleEn || module.title),
+      description: isZhHK ? module.description : (module.descriptionEn || module.description),
       progress: (() => {
         const progress = getThemeProgress(module.id);
         return progress ? progress.progressPercentage : 0;
@@ -134,11 +134,11 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
         
         return {
           id: lesson.id,
-          title: lesson.title,
-          duration: lesson.duration || (isZhHK ? '30分鐘' : '30 minutes'),
+          title: isZhHK ? lesson.title : (lesson.titleEn || lesson.title),
+          duration: isZhHK ? (lesson.duration || '30分鐘') : (lesson.durationEn || lesson.duration || '30 minutes'),
           completed: isCompleted,
           current: false, // Will be calculated below
-          description: lesson.description
+          description: isZhHK ? lesson.description : (lesson.descriptionEn || lesson.description)
         };
       })
     }))

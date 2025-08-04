@@ -815,7 +815,9 @@ Besides manual downloading, you need to know a more convenient fact: all images 
     {
       id: 3,
       title: '第三章：提示詞工程學：與 AI 溝通嘅藝術',
+      titleEn: 'Chapter 3: Prompt Engineering: The Art of AI Communication',
       description: '學習「提示詞工程學」（Prompt Engineering）。呢個唔單止係寫句子，而係學習一種同 AI 溝通嘅獨特語言，有佢自己嘅語法同邏輯。',
+      descriptionEn: 'Learn "Prompt Engineering". This is not just about writing sentences, but learning a unique language to communicate with AI, with its own syntax and logic.',
       duration: '110 分鐘',
       lessons: [
         {
@@ -979,7 +981,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
       ],
       quiz: {
         title: '第三章測驗：提示詞工程學：與 AI 溝通的藝術',
-        titleEn: 'Chapter 3 Quiz: Prompt Engineering: The Art of Communicating with AI',
+        titleEn: 'Chapter 3 Quiz: Prompt Engineering: The Art of AI Communication',
         description: '測試您對提示詞構建和進階語法的掌握',
         descriptionEn: 'Test your mastery of prompt construction and advanced syntax',
         timeLimit: 15,
@@ -1131,7 +1133,9 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
     {
       id: 4,
       title: '第四章：參數嘅力量：精準控制圖像生成',
+      titleEn: 'Chapter 4: The Power of Parameters: Precise Image Generation Control',
       description: 'Midjourney 提供咗一系列以 –- 開頭嘅「參數」（Parameters）。呢啲參數就好似相機上嘅各種設定按鈕，可以讓你喺提示詞之外，更精準地控制圖像生成嘅各個方面。',
+      descriptionEn: 'Midjourney provides a series of "Parameters" starting with --. These parameters are like various setting buttons on a camera, allowing you to control various aspects of image generation more precisely beyond prompts.',
       duration: '95 分鐘',
       lessons: [
         {
@@ -1464,7 +1468,9 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
     {
       id: 5,
       title: '第五章：參考與一致性：創造連續角色與風格',
+      titleEn: 'Chapter 5: Reference & Consistency: Creating Continuous Characters & Styles',
       description: '學習使用 --sref 同 --cref 參數解決一致性挑戰。令同一個角色出現喺唔同嘅故事場景，為一系列作品保持統一嘅藝術風格。',
+      descriptionEn: 'Learn to use --sref and --cref parameters to solve consistency challenges. Make the same character appear in different story scenes and maintain unified artistic styles for a series of works.',
       duration: '85 分鐘',
       lessons: [
         {
