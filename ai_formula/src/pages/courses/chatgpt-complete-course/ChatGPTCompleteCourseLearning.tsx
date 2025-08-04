@@ -460,7 +460,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
             <div className="lg:col-span-4">
               <div className="min-w-0">
                 <h1 className="text-h1 mb-1 truncate">
-                  ChatGPT 完整教學實戰課程
+                  {isZhHK ? 'ChatGPT 完整教學實戰課程' : 'ChatGPT Complete Practical Course'}
                 </h1>
                 <div className="flex items-center space-x-2 mb-1">
                   {stats.totalProgress === 100 ? (
@@ -658,8 +658,8 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                             {/* Module Title & Description */}
                             <div className="min-w-0 flex-1">
                                                       <h3 className="text-theme-title leading-tight mb-1">
-                          第{theme.id}大主題・{theme.title}
-                        </h3>
+                                {isZhHK ? `第${theme.id}大主題・${theme.title}` : `Chapter ${theme.id}・${theme.title}`}
+                              </h3>
                               <p className="text-body leading-relaxed line-clamp-2">
                                 {theme.description}
                               </p>
@@ -998,7 +998,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                   <Trophy className="w-4 h-4" />
                   <span className="text-h3">{isZhHK ? '學習成就' : 'Learning Achievements'}</span>
                 </div>
-                <p className="text-caption">ChatGPT 完整教學實戰課程</p>
+                <p className="text-caption">
+                  {isZhHK ? 'ChatGPT 完整教學實戰課程' : 'ChatGPT Complete Practical Course'}
+                </p>
               </div>
             </motion.div>
 
@@ -1027,7 +1029,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-caption">學習時間</span>
+                  <span className="text-caption">{isZhHK ? '學習時間' : 'Study Time'}</span>
                   <span className="text-body">{formattedLearningTime}</span>
                 </div>
                 
@@ -1045,7 +1047,9 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                       for (const theme of courseData.themes) {
                         const currentUnit = theme.units.find(unit => unit.current);
                         if (currentUnit) {
-                          return `單元 ${currentUnit.id}：${currentUnit.title.slice(0, 15)}...`;
+                          return isZhHK ? 
+                            `單元 ${currentUnit.id}：${currentUnit.title.slice(0, 15)}...` :
+                            `Unit ${currentUnit.id}: ${currentUnit.title.slice(0, 15)}...`;
                         }
                       }
                       return '所有單元已完成！';
@@ -1069,7 +1073,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                     }}
                       >
                         <Play className="w-4 h-4 mr-2" />
-                    繼續學習
+                        {isZhHK ? '繼續學習' : 'Continue Learning'}
                       </Button>
                     </div>
                   </div>
@@ -1077,7 +1081,7 @@ const ChatGPTCompleteCourseLearning: React.FC = () => {
                               <div className="mt-6 p-3 bg-gradient-to-r from-green-500/10 to-gray-700/30 rounded-lg border border-green-500/20">
                 <div className="flex items-center space-x-2 text-green-400 text-caption">
                   <Target className="w-4 h-4" />
-                  <span>6大學習里程碑</span>
+                  <span>{isZhHK ? '6大學習里程碑' : '6 Learning Milestones'}</span>
                 </div>
           </div>
         </motion.div>
