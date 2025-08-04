@@ -125,6 +125,13 @@ Perplexity 通過其先進的 AI 技術，大幅降低了這些門檻。用戶�
 更重要的是，Perplexity 的引用系統（Citations）確保了資訊的透明度和可驗證性。每個答案都會標明具體的來源，用戶可以輕鬆追溯資訊的出處，這不僅提高了答案的可信度，也培養了用戶的批判性思維能力。
 
 在教育和學術研究領域，這種民主化特別有意義。學生和研究人員可以快速進行文獻綜述、尋找最新研究並輕鬆追溯來源，大大提高了學習和研究的效率。對於專業人士而言，Perplexity 成為了一個強大的決策支持工具，幫助他們在快速變化的商業環境中保持資訊優勢。`,
+          transcriptEn: `"Knowledge democratisation" is Perplexity AI's core philosophy, extending far beyond technology to encompass information equity, educational opportunity equality, and cognitive burden reduction. In traditional information acquisition models, obtaining high-quality, accurate information often requires specific skills: knowing how to use correct keywords, understanding how to evaluate source reliability, and possessing the ability to integrate multiple information sources. These skill barriers create an "information gap," making knowledge more accessible to some than others.
+
+Perplexity significantly reduces these barriers through advanced AI technology. Users need only ask questions in natural language, without mastering complex search techniques or keyword optimisation strategies. This design philosophy makes knowledge more approachable and accessible.
+
+More importantly, Perplexity's citation system ensures information transparency and verifiability. Each answer includes specific sources, allowing users to easily trace information origins, enhancing answer credibility whilst developing critical thinking skills.
+
+In education and academic research, this democratisation is particularly meaningful. Students and researchers can quickly conduct literature reviews, find latest research, and easily trace sources, dramatically improving learning and research efficiency. For professionals, Perplexity becomes a powerful decision-support tool, helping maintain informational advantages in rapidly changing business environments.`,
           keyPoints: [
             '知識民主化旨在消除資訊鴻溝，讓所有人都能平等地獲得高質量資訊',
             '降低了資訊獲取的技能門檻，用戶只需用自然語言提問即可獲得專業級答案',
@@ -176,6 +183,19 @@ Perplexity 通過即時搜索解決了這兩個問題：它能獲取最新資訊
 
 Perplexity 的獨特定位：
 Perplexity 最大的優勢在於它結合了搜索引擎的即時性和生成式 AI 的理解能力。它特別適合需要高準確性和最新資訊的事實密集型研究，如學術研究、新聞追蹤、市場分析等。對於需要創意或開放式討論的任務，ChatGPT 可能更合適；對於需要廣泛瀏覽或購物的需求，Google 仍然是首選。`,
+          transcriptEn: `To truly understand Perplexity AI's value, we must compare it deeply with major market competitors, including traditional search engines (like Google) and generative AI tools (like ChatGPT).
+
+Differences from Google:
+Google excels at indexing and retrieving web information but provides information locations (web links) rather than information itself. Users must click, read, filter, and integrate information independently. Perplexity directly provides integrated answers, dramatically reducing user workload.
+
+Additionally, Google's search results are significantly influenced by SEO optimisation and advertising, sometimes making truly valuable information harder to find. Perplexity's AI-driven approach focuses more on content quality and relevance.
+
+Differences from ChatGPT:
+ChatGPT is a powerful conversational AI but has knowledge cutoffs and cannot access real-time information. Perplexity combines real-time search with AI analysis, providing both current and comprehensive answers.
+
+ChatGPT's answers lack direct source citations, making verification difficult. Perplexity's citation system ensures every answer is traceable and verifiable.
+
+Perplexity's unique positioning lies in being an "Answer Engine" - combining real-time search capabilities with AI analysis power whilst maintaining information transparency through citations. This makes it ideal for research, learning, and professional decision-making scenarios.`,
           keyPoints: [
             'Google 提供資訊位置，Perplexity 提供整合後的答案，大幅減少用戶工作量',
             'ChatGPT 知識有時效限制且可能產生幻覺，Perplexity 通過即時搜索和引用來源解決這些問題',
@@ -241,6 +261,19 @@ Perplexity 提出了「信任三角」的概念，包括三個核心要素：
 - 識別潛在偏見
 - 評估證據強度
 - 形成更全面的理解`,
+          transcriptEn: `Citations are one of Perplexity AI's most revolutionary features - not merely a technical characteristic, but a core mechanism for building user trust and ensuring information quality. In our information-abundant era, distinguishing accurate from false information becomes increasingly difficult, and Perplexity's citation system provides an elegant solution.
+
+Every Perplexity answer includes numbered citations linking to specific sources. This transparency allows users to verify information origins, assess source credibility, and conduct deeper research. This approach fundamentally differs from other AI tools that provide "black box" answers.
+
+The citation system offers multiple benefits:
+1. **Transparency**: Users understand exactly where information originates
+2. **Verifiability**: Claims can be independently verified through source checking
+3. **Credibility**: Answers gain authority through reputable source backing
+4. **Educational Value**: Users learn to evaluate information sources and develop critical thinking skills
+
+In academic and professional contexts, this citation system is invaluable. Researchers can quickly identify primary sources, students can learn proper source evaluation, and professionals can make confident decisions based on verifiable information.
+
+The citation system also encourages responsible AI use, promoting information literacy and critical thinking skills essential in our digital age.`,
           keyPoints: [
             'Citations 為每個論點提供可驗證的來源，確保資訊透明度和可信度',
             '「信任三角」包括綜合、引用、控制三個要素，建立完整的信任框架',
@@ -315,6 +348,32 @@ Perplexity 主要關注事實性資訊，對於需要情感理解或個人化對
 - 結合多個 AI 工具的優勢，創建混合工作流程
 - 始終驗證重要資訊，特別是用於關鍵決策的資料
 - 利用引用功能深入閱讀原始來源`,
+          transcriptEn: `Understanding when to use Perplexity is key to mastering this tool. While powerful, Perplexity isn't suitable for every situation. Correct scenario selection maximises tool value and improves work efficiency.
+
+**Ideal Perplexity Scenarios:**
+
+1. **Research and Learning**: When you need comprehensive, up-to-date information on complex topics
+2. **Fact Verification**: When you need to verify claims with reliable sources
+3. **Current Events**: When you need latest information on developing situations
+4. **Academic Work**: When you need properly cited information for papers or presentations
+5. **Professional Decision Making**: When you need market intelligence or industry insights
+6. **Complex Problem Solving**: When you need multi-perspective analysis of challenging issues
+
+**When NOT to Use Perplexity:**
+
+1. **Creative Writing**: ChatGPT or other creative AI tools are better suited
+2. **Personal Opinions**: When you need subjective viewpoints rather than factual information
+3. **Simple Calculations**: Basic calculator tools are more efficient
+4. **Entertainment**: When you want casual conversation or entertainment content
+
+**Optimal Usage Strategy:**
+- Start with broad questions to understand topic landscape
+- Use Follow-up questions to dive deeper into specific aspects  
+- Leverage Focus modes for specialised domains
+- Always review citations for critical decisions
+- Combine with other tools when appropriate
+
+Understanding these scenarios ensures you use Perplexity effectively whilst recognising when alternative tools might be more appropriate.`,
           keyPoints: [
             '最適合事實驗證、學術研究、市場調研、新聞追蹤等需要最新準確資訊的場景',
             '不適合創意寫作、深度程式設計、個人對話等需要創造力或個人化的任務',
@@ -450,6 +509,33 @@ Perplexity 主要關注事實性資訊，對於需要情感理解或個人化對
 這裡包含了帳戶管理、語言切換、主題模式切換等設定選項。對於 Pro 用戶，還能看到使用量統計和 AI 模型選擇選項。
 
 介面的響應式設計確保了在不同裝置上都能獲得一致的使用體驗，無論是桌面端、平板還是手機，核心功能都觸手可及。`,
+          transcriptEn: `Perplexity AI's interface embodies a "simple yet powerful" design philosophy. Upon first opening Perplexity, you'll see a clean, focused interface with a large search box at the centre - the platform's core element.
+
+**Main Interface Elements:**
+
+1. **Search Box**: The primary interaction point supporting natural language queries of any complexity
+2. **Sidebar Navigation**: Contains Library, Collections, Spaces, and settings access
+3. **Focus Mode Selector**: Located near the search box for domain-specific searches
+4. **File Upload Area**: Allows PDF, image, and document analysis
+5. **History Panel**: Quick access to previous searches and conversations
+
+**Key Navigation Features:**
+
+- **Smart Suggestions**: As you type, Perplexity offers query completion suggestions
+- **Voice Input**: Microphone icon enables voice queries for hands-free operation
+- **Search Settings**: Customise search parameters including time filters and source preferences
+- **Dark/Light Mode**: Toggle between interface themes for comfortable viewing
+
+**Efficient Navigation Tips:**
+
+- Use keyboard shortcuts for faster navigation
+- Bookmark frequently used Spaces for quick access
+- Organise research using Collections and Spaces
+- Utilise the sidebar for seamless workflow management
+
+Understanding interface layout is crucial for maximising Perplexity's potential. Each element is strategically positioned to support seamless workflow from query formulation to result analysis.
+
+The interface adapts to user needs, whether conducting academic research, business analysis, or casual information gathering. Mastering navigation fundamentals enhances overall productivity and search effectiveness.`,
           keyPoints: [
             '中央搜索框是平台核心，支援自然語言查詢、文件上傳和語音輸入',
             '左側邊欄包含 Library、Spaces、Discover 等重要功能區域',
@@ -504,6 +590,31 @@ Perplexity 提供了詳細的隱私控制選項。你可以選擇是否保存搜
 你可以自定義各種通知，包括新功能通知、Spaces 更新、以及重要的帳戶安全提醒。合理的通知設定能幫你保持與平台的良好互動。
 
 對於 Pro 用戶，還有額外的設定選項，如 AI 模型偏好、高級搜索參數等。`,
+          transcriptEn: `Personalisation settings are key to enhancing your Perplexity experience. Through proper configuration, you can help AI better understand your needs and preferences.
+
+**Account Settings Overview:**
+
+1. **Profile Information**: Set your name, profile picture, and professional background
+2. **Language Preferences**: Choose your preferred language for interface and results
+3. **Search Preferences**: Configure default search parameters and result formats
+4. **Notification Settings**: Manage alerts for new features and updates
+5. **Privacy Controls**: Adjust data sharing and search history preferences
+
+**Personalisation Features:**
+
+- **Custom Instructions**: Set default context for all your searches
+- **Preferred Sources**: Prioritise specific news outlets, academic journals, or websites
+- **Search History**: Enable/disable search logging for privacy
+- **Export Options**: Configure data export formats and frequencies
+
+**Optimisation Strategies:**
+
+- Set professional context if using for work-related research
+- Configure academic focus if you're a student or researcher  
+- Enable relevant notifications for important updates
+- Regularly review and update preferences as needs evolve
+
+Proper personalisation transforms Perplexity from a generic search tool into a tailored research assistant that understands your specific requirements and context.`,
           keyPoints: [
             '完善個人資料有助於獲得更貼切的搜索結果',
             '語言與地區設定影響介面語言和內容本地化',
@@ -563,6 +674,38 @@ Pro 版每月約 $20 美元，對於重度使用者、研究人員、內容創�
 
 使用建議：
 建議先使用免費版熟悉平台，當你發現免費版無法滿足需求時，再考慮升級。很多用戶發現，一旦體驗過 Pro Search 的強大功能，就很難回到免費版了。`,
+          transcriptEn: `Choosing the appropriate Perplexity version is a crucial decision for optimising your experience. Let's deeply compare the specific differences between free and Pro versions.
+
+**Free Version Capabilities:**
+- 5 Pro searches per day
+- Access to GPT-3.5 and Claude models
+- Basic file upload (3 files per day)
+- Standard search speed
+- Community support
+
+**Pro Version Advanced Features:**
+- Unlimited Pro searches
+- Access to GPT-4, Claude-3, and other premium models
+- Unlimited file uploads with larger size limits
+- Priority processing and faster responses
+- $20/month subscription fee
+- Advanced API access
+- Customer support priority
+
+**ROI Analysis:**
+For professionals, students, or heavy users, Pro version typically pays for itself through:
+- Time savings from unlimited searches
+- Higher quality results from premium models
+- Enhanced productivity from faster processing
+- Professional credibility from unlimited access
+
+**Decision Framework:**
+- **Heavy Users (>5 searches/day)**: Pro version essential
+- **Professional Use**: Pro version recommended for reliability
+- **Casual Users**: Free version often sufficient
+- **Academic Research**: Pro version valuable for unlimited access
+
+The Pro version transforms Perplexity from a useful tool into a professional research platform capable of supporting intensive knowledge work.`,
           keyPoints: [
             '免費版提供核心 AI 搜索功能，足以滿足日常研究和學習需求',
             'Pro 版提供更強大的 AI 模型、Pro Search、無限模型切換等進階功能',
@@ -631,6 +774,37 @@ Pages 快速生成：
 
 瀏覽器擴充功能：
 如果可用，安裝 Perplexity 的瀏覽器擴充功能，可以在任何網頁上快速啟動搜索，或將網頁內容直接發送到 Perplexity 進行分析。`,
+          transcriptEn: `Mastering keyboard shortcuts and efficiency techniques is key to progressing from Perplexity novice to power user. These techniques can dramatically improve your research workflow efficiency.
+
+**Essential Keyboard Shortcuts:**
+- **Cmd/Ctrl + K**: Focus search box from anywhere
+- **Tab**: Navigate between interface elements
+- **Enter**: Submit search query
+- **Cmd/Ctrl + Enter**: Open result in new tab
+- **Esc**: Close modals and return to main interface
+
+**Advanced Efficiency Techniques:**
+
+1. **Query Templating**: Create reusable question formats for consistent research
+2. **Source Filtering**: Use site: operator to search specific domains
+3. **Time Constraints**: Add temporal filters for recent information
+4. **Follow-up Optimization**: Chain related questions for deeper exploration
+5. **Context Building**: Reference previous queries for continuity
+
+**Productivity Workflows:**
+
+- **Research Sprint**: Use Focus modes for concentrated topic exploration
+- **Fact Checking**: Employ citation links for rapid verification
+- **Content Creation**: Leverage Spaces for organised information gathering
+- **Decision Support**: Create comparison queries for informed choices
+
+**Professional Tips:**
+- Bookmark frequently used search patterns
+- Use Collections to organise ongoing research projects
+- Export important findings for offline reference
+- Integrate with other productivity tools via API
+
+These efficiency techniques transform Perplexity from a simple search tool into a powerful research acceleration platform.`,
           keyPoints: [
             '核心快捷鍵如 Ctrl+K 開啟搜索、Ctrl+Enter 送出查詢能顯著提升操作速度',
             '使用自然語言提問，指定時間範圍和來源類型可獲得更精準結果',
@@ -702,6 +876,51 @@ Pages 快速生成：
 
 選擇建議：
 理想情況下，同時使用兩個平台能獲得最佳體驗。重度使用者通常以桌面端為主力，移動端為輔助。`,
+          transcriptEn: `Perplexity AI provides excellent cross-platform experience, but different devices have unique advantages and limitations. Understanding these differences helps you choose the optimal usage method for different contexts.
+
+**Desktop Experience Advantages:**
+- Full keyboard shortcuts support
+- Larger screen for complex information review
+- Multiple tab support for parallel research
+- Advanced file upload capabilities
+- Complete feature access including API
+
+**Mobile Experience Benefits:**
+- Voice input convenience for hands-free queries
+- Location-based search capabilities
+- Quick access during commute or travel
+- Instant notifications for saved searches
+- Touch-optimised interface for rapid browsing
+
+**Platform-Specific Features:**
+
+**Desktop:**
+- Advanced Spaces management
+- Complex file analysis workflows
+- Multi-window research sessions
+- Detailed citation review
+- Professional presentation preparation
+
+**Mobile:**
+- Camera input for visual queries
+- GPS-enhanced local search
+- Quick voice memos integration
+- Rapid fact-checking on the go
+- Social sharing capabilities
+
+**Cross-Platform Synchronisation:**
+- Search history syncs across all devices
+- Spaces and Collections remain accessible everywhere
+- Account preferences transfer seamlessly
+- Progress tracking continues across platforms
+
+**Optimisation Strategies:**
+- Use desktop for intensive research sessions
+- Use mobile for quick queries and on-the-go verification
+- Leverage voice input when typing is inconvenient
+- Take advantage of platform-specific features for maximum efficiency
+
+Understanding platform differences enables you to maximise Perplexity's effectiveness regardless of your current device or context.`,
           keyPoints: [
             '桌面端適合深度研究，提供大螢幕、多視窗、快捷鍵等優勢',
             '移動端適合隨時查詢，支援語音輸入、相機整合、推送通知',
@@ -838,6 +1057,30 @@ Pages 快速生成：
 好的問題：「我是程式設計初學者，想學習 Python 進行資料分析，請推薦適合新手的學習路徑和資源。」
 
 最佳的問題：「我有統計學背景但沒有程式設計經驗，計劃在未來 3 個月內學會使用 Python 進行基礎資料分析，請根據 2024 年最新的學習資源，為我制定詳細的學習計劃。」`,
+          transcriptEn: `In the AI era, "asking good questions" has become a core skill. Perplexity's strength lies not only in its search capabilities but also in its ability to understand and respond to complex natural language queries.
+
+**Fundamentals of Effective Questioning:**
+
+1. **Be Specific**: Instead of "AI news," ask "What are the latest developments in AI safety research in 2024?"
+2. **Provide Context**: Include relevant background information to help AI understand your perspective
+3. **Use Natural Language**: Write questions as you would ask a colleague, not as keyword searches
+4. **Request Specific Formats**: Ask for comparisons, lists, explanations, or analyses as needed
+
+**Advanced Query Techniques:**
+
+- **Multi-part Questions**: "What is machine learning, how does it differ from deep learning, and what are practical applications?"
+- **Comparative Queries**: "Compare the advantages and disadvantages of renewable vs nuclear energy"
+- **Temporal Constraints**: "What have been the major cryptocurrency developments since 2023?"
+- **Source-specific Requests**: "What do recent academic papers say about climate change mitigation?"
+
+**Common Query Mistakes to Avoid:**
+
+- Overly broad questions without context
+- Keyword-style searches instead of natural language
+- Asking multiple unrelated questions simultaneously
+- Failing to specify the type of answer needed
+
+Mastering question formulation is the foundation of effective Perplexity usage, enabling you to unlock the platform's full analytical potential.`,
           keyPoints: [
             '提問要具體明確，加入背景脈絡和身份資訊',
             '指定回答格式和限制條件，如時間範圍、來源類型',
@@ -920,6 +1163,38 @@ Programming Focus（程式設計模式）：
 
 Pro 版專屬優勢：
 Pro 用戶可以自由切換所有 Focus 模式，而免費用戶可能有使用次數限制。`,
+          transcriptEn: `Focus mode is Perplexity's powerful feature that enables AI to optimise for specific domains and task types, providing more precise and professional responses.
+
+**Four Focus Mode Categories:**
+
+**1. Academic Focus:**
+- Prioritises scholarly articles, research papers, and academic sources
+- Ideal for literature reviews, research projects, and academic writing
+- Provides formal, citation-rich responses suitable for academic work
+
+**2. Writing Focus:**
+- Emphasises style guides, writing resources, and creative inspiration
+- Perfect for content creation, copywriting, and editorial assistance
+- Balances creativity with factual accuracy
+
+**3. Math Focus:**
+- Concentrates on mathematical proofs, formulas, and quantitative analysis
+- Essential for STEM research, problem-solving, and technical documentation
+- Provides step-by-step solutions and mathematical reasoning
+
+**4. Programming Focus:**
+- Targets coding resources, documentation, and technical solutions
+- Invaluable for software development, debugging, and learning new technologies
+- Offers code examples, best practices, and implementation guidance
+
+**Optimal Usage Strategies:**
+
+- Select focus mode before asking questions for best results
+- Switch modes based on different aspects of complex projects
+- Combine focus modes for interdisciplinary research
+- Use Academic focus for credibility, Programming for technical accuracy
+
+Understanding and leveraging Focus modes transforms Perplexity from a general search tool into a specialised research assistant tailored to your specific domain needs.`,
           keyPoints: [
             'Academic 模式優先學術來源，提供嚴謹的學術引用和科學性內容',
             'Writing 模式注重創意和表達，適合內容創作和文案寫作',
@@ -1005,6 +1280,49 @@ PDF 分析功能：
 
 Pro 版優勢：
 Pro 用戶通常享有更大的檔案大小限制、更快的處理速度，以及更先進的 AI 模型進行檔案分析。`,
+          transcriptEn: `File upload functionality is Perplexity's revolutionary feature that extends AI understanding capabilities to various document formats, enabling deep analysis and questioning of existing materials.
+
+**Supported File Types:**
+
+1. **PDF Documents**: Research papers, reports, manuals, e-books
+2. **Image Files**: Charts, diagrams, screenshots, photographs with text
+3. **Text Documents**: Word files, presentations, spreadsheets
+
+**Key Capabilities:**
+
+**Document Analysis:**
+- Extract key information and summarise main points
+- Answer specific questions about document content
+- Cross-reference information across multiple uploaded files
+- Identify patterns and relationships within documents
+
+**Visual Content Processing:**
+- Read text from images and diagrams
+- Interpret charts, graphs, and data visualisations
+- Analyse infographics and complex visual information
+- Extract data from screenshots and presentations
+
+**Practical Applications:**
+
+**Academic Research:**
+- Analyse multiple research papers simultaneously
+- Compare methodologies across different studies
+- Extract relevant quotes and citations
+- Summarise lengthy academic texts
+
+**Business Intelligence:**
+- Process financial reports and market analyses
+- Extract insights from presentation materials
+- Analyse competitor documentation
+- Review contract terms and legal documents
+
+**Personal Productivity:**
+- Summarise meeting notes and documents
+- Extract action items from lengthy reports
+- Compare different versions of documents
+- Translate and analyse foreign language materials
+
+File upload transforms Perplexity from an information search tool into a comprehensive document intelligence platform.`,
           keyPoints: [
             '支援 PDF、圖片、文字檔等多種格式，自動提取和理解內容',
             '能識別圖表、表格、手寫文字，並保持原始邏輯結構',
@@ -1354,6 +1672,49 @@ Library 內建強大的搜索功能，可以根據關鍵詞、時間範圍、主
 所有存儲在 Library 中的內容都受到嚴格的隱私保護。用戶可以選擇將特定對話設為私人，或者與特定人群分享。對於敏感研究項目，建議使用私人模式進行對話。
 
 總而言之，Library 扮演著用戶個人研究資料庫的角色，確保了知識的沉澱、組織和再利用，是 Perplexity 生態系統中不可或缺的基礎設施。`,
+          transcriptEn: `"Library" is Perplexity AI's personalised knowledge centre for every registered user - not merely a history list, but a comprehensive, fully-featured central hub for storing, organising, and retrieving all research activities.
+
+**Core Library Functions:**
+
+**1. Search History Management:**
+- Automatically saves all your searches and conversations
+- Enables quick reference to previous research sessions
+- Provides context continuity across multiple sessions
+- Supports search within your own history
+
+**2. Organised Collection System:**
+- Group related searches into thematic collections
+- Tag searches with custom labels for easy retrieval
+- Create folders for different projects or topics
+- Export collections for external use
+
+**3. Advanced Retrieval:**
+- Full-text search across all your previous queries and answers
+- Filter by date, topic, or source type
+- Quick access to frequently referenced information
+- Bookmark particularly valuable searches
+
+**Strategic Library Usage:**
+
+**Academic Research:**
+- Maintain separate collections for different courses or papers
+- Track source progression throughout research projects
+- Build comprehensive literature review databases
+- Export citations and references
+
+**Professional Development:**
+- Organise industry research by topic areas
+- Track competitor analysis over time
+- Build knowledge bases for client projects
+- Maintain expert resource libraries
+
+**Personal Learning:**
+- Create learning paths for new skills
+- Track progress on complex topics
+- Build personal reference collections
+- Maintain hobby-related research
+
+Library transforms Perplexity from a query tool into a comprehensive personal knowledge management system.`,
           keyPoints: [
             'Library 是個人化知識中心，自動保存所有對話線程和研究記錄',
             '提供知識組織功能，可建立 Spaces 並將相關對話歸類管理',
@@ -1431,6 +1792,51 @@ Spaces（新版）：
 對於仍在使用 Collections 的用戶，Perplexity 提供了平滑的移轉路徑。舊的 Collections 可以直接升級為 Spaces，並獲得所有新功能。
 
 這種演進反映了 Perplexity 對用戶需求的深度理解：現代知識工作者需要的不僅是單次的問答，而是支援複雜、長期研究項目的完整工作環境。`,
+          transcriptEn: `Perplexity's knowledge organisation functionality has undergone significant evolution, upgrading from initial "Collections" to the more powerful and flexible "Spaces." Understanding this evolution helps grasp Perplexity's deep thinking in knowledge management.
+
+**Evolution from Collections to Spaces:**
+
+**Collections (Legacy System):**
+- Simple grouping of related searches
+- Basic organisation and tagging
+- Limited collaboration features
+- Static content management
+
+**Spaces (Current System):**
+- Dynamic, collaborative research environments
+- Advanced project management capabilities
+- Custom AI instructions and context
+- Real-time collaboration and sharing
+
+**Key Advantages of Spaces:**
+
+**1. Contextual Intelligence:**
+- Each Space maintains its own context and focus
+- AI understands project-specific requirements
+- Consistent terminology and perspective across searches
+- Domain-specific optimisation
+
+**2. Collaborative Features:**
+- Team access and permission management
+- Real-time collaboration on research projects
+- Shared knowledge bases and resources
+- Comment and annotation systems
+
+**3. Advanced Organisation:**
+- Hierarchical structure for complex projects
+- Cross-referencing between related Spaces
+- Template systems for recurring project types
+- Integration with external tools and workflows
+
+**Migration Strategy:**
+
+For users transitioning from Collections:
+- Evaluate existing Collections for Space conversion
+- Reorganise content around project themes
+- Establish collaboration protocols
+- Leverage new contextual features
+
+Spaces represent Perplexity's evolution into a comprehensive research collaboration platform, moving beyond individual search into team-based knowledge creation.`,
           keyPoints: [
             'Spaces 取代了舊版 Collections，實現從問答工具到項目研究平台的轉變',
             '支援項目式研究理念，圍繞特定主題進行持續性、系統性探索',
@@ -1513,6 +1919,56 @@ Spaces 的設計也考慮到了團隊合作的需求。用戶可以邀請同事�
 - 定期回顧和整理，移除不再需要的內容
 - 善用搜索功能，即使在大量 Spaces 中也能快速找到所需資訊
 - 充分利用自定義指令，讓每個 Space 都有其獨特的「個性」`,
+          transcriptEn: `Spaces are Perplexity's core tool for deep research and knowledge organisation. Mastering their creation and management methods can dramatically improve research efficiency and quality.
+
+**Creating Effective Spaces:**
+
+**1. Space Setup:**
+- Choose descriptive, project-specific names
+- Write clear purpose statements and objectives
+- Establish scope boundaries and focus areas
+- Configure appropriate access permissions
+
+**2. Custom Instructions:**
+- Define domain-specific terminology and context
+- Establish preferred source types and formats
+- Set quality standards and citation requirements
+- Specify output formats and structures
+
+**3. Collaboration Configuration:**
+- Invite relevant team members and stakeholders
+- Assign roles and permission levels
+- Establish communication protocols
+- Set up review and approval workflows
+
+**Advanced Management Techniques:**
+
+**Content Organisation:**
+- Create logical folder structures
+- Use consistent tagging and categorisation
+- Implement version control for evolving projects
+- Maintain clean, organised information architecture
+
+**Workflow Optimisation:**
+- Establish research protocols and methodologies
+- Create templates for common query types
+- Implement quality assurance processes
+- Set up automated reporting and summaries
+
+**Integration Strategies:**
+- Connect with external research tools
+- Sync with document management systems
+- Integrate with presentation and reporting platforms
+- Establish backup and archival procedures
+
+**Best Practices:**
+
+- Regular Space maintenance and cleanup
+- Consistent naming conventions
+- Clear documentation of Space purpose and scope
+- Regular team training and updates
+
+Spaces transform individual research into organised, collaborative knowledge creation environments.`,
           keyPoints: [
             'Spaces 創建簡單，支援詳細描述和系統化組織管理',
             '自定義指令是核心功能，可為每個 Space 設定專屬的 AI 行為模式',
@@ -1808,6 +2264,53 @@ Perplexity 通常提供免費試用期，建議在試用期間：
 
 總結：
 對於需要高質量研究的專業用戶，Perplexity Pro 通常能提供良好的投資回報。但對於輕度使用者，免費版本可能已經足夠滿足需求。關鍵是要根據自己的實際使用情況和工作需求做出判斷。`,
+          transcriptEn: `Choosing whether to upgrade to Perplexity Pro is an important decision many heavy users face. This section provides in-depth analysis of Pro version's complete feature set to help evaluate its investment return value.
+
+**Comprehensive Pro Feature Analysis:**
+
+**Core Search Enhancements:**
+- Unlimited Pro searches (vs 5 per day free)
+- Access to latest AI models (GPT-4, Claude-3, Gemini)
+- Priority processing and faster response times
+- Enhanced accuracy and depth in responses
+
+**Advanced File Capabilities:**
+- Unlimited file uploads with larger size limits
+- Support for additional file formats
+- Batch processing capabilities
+- Advanced document analysis features
+
+**Professional Tools:**
+- API access for custom integrations
+- Advanced export and sharing options
+- Team collaboration features
+- Custom branding for business users
+
+**ROI Calculation Framework:**
+
+**Time Value Analysis:**
+- Calculate time savings from unlimited searches
+- Estimate productivity gains from faster processing
+- Assess value of premium AI model access
+- Factor in reduced research time and effort
+
+**Professional Impact:**
+- Enhanced credibility through unlimited access
+- Improved decision-making quality
+- Competitive advantage from advanced features
+- Client service improvements
+
+**Cost-Benefit Scenarios:**
+
+**Heavy Users (>20 searches/day):** Pro essential for productivity
+**Professionals (consulting, research):** ROI typically achieved within first month
+**Teams (collaborative research):** Shared value multiplies individual benefits
+**Casual Users (<5 searches/day):** Free version often sufficient
+
+**Decision Framework:**
+Consider upgrading if you regularly hit free tier limits, require premium AI models, need unlimited file processing, or use Perplexity for professional purposes.
+
+Pro version transforms Perplexity into a professional-grade research platform suitable for intensive knowledge work.`,
           keyPoints: [
             'Pro 版每月 $20，提供 Pro Search、AI 模型選擇、無限使用等核心功能',
             '適合每天使用超過 1 小時的重度用戶和專業研究人士',
@@ -1939,6 +2442,57 @@ Pro Search 與 Spaces、Pages 功能整合良好，深度研究的結果可以�
 
 總結：
 Pro Search 是為需要高質量、深度研究的用戶設計的高級功能。它不是為了取代標準搜索，而是在需要最高品質結果時的專業選擇。`,
+          transcriptEn: `Pro Search is Perplexity Pro version's core functionality, representing cutting-edge AI search technology application. Understanding its working principles and advantages helps maximise this powerful tool's potential.
+
+**Pro Search Advanced Capabilities:**
+
+**Enhanced Model Access:**
+- GPT-4 for complex reasoning and analysis
+- Claude-3 for nuanced understanding and creative tasks
+- Gemini for multimodal processing and integration
+- Multiple model comparison for comprehensive insights
+
+**Deeper Query Processing:**
+- More sophisticated natural language understanding
+- Enhanced context retention across longer conversations
+- Improved handling of complex, multi-part questions
+- Better disambiguation of ambiguous queries
+
+**Superior Source Integration:**
+- Access to premium databases and academic resources
+- Real-time processing of breaking news and developments
+- Enhanced fact-checking and verification capabilities
+- Improved citation quality and relevance
+
+**Performance Advantages:**
+
+**Speed and Reliability:**
+- Priority queue processing for faster responses
+- Reduced latency during peak usage times
+- Higher uptime and service availability
+- Consistent performance regardless of demand
+
+**Quality Improvements:**
+- More comprehensive and accurate answers
+- Better structured responses with clear organisation
+- Enhanced critical analysis and evaluation
+- Improved handling of controversial or complex topics
+
+**Use Case Optimization:**
+
+**Research Intensive Work:**
+- Academic literature reviews and analysis
+- Market research and competitive intelligence
+- Legal research and case analysis
+- Technical documentation and troubleshooting
+
+**Professional Decision Making:**
+- Strategic planning and analysis
+- Risk assessment and evaluation
+- Investment research and due diligence
+- Policy analysis and recommendation
+
+Pro Search elevates Perplexity from a capable search tool to a professional-grade research assistant suitable for mission-critical knowledge work.`,
           keyPoints: [
             'Pro Search 檢查 50+ 來源，提供更深度的分析和更全面的答案',
             '特別適合重要決策研究、學術寫作、商業分析等高質量需求',
@@ -2095,6 +2649,54 @@ AI 模型持續更新，要定期重新評估各模型的表現。
 
 未來發展趨勢：
 隨著 AI 技術的快速發展，預期會有更多專業化的模型加入 Perplexity 平台。保持開放心態，持續學習新模型的特性將是保持競爭優勢的關鍵。`,
+          transcriptEn: `One of Perplexity Pro users' greatest advantages is the ability to choose different AI models for query processing. Each model has unique strengths and characteristics, and understanding strategic model selection can significantly enhance research effectiveness.
+
+**Model Comparison and Strengths:**
+
+**GPT-4:**
+- **Strengths:** Complex reasoning, detailed analysis, creative problem-solving
+- **Best For:** Strategic planning, complex explanations, creative writing
+- **Limitations:** Slower processing, higher resource requirements
+
+**Claude-3:**
+- **Strengths:** Nuanced understanding, ethical reasoning, balanced perspectives  
+- **Best For:** Sensitive topics, ethical analysis, comprehensive explanations
+- **Limitations:** May be more conservative in responses
+
+**Gemini:**
+- **Strengths:** Multimodal processing, real-time information, technical accuracy
+- **Best For:** Current events, technical queries, image analysis
+- **Limitations:** Newer model with evolving capabilities
+
+**Strategic Model Selection:**
+
+**Query Type Optimization:**
+- **Research Questions:** GPT-4 for depth, Gemini for currency
+- **Creative Tasks:** GPT-4 for innovation, Claude for thoughtfulness
+- **Technical Queries:** Gemini for accuracy, GPT-4 for explanation
+- **Ethical Considerations:** Claude for balanced analysis
+
+**Workflow Integration:**
+- Start with Gemini for current information
+- Switch to GPT-4 for detailed analysis
+- Use Claude for balanced perspective
+- Compare responses across models for comprehensive understanding
+
+**Model Switching Strategies:**
+
+**Sequential Analysis:**
+1. Initial query with fastest model (Gemini)
+2. Follow-up analysis with most appropriate model
+3. Cross-validation with alternative model
+4. Synthesis using preferred model for final output
+
+**Parallel Comparison:**
+- Ask same question to multiple models
+- Compare response quality and perspective
+- Identify consensus and differences
+- Select best elements from each response
+
+Understanding model strengths enables strategic AI collaboration, maximising the unique capabilities of each system for optimal research outcomes.`,
           keyPoints: [
             'GPT-4 擅長創意思考，Claude 專精文檔分析，Gemini 優於數據處理',
             '根據任務類型選擇：創意用 GPT-4，分析用 Claude，數據用 Gemini',
@@ -2243,6 +2845,69 @@ API 呼叫限制：
 
 成功案例啟示：
 許多組織通過 API 整合實現了顯著的效率提升和競爭優勢。關鍵是要清楚定義目標，選擇適當的實施策略，並持續優化流程。`,
+          transcriptEn: `Perplexity's API functionality enables developers and advanced users to integrate its powerful search and AI capabilities into their own applications and workflows. This integration can achieve true automated research and intelligent decision support.
+
+**API Core Capabilities:**
+
+**Search Integration:**
+- Programmatic access to Perplexity's search functionality
+- Batch processing for large-scale research projects
+- Real-time query processing for dynamic applications
+- Custom output formatting and filtering
+
+**Automation Workflows:**
+- Scheduled research updates and monitoring
+- Automated report generation and distribution
+- Integration with business intelligence platforms
+- Custom alert systems for specified topics
+
+**Development Integration:**
+- RESTful API for easy application integration
+- Multiple programming language support
+- Comprehensive documentation and examples
+- Rate limiting and usage analytics
+
+**Practical Implementation Examples:**
+
+**Business Intelligence:**
+- Automated competitor monitoring and analysis
+- Market trend tracking and reporting
+- Customer sentiment analysis across sources
+- Risk monitoring and alert systems
+
+**Academic Research:**
+- Automated literature review updates
+- Research trend analysis and tracking
+- Citation monitoring and analysis
+- Collaborative research platform integration
+
+**Content Creation:**
+- Automated fact-checking for publications
+- Research-backed content generation
+- Source verification and citation management
+- Multi-source content synthesis
+
+**Implementation Strategy:**
+
+**Planning Phase:**
+- Define specific use cases and requirements
+- Identify integration points with existing systems
+- Plan authentication and security measures
+- Design error handling and fallback procedures
+
+**Development Phase:**
+- Set up API credentials and access
+- Implement core functionality with error handling
+- Test thoroughly with representative data
+- Optimise for performance and reliability
+
+**Deployment Phase:**
+- Monitor usage and performance metrics
+- Implement logging and analytics
+- Establish maintenance and update procedures
+- Plan for scaling and expansion
+
+API integration transforms Perplexity from a manual research tool into an automated intelligence platform.`,
           keyPoints: [
             'API 整合可實現自動化內容研究、商業智能、學術輔助等多種應用',
             '需要考慮 API 限制、資料處理、安全性等技術實施要點',
@@ -2485,6 +3150,63 @@ Perplexity 能夠搜索和分析不同語言的學術文獻，特別有助於：
 
 成功案例分享：
 許多研究生和學者已經成功將 Perplexity 整合到研究工作流程中，在國際期刊發表論文、完成學位論文、獲得研究基金等方面取得顯著成果。`,
+          transcriptEn: `In academic research, Perplexity AI is revolutionarily changing how researchers acquire, analyse, and organise information. This section explores maximising Perplexity's powerful functionality in academic environments.
+
+**Academic Research Workflow Integration:**
+
+**Literature Review Process:**
+- **Discovery Phase:** Use broad queries to identify key research areas and trends
+- **Screening Phase:** Employ Focus mode Academic to filter scholarly sources
+- **Analysis Phase:** Deep-dive into specific papers and methodologies
+- **Synthesis Phase:** Use Spaces to organise findings thematically
+
+**Citation Management:**
+- Automatic source identification and citation formatting
+- Cross-reference verification across multiple databases
+- Impact factor and credibility assessment
+- Integration with reference management systems
+
+**Research Quality Assurance:**
+- Source credibility evaluation and verification
+- Methodology comparison across studies
+- Data validation and fact-checking
+- Peer review preparation and enhancement
+
+**Advanced Academic Applications:**
+
+**Systematic Reviews:**
+- Comprehensive literature search across databases
+- Methodology comparison and evaluation
+- Data extraction and synthesis
+- PRISMA-compliant reporting assistance
+
+**Grant Writing:**
+- Background research and literature foundation
+- Funding landscape analysis and opportunities
+- Competitive analysis and differentiation
+- Budget justification and resource planning
+
+**Collaborative Research:**
+- Shared Spaces for research team coordination
+- Version control for evolving research projects
+- Multi-institutional collaboration support
+- Knowledge sharing and transfer protocols
+
+**Best Practices for Academic Use:**
+
+**Verification Protocols:**
+- Always verify critical information through primary sources
+- Cross-check findings across multiple academic databases
+- Maintain detailed citation trails and documentation
+- Regular fact-checking and accuracy validation
+
+**Ethical Considerations:**
+- Proper attribution and citation practices
+- Plagiarism prevention and originality verification
+- Informed consent for collaborative research
+- Data privacy and confidentiality protection
+
+Perplexity transforms academic research from time-intensive literature hunting into efficient, comprehensive knowledge discovery.`,
           keyPoints: [
             '革新文獻綜述流程，從關鍵詞搜索轉向自然語言問題驅動的研究',
             '提供自動引用生成和多格式支援，簡化引用管理工作',
@@ -2668,6 +3390,69 @@ SWOT 分析增強：
 
 成功案例啟示：
 許多企業已經成功將 Perplexity 整合到商業決策流程中，在新產品開發、市場擴張、投資決策等方面取得顯著成果，大幅提升了競爭優勢和盈利能力。`,
+          transcriptEn: `In rapidly changing business environments, timely and accurate information acquisition and analysis capabilities directly impact enterprise competitiveness and decision quality. Perplexity AI provides powerful market intelligence and analysis tools for business users.
+
+**Market Research Applications:**
+
+**Industry Analysis:**
+- Market size and growth trend analysis
+- Competitive landscape mapping and evaluation
+- Regulatory environment monitoring and assessment
+- Technology trend identification and impact analysis
+
+**Customer Intelligence:**
+- Consumer behaviour pattern analysis
+- Demographics and psychographic profiling
+- Brand perception and sentiment monitoring
+- Purchase decision factor identification
+
+**Competitive Intelligence:**
+- Competitor strategy analysis and monitoring
+- Product comparison and differentiation analysis
+- Pricing strategy evaluation and benchmarking
+- Market positioning and messaging analysis
+
+**Strategic Business Applications:**
+
+**Decision Support:**
+- Investment opportunity evaluation and due diligence
+- Risk assessment and mitigation planning
+- Strategic partnership evaluation and planning
+- Market entry strategy development and validation
+
+**Operational Intelligence:**
+- Supply chain monitoring and optimisation
+- Vendor evaluation and comparison
+- Regulatory compliance monitoring
+- Crisis management and response planning
+
+**Innovation and Development:**
+- Technology scouting and evaluation
+- Patent landscape analysis and freedom to operate
+- Startup ecosystem monitoring and partnership opportunities
+- Emerging trend identification and impact assessment
+
+**Implementation Framework:**
+
+**Information Architecture:**
+- Establish clear research objectives and success metrics
+- Design systematic monitoring and alert systems
+- Create standardised reporting templates and formats
+- Implement quality assurance and verification protocols
+
+**Team Integration:**
+- Train team members on effective query formulation
+- Establish collaborative research workflows
+- Create shared knowledge repositories and databases
+- Implement regular review and update cycles
+
+**ROI Measurement:**
+- Track time savings from automated research
+- Measure decision quality improvements
+- Monitor competitive advantage gains
+- Assess risk mitigation effectiveness
+
+Perplexity transforms business research from reactive information gathering into proactive competitive intelligence.`,
           keyPoints: [
             '提供即時市場情報和全球化視野，支援新市場進入和產品驗證',
             '強化競爭分析和 SWOT 分析，建立客觀的競爭情報系統',
@@ -2872,6 +3657,60 @@ d) ChatGPT：協助實踐和問題解決
 
 未來發展趨勢：
 隨著 AI 生態系統的發展，工具間的協同將變得更加重要。掌握多工具協同能力將成為未來知識工作者的核心競爭力。`,
+          transcriptEn: `In today's AI tool-rich environment, single tools often cannot meet all needs. Learning to combine different AI tools, particularly Perplexity with ChatGPT collaboration, can create value far exceeding individual tools.
+
+**Synergistic Tool Integration:**
+
+**Perplexity + ChatGPT Workflow:**
+- **Research Phase:** Use Perplexity for comprehensive, cited information gathering
+- **Analysis Phase:** Transfer findings to ChatGPT for deep analysis and synthesis
+- **Creation Phase:** Leverage ChatGPT's creative capabilities for content generation
+- **Verification Phase:** Return to Perplexity for fact-checking and validation
+
+**Complementary Strengths:**
+
+**Perplexity Advantages:**
+- Real-time information access and currency
+- Comprehensive source citation and verification
+- Academic and professional source prioritisation
+- Fact-based, objective information delivery
+
+**ChatGPT Advantages:**
+- Creative content generation and ideation
+- Complex reasoning and analytical thinking
+- Conversational interface and interactivity
+- Flexible output formatting and customisation
+
+**Hybrid Workflow Examples:**
+
+**Content Creation Process:**
+1. **Research:** Perplexity for topic research and source gathering
+2. **Outline:** ChatGPT for structure and creative organisation
+3. **Writing:** ChatGPT for content creation and narrative development
+4. **Fact-check:** Perplexity for accuracy verification and citation
+5. **Refinement:** ChatGPT for editing and style improvement
+
+**Strategic Analysis:**
+1. **Data Gathering:** Perplexity for market research and competitive intelligence
+2. **Pattern Recognition:** ChatGPT for trend analysis and insight synthesis
+3. **Scenario Planning:** ChatGPT for strategic option development
+4. **Validation:** Perplexity for assumption testing and verification
+
+**Advanced Integration Techniques:**
+
+**API-Based Automation:**
+- Automated handoffs between platforms
+- Seamless data transfer and formatting
+- Quality assurance and error checking
+- Workflow orchestration and management
+
+**Knowledge Management:**
+- Centralised repository for all AI interactions
+- Version control and change tracking
+- Team collaboration and sharing protocols
+- Learning and improvement feedback loops
+
+Hybrid AI workflows unlock unprecedented research and creation capabilities.`,
           keyPoints: [
             'Perplexity 擅長即時資訊搜索，ChatGPT 專精創意生成，組合使用發揮互補優勢',
             '建立研究→創作、分析→決策、學習→應用等標準協同工作流程',
@@ -3126,6 +3965,65 @@ d) ChatGPT：協助實踐和問題解決
 答案引擎的發展將帶來人類歷史上最深刻的資訊革命之一。雖然面臨挑戰，但機會遠大於風險。關鍵是要主動適應、理性應用、負責任地發展這項技術，確保它能真正服務於人類的福祉和進步。
 
 作為這場革命的見證者和參與者，我們有責任學習、理解並善用這些工具，同時保持對其影響的敏感性和責任感。未來屬於那些能夠與AI協作、發揮人類獨特價值的人。`,
+          transcriptEn: `We stand at the starting point of an information revolution. The rise of "Answer Engines" represents not just technological progress, but a fundamental transformation in how humans acquire and process knowledge. Understanding this trend is crucial for grasping future opportunities and challenges.
+
+**Paradigm Shift Analysis:**
+
+**From Search to Answers:**
+- Traditional search: Query → Links → Manual synthesis
+- Answer engines: Question → Direct, cited answers
+- Transformation: Information location to knowledge synthesis
+- Impact: Dramatic reduction in cognitive load and time investment
+
+**Knowledge Accessibility Revolution:**
+- Democratisation of expert-level information access
+- Reduction of information literacy barriers
+- Equalisation of research capabilities across skill levels
+- Transformation of learning and education paradigms
+
+**Future Technology Trajectory:**
+
+**Enhanced Capabilities:**
+- Multimodal integration (text, voice, video, images)
+- Real-time fact verification and source validation
+- Personalised knowledge recommendations
+- Predictive information and trend analysis
+
+**Emerging Applications:**
+- Personal AI research assistants
+- Real-time decision support systems
+- Automated knowledge curation and synthesis
+- Intelligent information filtering and prioritisation
+
+**Societal Implications:**
+
+**Positive Transformations:**
+- Accelerated learning and skill development
+- Enhanced decision-making quality across populations
+- Reduced information inequality and digital divides
+- Improved scientific and academic collaboration
+
+**Challenges to Address:**
+- Information authenticity and misinformation risks
+- Over-dependence on AI-mediated knowledge
+- Loss of deep research and critical thinking skills
+- Privacy and intellectual property considerations
+
+**Strategic Preparation:**
+
+**Individual Adaptation:**
+- Develop AI collaboration and prompt engineering skills
+- Maintain critical thinking and verification abilities
+- Build information literacy and source evaluation competencies
+- Embrace lifelong learning and adaptation mindsets
+
+**Organisational Evolution:**
+- Integrate answer engines into knowledge workflows
+- Develop AI governance and ethics frameworks
+- Train teams on effective AI collaboration
+- Establish quality assurance and verification protocols
+
+The answer engine revolution represents humanity's next step toward augmented intelligence and enhanced knowledge capabilities.`,
           keyPoints: [
             '答案引擎將推動教育、醫療、商業、科研等領域的根本性變革',
             '技術發展趨勢包括更強推理能力、更深個人化、更廣整合能力',
