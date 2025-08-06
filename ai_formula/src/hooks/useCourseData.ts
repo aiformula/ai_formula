@@ -187,6 +187,8 @@ export const useCourseData = (isZhHK: boolean) => {
         navigate('/courses/chatgpt-complete-course');
       } else if (product.category === 'perplexity-complete-course') {
         navigate('/courses/perplexity-complete-course');
+      } else if (product.category === 'prompt-engineering-course') {
+        navigate('/courses/prompt-engineering-course');
       } else {
         navigate(`/course/${product.category}`);
       }

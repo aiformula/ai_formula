@@ -170,6 +170,42 @@ export const digitalProducts: DigitalProduct[] = [
       "高級風格指南",
       "+4 更多項目"
     ]
+  },
+  {
+    id: 4,
+    title: "Mastering Prompt Engineering: A Complete Practical Guide from Basics to Advanced",
+    titleCht: "精通提示工程：從基礎到進階的完整實戰指南",
+    description: "Master the art of AI communication and unlock the full potential of artificial intelligence through comprehensive prompt engineering training.",
+    descriptionCht: "掌握與 AI 溝通的藝術，釋放人工智能的全部潛能，通過全面的提示工程訓練提升您的技能。",
+    duration: "6+ hours comprehensive training",
+    durationCht: "6+ 小時",
+    downloads: 89,
+    rating: 4.9,
+    level: "Beginner to Advanced",
+    levelCht: "初級到進階",
+    price: "免費",
+    originalPrice: "", // 免費課程不顯示原價
+    image: "🚀",
+    type: "AI Communication",
+    typeCht: "AI 溝通",
+    category: "prompt-engineering-course",
+    themeColor: "#9E768F", // 玫瑰紫主題
+    newProduct: true,
+    featured: true,
+    bestseller: false,
+    hotSelling: true,
+    includes: [
+      "4 Major Parts, 16 Units",
+      "Core Techniques & Frameworks",
+      "Advanced Strategies Guide",
+      "+3 More Items"
+    ],
+    includesCht: [
+      "4 大部分，16 個單元",
+      "核心技巧與框架",
+      "進階策略指南",
+      "+3 更多項目"
+    ]
   }
 ];
 

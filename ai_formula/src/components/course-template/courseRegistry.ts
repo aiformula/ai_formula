@@ -9,9 +9,11 @@ import { CourseConfig } from './types';
 import { chatGPTCourseData } from '@/data/chatgpt-complete-course-data';
 import { perplexityCourseData } from '@/data/perplexity-complete-course-data';
 import { midjourneyCourseData } from '@/data/midjourney-course-data';
+import { promptEngineeringCourseData } from '@/data/prompt-engineering-course-data';
 import { useChatGPTProgress } from '@/hooks/useChatGPTProgress';
 import { usePerplexityProgress } from '@/hooks/usePerplexityProgress';
 import { useMidjourneyProgress } from '@/hooks/useMidjourneyProgress';
+import { usePromptEngineeringProgress } from '@/hooks/usePromptEngineeringProgress';
 
 // 課程配置映射
 export const courseConfigs: Record<string, CourseConfig> = {
@@ -44,6 +46,16 @@ export const courseConfigs: Record<string, CourseConfig> = {
     dataSource: midjourneyCourseData,
     progressHook: useMidjourneyProgress,
     cssPrefix: 'midjourney'
+  },
+  'prompt-engineering': {
+    courseId: 'prompt-engineering',
+    courseName: 'Prompt Engineering Master Course',
+    themeColor: '#9E768F',
+    accentColor: '#9FA4C4',
+    baseRoute: '/courses/prompt-engineering-course',
+    dataSource: promptEngineeringCourseData,
+    progressHook: usePromptEngineeringProgress,
+    cssPrefix: 'prompt-engineering'
   }
 };
 
@@ -57,6 +69,7 @@ export const getCourseIdFromRoute = (route: string): string | null => {
   if (route.includes('chatgpt-complete-course')) return 'chatgpt';
   if (route.includes('perplexity-complete-course')) return 'perplexity';
   if (route.includes('midjourney-course')) return 'midjourney';
+  if (route.includes('prompt-engineering-course')) return 'prompt-engineering';
   return null;
 };
 

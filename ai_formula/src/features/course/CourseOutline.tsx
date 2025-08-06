@@ -262,6 +262,27 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
       };
     }
     
+    // Prompt Engineering 課程檢測 - 紫色主題
+    const isPromptEngineeringCourse = 
+      (courseInfo?.title && courseInfo.title.includes('提示工程')) ||
+      (courseInfo?.title && courseInfo.title.includes('Prompt Engineering')) ||
+      (courseInfo?.subtitle && courseInfo.subtitle.includes('提示工程')) ||
+      window.location.pathname.includes('prompt-engineering-course');
+    
+    console.log('Prompt Engineering Detection Result:', isPromptEngineeringCourse);
+    
+    if (isPromptEngineeringCourse) {
+      console.log('Using Prompt Engineering Purple Theme');
+      return {
+        gradient: 'from-[#9E768F] to-[#9FA4C4]',            // 紫色到淡紫色的漸變
+        primary: 'text-[#9E768F]',                           // 主要文字用深紫色
+        secondary: 'bg-[#9E768F] hover:bg-[#9FA4C4]',       // 點綴色：深紫色背景 + hover淡紫色
+        accent: 'text-[#9E768F] border-[#9E768F]',           // 邊框和強調文字用深紫色
+        badge: 'bg-[#9E768F] text-white',                    // 藥丸形標籤：深紫色背景+白字
+        numberCircle: 'bg-[#9E768F] text-white'             // 數字圓圈：深紫色背景+白字
+      };
+    }
+    
     // ChatGPT 和其他免費課程使用綠色主題
     if (isFree) {
       console.log('Using Free Course Theme (Green)');

@@ -1,11 +1,8 @@
 import React from 'react';
-import { CourseLearningTemplate } from '@/components/course-template/CourseLearningTemplate';
-import { promptEngineeringCourseData } from '@/data/prompt-engineering-course-data';
+import CourseLearningTemplate from '@/components/course-template/CourseLearningTemplate';
 
 const PromptEngineeringCourseLearning: React.FC = () => {
-  return (
-    <CourseLearningTemplate courseData={promptEngineeringCourseData} />
-  );
+  return <CourseLearningTemplate courseId="prompt-engineering" />;
 };
 
 export default PromptEngineeringCourseLearning; 

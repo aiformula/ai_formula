@@ -57,6 +57,26 @@ export const promptEngineeringCourseData: CourseData = {
     ]
   },
 
+  courseStats: {
+    totalHours: 6.5,
+    totalLessons: 16,
+    totalQuizzes: 4,
+    completionRate: 95
+  },
+
+  targetAudience: [
+    '希望學習 AI 溝通技巧的初學者',
+    '想要提升 AI 使用效率的專業人士',
+    '對提示工程感興趣的開發者',
+    '需要優化 AI 工作流程的企業用戶'
+  ],
+  targetAudienceEn: [
+    'Beginners who wish to learn AI communication skills',
+    'Professionals seeking to enhance AI usage efficiency',
+    'Developers interested in prompt engineering',
+    'Enterprise users needing to optimise AI workflows'
+  ],
+
   courseModules: [
     {
       id: 1,
@@ -514,10 +534,7 @@ For most daily and commercial applications, prompt engineering is a faster and m
 **零樣本提示 (Zero-shot)**
 直接下達指令，唔提供任何範例。適用於簡單、直接嘅任務。
 
-範例：
-```
-將「市場分析」翻譯成英文。
-```
+範例：將「市場分析」翻譯成英文。
 
 特點：
 - 最簡潔嘅方法
@@ -527,11 +544,7 @@ For most daily and commercial applications, prompt engineering is a faster and m
 **單樣本提示 (One-shot)**
 喺提示中提供一個完整嘅輸入-輸出範例。
 
-範例：
-```
-法文 'mer' 係指英文 'sea'。
-咁法文 'ciel' 係指咩？
-```
+範例：法文 'mer' 係指英文 'sea'。咁法文 'ciel' 係指咩？
 
 特點：
 - 提供一個學習模式
@@ -542,7 +555,6 @@ For most daily and commercial applications, prompt engineering is a faster and m
 提供多個範例，讓 AI 從中學習模式。呢個係提升複雜任務表現嘅極其有效嘅技術。
 
 範例：
-```
 情緒分析任務：
 
 正面情緒：呢部電影太棒了！
@@ -551,7 +563,6 @@ For most daily and commercial applications, prompt engineering is a faster and m
 負面情緒：呢家餐廳嘅食物好難食。
 
 請分析：「今日嘅天氣真係太好了！」
-```
 
 **選擇指南：**
 - 零樣本：簡單、常見任務
@@ -568,10 +579,7 @@ For most daily and commercial applications, prompt engineering is a faster and m
 **Zero-shot Prompting**
 Directly giving instructions without providing any examples. Suitable for simple, direct tasks.
 
-Example:
-```
-Translate "market analysis" into Chinese.
-```
+Example: Translate "market analysis" into Chinese.
 
 Characteristics:
 - Most concise method
@@ -581,11 +589,7 @@ Characteristics:
 **One-shot Prompting**
 Providing one complete input-output example in the prompt.
 
-Example:
-```
-French 'mer' means English 'sea'.
-What does French 'ciel' mean?
-```
+Example: French 'mer' means English 'sea'. What does French 'ciel' mean?
 
 Characteristics:
 - Provides one learning pattern
@@ -596,7 +600,6 @@ Characteristics:
 Providing multiple examples for AI to learn patterns from. This is an extremely effective technique for improving performance on complex tasks.
 
 Example:
-```
 Sentiment analysis task:
 
 Positive: This movie is amazing!
@@ -605,7 +608,6 @@ Positive: The service attitude is excellent, highly recommended.
 Negative: The food at this restaurant is terrible.
 
 Please analyse: "The weather today is absolutely wonderful!"
-```
 
 **Selection Guide:**
 - Zero-shot: Simple, common tasks
@@ -661,13 +663,11 @@ Please analyse: "The weather today is absolutely wonderful!"
 將大任務分解為一系列更簡單嘅子任務，讓模型分步執行。
 
 範例：
-```
 請按以下步驟分析呢份銷售數據：
 1. 首先計算每個產品嘅總銷售額
 2. 然後識別銷售表現最好嘅前 3 名產品
 3. 分析呢 3 個產品嘅成功因素
 4. 最後提出改善其他產品銷售嘅建議
-```
 
 **法則 4：使用具體嘅動詞**
 - 「分析」比「睇下」更清晰
@@ -696,13 +696,11 @@ Positive instructions are more effective. Instead of saying "don't use jargon," 
 Decompose large tasks into a series of simpler sub-tasks for the model to execute step by step.
 
 Example:
-```
 Please analyse this sales data following these steps:
 1. First calculate the total sales for each product
 2. Then identify the top 3 best-performing products
 3. Analyse the success factors of these 3 products
 4. Finally propose suggestions for improving sales of other products
-```
 
 **Rule 4: Use Specific Verbs**
 - "Analyse" is clearer than "have a look"
