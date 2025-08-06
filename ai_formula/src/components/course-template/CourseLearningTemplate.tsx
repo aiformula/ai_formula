@@ -85,12 +85,6 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
   // 獲取統計數據
   const stats = getProgressStats();
   
-  // Debug: 檢查perplexity progress數據
-  if (courseId === 'perplexity') {
-    console.log('🔍 Perplexity Debug - Raw stats:', stats);
-    console.log('🔍 Perplexity Debug - progressState:', progressState);
-  }
-  
   // 統一化進度字段名稱，確保template兼容所有課程
   const normalizedStats = {
     ...stats,
@@ -101,11 +95,6 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
     completedUnits: stats.completedUnits || 0,
     totalUnits: stats.totalUnits || 0
   };
-  
-  // Debug: 檢查normalized stats
-  if (courseId === 'perplexity') {
-    console.log('✅ Perplexity Debug - Normalized stats:', normalizedStats);
-  }
   
   const totalLearningMinutes = normalizedStats.totalTimeSpent;
 
