@@ -1519,10 +1519,16 @@ Applicable scenarios:
 - Avoid specific colours or styles
 - Exclude distracting objects from the composition`,
           keyPoints: [
+            '--no 參數用於排除不想要的元素',
+            '多個不想要的元素可以用逗號分隔',
+            '注意：內容審核系統可能會獨立審查 --no 後的詞語',
+            '明確說明想要的內容比排除不想要的更安全'
+          ],
+          keyPointsEn: [
             '--no parameter is used to exclude unwanted elements',
             'Multiple unwanted elements can be separated by commas',
             'Note: Content moderation system may independently review words after --no',
-            'It's safer to explicitly state what you want rather than excluding it'
+            'It\'s safer to explicitly state what you want rather than excluding it'
           ],
           completed: false
         },
@@ -1825,9 +1831,15 @@ Best practices:
 3. Avoid using real photos
 4. You can combine it with other parameters`,
           keyPoints: [
+            '--cref 保持角色一致性',
+            '適合創建連續故事和角色設計',
+            'Midjourney 生成的角色效果最佳',
+            '可以與不同場景結合使用'
+          ],
+          keyPointsEn: [
             '--cref maintains character consistency',
             'Suitable for creating a continuous story and character design',
-            'Midjourney's character effect is best',
+            'Midjourney\'s character effect is best',
             'Can be used with different scenes'
           ],
           completed: false
