@@ -85,7 +85,7 @@ const t = (key: string): string => {
 - **智能回退**: 缺失翻譯時的智能處理
 - **Smart Fallbacks**: Intelligent handling of missing translations
 - **視覺一致性**: 跨語言切換時保持顏色一致
-- **Visual Consistency**: Maintains color consistency across language switches
+- **Visual Consistency**: Maintains colour consistency across language switches
 
 ```typescript
 // 用戶標籤映射範例 / User Tags Mapping Example
@@ -136,7 +136,7 @@ if (translatedTag === `userTags.${tagKey}`) {
 ```css
 /* 導航鏈接樣式 / Navigation Link Styling */
 .nav-link {
-  @apply text-lg font-medium hover:text-white transition-colors duration-300;
+  @apply text-lg font-medium hover:text-white transition-colours duration-300;
 }
 
 .nav-link-active {
@@ -255,7 +255,7 @@ export const toolCategories = [
 - **保持狀態**: 切換語言時保持篩選狀態
 - **State Preservation**: Maintains filter state during language switching
 - **視覺一致性**: 保持顏色和佈局一致
-- **Visual Consistency**: Maintains color and layout consistency
+- **Visual Consistency**: Maintains colour and layout consistency
 
 **2. 智能工具發現 / Intelligent Tool Discovery:**
 - **隨機探索**: 每次載入都有新的工具順序
@@ -390,7 +390,7 @@ interface ViewCountContextType {
 - **深色主題**：專業的黑色背景設計
 - **Dark Theme**: Professional black background design
 - **漸變效果**：標題和按鈕的漸變色彩
-- **Gradient Effects**: Gradient colors for titles and buttons
+- **Gradient Effects**: Gradient colours for titles and buttons
 
 #### 響應式設計 / Responsive Design
 - **桌面優化**：大螢幕的完整功能
@@ -720,8 +720,8 @@ const { getViewCount, incrementView } = useViewCount();
 2. **Keyboard Navigation**: Ensure all functions accessible via keyboard
 3. **螢幕閱讀器**：測試 ARIA 標籤和語義化標記
 4. **Screen Reader**: Test ARIA labels and semantic markup
-5. **顏色對比**：確保符合 WCAG 標準
-6. **Color Contrast**: Ensure compliance with WCAG standards
+5. **Colour Contrast**: Ensure compliance with WCAG standards
+6. **Colour Contrast**: Ensure compliance with WCAG standards
 
 ## 未來計劃 / Future Plans
 
@@ -734,7 +734,7 @@ const { getViewCount, incrementView } = useViewCount();
 ### 中期目標 / Medium-term Goals
 - [ ] 後端API集成 / Backend API integration
 - [ ] 用戶認證系統 / User authentication system
-- [ ] 個人化推薦算法 / Personalized recommendation algorithm
+- [ ] 個人化推薦算法 / Personalised recommendation algorithm
 - [ ] 工具使用統計 / Tool usage analytics
 
 ### 長期目標 / Long-term Goals

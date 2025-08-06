@@ -10,7 +10,7 @@ import { CourseData } from '@/components/course-template/types';
 export const midjourneyCourseData: CourseData = {
   courseInfo: {
     title: 'Midjourney 權威指南：從入門到精通的終極課程',
-    titleEn: 'Midjourney Authority Guide: Ultimate Course from Beginner to Expert',
+    titleEn: 'Midjourney Authoritative Guide: The Ultimate Course from Beginner to Expert',
     subtitle: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
     subtitleEn: 'Beyond basic operations, from dual-platform features to advanced creative techniques, master the powerful tools for AI art creation',
     description: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
@@ -24,7 +24,7 @@ export const midjourneyCourseData: CourseData = {
     instructor: 'AI Formula Team',
     instructorEn: 'AI Formula Team',
     instructorTitle: 'AI 藝術創作專家',
-    instructorTitleEn: 'AI Art Creation Specialists',
+    instructorTitleEn: 'AI Art Creation Experts',
     language: 'zh-HK',
     tags: ['Midjourney', 'AI Art', 'Digital Creation', 'Prompt Engineering'],
     tagsEn: ['Midjourney', 'AI Art', 'Digital Creation', 'Prompt Engineering'],
@@ -64,8 +64,8 @@ export const midjourneyCourseData: CourseData = {
     '需要高質量視覺內容的內容創作者'
   ],
   targetAudienceEn: [
-    'Beginners who want to learn AI art creation',
-    'Designers looking to improve creative efficiency',
+    'Beginners who wish to learn AI art creation',
+    'Designers seeking to enhance creative efficiency',
     'Creative professionals interested in AI tools',
     'Content creators who need high-quality visual content'
   ],
@@ -75,7 +75,7 @@ export const midjourneyCourseData: CourseData = {
       title: '第一章：Midjourney 基礎概念與準備',
       titleEn: 'Chapter 1: Midjourney Basic Concepts and Preparation',
       description: '為初學者奠定堅實的基礎，超越基本操作，從一開始就介紹 Midjourney 的雙平台特性（網站與 Discord），並優先建立私人伺服器。這個關鍵步驟能夠顯著改善學習體驗，為學員的創作旅程掃除初期障礙。',
-      descriptionEn: 'Lay a solid foundation for beginners, go beyond basic operations, introduce Midjourney\'s dual-platform features (website and Discord) from the outset, and prioritise establishing a private server. This key step can significantly improve the learning experience and remove initial barriers to students\' creative journey.',
+      descriptionEn: 'Establish a solid foundation for beginners, transcend basic operations, introduce Midjourney\'s dual-platform features (website and Discord) from the outset, and prioritise establishing a private server. This crucial step can significantly enhance the learning experience whilst removing initial barriers to students\' creative journeys.',
       duration: '90 分鐘',
       durationEn: '90 Minutes',
       lessons: [
@@ -87,7 +87,7 @@ export const midjourneyCourseData: CourseData = {
           durationEn: '15 Minutes',
           type: 'interactive' as const,
           description: '深入了解 Midjourney 的核心概念、工作原理和在 AI 藝術領域的獨特定位',
-          descriptionEn: 'Gain an in-depth understanding of Midjourney\'s core concepts, operating principles, and unique position in the AI art field',
+          descriptionEn: 'Acquire an in-depth understanding of Midjourney\'s core concepts, operational principles, and unique position within the AI art field',
           image: '/images/courses/midjourney-course/unit-images/midjourney-intro.png',
           imageAlt: 'Midjourney AI 藝術創作概念圖',
           imageAltEn: 'Midjourney AI art creation concept diagram',
@@ -96,7 +96,7 @@ export const midjourneyCourseData: CourseData = {
 這個過程不再是傳統意義上的「繪畫」，而是一種全新的創作方式，使用者扮演的角色更像一位導演或概念藝術家，用語言指導一位才華橫溢但沒有實體的 AI 畫家。這種人機協作的模式，正在重新定義我們對創意同藝術表達的理解。
 
 Midjourney 的核心優勢在於其強大的風格多樣性和細節表現力。它能夠模擬各種藝術風格，從古典油畫到現代數位藝術，從攝影寫實到抽象表現主義。更重要的是，它理解創意語言，能夠將模糊的創意想法轉化為具體的視覺呈現。`,
-          transcriptEn: `Midjourney is an independent research laboratory dedicated to exploring new mediums of thought and expanding the imaginative powers of the human species. Simply put, it is a leading "text-to-image" artificial intelligence generator. Users input natural language descriptions, so-called "prompts," and the AI transforms these textual concepts into unique, high-quality images.
+          transcriptEn: `Midjourney is an independent research laboratory dedicated to exploring new mediums of thought and expanding the imaginative powers of the human species. Put simply, it is a leading 'text-to-image' artificial intelligence generator. Users input natural language descriptions, so-called "prompts," and the AI transforms these textual concepts into unique, high-quality images.
 
 This process is no longer "drawing" in the traditional sense, but a completely new way of creating. The user plays a role more like a director or concept artist, using language to guide a talented but incorporeal AI painter. This human-machine collaborative model is redefining our understanding of creativity and artistic expression.
 
@@ -123,7 +123,7 @@ Midjourney's core advantage lies in its powerful stylistic diversity and detaile
           durationEn: '20 Minutes',
           type: 'interactive' as const,
           description: '了解 Discord 和官方網站兩個平台的差別和優勢，根據不同需求選擇最佳工具',
-          descriptionEn: 'Understand the differences and advantages between Discord and the official website platforms, choosing the best tool according to different requirements',
+          descriptionEn: 'Understand the differences and advantages between Discord and the official website platforms, selecting the optimal tool according to varying requirements',
           image: '/images/courses/midjourney-course/unit-images/platforms-comparison.png',
           imageAlt: 'Discord 與 Midjourney 網站比較',
           imageAltEn: 'Comparison between Discord and Midjourney website',
@@ -132,7 +132,7 @@ Midjourney's core advantage lies in its powerful stylistic diversity and detaile
 最初，Midjourney 幾乎完全依賴於 Discord 這個社群聊天應用程式運作。然而，為了走向主流，降低使用門檻，Midjourney 開發了一個功能齊全的網站介面。這個網站提供了一個更為直觀和用戶友好的體驗。在網站的 Create 頁面，使用者可以在輸入框直接輸入提示詞，並實時觀看圖像生成的過程，介面亦整合了各種參數設定和作品整理工具。
 
 與此同時，Discord 依然是 Midjourney 生態系統中不可或缺的一部分。它是一個龐大的創意社群所在地，用戶可以在這裡參與每日主題創作、觀摩他人作品、尋求幫助，並使用一些 Discord 獨有的指令，例如 /blend。`,
-          transcriptEn: `Midjourney operates primarily through two platforms: the time-honoured Discord server and the increasingly powerful official website. Understanding the differences and advantages of both is key to choosing the best tool for different needs.
+          transcriptEn: `Midjourney operates primarily through two platforms: the time-honoured Discord server and the increasingly powerful official website. Understanding the differences and advantages of both is crucial to selecting the optimal tool for varying needs.
 
 Initially, Midjourney relied almost entirely on Discord, a community chat application. However, to move into the mainstream and lower barriers to entry, Midjourney developed a fully-featured website interface. This website provides a more intuitive and user-friendly experience. On the website's Create page, users can input prompts directly in the input box and watch the image generation process in real-time. The interface also integrates various parameter settings and artwork organisation tools.
 
@@ -159,7 +159,7 @@ At the same time, Discord remains an indispensable part of the Midjourney ecosys
           durationEn: '25 Minutes',
           type: 'interactive' as const,
           description: '學習如何註冊帳戶並選擇最適合的訂閱計劃，了解不同計劃的功能差異',
-          descriptionEn: 'Learn how to register an account and choose the most suitable subscription plan, whilst understanding the functional differences between various plans',
+          descriptionEn: 'Learn how to register an account and select the most appropriate subscription plan, whilst comprehending the functional differences between various plans',
           image: '/images/courses/midjourney-course/unit-images/subscription-plans.png',
           imageAlt: '訂閱計劃比較',
           imageAltEn: 'Subscription plan comparison',
@@ -168,11 +168,11 @@ At the same time, Discord remains an indispensable part of the Midjourney ecosys
 值得注意的是，Midjourney 目前已經不再提供常規的免費試用。除了在極少數的推廣活動期間，用戶必須訂閱付費計劃才可以生成圖像。訂閱可以透過官方網站的帳戶頁面完成，亦可以在 Discord 內輸入 /subscribe 指令，系統會生成一個個人專屬的訂閱頁面連結。
 
 Midjourney 提供多種不同級別的訂閱計劃，以滿足不同用戶的需求。選擇合適的計劃對於成本效益和創作體驗都非常重要。`,
-          transcriptEn: `To start using Midjourney, you first need to register an account. Users can choose to register using an existing Discord account or Google account, and the process is very simple.
+          transcriptEn: `To begin using Midjourney, you must first register an account. Users can choose to register using an existing Discord account or Google account, and the process is very simple.
 
 It is worth noting that Midjourney no longer provides regular free trials. Except during rare promotional activities, users must subscribe to a paid plan to generate images. Subscriptions can be completed through the account page on the official website, or by entering the /subscribe command in Discord, which will generate a personalised subscription page link.
 
-Midjourney offers various subscription plans to meet the needs of different users. Choosing the right plan is crucial for both cost-effectiveness and creative experience.`,
+Midjourney offers various subscription plans to meet the needs of different users. Selecting the appropriate plan is essential for both cost-effectiveness and creative experience.`,
           keyPoints: [
             '可使用 Discord 或 Google 帳戶註冊',
             '目前不提供常規免費試用',
@@ -195,7 +195,7 @@ Midjourney offers various subscription plans to meet the needs of different user
           durationEn: '20 Minutes',
           type: 'interactive' as const,
           description: '完成必要的 Discord 設定，學習如何加入 Midjourney 伺服器並接受服務條款',
-          descriptionEn: 'Complete the necessary Discord setup, learn how to join Midjourney servers, and accept the terms of service',
+          descriptionEn: 'Complete the requisite Discord setup, learn how to join Midjourney servers, and accept the terms of service',
           image: '/images/courses/midjourney-course/unit-images/discord-setup.png',
           imageAlt: 'Discord 設置指南',
           imageAltEn: 'Discord setup guide',
@@ -235,7 +235,7 @@ Accepting Terms of Service (ToS): Before you attempt to generate your first imag
           durationEn: '30 Minutes',
           type: 'interactive' as const,
           description: '學習建立私人 Discord 伺服器，邀請 Midjourney Bot，創造專屬的創作環境',
-          descriptionEn: 'Learn to create a private Discord server, invite Midjourney Bot, and establish your own dedicated creative environment',
+          descriptionEn: 'Learn to create a private Discord server, invite the Midjourney Bot, and establish your own dedicated creative environment',
           image: '/images/courses/midjourney-course/unit-images/private-server.png',
           imageAlt: '私人伺服器設定',
           imageAltEn: 'Private server setup',
@@ -436,7 +436,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
           durationEn: '15 Minutes',
           type: 'interactive' as const,
           description: '學習最重要的 /imagine 指令，理解如何啟動圖像生成過程',
-          descriptionEn: 'Learn the most important /imagine command and understand how to initiate the image generation process',
+          descriptionEn: 'Master the most important /imagine command and understand how to initiate the image generation process',
           image: '/images/courses/midjourney-course/unit-images/imagine-command.png',
           imageAlt: '/imagine 指令教學',
           imageAltEn: '/imagine command tutorial',
@@ -1135,7 +1135,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
       title: '第四章：參數嘅力量：精準控制圖像生成',
       titleEn: 'Chapter 4: The Power of Parameters: Precise Image Generation Control',
       description: 'Midjourney 提供咗一系列以 –- 開頭嘅「參數」（Parameters）。呢啲參數就好似相機上嘅各種設定按鈕，可以讓你喺提示詞之外，更精準地控制圖像生成嘅各個方面。',
-      descriptionEn: 'Midjourney provides a series of \'Parameters\' beginning with --. These parameters are rather like various setting buttons on a camera, allowing you to control various aspects of image generation more precisely beyond prompts.',
+      descriptionEn: 'Midjourney provides a series of \'Parameters\' commencing with --. These parameters are rather like various setting buttons on a camera, allowing you to control numerous aspects of image generation more precisely beyond prompts.',
       duration: '95 分鐘',
       lessons: [
         {
