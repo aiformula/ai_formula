@@ -67,7 +67,7 @@ export const midjourneyCourseData: CourseData = {
     'Beginners who wish to learn AI art creation',
     'Designers seeking to enhance creative efficiency',
     'Creative professionals interested in AI tools',
-    'Content creators who need high-quality visual content'
+    'Content creators who require high-quality visual content'
   ],
   courseModules: [
     {
@@ -96,21 +96,21 @@ export const midjourneyCourseData: CourseData = {
 這個過程不再是傳統意義上的「繪畫」，而是一種全新的創作方式，使用者扮演的角色更像一位導演或概念藝術家，用語言指導一位才華橫溢但沒有實體的 AI 畫家。這種人機協作的模式，正在重新定義我們對創意同藝術表達的理解。
 
 Midjourney 的核心優勢在於其強大的風格多樣性和細節表現力。它能夠模擬各種藝術風格，從古典油畫到現代數位藝術，從攝影寫實到抽象表現主義。更重要的是，它理解創意語言，能夠將模糊的創意想法轉化為具體的視覺呈現。`,
-          transcriptEn: `Midjourney is an independent research laboratory dedicated to exploring new mediums of thought and expanding the imaginative powers of the human species. Put simply, it is a leading 'text-to-image' artificial intelligence generator. Users input natural language descriptions, so-called "prompts," and the AI transforms these textual concepts into unique, high-quality images.
+          transcriptEn: `Midjourney is an independent research laboratory dedicated to exploring new mediums of thought and expanding the imaginative powers of the human species. Put simply, it is a leading 'text-to-image' artificial intelligence generator. Users input natural language descriptions, so-called 'prompts', and the AI transforms these textual concepts into unique, high-quality images.
 
-This process is no longer "drawing" in the traditional sense, but a completely new way of creating. The user plays a role more like a director or concept artist, using language to guide a talented but incorporeal AI painter. This human-machine collaborative model is redefining our understanding of creativity and artistic expression.
+This process is no longer 'drawing' in the traditional sense, but rather a completely new way of creating. The user plays a role more akin to a director or concept artist, using language to guide a talented but incorporeal AI painter. This human-machine collaborative model is redefining our understanding of creativity and artistic expression.
 
 Midjourney's core advantage lies in its powerful stylistic diversity and detailed expressiveness. It can simulate various artistic styles, from classical oil paintings to modern digital art, from photographic realism to abstract expressionism. More importantly, it understands creative language and can transform vague creative ideas into concrete visual presentations.`,
           keyPoints: [
-            'Midjourney 是領先的「文本到圖像」AI 生成器',
-            '使用者透過「提示詞」與 AI 進行創作協作',
-            '重新定義了傳統的「繪畫」概念',
-            '具備強大的風格多樣性和細節表現力'
+            'Midjourney is a leading \'text-to-image\' AI generator',
+            'Users collaborate with AI through \'prompts\'',
+            'Redefines the traditional concept of \'drawing\'',
+            'Possesses powerful stylistic diversity and detailed expressiveness'
           ],
           keyPointsEn: [
-            'Midjourney is a leading "text-to-image" AI generator',
-            'Users collaborate with AI through "prompts"',
-            'Redefines the traditional concept of "drawing"',
+            'Midjourney is a leading \'text-to-image\' AI generator',
+            'Users collaborate with AI through \'prompts\'',
+            'Redefines the traditional concept of \'drawing\'',
             'Possesses powerful stylistic diversity and detailed expressiveness'
           ],
           completed: false
@@ -168,16 +168,16 @@ At the same time, Discord remains an indispensable part of the Midjourney ecosys
 值得注意的是，Midjourney 目前已經不再提供常規的免費試用。除了在極少數的推廣活動期間，用戶必須訂閱付費計劃才可以生成圖像。訂閱可以透過官方網站的帳戶頁面完成，亦可以在 Discord 內輸入 /subscribe 指令，系統會生成一個個人專屬的訂閱頁面連結。
 
 Midjourney 提供多種不同級別的訂閱計劃，以滿足不同用戶的需求。選擇合適的計劃對於成本效益和創作體驗都非常重要。`,
-          transcriptEn: `To begin using Midjourney, you must first register an account. Users can choose to register using an existing Discord account or Google account, and the process is very simple.
+          transcriptEn: `To begin using Midjourney, you must first register an account. Users can choose to register using an existing Discord account or Google account, and the process is very straightforward.
 
-It is worth noting that Midjourney no longer provides regular free trials. Except during rare promotional activities, users must subscribe to a paid plan to generate images. Subscriptions can be completed through the account page on the official website, or by entering the /subscribe command in Discord, which will generate a personalised subscription page link.
+It is worth noting that Midjourney no longer provides regular free trials. Except during very rare promotional activities, users must subscribe to a paid plan to generate images. Subscriptions can be completed through the account page on the official website, or by entering the /subscribe command in Discord, which will generate a personalised subscription page link.
 
 Midjourney offers various subscription plans to meet the needs of different users. Selecting the appropriate plan is essential for both cost-effectiveness and creative experience.`,
           keyPoints: [
-            '可使用 Discord 或 Google 帳戶註冊',
-            '目前不提供常規免費試用',
-            '提供多種訂閱計劃選擇',
-            '可透過網站或 Discord 訂閱'
+            'Can register using Discord or Google account',
+            'No regular free trial currently available',
+            'Multiple subscription plans available',
+            'Can subscribe via website or Discord'
           ],
           keyPointsEn: [
             'Can register using Discord or Google account',
@@ -210,9 +210,9 @@ Midjourney offers various subscription plans to meet the needs of different user
 
 Installing Discord: First, go to the official Discord website (discord.com) to download and install the application suitable for your computer (Windows/macOS) or phone (iOS/Android). You can also choose to use the web version directly without installation.
 
-Joining the Midjourney Server: Click on the official invitation link (e.g., discord.gg/midjourney). This link will open in your Discord application or web browser and prompt you to join the Midjourney server. Click "Accept Invitation" to successfully join.
+Joining the Midjourney Server: Click on the official invitation link (e.g., discord.gg/midjourney). This link will open in your Discord application or web browser and prompt you to join the Midjourney server. Click 'Accept Invitation' to successfully join.
 
-Accepting Terms of Service (ToS): Before you attempt to generate your first image, Midjourney Bot will pop up a message asking you to accept its terms of service. This is a required step; only after clicking the "Accept ToS" button can you officially start creating.`,
+Accepting Terms of Service (ToS): Before you attempt to generate your first image, Midjourney Bot will display a message asking you to accept its terms of service. This is a required step; only after clicking the 'Accept ToS' button can you officially begin creating.`,
           keyPoints: [
             '可選擇應用程式或網頁版 Discord',
             '使用官方邀請連結加入伺服器',
@@ -248,15 +248,15 @@ Accepting Terms of Service (ToS): Before you attempt to generate your first imag
 2. 邀請 Midjourney Bot：返回 Midjourney 官方伺服器，在任何一個頻道（例如 #general-1）的成員列表中，找到並點擊「Midjourney Bot」。在彈出的視窗中，點擊「新增至伺服器」或「Add App」。在下拉選單中，選擇你剛剛建立的私人伺服器，然後按照指示完成授權。
 
 3. 整理頻道：在你的私人伺服器中，你可以自由建立不同的文字頻道，用來分類你的項目。例如，你可以建立一個叫「#人物練習」的頻道，一個叫「#風景畫」的頻道，讓你的創作更有條理。`,
-          transcriptEn: `The "Newbies Channel" in the official Midjourney server has extremely high traffic, and your works and messages will quickly be "washed away" by other people's content, making it difficult to track and learn. Therefore, creating your own private server is not an advanced technique, but a fundamental step that can fundamentally improve learning efficiency. In a private server, there's only you and Midjourney Bot, allowing you to create and experiment quietly and focused.
+          transcriptEn: `The 'Newbies Channel' in the official Midjourney server has extremely high traffic, and your works and messages will quickly be 'washed away' by other people's content, making it difficult to track and learn. Therefore, creating your own private server is not an advanced technique, but rather a fundamental step that can significantly improve learning efficiency. In a private server, there's only you and the Midjourney Bot, allowing you to create and experiment quietly and with focus.
 
-Here are the steps to create a private server and invite Midjourney Bot:
+Here are the steps to create a private server and invite the Midjourney Bot:
 
-1. Create New Server: In the server list on the left side of the Discord interface, click the "+" button at the bottom. Select "Create My Own", then choose "For me and my friends". Name your server (e.g., "My MJ Studio"), then click "Create".
+1. Create New Server: In the server list on the left side of the Discord interface, click the '+' button at the bottom. Select 'Create My Own', then choose 'For me and my friends'. Name your server (e.g., 'My MJ Studio'), then click 'Create'.
 
-2. Invite Midjourney Bot: Return to the official Midjourney server, find and click "Midjourney Bot" in the member list of any channel (e.g., #general-1). In the pop-up window, click "Add to Server" or "Add App". In the dropdown menu, select the private server you just created, then follow the instructions to complete authorisation.
+2. Invite Midjourney Bot: Return to the official Midjourney server, find and click 'Midjourney Bot' in the member list of any channel (e.g., #general-1). In the pop-up window, click 'Add to Server' or 'Add App'. In the dropdown menu, select the private server you just created, then follow the instructions to complete authorisation.
 
-3. Organise Channels: In your private server, you can freely create different text channels to categorise your projects. For example, you can create a channel called "#character-practice" and another called "#landscapes" to make your creations more organised.`,
+3. Organise Channels: In your private server, you can freely create different text channels to categorise your projects. For example, you can create a channel called '#character-practice' and another called '#landscapes' to make your creations more organised.`,
           keyPoints: [
             '私人伺服器能避免官方伺服器的混亂',
             '提供專注的創作環境',
@@ -282,6 +282,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
         questions: [
           {
             id: 1,
+            type: 'single' as const,
             question: 'Midjourney 的主要目的是什麼？',
             questionEn: 'What is the main purpose of Midjourney?',
             options: [
@@ -298,10 +299,11 @@ Here are the steps to create a private server and invite Midjourney Bot:
             ],
             correctAnswer: 0,
             explanation: 'Midjourney 是一個頂尖的「文本到圖像」（text-to-image）人工智能生成器，專門將文字描述轉化為高質素的圖像。',
-            explanationEn: 'Midjourney is a leading "text-to-image" artificial intelligence generator that specialises in transforming text descriptions into high-quality images.'
+            explanationEn: 'Midjourney is a leading \'text-to-image\' artificial intelligence generator that specialises in transforming text descriptions into high-quality images.'
           },
           {
             id: 2,
+            type: 'single' as const,
             question: '使用 Midjourney，AI 主要扮演什麼角色？',
             questionEn: 'When using Midjourney, what role does AI primarily play?',
             options: [
@@ -322,6 +324,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
           },
           {
             id: 3,
+            type: 'single' as const,
             question: '在使用 Midjourney 創作時，最初需要哪個平台來進行操作？',
             questionEn: 'When creating with Midjourney, which platform is initially needed for operation?',
             options: [
@@ -342,6 +345,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
           },
           {
             id: 4,
+            type: 'single' as const,
             question: 'Midjourney 的提示詞結構包括哪些要素？',
             questionEn: 'What elements does Midjourney\'s prompt structure include?',
             options: [
@@ -362,6 +366,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
           },
           {
             id: 5,
+            type: 'single' as const,
             question: '在創作過程中，為了達到最佳創作體驗，最理想的是在哪裡進行創作？',
             questionEn: 'For the best creative experience during the creation process, where is it ideal to create?',
             options: [
@@ -382,6 +387,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
           },
           {
             id: 6,
+            type: 'single' as const,
             question: 'Midjourney 的免費試用是否仍然提供？',
             questionEn: 'Does Midjourney still offer free trials?',
             options: [
@@ -398,6 +404,7 @@ Here are the steps to create a private server and invite Midjourney Bot:
           },
           {
             id: 7,
+            type: 'single' as const,
             question: 'Midjourney 的網站界面有什麼顯著特點？',
             questionEn: 'What are the notable features of Midjourney\'s website interface?',
             options: [
@@ -584,13 +591,13 @@ Remember this sequence, because the interactive buttons we'll learn next use the
           imageAltEn: 'U, V, Reroll buttons guide',
           transcript: `在 2x2 圖像網格下方，你會見到幾排按鈕，其中最基本、最常用的是 U、V 和 🔄 按鈕。它們是你與 AI 進行後續溝通的主要工具。
 
-U 按鈕 (U1, U2, U3, U4) - 「這張不錯，我要大圖！」
+U 按鈕 (U1, U2, U3, U4) - "This one's good, I want the full image!"
 U 代表 Upscale（放大）。在目前的新版本中，圖像生成時已經是 1024x1024 像素的高解像度。所以，U 按鈕的主要作用是獨立選取（isolate）你心儀的圖像。當你按下例如 U1，Midjourney 就會將網格中的 1 號圖單獨分離出來，方便你儲存，並提供更多進階的編輯選項。
 
-V 按鈕 (V1, V2, V3, V4) - 「這個風格幾好，試多幾張！」
+V 按鈕 (V1, V2, V3, V4) - "This style is quite good, try a few more!"
 V 代表 Variation（創造變化）。如果你覺得某張草圖的風格、構圖或者概念不錯，但又想看看有沒有更好的版本，就可以用 V 按鈕。例如，按下 V2，Midjourney 就會以 2 號圖為基礎，保持它大致的風格和構圖，再重新生成四張全新的、有些微變化的草圖給你選擇。
 
-🔄 (Reroll) 按鈕 - 「全部不喜歡，再來過！」
+🔄 (Reroll) 按鈕 - "Don't like any of them, try again!"
 這個藍色的重新整理按鈕就好像遊戲中的「重玩」掣。如果你對生成的四張草圖都不滿意，只需按一下這個按鈕。Midjourney 就會用你最初的、完全相同的提示詞，重新生成一組全新的四張草圖。`,
           transcriptEn: `Below the 2x2 image grid, you'll see several rows of buttons, with the most basic and commonly used being the U, V and 🔄 buttons. They are the main tools for your subsequent communication with AI.
 
@@ -645,7 +652,7 @@ Desktop: In Discord, click on the image you want to save to display it enlarged.
 Mobile: In the Discord App, tap the image to display it full-screen. Then long-press the image and tap the download icon that appears.
 
 More Important Management Method: Midjourney Website Gallery
-Besides manual downloading, you need to know a more convenient fact: all images you generate in Midjourney, whether grid images or independent images, are automatically saved to your personal Gallery on the official Midjourney website. You can log into midjourney.com at any time, find all your works in your personal profile, and browse, organise and download them. This website gallery is the central management system for all your creations.`,
+Besides manual downloading, you need to know a more convenient fact: all images you generate in Midjourney, whether grid images or independent images, are automatically saved to your personal Gallery on the official Midjourney website. You can log into midjourney.com at any time, find all your works in your personal profile, and browse, organise, and download them. This website gallery is the central management system for all your creations.`,
           keyPoints: [
             '電腦版可右鍵保存圖像',
             '手機版可長按下載圖像',
@@ -671,6 +678,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
         questions: [
           {
             id: 1,
+            type: 'single' as const,
             question: '在開始使用 Midjourney 時，使用者的主要操作命令是什麼？',
             questionEn: 'When starting to use Midjourney, what is the user\'s main operating command?',
             options: [
@@ -691,6 +699,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
           },
           {
             id: 2,
+            type: 'single' as const,
             question: '使用 /imagine 指令時，用戶需要提供什麼？',
             questionEn: 'When using the /imagine command, what do users need to provide?',
             options: [
@@ -711,6 +720,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
           },
           {
             id: 3,
+            type: 'single' as const,
             question: '在 Midjourney 中，生成的圖像通常以什麼形式呈現？',
             questionEn: 'In Midjourney, in what form are generated images typically presented?',
             options: [
@@ -731,6 +741,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
           },
           {
             id: 4,
+            type: 'single' as const,
             question: '使用者在 Midjourney 創作時最關鍵的角色是什麼？',
             questionEn: 'What is the most critical role of users when creating with Midjourney?',
             options: [
@@ -751,6 +762,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
           },
           {
             id: 5,
+            type: 'single' as const,
             question: '提供簡單的提示詞，例如 "a cat"，會產生什麼結果？',
             questionEn: 'What results would simple prompts like "a cat" produce?',
             options: [
@@ -771,6 +783,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
           },
           {
             id: 6,
+            type: 'single' as const,
             question: '在 Midjourney 中，當圖像生成完成後，用戶會看到什麼？',
             questionEn: 'In Midjourney, what do users see when image generation is complete?',
             options: [
@@ -791,6 +804,7 @@ Besides manual downloading, you need to know a more convenient fact: all images 
           },
           {
             id: 7,
+            type: 'single' as const,
             question: '初學者如何提升他們使用 Midjourney 的創作經驗？',
             questionEn: 'How can beginners improve their Midjourney creative experience?',
             options: [
@@ -989,6 +1003,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
         questions: [
           {
             id: 1,
+            type: 'single' as const,
             question: '在 Midjourney 中，提示詞的結構包括哪些要素？',
             questionEn: 'In Midjourney, what elements does the prompt structure include?',
             options: [
@@ -1009,6 +1024,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
           },
           {
             id: 2,
+            type: 'single' as const,
             question: '若想強調某些提示詞的重要性，應使用哪種語法？',
             questionEn: 'To emphasise the importance of certain prompts, which syntax should be used?',
             options: [
@@ -1029,6 +1045,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
           },
           {
             id: 3,
+            type: 'single' as const,
             question: '在撰寫提示詞時，應包括哪些關鍵元素？',
             questionEn: 'When writing prompts, what key elements should be included?',
             options: [
@@ -1049,6 +1066,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
           },
           {
             id: 4,
+            type: 'single' as const,
             question: '在撰寫 Midjourney 提示詞時，最重要的是什麼？',
             questionEn: 'When writing Midjourney prompts, what is most important?',
             options: [
@@ -1069,6 +1087,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
           },
           {
             id: 5,
+            type: 'single' as const,
             question: '使用 /blend 指令時，可以混合多少張圖片？',
             questionEn: 'When using the /blend command, how many images can be mixed?',
             options: [
@@ -1089,6 +1108,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
           },
           {
             id: 6,
+            type: 'single' as const,
             question: '在使用提示詞時，如何加入圖片以改變圖像風格？',
             questionEn: 'When using prompts, how can images be added to change image style?',
             options: [
@@ -1109,6 +1129,7 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
           },
           {
             id: 7,
+            type: 'single' as const,
             question: '在 /imagine 中使用多重提示詞（Multi-Prompts）時，應用於兩個不同元素的效果是什麼？',
             questionEn: 'When using Multi-Prompts in /imagine applied to two different elements, what is the effect?',
             options: [
@@ -1324,6 +1345,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
         questions: [
           {
             id: 1,
+            type: 'single' as const,
             question: '--ar 參數是用來設定什麼？',
             questionEn: 'What is the --ar parameter used to set?',
             options: [
@@ -1344,6 +1366,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
           },
           {
             id: 2,
+            type: 'single' as const,
             question: '若希望生成的圖像顯示更大範圍的內容，應使用什麼參數？',
             questionEn: 'To generate images that show a wider range of content, which parameter should be used?',
             options: [
@@ -1364,6 +1387,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
           },
           {
             id: 3,
+            type: 'single' as const,
             question: '--stylize 參數用來控制什麼？',
             questionEn: 'What does the --stylize parameter control?',
             options: [
@@ -1384,6 +1408,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
           },
           {
             id: 4,
+            type: 'single' as const,
             question: '若希望圖像顯得更具藝術感，應使用何種 --stylize 數值？',
             questionEn: 'To make images appear more artistic, what --stylize value should be used?',
             options: [
@@ -1404,6 +1429,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
           },
           {
             id: 5,
+            type: 'single' as const,
             question: '在 --chaos 參數中，數值越高會怎樣影響圖像？',
             questionEn: 'In the --chaos parameter, how do higher values affect images?',
             options: [
@@ -1424,6 +1450,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
           },
           {
             id: 6,
+            type: 'single' as const,
             question: '若想創造一個非常奇異的圖像，應使用什麼參數？',
             questionEn: 'To create a very bizarre image, what parameter should be used?',
             options: [
@@ -1444,6 +1471,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
           },
           {
             id: 7,
+            type: 'single' as const,
             question: '若不希望圖像包含某些元素，可以使用哪個參數？',
             questionEn: 'To prevent images from containing certain elements, which parameter can be used?',
             options: [
@@ -1679,6 +1707,7 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
         questions: [
           {
             id: 1,
+            type: 'single' as const,
             question: '在 Midjourney 中，如何進行細微的圖像修改？',
             questionEn: 'In Midjourney, how do you make subtle image modifications?',
             options: [
@@ -1699,6 +1728,7 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
           },
           {
             id: 2,
+            type: 'single' as const,
             question: '若要改變圖像的構圖，應選擇哪個功能？',
             questionEn: 'To change the composition of an image, which function should be chosen?',
             options: [
@@ -1719,6 +1749,7 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
           },
           {
             id: 3,
+            type: 'single' as const,
             question: '當你希望重新生成圖像的某個區域而不改動其他部分時，應使用哪個功能？',
             questionEn: 'When you want to regenerate a specific area of an image without changing other parts, which function should be used?',
             options: [
@@ -1739,6 +1770,7 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
           },
           {
             id: 4,
+            type: 'single' as const,
             question: '使用 Upscale 功能時，會對圖像做什麼處理？',
             questionEn: 'When using the Upscale function, what processing is done to the image?',
             options: [
@@ -1759,6 +1791,7 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
           },
           {
             id: 5,
+            type: 'single' as const,
             question: '使用 Pan 和 Zoom Out 功能時，圖像會如何變化？',
             questionEn: 'When using Pan and Zoom Out functions, how do images change?',
             options: [
@@ -1862,6 +1895,7 @@ Important notes:
         questions: [
           {
             id: 1,
+            type: 'single' as const,
             question: '在 Midjourney 中，如何精細調整圖像的一部分而不改動整體？',
             questionEn: 'In Midjourney, how do you make fine adjustments to part of an image without changing the whole?',
             options: [
@@ -1882,6 +1916,7 @@ Important notes:
           },
           {
             id: 2,
+            type: 'single' as const,
             question: '當你想進行較大範圍的變更，應使用哪個功能？',
             questionEn: 'When you want to make larger-scale changes, which function should be used?',
             options: [
@@ -1902,6 +1937,7 @@ Important notes:
           },
           {
             id: 3,
+            type: 'single' as const,
             question: 'Vary Region 主要的優勢是什麼？',
             questionEn: 'What is the main advantage of Vary Region?',
             options: [
@@ -1922,6 +1958,7 @@ Important notes:
           },
           {
             id: 4,
+            type: 'single' as const,
             question: '若想將圖像的解析度提高，應使用哪個功能？',
             questionEn: 'To increase image resolution, which function should be used?',
             options: [
@@ -1942,6 +1979,7 @@ Important notes:
           },
           {
             id: 5,
+            type: 'single' as const,
             question: '在圖像的背景或周圍擴展畫布時，使用哪個功能？',
             questionEn: 'When expanding the canvas around the background or surroundings of an image, which function is used?',
             options: [
@@ -1962,6 +2000,7 @@ Important notes:
           },
           {
             id: 6,
+            type: 'single' as const,
             question: '若希望創建一個較為怪異和奇異的圖像，應使用哪個參數？',
             questionEn: 'To create a rather bizarre and strange image, which parameter should be used?',
             options: [
@@ -1982,6 +2021,7 @@ Important notes:
           },
           {
             id: 7,
+            type: 'single' as const,
             question: '當想讓 Midjourney 在圖像的某一部分進行微調時，應該使用哪個選項？',
             questionEn: 'When wanting Midjourney to make fine adjustments to a specific part of an image, which option should be used?',
             options: [
@@ -2085,6 +2125,7 @@ Optimisation strategies:
         questions: [
           {
             id: 1,
+            type: 'single' as const,
             question: '在 Midjourney 中，如何查詢帳戶的 GPU 使用狀況？',
             questionEn: 'In Midjourney, how do you query account GPU usage status?',
             options: [
@@ -2105,6 +2146,7 @@ Optimisation strategies:
           },
           {
             id: 2,
+            type: 'single' as const,
             question: '當使用者在 Fast Mode 和 Relax Mode 之間切換時，兩者的主要區別是什麼？',
             questionEn: 'When users switch between Fast Mode and Relax Mode, what is the main difference?',
             options: [
@@ -2125,6 +2167,7 @@ Optimisation strategies:
           },
           {
             id: 3,
+            type: 'single' as const,
             question: '要查看剩餘的 GPU 時間和帳戶狀態，應該使用哪個指令？',
             questionEn: 'To view remaining GPU time and account status, which command should be used?',
             options: [
@@ -2145,6 +2188,7 @@ Optimisation strategies:
           },
           {
             id: 4,
+            type: 'single' as const,
             question: '若想快速生成多張圖像，應使用哪個選項來提升效率？',
             questionEn: 'To quickly generate multiple images, which option should be used to improve efficiency?',
             options: [
@@ -2165,6 +2209,7 @@ Optimisation strategies:
           },
           {
             id: 5,
+            type: 'single' as const,
             question: '在 Midjourney 網站的圖庫中，如何更高效地組織和管理作品？',
             questionEn: 'In Midjourney website\'s gallery, how can artworks be organised and managed more efficiently?',
             options: [
@@ -2185,6 +2230,7 @@ Optimisation strategies:
           },
           {
             id: 6,
+            type: 'single' as const,
             question: '若想同時管理大量的圖像並進行批量處理，應該使用哪個功能？',
             questionEn: 'To simultaneously manage large numbers of images and perform batch processing, which function should be used?',
             options: [
@@ -2205,6 +2251,7 @@ Optimisation strategies:
           },
           {
             id: 7,
+            type: 'single' as const,
             question: '若要查看或整理過去的創作，哪個功能會最有幫助？',
             questionEn: 'To view or organise past creations, which function would be most helpful?',
             options: [
