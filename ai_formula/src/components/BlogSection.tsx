@@ -4,10 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Clock, ArrowRight, TrendingUp, Brain, Zap, Users, Rocket, Star, Wrench, Settings, Bot, Building2 } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useNavigate } from 'react-router-dom'
 import { blogPosts, getFeaturedPosts, getRecentPosts, type BlogPost } from '@/data/blog/blogPosts'
 
 const BlogSection = () => {
   const { language } = useLanguage()
+  const navigate = useNavigate()
   const isZhTW = language === 'zh-HK'
 
   // 使用真實的部落格資料
@@ -160,6 +162,7 @@ const BlogSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
                         className="flex space-x-4 p-4 rounded-lg bg-gray-700/30 hover:bg-yellow-500/10 transition-all duration-300 group cursor-pointer border border-gray-600/20 hover:border-yellow-500/40"
+                        onClick={() => navigate(`/blog/${post.id}`)}
                       >
                         <div className="flex-shrink-0">
                           <div className={`w-10 h-10 ${getCategoryIconBackground(post.category)} rounded-lg flex items-center justify-center`}>
@@ -195,7 +198,8 @@ const BlogSection = () => {
             className="lg:col-span-2"
           >
             {featuredPost && (
-              <Card className="bg-gray-800/50 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden h-full flex flex-col">
+              <Card className="bg-gray-800/50 border-gray-700 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden h-full flex flex-col cursor-pointer"
+                    onClick={() => navigate(`/blog/${featuredPost.id}`)}>
                 <div className="relative h-64 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/20 to-orange-600/20 flex items-center justify-center">
                     <div className="text-6xl opacity-20">📊</div>

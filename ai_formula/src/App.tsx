@@ -42,6 +42,12 @@ import PerplexityCompleteCourseUnit from '@/pages/courses/perplexity-complete-co
 import PerplexityCompleteCourseQuiz from '@/pages/courses/perplexity-complete-course/PerplexityCompleteCourseQuiz';
 import PerplexityCompleteCourseOutline from '@/pages/courses/perplexity-complete-course/PerplexityCompleteCourseOutline';
 
+// Prompt Engineering Course Pages
+import PromptEngineeringCourseLearning from '@/pages/courses/prompt-engineering-course/PromptEngineeringCourseLearning';
+import PromptEngineeringCourseUnit from '@/pages/courses/prompt-engineering-course/PromptEngineeringCourseUnit';
+import PromptEngineeringCourseQuiz from '@/pages/courses/prompt-engineering-course/PromptEngineeringCourseQuiz';
+import PromptEngineeringCourseOutline from '@/pages/courses/prompt-engineering-course/PromptEngineeringCourseOutline';
+
 // Template System Pages
 import CourseOutlinePage from '@/pages/courses/CourseOutlinePage';
 import CourseLearningPage from '@/pages/courses/CourseLearningPage';
@@ -220,6 +226,16 @@ function App() {
                   <Route path="/courses/midjourney-course/theme/:themeId/quiz" element={<CourseQuizPage />} />
                   {/* 無效路由重定向 - 作為最後的保障 */}
                   <Route path="/courses/midjourney-course/*" element={<Navigate to="/courses/midjourney-course/outline" replace />} />
+                  
+                  {/* Prompt Engineering Course Routes */}
+                  <Route path="/courses/prompt-engineering-course" element={<Navigate to="/courses/prompt-engineering-course/outline" replace />} />
+                  <Route path="/courses/prompt-engineering-course/outline" element={<PromptEngineeringCourseOutline />} />
+                  <Route path="/courses/prompt-engineering-course/learning" element={<PromptEngineeringCourseLearning />} />
+                  <Route path="/courses/prompt-engineering-course/theme/:themeId" element={<CourseThemePage />} />
+                  <Route path="/courses/prompt-engineering-course/theme/:themeId/unit/:unitId" element={<PromptEngineeringCourseUnit />} />
+                  <Route path="/courses/prompt-engineering-course/theme/:themeId/quiz" element={<PromptEngineeringCourseQuiz />} />
+                  {/* 無效路由重定向 - 作為最後的保障 */}
+                  <Route path="/courses/prompt-engineering-course/*" element={<Navigate to="/courses/prompt-engineering-course/outline" replace />} />
                   
                   {/* Design System Demo */}
                   <Route path="/design-system" element={<DesignSystemDemo />} />

@@ -13,12 +13,14 @@ export interface Tool {
   descriptionEn?: string; // 新增：英文描述
   tag: string; // 保留單一主要標籤用於向後兼容
   tags: string[]; // 新增：多標籤支援
+  tagsEn?: string[]; // 新增：英文標籤支援
   url: string;
   imageUrl: string;
   imageAlt: string;
   category: string;
   categories: string[]; // 新增：多分類支援
   targetAudience: string[];
+  targetAudienceEn?: string[]; // 新增：英文目標受眾
   userGroups?: string[]; // 新增：用戶群體標籤
 }
 
@@ -60,12 +62,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A leading AI image generation tool renowned for its exceptional artistic quality and creative expression capabilities, particularly suitable for concept art and illustration creation.',
     tag: 'AI 繪圖',
     tags: ['AI 繪圖', '藝術創作', '概念設計'],
+    tagsEn: ['AI Drawing', 'Art Creation', 'Concept Design'],
     url: 'https://www.midjourney.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Midjourney Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing'],
     targetAudience: ['數字藝術家', '概念設計師', '插畫家', '創意總監'],
+    targetAudienceEn: ['Digital Artists', 'Concept Designers', 'Illustrators', 'Creative Directors'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -76,12 +80,14 @@ const allTools: Tool[] = [
     descriptionEn: 'The most popular open-source AI image generation model, completely free, supporting both local and cloud deployment.',
     tag: '開源AI',
     tags: ['開源AI', '圖像生成', '免費工具'],
+    tagsEn: ['Open Source AI', 'Image Generation', 'Free Tools'],
     url: 'https://stability.ai/stable-diffusion',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Stable Diffusion Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'web-development'],
     targetAudience: ['開發者', '研究人員', 'AI愛好者', '數字藝術家'],
+    targetAudienceEn: ['Developers', 'Researchers', 'AI Enthusiasts', 'Digital Artists'],
     userGroups: ['tech-developer', 'creative-professional']
   },
   {
@@ -92,12 +98,14 @@ const allTools: Tool[] = [
     descriptionEn: 'OpenAI\'s latest image generation model that creates extremely detailed and accurate AI artwork.',
     tag: 'AI藝術',
     tags: ['AI藝術', '圖像生成', 'OpenAI'],
+    tagsEn: ['AI Art', 'Image Generation', 'OpenAI'],
     url: 'https://openai.com/dall-e-3',
     imageUrl: '/placeholder.svg',
     imageAlt: 'DALL·E 3 Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing'],
     targetAudience: ['藝術家', '設計師', '創意工作者'],
+    targetAudienceEn: ['Artists', 'Designers', 'Creative Workers'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -108,12 +116,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Adobe\'s commercial-grade AI creative tool optimised for professional design workflows with copyright safety.',
     tag: '商業AI',
     tags: ['商業AI', 'Adobe', '專業設計'],
+    tagsEn: ['Business AI', 'Adobe', 'Professional Design'],
     url: 'https://firefly.adobe.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Adobe Firefly Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'creative-tools'],
     targetAudience: ['專業設計師', '廣告公司', '品牌團隊'],
+    targetAudienceEn: ['Professional Designers', 'Advertising Agencies', 'Brand Teams'],
     userGroups: ['creative-professional', 'business-professional']
   },
   {
@@ -124,12 +134,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI tool that excels at accurately rendering text in images, ideal for creating posters, logos, and brand designs.',
     tag: '文字渲染',
     tags: ['文字渲染', '海報設計', '品牌設計'],
+    tagsEn: ['Text Rendering', 'Poster Design', 'Brand Design'],
     url: 'https://ideogram.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Ideogram Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'creative-tools'],
     targetAudience: ['平面設計師', '品牌設計師', '營銷人員'],
+    targetAudienceEn: ['Graphic Designers', 'Brand Designers', 'Marketing Professionals'],
     userGroups: ['creative-professional', 'business-professional']
   },
   {
@@ -140,12 +152,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Creative experimentation platform offering multiple AI models, supporting style mixing and advanced editing features.',
     tag: '創意實驗',
     tags: ['創意實驗', '多模型', '風格混合'],
+    tagsEn: ['Creative Experiments', 'Multi-Model', 'Style Mixing'],
     url: 'https://playground.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Playground AI Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'creative-tools'],
     targetAudience: ['數字藝術家', '創意探索者', '設計師'],
+    targetAudienceEn: ['Digital Artists', 'Creative Explorers', 'Designers'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -156,12 +170,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Creates new artworks by "breeding" and mixing images, offering a unique collaborative creation platform.',
     tag: '圖像演化',
     tags: ['圖像演化', '協作創作', '藝術探索'],
+    tagsEn: ['Image Evolution', 'Collaborative Creation', 'Art Exploration'],
     url: 'https://www.artbreeder.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Artbreeder Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing'],
     targetAudience: ['藝術家', '創意工作者', '概念設計師'],
+    targetAudienceEn: ['Artists', 'Creative Workers', 'Concept Designers'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -172,12 +188,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI-powered image and video creation platform that provides advanced generative models for creating high-quality visual content through text prompts.',
     tag: '圖像生成',
     tags: ['圖像生成', '影片生成', 'AI 藝術'],
+    tagsEn: ['Image Generation', 'Video Generation', 'AI Art'],
     url: 'https://lightfield.app/',
     imageUrl: 'https://lightfield.app/logo.svg',
     imageAlt: 'Lightfield Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'video-generation'],
     targetAudience: ['數字藝術家', '設計師', '廣告創意人員', '藝術家'],
+    targetAudienceEn: ['Digital Artists', 'Designers', 'Advertising Creatives', 'Artists'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -188,12 +206,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI tool focused on artificial intelligence art creation that can quickly generate various types of artistic works including images and music based on user prompts.',
     tag: 'AI 繪圖',
     tags: ['AI 繪圖', '音樂生成', '創意工具'],
+    tagsEn: ['AI Drawing', 'Music Generation', 'Creative Tools'],
     url: 'https://www.lovart.ai/home',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Lovart AI Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'music-generation'],
     targetAudience: ['設計師', '藝術家', '內容創作者', '插畫家'],
+    targetAudienceEn: ['Designers', 'Artists', 'Content Creators', 'Illustrators'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -204,12 +224,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A comprehensive creation platform integrating video generation, image creation, audio synthesis and other AI functions, providing creators with a one-stop AI creation solution.',
     tag: '多模態 AI',
     tags: ['多模態 AI', 'AI 影片', 'AI 繪圖', 'AI 音頻'],
+    tagsEn: ['Multimodal AI', 'AI Video', 'AI Drawing', 'AI Audio'],
     url: 'https://higgsfield.ai/',
     imageUrl: '/aitools/Higgsfield.png',
     imageAlt: 'Higgsfield AI Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'video-generation', 'music-generation'],
     targetAudience: ['內容創作者', '數字藝術家', '影片製作人'],
+    targetAudienceEn: ['Content Creators', 'Digital Artists', 'Video Producers'],
     userGroups: ['content-creator', 'creative-professional']
   },
   {
@@ -220,12 +242,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Provides vast free and premium AI-generated design resources, including images, vector graphics, PSD files, and more, serving as a creative treasure trove for designers.',
     tag: '設計素材',
     tags: ['設計素材', 'AI素材', '向量圖'],
+    tagsEn: ['Design Materials', 'AI Materials', 'Vector Graphics'],
     url: 'https://www.freepik.com/',
     imageUrl: '/aitools/freepik.png',
     imageAlt: 'Freepik Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'creative-tools'],
     targetAudience: ['平面設計師', '網頁設計師', 'UI/UX 設計師', '品牌設計師'],
+    targetAudienceEn: ['Graphic Designers', 'Web Designers', 'UI/UX Designers', 'Brand Designers'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -236,12 +260,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Provides a vast collection of AI-generated, royalty-free high-quality images. Unlike traditional stock libraries, every image here is unique.',
     tag: 'AI 圖片',
     tags: ['AI 圖片', '免版稅圖庫', '圖像資源'],
+    tagsEn: ['AI Images', 'Royalty-Free Stock', 'Image Resources'],
     url: 'https://www.lummi.ai/',
     imageUrl: 'https://www.lummi.ai/images/lummi-logo-header.svg',
     imageAlt: 'Lummi.ai Logo',
     category: 'ai-drawing',
     categories: ['ai-drawing', 'creative-tools'],
     targetAudience: ['設計師', '內容創作者', '市場營銷人員', '博客作者'],
+    targetAudienceEn: ['Designers', 'Content Creators', 'Marketing Professionals', 'Bloggers'],
     userGroups: ['creative-professional', 'content-creator', 'business-professional']
   },
 
@@ -254,12 +280,14 @@ const allTools: Tool[] = [
     descriptionEn: 'The latest third-generation AI video generation model that creates extremely realistic high-definition videos, the preferred tool for professional creators.',
     tag: '影片生成',
     tags: ['影片生成', 'AI影片', '專業工具'],
+    tagsEn: ['Video Generation', 'AI Video', 'Professional Tools'],
     url: 'https://runwayml.com/research/gen-3-alpha',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Runway Gen-3 Logo',
     category: 'video-generation',
     categories: ['video-generation'],
     targetAudience: ['影片創作者', '專業導演', '廣告公司', '創意工作室'],
+    targetAudienceEn: ['Video Creators', 'Professional Directors', 'Advertising Agencies', 'Creative Studios'],
     userGroups: ['content-creator', 'creative-professional']
   },
   {
@@ -270,12 +298,14 @@ const allTools: Tool[] = [
     descriptionEn: 'The most advanced video generation model developed by Google DeepMind, capable of generating over one minute of high-quality 1080p videos based on text, image, and video prompts.',
     tag: '影片生成',
     tags: ['影片生成', 'AI 模型', 'Google AI'],
+    tagsEn: ['Video Generation', 'AI Model', 'Google AI'],
     url: 'https://deepmind.google/models/veo/',
     imageUrl: 'https://deepmind.google/assets/images/deepmind-logo-white.svg',
     imageAlt: 'Google Veo Logo',
     category: 'video-generation',
     categories: ['video-generation', 'web-development'],
     targetAudience: ['電影行業', '視覺特效藝術家', '創意專業人士', '影片創作者'],
+    targetAudienceEn: ['Film Industry', 'VFX Artists', 'Creative Professionals', 'Video Creators'],
     userGroups: ['content-creator', 'creative-professional', 'tech-developer']
   },
   {
@@ -286,12 +316,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A platform focused on AI video creation and editing that can quickly generate high-quality short films, advertisements, or social media videos based on text or images.',
     tag: '影片生成',
     tags: ['影片生成', 'AI 影片'],
+    tagsEn: ['Video Generation', 'AI Video'],
     url: 'https://hailuoai.video/',
     imageUrl: '/aitools/hailuo.png',
     imageAlt: 'Hailuo AI Video Logo',
     category: 'video-generation',
     categories: ['video-generation', 'creative-tools'],
     targetAudience: ['內容創作者', '市場營銷人員', '視頻製作人'],
+    targetAudienceEn: ['Content Creators', 'Marketing Professionals', 'Video Producers'],
     userGroups: ['content-creator', 'business-professional']
   },
   {
@@ -302,12 +334,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An advanced AI video generation tool that can transform static images into dynamic videos or create entirely new video content based on text descriptions.',
     tag: '影片生成',
     tags: ['影片生成', '圖片轉影片'],
+    tagsEn: ['Video Generation', 'Image to Video'],
     url: 'https://lumalabs.ai/dream-machine',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Dream Machine Logo',
     category: 'video-generation',
     categories: ['video-generation'],
     targetAudience: ['影片創作者', '動畫師', '視覺藝術家'],
+    targetAudienceEn: ['Video Creators', 'Animators', 'Visual Artists'],
     userGroups: ['content-creator', 'creative-professional']
   },
   {
@@ -318,12 +352,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Open-source video generation model released by Stability AI, providing high-quality video creation capabilities that are completely free to use.',
     tag: '開源影片',
     tags: ['開源工具', '影片生成', 'AI影片'],
+    tagsEn: ['Open Source Tools', 'Video Generation', 'AI Video'],
     url: 'https://stability.ai/research/stable-video-diffusion-scaling-latent-video-diffusion-models-to-large-datasets',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Stable Video Diffusion Logo',
     category: 'video-generation',
     categories: ['video-generation', 'web-development'],
     targetAudience: ['開發者', '研究人員', '影片創作者'],
+    targetAudienceEn: ['Developers', 'Researchers', 'Video Creators'],
     userGroups: ['tech-developer', 'content-creator']
   },
   {
@@ -334,12 +370,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Leading AI video generation platform that quickly creates videos with virtual AI presenters through text input, supporting multiple languages.',
     tag: 'AI 影片生成',
     tags: ['AI 影片生成', '虛擬主播', '文本轉影片'],
+    tagsEn: ['AI Video Generation', 'Virtual Presenter', 'Text to Video'],
     url: 'https://www.synthesia.io/',
     imageUrl: 'https://assets-global.website-files.com/61dc0796f359b6145bc06c88/6335990234293c66a4a7556a_logo-synthesia-dark.svg',
     imageAlt: 'Synthesia Logo',
     category: 'video-generation',
     categories: ['video-generation', 'ai-avatar'],
     targetAudience: ['企業培訓師', '教師', '市場營銷團隊'],
+    targetAudienceEn: ['Corporate Trainers', 'Teachers', 'Marketing Teams'],
     userGroups: ['enterprise-manager', 'educator', 'business-professional']
   },
   {
@@ -350,12 +388,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An innovative AI virtual human video creation platform that can quickly produce video content presented by realistic virtual characters, supporting multiple languages and style choices.',
     tag: 'AI 虛擬人',
     tags: ['AI 虛擬人', '影片生成'],
+    tagsEn: ['AI Avatar', 'Video Generation'],
     url: 'https://www.heygen.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'HeyGen Logo',
     category: 'video-generation',
     categories: ['video-generation', 'ai-avatar'],
     targetAudience: ['企業培訓部門', '內容創作者', '市場營銷人員'],
+    targetAudienceEn: ['Corporate Training Departments', 'Content Creators', 'Marketing Professionals'],
     userGroups: ['enterprise-manager', 'content-creator', 'business-professional']
   },
   {
@@ -366,12 +406,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A powerful AI character creation platform that can transform static portrait images into animated videos with lip-synced and expressive animations based on your provided audio.',
     tag: '影片生成',
     tags: ['影片生成', 'AI 虛擬人'],
+    tagsEn: ['Video Generation', 'AI Avatar'],
     url: 'https://www.hedra.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Hedra Logo',
     category: 'video-generation',
     categories: ['video-generation', 'ai-avatar'],
     targetAudience: ['影片創作者', '數字行銷人員', '設計師', '藝術家'],
+    targetAudienceEn: ['Video Creators', 'Digital Marketers', 'Designers', 'Artists'],
     userGroups: ['content-creator', 'business-professional']
   },
   {
@@ -382,12 +424,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Converts text into videos with AI voices and visual effects, supporting multiple languages and realistic AI avatars.',
     tag: 'AI配音',
     tags: ['AI配音', '影片生成', '多語言'],
+    tagsEn: ['AI Voiceover', 'Video Generation', 'Multilingual'],
     url: 'https://fliki.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Fliki Logo',
     category: 'video-generation',
     categories: ['video-generation', 'music-generation'],
     targetAudience: ['內容創作者', '教育工作者', '市場營銷人員'],
+    targetAudienceEn: ['Content Creators', 'Educators', 'Marketing Professionals'],
     userGroups: ['content-creator', 'educator', 'business-professional']
   },
   {
@@ -398,12 +442,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI video creation platform that quickly transforms blog articles, white papers, and other long-form content into engaging short videos.',
     tag: '內容轉影片',
     tags: ['內容轉影片', 'AI 影片製作', '社交媒體影片'],
+    tagsEn: ['Content to Video', 'AI Video Production', 'Social Media Video'],
     url: 'https://lumen5.com/',
     imageUrl: 'https://lumen5.com/assets/images/logo/l5-logo-white-text.svg',
     imageAlt: 'Lumen5 Logo',
     category: 'video-generation',
     categories: ['video-generation', 'text-writing'],
     targetAudience: ['內容營銷人員', '社交媒體經理', '博客作者', '市場營銷團隊'],
+    targetAudienceEn: ['Content Marketers', 'Social Media Managers', 'Bloggers', 'Marketing Teams'],
     userGroups: ['business-professional', 'content-creator']
   },
   {
@@ -414,12 +460,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Automatically transforms long-form articles, blogs, or scripts into engaging short videos suitable for social media sharing.',
     tag: '文轉影片',
     tags: ['文轉影片', '社交媒體', '內容再利用'],
+    tagsEn: ['Text to Video', 'Social Media', 'Content Repurposing'],
     url: 'https://pictory.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Pictory Logo',
     category: 'video-generation',
     categories: ['video-generation', 'text-writing'],
     targetAudience: ['博客作者', '內容創作者', '數字營銷人員'],
+    targetAudienceEn: ['Bloggers', 'Content Creators', 'Digital Marketing Professionals'],
     userGroups: ['content-creator', 'business-professional']
   },
   {
@@ -430,12 +478,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI video platform focused on creating ultra-realistic virtual avatars. Users can input text and have digital humans present with natural lip movements and gestures.',
     tag: '虛擬化身',
     tags: ['虛擬化身', '數字人', 'AI 影片'],
+    tagsEn: ['Virtual Avatar', 'Digital Human', 'AI Video'],
     url: 'https://app.pipio.ai/',
     imageUrl: 'https://app.pipio.ai/assets/pipio-99882a87.png',
     imageAlt: 'Pipio Logo',
     category: 'video-generation',
     categories: ['video-generation', 'ai-avatar'],
     targetAudience: ['企業通訊部門', '新聞機構', '內容創作者', '市場營銷團隊'],
+    targetAudienceEn: ['Corporate Communications', 'News Organisations', 'Content Creators', 'Marketing Teams'],
     userGroups: ['enterprise-manager', 'media-professional', 'content-creator', 'business-professional']
   },
   {
@@ -446,12 +496,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI video creation platform focused on transforming your ideas, articles, or prompts into videos with AI-generated voiceovers and visual effects.',
     tag: 'AI 影片創作',
     tags: ['AI 影片創作', '文本轉影片', '自動化內容'],
+    tagsEn: ['AI Video Creation', 'Text to Video', 'Automated Content'],
     url: 'https://www.revid.ai/',
     imageUrl: 'https://www.revid.ai/_next/image?url=%2Flogo_light.png&w=256&q=75',
     imageAlt: 'Revid Logo',
     category: 'video-generation',
     categories: ['video-generation', 'text-writing'],
     targetAudience: ['內容營銷人員', '社交媒體經理', '小型企業主', '內容創作者'],
+    targetAudienceEn: ['Content Marketers', 'Social Media Managers', 'Small Business Owners', 'Content Creators'],
     userGroups: ['business-professional', 'content-creator', 'enterprise-manager']
   },
   {
@@ -462,12 +514,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI tool specifically designed for social media short videos that can automatically generate engaging short videos based on content topics provided by users.',
     tag: '短影片生成',
     tags: ['短影片生成', '社交媒體'],
+    tagsEn: ['Short Video Generation', 'Social Media'],
     url: 'https://skyreels.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'SkyReels AI Logo',
     category: 'video-generation',
     categories: ['video-generation', 'creative-tools'],
     targetAudience: ['社交媒體經理', '內容創作者', '數字營銷人員'],
+    targetAudienceEn: ['Social Media Managers', 'Content Creators', 'Digital Marketing Professionals'],
     userGroups: ['business-professional', 'content-creator']
   },
   {
@@ -478,12 +532,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI-based video editing platform that can automatically generate professional-grade video content from simple descriptions.',
     tag: '智能編輯',
     tags: ['智能編輯', '影片創作', '自動化'],
+    tagsEn: ['Smart Editing', 'Video Creation', 'Automation'],
     url: 'https://invideo.io/ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'InVideo AI Logo',
     category: 'video-generation',
     categories: ['video-generation', 'video-editing'],
     targetAudience: ['社交媒體經理', '小企業主', '內容營銷人員'],
+    targetAudienceEn: ['Social Media Managers', 'Small Business Owners', 'Content Marketers'],
     userGroups: ['business-professional', 'content-creator']
   },
 
@@ -496,12 +552,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A professional-grade AI image and video enhancement tool that can upgrade low-resolution images or videos to high definition and restore details in old or damaged visuals.',
     tag: '圖像增強',
     tags: ['圖像增強', '影片編輯'],
+    tagsEn: ['Image Enhancement', 'Video Editing'],
     url: 'https://app.lupaupscaler.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Lupa Upscaler Logo',
     category: 'video-editing',
     categories: ['video-editing', 'image-editing'],
     targetAudience: ['攝影師', '影片製作人', '設計師', '內容創作者'],
+    targetAudienceEn: ['Photographers', 'Video Producers', 'Designers', 'Content Creators'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -512,12 +570,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A comprehensive online video editor with built-in AI tools including automatic subtitle generation, background noise removal, and video object removal.',
     tag: '在線影片編輯',
     tags: ['在線影片編輯', 'AI 字幕', '影片工具'],
+    tagsEn: ['Online Video Editing', 'AI Subtitles', 'Video Tools'],
     url: 'https://www.veed.io/',
     imageUrl: 'https://www.veed.io/images/veed-logo-symbol-black.svg',
     imageAlt: 'Veed.io Logo',
     category: 'video-editing',
     categories: ['video-editing'],
     targetAudience: ['內容創作者', '教育工作者', '小型企業', '社交媒體經理'],
+    targetAudienceEn: ['Content Creators', 'Educators', 'Small Businesses', 'Social Media Managers'],
     userGroups: ['content-creator', 'educator', 'business-professional']
   },
   {
@@ -528,12 +588,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI intelligent editing tool designed specifically for long videos that can automatically identify highlight moments and remove lengthy pauses.',
     tag: '智能剪輯',
     tags: ['智能剪輯', 'AI 影片編輯', '長影片轉短片'],
+    tagsEn: ['Smart Editing', 'AI Video Editing', 'Long to Short Video'],
     url: 'https://www.wisecut.ai/',
     imageUrl: 'https://www.wisecut.ai/static/logo-ddb3c675317a3a99268686a9a08159b9.svg',
     imageAlt: 'Wisecut Logo',
     category: 'video-editing',
     categories: ['video-editing'],
     targetAudience: ['YouTuber', '播客主', '在線課程製作者', '內容創作者'],
+    targetAudienceEn: ['YouTubers', 'Podcasters', 'Online Course Creators', 'Content Creators'],
     userGroups: ['content-creator', 'educator']
   },
   {
@@ -544,12 +606,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A powerful AI video repurposing tool that can automatically edit long videos into multiple viral short clips, whilst scoring them and adding subtitles.',
     tag: '影片再利用',
     tags: ['影片再利用', 'AI 剪輯', '社交媒體影片'],
+    tagsEn: ['Video Repurposing', 'AI Editing', 'Social Media Video'],
     url: 'https://www.opus.pro/',
     imageUrl: 'https://www.opus.pro/images/logo-dark.svg',
     imageAlt: 'Opus Pro Logo',
     category: 'video-editing',
     categories: ['video-editing', 'creative-tools'],
     targetAudience: ['內容創作者', '播客主', '數碼營銷機構', '社交媒體經理'],
+    targetAudienceEn: ['Content Creators', 'Podcasters', 'Digital Marketing Agencies', 'Social Media Managers'],
     userGroups: ['content-creator', 'business-professional', 'media-professional']
   },
   {
@@ -560,12 +624,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A multifunctional tool that combines video and audio editing, uniquely allowing users to edit videos and audio as easily as editing a Word document.',
     tag: '影片編輯',
     tags: ['影片編輯', '播客製作', 'AI 轉錄'],
+    tagsEn: ['Video Editing', 'Podcast Production', 'AI Transcription'],
     url: 'https://www.descript.com/',
     imageUrl: 'https://www.descript.com/home/logo-wordmark-descript-white.svg',
     imageAlt: 'Descript Logo',
     category: 'video-editing',
     categories: ['video-editing', 'music-generation'],
     targetAudience: ['播客主', 'YouTuber', '記者', '內容創作者'],
+    targetAudienceEn: ['Podcasters', 'YouTubers', 'Journalists', 'Content Creators'],
     userGroups: ['content-creator', 'media-professional']
   },
   {
@@ -576,12 +642,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI video creation tool designed specifically for brand marketing, offering rich commercial templates and automated editing features.',
     tag: '營銷影片',
     tags: ['營銷影片', '品牌宣傳', '商業模板'],
+    tagsEn: ['Marketing Videos', 'Brand Promotion', 'Business Templates'],
     url: 'https://animoto.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Animoto Logo',
     category: 'video-editing',
     categories: ['video-editing', 'creative-tools'],
     targetAudience: ['品牌經理', '營銷團隊', '小企業主'],
+    targetAudienceEn: ['Brand Managers', 'Marketing Teams', 'Small Business Owners'],
     userGroups: ['business-professional', 'enterprise-manager']
   },
   {
@@ -592,12 +660,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Microsoft\'s AI video editing tool that integrates powerful AI features to simplify professional video production workflows.',
     tag: 'AI編輯',
     tags: ['AI編輯', '微軟工具', '專業編輯'],
+    tagsEn: ['AI Editing', 'Microsoft Tools', '專業編輯'],
     url: 'https://clipchamp.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Clipchamp Logo',
     category: 'video-editing',
     categories: ['video-editing', 'creative-tools'],
     targetAudience: ['企業用戶', '專業編輯師', '內容團隊'],
+    targetAudienceEn: ['Enterprise Users', 'Professional Editors', 'Content Teams'],
     userGroups: ['enterprise-manager', 'content-creator']
   },
   {
@@ -608,12 +678,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI video editing platform that supports team collaboration, offering intelligent subtitles, background removal, and video enhancement features.',
     tag: '協作編輯',
     tags: ['協作編輯', '團隊工具', 'AI增強'],
+    tagsEn: ['Collaborative Editing', 'Team Tools', 'AI Enhanced'],
     url: 'https://www.kapwing.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Kapwing Logo',
     category: 'video-editing',
     categories: ['video-editing', 'creative-tools'],
     targetAudience: ['設計團隊', '內容團隊', '教育機構'],
+    targetAudienceEn: ['Design Teams', 'Content Teams', 'Educational Institutions'],
     userGroups: ['creative-professional', 'educator']
   },
   {
@@ -624,12 +696,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Easy-to-use AI video creation tool that provides rich templates and intelligent editing features, perfect for rapid content production.',
     tag: '快速製作',
     tags: ['快速製作', '簡單易用', '豐富模板'],
+    tagsEn: ['Quick Production', 'Easy to Use', 'Rich Templates'],
     url: 'https://www.flexclip.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'FlexClip Logo',
     category: 'video-editing',
     categories: ['video-editing', 'creative-tools'],
     targetAudience: ['初學者', '小企業主', '個人創作者'],
+    targetAudienceEn: ['Beginners', 'Small Business Owners', 'Individual Creators'],
     userGroups: ['productivity-user', 'content-creator']
   },
   {
@@ -640,12 +714,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An online platform that integrates screen recording, video editing, and cloud storage. It utilises AI to provide automatic subtitles, video summaries, and intelligent editing features.',
     tag: '屏幕錄製',
     tags: ['屏幕錄製', '雲端存儲', 'AI 影片編輯'],
+    tagsEn: ['Screen Recording', 'Cloud Storage', 'AI Video Editing'],
     url: 'https://reccloud.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'RecCloud Logo',
     category: 'video-editing',
     categories: ['video-editing', 'creative-tools'],
     targetAudience: ['教師', '產品經理', '遊戲玩家', '任何需要錄屏的人'],
+    targetAudienceEn: ['Teachers', 'Product Managers', 'Gamers', 'Anyone Needing Screen Recording'],
     userGroups: ['educator', 'data-analyst', 'productivity-user', 'content-creator']
   },
 
@@ -658,12 +734,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Built-in AI features in Adobe Photoshop, including generative fill, expansion, object removal, and other powerful tools.',
     tag: 'Photoshop AI',
     tags: ['Photoshop AI', '創成式填充', '專業編輯'],
+    tagsEn: ['Photoshop AI', 'Generative Fill', '專業編輯'],
     url: 'https://www.adobe.com/products/photoshop/generative-fill.html',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Photoshop AI Logo',
     category: 'image-editing',
     categories: ['image-editing'],
     targetAudience: ['專業攝影師', '設計師', '修圖師'],
+    targetAudienceEn: ['Professional Photographers', 'Designers', 'Photo Retouchers'],
     userGroups: ['creative-professional']
   },
   {
@@ -674,12 +752,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A very simple and easy-to-use online tool that uses AI technology to automatically remove the background from any image in 5 seconds with precise and fast results.',
     tag: '圖像去背',
     tags: ['圖像去背', 'AI 圖像編輯', '在線工具'],
+    tagsEn: ['Background Removal', 'AI Image Editing', 'Online Tools'],
     url: 'https://www.remove.bg/zh',
     imageUrl: 'https://www.remove.bg/images/logo/remove-bg-logo-white.svg',
     imageAlt: 'remove.bg Logo',
     category: 'image-editing',
     categories: ['image-editing', 'creative-tools'],
     targetAudience: ['設計師', '電商賣家', '社交媒體用戶', '攝影師'],
+    targetAudienceEn: ['Designers', 'E-commerce Sellers', 'Social Media Users', 'Photographers'],
     userGroups: ['creative-professional', 'business-professional', 'productivity-user']
   },
   {
@@ -690,12 +770,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Completely free open-source AI image upscaling tool that can convert low-resolution images to high definition, supporting offline use.',
     tag: '圖像放大',
     tags: ['圖像放大', '免費工具', '開源軟件'],
+    tagsEn: ['Image Upscaling', 'Free Tools', 'Open Source Software'],
     url: 'https://github.com/upscayl/upscayl',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Upscayl Logo',
     category: 'image-editing',
     categories: ['image-editing', 'creative-tools'],
     targetAudience: ['攝影愛好者', '設計師', '普通用戶'],
+    targetAudienceEn: ['Photography Enthusiasts', 'Designers', 'General Users'],
     userGroups: ['creative-professional', 'productivity-user']
   },
   {
@@ -706,12 +788,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Professional online AI image enlargement service that supports lossless enlargement of photos, illustrations, and anime images.',
     tag: '線上放大',
     tags: ['線上放大', '無損放大', '多格式支援'],
+    tagsEn: ['Online Upscaling', 'Lossless Upscaling', 'Multi-format Support'],
     url: 'https://imglarger.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'AI Image Enlarger Logo',
     category: 'image-editing',
     categories: ['image-editing', 'creative-tools'],
     targetAudience: ['攝影師', '電商賣家', '設計師'],
+    targetAudienceEn: ['Photographers', 'E-commerce Sellers', 'Designers'],
     userGroups: ['creative-professional', 'business-professional']
   },
   {
@@ -722,12 +806,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Powerful free online image editor that supports PSD format and can be used without installation.',
     tag: '線上編輯',
     tags: ['線上編輯', '免費工具', 'PSD支援'],
+    tagsEn: ['Online Editing', 'Free Tools', 'PSD Support'],
     url: 'https://www.photopea.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Photopea Logo',
     category: 'image-editing',
     categories: ['image-editing', 'creative-tools'],
     targetAudience: ['學生', '設計師', '預算有限用戶'],
+    targetAudienceEn: ['Students', 'Designers', 'Budget-Conscious Users'],
     userGroups: ['creative-professional', 'productivity-user', 'educator']
   },
   {
@@ -738,12 +824,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Professional AI portrait enhancement tool that provides natural facial adjustments and background editing features.',
     tag: '人像美化',
     tags: ['人像美化', 'AI美顏', '照片修圖'],
+    tagsEn: ['Portrait Enhancement', 'AI Beauty', 'Photo Retouching'],
     url: 'https://www.facetune.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Facetune Logo',
     category: 'image-editing',
     categories: ['image-editing'],
     targetAudience: ['社交媒體用戶', '攝影師', '個人用戶'],
+    targetAudienceEn: ['Social Media Users', 'Photographers', 'Personal Users'],
     userGroups: ['content-creator', 'productivity-user']
   },
   {
@@ -754,12 +842,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI tool specialised in creating transparent background PNG images, suitable for making logos, stickers, and product images.',
     tag: '透明背景',
     tags: ['透明背景', 'PNG製作', '產品圖片'],
+    tagsEn: ['Transparent Background', 'PNG Creation', 'Product Images'],
     url: 'https://pngmaker.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'PNG Maker Logo',
     category: 'image-editing',
     categories: ['image-editing', 'creative-tools'],
     targetAudience: ['電商賣家', '設計師', '營銷人員'],
+    targetAudienceEn: ['E-commerce Sellers', 'Designers', 'Marketing Professionals'],
     userGroups: ['business-professional', 'creative-professional']
   },
   {
@@ -770,12 +860,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A highly popular online design platform offering vast templates and an easy-to-use drag-and-drop interface. Its "Magic Studio" integrates various AI features.',
     tag: '平面設計',
     tags: ['平面設計', '模板', 'AI 設計'],
+    tagsEn: ['Graphic Design', 'Templates', 'AI Design'],
     url: 'https://www.canva.com/',
     imageUrl: 'https://static.canva.com/static/images/canva_logo_wordmark_white_v2.svg',
     imageAlt: 'Canva Logo',
     category: 'image-editing',
     categories: ['image-editing', 'creative-tools'],
     targetAudience: ['所有人', '市場營銷人員', '學生', '小型企業'],
+    targetAudienceEn: ['Everyone', 'Marketing Professionals', 'Students', 'Small Businesses'],
     userGroups: ['creative-professional', 'business-professional', 'educator', 'productivity-user']
   },
 
@@ -788,12 +880,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Intelligent avatar and portrait generation tool that can create realistic AI avatars suitable for various digital application scenarios.',
     tag: 'AI頭像',
     tags: ['AI頭像', '人像生成', '虛擬形象'],
+    tagsEn: ['AI Avatar', 'Portrait Generation', 'Virtual Character'],
     url: 'https://www.headshotpro.com',
     imageUrl: '/aitools/headai.png',
     imageAlt: 'HeadAI Logo',
     category: 'ai-avatar',
     categories: ['ai-avatar', 'ai-drawing'],
     targetAudience: ['社交媒體用戶', '遊戲開發者', '虛擬主播', '數字藝術家', '品牌營銷人員'],
+    targetAudienceEn: ['Social Media Users', 'Game Developers', 'Virtual Streamers', 'Digital Artists', 'Brand Marketers'],
     userGroups: ['creative-professional', 'content-creator', 'business-professional']
   },
   {
@@ -804,12 +898,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A platform for creating and conversing with AI characters, suitable for creative writing and character development.',
     tag: 'AI角色',
     tags: ['AI角色', '創意對話', '角色發展'],
+    tagsEn: ['AI Character', 'Creative Dialogue', 'Character Development'],
     url: 'https://character.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Character.AI Logo',
     category: 'ai-avatar',
     categories: ['ai-avatar', 'ai-assistant'],
     targetAudience: ['創意寫作者', '遊戲開發者', '教育工作者'],
+    targetAudienceEn: ['Creative Writers', 'Game Developers', 'Educators'],
     userGroups: ['content-creator', 'creative-professional', 'educator']
   },
   {
@@ -820,12 +916,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI video production platform tailored for enterprises, supporting automatic generation of animations, live-action videos, and training content.',
     tag: '企業影片',
     tags: ['企業影片', '動畫製作', '培訓內容'],
+    tagsEn: ['Corporate Videos', 'Animation Production', 'Training Content'],
     url: 'https://www.steve.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Steve AI Logo',
     category: 'ai-avatar',
     categories: ['ai-avatar', 'video-generation'],
     targetAudience: ['企業培訓師', 'HR團隊', '公司內訓'],
+    targetAudienceEn: ['Corporate Trainers', 'HR Teams', 'Corporate Training'],
     userGroups: ['enterprise-manager', 'educator']
   },
   {
@@ -836,12 +934,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A creative coding platform launched by Google that combines AI with traditional programming, enabling users to create interactive artworks and innovative applications.',
     tag: '創意編程',
     tags: ['創意編程', 'AI 工具'],
+    tagsEn: ['Creative Coding', 'AI Tools'],
     url: 'https://stitch.google.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Stitch with Google Logo',
     category: 'ai-avatar',
     categories: ['ai-avatar', 'web-development'],
     targetAudience: ['創意技術專家', '互動設計師', '前端開發者'],
+    targetAudienceEn: ['Creative Technologists', 'Interaction Designers', 'Frontend Developers'],
     userGroups: ['tech-developer', 'creative-professional']
   },
   {
@@ -852,12 +952,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A cross-browser JavaScript library and API for creating and displaying animated 3D computer graphics in web browsers.',
     tag: '3D 圖形',
     tags: ['3D 圖形', 'WebGL', 'JavaScript 庫'],
+    tagsEn: ['3D Graphics', 'WebGL', 'JavaScript 庫'],
     url: 'https://threejs.org/',
     imageUrl: 'https://threejs.org/files/logo.svg',
     imageAlt: 'three.js Logo',
     category: 'ai-avatar',
     categories: ['ai-avatar', 'web-development'],
     targetAudience: ['Web 開發者', '創意技術專家', '3D 藝術家', '遊戲開發者'],
+    targetAudienceEn: ['Web Developers', 'Creative Technologists', '3D Artists', 'Game Developers'],
     userGroups: ['tech-developer', 'creative-professional']
   },
   {
@@ -868,12 +970,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI-powered interactive story gaming platform that allows players to create unlimited adventure stories.',
     tag: '互動故事',
     tags: ['互動故事', 'AI遊戲', '創意娛樂'],
+    tagsEn: ['Interactive Stories', 'AI Games', 'Creative Entertainment'],
     url: 'https://aidungeon.io/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'AI Dungeon Logo',
     category: 'ai-avatar',
     categories: ['ai-avatar', 'text-writing'],
     targetAudience: ['遊戲愛好者', '故事創作者', '創意工作者'],
+    targetAudienceEn: ['Gaming Enthusiasts', 'Story Creators', 'Creative Workers'],
     userGroups: ['content-creator', 'creative-professional']
   },
 
@@ -886,12 +990,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An advanced AI voice cloning and generation platform that can produce highly realistic human voices based on small voice samples, supporting multiple languages and emotional expressions.',
     tag: '語音生成',
     tags: ['語音生成', 'AI 語音'],
+    tagsEn: ['Voice Generation', 'AI Voice'],
     url: 'https://elevenlabs.io/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Eleven Labs Logo',
     category: 'music-generation',
     categories: ['music-generation', 'ai-assistant'],
     targetAudience: ['內容創作者', '播客主', '影片製作人'],
+    targetAudienceEn: ['Content Creators', 'Podcasters', 'Video Producers'],
     userGroups: ['content-creator', 'media-professional']
   },
   {
@@ -902,12 +1008,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A versatile AI text-to-speech generator offering numerous natural-sounding voice options, supporting multiple languages and accents.',
     tag: '文本轉語音',
     tags: ['文本轉語音', 'AI 語音', '畫外音'],
+    tagsEn: ['Text to Speech', 'AI Voice', 'Voiceover'],
     url: 'https://murf.ai/',
     imageUrl: 'https://murf.ai/resources/media/murf_logo_white.svg',
     imageAlt: 'Murf.ai Logo',
     category: 'music-generation',
     categories: ['music-generation', 'text-writing'],
     targetAudience: ['影片製作者', '播客主', '產品經理', '教育工作者'],
+    targetAudienceEn: ['影片製作者', 'Podcasters', 'Product Managers', 'Educators'],
     userGroups: ['content-creator', 'media-professional', 'educator', 'data-analyst']
   },
   {
@@ -918,12 +1026,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Powerful text-to-speech tool that supports multiple languages and natural voices, enhancing reading efficiency.',
     tag: '語音閱讀',
     tags: ['語音閱讀', '文字轉語音', '學習工具'],
+    tagsEn: ['Voice Reading', '文字轉語音', 'Learning Tools'],
     url: 'https://speechify.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Speechify Logo',
     category: 'music-generation',
     categories: ['music-generation', 'creative-tools'],
     targetAudience: ['學生', '視障人士', '忙碌專業人士'],
+    targetAudienceEn: ['Students', 'Visually Impaired Users', 'Busy Professionals'],
     userGroups: ['educator', 'productivity-user']
   },
   {
@@ -934,12 +1044,14 @@ const allTools: Tool[] = [
     descriptionEn: 'High-quality AI voice synthesis platform designed specifically for enterprises, providing natural and fluent business-grade voices.',
     tag: '企業語音',
     tags: ['企業語音', 'AI配音', '商業應用'],
+    tagsEn: ['Enterprise Voice', 'AI Voiceover', 'Business Applications'],
     url: 'https://wellsaidlabs.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'WellSaid Labs Logo',
     category: 'music-generation',
     categories: ['music-generation', 'business-analytics'],
     targetAudience: ['企業培訓', '廣告公司', '內容團隊'],
+    targetAudienceEn: ['Corporate Training', 'Advertising Agencies', 'Content Teams'],
     userGroups: ['enterprise-manager', 'business-professional']
   },
   {
@@ -950,12 +1062,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Advanced voice cloning technology that can create personalised AI voice models whilst protecting privacy and security.',
     tag: '語音克隆',
     tags: ['語音克隆', '個性化語音', '隱私保護'],
+    tagsEn: ['Voice Cloning', 'Personalised Voice', 'Privacy Protection'],
     url: 'https://www.resemble.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Resemble AI Logo',
     category: 'music-generation',
     categories: ['music-generation', 'web-development'],
     targetAudience: ['開發者', '內容創作者', '企業'],
+    targetAudienceEn: ['Developers', 'Content Creators', 'Enterprises'],
     userGroups: ['tech-developer', 'content-creator']
   },
   {
@@ -966,12 +1080,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Professional AI audio track separation tool that can precisely separate vocals, instruments, and other elements from music.',
     tag: '音軌分離',
     tags: ['音軌分離', '音頻處理', '音樂製作'],
+    tagsEn: ['Audio Separation', 'Audio Processing', 'Music Production'],
     url: 'https://www.lalal.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'LALAL.AI Logo',
     category: 'music-generation',
     categories: ['music-generation'],
     targetAudience: ['音樂製作人', '音頻工程師', 'DJ'],
+    targetAudienceEn: ['Music Producers', 'Audio Engineers', 'DJs'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -982,12 +1098,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Real-time voice changing tool that provides rich sound effects, perfect for gaming, livestreaming, and content creation.',
     tag: '變聲器',
     tags: ['變聲器', '實時語音', '遊戲工具'],
+    tagsEn: ['Voice Changer', 'Real-time Voice', 'Gaming Tools'],
     url: 'https://www.voicemod.net/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Voicemod Logo',
     category: 'music-generation',
     categories: ['music-generation', 'creative-tools'],
     targetAudience: ['遊戲玩家', '直播主', '內容創作者'],
+    targetAudienceEn: ['Gamers', 'Streamers', 'Content Creators'],
     userGroups: ['content-creator', 'productivity-user']
   },
   {
@@ -998,12 +1116,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Innovative AI music generation tool that can create music works in various styles based on text descriptions.',
     tag: 'AI音樂',
     tags: ['AI音樂', '音樂創作', '創意工具'],
+    tagsEn: ['AI Music', 'Music Creation', 'Creative Tools'],
     url: 'https://www.riffusion.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Riffusion Logo',
     category: 'music-generation',
     categories: ['music-generation', 'creative-tools'],
     targetAudience: ['音樂創作者', '影片製作人', '遊戲開發者'],
+    targetAudienceEn: ['音樂創作者', 'Video Producers', 'Game Developers'],
     userGroups: ['creative-professional', 'content-creator']
   },
   {
@@ -1014,12 +1134,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI background music generation tool designed specifically for content creators, enabling quick creation of royalty-free music.',
     tag: 'AI背景音樂',
     tags: ['AI背景音樂', '免版權音樂', '內容創作'],
+    tagsEn: ['AI Background Music', 'Royalty-Free Music', 'Content Creation'],
     url: 'https://www.ampermusic.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Amper Music Logo',
     category: 'music-generation',
     categories: ['music-generation', 'text-writing'],
     targetAudience: ['YouTuber', '影片製作者', '播客主'],
+    targetAudienceEn: ['YouTubers', '影片製作者', 'Podcasters'],
     userGroups: ['content-creator']
   },
   {
@@ -1030,12 +1152,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI tool designed specifically for podcast and audio creators that can automatically edit audio, removing filler words and stutters to make audio sound more professional and fluent.',
     tag: '音頻編輯',
     tags: ['音頻編輯', '播客工具', '噪音消除'],
+    tagsEn: ['Audio Editing', 'Podcast Tools', 'Noise Reduction'],
     url: 'https://cleanvoice.ai/',
     imageUrl: 'https://cleanvoice.ai/logo.svg',
     imageAlt: 'Cleanvoice.ai Logo',
     category: 'music-generation',
     categories: ['music-generation'],
     targetAudience: ['播客主', '音頻編輯師', '內容創作者', '記者'],
+    targetAudienceEn: ['Podcasters', 'Audio Editors', 'Content Creators', 'Journalists'],
     userGroups: ['content-creator', 'media-professional']
   },
 
@@ -1048,12 +1172,14 @@ const allTools: Tool[] = [
     descriptionEn: 'World-leading AI writing assistant that provides grammar checking, style suggestions, and writing optimisation features.',
     tag: '寫作助手',
     tags: ['寫作助手', '語法檢查', '寫作優化'],
+    tagsEn: ['Writing Assistant', 'Grammar Check', 'Writing Optimisation'],
     url: 'https://www.grammarly.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Grammarly Logo',
     category: 'text-writing',
     categories: ['text-writing', 'creative-tools'],
     targetAudience: ['學生', '專業寫作者', '商業人士'],
+    targetAudienceEn: ['Students', 'Professional Writers', 'Business Professionals'],
     userGroups: ['educator', 'content-creator', 'business-professional']
   },
   {
@@ -1064,12 +1190,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An advanced AI assistant developed by Anthropic, excelling in deep thinking, analysis, and creative writing.',
     tag: 'AI助手',
     tags: ['AI助手', '深度分析', '創意寫作'],
+    tagsEn: ['AI Assistant', 'Deep Analysis', 'Creative Writing'],
     url: 'https://claude.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Claude Logo',
     category: 'text-writing',
     categories: ['text-writing', 'ai-assistant'],
     targetAudience: ['研究人員', '分析師', '寫作者'],
+    targetAudienceEn: ['Researchers', 'Analysts', 'Writers'],
     userGroups: ['data-analyst', 'content-creator', 'educator']
   },
   {
@@ -1080,12 +1208,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Built-in AI assistant in Notion that helps organise ideas, write content, and improve productivity.',
     tag: '智能筆記',
     tags: ['智能筆記', '生產力工具', 'AI助手'],
+    tagsEn: ['Smart Notes', 'Productivity Tools', 'AI Assistant'],
     url: 'https://www.notion.so/product/ai',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Notion AI Logo',
     category: 'text-writing',
     categories: ['text-writing', 'creative-tools'],
     targetAudience: ['知識工作者', '學生', '團隊協作'],
+    targetAudienceEn: ['Knowledge Workers', 'Students', 'Team Collaboration'],
     userGroups: ['productivity-user', 'educator', 'business-professional']
   },
   {
@@ -1096,12 +1226,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Fast AI writing tool that supports multiple content types and writing styles, suitable for bulk content creation.',
     tag: '快速寫作',
     tags: ['快速寫作', '批量創作', '多樣風格'],
+    tagsEn: ['Quick Writing', 'Batch Creation', 'Multiple Styles'],
     url: 'https://rytr.me/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Rytr Logo',
     category: 'text-writing',
     categories: ['text-writing', 'business-analytics'],
     targetAudience: ['內容營銷', '自由撰稿人', '小企業'],
+    targetAudienceEn: ['Content Marketing', 'Freelance Writers', 'Small Businesses'],
     userGroups: ['business-professional', 'content-creator']
   },
   {
@@ -1112,12 +1244,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI tool focused on text rewriting and improvement, making your writing clearer and more persuasive.',
     tag: '文字重寫',
     tags: ['文字重寫', '文字改善', '表達優化'],
+    tagsEn: ['Text Rewriting', 'Text Improvement', 'Expression Optimisation'],
     url: 'https://www.wordtune.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Wordtune Logo',
     category: 'text-writing',
     categories: ['text-writing', 'creative-tools'],
     targetAudience: ['學術寫作', '商業寫作', '英語學習者'],
+    targetAudienceEn: ['Academic Writing', 'Business Writing', 'English Learners'],
     userGroups: ['educator', 'business-professional']
   },
   {
@@ -1128,12 +1262,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Powerful AI text rewriting and synonym replacement tool that helps improve article fluency and originality.',
     tag: 'AI改寫',
     tags: ['AI改寫', '同義詞替換', '原創性檢查'],
+    tagsEn: ['AI Rewriting', 'Synonym Replacement', 'Originality Check'],
     url: 'https://quillbot.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'QuillBot Logo',
     category: 'text-writing',
     categories: ['text-writing', 'creative-tools'],
     targetAudience: ['學生', '研究人員', '寫作者'],
+    targetAudienceEn: ['Students', 'Researchers', 'Writers'],
     userGroups: ['educator', 'content-creator']
   },
   {
@@ -1144,12 +1280,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A powerful AI writing assistant that helps marketers, writers, and entrepreneurs quickly generate high-quality copy, blog posts, social media content, emails, and more.',
     tag: 'AI 寫作',
     tags: ['AI 寫作', '內容生成', '文案工具'],
+    tagsEn: ['AI Writing', 'Content Generation', 'Copywriting Tools'],
     url: 'https://www.jasper.ai/',
     imageUrl: 'https://framerusercontent.com/images/150567P1wX5i2GknaD8s5Gj2E.svg',
     imageAlt: 'Jasper.ai Logo',
     category: 'text-writing',
     categories: ['text-writing', 'business-analytics'],
     targetAudience: ['市場營銷人員', '內容創作者', '企業主'],
+    targetAudienceEn: ['Marketing Professionals', 'Content Creators', 'Business Owners'],
     userGroups: ['business-professional', 'content-creator']
   },
   {
@@ -1160,12 +1298,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI writing platform designed for marketing and sales teams that automatically generates compelling copy, including ads, product descriptions, emails, and social media content.',
     tag: 'AI 寫作',
     tags: ['AI 寫作', '文案生成', '市場營銷'],
+    tagsEn: ['AI Writing', 'Copy Generation', 'Marketing'],
     url: 'https://www.copy.ai/',
     imageUrl: 'https://www.copy.ai/logos/copy-ai-logo-black-512x512.png',
     imageAlt: 'Copy.ai Logo',
     category: 'text-writing',
     categories: ['text-writing', 'business-analytics'],
     targetAudience: ['廣告人員', '電商企業', '社交媒體經理'],
+    targetAudienceEn: ['Advertising Professionals', 'E-commerce Businesses', 'Social Media Managers'],
     userGroups: ['business-professional', 'content-creator']
   },
   {
@@ -1176,12 +1316,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A versatile AI content creation suite offering various tools from article and blog writing, copywriting, to creating copy for Google ads and social media.',
     tag: '內容創作',
     tags: ['內容創作', 'SEO', 'AI 寫作'],
+    tagsEn: ['Content Creation', 'SEO', 'AI Writing'],
     url: 'https://writesonic.com/',
     imageUrl: 'https://d1p3ts03vjwfp6.cloudfront.net/images/writesonic-logo-f-s.svg',
     imageAlt: 'Writesonic Logo',
     category: 'text-writing',
     categories: ['text-writing', 'business-analytics'],
     targetAudience: ['博客作者', '自由撰稿人', '數碼營銷機構'],
+    targetAudienceEn: ['Bloggers', 'Freelance Writers', 'Digital Marketing Agencies'],
     userGroups: ['content-creator', 'business-professional']
   },
   {
@@ -1192,12 +1334,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A tool that utilises AI technology to provide real-time speech-to-text services, accurately transcribing meetings, interviews, and lectures whilst identifying different speakers.',
     tag: '語音轉文字',
     tags: ['語音轉文字', '會議記錄', 'AI 轉錄'],
+    tagsEn: ['Speech to Text', 'Meeting Notes', 'AI Transcription'],
     url: 'https://otter.ai/',
     imageUrl: 'https://otter.ai/images/logomark.svg',
     imageAlt: 'Otter.ai Logo',
     category: 'text-writing',
     categories: ['text-writing', 'creative-tools'],
     targetAudience: ['企業團隊', '記者', '學生', '項目經理'],
+    targetAudienceEn: ['Enterprise Teams', 'Journalists', 'Students', 'Project Managers'],
     userGroups: ['enterprise-manager', 'media-professional', 'educator', 'data-analyst']
   },
   {
@@ -1208,12 +1352,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI meeting assistant that can automatically join your online meetings to record, transcribe, and summarise. It can extract keywords, action items, and meeting highlights.',
     tag: '會議助手',
     tags: ['會議助手', 'AI 轉錄', '任務管理'],
+    tagsEn: ['Meeting Assistant', 'AI Transcription', 'Task Management'],
     url: 'https://fireflies.ai/',
     imageUrl: 'https://fireflies.ai/images/logo-icon.svg',
     imageAlt: 'Fireflies.ai Logo',
     category: 'text-writing',
     categories: ['text-writing', 'creative-tools'],
     targetAudience: ['項目經理', '銷售團隊', '任何需要開會的專業人士', '企業團隊'],
+    targetAudienceEn: ['Project Managers', 'Sales Teams', 'Any Meeting Professionals', 'Enterprise Teams'],
     userGroups: ['data-analyst', 'business-professional', 'enterprise-manager']
   },
   {
@@ -1224,12 +1370,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A high-quality remote audio and video recording platform designed specifically for podcasts and interviews. It records each participant\'s audio and video locally, ensuring studio-quality files.',
     tag: '遠程錄製',
     tags: ['遠程錄製', '播客製作', '高清錄影'],
+    tagsEn: ['Remote Recording', 'Podcast Production', 'HD Recording'],
     url: 'https://riverside.com/',
     imageUrl: 'https://cdn.prod.website-files.com/6294d5053646d6540c11713d/6294d5053646d66e74117163_logo-2-layers.svg',
     imageAlt: 'Riverside Logo',
     category: 'text-writing',
     categories: ['text-writing', 'music-generation'],
     targetAudience: ['播客主', '媒體公司', '企業營銷團隊', '內容創作者'],
+    targetAudienceEn: ['Podcasters', 'Media Companies', 'Corporate Marketing Teams', 'Content Creators'],
     userGroups: ['content-creator', 'media-professional', 'business-professional']
   },
 
@@ -1242,12 +1390,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An innovative tool that utilises AI to quickly generate presentations, documents, and web pages. Users simply provide a topic, and Gamma automatically creates beautifully designed, comprehensive drafts.',
     tag: '演示文稿',
     tags: ['演示文稿', 'AI 生成', '文件設計'],
+    tagsEn: ['Presentations', 'AI Generated', 'Document Design'],
     url: 'https://gamma.app/',
     imageUrl: 'https://gamma.app/gamma-logo.png',
     imageAlt: 'Gamma Logo',
     category: 'presentation-charts',
     categories: ['presentation-charts', 'text-writing'],
     targetAudience: ['顧問', '創始人', '教育工作者', '學生'],
+    targetAudienceEn: ['Consultants', 'Founders', 'Educators', 'Students'],
     userGroups: ['business-professional', 'enterprise-manager', 'educator']
   },
   {
@@ -1258,12 +1408,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A presentation creation tool focused on automated design. It utilises AI to intelligently layout slides for users, ensuring design consistency and aesthetic appeal.',
     tag: '演示文稿',
     tags: ['演示文稿', '智能設計', '簡報製作'],
+    tagsEn: ['Presentations', 'Smart Design', 'Presentation Creation'],
     url: 'https://www.beautiful.ai/',
     imageUrl: 'https://www.beautiful.ai/img/beautiful-ai-logo-2023-white.svg',
     imageAlt: 'Beautiful.ai Logo',
     category: 'presentation-charts',
     categories: ['presentation-charts', 'ai-drawing'],
     targetAudience: ['企業顧問', '銷售人員', '任何需要製作專業簡報的人', '市場營銷人員'],
+    targetAudienceEn: ['Business Consultants', 'Sales Professionals', 'Anyone Needing Professional Presentations', 'Marketing Professionals'],
     userGroups: ['business-professional', 'enterprise-manager']
   },
   {
@@ -1274,12 +1426,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI platform designed specifically for advertisers that can rapidly generate large volumes of high-conversion advertising creatives, including images, copy, and videos.',
     tag: '廣告創意',
     tags: ['廣告創意', 'AI 設計', '市場營銷'],
+    tagsEn: ['Ad Creative', 'AI Design', 'Marketing'],
     url: 'https://www.adcreative.ai/',
     imageUrl: 'https://www.adcreative.ai/assets/img/logo-white.svg',
     imageAlt: 'Adcreative.ai Logo',
     category: 'presentation-charts',
     categories: ['presentation-charts', 'ai-drawing'],
     targetAudience: ['廣告人員', '電商品牌', '數碼營銷機構', '市場營銷人員'],
+    targetAudienceEn: ['Advertising Professionals', 'E-commerce Brands', 'Digital Marketing Agencies', 'Marketing Professionals'],
     userGroups: ['business-professional']
   },
   {
@@ -1290,12 +1444,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI tool specialised in quickly creating social media carousels. Users simply input a topic or text, and AI automatically generates beautifully designed carousel graphics.',
     tag: '社交媒體設計',
     tags: ['社交媒體設計', '輪播圖', 'Instagram 營銷'],
+    tagsEn: ['Social Media Design', 'Carousel', 'Instagram 營銷'],
     url: 'https://www.aicarousels.com/',
     imageUrl: 'https://www.aicarousels.com/logo_light.svg',
     imageAlt: 'aicarousels.com Logo',
     category: 'presentation-charts',
     categories: ['presentation-charts', 'ai-drawing'],
     targetAudience: ['社交媒體經理', '品牌顧問', '內容創作者', '市場營銷人員'],
+    targetAudienceEn: ['Social Media Managers', 'Brand Consultants', 'Content Creators', 'Marketing Professionals'],
     userGroups: ['business-professional', 'content-creator', 'creative-professional']
   },
   {
@@ -1306,12 +1462,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI tool that specialises in helping coaches, consultants, and creators transform their knowledge into high-value lead magnets such as e-books and guides.',
     tag: '潛在客戶開發',
     tags: ['潛在客戶開發', '電子書生成', '市場營銷'],
+    tagsEn: ['Lead Generation', 'eBook Generation', 'Marketing'],
     url: 'https://www.magnetly.co/',
     imageUrl: 'https://uploads-ssl.webflow.com/65267b2be4f0081d6d56b85e/65267d3b519e48604344a8e8_Logo.svg',
     imageAlt: 'Magnetly Logo',
     category: 'presentation-charts',
     categories: ['presentation-charts', 'text-writing'],
     targetAudience: ['教練', '顧問', '課程創作者', '企業家'],
+    targetAudienceEn: ['Coaches', 'Consultants', 'Course Creators', 'Entrepreneurs'],
     userGroups: ['business-professional', 'content-creator', 'enterprise-manager']
   },
 
@@ -1324,12 +1482,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An intelligent data analysis conversation tool where users can ask questions in natural language, and AI automatically analyses data and provides insights, making data analysis more intuitive and accessible.',
     tag: '數據分析',
     tags: ['數據分析', 'AI 數據'],
+    tagsEn: ['Data Analysis', 'AI Data'],
     url: 'https://chat4data.com/',
     imageUrl: '/aitools/chat4data.png',
     imageAlt: 'Chat4Data Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'ai-assistant'],
     targetAudience: ['數據分析師', '商業分析師', '企業決策者'],
+    targetAudienceEn: ['Data Analysts', 'Business Analysts', 'Business Decision Makers'],
     userGroups: ['data-analyst', 'enterprise-manager']
   },
   {
@@ -1340,12 +1500,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Personalised AI memory platform that learns and remembers your preferences, providing more intelligent and thoughtful responses for every conversation.',
     tag: 'AI記憶',
     tags: ['AI記憶', '個人化AI', '智能助手'],
+    tagsEn: ['AI Memory', 'Personalised AI', 'Smart Assistant'],
     url: 'https://mem0.ai/',
     imageUrl: '/aitools/mem0.jpg',
     imageAlt: 'Mem0 Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'ai-assistant'],
     targetAudience: ['內容創作者', 'Blogger', '市場推廣人員', '老師'],
+    targetAudienceEn: ['Content Creators', 'Bloggers', 'Marketing Professionals', 'Teachers'],
     userGroups: ['content-creator', 'business-professional', 'educator']
   },
   {
@@ -1356,12 +1518,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI features in Tableau that automate data analysis and provide intelligent visualisation recommendations.',
     tag: '數據可視化',
     tags: ['數據可視化', '智能分析', 'BI工具'],
+    tagsEn: ['Data Visualisation', 'Smart Analytics', 'BI Tools'],
     url: 'https://www.tableau.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Tableau Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'creative-tools'],
     targetAudience: ['數據分析師', '商業智能', '決策者'],
+    targetAudienceEn: ['Data Analysts', 'Business Intelligence', 'Decision Makers'],
     userGroups: ['data-analyst', 'enterprise-manager']
   },
   {
@@ -1372,12 +1536,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI features in Microsoft Power BI that provide automated insights and predictive analytics.',
     tag: '商業智能',
     tags: ['商業智能', '預測分析', '自動洞察'],
+    tagsEn: ['Business Intelligence', 'Predictive Analytics', 'Automated Insights'],
     url: 'https://powerbi.microsoft.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Power BI Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'creative-tools'],
     targetAudience: ['企業分析師', '財務團隊', '管理層'],
+    targetAudienceEn: ['Enterprise Analysts', 'Finance Teams', 'Management'],
     userGroups: ['data-analyst', 'enterprise-manager']
   },
   {
@@ -1388,12 +1554,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Unified big data and machine learning platform that supports enterprise-level AI application development.',
     tag: '大數據AI',
     tags: ['大數據', '機器學習', '企業AI'],
+    tagsEn: ['Big Data', 'Machine Learning', 'Enterprise AI'],
     url: 'https://www.databricks.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Databricks Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'web-development'],
     targetAudience: ['數據科學家', 'ML工程師', '企業AI團隊'],
+    targetAudienceEn: ['Data Scientists', 'ML Engineers', 'Enterprise AI Teams'],
     userGroups: ['data-analyst', 'tech-developer']
   },
   {
@@ -1404,12 +1572,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI features in Google Analytics that provide intelligent insights and predictive analytics.',
     tag: '網站分析',
     tags: ['網站分析', '智能洞察', '預測分析'],
+    tagsEn: ['Website Analytics', 'Smart Insights', 'Predictive Analytics'],
     url: 'https://analytics.google.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Google Analytics Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'creative-tools'],
     targetAudience: ['數字營銷', '網站管理', '電商分析'],
+    targetAudienceEn: ['Digital Marketing', 'Website Management', 'E-commerce Analytics'],
     userGroups: ['data-analyst', 'business-professional']
   },
   {
@@ -1420,12 +1590,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI-powered tool for website SEO (Search Engine Optimisation) analysis. It can audit website technical issues, keyword rankings, and content quality.',
     tag: 'SEO',
     tags: ['SEO', '網站分析', '搜索引擎優化'],
+    tagsEn: ['SEO', 'Website Analytics', 'Search Engine Optimisation'],
     url: 'https://seobotai.com/',
     imageUrl: 'https://seobotai.com/wp-content/uploads/2023/12/logo-light-1.svg',
     imageAlt: 'SEOBOT.ai Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'web-development'],
     targetAudience: ['SEO 專業人員', '網站管理員', '數碼營銷人員', '企業主'],
+    targetAudienceEn: ['SEO Professionals', 'Website Administrators', 'Digital Marketing Professionals', 'Business Owners'],
     userGroups: ['data-analyst', 'business-professional', 'tech-developer', 'enterprise-manager']
   },
   {
@@ -1436,12 +1608,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A comprehensive Customer Relationship Management (CRM) platform that integrates marketing, sales, customer service, and content management software. Its AI features (like ChatSpot) assist with task automation and data analysis.',
     tag: 'CRM',
     tags: ['CRM', '市場營銷自動化', '銷售工具'],
+    tagsEn: ['CRM', 'Marketing Automation', 'Sales Tools'],
     url: 'https://www.hubspot.com/',
     imageUrl: 'https://www.hubspot.com/hubfs/UI%20Extensions/hubspot-logo-color.svg',
     imageAlt: 'HubSpot Logo',
     category: 'business-analytics',
     categories: ['business-analytics', 'creative-tools'],
     targetAudience: ['企業', '市場營銷團隊', '銷售人員'],
+    targetAudienceEn: ['Enterprises', 'Marketing Teams', 'Sales Professionals'],
     userGroups: ['enterprise-manager', 'business-professional']
   },
 
@@ -1454,12 +1628,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An advanced AI-driven cybersecurity tool specifically designed for detecting and analysing Advanced Persistent Threats (APT), providing comprehensive network security protection for enterprises.',
     tag: '網絡保安',
     tags: ['網絡保安', 'AI 安全'],
+    tagsEn: ['Cybersecurity', 'AI Security'],
     url: 'https://apt2.seaweedfs.com/',
     imageUrl: '/aitools/seaweed.png',
     imageAlt: 'Seaweed APT2 Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
     targetAudience: ['網絡保安專家', 'IT 管理員', '企業安全團隊'],
+    targetAudienceEn: ['Cybersecurity Experts', 'IT Administrators', 'Enterprise Security Teams'],
     userGroups: ['tech-developer', 'enterprise-manager']
   },
   {
@@ -1470,12 +1646,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An experimental platform designed for machine learning researchers and developers, providing the latest ML models and tools, supporting rapid prototyping and experimentation.',
     tag: '機器學習',
     tags: ['機器學習', 'AI 開發'],
+    tagsEn: ['Machine Learning', 'AI Development'],
     url: 'https://unstable.ml/',
     imageUrl: '/aitools/UnstableML.png',
     imageAlt: 'Unstable ML Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
     targetAudience: ['ML 研究者', 'AI 工程師', '數據科學家'],
+    targetAudienceEn: ['ML Researchers', 'AI Engineers', 'Data Scientists'],
     userGroups: ['tech-developer', 'data-analyst']
   },
   {
@@ -1486,12 +1664,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An official OpenAI API usage guide and example collection, providing numerous practical code examples and tutorials to help developers quickly get started with AI application development.',
     tag: 'AI 開發',
     tags: ['AI 開發', '開發工具'],
+    tagsEn: ['AI Development', 'Development Tools'],
     url: 'https://cookbook.openai.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'OpenAI Cookbook Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
     targetAudience: ['AI 開發者', '軟體工程師', '數據科學家'],
+    targetAudienceEn: ['AI Developers', 'Software Engineers', 'Data Scientists'],
     userGroups: ['tech-developer', 'data-analyst']
   },
   {
@@ -1502,12 +1682,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Powerful AI background noise cancellation tool that makes online meetings and recordings clearer and more professional.',
     tag: 'AI降噪',
     tags: ['AI降噪', '會議工具', '音頻清理'],
+    tagsEn: ['AI Noise Reduction', 'Meeting Tools', 'Audio Cleanup'],
     url: 'https://krisp.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Krisp Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'music-generation'],
     targetAudience: ['遠程工作者', '播客主', '企業用戶'],
+    targetAudienceEn: ['Remote Workers', 'Podcasters', 'Enterprise Users'],
     userGroups: ['enterprise-manager', 'productivity-user']
   },
   {
@@ -1518,12 +1700,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A powerful browser automation tool that uses AI to help you automate repetitive manual tasks. Create workflows without any programming required.',
     tag: '工作流程自動化',
     tags: ['工作流程自動化', '效率工具', '數據抓取'],
+    tagsEn: ['Workflow Automation', 'Efficiency Tools', 'Data Scraping'],
     url: 'https://www.bardeen.ai/',
     imageUrl: 'https://www.bardeen.ai/images/logos/bardeen-logo-with-text-white.svg',
     imageAlt: 'Bardeen Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
     targetAudience: ['創始人', '營銷人員', '任何希望提高生產力的人', '小型企業主'],
+    targetAudienceEn: ['Founders', 'Marketing Professionals', 'Anyone Seeking Productivity', 'Small Business Owners'],
     userGroups: ['business-professional', 'productivity-user', 'enterprise-manager']
   },
   {
@@ -1534,12 +1718,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Leading online automation tool that can connect thousands of different applications to work together. Users can create "Zaps" to automate workflows.',
     tag: '自動化',
     tags: ['自動化', '應用集成', '工作流程'],
+    tagsEn: ['Automation', 'App Integration', 'Workflow'],
     url: 'https://zapier.com/',
     imageUrl: 'https://zapier.com/cdn/images/logo-zapier-white-fill.svg',
     imageAlt: 'Zapier Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
     targetAudience: ['企業', '營銷團隊', '任何使用多個網絡應用程式的人', '項目經理'],
+    targetAudienceEn: ['Enterprises', 'Marketing Teams', 'Anyone Using Multiple Web Apps', 'Project Managers'],
     userGroups: ['business-professional', 'data-analyst', 'productivity-user', 'enterprise-manager']
   },
   {
@@ -1550,12 +1736,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI website building platform that claims to generate a complete website with copy, images, and contact forms for any business within 30 seconds.',
     tag: '網站建設',
     tags: ['網站建設', 'AI 建站', '小型企業'],
+    tagsEn: ['Website Building', 'AI Website Builder', 'Small Business'],
     url: 'https://durable.co/',
     imageUrl: 'https://durable.co/assets/logo-light-682ac159.svg',
     imageAlt: 'Durable Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'web-development'],
     targetAudience: ['小型企業主', '自由職業者', '創業者', '任何需要快速建站的人'],
+    targetAudienceEn: ['Small Business Owners', 'Freelancers', 'Entrepreneurs', 'Anyone Needing Quick Websites'],
     userGroups: ['enterprise-manager', 'business-professional', 'productivity-user']
   },
   {
@@ -1566,12 +1754,14 @@ const allTools: Tool[] = [
     descriptionEn: 'An AI tool specifically designed for LinkedIn content creation and growth. It helps users find trending topics, write posts, and schedule publication times.',
     tag: 'LinkedIn',
     tags: ['LinkedIn', '社交媒體管理', '個人品牌'],
+    tagsEn: ['LinkedIn', 'Social Media Management', 'Personal Branding'],
     url: 'https://taplio.com/',
     imageUrl: 'https://taplio.com/logo-light.svg',
     imageAlt: 'Taplio Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'text-writing'],
     targetAudience: ['企業家', '顧問', '尋求職業發展的專業人士', '銷售人員'],
+    targetAudienceEn: ['Entrepreneurs', 'Consultants', 'Career Development Professionals', 'Sales Professionals'],
     userGroups: ['business-professional', 'enterprise-manager']
   },
   {
@@ -1582,12 +1772,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A growth tool designed specifically for Twitter (X), providing AI writing, post scheduling, automated interactions, and inspiration library features.',
     tag: 'Twitter (X)',
     tags: ['Twitter (X)', '社交媒體增長', '內容創作'],
+    tagsEn: ['Twitter (X)', 'Social Media Growth', 'Content Creation'],
     url: 'https://tweethunter.io/',
     imageUrl: 'https://tweethunter.io/logo-light.svg',
     imageAlt: 'Tweet Hunter Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'text-writing'],
     targetAudience: ['Twitter (X) 創作者', '創始人', '數碼營銷人員', '內容創作者'],
+    targetAudienceEn: ['Twitter (X) Creators', 'Founders', 'Digital Marketing Professionals', 'Content Creators'],
     userGroups: ['content-creator', 'business-professional']
   },
   {
@@ -1598,12 +1790,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A work management platform with integrated AI features that automates project tracking and team collaboration.',
     tag: '工作管理',
     tags: ['工作管理', '項目追蹤', '團隊協作'],
+    tagsEn: ['Work Management', 'Project Tracking', 'Team Collaboration'],
     url: 'https://monday.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Monday.com Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'business-analytics'],
     targetAudience: ['項目經理', '團隊領導', '企業管理'],
+    targetAudienceEn: ['Project Managers', 'Team Leaders', 'Enterprise Management'],
     userGroups: ['enterprise-manager', 'data-analyst']
   },
   {
@@ -1614,12 +1808,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI features in Salesforce that provide intelligent sales forecasting, customer insights, and automated marketing.',
     tag: 'CRM AI',
     tags: ['CRM AI', '銷售預測', '客戶洞察'],
+    tagsEn: ['CRM AI', 'Sales Forecasting', 'Customer Insights'],
     url: 'https://www.salesforce.com/products/einstein/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Salesforce Einstein Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'business-analytics'],
     targetAudience: ['銷售團隊', 'CRM管理員', '營銷人員'],
+    targetAudienceEn: ['Sales Teams', 'CRM Administrators', 'Marketing Professionals'],
     userGroups: ['business-professional', 'data-analyst']
   },
   {
@@ -1630,12 +1826,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI features in Mailchimp that optimise email content, sending times, and customer segmentation.',
     tag: '郵件營銷',
     tags: ['郵件營銷', '客戶細分', '內容優化'],
+    tagsEn: ['Email Marketing', 'Customer Segmentation', 'Content Optimisation'],
     url: 'https://mailchimp.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Mailchimp Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'business-analytics'],
     targetAudience: ['數字營銷人員', '小企業主', '電商'],
+    targetAudienceEn: ['Digital Marketing Professionals', 'Small Business Owners', 'E-commerce'],
     userGroups: ['business-professional', 'enterprise-manager']
   },
   {
@@ -1646,12 +1844,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI-integrated social media management platform that optimises posting times and content strategies.',
     tag: '社交媒體',
     tags: ['社交媒體', '內容策略', '發布優化'],
+    tagsEn: ['Social Media', 'Content Strategy', 'Publishing Optimisation'],
     url: 'https://www.hootsuite.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Hootsuite Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'text-writing'],
     targetAudience: ['社交媒體經理', '品牌營銷', '代理商'],
+    targetAudienceEn: ['Social Media Managers', 'Brand Marketing', 'Agencies'],
     userGroups: ['business-professional', 'content-creator']
   },
   {
@@ -1662,12 +1862,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI marketing platform designed specifically for e-commerce, providing personalised recommendations and customer behaviour analysis.',
     tag: '電商營銷',
     tags: ['電商營銷', '個性化推薦', '行為分析'],
+    tagsEn: ['電商營銷', '個性化推薦', '行為分析'],
     url: 'https://www.klaviyo.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Klaviyo Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'business-analytics'],
     targetAudience: ['電商企業', '營銷人員', '數據分析師'],
+    targetAudienceEn: ['E-commerce Businesses', 'Marketing Professionals', 'Data Analysts'],
     userGroups: ['business-professional', 'data-analyst']
   },
   {
@@ -1678,12 +1880,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI-integrated form building platform that provides intelligent question recommendations and data insights.',
     tag: '智能表單',
     tags: ['智能表單', '數據收集', '用戶洞察'],
+    tagsEn: ['智能表單', '數據收集', '用戶洞察'],
     url: 'https://www.typeform.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Typeform Logo',
     category: 'creative-tools',
     categories: ['creative-tools', 'business-analytics'],
     targetAudience: ['市場研究', '產品經理', '用戶體驗'],
+    targetAudienceEn: ['市場研究', 'Product Managers', '用戶體驗'],
     userGroups: ['data-analyst', 'business-professional']
   },
 
@@ -1696,12 +1900,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A platform that allows non-developers to easily build and deploy their own GPT-powered chatbots. It provides a no-code interface.',
     tag: '聊天機械人',
     tags: ['聊天機械人', '無代碼', 'GPT'],
+    tagsEn: ['聊天機械人', '無代碼', 'GPT'],
     url: 'https://chipp.ai/',
     imageUrl: 'https://uploads-ssl.webflow.com/642f3a6a12b86e06b325251a/642f4007b036f634515152fa_Logo-White.svg',
     imageAlt: 'Chipp.ai Logo',
     category: 'ai-assistant',
     categories: ['ai-assistant', 'web-development'],
     targetAudience: ['創業者', '產品經理', '希望使用 AI 的小型企業', '客服團隊'],
+    targetAudienceEn: ['Entrepreneurs', 'Product Managers', '希望使用 AI 的小型企業', '客服團隊'],
     userGroups: ['enterprise-manager', 'data-analyst', 'business-professional']
   },
   {
@@ -1712,12 +1918,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI-driven conversational marketing platform that automates customer interactions and lead generation.',
     tag: '對話營銷',
     tags: ['對話營銷', '客戶互動', '潛客開發'],
+    tagsEn: ['對話營銷', '客戶互動', '潛客開發'],
     url: 'https://www.drift.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Drift Logo',
     category: 'ai-assistant',
     categories: ['ai-assistant', 'business-analytics'],
     targetAudience: ['銷售團隊', '營銷人員', '客服團隊'],
+    targetAudienceEn: ['Sales Teams', 'Marketing Professionals', '客服團隊'],
     userGroups: ['business-professional']
   },
   {
@@ -1728,12 +1936,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Intelligent customer service platform that provides AI chatbots and automated customer support.',
     tag: '客服AI',
     tags: ['客服AI', '聊天機器人', '客戶支持'],
+    tagsEn: ['客服AI', '聊天機器人', '客戶支持'],
     url: 'https://www.intercom.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Intercom Logo',
     category: 'ai-assistant',
     categories: ['ai-assistant', 'business-analytics'],
     targetAudience: ['客服團隊', '企業支持', 'SaaS公司'],
+    targetAudienceEn: ['客服團隊', '企業支持', 'SaaS公司'],
     userGroups: ['enterprise-manager', 'business-professional']
   },
   {
@@ -1744,12 +1954,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Next-generation AI search engine that provides real-time information search and intelligent Q&A functionality, combining search and conversational capabilities.',
     tag: 'AI搜索',
     tags: ['AI搜索', '智能問答', '實時信息'],
+    tagsEn: ['AI搜索', '智能問答', '實時信息'],
     url: 'https://www.perplexity.ai/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Perplexity AI Logo',
     category: 'ai-assistant',
     categories: ['ai-assistant', 'creative-tools'],
     targetAudience: ['研究人員', '學生', '知識工作者', '任何需要快速獲取信息的人'],
+    targetAudienceEn: ['Researchers', 'Students', 'Knowledge Workers', '任何需要快速獲取信息的人'],
     userGroups: ['educator', 'data-analyst', 'productivity-user']
   },
   {
@@ -1760,12 +1972,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI search engine designed specifically for developers that can understand programming questions and provide accurate code solutions.',
     tag: '開發者搜索',
     tags: ['開發者搜索', 'AI編程', '代碼解決方案'],
+    tagsEn: ['開發者搜索', 'AI編程', '代碼解決方案'],
     url: 'https://www.phind.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Phind Logo',
     category: 'ai-assistant',
     categories: ['ai-assistant', 'web-development'],
     targetAudience: ['軟件開發者', '程序員', '技術學習者', 'AI工程師'],
+    targetAudienceEn: ['軟件開發者', '程序員', '技術學習者', 'AI工程師'],
     userGroups: ['tech-developer']
   },
 
@@ -1778,12 +1992,14 @@ const allTools: Tool[] = [
     descriptionEn: 'A code editor designed specifically for AI collaboration. It deeply integrates AI features to help developers write, understand, and refactor code more quickly.',
     tag: '代碼編輯器',
     tags: ['代碼編輯器', 'AI 編程', '開發工具'],
+    tagsEn: ['代碼編輯器', 'AI 編程', 'Development Tools'],
     url: 'https://cursor.com/cn',
     imageUrl: 'https://cursor.com/brand/logo-white.svg',
     imageAlt: 'Cursor Logo',
     category: 'web-development',
     categories: ['web-development'],
     targetAudience: ['軟件開發者', '程序員', 'AI 工程師', '技術團隊'],
+    targetAudienceEn: ['軟件開發者', '程序員', 'AI Engineers', '技術團隊'],
     userGroups: ['tech-developer']
   },
   {
@@ -1794,12 +2010,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI programming assistant developed through collaboration between GitHub and OpenAI, providing intelligent code completion and suggestions.',
     tag: 'AI編程',
     tags: ['AI編程', '代碼完成', '程式助手'],
+    tagsEn: ['AI編程', '代碼完成', '程式助手'],
     url: 'https://github.com/features/copilot',
     imageUrl: '/placeholder.svg',
     imageAlt: 'GitHub Copilot Logo',
     category: 'web-development',
     categories: ['web-development'],
     targetAudience: ['軟體開發者', '程式設計師', '技術團隊'],
+    targetAudienceEn: ['軟體開發者', '程式設計師', '技術團隊'],
     userGroups: ['tech-developer']
   },
   {
@@ -1810,12 +2028,14 @@ const allTools: Tool[] = [
     descriptionEn: 'Advanced AI code autocompletion tool that supports multiple programming languages and IDE integration.',
     tag: '代碼完成',
     tags: ['代碼完成', 'IDE整合', '多語言支援'],
+    tagsEn: ['代碼完成', 'IDE整合', '多語言支援'],
     url: 'https://www.tabnine.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Tabnine Logo',
     category: 'web-development',
     categories: ['web-development'],
     targetAudience: ['開發者', '程式設計師', '軟體工程師'],
+    targetAudienceEn: ['Developers', '程式設計師', 'Software Engineers'],
     userGroups: ['tech-developer']
   },
   {
@@ -1826,12 +2046,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI-integrated cloud development environment that provides intelligent programming assistance and automated deployment.',
     tag: '雲端編程',
     tags: ['雲端編程', '智能輔助', '自動部署'],
+    tagsEn: ['雲端編程', '智能輔助', '自動部署'],
     url: 'https://replit.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Replit Logo',
     category: 'web-development',
     categories: ['web-development'],
     targetAudience: ['學生開發者', '原型設計', '快速開發'],
+    targetAudienceEn: ['學生開發者', '原型設計', '快速開發'],
     userGroups: ['tech-developer', 'educator']
   },
   {
@@ -1842,12 +2064,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI features in Postman that automate API testing and documentation generation.',
     tag: 'API測試',
     tags: ['API測試', '自動化測試', '文檔生成'],
+    tagsEn: ['API測試', '自動化測試', '文檔生成'],
     url: 'https://www.postman.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Postman Logo',
     category: 'web-development',
     categories: ['web-development', 'business-analytics'],
     targetAudience: ['後端開發者', 'API開發', '測試工程師'],
+    targetAudienceEn: ['後端開發者', 'API開發', '測試工程師'],
     userGroups: ['tech-developer']
   },
   {
@@ -1858,12 +2082,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI project management tool designed for development teams, automating workflows and issue tracking.',
     tag: '項目管理',
     tags: ['項目管理', '工作流程', '問題追蹤'],
+    tagsEn: ['項目管理', 'Workflow', '問題追蹤'],
     url: 'https://linear.app/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Linear Logo',
     category: 'web-development',
     categories: ['web-development', 'creative-tools'],
     targetAudience: ['開發團隊', '產品經理', '技術領導'],
+    targetAudienceEn: ['開發團隊', 'Product Managers', '技術領導'],
     userGroups: ['tech-developer', 'data-analyst']
   },
   {
@@ -1874,12 +2100,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI-integrated low-code development platform for rapidly building internal tools and applications.',
     tag: '低代碼',
     tags: ['低代碼', '快速開發', '內部工具'],
+    tagsEn: ['低代碼', '快速開發', '內部工具'],
     url: 'https://retool.com/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'Retool Logo',
     category: 'web-development',
     categories: ['web-development', 'creative-tools'],
     targetAudience: ['企業開發', '內部工具', '快速原型'],
+    targetAudienceEn: ['企業開發', '內部工具', '快速原型'],
     userGroups: ['tech-developer', 'enterprise-manager']
   },
   {
@@ -1890,12 +2118,14 @@ const allTools: Tool[] = [
     descriptionEn: 'AI interface generation tool by Vercel that can quickly generate React components and web interface code based on text descriptions.',
     tag: 'AI界面生成',
     tags: ['AI界面生成', 'React組件', '前端開發'],
+    tagsEn: ['AI界面生成', 'React組件', '前端開發'],
     url: 'https://v0.dev/',
     imageUrl: '/placeholder.svg',
     imageAlt: 'V0 by Vercel Logo',
     category: 'web-development',
     categories: ['web-development', 'ai-drawing'],
     targetAudience: ['前端開發者', 'UI開發者', '全棧開發者', '設計師'],
+    targetAudienceEn: ['Frontend Developers', 'UI開發者', '全棧開發者', 'Designers'],
     userGroups: ['tech-developer', 'creative-professional']
   }
 ];

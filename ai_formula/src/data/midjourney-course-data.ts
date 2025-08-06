@@ -9,13 +9,13 @@ import { CourseData } from '@/components/course-template/types';
 
 export const midjourneyCourseData: CourseData = {
   courseInfo: {
-    title: 'Midjourney 權威指南：從入門到精通的終極課程',
+    title: 'Midjourney: The Definitive Guide from Beginner to Expert',
     titleEn: 'Midjourney: The Definitive Guide from Beginner to Expert',
-    subtitle: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
+    subtitle: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
     subtitleEn: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
-    description: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
+    description: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
     descriptionEn: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
-    duration: '7+ 小時',
+    duration: '7+ Hours',
     durationEn: '7+ Hours',
     level: 'beginner_to_advanced',
     levelEn: 'Beginner to Advanced',
@@ -23,7 +23,7 @@ export const midjourneyCourseData: CourseData = {
     totalHours: 7.5,
     instructor: 'AI Formula Team',
     instructorEn: 'AI Formula Team',
-    instructorTitle: 'AI 藝術創作專家',
+    instructorTitle: 'AI Art Creation Experts',
     instructorTitleEn: 'AI Art Creation Experts',
     language: 'zh-HK',
     tags: ['Midjourney', 'AI Art', 'Digital Creation', 'Prompt Engineering'],
