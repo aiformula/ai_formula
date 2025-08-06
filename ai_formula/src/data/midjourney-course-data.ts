@@ -2,7 +2,7 @@
  * Midjourney 權威指南：從入門到精通的終極課程
  * @description 完整的 Midjourney AI 藝術創作課程資料
  * @author AI Formula Team
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 import { CourseData } from '@/components/course-template/types';
@@ -10,11 +10,11 @@ import { CourseData } from '@/components/course-template/types';
 export const midjourneyCourseData: CourseData = {
   courseInfo: {
     title: 'Midjourney 權威指南：從入門到精通的終極課程',
-    titleEn: 'Midjourney Authoritative Guide: The Ultimate Course from Beginner to Expert',
+    titleEn: 'Midjourney: The Definitive Guide from Beginner to Expert',
     subtitle: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
-    subtitleEn: 'Beyond basic operations, from dual-platform features to advanced creative techniques, master the powerful tools for AI art creation',
+    subtitleEn: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
     description: '超越基本操作，從雙平台特性到進階創作技巧，掌握AI藝術創作的強大工具',
-    descriptionEn: 'Beyond basic operations, from dual-platform features to advanced creative techniques, master the powerful tools for AI art creation',
+    descriptionEn: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
     duration: '7+ 小時',
     durationEn: '7+ Hours',
     level: 'beginner_to_advanced',
@@ -34,7 +34,7 @@ export const midjourneyCourseData: CourseData = {
       '對 AI 藝術創作的興趣'
     ],
     prerequisitesEn: [
-      'Basic computer operation skills',
+      'Basic computer literacy',
       'Discord account (or willingness to register)',
       'Interest in AI art creation'
     ],
@@ -45,7 +45,7 @@ export const midjourneyCourseData: CourseData = {
       '建立專業級的創作工作流程'
     ],
     learningOutcomesEn: [
-      'Master dual-platform operations of Midjourney',
+      'Master dual-platform operations in Midjourney',
       'Become proficient in prompt engineering and advanced syntax',
       'Master character consistency and style control',
       'Establish professional-level creative workflows'
@@ -67,27 +67,27 @@ export const midjourneyCourseData: CourseData = {
     'Beginners who wish to learn AI art creation',
     'Designers seeking to enhance creative efficiency',
     'Creative professionals interested in AI tools',
-    'Content creators who require high-quality visual content'
+    'Content creators requiring high-quality visual content'
   ],
   courseModules: [
     {
       id: 1,
       title: '第一章：Midjourney 基礎概念與準備',
-      titleEn: 'Chapter 1: Midjourney Basic Concepts and Preparation',
+      titleEn: 'Chapter 1: Midjourney Fundamental Concepts and Preparation',
       description: '為初學者奠定堅實的基礎，超越基本操作，從一開始就介紹 Midjourney 的雙平台特性（網站與 Discord），並優先建立私人伺服器。這個關鍵步驟能夠顯著改善學習體驗，為學員的創作旅程掃除初期障礙。',
-      descriptionEn: 'Establish a solid foundation for beginners, transcend basic operations, introduce Midjourney\'s dual-platform features (website and Discord) from the outset, and prioritise establishing a private server. This crucial step can significantly enhance the learning experience whilst removing initial barriers to students\' creative journeys.',
+      descriptionEn: 'Establish a solid foundation for beginners, transcending basic operations whilst introducing Midjourney\'s dual-platform features (website and Discord) from the outset. Prioritise establishing a private server—this crucial step significantly enhances the learning experience and removes initial barriers to students\' creative journeys.',
       duration: '90 分鐘',
       durationEn: '90 Minutes',
       lessons: [
         {
           id: 1,
           title: '1.1 Midjourney 是什麼？重新定義「繪畫」',
-          titleEn: '1.1 What is Midjourney? Redefining "Drawing"',
+          titleEn: '1.1 What is Midjourney? Redefining \'Drawing\'',
           duration: '15 分鐘',
           durationEn: '15 Minutes',
           type: 'interactive' as const,
           description: '深入了解 Midjourney 的核心概念、工作原理和在 AI 藝術領域的獨特定位',
-          descriptionEn: 'Acquire an in-depth understanding of Midjourney\'s core concepts, operational principles, and unique position within the AI art field',
+          descriptionEn: 'Acquire a comprehensive understanding of Midjourney\'s core concepts, operational principles, and unique position within the AI art field',
           image: '/images/courses/midjourney-course/unit-images/midjourney-intro.png',
           imageAlt: 'Midjourney AI 藝術創作概念圖',
           imageAltEn: 'Midjourney AI art creation concept diagram',
@@ -96,16 +96,16 @@ export const midjourneyCourseData: CourseData = {
 這個過程不再是傳統意義上的「繪畫」，而是一種全新的創作方式，使用者扮演的角色更像一位導演或概念藝術家，用語言指導一位才華橫溢但沒有實體的 AI 畫家。這種人機協作的模式，正在重新定義我們對創意同藝術表達的理解。
 
 Midjourney 的核心優勢在於其強大的風格多樣性和細節表現力。它能夠模擬各種藝術風格，從古典油畫到現代數位藝術，從攝影寫實到抽象表現主義。更重要的是，它理解創意語言，能夠將模糊的創意想法轉化為具體的視覺呈現。`,
-          transcriptEn: `Midjourney is an independent research laboratory dedicated to exploring new mediums of thought and expanding the imaginative powers of the human species. Put simply, it is a leading 'text-to-image' artificial intelligence generator. Users input natural language descriptions, so-called 'prompts', and the AI transforms these textual concepts into unique, high-quality images.
+          transcriptEn: `Midjourney is an independent research laboratory dedicated to exploring new mediums of thought and expanding the imaginative powers of the human species. Put simply, it is a leading 'text-to-image' artificial intelligence generator. Users input natural language descriptions—so-called 'prompts'—and the AI transforms these textual concepts into unique, high-quality images.
 
-This process is no longer 'drawing' in the traditional sense, but rather a completely new way of creating. The user plays a role more akin to a director or concept artist, using language to guide a talented but incorporeal AI painter. This human-machine collaborative model is redefining our understanding of creativity and artistic expression.
+This process is no longer 'drawing' in the traditional sense, but rather a completely new method of creation. The user's role is more akin to that of a director or concept artist, using language to guide a talented yet incorporeal AI painter. This model of human-machine collaboration is redefining our understanding of creativity and artistic expression.
 
-Midjourney's core advantage lies in its powerful stylistic diversity and detailed expressiveness. It can simulate various artistic styles, from classical oil paintings to modern digital art, from photographic realism to abstract expressionism. More importantly, it understands creative language and can transform vague creative ideas into concrete visual presentations.`,
+Midjourney's core strength lies in its powerful diversity of styles and detailed expressiveness. It can simulate various artistic styles, from classical oil paintings to modern digital art, and from photographic realism to abstract expressionism. More importantly, it understands creative language, enabling it to transform vague creative ideas into concrete visual presentations.`,
           keyPoints: [
-            'Midjourney is a leading \'text-to-image\' AI generator',
-            'Users collaborate with AI through \'prompts\'',
-            'Redefines the traditional concept of \'drawing\'',
-            'Possesses powerful stylistic diversity and detailed expressiveness'
+            'Midjourney 是領先的「文本到圖像」AI 生成器',
+            '使用者透過「提示詞」與 AI 進行創作協作',
+            '重新定義了傳統的「繪畫」概念',
+            '具備強大的風格多樣性和細節表現力'
           ],
           keyPointsEn: [
             'Midjourney is a leading \'text-to-image\' AI generator',
