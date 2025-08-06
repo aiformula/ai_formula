@@ -66,6 +66,18 @@ const CourseQuizTemplate: React.FC<CourseQuizTemplateProps> = ({ config }) => {
         incorrect: 'bg-red-500',
         gradient: 'from-yellow-500/20 to-orange-500/20'
       };
+    } else if (cssPrefix === 'prompt-engineering') {
+      return {
+        primary: 'from-[#9E768F] to-[#9FA4C4]',
+        accent: 'text-[#9E768F]',
+        button: 'bg-[#9E768F] hover:bg-[#9FA4C4] text-white',
+        progress: 'bg-[#9E768F]',
+        card: 'bg-gray-800 border-gray-700',
+        text: 'text-white',
+        correct: 'bg-[#9E768F]',
+        incorrect: 'bg-red-500',
+        gradient: 'from-[#9E768F]/20 to-[#9FA4C4]/20'
+      };
     } else {
       return {
         primary: 'from-green-600 to-emerald-700',
