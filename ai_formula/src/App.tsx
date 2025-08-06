@@ -227,13 +227,13 @@ function App() {
                   {/* 無效路由重定向 - 作為最後的保障 */}
                   <Route path="/courses/midjourney-course/*" element={<Navigate to="/courses/midjourney-course/outline" replace />} />
                   
-                  {/* Prompt Engineering Course Routes */}
+                  {/* Prompt Engineering Course Routes - 使用模板系統 */}
                   <Route path="/courses/prompt-engineering-course" element={<Navigate to="/courses/prompt-engineering-course/outline" replace />} />
                   <Route path="/courses/prompt-engineering-course/outline" element={<PromptEngineeringCourseOutline />} />
-                  <Route path="/courses/prompt-engineering-course/learning" element={<PromptEngineeringCourseLearning />} />
+                  <Route path="/courses/prompt-engineering-course/learning" element={<CourseLearningPage />} />
                   <Route path="/courses/prompt-engineering-course/theme/:themeId" element={<CourseThemePage />} />
-                  <Route path="/courses/prompt-engineering-course/theme/:themeId/unit/:unitId" element={<PromptEngineeringCourseUnit />} />
-                  <Route path="/courses/prompt-engineering-course/theme/:themeId/quiz" element={<PromptEngineeringCourseQuiz />} />
+                  <Route path="/courses/prompt-engineering-course/theme/:themeId/unit/:unitId" element={<CourseUnitPage />} />
+                  <Route path="/courses/prompt-engineering-course/theme/:themeId/quiz" element={<CourseQuizPage />} />
                   {/* 無效路由重定向 - 作為最後的保障 */}
                   <Route path="/courses/prompt-engineering-course/*" element={<Navigate to="/courses/prompt-engineering-course/outline" replace />} />
                   

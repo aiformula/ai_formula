@@ -19,6 +19,8 @@ const CourseUnitPage: React.FC = () => {
     courseId = 'perplexity';
   } else if (currentPath.includes('midjourney-course')) {
     courseId = 'midjourney';
+  } else if (currentPath.includes('prompt-engineering-course')) {
+    courseId = 'prompt-engineering';
   }
 
   if (!courseId) {
