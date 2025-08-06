@@ -334,10 +334,10 @@ const CourseUnitTemplate: React.FC<CourseUnitTemplateProps> = ({ courseId }) => 
                 {isZhHK ? `第 ${currentUnit.themeId} 章` : `Chapter ${currentUnit.themeId}`}
               </Badge>
               <h1 className="text-3xl lg:text-4xl font-bold mb-4">
-                {currentUnit.title}
+                {isZhHK ? currentUnit.title : ((currentUnit as any).titleEn || currentUnit.title)}
               </h1>
               <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-                {currentUnit.description}
+                {isZhHK ? currentUnit.description : ((currentUnit as any).descriptionEn || currentUnit.description)}
               </p>
             </div>
           </motion.div>
@@ -374,7 +374,7 @@ const CourseUnitTemplate: React.FC<CourseUnitTemplateProps> = ({ courseId }) => 
                         >
                           <img
                             src={currentUnit.image}
-                            alt={currentUnit.imageAlt || (isZhHK ? '課程相關圖片' : 'Course related image')}
+                            alt={isZhHK ? currentUnit.imageAlt : ((currentUnit as any).imageAltEn || currentUnit.imageAlt) || (isZhHK ? '課程相關圖片' : 'Course related image')}
                             className="w-full h-auto object-cover"
                             style={{ maxHeight: '500px' }}
                             onError={(e) => {
@@ -394,7 +394,7 @@ const CourseUnitTemplate: React.FC<CourseUnitTemplateProps> = ({ courseId }) => 
                     
                     <div className="prose prose-invert prose-lg max-w-none">
                       <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                        {currentUnit.transcript}
+                        {isZhHK ? currentUnit.transcript : ((currentUnit as any).transcriptEn || currentUnit.transcript)}
                       </p>
                     </div>
                   </div>
@@ -406,7 +406,7 @@ const CourseUnitTemplate: React.FC<CourseUnitTemplateProps> = ({ courseId }) => 
                       {isZhHK ? '重點整理' : 'Key Points'}
                     </h3>
                     <ul className="space-y-3">
-                      {currentUnit.keyPoints?.map((point, index) => (
+                      {(isZhHK ? currentUnit.keyPoints : ((currentUnit as any).keyPointsEn || currentUnit.keyPoints))?.map((point, index) => (
                         <li key={index} className="flex items-start">
                           <span className={`${getKeyPointColor()} mr-3 mt-1`}>•</span>
                           <span className="text-gray-300">{point}</span>
@@ -607,7 +607,7 @@ const CourseUnitTemplate: React.FC<CourseUnitTemplateProps> = ({ courseId }) => 
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-400">{isZhHK ? '預估時長' : 'Duration'}</span>
-                    <span className="text-white font-medium">{currentUnit.duration}</span>
+                    <span className="text-white font-medium">{isZhHK ? currentUnit.duration : ((currentUnit as any).durationEn || currentUnit.duration)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">{isZhHK ? '學習時間' : 'Study Time'}</span>

@@ -833,15 +833,20 @@ Besides manual downloading, you need to know a more convenient fact: all images 
       description: '學習「提示詞工程學」（Prompt Engineering）。呢個唔單止係寫句子，而係學習一種同 AI 溝通嘅獨特語言，有佢自己嘅語法同邏輯。',
       descriptionEn: 'Learn \'Prompt Engineering\'. This isn\'t simply about writing sentences, but rather learning a unique language for communicating with AI, complete with its own syntax and logic.',
       duration: '110 分鐘',
+      durationEn: '110 minutes',
       lessons: [
         {
           id: 11,
           title: '3.1 提示詞嘅結構：主體、媒介、環境、光線與風格',
+          titleEn: '3.1 Prompt Structure: Subject, Medium, Environment, Lighting and Style',
           duration: '25 分鐘',
+          durationEn: '25 minutes',
           type: 'interactive' as const,
           description: '學習高質素提示詞的核心元素和結構化組合方法',
+          descriptionEn: 'Learn core elements and structured combination methods for high-quality prompts',
           image: '/images/courses/midjourney-course/unit-images/prompt-structure.png',
           imageAlt: '提示詞結構分析圖',
+          imageAltEn: 'Prompt structure analysis diagram',
           transcript: `一個高質素嘅提示詞，通常由幾個核心元素構成。學識有意識地組合呢啲元素，係提升作品質素嘅第一步。你可以將提示詞想像成一個清單，包含以下幾個部分：
 
 主體 (Subject)：你畫作嘅主角係乜嘢？例如：一個人、一隻動物、一個物件、一個角色。
@@ -870,11 +875,15 @@ Besides manual downloading, you need to know a more convenient fact: all images 
         {
           id: 12,
           title: '3.2 進階語法：用圖片說故事 (Image Prompts)',
+          titleEn: '3.2 Advanced Syntax: Telling Stories with Images (Image Prompts)',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'interactive' as const,
           description: '學習使用圖像作為提示詞，結合視覺參考創作新作品',
+          descriptionEn: 'Learn to use images as prompts, combining visual references to create new works',
           image: '/images/courses/midjourney-course/unit-images/image-prompts.png',
           imageAlt: '圖像提示詞使用示例',
+          imageAltEn: 'Image prompts usage examples',
           transcript: `除咗文字，你仲可以用圖像嚟引導 Midjourney 嘅創作。呢個功能叫做「圖像提示詞」(Image Prompts)，可以影響最終生成圖像嘅風格、構圖同內容。
 
 使用方法：
@@ -886,22 +895,43 @@ Besides manual downloading, you need to know a more convenient fact: all images 
 /imagine prompt: https://example.com/image.jpg a robot in the style of this image
 
 Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你嘅文字描述中，創造出結合兩者特色嘅新作品。呢個功能特別適合用嚟學習特定風格或者將現有作品作為創作基礎。`,
+          transcriptEn: `Apart from text, you can also use images to guide Midjourney's creation. This function is called "Image Prompts", which can influence the style, composition and content of the final generated image.
+
+Usage method:
+1. Obtain image link: First, you need the public URL of a reference image. You can upload your own image to Discord, then right-click on the image and select "Copy Link".
+
+2. Combine prompts: In the /imagine command, place the image link at the very front of the prompt, then leave a space and input your text description.
+
+Example:
+/imagine prompt: https://example.com/image.jpg a robot in the style of this image
+
+Midjourney will analyse the image you provide and attempt to integrate its visual elements into your text description, creating new works that combine the characteristics of both. This function is particularly suitable for learning specific styles or using existing works as a creative foundation.`,
           keyPoints: [
             '圖像提示詞能影響風格、構圖和內容',
             '需要獲取圖片的公開網址',
             '圖片連結放在提示詞最前面',
             'AI 會分析並融合圖片的視覺元素'
           ],
+          keyPointsEn: [
+            'Image prompts can influence style, composition and content',
+            'Requires obtaining the public URL of images',
+            'Image links are placed at the front of prompts',
+            'AI will analyse and integrate visual elements from images'
+          ],
           completed: false
         },
         {
           id: 13,
           title: '3.3 混合概念嘅 /blend 指令',
+          titleEn: '3.3 Concept Blending with /blend Command',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'interactive' as const,
           description: '掌握 /blend 指令，學習融合多張圖片創造新概念',
+          descriptionEn: 'Master the /blend command to learn how to fuse multiple images to create new concepts',
           image: '/images/courses/midjourney-course/unit-images/blend-command.png',
           imageAlt: '/blend 指令操作示例',
+          imageAltEn: '/blend command operation examples',
           transcript: `/blend 係一個專為融合多張圖片而設嘅簡化指令，特別適合喺手機上操作。佢可以將 2 至 5 張圖片嘅概念同美學風格混合，創造出一個全新嘅圖像。
 
 特點與限制：
@@ -917,22 +947,47 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
 5. 發送指令，等待融合後嘅結果
 
 呢個指令特別適合探索視覺概念嘅結合，創造意想不到嘅藝術效果。`,
+          transcriptEn: `/blend is a simplified command specifically designed for fusing multiple images, particularly suitable for mobile operation. It can blend the concepts and aesthetic styles of 2 to 5 images, creating a completely new image.
+
+Features and limitations:
+- Pure image operation: The /blend command cannot be used together with text prompts. It is only used for blending images.
+- Quantity limitation: A maximum of 5 images can be blended.
+- Size options: You can choose the aspect ratio of the generated image in the command, with options including Portrait (2:3), Landscape (3:2) and Square (1:1).
+
+Usage method:
+1. Input the /blend command
+2. Discord will display several upload boxes (image1, image2, etc.)
+3. Click the upload boxes and select 2 to 5 images from your device
+4. (Optional) Click the "dimensions" option to select your desired output size
+5. Send the command and wait for the blended results
+
+This command is particularly suitable for exploring the combination of visual concepts and creating unexpected artistic effects.`,
           keyPoints: [
             '/blend 專門用於融合多張圖片',
             '不能與文字提示詞結合使用',
             '可混合 2-5 張圖片',
             '適合手機操作和概念探索'
           ],
+          keyPointsEn: [
+            '/blend is specifically for fusing multiple images',
+            'Cannot be combined with text prompts',
+            'Can blend 2-5 images',
+            'Suitable for mobile operation and concept exploration'
+          ],
           completed: false
         },
         {
           id: 14,
           title: '3.4 權重分配：多重提示詞 (::) 的奧秘',
+          titleEn: '3.4 Weight Allocation: The Mystery of Multi-Prompts (::)',
           duration: '22 分鐘',
+          durationEn: '22 minutes',
           type: 'interactive' as const,
           description: '學習使用雙冒號語法控制提示詞中不同概念的重要性',
+          descriptionEn: 'Learn to use double colon syntax to control the importance of different concepts in prompts',
           image: '/images/courses/midjourney-course/unit-images/prompt-weights.png',
           imageAlt: '提示詞權重分配示例',
+          imageAltEn: 'Prompt weight allocation examples',
           transcript: `有時，你嘅提示詞包含幾個重要概念，但你希望 Midjourney 對某啲概念更加重視。呢個時候，就需要用到「多重提示詞」（Multi-Prompts）同權重分配語法 ::。
 
 雙冒號 :: 可以將一個提示詞分割成幾個獨立嘅部分，令 AI 分別考慮佢哋。
@@ -950,22 +1005,49 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
 喺呢個例子中，「space ship」嘅權重係 2，「fire」嘅權重係 1。意味住 Midjourney 會將「太空船」作為更主要嘅元素嚟生成圖像，而「火」則作為次要元素。
 
 呢個技巧畀咗你更精細嘅控制權，去平衡提示詞中唔同元素之間嘅關係。權重分配特別適合用於複雜場景或者當你想強調某個特定元素時。`,
+          transcriptEn: `Sometimes, your prompt contains several important concepts, but you want Midjourney to pay more attention to certain concepts. At this point, you need to use "Multi-Prompts" and weight allocation syntax ::.
+
+The double colon :: can split a prompt into several independent parts, allowing the AI to consider them separately.
+
+Basic usage: Concept separation
+- hot dog: AI will understand this as "hot dog"
+- hot:: dog: AI will separately consider "hot" and "dog" as two concepts, possibly generating a very hot dog
+
+Advanced usage: Weight allocation
+You can also add numbers after the double colon to specify the importance of each part, with higher values representing greater importance.
+
+Example:
+/imagine prompt: space ship::2 fire::1
+
+In this example, "space ship" has a weight of 2, and "fire" has a weight of 1. This means Midjourney will treat "space ship" as the more primary element when generating the image, whilst "fire" serves as a secondary element.
+
+This technique gives you more precise control to balance the relationship between different elements in your prompt. Weight allocation is particularly suitable for complex scenes or when you want to emphasise a specific element.`,
           keyPoints: [
             ':: 語法用於分割和控制概念重要性',
             '可以分別處理不同的概念元素',
             '數字權重控制元素的相對重要性',
             '適合複雜場景和元素強調'
           ],
+          keyPointsEn: [
+            ':: syntax is used to separate and control concept importance',
+            'Can handle different conceptual elements separately',
+            'Numerical weights control relative importance of elements',
+            'Suitable for complex scenes and element emphasis'
+          ],
           completed: false
         },
         {
           id: 15,
           title: '3.5 逆向工程：/describe 指令由圖像變文字',
+          titleEn: '3.5 Reverse Engineering: /describe Command from Image to Text',
           duration: '25 分鐘',
+          durationEn: '25 minutes',
           type: 'interactive' as const,
           description: '使用 /describe 指令分析圖像，學習更好的提示詞表達方式',
+          descriptionEn: 'Use the /describe command to analyse images and learn better prompt expression methods',
           image: '/images/courses/midjourney-course/unit-images/describe-command.png',
           imageAlt: '/describe 指令逆向分析示例',
+          imageAltEn: '/describe command reverse analysis examples',
           transcript: `當你喺網上見到一張好靚嘅 AI 圖，想知道佢係點樣生成嘅？或者你想學習 AI 更「聽得明」嘅描述方式？/describe 指令就係你嘅「羅塞塔石碑」。
 
 呢個指令嘅功能同 /imagine 完全相反：你畀佢一張圖，佢會分析完之後，返還四條可能生成呢張圖嘅文字提示詞畀你。
@@ -984,11 +1066,35 @@ Midjourney 會分析你提供嘅圖片，並嘗試將其視覺元素融入到你
 從而極大地豐富你嘅提示詞詞庫，理解 AI 嘅「視覺語言」。
 
 建議將 /describe 分析出嚟嘅提示詞作為學習參考，並嘗試套用到你自己嘅創作中，呢樣可以快速提升你嘅提示詞技巧。`,
+          transcriptEn: `When you see a beautiful AI image online and want to know how it was generated? Or do you want to learn description methods that AI can "understand" better? The /describe command is your "Rosetta Stone".
+
+This command functions completely opposite to /imagine: you give it an image, and after analysis, it returns four possible text prompts that could generate this image.
+
+Usage method:
+1. Input the /describe command
+2. Upload an image you want to analyse
+3. Midjourney Bot will return four detailed prompt suggestions
+
+This function is an extremely powerful learning tool. By analysing the prompts of successful works, you can quickly learn:
+- New style vocabulary
+- Artist names
+- Composition technique terminology
+- Aesthetic description methods
+
+Thereby greatly enriching your prompt vocabulary and understanding AI's "visual language".
+
+It's recommended to use the prompts analysed by /describe as learning references and try applying them to your own creations. This can rapidly improve your prompting skills.`,
           keyPoints: [
             '/describe 是圖像到文字的逆向工程',
             '能夠學習成功作品的表達方式',
             '快速擴展提示詞詞彙庫',
             '是理解 AI 視覺語言的重要工具'
+          ],
+          keyPointsEn: [
+            '/describe is reverse engineering from image to text',
+            'Can learn expression methods from successful works',
+            'Rapidly expands prompt vocabulary',
+            'Is an important tool for understanding AI visual language'
           ],
           completed: false
         }
