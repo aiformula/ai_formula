@@ -15,6 +15,43 @@ import { usePerplexityProgress } from '@/hooks/usePerplexityProgress';
 import { useMidjourneyProgress } from '@/hooks/useMidjourneyProgress';
 import { usePromptEngineeringProgress } from '@/hooks/usePromptEngineeringProgress';
 
+// 統一嘅進度統計接口
+export interface UnifiedProgressStats {
+  overallProgress: number;    // 總進度 (0-100)
+  totalProgress?: number;     // 備用字段，部分hook使用
+  completedThemes: number;    // 完成嘅主題數
+  totalThemes: number;        // 總主題數
+  completedUnits: number;     // 完成嘅單元數
+  totalUnits?: number;        // 總單元數
+  totalTimeSpent: number;     // 總學習時間(分鐘)
+  studyTime?: string;         // 格式化嘅學習時間
+}
+
+// 統一嘅Progress Hook接口
+export interface UnifiedProgressHook {
+  isThemeCompleted: (themeId: number | string) => boolean;
+  getThemeProgress: (themeId: number | string) => any;
+  getProgressStats: () => UnifiedProgressStats;
+  resetProgress: () => void;
+  completeQuiz: (themeId: number | string) => void;
+  completeUnit: (themeId: number | string, unitId: number | string) => void;
+  themeProgress: any;
+  courseStats?: any;
+  progressState?: any;
+}
+
+// 課程配置接口
+export interface CourseConfig {
+  courseId: string;
+  courseName: string;
+  themeColor: string;
+  accentColor: string;
+  baseRoute: string;
+  dataSource: any;
+  progressHook: () => UnifiedProgressHook;
+  cssPrefix: string;
+}
+
 // 課程配置映射
 export const courseConfigs: Record<string, CourseConfig> = {
   'chatgpt': {

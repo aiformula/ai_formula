@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import CourseOutline from '@/features/course/CourseOutline';
 import { CourseConfig, CourseStats, CourseFeature, TargetAudience } from './types';
+import { getCourseConfig } from './courseRegistry';
 import { 
   Clock, 
   BookOpen, 
@@ -26,15 +27,29 @@ import {
 } from 'lucide-react';
 
 interface CourseOutlineTemplateProps {
-  config: CourseConfig;
+  courseId: string;
 }
 
-const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config }) => {
+const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ courseId }) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const isZhHK = language === 'zh-HK';
 
-  const { dataSource, baseRoute, courseId } = config;
+  // 從registry獲取課程配置
+  const config = getCourseConfig(courseId);
+  
+  if (!config) {
+    return (
+      <div className="min-h-screen bg-[#121212] flex items-center justify-center">
+        <div className="text-center text-white">
+          <h2 className="text-2xl font-bold mb-4">{isZhHK ? '課程不存在' : 'Course not found'}</h2>
+          <p className="text-gray-400 mb-4">Course ID: {courseId}</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { dataSource, baseRoute } = config;
 
   // 動態課程統計
   const courseStats: CourseStats[] = [

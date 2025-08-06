@@ -68,11 +68,11 @@ const CourseQuizTemplate: React.FC<CourseQuizTemplateProps> = ({ config }) => {
       };
     } else if (cssPrefix === 'prompt-engineering') {
       return {
-        primary: 'from-[#9E768F] to-[#9FA4C4]',
+        primary: 'from-black to-gray-900',
         accent: 'text-[#9E768F]',
         button: 'bg-[#9E768F] hover:bg-[#9FA4C4] text-white',
         progress: 'bg-[#9E768F]',
-        card: 'bg-gray-800 border-gray-700',
+        card: 'bg-black border-gray-800',
         text: 'text-white',
         correct: 'bg-[#9E768F]',
         incorrect: 'bg-red-500',
@@ -203,299 +203,273 @@ const CourseQuizTemplate: React.FC<CourseQuizTemplateProps> = ({ config }) => {
   const currentQuestionData = questions[currentQuestion];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-black">
       <Navigation />
       
-      <div className="pt-20 max-w-4xl mx-auto px-4 py-8">
+      <div className="pt-20 px-4 py-8">
         {/* 返回按鈕 */}
-        <Button
-          variant="ghost"
+        <motion.button
+          className="flex items-center space-x-2 text-white/70 hover:text-white mb-8 px-4"
           onClick={() => navigate(`${baseRoute}/theme/${currentThemeId}`)}
-          className="mb-6 text-gray-600 hover:text-gray-900"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
         >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          {isZhHK ? '返回主題頁面' : 'Back to Theme'}
-        </Button>
+          <ArrowLeft className="w-4 h-4" />
+          <span>{isZhHK ? '[返回主題]' : '[Back to Theme]'}</span>
+        </motion.button>
 
-        {/* 測驗尚未開始 */}
-        {!quizStarted && !showResults && (
-          <Card className={`${themeClasses.card} max-w-2xl mx-auto`}>
-            <CardHeader className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4">
-                <Trophy className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className={`text-2xl ${themeClasses.text}`}>
-                {quizData.title || `${isZhHK ? '第' : 'Chapter '}${currentThemeId}${isZhHK ? '章測驗' : ' Quiz'}`}
-              </CardTitle>
-              <p className="text-gray-600 mt-2">
-                {quizData.description || (isZhHK ? '測試您在本章的學習成果' : 'Test your knowledge from this chapter')}
+        {/* Quiz Header */}
+        <motion.div 
+          className="text-center mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <Brain className="w-8 h-8 text-gray-400" />
+            <h1 className="text-4xl font-bold text-white">
+              {quizData?.title || `${isZhHK ? '第' : 'Chapter '}${currentThemeId}${isZhHK ? '部分測驗' : ' Quiz'}`}
+            </h1>
+          </div>
+          <p className="text-xl text-white/80 mb-6">
+            {quizData?.description || (isZhHK ? '測試您對本章內容的理解' : 'Test your understanding of this chapter')}
+          </p>
+
+          {/* Quiz Stats */}
+          <div className="flex items-center justify-center space-x-8 text-white/70">
+            <div className="flex items-center space-x-2">
+              <BookOpen className="w-5 h-5 text-gray-400" />
+              <span>{totalQuestions} {isZhHK ? '題目' : 'Questions'}</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Clock className="w-5 h-5 text-yellow-400" />
+              <span>{timeLimit} {isZhHK ? '分鐘' : 'minutes'}</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Target className="w-5 h-5 text-yellow-400" />
+              <span>{passingScore}% {isZhHK ? '[及格]' : '[Pass Rate]'}</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Quiz Content */}
+        <div className="max-w-4xl mx-auto">
+          {!quizStarted && !showResults && (
+            <motion.div
+              className="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-8 text-center"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
+              <Brain className="w-16 h-16 text-gray-400 mx-auto mb-6" />
+              <h2 className="text-3xl font-bold text-white mb-4">
+                {isZhHK ? '準備開始測驗' : 'Ready to Start Quiz'}
+              </h2>
+              <p className="text-gray-300 text-lg mb-8">
+                {isZhHK ? '測驗說明' : 'Quiz Instructions'}
               </p>
-            </CardHeader>
-            <CardContent className="text-center space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-blue-50 rounded-lg">
-                  <Target className="h-6 w-6 text-blue-600 mx-auto mb-2" />
-                  <p className="text-sm font-medium text-blue-800">
-                    {totalQuestions} {isZhHK ? '題目' : 'Questions'}
-                  </p>
+
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-gray-800/50 border border-gray-600/30 rounded-lg p-4">
+                  <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                  <h3 className="font-semibold text-white mb-1">{totalQuestions} {isZhHK ? '題目' : 'Questions'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[選擇題形式]' : '[Multiple Choice Format]'}</p>
                 </div>
-                <div className="p-4 bg-green-50 rounded-lg">
-                  <Clock className="h-6 w-6 text-green-600 mx-auto mb-2" />
-                  <p className="text-sm font-medium text-green-800">
-                    {timeLimit} {isZhHK ? '分鐘' : 'Minutes'}
-                  </p>
+                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+                  <Clock className="w-8 h-8 text-green-400 mx-auto mb-2" />
+                  <h3 className="font-semibold text-white mb-1">{timeLimit} {isZhHK ? '分鐘' : 'minutes'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[限時完成]' : '[Time Limited]'}</p>
                 </div>
-                <div className="p-4 bg-purple-50 rounded-lg">
-                  <Star className="h-6 w-6 text-purple-600 mx-auto mb-2" />
-                  <p className="text-sm font-medium text-purple-800">
-                    {passingScore}% {isZhHK ? '及格' : 'Pass'}
-                  </p>
+                <div className={`${cssPrefix === 'prompt-engineering' ? 'bg-[#9E768F]/10 border-[#9E768F]/20' : 'bg-yellow-500/10 border-yellow-500/20'} rounded-lg p-4`}>
+                  <Target className={`w-8 h-8 ${cssPrefix === 'prompt-engineering' ? 'text-[#9E768F]' : 'text-yellow-400'} mx-auto mb-2`} />
+                  <h3 className="font-semibold text-white mb-1">{passingScore}% {isZhHK ? '[及格]' : '[Pass Rate]'}</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[通過標準]' : '[Passing Standard]'}</p>
                 </div>
-                <div className="p-4 bg-orange-50 rounded-lg">
-                  <Award className="h-6 w-6 text-orange-600 mx-auto mb-2" />
-                  <p className="text-sm font-medium text-orange-800">
-                    {isZhHK ? '即時反饋' : 'Instant Feedback'}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="space-y-3">
-                <h3 className={`text-lg font-semibold ${themeClasses.text}`}>
-                  {isZhHK ? '測驗須知' : 'Quiz Instructions'}
-                </h3>
-                <ul className="text-left text-gray-600 space-y-2">
-                  <li className="flex items-start">
-                    <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                    {isZhHK ? '每題只能選擇一個答案' : 'Select only one answer per question'}
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                    {isZhHK ? '可以返回修改之前的答案' : 'You can go back and change previous answers'}
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                    {isZhHK ? `需要達到 ${passingScore}% 才能通過` : `Need ${passingScore}% to pass`}
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                    {isZhHK ? '時間到會自動提交' : 'Auto-submit when time runs out'}
-                  </li>
-                </ul>
               </div>
 
-              <Button
+              <Button 
+                className={`${cssPrefix === 'prompt-engineering' ? 'bg-[#9E768F] hover:bg-[#9FA4C4]' : 'btn-primary'} px-8 py-4 text-lg text-white`}
                 onClick={startQuiz}
-                className={`${themeClasses.button} px-8 py-3 text-lg`}
               >
-                <Play className="h-5 w-5 mr-2" />
-                {isZhHK ? '開始測驗' : 'Start Quiz'}
+                <Play className="w-5 h-5 mr-2" />
+                {isZhHK ? '[開始測驗]' : '[Start Quiz]'}
               </Button>
-            </CardContent>
-          </Card>
-        )}
+            </motion.div>
+          )}
 
-        {/* 測驗進行中 */}
-        {quizStarted && !showResults && currentQuestionData && (
-          <div className="space-y-6">
-            {/* 進度和時間 */}
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center space-x-4">
-                    <Badge variant="outline">
-                      {isZhHK ? '問題' : 'Question'} {currentQuestion + 1}/{totalQuestions}
-                    </Badge>
-                    <span className="text-sm text-gray-600">
-                      {progress}% {isZhHK ? '完成' : 'Complete'}
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4 text-gray-500" />
-                    <span className={`font-mono ${timeRemaining < 60 ? 'text-red-600' : 'text-gray-700'}`}>
+          {/* 測驗進行中 */}
+          {quizStarted && !showResults && currentQuestionData && (
+            <motion.div
+              className="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              {/* Quiz Progress */}
+              <div className="bg-gray-900/50 p-4 border-b border-white/10">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-white/70 text-sm">
+                    {isZhHK ? '[題目]' : '[Question]'} {currentQuestion + 1} of {totalQuestions}
+                  </span>
+                  <div className="flex items-center space-x-2 text-white/70 text-sm">
+                    <Clock className="w-4 h-4" />
+                    <span className={timeRemaining < 300 ? 'text-red-400' : ''}>
                       {formatTime(timeRemaining)}
                     </span>
                   </div>
                 </div>
-                <Progress value={progress} className="h-2" />
-              </CardContent>
-            </Card>
-
-            {/* 問題卡片 */}
-            <Card className={themeClasses.card}>
-              <CardContent className="p-8">
-                <motion.div
-                  key={currentQuestion}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h2 className={`text-xl font-bold ${themeClasses.text} mb-6`}>
-                    {currentQuestionData.question}
-                  </h2>
-
-                  {/* 答案選項 */}
-                  <div className="space-y-3">
-                    {currentQuestionData.options.map((option: string, index: number) => (
-                      <motion.div
-                        key={index}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <button
-                          onClick={() => selectAnswer(index)}
-                          className={`w-full p-4 rounded-lg border-2 text-left transition-all ${
-                            selectedAnswers[currentQuestion] === index
-                              ? `border-blue-500 bg-blue-50 ${themeClasses.text}`
-                              : 'border-gray-200 hover:border-gray-300 bg-white text-gray-900'
-                          }`}
-                        >
-                          <div className="flex items-center">
-                            <div className={`w-6 h-6 rounded-full border-2 mr-3 flex items-center justify-center ${
-                              selectedAnswers[currentQuestion] === index
-                                ? 'border-blue-500 bg-blue-500'
-                                : 'border-gray-300'
-                            }`}>
-                              {selectedAnswers[currentQuestion] === index && (
-                                <Check className="h-3 w-3 text-white" />
-                              )}
-                            </div>
-                            <span className="flex-1">{option}</span>
-                          </div>
-                        </button>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </CardContent>
-            </Card>
-
-            {/* 導航按鈕 */}
-            <div className="flex justify-between items-center">
-              <Button
-                variant="outline"
-                onClick={previousQuestion}
-                disabled={currentQuestion === 0}
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                {isZhHK ? '上一題' : 'Previous'}
-              </Button>
-
-              <div className="flex space-x-2">
-                {currentQuestion === totalQuestions - 1 ? (
-                  <Button
-                    onClick={handleSubmitQuiz}
-                    disabled={selectedAnswers[currentQuestion] === undefined}
-                    className={themeClasses.button}
-                  >
-                    <Trophy className="h-4 w-4 mr-2" />
-                    {isZhHK ? '提交測驗' : 'Submit Quiz'}
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={nextQuestion}
-                    disabled={selectedAnswers[currentQuestion] === undefined}
-                    className={themeClasses.button}
-                  >
-                    {isZhHK ? '下一題' : 'Next'}
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Button>
-                )}
+                <Progress value={(currentQuestion + 1) / totalQuestions * 100} className="h-2" />
               </div>
-            </div>
-          </div>
-        )}
 
-        {/* 測驗結果 */}
-        {showResults && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="max-w-2xl mx-auto"
-          >
-            <Card className={`${themeClasses.card} text-center`}>
-              <CardContent className="p-8">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="mb-6"
-                >
-                  {score >= passingScore ? (
-                    <div className="w-20 h-20 rounded-full bg-green-500 flex items-center justify-center mx-auto">
-                      <Trophy className="h-10 w-10 text-white" />
+              <div className="p-8">
+                {/* Question */}
+                <div className="mb-8">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                      {currentQuestion + 1}
                     </div>
-                  ) : (
-                    <div className="w-20 h-20 rounded-full bg-red-500 flex items-center justify-center mx-auto">
-                      <XCircle className="h-10 w-10 text-white" />
-                    </div>
-                  )}
-                </motion.div>
-
-                <h2 className={`text-3xl font-bold ${themeClasses.text} mb-4`}>
-                  {score >= passingScore 
-                    ? (isZhHK ? '恭喜通過！' : 'Congratulations!')
-                    : (isZhHK ? '繼續努力！' : 'Keep Trying!')
-                  }
-                </h2>
-
-                <div className="text-6xl font-bold mb-4" style={{ color: score >= passingScore ? '#10b981' : '#ef4444' }}>
-                  {score}%
+                    <Badge 
+                      variant="outline" 
+                      className="border-gray-500 text-gray-400"
+                    >
+                      {isZhHK ? '[選擇題]' : '[Multiple Choice]'}
+                    </Badge>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-6">
+                    {currentQuestionData.question}
+                  </h3>
                 </div>
 
-                <p className="text-gray-600 mb-6">
-                  {isZhHK 
-                    ? `您答對了 ${questions.filter((_, index) => selectedAnswers[index] === questions[index].correctAnswer).length} 題，共 ${totalQuestions} 題`
-                    : `You got ${questions.filter((_, index) => selectedAnswers[index] === questions[index].correctAnswer).length} out of ${totalQuestions} questions correct`
-                  }
-                </p>
+                {/* Options */}
+                <div className="space-y-3 mb-8">
+                  {currentQuestionData.options.map((option: string, index: number) => {
+                    const isSelected = selectedAnswers[currentQuestion] === index;
+                    
+                    return (
+                      <motion.button
+                        key={index}
+                        className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-300 group relative ${
+                          isSelected
+                            ? `${cssPrefix === 'prompt-engineering' ? 'border-[#9E768F] bg-[#9E768F]/10' : 'border-yellow-400 bg-yellow-400/10'} text-white transform scale-105`
+                            : 'border-gray-600 bg-gray-700/20 text-white/80 hover:border-yellow-400 hover:bg-gray-600/20'
+                        }`}
+                        style={{
+                          boxShadow: isSelected 
+                            ? `0 0 20px ${cssPrefix === 'prompt-engineering' ? 'rgba(158, 118, 143, 0.3)' : 'rgba(251, 191, 36, 0.3)'}` 
+                            : 'none'
+                        }}
+                        onClick={() => selectAnswer(index)}
+                        whileHover={!isSelected ? { 
+                          scale: 1.01,
+                          boxShadow: `0 0 15px ${cssPrefix === 'prompt-engineering' ? 'rgba(158, 118, 143, 0.2)' : 'rgba(251, 191, 36, 0.2)'}`
+                        } : {}}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold ${
+                            isSelected 
+                              ? `${cssPrefix === 'prompt-engineering' ? 'border-[#9E768F] bg-[#9E768F]' : 'border-yellow-400 bg-yellow-400'} text-white`
+                              : 'border-gray-500 text-gray-400'
+                          }`}>
+                            {String.fromCharCode(65 + index)}
+                          </div>
+                          <span className={isSelected ? 'text-white font-medium' : 'text-white/80'}>
+                            {option}
+                          </span>
+                        </div>
+                      </motion.button>
+                    );
+                  })}
+                </div>
 
+                {/* Navigation Buttons */}
+                <div className="flex items-center justify-between">
+                  <Button
+                    variant="outline"
+                    onClick={previousQuestion}
+                    disabled={currentQuestion === 0}
+                    className="text-white/70 border-gray-600 hover:bg-gray-700"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    {isZhHK ? '[上一題]' : '[Previous]'}
+                  </Button>
+                  
+                  <Button
+                    onClick={nextQuestion}
+                    className={`${cssPrefix === 'prompt-engineering' ? 'bg-[#9E768F] hover:bg-[#9FA4C4]' : 'btn-primary'} text-white`}
+                    disabled={selectedAnswers[currentQuestion] === undefined}
+                  >
+                    {currentQuestion === totalQuestions - 1 
+                      ? (isZhHK ? '[完成測驗]' : '[Complete Quiz]')
+                      : (isZhHK ? '[下一題]' : '[Next]')
+                    }
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* 測驗結果 */}
+          {showResults && (
+            <motion.div
+              className="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-8 text-center"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
+              <div className="mb-6">
                 {score >= passingScore ? (
-                  <div className="space-y-4">
-                    <div className="p-4 bg-green-50 rounded-lg">
-                      <CheckCircle className="h-6 w-6 text-green-600 mx-auto mb-2" />
-                      <p className="text-green-800">
-                        {isZhHK ? '您已成功完成本章測驗！' : 'You have successfully completed this chapter quiz!'}
-                      </p>
-                    </div>
-                    <Button
-                      onClick={() => navigate(`${baseRoute}/theme/${currentThemeId + 1}`)}
-                      className={themeClasses.button}
-                    >
-                      {isZhHK ? '進入下一章' : 'Next Chapter'}
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  </div>
+                  <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
                 ) : (
-                  <div className="space-y-4">
-                    <div className="p-4 bg-red-50 rounded-lg">
-                      <XCircle className="h-6 w-6 text-red-600 mx-auto mb-2" />
-                      <p className="text-red-800">
-                        {isZhHK ? `需要達到 ${passingScore}% 才能通過，建議重新學習後再次嘗試。` : `You need ${passingScore}% to pass. We recommend reviewing the material and trying again.`}
-                      </p>
-                    </div>
-                    <div className="flex space-x-3 justify-center">
-                      <Button
-                        variant="outline"
-                        onClick={() => navigate(`${baseRoute}/theme/${currentThemeId}`)}
-                      >
-                        <BookOpen className="h-4 w-4 mr-2" />
-                        {isZhHK ? '重新學習' : 'Review Material'}
-                      </Button>
-                      <Button
-                        onClick={restartQuiz}
-                        className={themeClasses.button}
-                      >
-                        <RotateCcw className="h-4 w-4 mr-2" />
-                        {isZhHK ? '重新測驗' : 'Retake Quiz'}
-                      </Button>
-                    </div>
-                  </div>
+                  <XCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
                 )}
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
+                <h2 className="text-3xl font-bold text-white mb-2">
+                  {score >= passingScore 
+                    ? (isZhHK ? '恭喜通過！' : 'Congratulations!')
+                    : (isZhHK ? '未能通過' : 'Not Passed')
+                  }
+                </h2>
+                <p className="text-gray-300">
+                  {isZhHK ? `您的得分：${score}% (及格線：${passingScore}%)` : `Your Score: ${score}% (Pass: ${passingScore}%)`}
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-4 mb-8">
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                  <Trophy className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                  <h3 className="font-semibold text-white mb-1">{score}%</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[最終得分]' : '[Final Score]'}</p>
+                </div>
+                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+                  <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-2" />
+                  <h3 className="font-semibold text-white mb-1">
+                    {questions.filter((_: any, index: number) => selectedAnswers[index] === questions[index].correctAnswer).length}/{totalQuestions}
+                  </h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[正確答案]' : '[Correct Answers]'}</p>
+                </div>
+                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
+                  <Target className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
+                  <h3 className="font-semibold text-white mb-1">{passingScore}%</h3>
+                  <p className="text-sm text-white/60">{isZhHK ? '[及格標準]' : '[Pass Rate]'}</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center space-x-4">
+                <Button
+                  variant="outline"
+                  onClick={restartQuiz}
+                  className="text-white/70 border-gray-600 hover:bg-gray-700"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  {isZhHK ? '[重新測驗]' : '[Retake Quiz]'}
+                </Button>
+                <Button
+                  onClick={() => navigate(`${baseRoute}/theme/${currentThemeId}`)}
+                  className={`${cssPrefix === 'prompt-engineering' ? 'bg-[#9E768F] hover:bg-[#9FA4C4]' : 'btn-primary'} text-white`}
+                >
+                  {isZhHK ? '[返回主題]' : '[Back to Theme]'}
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </div>
       </div>
     </div>
   );

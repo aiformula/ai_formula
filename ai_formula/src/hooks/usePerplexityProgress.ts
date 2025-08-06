@@ -153,32 +153,44 @@ export const usePerplexityProgress = () => {
     const totalUnits = 27; // 總共27個單元 (5+5+5+4+4+4)
     const totalQuizzes = 6; // 總共6個測驗
     
-    // 計算完成的單元總數
-    const completedUnitsCount = Object.values(progressState.completedUnits)
-      .reduce((acc, units) => acc + units.length, 0);
+    // 計算完成的單元總數 - 確保返回數字而非NaN
+    const completedUnitsCount = Object.values(progressState.completedUnits || {})
+      .reduce((acc, units) => acc + (Array.isArray(units) ? units.length : 0), 0);
     
-    // 計算完成的測驗數量
-    const completedQuizzesCount = progressState.completedQuizzes.length;
+    // 計算完成的測驗數量 - 確保返回數字
+    const completedQuizzesCount = Array.isArray(progressState.completedQuizzes) 
+      ? progressState.completedQuizzes.length 
+      : 0;
     
     // 計算完成的主題數量
     const completedThemesCount = Array.from({ length: totalThemes }, (_, i) => i + 1)
       .filter(themeId => isThemeCompleted(themeId)).length;
     
-    // 計算總進度
+    // 計算總進度 - 確保數值有效且不會是NaN
+    const unitProgressRatio = totalUnits > 0 ? (completedUnitsCount / totalUnits) : 0;
+    const quizProgressRatio = totalQuizzes > 0 ? (completedQuizzesCount / totalQuizzes) : 0;
+    const themeProgressRatio = totalThemes > 0 ? (completedThemesCount / totalThemes) : 0;
+    
     const totalProgress = Math.round(
-      ((completedUnitsCount / totalUnits) * 60 + 
-       (completedQuizzesCount / totalQuizzes) * 30 + 
-       (completedThemesCount / totalThemes) * 10)
+      (unitProgressRatio * 60) + 
+      (quizProgressRatio * 30) + 
+      (themeProgressRatio * 10)
     );
     
+    // 確保所有返回值都是有效數字
+    const safeTotal = isNaN(totalProgress) ? 0 : Math.max(0, Math.min(100, totalProgress));
+    const safeTimeSpent = typeof progressState.totalStudyTime === 'number' ? progressState.totalStudyTime : 0;
+    
     return {
-      totalProgress,
+      totalProgress: safeTotal,
+      overallProgress: safeTotal, // 加這個字段確保兼容性
       completedUnits: completedUnitsCount,
       completedQuizzes: completedQuizzesCount,
       completedThemes: completedThemesCount,
       totalThemes: totalThemes,
-      totalTimeSpent: progressState.totalStudyTime,
-      studyTime: `${Math.floor(progressState.totalStudyTime / 60)}h ${progressState.totalStudyTime % 60}m`
+      totalUnits: totalUnits, // 加這個字段
+      totalTimeSpent: safeTimeSpent,
+      studyTime: `${Math.floor(safeTimeSpent / 60)}h ${safeTimeSpent % 60}m`
     };
   }, [progressState, isThemeCompleted]);
 

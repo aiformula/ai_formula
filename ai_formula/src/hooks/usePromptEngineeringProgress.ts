@@ -115,7 +115,7 @@ export const usePromptEngineeringProgress = () => {
   // 獲取主題進度百分比
   const getThemeProgress = (themeId: number): any => {
     const isCompleted = isThemeCompleted(themeId);
-    const completedUnits = Array.from(progressData.completedUnits).filter(id => id.startsWith(`${themeId}-`));
+    const completedUnits = Array.from(progressData.completedUnits).filter(id => String(id).startsWith(`${themeId}-`));
     
     // 根據課程模塊計算總單元數
     const totalUnitsPerTheme = 4; // 每個模塊大約4個單元
