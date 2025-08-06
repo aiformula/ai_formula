@@ -864,11 +864,36 @@ Besides manual downloading, you need to know a more convenient fact: all images 
 加入媒介同構圖：Photorealistic portrait of a happy golden retriever, in a sunlit park, soft lighting, vibrant colours, close-up shot
 
 透過逐層疊加呢啲元素，你可以由一個模糊嘅概念，逐步構建出一幅具體而豐富嘅畫面。`,
+          transcriptEn: `Midjourney has a set of trained default aesthetic styles that lean towards artistic, vibrant colours, and beautiful compositions. The --stylize parameter, or its abbreviation --s, is used to control the application strength of this "Midjourney style".
+
+Parameter range: 0-1000
+- Default value: 100
+- Lower values (0-50): More literal interpretation of prompts, less artistic processing
+- Higher values (500-1000): More artistic style application, enhanced visual appeal
+
+Usage examples:
+
+Low stylization value (Low Stylize Value): e.g., --s 50
+Result: More realistic, closer to literal prompt interpretation, suitable for concept art or technical illustrations requiring accuracy.
+
+High stylization value (High Stylize Value): e.g., --s 750
+Result: More artistic processing, enhanced colours and composition, suitable for creative artwork and visual presentation.
+
+Complete example:
+/imagine prompt: a cat wearing a hat --s 750
+
+It's recommended to adjust stylization values according to creative goals: use low values for concept art, high values for artistic works.`,
           keyPoints: [
             '提示詞由主體、媒介、環境、光線等元素構成',
             '結構化組合能提升作品質素',
             '逐層疊加元素建構豐富畫面',
             '每個元素都有其特定作用'
+          ],
+          keyPointsEn: [
+            'Prompt structure includes core elements such as Subject, Medium, Lighting, Environment and Style',
+            'Structured combination enhances artwork quality',
+            'Layer upon layer builds a rich visual',
+            'Each element has a specific role'
           ],
           completed: false
         },
@@ -1264,15 +1289,20 @@ It's recommended to use the prompts analysed by /describe as learning references
       description: 'Midjourney 提供咗一系列以 –- 開頭嘅「參數」（Parameters）。呢啲參數就好似相機上嘅各種設定按鈕，可以讓你喺提示詞之外，更精準地控制圖像生成嘅各個方面。',
       descriptionEn: 'Midjourney provides a series of \'Parameters\' commencing with --. These parameters are rather like various setting buttons on a camera, allowing you to control numerous aspects of image generation more precisely beyond prompts.',
       duration: '95 分鐘',
+      durationEn: '95 minutes',
       lessons: [
         {
           id: 16,
           title: '4.1 改變畫布：長寬比 (--ar)',
+          titleEn: '4.1 Changing Canvas: Aspect Ratio (--ar)',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'interactive' as const,
           description: '學習使用 --ar 參數控制圖像的長寬比，適應不同用途需求',
+          descriptionEn: 'Learn to use the --ar parameter to control image aspect ratios for different usage requirements',
           image: '/images/courses/midjourney-course/unit-images/aspect-ratio.png',
           imageAlt: '長寬比參數使用示例',
+          imageAltEn: 'Aspect ratio parameter usage examples',
           transcript: `預設情況下，Midjourney 生成嘅圖像係 1:1 嘅正方形。但係，唔同嘅用途需要唔同嘅畫布尺寸。--aspect 或其簡寫 --ar 參數就係用嚟設定圖像嘅長寬比。
 
 使用方法：
@@ -1289,22 +1319,48 @@ It's recommended to use the prompts analysed by /describe as learning references
 /imagine prompt: a beautiful castle on a mountain --ar 16:9
 
 選擇合適嘅長寬比係創作成功嘅重要因素，佢直接影響構圖同視覺效果。例如，風景圖適合用 16:9 或 3:2，而人像作品則適合用 2:3 或 4:5。`,
+          transcriptEn: `By default, Midjourney generates images in a 1:1 square format. However, different purposes require different canvas sizes. The --aspect parameter, or its abbreviation --ar, is used to set the aspect ratio of images.
+
+Usage method:
+Add --ar <width>:<height> at the end of your prompt.
+
+Common aspect ratio examples:
+- --ar 1:1: Square, default value, suitable for social media avatars
+- --ar 16:9: Widescreen, standard high-definition television and YouTube video ratio, suitable for cover images or computer wallpapers
+- --ar 9:16: Portrait widescreen, suitable for mobile full-screen content, such as Instagram Stories or mobile wallpapers
+- --ar 3:2: Classic camera ratio, suitable for photography-style works
+- --ar 2:3: Common portrait poster or book cover ratio
+
+Complete example:
+/imagine prompt: a beautiful castle on a mountain --ar 16:9
+
+Choosing the appropriate aspect ratio is an important factor for creative success, as it directly affects composition and visual effects. For example, landscape images are suitable for 16:9 or 3:2, whilst portrait works are suitable for 2:3 or 4:5.`,
           keyPoints: [
             '--ar 參數控制圖像的長寬比',
             '不同比例適合不同用途',
             '16:9 適合風景和封面圖',
             '選擇比例會影響構圖效果'
           ],
+          keyPointsEn: [
+            '--ar parameter controls image aspect ratio',
+            'Different ratios suit different purposes',
+            '16:9 is suitable for landscapes and cover images',
+            'Ratio choice affects compositional effects'
+          ],
           completed: false
         },
         {
           id: 17,
           title: '4.2 藝術風格嘅強度：風格化 (--stylize)',
+          titleEn: '4.2 Artistic Style Intensity: Stylization (--stylize)',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'interactive' as const,
           description: '掌握 --stylize 參數，控制 Midjourney 風格的應用強度',
+          descriptionEn: 'Master the --stylize parameter to control the strength of Midjourney\'s built-in artistic style',
           image: '/images/courses/midjourney-course/unit-images/stylize-parameter.png',
           imageAlt: '風格化參數效果對比',
+          imageAltEn: 'Stylization parameter effect examples',
           transcript: `Midjourney 本身有一套經過訓練嘅預設美學風格，偏向於藝術化、色彩豐富、構圖優美。--stylize 或其簡寫 --s 參數就係用嚟控制呢種「Midjourney 風格」嘅應用強度。
 
 呢個參數嘅數值範圍係 0 到 1000，預設值係 100。
@@ -1319,22 +1375,51 @@ AI 會獲得更大嘅創作自由，喺遵循你提示詞嘅基礎上，大量�
 /imagine prompt: a cat wearing a hat --s 750
 
 建議根據創作目標調整風格化值：概念圖用低值，藝術作品用高值。`,
+          transcriptEn: `Midjourney has a set of trained default aesthetic styles that lean towards artistic, vibrant colours, and beautiful compositions. The --stylize parameter, or its abbreviation --s, is used to control the application strength of this "Midjourney style".
+
+Parameter range: 0-1000
+- Default value: 100
+- Lower values (0-50): More literal interpretation of prompts, less artistic processing
+- Higher values (500-1000): More artistic style application, enhanced visual appeal
+
+Usage examples:
+
+Low stylization value (Low Stylize Value): e.g., --s 50
+Result: More realistic, closer to literal prompt interpretation, suitable for concept art or technical illustrations requiring accuracy.
+
+High stylization value (High Stylize Value): e.g., --s 750
+Result: More artistic processing, enhanced colours and composition, suitable for creative artwork and visual presentation.
+
+Complete example:
+/imagine prompt: a cat wearing a hat --s 750
+
+It's recommended to adjust stylization values according to creative goals: use low values for concept art, high values for artistic works.`,
           keyPoints: [
             '--stylize 控制 Midjourney 風格的強度',
             '數值範圍 0-1000，預設值 100',
             '低值更準確，高值更藝術化',
             '應根據創作目標選擇合適數值'
           ],
+          keyPointsEn: [
+            '--stylize controls Midjourney\'s artistic style strength',
+            'Range 0-1000, default 100',
+            'Low values for realistic, high values for artistic',
+            'Choose based on creative purpose'
+          ],
           completed: false
         },
         {
           id: 18,
           title: '4.3 控制混亂與奇異度：--chaos 與 --weird',
+          titleEn: '4.3 Controlling Chaos and Weirdness: --chaos and --weird',
           duration: '22 分鐘',
+          durationEn: '22 minutes',
           type: 'interactive' as const,
           description: '學習使用 --chaos 和 --weird 參數增加圖像的意外性和創意性',
+          descriptionEn: 'Learn to use --chaos and --weird parameters to control image variation and creative unpredictability',
           image: '/images/courses/midjourney-course/unit-images/chaos-weird.png',
           imageAlt: 'Chaos 和 Weird 參數效果示例',
+          imageAltEn: 'Chaos and weird parameter effect demonstrations',
           transcript: `呢兩個參數都係用嚟增加圖像嘅「意外性」，但作用方式唔同。
 
 混沌 (--chaos 或 --c)：
@@ -1355,22 +1440,46 @@ AI 會獲得更大嘅創作自由，喺遵循你提示詞嘅基礎上，大量�
 - 探索創意時使用高 chaos 值
 - 尋求獨特視覺效果時使用 weird 參數
 - 兩者可以結合使用創造極富創意的作品`,
+          transcriptEn: `--chaos and --weird parameters are used to add "unexpectedness" and creativity to the generated images.
+
+--chaos (or --c):
+This parameter affects the diversity of the initial 2x2 grid. Its range is 0-100.
+
+--c 0 (default): The generated four sketches are similar in style and theme.
+--c 100: The generated four sketches are very different in style and theme, suitable for exploring unexpected creative directions.
+
+--weird (or --w):
+This is an experimental parameter that affects the surreal and bizarre nature of the image. Its range is 0-3000.
+
+Adding --w parameter will make the generated image more surreal and bizarre, creating a very unique visual effect.
+
+Complete examples:
+/imagine prompt: mushroom forest --c 80 --w 500
+
+Usage tips:
+- Use high chaos values when exploring creativity.
+- Use --weird parameter when seeking unique visual effects.
+- Both can be combined to create highly creative works.`,
           keyPoints: [
-            '--chaos 控制網格多樣性，範圍 0-100',
-            '--weird 增加超現實感，範圍 0-3000',
-            '高 chaos 值適合探索創意',
-            '兩個參數可結合使用'
+            '--chaos controls grid diversity, range 0-100',
+            '--weird adds surreal and bizarre elements, range 0-3000',
+            'High chaos values are great for exploring creativity',
+            'Both parameters can be used together for highly creative results'
           ],
           completed: false
         },
         {
           id: 19,
           title: '4.4 排除法：負面提示詞 (--no)',
+          titleEn: '4.4 Exclusion Method: Negative Prompts (--no)',
           duration: '15 分鐘',
+          durationEn: '15 minutes',
           type: 'interactive' as const,
           description: '掌握 --no 參數，學習排除不想要的元素',
+          descriptionEn: 'Master the --no parameter to exclude unwanted elements from generated images',
           image: '/images/courses/midjourney-course/unit-images/negative-prompts.png',
           imageAlt: '負面提示詞使用示例',
+          imageAltEn: 'Negative prompt parameter usage examples',
           transcript: `有時，你唔係想加入啲咩，而係想排除啲咩。--no 參數就係你嘅排除工具。
 
 使用方法：
@@ -1391,11 +1500,29 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
 - 移除常見的背景元素
 - 避免特定的色彩或風格
 - 排除干擾構圖的物件`,
+          transcriptEn: `--no parameter is used to exclude unwanted elements from the prompt.
+
+Usage method:
+Add --no after your prompt and separate multiple unwanted elements with commas.
+
+Example:
+/imagine prompt: a beautiful landscape --no trees, people
+
+Important note:
+Midjourney's content moderation system may independently review each word after --no. For example, if you include --no clothing (don't want clothes), the system may interpret it as "don't want" and "clothes", triggering warnings for potentially sensitive content.
+
+Safe usage tips:
+Instead of using --no, it's safer to explicitly state what you want (e.g., wearing a suit) rather than excluding what you don't want.
+
+Applicable scenarios:
+- Remove common background elements
+- Avoid specific colours or styles
+- Exclude distracting objects from the composition`,
           keyPoints: [
-            '--no 參數用於排除不想要的元素',
-            '多個排除項目用逗號分隔',
-            '需注意內容審核系統的限制',
-            '更安全的做法是明確指出想要的元素'
+            '--no parameter is used to exclude unwanted elements',
+            'Multiple unwanted elements can be separated by commas',
+            'Note: Content moderation system may independently review words after --no',
+            'It's safer to explicitly state what you want rather than excluding it'
           ],
           completed: false
         },
@@ -1432,11 +1559,34 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
 /imagine prompt: abstract pattern --tile --ar 1:1 --s 200
 
 記住，參數嘅順序唔重要，但建議將佢哋統一放喺提示詞嘅最後面，保持整潔。`,
+          transcriptEn: `--quality (--q) and --repeat (--r) parameters control image quality and generation speed.
+
+--quality:
+Value range: 0.25, 0.5, 1 (default 1)
+Usage examples: ... --q 0.5
+
+--repeat:
+Value range: 2-40 (depends on plan)
+Usage examples: ... --r 4
+
+--tile:
+Generates seamless patterns, suitable for textures or backgrounds.
+Usage examples: ... --tile
+
+--video:
+Generates a short video showcasing the creation process.
+Usage examples: ... --video
+
+Combining parameters:
+Multiple parameters can be used together, e.g.:
+/imagine prompt: abstract pattern --tile --ar 1:1 --s 200
+
+Remember, the order of parameters doesn't matter, but it's recommended to place them at the end of the prompt for clarity.`,
           keyPoints: [
-            '--quality 控制生成品質和時間',
-            '--repeat 可批量生成相同提示詞',
-            '--tile 創建無縫拼接圖案',
-            '多個參數可以組合使用'
+            '--quality controls image quality and generation speed',
+            '--repeat allows generating multiple images from the same prompt',
+            '--tile creates seamless patterns',
+            'Multiple parameters can be combined'
           ],
           completed: false
         }
@@ -1467,8 +1617,8 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
               'Image style'
             ],
             correctAnswer: 2,
-            explanation: '--ar 參數用於設定圖像的長寬比（Aspect Ratio），如 --ar 16:9 表示寬螢幕比例。',
-            explanationEn: 'The --ar parameter is used to set the aspect ratio of images, e.g., --ar 16:9 represents widescreen ratio.'
+            explanation: '--ar parameter is used to set the aspect ratio of images, e.g., --ar 16:9 represents widescreen ratio.',
+            explanationEn: '--ar parameter is used to set the aspect ratio of images, e.g., --ar 16:9 represents widescreen ratio.'
           },
           {
             id: 2,
@@ -1488,7 +1638,7 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
               '--ar 3:2'
             ],
             correctAnswer: 1,
-            explanation: '--ar 16:9 是寬螢幕比例，能顯示更大的水平範圍，適合風景或廣角場景。',
+            explanation: '--ar 16:9 is a widescreen ratio that can display a wider horizontal range, suitable for landscapes or wide-angle scenes.',
             explanationEn: '--ar 16:9 is a widescreen ratio that can display a wider horizontal range, suitable for landscapes or wide-angle scenes.'
           },
           {
@@ -1509,8 +1659,8 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
               'Image colour saturation'
             ],
             correctAnswer: 0,
-            explanation: '--stylize 參數控制 Midjourney 應用其預設美學風格的強度，數值範圍從 0 到 1000。',
-            explanationEn: 'The --stylize parameter controls the intensity of Midjourney\'s default aesthetic style application, with values ranging from 0 to 1000.'
+            explanation: '--stylize parameter controls the strength of Midjourney\'s built-in artistic style, with values ranging from 0 to 1000.',
+            explanationEn: '--stylize parameter controls the strength of Midjourney\'s built-in artistic style, with values ranging from 0 to 1000.'
           },
           {
             id: 4,
@@ -1551,8 +1701,8 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
               'Image generation speed slows down'
             ],
             correctAnswer: 2,
-            explanation: '--chaos 參數控制生成結果的變化程度，數值越高，四個初始圖像之間的差異越大。',
-            explanationEn: 'The --chaos parameter controls the degree of variation in generation results; higher values create greater differences between the four initial images.'
+            explanation: '--chaos parameter controls the degree of variation in generation results; higher values create greater differences between the four initial images.',
+            explanationEn: '--chaos parameter controls the degree of variation in generation results; higher values create greater differences between the four initial images.'
           },
           {
             id: 6,
@@ -1572,8 +1722,8 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
               '--weird 200'
             ],
             correctAnswer: 1,
-            explanation: '--weird 參數的最高值 1000 會產生最奇異和非傳統的圖像效果。',
-            explanationEn: 'The maximum value of 1000 for the --weird parameter produces the most bizarre and unconventional image effects.'
+            explanation: '--weird parameter produces the most bizarre and unconventional image effects when set to 1000.',
+            explanationEn: '--weird parameter produces the most bizarre and unconventional image effects when set to 1000.'
           },
           {
             id: 7,
@@ -1593,8 +1743,8 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
               '--omit'
             ],
             correctAnswer: 0,
-            explanation: '--no 參數用於排除特定元素，例如 --no cats 會避免在圖像中出現貓。',
-            explanationEn: 'The --no parameter is used to exclude specific elements, e.g., --no cats will avoid cats appearing in images.'
+            explanation: '--no parameter is used to exclude specific elements, e.g., --no cats will avoid cats appearing in images.',
+            explanationEn: '--no parameter is used to exclude specific elements, e.g., --no cats will avoid cats appearing in images.'
           }
         ]
       }
@@ -1606,87 +1756,94 @@ Midjourney 嘅內容審核系統會獨立審查 --no 後面嘅每一個詞。例
       description: '學習使用 --sref 同 --cref 參數解決一致性挑戰。令同一個角色出現喺唔同嘅故事場景，為一系列作品保持統一嘅藝術風格。',
       descriptionEn: 'Learn to use --sref and --cref parameters to address consistency challenges. Enable the same character to appear in different story scenes whilst maintaining unified artistic styles for a series of works.',
       duration: '85 分鐘',
+      durationEn: '85 minutes',
       lessons: [
         {
           id: 21,
           title: '5.1 風格參考 (--sref)：複製任何圖像嘅藝術風格',
+          titleEn: '5.1 Style Reference (--sref): Copying Artistic Styles from Any Image',
           duration: '20 分鐘',
+          durationEn: '20 minutes',
           type: 'interactive' as const,
           description: '掌握 --sref 參數，學習複製和應用任何圖像的藝術風格',
+          descriptionEn: 'Master the --sref parameter to learn how to copy and apply artistic styles from any image',
           image: '/images/courses/midjourney-course/unit-images/style-reference.png',
           imageAlt: '風格參考功能示例',
-          transcript: `--sref (Style Reference) 參數係一個極其強大嘅工具，佢可以令 Midjourney 學習並模仿任何一張參考圖片嘅藝術風格，包括其美學、色調、光影同整體感覺，但唔會複製參考圖嘅具體內容。
+          imageAltEn: 'Style reference feature examples',
+          transcript: `--sref (Style Reference) parameter is a powerful tool that allows Midjourney to learn and mimic the artistic style of any reference image, including its aesthetics, tone, lighting, and overall feel.
 
-使用方法：
-喺提示詞最後，加上 --sref，後面跟住一張圖片嘅 URL 連結。
+Usage method:
+Add --sref after your prompt and follow it with the URL of the reference image.
 
-範例：
-假設你有一張梵高風格嘅星空圖，你想用呢種風格畫一隻貓：
+Example:
+If you have a Van Gogh-style starry night image and want to use this style to draw a cat:
 /imagine prompt: a cat --sref https://example.com/vangogh-style.jpg
 
-結果會係一張用梵高星空風格繪製嘅貓，而唔係星空本身。
+The result will be a cat drawn in the Van Gogh starry night style, not the starry night itself.
 
-應用場景：
-1. 為系列作品建立統一風格
-2. 學習特定藝術家的風格
-3. 將現有作品的美學應用到新概念
-4. 創建品牌一致的視覺風格
+Application scenarios:
+1. Establishing a unified style for a series of works
+2. Learning the style of a specific artist
+3. Applying the aesthetic of existing works to new concepts
+4. Creating a consistent visual identity for a brand
 
-呢個功能非常適合為一個系列嘅作品（例如一套插畫書）建立統一而獨特嘅視覺風格。你可以先創作一張滿意嘅風格參考圖，然後用 --sref 將呢種風格應用到整個系列。`,
+This feature is particularly useful for creating a unified and unique visual style for a series of works. You can first create a satisfactory style reference image and then use --sref to apply this style to the entire series.`,
           keyPoints: [
-            '--sref 複製圖像風格但不複製內容',
-            '適合建立系列作品的統一風格',
-            '可以學習和應用任何藝術風格',
-            'URL 連結需要是公開可訪問的'
+            '--sref copies the artistic style of an image without copying its content',
+            'Suitable for establishing a unified style for a series of works',
+            'Can learn and apply any artistic style',
+            'URL of the reference image must be publicly accessible'
           ],
           completed: false
         },
         {
           id: 22,
           title: '5.2 角色參考 (--cref)：令同一角色出現喺唔同場景',
+          titleEn: '5.2 Character Reference (--cref): Making the Same Character Appear in Different Scenes',
           duration: '22 分鐘',
+          durationEn: '22 minutes',
           type: 'interactive' as const,
           description: '學習使用 --cref 參數保持角色一致性，創造連續的故事情節',
+          descriptionEn: 'Learn to use the --cref parameter to maintain character consistency and create continuous storylines',
           image: '/images/courses/midjourney-course/unit-images/character-reference.png',
           imageAlt: '角色參考功能示例',
-          transcript: `--cref (Character Reference) 參數嘅目標係解決角色一致性嘅問題。佢可以讓你指定一個角色嘅參考圖，然後喺新嘅提示詞中生成同一個角色，但處於唔同嘅場景或動作之中。
+          imageAltEn: 'Character reference feature examples',
+          transcript: `--cref (Character Reference) parameter is designed to solve consistency issues. It allows you to specify a reference image for a character, and then generate the same character in different scenes or poses in your prompt.
 
-使用方法：
-喺提示詞最後，加上 --cref，後面跟住一張包含清晰角色嘅圖片 URL 連結。
+Usage method:
+Add --cref after your prompt and follow it with the URL of an image containing a clear character.
 
-範例：
-假設你已經生成咗一張滿意嘅太空人圖片，而家想畫佢喺月球上飲咖啡：
+Example:
+If you've already generated a satisfactory astronaut image and now want to draw them on the moon drinking coffee:
 /imagine prompt: drinking coffee on the moon --cref https://example.com/astronaut.jpg
 
-Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅角色，但動作同場景就係「喺月球上飲咖啡」。
+Midjourney will attempt to generate a character that is consistent with the astronaut image, but with a different pose and scene: "drinking coffee on the moon".
 
-最佳實踐：
-1. 使用 Midjourney 生成的角色效果最好
-2. 參考圖中角色要清晰可見
-3. 避免使用真人相片
-4. 可以結合其他參數使用
-
-應用場景：
-- 創作連續的故事情節
-- 開發品牌吉祥物
-- 製作角色設定集
-- 創建一致的插畫風格`,
+Best practices:
+1. Use the character effect generated by Midjourney for the best results
+2. The character in the reference image should be clearly visible
+3. Avoid using real photos
+4. You can combine it with other parameters`,
           keyPoints: [
-            '--cref 保持角色外貌一致性',
-            '適合創作連續故事和角色設定',
-            'Midjourney 生成的角色效果最佳',
-            '可與場景變化結合使用'
+            '--cref maintains character consistency',
+            'Suitable for creating a continuous story and character design',
+            'Midjourney's character effect is best',
+            'Can be used with different scenes'
           ],
           completed: false
         },
         {
           id: 23,
           title: '5.3 參考權重：微調參考嘅影響力 (--sw & --cw)',
+          titleEn: '5.3 Reference Weights: Fine-tuning Reference Influence (--sw & --cw)',
           duration: '18 分鐘',
+          durationEn: '18 minutes',
           type: 'interactive' as const,
           description: '學習使用權重參數精細調整風格和角色參考的影響程度',
+          descriptionEn: 'Learn to use weight parameters to fine-tune the influence of style and character references',
           image: '/images/courses/midjourney-course/unit-images/reference-weights.png',
           imageAlt: '參考權重調整示例',
+          imageAltEn: 'Reference weight adjustment examples',
           transcript: `當你使用 --sref 或 --cref 時，有時可能想調整參考圖嘅影響力。--sw (Style Weight) 同 --cw (Character Weight) 就係用嚟做呢件事嘅。
 
 風格權重 (--sw)：
@@ -1712,19 +1869,22 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
 3. 根據需求靈活調整數值
 4. 多次嘗試找到最佳組合`,
           keyPoints: [
-            '--sw 控制風格參考強度 (0-1000)',
-            '--cw 控制角色參考準確度 (0-100)',
-            '低值減少影響，高值增強效果',
-            '可根據具體需求靈活調整'
+            '--sw controls the strength of style reference (0-1000)',
+            '--cw controls the accuracy of character reference (0-100)',
+            'Lower values reduce influence, higher values enhance effect',
+            'Can be adjusted flexibly based on specific needs'
           ],
           completed: false
         },
         {
           id: 24,
           title: '5.4 種子 (--seed)：重現與微調你嘅作品',
+          titleEn: '5.4 Seed (--seed): Reproducing and Fine-tuning Your Works',
           duration: '15 分鐘',
+          durationEn: '15 minutes',
           type: 'interactive' as const,
           description: '理解種子機制，學習如何重現和微調滿意的作品',
+          descriptionEn: 'Understand the seed mechanism and learn how to reproduce and fine-tune satisfactory works',
           image: '/images/courses/midjourney-course/unit-images/seed-parameter.png',
           imageAlt: '種子參數使用示例',
           transcript: `喺 Midjourney 嘅世界，每一張圖像都係由一個初始嘅「種子」（Seed）數值所決定嘅一片隨機噪點圖開始演變而成。預設情況下，每次生成都會用一個新嘅隨機種子。
@@ -1746,22 +1906,43 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
 4. 版本比較：用相同種子測試不同參數的效果
 
 呢個功能對於喺一個滿意嘅結果基礎上進行微調非常有用，實現更可控嘅實驗同創作。`,
+          transcriptEn: `--seed parameter allows you to manually specify which seed number to use. Its main purpose is reproducibility.
+
+To get the seed number:
+When you generate an image, you can add a custom emoji reaction to the message to get detailed information about the seed number.
+
+Usage method:
+/imagine prompt: a red car --seed 12345
+
+The generated image will be very similar if the prompt and seed number are exactly the same.
+
+Practical applications:
+1. Reproduce a satisfactory result: If you like a generated image, you can try different variations with the same seed number.
+2. Controlled experimentation: Fix the seed number and change only specific words in the prompt to observe subtle changes.
+3. Consistent style: Use the same or similar seed for a series of works.
+4. Version comparison: Test different parameters with the same seed to see their effects.
+
+This feature is very useful for fine-tuning a satisfactory result while maintaining controllable experimentation and creation.`,
           keyPoints: [
-            '--seed 控制圖像生成的隨機性',
-            '相同種子和提示詞產生相似結果',
-            '通過 ✉️ emoji 反應獲取種子數值',
-            '適合微調和可控實驗'
+            '--seed controls randomness',
+            'Same seed and prompt produce similar results',
+            'Obtain seed number through emoji reaction',
+            'Suitable for fine-tuning and controlled experimentation'
           ],
           completed: false
         },
         {
           id: 25,
           title: '5.5 綜合實戰：創建一致性角色系列',
+          titleEn: '5.5 Comprehensive Practice: Creating Consistent Character Series',
           duration: '10 分鐘',
+          durationEn: '10 minutes',
           type: 'interactive' as const,
           description: '綜合運用所學技巧，創建具有一致性的角色和風格系列作品',
+          descriptionEn: 'Comprehensively apply learned techniques to create consistent character and style series works',
           image: '/images/courses/midjourney-course/unit-images/consistency-project.png',
           imageAlt: '一致性創作項目示例',
+          imageAltEn: 'Consistency creation project examples',
           transcript: `現在我哋將所有學過嘅一致性技巧結合起來，創建一個完整嘅角色系列項目。
 
 項目規劃步驟：
@@ -1794,11 +1975,43 @@ Midjourney 會嘗試生成一個外貌、服裝同參考圖中太空人一致嘅
 2. 一致的參數使用
 3. 合理的權重調整
 4. 耐心的迭代優化`,
+          transcriptEn: `We'll combine all the consistency techniques we've learned to create a complete series of character projects.
+
+Project planning steps:
+
+1. Create a basic character
+/imagine prompt: a young wizard with round glasses, detailed character design, fantasy art style
+
+2. Establish style reference
+Choose the most satisfactory result and use --sref to establish the style tone
+
+3. Character consistency
+Use --cref to reference the basic character and create different scenes:
+- Character studying in a library
+- Character practicing magic
+- Character interacting with friends
+
+4. Fine-tuning
+Adjust --cw and --sw values as needed:
+- Decrease --cw when changing outfits
+- Increase --sw when enhancing style
+
+5. Series refinement
+Use similar seed values to maintain overall consistency
+
+Example:
+/imagine prompt: young wizard reading in library --cref [character_url] --sref [style_url] --cw 80 --sw 600
+
+Key elements:
+1. Clear project planning
+2. Consistent parameter use
+3. Reasonable weight adjustment
+4. Patient iterative optimization`,
           keyPoints: [
-            '綜合運用 --cref、--sref、權重等技巧',
-            '先建立基礎角色和風格參考',
-            '系統性地創建不同場景',
-            '通過迭代優化達到最佳效果'
+            'Combining all consistency techniques',
+            'First, create a basic character and style reference',
+            'Systematically create different scenes',
+            'Achieve the best effect through iterative refinement'
           ],
           completed: false
         }
@@ -1977,10 +2190,10 @@ Important notes:
 - New prompts should specifically describe the desired changes
 - Maintain consistency with the original image style`,
           keyPoints: [
-            'Vary Region 允許精確的區域修改',
-            '適合修改表情、姿勢、背景元素',
-            '使用畫筆工具選擇修改範圍',
-            '新提示詞要具體描述改變'
+            'Vary Region allows precise regional modification',
+            'Suitable for modifying expressions, poses, background elements',
+            'Use brush tool to select modification range',
+            'New prompts should specifically describe changes'
           ],
           keyPointsEn: [
             'Vary Region allows precise regional modification',
@@ -2122,8 +2335,8 @@ Important notes:
               '--ar'
             ],
             correctAnswer: 2,
-            explanation: '--weird 參數專門用於創建奇異和非傳統的圖像效果，數值越高效果越明顯。',
-            explanationEn: 'The --weird parameter is specifically designed to create bizarre and unconventional image effects, with higher values producing more pronounced results.'
+            explanation: '--weird parameter is specifically designed to create bizarre and unconventional image effects, with higher values producing more pronounced results.',
+            explanationEn: '--weird parameter is specifically designed to create bizarre and unconventional image effects, with higher values producing more pronounced results.'
           },
           {
             id: 7,
