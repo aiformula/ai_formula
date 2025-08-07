@@ -17,6 +17,9 @@ export interface DigitalProduct {
   type: string;
   typeCht: string;
   category: string;
+  difficulty: string; // 新增：課程難度 (高階/中階/低階)
+  difficultyCht: string; // 新增：課程難度中文
+  isFree: boolean; // 新增：是否免費
   themeColor?: string; // 新增動態主題顏色屬性
   newProduct?: boolean;
   bestseller?: boolean;
@@ -81,6 +84,9 @@ export const digitalProducts: DigitalProduct[] = [
     type: "AI Application",
     typeCht: "AI 應用",
     category: "chatgpt-complete-course",
+    difficulty: "Intermediate", // 中階
+    difficultyCht: "中階",
+    isFree: true,
     themeColor: "#10a37f", // ChatGPT 綠色
     newProduct: true,
     featured: true,
@@ -117,6 +123,9 @@ export const digitalProducts: DigitalProduct[] = [
     type: "AI Search",
     typeCht: "AI 搜尋",
     category: "perplexity-complete-course",
+    difficulty: "Beginner", // 低階
+    difficultyCht: "低階",
+    isFree: true,
     themeColor: "#1a1a1a", // Perplexity 黑色主題
     newProduct: true,
     featured: true,
@@ -153,6 +162,9 @@ export const digitalProducts: DigitalProduct[] = [
     type: "AI Art",
     typeCht: "AI 藝術",
     category: "midjourney-course",
+    difficulty: "Intermediate", // 中階
+    difficultyCht: "中階",
+    isFree: true,
     themeColor: "#c2b280", // Midjourney 暖金色主題
     newProduct: true,
     featured: true,
@@ -189,6 +201,9 @@ export const digitalProducts: DigitalProduct[] = [
     type: "AI Communication",
     typeCht: "AI 溝通",
     category: "prompt-engineering-course",
+    difficulty: "Beginner", // 低階
+    difficultyCht: "低階",
+    isFree: true,
     themeColor: "#9E768F", // 玫瑰紫主題
     newProduct: true,
     featured: true,
@@ -222,18 +237,39 @@ export const categoryFilters: CategoryFilter[] = [
     color: 'bg-blue-500 hover:bg-blue-600'
   },
   {
-    key: 'prompt-engineering',
-    label: 'Prompt Engineering',
-    labelCht: '提示工程',
-    emoji: '🎯',
-    color: 'bg-purple-500 hover:bg-purple-600'
+    key: 'advanced',
+    label: 'Advanced',
+    labelCht: '高階',
+    emoji: '🎓',
+    color: 'bg-red-500 hover:bg-red-600'
   },
   {
-    key: 'ai',
-    label: 'AI Applications',
-    labelCht: 'AI 應用',
-    emoji: '🤖',
-    color: 'bg-blue-500 hover:bg-blue-600'
+    key: 'intermediate',
+    label: 'Intermediate',
+    labelCht: '中階',
+    emoji: '📖',
+    color: 'bg-orange-500 hover:bg-orange-600'
+  },
+  {
+    key: 'beginner',
+    label: 'Beginner',
+    labelCht: '低階',
+    emoji: '🌱',
+    color: 'bg-green-500 hover:bg-green-600'
+  },
+  {
+    key: 'free',
+    label: 'Free',
+    labelCht: '免費',
+    emoji: '🆓',
+    color: 'bg-emerald-500 hover:bg-emerald-600'
+  },
+  {
+    key: 'paid',
+    label: 'Paid',
+    labelCht: '付費',
+    emoji: '💰',
+    color: 'bg-yellow-500 hover:bg-yellow-600'
   }
 ];
 
@@ -249,6 +285,27 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 
 export const getProductsByCategory = (category: string): DigitalProduct[] => {
   if (category === 'all') return digitalProducts;
+  
+  // 按難度過濾
+  if (category === 'advanced') {
+    return digitalProducts.filter(product => product.difficulty.toLowerCase() === 'advanced');
+  }
+  if (category === 'intermediate') {
+    return digitalProducts.filter(product => product.difficulty.toLowerCase() === 'intermediate');
+  }
+  if (category === 'beginner') {
+    return digitalProducts.filter(product => product.difficulty.toLowerCase() === 'beginner');
+  }
+  
+  // 按付費狀態過濾
+  if (category === 'free') {
+    return digitalProducts.filter(product => product.isFree === true);
+  }
+  if (category === 'paid') {
+    return digitalProducts.filter(product => product.isFree === false);
+  }
+  
+  // 按課程分類過濾（保持原有邏輯）
   return digitalProducts.filter(product => product.category === category);
 };
 

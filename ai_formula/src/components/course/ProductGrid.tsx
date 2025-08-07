@@ -255,18 +255,28 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         {product.image}
                       </div>
                       <div className="flex flex-col gap-2">
+                        {/* 難度標籤 */}
+                        <Badge 
+                          className={`text-xs backdrop-blur-sm ${
+                            product.difficulty.toLowerCase() === 'advanced' ? 'bg-red-600/90 text-white' :
+                            product.difficulty.toLowerCase() === 'intermediate' ? 'bg-orange-600/90 text-white' :
+                            'bg-green-600/90 text-white'
+                          }`}
+                        >
+                          {isZhTW ? product.difficultyCht : product.difficulty}
+                        </Badge>
                         {product.newProduct && (
-                          <Badge className="bg-green-600/90 text-white text-xs backdrop-blur-sm">
+                          <Badge className="bg-blue-600/90 text-white text-xs backdrop-blur-sm">
                             {isZhTW ? '新品' : 'New'}
                           </Badge>
                         )}
                         {product.bestseller && (
-                          <Badge className="bg-red-600/90 text-white text-xs backdrop-blur-sm">
+                          <Badge className="bg-purple-600/90 text-white text-xs backdrop-blur-sm">
                             {isZhTW ? '熱銷' : 'Hot'}
                           </Badge>
                         )}
                         {product.hotSelling && (
-                          <Badge className="bg-orange-600/90 text-white text-xs backdrop-blur-sm">
+                          <Badge className="bg-yellow-600/90 text-white text-xs backdrop-blur-sm">
                             {isZhTW ? '精選' : 'Featured'}
                           </Badge>
                         )}
