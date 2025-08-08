@@ -9,8 +9,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import CourseOutline from '@/features/course/CourseOutline';
-import { CourseConfig, CourseStats, CourseFeature, TargetAudience } from './types';
-import { getCourseConfig } from './courseRegistry';
+import { CourseConfig } from './types';
 import { 
   Clock, 
   BookOpen, 
@@ -27,23 +26,20 @@ import {
 } from 'lucide-react';
 
 interface CourseOutlineTemplateProps {
-  courseId: string;
+  config: CourseConfig;
 }
 
-const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ courseId }) => {
+const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config }) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const isZhHK = language === 'zh-HK';
-
-  // 從registry獲取課程配置
-  const config = getCourseConfig(courseId);
   
   if (!config) {
     return (
       <div className="min-h-screen bg-[#121212] flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">{isZhHK ? '課程不存在' : 'Course not found'}</h2>
-          <p className="text-gray-400 mb-4">Course ID: {courseId}</p>
+          <p className="text-gray-400 mb-4">Configuration missing</p>
         </div>
       </div>
     );
@@ -52,7 +48,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ courseId 
   const { dataSource, baseRoute } = config;
 
   // 動態課程統計
-  const courseStats: CourseStats[] = [
+  const courseStats: Array<{ icon: React.ReactNode; label: string; value: string }> = [
     {
       icon: <Clock className="h-6 w-6" />,
       label: isZhHK ? "小時精華內容" : "Hours of Premium Content",
@@ -76,7 +72,8 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ courseId 
   ];
 
   // 動態課程特色 - 根據課程類型調整
-  const getCourseFeatures = (): CourseFeature[] => {
+  const getCourseFeatures = (): Array<{ icon: React.ReactNode; title: string; description: string; highlight: string }> => {
+    const courseId = config.courseId;
     const commonFeatures = [
       {
         icon: <Brain className="h-6 w-6" />,
@@ -125,7 +122,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ courseId 
   };
 
   // 動態目標受眾
-  const targetAudience: TargetAudience = {
+  const targetAudience = {
     title: isZhHK ? "適合學習對象" : "Suitable for",
     description: isZhHK ? 
       "無論您是 AI 新手還是想要深化技能的專業人士，這門課程都能為您提供價值。" : 
