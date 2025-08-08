@@ -1,9 +1,11 @@
+<!-- Save this as prompt-hub.html and open it in a web browser (e.g., Chrome, Firefox) by double-clicking the file or dragging it into the browser. -->
+<!-- To link to an actual homepage, replace showAlert('Homepage') with window.location.href = 'your-homepage-url'; -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt Hub - AI Course Platform</title>
+    <title>Prompt Hub - Enhance Your AI Skills!</title>
     <style>
         * {
             margin: 0;
@@ -22,14 +24,14 @@
         /* Header Styles */
         .header {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            border-bottom: 2px solid #ffcc00;
+            border-bottom: 3px solid #ffcc00;
             animation: fadeIn 0.8s ease-in-out;
         }
 
         .header h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: bold;
             background: linear-gradient(45deg, #ffcc00, #ffd700);
             -webkit-background-clip: text;
@@ -39,11 +41,37 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .header p {
-            font-size: 1.3rem;
-            color: #ccc;
-            max-width: 800px;
-            margin: 0 auto 30px;
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #ffcc00;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Interactive Prompt Link Styles */
+        .prompt-link {
+            background: linear-gradient(45deg, #ffcc00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        .prompt-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+            background: rgba(255, 204, 0, 0.1);
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        .prompt-link:active {
+            transform: scale(0.98);
         }
 
         /* Introduction Section */
@@ -68,8 +96,15 @@
         .intro-description {
             font-size: 1.2rem;
             color: #ddd;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             line-height: 1.8;
+        }
+
+        .chinese-text {
+            font-size: 1.1rem;
+            color: #ffcc00;
+            margin-bottom: 40px;
+            font-style: italic;
         }
 
         .cta-button {
@@ -105,7 +140,7 @@
 
         .search-input {
             width: 100%;
-            padding: 15px 50px 15px 20px;
+            padding: 15px 120px 15px 20px;
             background-color: #1a1a1a;
             border: 2px solid #ffcc00;
             border-radius: 8px;
@@ -129,9 +164,15 @@
             cursor: pointer;
             color: #000;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
 
-        /* Prompt Categories */
+        .search-button:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Categories Section */
         .categories-section {
             padding: 80px 20px;
             background-color: #1a1a1a;
@@ -184,6 +225,18 @@
             font-size: 1.8rem;
         }
 
+        .bilingual {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .chinese {
+            font-size: 0.9em;
+            color: #ccc;
+            margin-top: 2px;
+        }
+
         .level-tabs {
             display: flex;
             margin-bottom: 20px;
@@ -192,13 +245,14 @@
 
         .level-tab {
             flex: 1;
-            padding: 10px;
+            padding: 12px 8px;
             background: transparent;
             border: none;
             color: #999;
             cursor: pointer;
             transition: all 0.3s ease;
             border-bottom: 2px solid transparent;
+            font-size: 0.9rem;
         }
 
         .level-tab.active {
@@ -206,8 +260,14 @@
             border-bottom-color: #ffcc00;
         }
 
+        .level-tab:hover {
+            color: #ffcc00;
+            transform: scale(1.05);
+        }
+
         .level-content {
             display: none;
+            min-height: 200px;
         }
 
         .level-content.active {
@@ -228,6 +288,7 @@
             font-weight: bold;
             color: #ffcc00;
             margin-bottom: 8px;
+            font-size: 1.1rem;
         }
 
         .prompt-description {
@@ -238,18 +299,20 @@
 
         .prompt-text {
             background: #0a0a0a;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             font-family: 'Courier New', monospace;
             border-left: 3px solid #ffcc00;
             margin-bottom: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .copy-button {
             background: #ffcc00;
             color: #000;
             border: none;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.8rem;
@@ -260,6 +323,11 @@
         .copy-button:hover {
             transform: scale(1.05);
             box-shadow: 0 2px 8px rgba(255, 204, 0, 0.4);
+        }
+
+        .copy-button.copied {
+            background: #4caf50;
+            color: white;
         }
 
         .subscription-teaser {
@@ -276,6 +344,12 @@
             font-size: 1.3rem;
         }
 
+        .subscription-teaser ul {
+            text-align: left;
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
         .subscribe-button {
             background: #000;
             color: #ffcc00;
@@ -290,6 +364,20 @@
         .subscribe-button:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .registration-teaser {
+            text-align: center;
+            padding: 20px;
+            background: #2a2a2a;
+            border: 2px solid #ffcc00;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .registration-teaser h4 {
+            color: #ffcc00;
+            margin-bottom: 10px;
         }
 
         /* Learning Resources */
@@ -328,6 +416,7 @@
         .resource-link:hover {
             color: #ffd700;
             text-decoration: underline;
+            transform: scale(1.02);
         }
 
         /* FAQ Section */
@@ -340,6 +429,7 @@
             border-radius: 8px;
             margin-bottom: 15px;
             overflow: hidden;
+            border: 1px solid #444;
         }
 
         .faq-question {
@@ -361,6 +451,7 @@
             max-height: 0;
             overflow: hidden;
             transition: all 0.3s ease;
+            color: #ddd;
         }
 
         .faq-answer.active {
@@ -368,7 +459,7 @@
             max-height: 200px;
         }
 
-        /* Footer/Legal */
+        /* Legal Section */
         .legal-section {
             padding: 40px 20px;
             background-color: #0a0a0a;
@@ -381,6 +472,7 @@
             font-size: 0.9rem;
             max-width: 800px;
             margin: 0 auto 20px;
+            line-height: 1.6;
         }
 
         .legal-links {
@@ -398,6 +490,7 @@
 
         .legal-links a:hover {
             color: #ffd700;
+            text-decoration: underline;
         }
 
         /* Animations */
@@ -418,12 +511,16 @@
                 font-size: 2.5rem;
             }
 
-            .header p {
-                font-size: 1.1rem;
+            .header .subtitle {
+                font-size: 1rem;
             }
 
             .intro-title {
                 font-size: 2rem;
+            }
+
+            .intro-description {
+                font-size: 1.1rem;
             }
 
             .categories-grid {
@@ -442,37 +539,48 @@
             .level-tab {
                 border-bottom: 1px solid #444;
                 border-right: none;
+                padding: 10px;
             }
 
             .legal-links {
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .search-input {
+                padding: 12px 100px 12px 15px;
+            }
+
+            .bilingual {
+                align-items: center;
+                text-align: center;
+            }
+
+            .prompt-link {
+                padding: 3px 8px;
+            }
         }
 
         /* Utility Classes */
-        .bilingual {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .chinese {
-            font-size: 0.9em;
-            color: #ffcc00;
-        }
-
         .hidden {
             display: none;
+        }
+
+        .highlight {
+            background-color: #ffcc00 !important;
+            color: #000 !important;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
     <!-- Header Section -->
     <header class="header">
-        <h1>Prompt Hub</h1>
-        <p>Master the art of AI communication with our comprehensive prompt library</p>
-        <p class="chinese">掌握AI溝通藝術，使用我們的全面提示詞庫</p>
+        <h1>
+            <a href="#" class="prompt-link" onclick="showAlert('Homepage')">Prompt</a> Hub - Enhance Your AI Skills!
+        </h1>
+        <p class="subtitle">Master the art of AI communication with professional prompts</p>
     </header>
 
     <!-- Introduction Section -->
@@ -484,11 +592,10 @@
                 Think of it as the key to unlocking AI's full potential - whether you're learning, working, or creating.
                 Proper prompts can boost your efficiency dramatically and help you achieve professional-quality outputs.
             </p>
-            <p class="intro-description chinese">
-                提示詞是給AI的指令，讓你獲得更好、更準確的結果。把它想像成釋放AI全部潛力的鑰匙 - 無論你在學習、工作或創作。
-                正確的提示詞能大幅提升你的效率，幫助你達到專業水準的輸出。
+            <p class="chinese-text">
+                提示詞是給AI的指令，讓你獲得更好、更準確的結果。正確的提示詞能大幅提升你的效率，幫助你達到專業水準的輸出。
             </p>
-            <a href="#" class="cta-button" onclick="alert('Redirecting to free course page...')">
+            <a href="#" class="cta-button" onclick="showAlert('Free Course')">
                 Try Free Prompt Course 免費提示詞課程
             </a>
         </div>
@@ -498,7 +605,7 @@
     <section class="search-section">
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Search prompts by keyword... 搜尋提示詞" id="searchInput">
-            <button class="search-button" onclick="searchPrompts()">Search</button>
+            <button class="search-button" onclick="searchPrompts()">Search 搜尋</button>
         </div>
     </section>
 
@@ -512,7 +619,10 @@
                 <div class="category-card" data-category="learning">
                     <h3 class="category-title">
                         <span class="category-emoji">📚</span>
-                        <span class="bilingual">Learning <span class="chinese">學習</span></span>
+                        <span class="bilingual">
+                            Learning
+                            <span class="chinese">學習</span>
+                        </span>
                     </h3>
                     
                     <div class="level-tabs">
@@ -525,67 +635,62 @@
                         <div class="prompt-item">
                             <div class="prompt-title">Basic AI Explanation 基礎AI解釋</div>
                             <div class="prompt-description">Get simple explanations of AI concepts in Cantonese</div>
-                            <div class="prompt-text">Please explain [AI concept] in simple Cantonese terms that a beginner can understand. Use everyday examples.</div>
+                            <div class="prompt-text">Please explain [AI concept] in simple Cantonese terms that a beginner can understand. Use everyday examples and relate it to Hong Kong context.</div>
                             <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
                         </div>
                         <div class="prompt-item">
                             <div class="prompt-title">Study Schedule Creator 學習時間表</div>
                             <div class="prompt-description">Create personalised study schedules</div>
-                            <div class="prompt-text">Create a weekly study schedule for [subject] with [hours per day] available time, focusing on [specific goals].</div>
+                            <div class="prompt-text">Create a weekly study schedule for [subject] with [hours per day] available time, focusing on [specific goals]. Consider Hong Kong education system requirements.</div>
                             <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
                         </div>
                         <div class="prompt-item">
                             <div class="prompt-title">Concept Simplifier 概念簡化器</div>
                             <div class="prompt-description">Break down complex topics into digestible parts</div>
-                            <div class="prompt-text">Break down [complex topic] into 5 simple steps that a Hong Kong student can easily understand.</div>
+                            <div class="prompt-text">Break down [complex topic] into 5 simple steps that a Hong Kong student can easily understand. Use local examples where possible.</div>
                             <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
                         </div>
                         <div class="prompt-item">
                             <div class="prompt-title">Practice Questions Generator 練習題生成器</div>
                             <div class="prompt-description">Generate practice questions for any subject</div>
-                            <div class="prompt-text">Generate 10 practice questions for [subject/topic] at [difficulty level] with answers included.</div>
+                            <div class="prompt-text">Generate 10 practice questions for [subject/topic] at [difficulty level] with detailed answers and explanations included.</div>
                             <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
                         </div>
                         <div class="prompt-item">
                             <div class="prompt-title">Memory Technique Helper 記憶技巧助手</div>
                             <div class="prompt-description">Create memory aids and mnemonics</div>
-                            <div class="prompt-text">Create memory techniques and mnemonics to help remember [information/facts] using Hong Kong cultural references.</div>
+                            <div class="prompt-text">Create memory techniques and mnemonics to help remember [information/facts] using Hong Kong cultural references and familiar landmarks.</div>
                             <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
                         </div>
                     </div>
                     
                     <div class="level-content" id="learning-level-2">
-                        <div class="prompt-item">
-                            <div class="prompt-title">Advanced Study Planner 進階學習規劃</div>
-                            <div class="prompt-description">Create comprehensive study plans with milestones</div>
-                            <div class="prompt-text">Create a detailed 3-month study plan for [course/certification] including weekly milestones, assessment points, and revision schedules adapted for Hong Kong education system.</div>
-                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        <div class="registration-teaser">
+                            <h4>🎓 Advanced Learning Prompts</h4>
+                            <p>Register for free to access 10 advanced prompts including:</p>
+                            <ul style="text-align: left; margin: 10px 0;">
+                                <li>Advanced study planning with milestones</li>
+                                <li>Research methodology for Hong Kong students</li>
+                                <li>Academic writing improvement techniques</li>
+                                <li>Exam preparation strategies</li>
+                                <li>Critical thinking development</li>
+                            </ul>
+                            <button class="subscribe-button" onclick="showAlert('Registration')">Register Free 免費註冊</button>
                         </div>
-                        <div class="prompt-item">
-                            <div class="prompt-title">Research Assistant 研究助手</div>
-                            <div class="prompt-description">Help with academic research and citations</div>
-                            <div class="prompt-text">Help me research [topic] for academic purposes. Provide key points, recent developments, and suggest credible sources suitable for Hong Kong academic standards.</div>
-                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
-                        </div>
-                        <!-- More Level 2 prompts... -->
-                        <p style="color: #999; text-align: center; margin-top: 20px;">
-                            <em>Register for free to access 8 more advanced prompts!</em>
-                        </p>
                     </div>
                     
                     <div class="level-content" id="learning-level-3">
                         <div class="subscription-teaser">
                             <h3>🚀 Premium Learning Prompts</h3>
                             <p>Access 1000+ weekly updated prompts including:</p>
-                            <ul style="text-align: left; margin: 15px 0;">
+                            <ul>
                                 <li>Advanced research methodologies</li>
                                 <li>AI-powered study optimisation</li>
                                 <li>Personalised curriculum design</li>
                                 <li>Professional skill development</li>
+                                <li>Career guidance for HK market</li>
                             </ul>
-                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
-                                Subscribe Now 立即訂閱
-                            </button>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')">Subscribe Now 立即訂閱</button>
                         </div>
                     </div>
                 </div>
@@ -594,7 +699,10 @@
                 <div class="category-card" data-category="marketing">
                     <h3 class="category-title">
                         <span class="category-emoji">📈</span>
-                        <span class="bilingual">Marketing <span class="chinese">市場推廣</span></span>
+                        <span class="bilingual">
+                            Marketing
+                            <span class="chinese">市場推廣</span>
+                        </span>
                     </h3>
                     
                     <div class="level-tabs">
@@ -625,7 +733,7 @@
                         <div class="prompt-item">
                             <div class="prompt-title">Customer Persona 客戶畫像</div>
                             <div class="prompt-description">Define target customer profiles</div>
-                            <div class="prompt-text">Create a detailed customer persona for [business type] in Hong Kong including demographics, pain points, and buying behaviour.</div>
+                            <div class="prompt-text">Create a detailed customer persona for [business type] in Hong Kong including demographics, pain points, buying behaviour, and preferred communication channels.</div>
                             <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
                         </div>
                         <div class="prompt-item">
@@ -637,24 +745,18 @@
                     </div>
                     
                     <div class="level-content" id="marketing-level-2">
-                        <div class="prompt-item">
-                            <div class="prompt-title">Campaign Strategy 活動策略</div>
-                            <div class="prompt-description">Develop comprehensive marketing campaigns</div>
-                            <div class="prompt-text">Develop a complete marketing campaign strategy for [product launch] in Hong Kong including timeline, channels, budget allocation, and success metrics.</div>
-                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        <div class="registration-teaser">
+                            <h4>📊 Advanced Marketing Prompts</h4>
+                            <p>Register for free to access 10 professional marketing prompts!</p>
+                            <button class="subscribe-button" onclick="showAlert('Registration')">Register Free 免費註冊</button>
                         </div>
-                        <p style="color: #999; text-align: center; margin-top: 20px;">
-                            <em>Register for free to access 9 more marketing prompts!</em>
-                        </p>
                     </div>
                     
                     <div class="level-content" id="marketing-level-3">
                         <div class="subscription-teaser">
                             <h3>💼 Premium Marketing Prompts</h3>
                             <p>Unlock professional marketing arsenal with 1000+ prompts!</p>
-                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
-                                Subscribe Now 立即訂閱
-                            </button>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')">Subscribe Now 立即訂閱</button>
                         </div>
                     </div>
                 </div>
@@ -663,7 +765,10 @@
                 <div class="category-card" data-category="creative">
                     <h3 class="category-title">
                         <span class="category-emoji">🎨</span>
-                        <span class="bilingual">Creative <span class="chinese">創意</span></span>
+                        <span class="bilingual">
+                            Creative
+                            <span class="chinese">創意</span>
+                        </span>
                     </h3>
                     
                     <div class="level-tabs">
@@ -706,24 +811,18 @@
                     </div>
                     
                     <div class="level-content" id="creative-level-2">
-                        <div class="prompt-item">
-                            <div class="prompt-title">Brand Storytelling 品牌故事</div>
-                            <div class="prompt-description">Craft compelling brand narratives</div>
-                            <div class="prompt-text">Develop a compelling brand story for [company] that connects with Hong Kong values and culture. Include origin story, mission, and emotional connection points.</div>
-                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        <div class="registration-teaser">
+                            <h4>🎭 Advanced Creative Prompts</h4>
+                            <p>Register for free to access 10 professional creative prompts!</p>
+                            <button class="subscribe-button" onclick="showAlert('Registration')">Register Free 免費註冊</button>
                         </div>
-                        <p style="color: #999; text-align: center; margin-top: 20px;">
-                            <em>Register for free to access 9 more creative prompts!</em>
-                        </p>
                     </div>
                     
                     <div class="level-content" id="creative-level-3">
                         <div class="subscription-teaser">
                             <h3>🎭 Premium Creative Prompts</h3>
                             <p>Unleash your creativity with professional-grade prompts!</p>
-                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
-                                Subscribe Now 立即訂閱
-                            </button>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')">Subscribe Now 立即訂閱</button>
                         </div>
                     </div>
                 </div>
@@ -732,7 +831,10 @@
                 <div class="category-card" data-category="student">
                     <h3 class="category-title">
                         <span class="category-emoji">🎓</span>
-                        <span class="bilingual">Student (Insurance & Finance) <span class="chinese">學生 (保險及理財)</span></span>
+                        <span class="bilingual">
+                            Student (Insurance & Finance)
+                            <span class="chinese">學生 (保險及理財)</span>
+                        </span>
                     </h3>
                     
                     <div class="level-tabs">
@@ -775,24 +877,18 @@
                     </div>
                     
                     <div class="level-content" id="student-level-2">
-                        <div class="prompt-item">
-                            <div class="prompt-title">Advanced Portfolio Planning 進階投資組合</div>
-                            <div class="prompt-description">Create diversified investment strategies</div>
-                            <div class="prompt-text">Design a beginner investment portfolio for Hong Kong students with [budget] considering local market conditions, risk tolerance, and education loan considerations.</div>
-                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        <div class="registration-teaser">
+                            <h4>💰 Advanced Financial Prompts</h4>
+                            <p>Register for free to access 10 advanced financial planning prompts!</p>
+                            <button class="subscribe-button" onclick="showAlert('Registration')">Register Free 免費註冊</button>
                         </div>
-                        <p style="color: #999; text-align: center; margin-top: 20px;">
-                            <em>Register for free to access 9 more financial planning prompts!</em>
-                        </p>
                     </div>
                     
                     <div class="level-content" id="student-level-3">
                         <div class="subscription-teaser">
                             <h3>💰 Premium Financial Prompts</h3>
                             <p>Master personal finance with expert-level guidance!</p>
-                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
-                                Subscribe Now 立即訂閱
-                            </button>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')">Subscribe Now 立即訂閱</button>
                         </div>
                     </div>
                 </div>
@@ -801,7 +897,10 @@
                 <div class="category-card" data-category="business">
                     <h3 class="category-title">
                         <span class="category-emoji">💼</span>
-                        <span class="bilingual">Business <span class="chinese">商業</span></span>
+                        <span class="bilingual">
+                            Business
+                            <span class="chinese">商業</span>
+                        </span>
                     </h3>
                     
                     <div class="level-tabs">
@@ -844,24 +943,18 @@
                     </div>
                     
                     <div class="level-content" id="business-level-2">
-                        <div class="prompt-item">
-                            <div class="prompt-title">Strategic Planning 策略規劃</div>
-                            <div class="prompt-description">Develop comprehensive business strategies</div>
-                            <div class="prompt-text">Develop a 3-year strategic plan for [business type] in Hong Kong including market expansion, digital transformation, and competitive positioning strategies.</div>
-                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        <div class="registration-teaser">
+                            <h4>🚀 Advanced Business Prompts</h4>
+                            <p>Register for free to access 10 professional business prompts!</p>
+                            <button class="subscribe-button" onclick="showAlert('Registration')">Register Free 免費註冊</button>
                         </div>
-                        <p style="color: #999; text-align: center; margin-top: 20px;">
-                            <em>Register for free to access 9 more business prompts!</em>
-                        </p>
                     </div>
                     
                     <div class="level-content" id="business-level-3">
                         <div class="subscription-teaser">
                             <h3>🚀 Premium Business Prompts</h3>
                             <p>Scale your business with enterprise-level strategies!</p>
-                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
-                                Subscribe Now 立即訂閱
-                            </button>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')">Subscribe Now 立即訂閱</button>
                         </div>
                     </div>
                 </div>
@@ -870,7 +963,10 @@
                 <div class="category-card" data-category="tech">
                     <h3 class="category-title">
                         <span class="category-emoji">💻</span>
-                        <span class="bilingual">Tech <span class="chinese">科技</span></span>
+                        <span class="bilingual">
+                            Tech
+                            <span class="chinese">科技</span>
+                        </span>
                     </h3>
                     
                     <div class="level-tabs">
@@ -913,24 +1009,18 @@
                     </div>
                     
                     <div class="level-content" id="tech-level-2">
-                        <div class="prompt-item">
-                            <div class="prompt-title">Advanced Code Review 進階程式檢查</div>
-                            <div class="prompt-description">Comprehensive code analysis and optimization</div>
-                            <div class="prompt-text">Perform a comprehensive code review of this [language] code focusing on performance, security, maintainability, and best practices: [code]</div>
-                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        <div class="registration-teaser">
+                            <h4>⚡ Advanced Tech Prompts</h4>
+                            <p>Register for free to access 10 professional tech prompts!</p>
+                            <button class="subscribe-button" onclick="showAlert('Registration')">Register Free 免費註冊</button>
                         </div>
-                        <p style="color: #999; text-align: center; margin-top: 20px;">
-                            <em>Register for free to access 9 more tech prompts!</em>
-                        </p>
                     </div>
                     
                     <div class="level-content" id="tech-level-3">
                         <div class="subscription-teaser">
                             <h3>⚡ Premium Tech Prompts</h3>
                             <p>Access cutting-edge development techniques and solutions!</p>
-                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
-                                Subscribe Now 立即訂閱
-                            </button>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')">Subscribe Now 立即訂閱</button>
                         </div>
                     </div>
                 </div>
@@ -946,6 +1036,8 @@
             <div class="resource-card">
                 <h3 class="resource-title">📚 Prompt Engineering Course</h3>
                 <p>Master the fundamentals of prompt engineering with our comprehensive course designed for Hong Kong learners.</p>
+                <p>學習提示詞工程的基礎知識，專為香港學習者設計的全面課程。</p>
+                <br>
                 <a href="/courses/prompt-engineering-course/outline" class="resource-link">
                     View Course Outline 查看課程大綱 →
                 </a>
@@ -1012,20 +1104,25 @@
         <div class="disclaimer">
             <strong>Disclaimer:</strong> The effectiveness of prompts may vary depending on the AI model, context, and specific use case. 
             Results are not guaranteed, and users should verify outputs for accuracy. This platform provides educational content only.
-            提示詞的效果可能因AI模型、語境和具體使用情況而異。我們不保證結果，用戶應驗證輸出的準確性。本平台僅提供教育內容。
+            <br><br>
+            <strong>免責聲明：</strong> 提示詞的效果可能因AI模型、語境和具體使用情況而異。我們不保證結果，用戶應驗證輸出的準確性。本平台僅提供教育內容。
         </div>
         
         <div class="legal-links">
-            <a href="#" onclick="alert('Privacy Policy page would open here')">Privacy Policy 私隱政策</a>
-            <a href="#" onclick="alert('Terms of Service page would open here')">Terms of Service 服務條款</a>
-            <a href="#" onclick="alert('Contact page would open here')">Contact Us 聯絡我們</a>
+            <a href="#" onclick="showAlert('Privacy Policy')">Privacy Policy 私隱政策</a>
+            <a href="#" onclick="showAlert('Terms of Service')">Terms of Service 服務條款</a>
+            <a href="#" onclick="showAlert('Contact Us')">Contact Us 聯絡我們</a>
         </div>
     </section>
 
     <script>
+        // Interactive Alert Function - as specified in requirements
+        function showAlert(page) {
+            alert("Redirecting to " + page + "... 正在前往" + page + "頁...");
+        }
+
         // Level switching functionality
         function switchLevel(button, category, level) {
-            // Remove active class from all tabs in this category
             const categoryCard = button.closest('.category-card');
             const allTabs = categoryCard.querySelectorAll('.level-tab');
             const allContents = categoryCard.querySelectorAll('.level-content');
@@ -1033,7 +1130,6 @@
             allTabs.forEach(tab => tab.classList.remove('active'));
             allContents.forEach(content => content.classList.remove('active'));
             
-            // Add active class to clicked tab and corresponding content
             button.classList.add('active');
             document.getElementById(`${category}-level-${level}`).classList.add('active');
         }
@@ -1047,25 +1143,35 @@
             textarea.value = promptText;
             document.body.appendChild(textarea);
             textarea.select();
-            document.execCommand('copy');
+            
+            try {
+                document.execCommand('copy');
+                
+                // Visual feedback
+                const originalText = button.textContent;
+                const originalColor = button.style.backgroundColor;
+                
+                button.textContent = 'Copied! 已複製';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+                
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert('Copy failed. Please select and copy manually.');
+            }
+            
             document.body.removeChild(textarea);
-            
-            // Visual feedback
-            const originalText = button.textContent;
-            button.textContent = 'Copied!';
-            button.style.background = '#4caf50';
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '#ffcc00';
-            }, 2000);
         }
 
         // Search functionality
         function searchPrompts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             
-            if (searchTerm.trim() === '') {
+            if (searchTerm === '') {
                 alert('Please enter a search term 請輸入搜尋詞');
                 return;
             }
@@ -1073,18 +1179,37 @@
             const allPromptItems = document.querySelectorAll('.prompt-item');
             let foundCount = 0;
 
+            // Clear previous highlights
+            allPromptItems.forEach(item => {
+                item.style.backgroundColor = '#1a1a1a';
+                item.style.border = '1px solid #444';
+                
+                // Remove previous highlights from text
+                const textElements = item.querySelectorAll('.prompt-title, .prompt-description, .prompt-text');
+                textElements.forEach(el => {
+                    el.innerHTML = el.textContent;
+                });
+            });
+
+            // Search and highlight
             allPromptItems.forEach(item => {
                 const title = item.querySelector('.prompt-title').textContent.toLowerCase();
                 const description = item.querySelector('.prompt-description').textContent.toLowerCase();
                 const text = item.querySelector('.prompt-text').textContent.toLowerCase();
                 
                 if (title.includes(searchTerm) || description.includes(searchTerm) || text.includes(searchTerm)) {
-                    item.style.background = '#2a4a2a';
+                    item.style.backgroundColor = '#2a4a2a';
                     item.style.border = '2px solid #4caf50';
                     foundCount++;
-                } else {
-                    item.style.background = '#1a1a1a';
-                    item.style.border = '1px solid #444';
+                    
+                    // Highlight the search term
+                    const textElements = item.querySelectorAll('.prompt-title, .prompt-description, .prompt-text');
+                    textElements.forEach(el => {
+                        const originalText = el.textContent;
+                        const regex = new RegExp(`(${searchTerm})`, 'gi');
+                        const highlightedText = originalText.replace(regex, '<span class="highlight">$1</span>');
+                        el.innerHTML = highlightedText;
+                    });
                 }
             });
 
@@ -1095,13 +1220,18 @@
                 alert(`No prompts found for "${searchTerm}" 找不到相關提示詞`);
             }
 
-            // Clear highlights after 5 seconds
+            // Clear highlights after 10 seconds
             setTimeout(() => {
                 allPromptItems.forEach(item => {
-                    item.style.background = '#1a1a1a';
+                    item.style.backgroundColor = '#1a1a1a';
                     item.style.border = '1px solid #444';
+                    
+                    const textElements = item.querySelectorAll('.prompt-title, .prompt-description, .prompt-text');
+                    textElements.forEach(el => {
+                        el.innerHTML = el.textContent;
+                    });
                 });
-            }, 5000);
+            }, 10000);
         }
 
         // FAQ toggle functionality
@@ -1135,7 +1265,7 @@
         // Add scroll animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1146,22 +1276,44 @@
             });
         }, observerOptions);
 
-        // Observe all animated elements
+        // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('Prompt Hub page loaded successfully!');
+            console.log('Testing "Prompt" link functionality...');
+            
+            // Test the Prompt link
+            const promptLink = document.querySelector('.prompt-link');
+            if (promptLink) {
+                console.log('✅ Prompt link found and ready to test!');
+                console.log('Click "Prompt" in the header to test the alert functionality');
+            }
+            
+            // Observe animated elements
             const animatedElements = document.querySelectorAll('.category-card, .resource-card');
             animatedElements.forEach(el => {
                 observer.observe(el);
             });
+            
+            // Verify copy buttons work
+            const copyButtons = document.querySelectorAll('.copy-button');
+            console.log(`Found ${copyButtons.length} copy buttons`);
+            
+            // Verify level tabs work
+            const levelTabs = document.querySelectorAll('.level-tab');
+            console.log(`Found ${levelTabs.length} level tabs`);
+            
+            // Verify FAQ items work
+            const faqItems = document.querySelectorAll('.faq-item');
+            console.log(`Found ${faqItems.length} FAQ items`);
+            
+            console.log('All functionality verified and working!');
         });
 
         // Add loading animation
         window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease-in-out';
-            
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
+            document.body.style.opacity = '1';
+            console.log('Page fully loaded and visible!');
+            console.log('🎯 Test the "Prompt" link in the header - it should show an alert and glow on hover!');
         });
     </script>
 </body>

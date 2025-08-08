@@ -41,6 +41,7 @@ const Navigation = () => {
     { id: 'about', label: t('nav.about'), path: language === 'zh-HK' ? '/about-cht' : '/about' },
     { id: 'courses', label: t('nav.courses'), path: '/courses' },
     { id: 'tools', label: t('nav.tools'), path: '/tools' },
+    { id: 'prompt-hub', label: t('nav.promptHub'), path: '/prompt-hub' },
     { id: 'blog', label: t('nav.blog'), path: '/blog' },
     { id: 'enterprise', label: language === 'zh-HK' ? '企業服務' : 'Enterprise', path: '/enterprise' }
   ];
@@ -51,15 +52,16 @@ const Navigation = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm"
+        className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm"
       >
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 lg:px-8 py-4 md:py-6 min-h-[80px] gap-4 lg:gap-6">
         {/* Logo - Enhanced with Professional Typography */}
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className="cursor-pointer"
+          className="cursor-pointer flex-shrink-0"
           onClick={() => navigate('/')}
         >
-          <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+          <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent whitespace-nowrap">
             AI FORMULA.
           </span>
         </motion.div>
@@ -69,7 +71,7 @@ const Navigation = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, staggerChildren: 0.1 }}
-          className="hidden md:flex items-center space-x-8"
+          className="hidden md:flex items-center space-x-3 lg:space-x-5 xl:space-x-7 flex-nowrap flex-1 justify-center"
         >
           {navigationItems.map((item, index) => (
             <motion.div
@@ -81,7 +83,7 @@ const Navigation = () => {
             >
               <Link
                 to={item.path}
-                className={`text-lg font-medium hover:text-white transition-colors duration-300 ${
+                className={`text-xs md:text-sm lg:text-base font-medium hover:text-white transition-colors duration-300 whitespace-nowrap ${
                   (location.pathname === item.path || 
                    (location.pathname === '/about' && item.path === '/about-cht') ||
                    (location.pathname === '/about-cht' && item.path === '/about')) 
@@ -99,7 +101,7 @@ const Navigation = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="hidden md:flex items-center space-x-4"
+          className="hidden md:flex items-center space-x-3 lg:space-x-4 flex-nowrap flex-shrink-0"
         >
           <LanguageSwitcher />
           {user ? (
@@ -113,7 +115,7 @@ const Navigation = () => {
                   <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-semibold text-base">
                     {getUserInitials(user?.email)}
                   </div>
-                  <span className="text-white text-base hidden lg:block">
+                  <span className="text-white text-sm lg:text-base hidden lg:block whitespace-nowrap">
                     {getUserDisplayName(user?.email)}
                   </span>
                 </motion.button>
@@ -152,13 +154,13 @@ const Navigation = () => {
               <Button 
                 onClick={() => navigate('/auth')}
                 variant="outline"
-                className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full px-6 py-3 text-base font-medium transition-all duration-300"
+                className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full px-4 lg:px-6 py-2 lg:py-3 text-sm lg:text-base font-medium transition-all duration-300 whitespace-nowrap"
               >
                 {t('nav.signin')}
               </Button>
               <Button 
                 onClick={() => navigate('/auth')}
-                className="bg-white text-black hover:bg-yellow-500 hover:text-black rounded-full px-6 py-3 text-base font-medium transition-all duration-300"
+                className="bg-white text-black hover:bg-yellow-500 hover:text-black rounded-full px-4 lg:px-6 py-2 lg:py-3 text-sm lg:text-base font-medium transition-all duration-300 whitespace-nowrap"
               >
                 {t('nav.signup')}
               </Button>
@@ -167,7 +169,7 @@ const Navigation = () => {
         </motion.div>
 
         {/* Mobile Elements - Enhanced Typography */}
-        <div className="md:hidden flex items-center space-x-3">
+        <div className="md:hidden flex items-center space-x-3 flex-nowrap">
           <LanguageSwitcher />
           {user && (
             <div className="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-body">
@@ -181,6 +183,7 @@ const Navigation = () => {
             {isMobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
           </button>
         </div>
+        </div>
       </motion.nav>
 
       {/* Mobile Menu - Enhanced Typography */}
@@ -191,7 +194,7 @@ const Navigation = () => {
           exit={{ opacity: 0, y: -20 }}
           className="fixed top-20 left-0 right-0 bg-black/95 backdrop-blur-sm z-40 md:hidden"
         >
-          <div className="px-4 py-6 space-y-4">
+          <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
             {/* Mobile Navigation Links - Enhanced Typography */}
             {navigationItems.map((item) => (
               <Link

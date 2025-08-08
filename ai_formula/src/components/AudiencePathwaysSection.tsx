@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -19,6 +20,7 @@ import {
 
 const AudiencePathwaysSection = () => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const isZhTW = language === 'zh-HK';
 
   const pathways = [
@@ -46,42 +48,42 @@ const AudiencePathwaysSection = () => {
       gradient: "from-green-500 to-emerald-600",
       bgGradient: "from-green-500/10 to-emerald-500/10",
       borderColor: "border-green-500/50",
-      route: "/courses?level=beginner"
+      filterKey: "beginner"
     },
     {
       id: 2,
       icon: <Code2 className="w-8 h-8" />,
-      emoji: "💻",
-      title: isZhTW ? "我是開發者，想學習進階技巧" : "I'm a developer, want to learn advanced techniques",
+      emoji: "🔧", 
+      title: isZhTW ? "我是開發者，想學習AI整合技巧" : "I'm a developer, want to learn AI integration",
       description: isZhTW 
-        ? "深入AI技術細節，學習API整合、自動化工具開發等進階技巧。"
-        : "Dive deep into AI technical details, learn API integration, automation tools and advanced development skills.",
+        ? "深入掌握AI技術整合，學習API使用、自動化工具開發，為你的開發技能加分。"
+        : "Master AI technology integration, learn API usage and automation tool development to enhance your skills.",
       features: isZhTW ? [
-        "API整合實戰",
+        "API整合實務",
         "自動化工具開發",
-        "進階程式設計",
-        "系統架構設計"
+        "進階技術指南",
+        "系統整合設計"
       ] : [
         "API integration practice",
-        "Automation tool development",
-        "Advanced programming skills",
-        "System architecture design"
+        "Automation tool development", 
+        "Advanced technical guides",
+        "System integration design"
       ],
-      level: isZhTW ? "進階" : "Advanced",
-      duration: isZhTW ? "8-12週" : "8-12 weeks",
+      level: isZhTW ? "中階" : "Intermediate",
+      duration: isZhTW ? "6-12週" : "6-12 weeks",
       gradient: "from-blue-500 to-cyan-600",
       bgGradient: "from-blue-500/10 to-cyan-500/10",
       borderColor: "border-blue-500/50",
-      route: "/courses?level=advanced&category=development"
+      filterKey: "intermediate"
     },
     {
       id: 3,
       icon: <TrendingUp className="w-8 h-8" />,
-      emoji: "📈",
-      title: isZhTW ? "我是行銷人員，想用AI提升效率" : "I'm a marketer, want to use AI to boost efficiency",
+      emoji: "💼",
+      title: isZhTW ? "我是行銷人員，想用AI提升效率" : "I'm a marketer, want to use AI for efficiency",
       description: isZhTW 
-        ? "學習如何運用AI工具優化行銷流程，提升內容創作和數據分析效率。"
-        : "Learn how to use AI tools to optimize marketing processes, enhance content creation and data analysis efficiency.",
+        ? "學習如何運用AI工具優化行銷策略，提升內容創作和數據分析的效率。"
+        : "Learn how to use AI tools to optimize marketing strategies and improve content creation and data analysis efficiency.",
       features: isZhTW ? [
         "AI內容創作工具",
         "行銷自動化設定",
@@ -90,21 +92,30 @@ const AudiencePathwaysSection = () => {
       ] : [
         "AI content creation tools",
         "Marketing automation setup",
-        "Data analysis optimization",
+        "Data analysis optimization", 
         "Customer relationship management"
       ],
-      level: isZhTW ? "中級" : "Intermediate",
+      level: isZhTW ? "中階" : "Intermediate", 
       duration: isZhTW ? "6-8週" : "6-8 weeks",
       gradient: "from-purple-500 to-pink-600",
       bgGradient: "from-purple-500/10 to-pink-500/10",
       borderColor: "border-purple-500/50",
-      route: "/courses?level=intermediate&category=marketing"
+      filterKey: "intermediate"
     }
   ];
 
-  const handlePathwayClick = (route: string) => {
-    // Navigate to the course page with filters
-    window.location.href = route;
+  const handlePathwayClick = (filterKey: string) => {
+    // Navigate to courses page and apply the filter
+    navigate('/courses');
+    
+    // Use a small delay to ensure the page loads before applying filter
+    setTimeout(() => {
+      // Trigger the filter change in the ProductGrid component
+      const event = new CustomEvent('filterChange', { 
+        detail: { category: filterKey } 
+      });
+      window.dispatchEvent(event);
+    }, 100);
   };
 
   return (
@@ -171,7 +182,7 @@ const AudiencePathwaysSection = () => {
                 transition: { duration: 0.3 }
               }}
               className="group cursor-pointer"
-              onClick={() => handlePathwayClick(pathway.route)}
+              onClick={() => handlePathwayClick(pathway.filterKey)}
             >
               <Card className={`bg-gray-800/50 border-2 ${pathway.borderColor} hover:border-opacity-100 transition-all duration-500 overflow-hidden h-full backdrop-blur-sm relative`}>
                 {/* Card Glow Effect */}
@@ -235,6 +246,7 @@ const AudiencePathwaysSection = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button 
+                      onClick={() => handlePathwayClick(pathway.filterKey)}
                       className={`w-full bg-gradient-to-r ${pathway.gradient} hover:shadow-lg hover:shadow-${pathway.gradient.split('-')[1]}-500/25 text-white font-semibold py-3 transition-all duration-300 group border-0`}
                     >
                       {isZhTW ? '開始學習' : 'Start Learning'}

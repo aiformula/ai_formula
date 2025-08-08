@@ -1,0 +1,466 @@
+===============================================
+🎥📸 如何為所有工具添加視頻和圖片 - 完整教學
+===============================================
+
+親愛的用戶，呢個教學會一步步教你點樣為所有工具卡片添加視頻同圖片功能！
+
+===============================================
+📋 目錄
+===============================================
+1. 準備工作
+2. 上傳圖片文件
+3. 上傳視頻文件  
+4. 修改工具數據
+5. 測試功能
+6. 常見問題解決
+
+===============================================
+🛠️ 第一步：準備工作
+===============================================
+
+首先，你需要了解文件結構：
+
+📁 ai_formula/
+  └── 📁 public/
+      ├── 📁 images/        ← 圖片放呢度
+      │   └── 📁 tools/     ← 專門放工具圖片
+      ├── 📁 videos/        ← 視頻放呢度
+      └── 📁 aitools/       ← 現有工具圖片
+
+工具數據文件位置：
+📄 ai_formula/src/data/tools-data.ts
+
+===============================================
+🖼️ 第二步：上傳圖片文件
+===============================================
+
+2.1 準備圖片
+-----------
+• 建議格式：PNG, JPG, SVG
+• 建議大小：200x200 像素或以上
+• 檔案大小：< 2MB
+• 命名規範：工具名稱-logo.png
+
+例子：
+- chatgpt-logo.png
+- midjourney-logo.jpg
+- databricks-logo.svg
+
+2.2 上傳圖片到正確位置
+-------------------
+將圖片文件放到：
+📁 ai_formula/public/aitools/你的圖片.png
+
+現有圖片例子：
+ai_formula/public/aitools/4DV.jpg
+ai_formula/public/aitools/chat4data.png
+ai_formula/public/aitools/freepik.png
+
+2.3 圖片路徑格式
+--------------
+喺工具數據入面，圖片路徑應該寫成：
+imageUrl: '/aitools/你的圖片.png'
+
+===============================================
+🎥 第三步：上傳視頻文件
+===============================================
+
+3.1 準備視頻文件
+--------------
+• 建議格式：MP4（最佳兼容性）
+• 其他支援格式：WebM
+• 建議解析度：1080p 或 720p
+• 檔案大小：< 50MB（為咗快速載入）
+• 長度：30秒 - 3分鐘
+
+3.2 壓縮視頻（如果需要）
+---------------------
+如果你嘅視頻太大，可以用呢個方法壓縮：
+
+方法1：線上工具
+- CloudConvert (cloudconvert.com)
+- Online-Convert (online-convert.com)
+
+方法2：軟件工具
+- HandBrake（免費）
+- FFmpeg（命令行）
+
+3.3 上傳視頻到正確位置
+-------------------
+將視頻文件放到：
+📁 ai_formula/public/videos/你的視頻.mp4
+
+例子：
+ai_formula/public/videos/chatgpt-demo.mp4
+ai_formula/public/videos/databricks-tutorial.mp4
+ai_formula/public/videos/midjourney-showcase.mp4
+
+3.4 視頻路徑格式
+--------------
+喺工具數據入面，視頻路徑應該寫成：
+videoUrl: '/videos/你的視頻.mp4'
+
+===============================================
+🔧 第四步：修改工具數據（最重要！）
+===============================================
+
+4.1 打開工具數據文件
+------------------
+文件位置：ai_formula/src/data/tools-data.ts
+
+4.2 搵到你想修改嘅工具
+--------------------
+每個工具都有一個唯一ID，例如：
+- 'chatgpt-4'
+- 'midjourney-ai'  
+- 'databricks-ai'
+- 'perplexity-ai'
+
+4.3 添加圖片配置
+--------------
+搵到工具對象，修改圖片相關字段：
+
+{
+  id: 'your-tool-id',
+  title: '工具名稱',
+  // ... 其他現有字段 ...
+  
+  imageUrl: '/aitools/你的圖片.png',        // 圖片路徑
+  imageAlt: '圖片描述文字',                  // 圖片替代文字
+  
+  // ... 其他字段 ...
+}
+
+4.4 添加視頻配置
+--------------
+如果你想添加視頻功能：
+
+{
+  id: 'your-tool-id',
+  title: '工具名稱',
+  // ... 其他現有字段 ...
+  
+  imageUrl: '/aitools/你的圖片.png',        // 圖片路徑
+  imageAlt: '圖片描述文字',
+  
+  // 🎥 視頻相關設定
+  videoUrl: '/videos/你的視頻.mp4',         // 視頻路徑
+  videoType: 'mp4',                       // 視頻格式
+  useVideo: true,                         // 啟用視頻功能
+  showVideoModal: true,                   // 啟用彈出播放器
+  
+  // ... 其他字段 ...
+}
+
+4.5 完整例子
+-----------
+呢度係一個完整嘅工具配置例子：
+
+{
+  id: 'example-ai-tool',
+  title: '範例AI工具',
+  titleEn: 'Example AI Tool',
+  description: '呢個係一個範例AI工具，用來示範點樣配置。',
+  descriptionEn: 'This is an example AI tool for demonstration.',
+  tag: 'AI工具',
+  tags: ['人工智能', '範例', '教學'],
+  tagsEn: ['AI', 'Example', 'Tutorial'],
+  url: 'https://example.com',
+  
+  // 🖼️ 圖片設定
+  imageUrl: '/aitools/example-tool-logo.png',
+  imageAlt: 'Example AI Tool Logo',
+  
+  // 🎥 視頻設定
+  videoUrl: '/videos/example-tool-demo.mp4',
+  videoType: 'mp4',
+  useVideo: true,
+  showVideoModal: true,
+  
+  category: 'ai-tools',
+  categories: ['ai-tools', 'productivity'],
+  targetAudience: ['開發者', '設計師'],
+  targetAudienceEn: ['Developers', 'Designers'],
+  userGroups: ['tech-developer', 'creative-professional']
+}
+
+===============================================
+🎯 第五步：不同視頻類型配置
+===============================================
+
+5.1 本地MP4視頻（推薦）
+--------------------
+videoUrl: '/videos/你的視頻.mp4'
+videoType: 'mp4'
+showVideoModal: true
+
+5.2 本地WebM視頻
+---------------
+videoUrl: '/videos/你的視頻.webm'
+videoType: 'webm'
+showVideoModal: true
+
+5.3 YouTube視頻
+--------------
+videoUrl: 'https://www.youtube.com/watch?v=視頻ID'
+videoType: 'youtube'
+showVideoModal: true
+
+5.4 Vimeo視頻
+------------
+videoUrl: 'https://vimeo.com/視頻ID'
+videoType: 'vimeo'
+showVideoModal: true
+
+5.5 雲端CDN視頻
+--------------
+videoUrl: 'https://your-cdn.com/videos/demo.mp4'
+videoType: 'mp4'
+showVideoModal: true
+
+===============================================
+🧪 第六步：測試功能
+===============================================
+
+6.1 檢查文件係咪喺正確位置
+-----------------------
+確保：
+✅ 圖片檔案喺 ai_formula/public/aitools/
+✅ 視頻檔案喺 ai_formula/public/videos/
+✅ tools-data.ts 已經保存
+
+6.2 重新構建項目
+--------------
+喺終端機執行：
+npm run build
+
+6.3 測試圖片顯示
+--------------
+• 檢查工具卡片係咪顯示新圖片
+• 如果顯示唔到，檢查路徑係咪正確
+
+6.4 測試視頻功能
+--------------
+• 懸停工具卡片，應該見到播放按鈕
+• 右上角應該有 "VIDEO" 標識
+• 點擊播放按鈕應該彈出視頻播放器
+• 測試播放/暫停/音量/全屏功能
+
+===============================================
+🔧 第七步：批量修改多個工具
+===============================================
+
+如果你想一次過修改好多工具，可以呢樣做：
+
+7.1 開啟 tools-data.ts
+7.2 搵到你想修改嘅工具清單
+7.3 逐個添加圖片同視頻配置
+
+例子：修改頭10個工具
+
+const tools: Tool[] = [
+  {
+    id: 'tool-1',
+    // ... 現有配置 ...
+    imageUrl: '/aitools/tool-1-logo.png',
+    videoUrl: '/videos/tool-1-demo.mp4',
+    videoType: 'mp4',
+    useVideo: true,
+    showVideoModal: true,
+  },
+  {
+    id: 'tool-2', 
+    // ... 現有配置 ...
+    imageUrl: '/aitools/tool-2-logo.png',
+    videoUrl: '/videos/tool-2-demo.mp4',
+    videoType: 'mp4',
+    useVideo: true,
+    showVideoModal: true,
+  },
+  // ... 繼續添加其他工具
+];
+
+===============================================
+⚡ 第八步：性能優化建議
+===============================================
+
+8.1 圖片優化
+-----------
+• 使用WebP格式（如果瀏覽器支援）
+• 壓縮圖片大小
+• 使用適當解析度
+
+8.2 視頻優化
+-----------
+• 控制檔案大小 < 50MB
+• 使用H.264編碼
+• 考慮提供多個解析度版本
+
+8.3 載入優化
+-----------
+• 視頻係懶加載（只喺點擊時載入）
+• 圖片有後備方案
+• 使用CDN加速大檔案
+
+===============================================
+🚨 常見問題解決
+===============================================
+
+問題1：圖片顯示唔到
+-----------------
+✅ 檢查檔案路徑係咪正確
+✅ 檢查檔案名係咪拼寫正確
+✅ 檢查檔案係咪真係存在
+✅ 檢查imageUrl格式：'/aitools/檔名.png'
+
+問題2：視頻播放唔到
+-----------------
+✅ 檢查videoUrl路徑
+✅ 檢查videoType係咪設定正確
+✅ 檢查useVideo同showVideoModal係咪設為true
+✅ 檢查視頻格式係咪瀏覽器支援
+
+問題3：構建失敗
+--------------
+✅ 檢查tools-data.ts語法係咪正確
+✅ 檢查係咪有遺漏逗號或括號
+✅ 執行 npm run build 睇錯誤信息
+
+問題4：視頻太大載入慢
+-------------------
+✅ 壓縮視頻檔案
+✅ 使用CDN託管
+✅ 考慮YouTube嵌入
+
+===============================================
+📞 需要幫助？
+===============================================
+
+如果你跟住呢個教學做都遇到問題，可以：
+
+1. 檢查所有檔案路徑
+2. 確保所有語法正確
+3. 執行 npm run build 睇錯誤信息
+4. 一步步檢查每個步驟
+
+記住：
+• 圖片放 /aitools/
+• 視頻放 /videos/
+• 配置寫喺 tools-data.ts
+• 路徑要正確（由 / 開始）
+
+===============================================
+🎉 完成！
+===============================================
+
+依家你已經學會點樣為所有工具添加圖片同視頻功能！
+
+記住要：
+✅ 準備好圖片同視頻檔案
+✅ 放到正確文件夾
+✅ 修改tools-data.ts配置
+✅ 測試功能正常
+
+祝你使用愉快！🚀 
+
+## ✅ **多媒體工具卡片系統完成！**
+
+我已經為你創建了一個完整的多媒體工具卡片系統，現在工具可以自動識別和顯示多個圖片與視頻！
+
+## 🎨 **主要功能**
+
+### **🔍 自動檢測媒體**
+- 系統會自動搜尋 `/aitools/` 和 `/videos/` 文件夾
+- 根據工具ID自動匹配相關文件
+- 支援多種命名模式：`toolid.png`, `toolid-logo.jpg`, `toolid-demo.mp4` 等
+
+### **🎪 多種顯示模式**
+- **Single**: 單個媒體項目
+- **Carousel**: 輪播模式（2-3個項目）
+- **Grid**: 網格模式（4+個項目）
+- **Auto**: 智能自動選擇模式
+
+### **🎮 豐富交互功能**
+- **圖片**: 懸停放大、說明顯示、自動輪播
+- **視頻**: 播放按鈕、彈出播放器、縮圖預覽
+- **導航**: 左右箭頭、指示點、計數器
+
+## 📂 **文件夾結構**
+
+```
+ai_formula/public/
+├── aitools/              ← 圖片文件
+│   ├── toolid.png           ← 主要logo
+│   ├── toolid-1.jpg         ← 額外圖片
+│   ├── toolid-screenshot.png ← 截圖
+│   └── toolid-preview.jpg   ← 預覽圖
+├── videos/               ← 視頻文件
+│   ├── toolid-demo.mp4      ← 演示視頻
+│   ├── toolid-tutorial.mp4  ← 教學視頻
+│   └── toolid-showcase.webm ← 展示視頻
+└── images/thumbnails/    ← 視頻縮圖
+    └── toolid-demo.jpg      ← 視頻縮圖
+```
+
+## ⚙️ **配置方式**
+
+### **方式1: 自動檢測（最簡單）**
+```typescript
+{
+  id: 'your-tool',
+  autoDetectMedia: true,
+  mediaMode: 'auto'
+  // 系統會自動搜尋並顯示所有相關文件
+}
+```
+
+### **方式2: 手動配置（最靈活）**
+```typescript
+{
+  id: 'your-tool',
+  images: [
+    { url: '/aitools/tool-1.png', caption: 'Main Interface' },
+    { url: '/aitools/tool-2.jpg', caption: 'Features' }
+  ],
+  videos: [
+    { url: '/videos/demo.mp4', type: 'mp4', title: 'Demo' },
+    { url: 'https://youtube.com/watch?v=ID', type: 'youtube', title: 'Tutorial' }
+  ],
+  mediaMode: 'carousel'
+}
+```
+
+### **方式3: 混合模式（推薦）**
+```typescript
+{
+  id: 'your-tool',
+  autoDetectMedia: true,  // 自動檢測基本文件
+  images: [/* 手動添加特殊圖片 */],
+  videos: [/* 手動添加YouTube等外部視頻 */],
+  mediaMode: 'auto'
+}
+```
+
+## 🎯 **支援的文件格式**
+
+- **圖片**: PNG, JPG, JPEG, SVG, WebP
+- **視頻**: MP4, WebM, YouTube, Vimeo
+- **自動命名**: `toolid.ext`, `toolid-logo.ext`, `toolid-demo.ext`, `toolid-1.ext` 等
+
+## 📊 **媒體指示器**
+
+工具卡片會顯示：
+- 📸3 🎥2 （混合媒體）
+- 📸 5 images （純圖片）
+- 🎥 3 videos （純視頻）
+- 1 / 5 （輪播計數器）
+
+現在你的工具卡片支援：
+✅ 多張圖片輪播展示
+✅ 多個視頻混合顯示
+✅ 自動檢測媒體文件
+✅ 智能顯示模式選擇
+✅ 豐富的用戶交互
+✅ 完美的向後兼容性
+
+你只需要將圖片和視頻文件放到正確的文件夾，系統就會自動識別和展示！🚀 

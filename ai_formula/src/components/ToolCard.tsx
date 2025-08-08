@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Users } from 'lucide-react';
+import { ExternalLink, Users, Play } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import VideoModal from '@/components/ui/VideoModal';
+import MediaCarousel from '@/components/ui/MediaCarousel';
+import { combineToolMedia, getMediaDisplayMode, getMediaStats } from '@/utils/mediaDetector';
 
 export interface ToolCardProps {
   tool: {
@@ -16,6 +19,26 @@ export interface ToolCardProps {
     url: string;
     imageUrl: string;
     imageAlt: string;
+    videoUrl?: string; // 新增：視頻URL
+    videoType?: 'mp4' | 'webm' | 'youtube' | 'vimeo'; // 新增：視頻類型
+    useVideo?: boolean; // 新增：是否使用視頻代替圖片
+    showVideoModal?: boolean; // 新增：是否啟用彈出式播放器
+    
+    // 🎨 多媒體支援
+    images?: {
+      url: string;
+      alt: string;
+      caption?: string;
+    }[];
+    videos?: {
+      url: string;
+      type: 'mp4' | 'webm' | 'youtube' | 'vimeo';
+      title?: string;
+      thumbnail?: string;
+    }[];
+    mediaMode?: 'single' | 'carousel' | 'grid' | 'auto';
+    autoDetectMedia?: boolean;
+    
     category: string;
     categories?: string[]; // 保留用於過濾功能
     targetAudience?: string[];
@@ -31,11 +54,84 @@ const ToolCard: React.FC<ToolCardProps> = ({
   index 
 }) => {
   const { t, language } = useLanguage(); // Get t function and language state
+  const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false);
+  const [mediaItems, setMediaItems] = React.useState<any[]>([]);
+  const [mediaStats, setMediaStats] = React.useState<any>(null);
+  const [isLoadingMedia, setIsLoadingMedia] = React.useState(false);
   
   // Language-aware title and description - Use direct language state
   const isEnglish = language === 'en-GB';
   const displayTitle = isEnglish && tool.titleEn ? tool.titleEn : tool.title;
   const displayDescription = isEnglish && tool.descriptionEn ? tool.descriptionEn : tool.description;
+
+  // 載入媒體文件
+  React.useEffect(() => {
+    const loadMedia = async () => {
+      setIsLoadingMedia(true);
+      try {
+        // 簡化版本：直接使用工具配置的媒體
+        const mediaItems: any[] = [];
+        
+        // 添加配置的圖片
+        if (tool.images && tool.images.length > 0) {
+          tool.images.forEach(img => {
+            mediaItems.push({
+              type: 'image',
+              url: img.url,
+              alt: img.alt,
+              caption: img.caption
+            });
+          });
+        }
+        
+        // 添加配置的視頻
+        if (tool.videos && tool.videos.length > 0) {
+          tool.videos.forEach(video => {
+            mediaItems.push({
+              type: 'video',
+              url: video.url,
+              videoType: video.type,
+              title: video.title,
+              thumbnail: video.thumbnail
+            });
+          });
+        }
+        
+        // 如果沒有配置的媒體，使用基本圖片
+        if (mediaItems.length === 0) {
+          mediaItems.push({
+            type: 'image',
+            url: tool.imageUrl,
+            alt: tool.imageAlt || 'Tool image',
+            caption: 'Main Image'
+          });
+        }
+        
+        setMediaItems(mediaItems);
+        setMediaStats({
+          total: mediaItems.length,
+          images: mediaItems.filter(item => item.type === 'image').length,
+          videos: mediaItems.filter(item => item.type === 'video').length,
+          hasMultiple: mediaItems.length > 1,
+          hasMixed: mediaItems.some(item => item.type === 'image') && mediaItems.some(item => item.type === 'video')
+        });
+      } catch (error) {
+        console.error('Failed to load media for tool:', tool.id, error);
+        // 後備方案：使用基本圖片
+        setMediaItems([{
+          type: 'image',
+          url: tool.imageUrl,
+          alt: tool.imageAlt || 'Tool image',
+          caption: 'Main Image'
+        }]);
+        setMediaStats({ total: 1, images: 1, videos: 0, hasMultiple: false, hasMixed: false });
+      } finally {
+        setIsLoadingMedia(false);
+      }
+    };
+
+    loadMedia();
+  }, [tool]);
 
   // Defensive programming: ensure tool object exists and provide fallbacks
   const safeTitle = displayTitle || 'Unknown Tool';
@@ -55,6 +151,64 @@ const ToolCard: React.FC<ToolCardProps> = ({
     console.warn('ToolCard: tool object is undefined');
     return null;
   }
+
+  // 視頻渲染函數
+  const renderVideoContent = () => {
+    if (!tool.videoUrl || !tool.useVideo) return null;
+
+    switch (tool.videoType) {
+      case 'youtube':
+        const youtubeId = tool.videoUrl.includes('watch?v=') 
+          ? tool.videoUrl.split('watch?v=')[1].split('&')[0]
+          : tool.videoUrl.split('/').pop();
+        return (
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&mute=1&controls=1&rel=0`}
+            title={safeTitle}
+            className="absolute inset-0 w-full h-full"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        );
+
+      case 'vimeo':
+        const vimeoId = tool.videoUrl.split('/').pop();
+        return (
+          <iframe
+            src={`https://player.vimeo.com/video/${vimeoId}?autoplay=0&muted=1&controls=1`}
+            title={safeTitle}
+            className="absolute inset-0 w-full h-full"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          />
+        );
+
+      case 'mp4':
+      case 'webm':
+      default:
+        return (
+          <video
+            src={tool.videoUrl}
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay={false}
+            muted
+            loop
+            controls
+            playsInline
+            onError={(e) => {
+              console.error('Video failed to load:', tool.videoUrl);
+              // 視頻載入失敗時顯示圖片
+              e.currentTarget.style.display = 'none';
+            }}
+          >
+            <source src={tool.videoUrl} type={`video/${tool.videoType || 'mp4'}`} />
+            您的瀏覽器不支持視頻播放。
+          </video>
+        );
+    }
+  };
 
   // Comprehensive mapping of Chinese targetAudience values to English keys
   const audienceMapping: { [key: string]: string } = {
@@ -334,16 +488,53 @@ const ToolCard: React.FC<ToolCardProps> = ({
       className="h-full"
     >
       <Card className="h-full flex flex-col overflow-hidden bg-black border-gray-700/50 backdrop-blur-sm">
-        {/* Logo Container - 純黑色背景 */}
-        <div className="relative w-full h-48 bg-black overflow-hidden">
-          <img
-            src={safeImageUrl}
-            alt={safeImageAlt}
-            className="absolute inset-0 w-full h-full object-contain p-4 transition-all duration-300 hover:scale-105"
-            onError={(e) => {
-              e.currentTarget.src = '/placeholder.svg';
-            }}
-          />
+        {/* Media Container - 支援多媒體輪播 */}
+        <div className="relative w-full h-36 bg-black overflow-hidden">
+          {isLoadingMedia ? (
+            // 載入中狀態
+            <div className="w-full h-full flex items-center justify-center bg-gray-900">
+              <div className="text-gray-400 text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-400 mx-auto mb-2"></div>
+                <p className="text-sm">Loading media...</p>
+              </div>
+            </div>
+          ) : mediaItems.length > 0 ? (
+            // 使用 MediaCarousel 組件
+            <MediaCarousel
+              mediaItems={mediaItems}
+              mode={tool.mediaMode || getMediaDisplayMode(mediaItems)}
+              autoPlay={mediaItems.length > 1}
+              autoPlayInterval={4000}
+              showIndicators={mediaItems.length > 1}
+              showNavigation={mediaItems.length > 1}
+              className="w-full h-full"
+            />
+          ) : (
+            // 後備圖片
+            <img
+              src={safeImageUrl}
+              alt={safeImageAlt}
+              className="absolute inset-0 w-full h-full object-contain p-4 transition-all duration-300 hover:scale-105"
+              onError={(e) => {
+                e.currentTarget.src = '/placeholder.svg';
+              }}
+            />
+          )}
+          
+          {/* 媒體統計指示器 */}
+          {/* 移除媒體統計指示器
+          {mediaStats && mediaStats.hasMultiple && (
+            <div className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+              {mediaStats.hasMixed ? (
+                <span>📸{mediaStats.images} 🎥{mediaStats.videos}</span>
+              ) : mediaStats.images > 0 ? (
+                <span>📸 {mediaStats.images} images</span>
+              ) : (
+                <span>🎥 {mediaStats.videos} videos</span>
+              )}
+            </div>
+          )}
+          */}
         </div>
 
         {/* Content Area - 純黑色背景 */}
@@ -513,6 +704,18 @@ const ToolCard: React.FC<ToolCardProps> = ({
           </div>
         </CardContent>
       </Card>
+      
+      {/* 視頻模態框 */}
+      {tool.videoUrl && tool.showVideoModal && (
+        <VideoModal
+          isOpen={isVideoModalOpen}
+          onClose={() => setIsVideoModalOpen(false)}
+          videoUrl={tool.videoUrl}
+          videoType={tool.videoType}
+          title={displayTitle}
+          autoPlay={true}
+        />
+      )}
     </motion.div>
   );
 };

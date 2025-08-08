@@ -422,19 +422,19 @@ const Tools = () => {
           <div className="grid grid-cols-1 xl:grid-cols-[340px_1fr] lg:grid-cols-[300px_1fr] gap-8">
             {/* Left Sidebar - Smart Filter - 只在桌面端顯示 */}
             <motion.div {...fadeIn} className="w-full hidden lg:block">
-              <Card className="bg-gray-900/50 border-gray-700/50 backdrop-blur-md">
+              <Card className="bg-black/80 border-gray-800/60 backdrop-blur-md shadow-xl">
                 {/* Filter Header with Expand/Collapse Button */}
-                <CardHeader className="pb-4">
+                <CardHeader className="pb-4 border-b border-gray-800/50">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Filter className="w-5 h-5 text-yellow-400" />
-                      <CardTitle className="text-white">
+                      <CardTitle className="text-white font-bold">
                         {t('label.smartFilter')}
                       </CardTitle>
             </div>
                     <button
                       onClick={() => setIsFilterExpanded(!isFilterExpanded)}
-                      className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200"
+                      className="p-2 rounded-lg hover:bg-gray-700/50 transition-colors duration-200 border border-gray-700/50"
                       title={isFilterExpanded ? t('button.collapse') : t('button.expand')}
                       aria-label={isFilterExpanded ? t('button.collapse') : t('button.expand')}
                     >
@@ -443,7 +443,7 @@ const Tools = () => {
                         transition={{ duration: 0.3 }}
                       >
                         <svg 
-                          className="w-4 h-4 text-gray-400" 
+                          className="w-4 h-4 text-gray-300" 
                           fill="none" 
                           stroke="currentColor" 
                           viewBox="0 0 24 24"
@@ -453,7 +453,7 @@ const Tools = () => {
                       </motion.div>
                     </button>
                           </div>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-gray-400 mt-2">
                     {t('label.filterDescription')}
                   </CardDescription>
                 </CardHeader>

@@ -4,7 +4,7 @@
  * 總計：101個AI工具，統一分類系統
  */
 
-// Tool interface 定義 - 擴展多標籤支援
+// Tool interface 定義 - 擴展多媒體支援
 export interface Tool {
   id: string;
   title: string;
@@ -15,8 +15,36 @@ export interface Tool {
   tags: string[]; // 新增：多標籤支援
   tagsEn?: string[]; // 新增：英文標籤支援
   url: string;
+  
+  // 🖼️ 單一圖片（保持向後兼容）
   imageUrl: string;
   imageAlt: string;
+  
+  // 🖼️ 多圖片支援
+  images?: {
+    url: string;
+    alt: string;
+    caption?: string; // 圖片說明
+  }[];
+  
+  // 🎥 單一視頻（保持向後兼容）
+  videoUrl?: string;
+  videoType?: 'mp4' | 'webm' | 'youtube' | 'vimeo';
+  useVideo?: boolean;
+  showVideoModal?: boolean;
+  
+  // 🎥 多視頻支援
+  videos?: {
+    url: string;
+    type: 'mp4' | 'webm' | 'youtube' | 'vimeo';
+    title?: string; // 視頻標題
+    thumbnail?: string; // 視頻縮圖
+  }[];
+  
+  // 🎭 混合媒體模式
+  mediaMode?: 'single' | 'carousel' | 'grid' | 'auto'; // 媒體顯示模式
+  autoDetectMedia?: boolean; // 自動檢測媒體文件
+  
   category: string;
   categories: string[]; // 新增：多分類支援
   targetAudience: string[];
@@ -39,16 +67,16 @@ export const toolCategories = [
 
 // 優化的用戶群體分類（保持原有10個核心群體）
 export const userGroupCategories = [
-  { id: 'all-users', label: '全部用戶', labelEn: 'All Users', icon: '👥' },
-  { id: 'creative-professional', label: '創意設計師', labelEn: 'Creative & Design Professionals', icon: '🎨' },
-  { id: 'content-creator', label: '內容創作者', labelEn: 'Content Creators', icon: '🎬' },
-  { id: 'business-professional', label: '商業營銷人員', labelEn: 'Business & Marketing Professionals', icon: '💼' },
-  { id: 'tech-developer', label: '技術開發者', labelEn: 'Tech & Development Professionals', icon: '💻' },
-  { id: 'data-analyst', label: '數據分析相關', labelEn: 'Data & Analytics Professionals', icon: '📊' },
-  { id: 'educator', label: '教育培訓人員', labelEn: 'Education & Training Professionals', icon: '🎓' },
-  { id: 'media-professional', label: '媒體傳播人員', labelEn: 'Media & Communication Professionals', icon: '📰' },
-  { id: 'enterprise-manager', label: '企業管理者', labelEn: 'Enterprise Managers', icon: '🏢' },
-  { id: 'productivity-user', label: '效率提升用戶', labelEn: 'Productivity Users', icon: '🚀' }
+  { id: 'all-users', label: '全部用戶', labelEn: 'All Users', icon: '⚫' },
+  { id: 'creative-professional', label: '創意設計師', labelEn: 'Creative & Design Professionals', icon: '⚫' },
+  { id: 'content-creator', label: '內容創作者', labelEn: 'Content Creators', icon: '⚫' },
+  { id: 'business-professional', label: '商業營銷人員', labelEn: 'Business & Marketing Professionals', icon: '⚫' },
+  { id: 'tech-developer', label: '技術開發者', labelEn: 'Tech & Development Professionals', icon: '⚫' },
+  { id: 'data-analyst', label: '數據分析相關', labelEn: 'Data & Analytics Professionals', icon: '⚫' },
+  { id: 'educator', label: '教育培訓人員', labelEn: 'Education & Training Professionals', icon: '⚫' },
+  { id: 'media-professional', label: '媒體傳播人員', labelEn: 'Media & Communication Professionals', icon: '⚫' },
+  { id: 'enterprise-manager', label: '企業管理者', labelEn: 'Enterprise Managers', icon: '⚫' },
+  { id: 'productivity-user', label: '效率提升用戶', labelEn: 'Productivity Users', icon: '⚫' }
 ];
 
 // 完整的101個AI工具數據庫（合併並重新分類）
@@ -318,8 +346,26 @@ const allTools: Tool[] = [
     tags: ['影片生成', 'AI 影片'],
     tagsEn: ['Video Generation', 'AI Video'],
     url: 'https://hailuoai.video/',
-    imageUrl: '/aitools/hailuo.png',
+    imageUrl: '/aitools/hailuo.jpeg',
     imageAlt: 'Hailuo AI Video Logo',
+    
+    // 🎨 多媒體配置
+    images: [
+      {
+        url: '/aitools/hailuo.jpeg',
+        alt: 'Hailuo AI Main Interface',
+        caption: 'Main Interface'
+      },
+      {
+        url: '/aitools/hailuo.png',
+        alt: 'Hailuo AI Logo',
+        caption: 'Official Logo'
+      }
+    ],
+    
+    // 🎮 媒體顯示模式
+    mediaMode: 'carousel',
+    
     category: 'video-generation',
     categories: ['video-generation', 'creative-tools'],
     targetAudience: ['內容創作者', '市場營銷人員', '視頻製作人'],
@@ -1556,8 +1602,26 @@ const allTools: Tool[] = [
     tags: ['大數據', '機器學習', '企業AI'],
     tagsEn: ['Big Data', 'Machine Learning', 'Enterprise AI'],
     url: 'https://www.databricks.com/',
-    imageUrl: '/placeholder.svg',
-    imageAlt: 'Databricks Logo',
+    imageUrl: '/aitools/hailuo.jpeg',
+    imageAlt: 'Databricks AI Logo',
+    
+    // 🎨 只配置真實存在的2張圖片
+    images: [
+      {
+        url: '/aitools/hailuo.jpeg',
+        alt: 'Databricks Interface',
+        caption: 'Main Interface'
+      },
+      {
+        url: '/aitools/hailuo.png',
+        alt: 'Databricks Logo',
+        caption: 'Official Logo'
+      }
+    ],
+    
+    // 🎮 媒體顯示模式：輪播2張圖片
+    mediaMode: 'carousel',
+    
     category: 'business-analytics',
     categories: ['business-analytics', 'web-development'],
     targetAudience: ['數據科學家', 'ML工程師', '企業AI團隊'],

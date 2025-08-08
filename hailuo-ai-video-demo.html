@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hailuo AI Video - 按鈕設計演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #2a2a2a);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Card Box 設計 */
+        .card-container {
+            background: #1a1a1a;
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            width: 400px;
+            height: 500px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(255, 204, 0, 0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .card-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(255, 204, 0, 0.3);
+        }
+
+        /* Image Box - 佔 70% 高度 */
+        .image-box {
+            height: 70%;
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hailuo-logo {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* 頁數標籤 - 右上角 */
+        .page-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: #ffcc00;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 內容區域 */
+        .content-area {
+            height: 30%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .description {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        /* 按鈕區域 */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .nav-button {
+            width: 50px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* 上一頁按鈕 - 黃色漸變 */
+        .prev-button {
+            background: linear-gradient(to bottom, #ffcc00, #ffd700);
+            border-color: #ffcc00;
+            color: #333;
+            animation: fadeIn 0.3s ease-out, buttonPulse 2s infinite;
+        }
+
+        .prev-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ffcc00;
+        }
+
+        /* 下一頁按鈕 - 灰色禁用 */
+        .next-button {
+            background: #666;
+            border-color: #666;
+            color: #999;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* 波紋效果 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        /* 動畫定義 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+            }
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 600px) {
+            .card-container {
+                width: 100%;
+                max-width: 350px;
+                height: 450px;
+            }
+
+            .image-box {
+                height: 50%;
+            }
+
+            .content-area {
+                height: 50%;
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 16px;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+
+            .nav-button {
+                width: 45px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .page-indicator {
+                width: 30px;
+                height: 30px;
+                font-size: 11px;
+            }
+        }
+
+        /* 滑動提示動畫 */
+        .slide-hint {
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 2px;
+            background: rgba(255, 204, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .slide-hint.left {
+            left: 10px;
+            animation: slideHintLeft 1.5s infinite;
+        }
+
+        .slide-hint.right {
+            right: 10px;
+            animation: slideHintRight 1.5s infinite;
+        }
+
+        .card-container:hover .slide-hint {
+            opacity: 1;
+        }
+
+        @keyframes slideHintLeft {
+            0%, 100% { transform: translateX(0); opacity: 0.6; }
+            50% { transform: translateX(-5px); opacity: 1; }
+        }
+
+        @keyframes slideHintRight {
+            0%, 100% { transform: translateX(0); opacity: 0.6; }
+            50% { transform: translateX(5px); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" id="cardContainer">
+        <!-- Image Box - 70% 高度 -->
+        <div class="image-box">
+            <!-- Hailuo AI Logo -->
+            <div class="hailuo-logo">
+                <div class="logo-icon">海</div>
+                <div class="logo-text">Hailuo AI</div>
+            </div>
+            
+            <!-- 頁數指示器 -->
+            <div class="page-indicator">1/2</div>
+            
+            <!-- 滑動提示線條 -->
+            <div class="slide-hint left"></div>
+            <div class="slide-hint right"></div>
+        </div>
+
+        <!-- Content Area - 30% 高度 -->
+        <div class="content-area">
+            <div>
+                <div class="title">Hailuo AI Video (海螺AI) - AI 影片創作平台</div>
+                <div class="description">
+                    一個專注於 AI 影片創作和編輯的平台，可以根據文本或圖片，快速生成高質量的短片、廣告或社交媒體影片。
+                </div>
+            </div>
+            
+            <!-- 按鈕區域 -->
+            <div class="button-container">
+                <button class="nav-button prev-button" id="prevBtn">←</button>
+                <button class="nav-button next-button" id="nextBtn">→</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 音效功能
+        function playClickSound() {
+            // 創建音效（如果需要可以加載實際音效檔案）
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        // 波紋效果
+        function createRippleEffect(button, event) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.remove();
+                }
+            }, 600);
+        }
+
+        // 頁面狀態
+        let currentPage = 1;
+        const totalPages = 2;
+
+        // 更新按鈕狀態
+        function updateButtonStates() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const pageIndicator = document.querySelector('.page-indicator');
+            
+            // 更新頁數顯示
+            pageIndicator.textContent = `${currentPage}/${totalPages}`;
+            
+            // 更新上一頁按鈕
+            if (currentPage === 1) {
+                prevBtn.style.background = '#666';
+                prevBtn.style.borderColor = '#666';
+                prevBtn.style.color = '#999';
+                prevBtn.style.opacity = '0.6';
+                prevBtn.style.cursor = 'not-allowed';
+                prevBtn.style.animation = 'none';
+                prevBtn.disabled = true;
+            } else {
+                prevBtn.style.background = 'linear-gradient(to bottom, #ffcc00, #ffd700)';
+                prevBtn.style.borderColor = '#ffcc00';
+                prevBtn.style.color = '#333';
+                prevBtn.style.opacity = '1';
+                prevBtn.style.cursor = 'pointer';
+                prevBtn.style.animation = 'fadeIn 0.3s ease-out, buttonPulse 2s infinite';
+                prevBtn.disabled = false;
+            }
+            
+            // 更新下一頁按鈕
+            if (currentPage === totalPages) {
+                nextBtn.style.background = '#666';
+                nextBtn.style.borderColor = '#666';
+                nextBtn.style.color = '#999';
+                nextBtn.style.opacity = '0.6';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.style.animation = 'none';
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.style.background = 'linear-gradient(to bottom, #ffcc00, #ffd700)';
+                nextBtn.style.borderColor = '#ffcc00';
+                nextBtn.style.color = '#333';
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+                nextBtn.style.animation = 'fadeIn 0.3s ease-out, buttonPulse 2s infinite';
+                nextBtn.disabled = false;
+            }
+        }
+
+        // 事件監聽器
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // 初始化按鈕狀態
+            updateButtonStates();
+            
+            // 上一頁按鈕事件
+            prevBtn.addEventListener('click', function(e) {
+                if (!this.disabled && currentPage > 1) {
+                    playClickSound();
+                    createRippleEffect(this, e);
+                    currentPage--;
+                    updateButtonStates();
+                    console.log(`切換到第 ${currentPage} 頁`);
+                }
+            });
+            
+            // 下一頁按鈕事件
+            nextBtn.addEventListener('click', function(e) {
+                if (!this.disabled && currentPage < totalPages) {
+                    playClickSound();
+                    createRippleEffect(this, e);
+                    currentPage++;
+                    updateButtonStates();
+                    console.log(`切換到第 ${currentPage} 頁`);
+                }
+            });
+            
+            // 滑鼠懸停效果
+            [prevBtn, nextBtn].forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    if (!this.disabled) {
+                        this.style.transform = 'scale(1.05)';
+                        this.style.boxShadow = '0 0 10px #ffcc00';
+                    }
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    if (!this.disabled) {
+                        this.style.transform = 'scale(1)';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+            
+            // 鍵盤導航支援
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentPage > 1) {
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight' && currentPage < totalPages) {
+                    nextBtn.click();
+                }
+            });
+        });
+
+        // 模擬頁面內容切換
+        function simulatePageContent() {
+            const title = document.querySelector('.title');
+            const description = document.querySelector('.description');
+            
+            if (currentPage === 1) {
+                title.textContent = 'Hailuo AI Video (海螺AI) - AI 影片創作平台';
+                description.textContent = '一個專注於 AI 影片創作和編輯的平台，可以根據文本或圖片，快速生成高質量的短片、廣告或社交媒體影片。';
+            } else {
+                title.textContent = 'Hailuo AI Video - 功能特色';
+                description.textContent = '支援多種影片格式、智能字幕生成、自動配樂、場景轉換效果，讓創作者輕鬆製作專業級影片內容。';
+            }
+        }
+
+        // 監聽頁面變化，更新內容
+        let previousPage = currentPage;
+        setInterval(() => {
+            if (currentPage !== previousPage) {
+                simulatePageContent();
+                previousPage = currentPage;
+            }
+        }, 100);
+    </script>
+</body>
+</html> 

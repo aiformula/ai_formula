@@ -2547,3 +2547,454 @@
 [data-perplexity="true"] .hover\\:bg-green-700:hover {
   background-color: #1f2937 !important;
 }
+
+/* Custom scrollbar for .custom-scrollbar elements */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.8);
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.6) rgba(0, 0, 0, 0.1);
+}
+
+/* Hide scrollbar for textarea in course request form */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Responsive scrollbar adjustments */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 專業級按鈕動畫效果 */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3), 0 0 20px rgba(255, 204, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 204, 0, 0.4), 0 0 30px rgba(255, 204, 0, 0.2);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 粒子動畫背景 */
+@keyframes float-particles {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* 按鈕懸停發光效果增強 */
+.media-carousel-button:hover {
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 升級版專業級按鈕動畫效果 */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4), 0 0 30px rgba(255, 204, 0, 0.2);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(255, 204, 0, 0.6), 0 0 50px rgba(255, 204, 0, 0.4);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 滑動提示動畫 */
+@keyframes slide-hint {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(5px);
+    opacity: 1;
+  }
+}
+
+/* 載入淡入動畫 */
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 粒子浮動動畫 */
+@keyframes float-particles {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-8px) rotate(120deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-4px) rotate(240deg);
+    opacity: 1;
+  }
+}
+
+/* 3D 懸停效果增強 */
+.media-carousel-button {
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.media-carousel-button:hover:not(:disabled) {
+  filter: brightness(1.15) drop-shadow(0 0 15px rgba(255, 204, 0, 0.6));
+  animation: slide-hint 1.5s infinite;
+}
+
+/* 載入動畫應用 */
+.media-carousel-container {
+  animation: fade-scale-in 0.8s ease-out;
+}
+
+/* 禁用狀態樣式 */
+.media-carousel-button:disabled {
+  filter: grayscale(100%) brightness(0.7);
+  cursor: not-allowed;
+  animation: none !important;
+}
+
+/* 圓形進度指示器動畫 */
+.progress-indicator {
+  animation: fade-scale-in 1s ease-out 0.5s both;
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 精緻版按鈕動畫效果 */
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-indicator {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 升級版專業級按鈕動畫效果 */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4), 0 0 30px rgba(255, 204, 0, 0.2);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(255, 204, 0, 0.6), 0 0 50px rgba(255, 204, 0, 0.4);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 滑動提示動畫 */
+@keyframes slide-hint {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(5px);
+    opacity: 1;
+  }
+}
+
+/* 載入淡入動畫 */
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 粒子浮動動畫 */
+@keyframes float-particles {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-8px) rotate(120deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-4px) rotate(240deg);
+    opacity: 1;
+  }
+}
+
+/* 精緻按鈕樣式 */
+.media-carousel-button {
+  transform-style: preserve-3d;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.media-carousel-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+/* 載入動畫應用 */
+.media-carousel-container {
+  animation: fade-scale-in 0.8s ease-out;
+}
+
+/* 禁用狀態樣式 */
+.media-carousel-button:disabled {
+  filter: grayscale(100%) brightness(0.7);
+  cursor: not-allowed;
+  animation: none !important;
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Roboto 字體導入 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* 精確的黃色脈動動畫 */
+@keyframes pulse-yellow {
+  0%, 100% {
+    box-shadow: 0 0 10px #ffcc00;
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 15px #ffcc00, 0 0 25px rgba(255, 204, 0, 0.5);
+    filter: brightness(1.1);
+  }
+}
+
+/* 滑動提示線條動畫 */
+@keyframes slide-hint-left {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(-8px);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-hint-right {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+
+/* 精緻版按鈕動畫效果 */
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-indicator {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 波紋效果 */
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 載入淡入動畫 */
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 精緻按鈕樣式 */
+.media-carousel-button {
+  transform-style: preserve-3d;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.media-carousel-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+/* 載入動畫應用 */
+.media-carousel-container {
+  animation: fade-scale-in 0.8s ease-out;
+}
+
+/* 禁用狀態樣式 */
+.media-carousel-button:disabled {
+  filter: grayscale(100%) brightness(0.7);
+  cursor: not-allowed;
+  animation: none !important;
+}

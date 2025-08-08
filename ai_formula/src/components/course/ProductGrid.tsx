@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ProductGridProps, DigitalProduct } from '@/data/courses/courseData';
+import { ProductGridProps, DigitalProduct, categoryFilters } from '@/data/courses/courseData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Star, TrendingUp, Users, Mail, Clock, Download, ArrowRight } from 'lucide-react';
+import { Star, TrendingUp, Users, Mail, Clock, Download, ArrowRight, CheckCircle, Award } from 'lucide-react';
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
@@ -19,11 +19,21 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   const [leadForm, setLeadForm] = useState({ email: '', interest: '' });
   const navigate = useNavigate();
 
-  // Category filters - matching image design
-  const categoryFilters = [
-    { key: 'all', label: 'All', labelCht: '全部' },
-    { key: 'free', label: 'Free', labelCht: '免費' },
-  ];
+  // Listen for filter change events from AudiencePathwaysSection
+  useEffect(() => {
+    const handleFilterChangeEvent = (event: CustomEvent) => {
+      const { category } = event.detail;
+      if (category && onCategoryChange) {
+        onCategoryChange(category);
+      }
+    };
+
+    window.addEventListener('filterChange', handleFilterChangeEvent as EventListener);
+    
+    return () => {
+      window.removeEventListener('filterChange', handleFilterChangeEvent as EventListener);
+    };
+  }, [onCategoryChange]);
 
   const handleFilterClick = (category: string) => {
     onCategoryChange(category);
@@ -70,7 +80,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           </p>
           
           {/* Filter Buttons - matching image design */}
-          <div className="flex justify-center gap-4 mt-8">
+          <div className="flex flex-wrap justify-center gap-3 mt-8 max-w-4xl mx-auto">
             {categoryFilters.map((filter) => (
               <Button
                 key={filter.key}
@@ -79,8 +89,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                   selectedCategory === filter.key
                     ? 'bg-white text-slate-900 hover:bg-gray-100'
                     : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
-                } px-8 py-3 rounded-full font-medium transition-all duration-300`}
+                } px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm`}
               >
+                <span className="mr-2">{filter.emoji}</span>
                 {isZhTW ? filter.labelCht : filter.label}
               </Button>
             ))}
@@ -360,58 +371,197 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           ))}
         </div>
 
-        {/* No Products Message */}
+        {/* Course Request Card - Always show below products */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-center mt-16"
+        >
+          <div className="relative max-w-3xl mx-auto">
+            {/* Main Card */}
+            <Card className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-black/95 border-gray-700/50 backdrop-blur-xl overflow-hidden">
+              {/* Floating elements */}
+              <div className="absolute top-8 left-8 w-3 h-3 bg-yellow-400 rounded-full opacity-60 animate-pulse"></div>
+              <div className="absolute top-16 right-12 w-2 h-2 bg-green-400 rounded-full opacity-40 animate-bounce"></div>
+              <div className="absolute bottom-12 left-16 w-4 h-4 bg-orange-400 rounded-full opacity-50" style={{ animationDelay: '1s' }}></div>
+              
+              <CardHeader className="text-center relative z-10 py-10">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="space-y-6"
+                >
+                  {/* Icon with modern styling */}
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur-lg opacity-40 scale-110"></div>
+                      <div className="relative bg-gradient-to-br from-yellow-500 to-orange-600 p-4 rounded-2xl shadow-2xl">
+                        <Mail className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <CardTitle className="text-3xl md:text-4xl font-bold">
+                      <span className="bg-gradient-to-r from-white via-yellow-200 to-orange-300 bg-clip-text text-transparent">
+                        {isZhTW ? '想要新課程？' : 'Want New Courses?'}
+                      </span>
+                    </CardTitle>
+                    
+                    <CardDescription className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
+                      {isZhTW 
+                        ? '分享你的學習目標，我們的AI專家會為你打造專屬的學習體驗'
+                        : 'Share your learning goals, and our AI experts will create a personalized learning experience for you'
+                      }
+                    </CardDescription>
+                  </div>
+                </motion.div>
+              </CardHeader>
+              
+              <CardContent className="relative z-10 px-8 pb-10">
+                <motion.form 
+                  onSubmit={handleLeadSubmit} 
+                  className="max-w-xl mx-auto space-y-6"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  {/* Email Input */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-200 uppercase tracking-wider">
+                      {isZhTW ? '📧 聯絡電郵' : '📧 Contact Email'}
+                    </label>
+                    <div className="relative group">
+                      <Input
+                        type="email"
+                        placeholder={isZhTW ? '輸入你的電郵地址' : 'Enter your email address'}
+                        value={leadForm.email}
+                        onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                        required
+                        className="bg-white/5 backdrop-blur-sm border-2 border-gray-600/50 focus:border-yellow-500/50 text-white placeholder-gray-400 h-12 rounded-xl px-4 text-lg transition-all duration-300 focus:bg-white/10"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Course Request */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-200 uppercase tracking-wider">
+                      {isZhTW ? '💡 課程構想' : '💡 Course Ideas'}
+                    </label>
+                    <div className="relative group">
+                      <Textarea
+                        placeholder={isZhTW ? '告訴我們你的學習目標和興趣領域...\n\n例如：\n• 想學習ChatGPT商業應用\n• 對AI繪圖工具感興趣\n• 希望了解自動化工作流程\n• 需要數據分析技能提升' : 'Tell us about your learning goals and areas of interest...\n\nFor example:\n• Want to learn ChatGPT business applications\n• Interested in AI drawing tools\n• Hope to understand automation workflows\n• Need data analysis skills improvement'}
+                        value={leadForm.interest}
+                        onChange={(e) => setLeadForm({ ...leadForm, interest: e.target.value })}
+                        className="bg-white/5 backdrop-blur-sm border-2 border-gray-600/50 focus:border-yellow-500/50 text-white placeholder-gray-400 rounded-xl p-4 min-h-[140px] resize-none text-lg transition-all duration-300 focus:bg-white/10 scrollbar-none"
+                        style={{
+                          scrollbarWidth: 'none',
+                          msOverflowStyle: 'none'
+                        }}
+                        rows={5}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="pt-2"
+                  >
+                    <Button 
+                      type="submit" 
+                      size="lg"
+                      className="w-full relative group bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 text-lg rounded-xl transition-all duration-500 shadow-lg hover:shadow-yellow-500/25 border-0"
+                    >
+                      <span className="relative flex items-center justify-center gap-2">
+                        <span className="text-xl">🚀</span>
+                        {isZhTW ? '提交課程要求' : 'Submit Course Request'}
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                    </Button>
+                  </motion.div>
+                </motion.form>
+
+                {/* Features */}
+                <motion.div 
+                  className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 max-w-3xl mx-auto"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:bg-white/10 transition-all duration-300 group">
+                    <div className="text-center space-y-2">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      </div>
+                      <h4 className="font-bold text-white">{isZhTW ? '快速回覆' : 'Quick Response'}</h4>
+                      <p className="text-gray-400 text-sm">{isZhTW ? '24小時內專業回覆' : 'Professional reply within 24 hours'}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:bg-white/10 transition-all duration-300 group">
+                    <div className="text-center space-y-2">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <Users className="w-6 h-6 text-white" />
+                      </div>
+                      <h4 className="font-bold text-white">{isZhTW ? '專家團隊' : 'Expert Team'}</h4>
+                      <p className="text-gray-400 text-sm">{isZhTW ? 'AI領域資深導師' : 'Senior AI field mentors'}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:bg-white/10 transition-all duration-300 group">
+                    <div className="text-center space-y-2">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <Award className="w-6 h-6 text-white" />
+                      </div>
+                      <h4 className="font-bold text-white">{isZhTW ? '量身定制' : 'Customized'}</h4>
+                      <p className="text-gray-400 text-sm">{isZhTW ? '專屬學習路徑設計' : 'Personalized learning path design'}</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Bottom note */}
+                <motion.div 
+                  className="text-center mt-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-gray-700/50">
+                    <span className="text-lg animate-pulse">⚡</span>
+                    <span className="text-gray-300 text-sm font-medium">
+                      {isZhTW ? '我們會在24小時內與你聯絡' : 'We will contact you within 24 hours'}
+                    </span>
+                  </div>
+                </motion.div>
+              </CardContent>
+            </Card>
+          </div>
+        </motion.div>
+
+        {/* No Products Message - Only show when no products */}
         {products.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center"
+            className="text-center mt-12"
           >
-            <Card className="bg-gradient-to-br from-yellow-900/60 via-orange-900/40 to-amber-900/30 border-yellow-500/30 max-w-2xl mx-auto">
+            <Card className="bg-gradient-to-br from-gray-800/60 via-gray-700/40 to-gray-800/30 border-gray-600/30 max-w-2xl mx-auto">
               <CardHeader className="text-center">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <Mail className="w-7 h-7 text-yellow-400" />
-                  <CardTitle className="text-2xl text-yellow-300">
-                    {isZhTW ? '想要新課程？' : 'Want new courses?'}
-                  </CardTitle>
-                </div>
-                <CardDescription className="text-gray-200 text-lg leading-relaxed">
+                <CardTitle className="text-2xl text-gray-300">
+                  {isZhTW ? '未找到符合條件的課程' : 'No courses found matching your criteria'}
+                </CardTitle>
+                <CardDescription className="text-gray-400 text-lg leading-relaxed">
                   {isZhTW 
-                    ? '話俾我們知你想學咩，我們會為你度身訂造課程！'
-                    : 'Tell us what you want to learn, and we\'ll create a course just for you!'
+                    ? '請嘗試其他篩選條件，或填寫上方表單告訴我們你的需求！'
+                    : 'Try different filter criteria, or fill out the form above to tell us your needs!'
                   }
                 </CardDescription>
               </CardHeader>
-              
-              <CardContent>
-                <form onSubmit={handleLeadSubmit} className="space-y-4">
-                  <Input
-                    type="email"
-                    placeholder={isZhTW ? '你的電郵地址' : 'Your email address'}
-                    value={leadForm.email}
-                    onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
-                    required
-                    className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-400"
-                  />
-                  <Textarea
-                    placeholder={isZhTW ? '你想學咩課程？例如Excel進階技巧、Python數據分析、數位營銷等...' : 'What course would you like? e.g., Advanced Excel, Python Data Analysis, Digital Marketing...'}
-                    value={leadForm.interest}
-                    onChange={(e) => setLeadForm({ ...leadForm, interest: e.target.value })}
-                    className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-400"
-                    rows={3}
-                  />
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-to-r from-yellow-600 via-orange-600 to-amber-600 hover:from-yellow-700 hover:via-orange-700 hover:to-amber-700 text-white font-bold py-4 text-lg"
-                  >
-                    {isZhTW ? '提交課程要求' : 'Submit Course Request'}
-                  </Button>
-                </form>
-                <p className="text-center text-gray-300 text-sm mt-6">
-                  {isZhTW ? '我們會盡快回覆你的要求' : 'We\'ll respond to your request as soon as possible'}
-                </p>
-              </CardContent>
             </Card>
           </motion.div>
         )}

@@ -58,6 +58,9 @@ import CourseQuizPage from '@/pages/courses/CourseQuizPage';
 // Tools Page
 import Tools from '@/pages/Tools';
 
+// Prompt Hub Page
+import PromptHub from '@/pages/PromptHub';
+
 // Support Page
 import Support from '@/pages/Support';
 
@@ -239,6 +242,9 @@ function App() {
                   
                   {/* Design System Demo */}
                   <Route path="/design-system" element={<DesignSystemDemo />} />
+                  
+                  {/* Prompt Hub Page */}
+                  <Route path="/prompt-hub" element={<PromptHub />} />
                   
                   {/* Tools Page */}
                   <Route path="/tools" element={<Tools />} />
