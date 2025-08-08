@@ -3331,9 +3331,9 @@ const PromptHub: React.FC = () => {
       </div>
 
       {/* 主要內容區域 */}
-      <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
+        <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
         {/* 左側篩選器 */}
-        <div className="w-full lg:w-72 space-y-6">
+        <div className="w-full lg:w-96 space-y-6">
           {/* 搜尋欄 */}
           <div className="bg-[#202020] rounded-xl p-4">
             <div className="relative text-base">
