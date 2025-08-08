@@ -22,6 +22,8 @@ const CourseLearningPage: React.FC = () => {
     courseId = 'midjourney';
   } else if (currentPath.includes('prompt-engineering-course')) {
     courseId = 'prompt-engineering';
+  } else if (currentPath.includes('prompt-engineering-expert-course')) {
+    courseId = 'prompt-engineering-expert';
   }
 
   if (!courseId) {
