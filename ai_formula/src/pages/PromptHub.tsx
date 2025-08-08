@@ -66,6 +66,64 @@ const PromptHub: React.FC = () => {
     '進階學習者': 'Advanced Learner'
   };
 
+  // Build augmented tags (4–6) per prompt based on existing tags and category
+  const buildAugmentedTags = (prompt: PromptCard): string[] => {
+    const base = new Set<string>(prompt.userTags);
+    // Category-based generic tags
+    if (prompt.category === 'daily') {
+      base.add('學習者');
+      base.add('自學者');
+      base.add('老師');
+    }
+    if (prompt.category === 'workplace') {
+      base.add('專業人士');
+      base.add('商業專業人士');
+    }
+    if (prompt.category === 'creative') {
+      base.add('創意專業人士');
+      base.add('內容創作者');
+      base.add('設計師');
+    }
+
+    // Tag-specific expansions
+    const tagsJoined = prompt.userTags.join('、');
+    if (tagsJoined.includes('學生')) {
+      base.add('學習者');
+      base.add('自學者');
+      base.add('考試準備');
+    }
+    if (tagsJoined.includes('市場營銷')) {
+      base.add('品牌策略師');
+      base.add('社群經理');
+      base.add('內容創作者');
+    }
+    if (tagsJoined.includes('保險及理財策劃業')) {
+      base.add('金融服務從業員');
+      base.add('客戶顧問');
+      base.add('銷售團隊');
+    }
+    if (tagsJoined.includes('家長')) {
+      base.add('照顧者');
+      base.add('家庭管理');
+    }
+    if (tagsJoined.includes('自由工作者')) {
+      base.add('個體戶');
+      base.add('創業者');
+    }
+    if (tagsJoined.includes('初創創業者')) {
+      base.add('產品經理');
+      base.add('增長營銷');
+      base.add('創業者');
+    }
+    if (tagsJoined.includes('退休人士')) {
+      base.add('長者');
+      base.add('社區志工');
+    }
+
+    // Return at most 6
+    return Array.from(base).slice(0, 6);
+  };
+
   // Reset to first page when filters/search/language change
   useEffect(() => {
     setCurrentPage(1);
@@ -3501,7 +3559,7 @@ const PromptHub: React.FC = () => {
 
                   {/* 用戶標籤 */}
                   <div className="flex flex-wrap gap-2">
-                    {prompt.userTags.slice(0, 3).map((tag, index) => {
+                    {buildAugmentedTags(prompt).map((tag, index) => {
                       const tagText = language === 'zh-HK' ? tag : (userTagTranslations[tag] || tag);
                       return (
                         <span key={index} className="bg-[#161616] text-yellow-400 text-sm px-3 py-1 rounded-full border border-yellow-400/30">
