@@ -3340,7 +3340,7 @@ const PromptHub: React.FC = () => {
               <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               <input
                 type="text"
-                placeholder={language === 'zh-HK' ? '  搜尋提示詞...' : 'Search prompts...'}
+                placeholder={language === 'zh-HK' ? '   搜尋提示詞...' : '   Search prompts...'}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full h-11 pl-10 pr-4 text-sm md:text-base bg-[#0f0f0f] border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-yellow-400"
@@ -3356,22 +3356,22 @@ const PromptHub: React.FC = () => {
                 {language === 'zh-HK' ? 'Prompt類型' : 'Prompt Categories'}
               </h3>
             </div>
-            <div className="space-y-2">
+              <div className="space-y-2">
               {filterCategories.map((category) => (
                 <button
                   key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`w-full flex items-center justify-start gap-4 px-4 py-4 rounded-lg transition-all ${
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`w-full flex items-center justify-start gap-4 px-4 py-4 rounded-lg transition-all min-w-0 ${
                     selectedCategory === category.id
                       ? 'bg-yellow-400 text-black'
                       : 'bg-[#161616] text-gray-300 hover:bg-[#2a2a2a]'
                   }`}
                 >
-                  <div className="flex items-center gap-4 flex-1">
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
                     {category.icon}
-                    <span className="font-medium leading-snug whitespace-nowrap">
-                      {language === 'zh-HK' ? category.nameZh : category.nameEn}
-                    </span>
+                      <span className={`font-medium leading-snug block ${language === 'zh-HK' ? 'whitespace-nowrap' : 'truncate'}`}>
+                        {language === 'zh-HK' ? category.nameZh : category.nameEn}
+                      </span>
                   </div>
                 </button>
               ))}
@@ -3386,20 +3386,20 @@ const PromptHub: React.FC = () => {
                 {language === 'zh-HK' ? '用戶角色' : 'User Roles'}
               </h3>
             </div>
-            <div className="space-y-2">
+              <div className="space-y-2">
               {userRoles.map((role) => (
                 <button
                   key={role.id}
                   onClick={() => setSelectedUserRole(role.id)}
-                  className={`w-full flex items-center justify-start gap-4 px-4 py-4 rounded-lg transition-all ${
+                    className={`w-full flex items-center justify-start gap-4 px-4 py-4 rounded-lg transition-all min-w-0 ${
                     selectedUserRole === role.id
                       ? 'bg-yellow-400 text-black'
                       : 'bg-[#161616] text-gray-300 hover:bg-[#2a2a2a]'
                   }`}
                 >
-                  <span className="font-medium leading-snug whitespace-nowrap">
-                    {language === 'zh-HK' ? role.nameZh : role.nameEn}
-                  </span>
+                    <span className={`font-medium leading-snug block ${language === 'zh-HK' ? 'whitespace-nowrap' : 'truncate'}`}>
+                      {language === 'zh-HK' ? role.nameZh : role.nameEn}
+                    </span>
                 </button>
               ))}
             </div>
