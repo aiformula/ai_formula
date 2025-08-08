@@ -44,6 +44,28 @@ const PromptHub: React.FC = () => {
   const pageSize = 15;
   const topRef = useRef<HTMLDivElement | null>(null);
 
+  // Map user tag (stored mainly in zh) to UK English for the English UI
+  const userTagTranslations: Record<string, string> = {
+    '學生': 'Students',
+    '保險及理財策劃業': 'Insurance & Financial Planning',
+    '市場營銷': 'Marketing Professional',
+    '商業專業人士': 'Business Professional',
+    '策略顧問': 'Strategy Consultant',
+    '數據分析師': 'Data Analyst',
+    '品牌策略師': 'Brand Strategist',
+    '創意總監': 'Creative Director',
+    '數字營銷專家': 'Digital Marketing Specialist',
+    '創意': 'Creative',
+    '創作者': 'Creator',
+    '家長': 'Parents',
+    '自由工作者': 'Freelancers',
+    '初創創業者': 'Startup Founders',
+    '退休人士': 'Retirees',
+    '研究人員': 'Researcher',
+    '學者': 'Academic',
+    '進階學習者': 'Advanced Learner'
+  };
+
   // Reset to first page when filters/search/language change
   useEffect(() => {
     setCurrentPage(1);
@@ -3479,11 +3501,14 @@ const PromptHub: React.FC = () => {
 
                   {/* 用戶標籤 */}
                   <div className="flex flex-wrap gap-2">
-                    {prompt.userTags.slice(0, 3).map((tag, index) => (
-                      <span key={index} className="bg-[#161616] text-yellow-400 text-sm px-3 py-1 rounded-full border border-yellow-400/30">
-                        {tag}
-                      </span>
-                    ))}
+                    {prompt.userTags.slice(0, 3).map((tag, index) => {
+                      const tagText = language === 'zh-HK' ? tag : (userTagTranslations[tag] || tag);
+                      return (
+                        <span key={index} className="bg-[#161616] text-yellow-400 text-sm px-3 py-1 rounded-full border border-yellow-400/30">
+                          {tagText}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
 
