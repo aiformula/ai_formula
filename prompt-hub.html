@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Hub - AI Course Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffcc00;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffcc00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out 0.2s both;
+        }
+
+        .intro-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .intro-title {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            margin-bottom: 30px;
+        }
+
+        .intro-description {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffcc00, #ffd700);
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Search Bar */
+        .search-section {
+            padding: 40px 20px;
+            background-color: #2a2a2a;
+            text-align: center;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background-color: #1a1a1a;
+            border: 2px solid #ffcc00;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ffcc00;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Prompt Categories */
+        .categories-section {
+            padding: 80px 20px;
+            background-color: #1a1a1a;
+        }
+
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-emoji {
+            font-size: 1.8rem;
+        }
+
+        .level-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        .level-tab {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .level-tab.active {
+            color: #ffcc00;
+            border-bottom-color: #ffcc00;
+        }
+
+        .level-content {
+            display: none;
+        }
+
+        .level-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .prompt-item {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .prompt-title {
+            font-weight: bold;
+            color: #ffcc00;
+            margin-bottom: 8px;
+        }
+
+        .prompt-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .prompt-text {
+            background: #0a0a0a;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            border-left: 3px solid #ffcc00;
+            margin-bottom: 10px;
+        }
+
+        .copy-button {
+            background: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .copy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(255, 204, 0, 0.4);
+        }
+
+        .subscription-teaser {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #ffcc00, #ffd700);
+            color: #000;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .subscription-teaser h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .subscribe-button {
+            background: #000;
+            color: #ffcc00;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Learning Resources */
+        .resources-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+        }
+
+        .resources-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: #1a1a1a;
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .resource-title {
+            color: #ffcc00;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .resource-link {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: #2a2a2a;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #3a3a3a;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #4a4a4a;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+
+        /* Footer/Legal */
+        .legal-section {
+            padding: 40px 20px;
+            background-color: #0a0a0a;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+
+        .disclaimer {
+            color: #999;
+            font-size: 0.9rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #ffcc00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .intro-title {
+                font-size: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .category-card {
+                padding: 20px;
+            }
+
+            .level-tabs {
+                flex-direction: column;
+            }
+
+            .level-tab {
+                border-bottom: 1px solid #444;
+                border-right: none;
+            }
+
+            .legal-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Utility Classes */
+        .bilingual {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chinese {
+            font-size: 0.9em;
+            color: #ffcc00;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Prompt Hub</h1>
+        <p>Master the art of AI communication with our comprehensive prompt library</p>
+        <p class="chinese">掌握AI溝通藝術，使用我們的全面提示詞庫</p>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+        <div class="intro-content">
+            <h2 class="intro-title">What is a Prompt? 什麼是提示詞？</h2>
+            <p class="intro-description">
+                A prompt is a set of instructions given to AI to get better, more accurate results. 
+                Think of it as the key to unlocking AI's full potential - whether you're learning, working, or creating.
+                Proper prompts can boost your efficiency dramatically and help you achieve professional-quality outputs.
+            </p>
+            <p class="intro-description chinese">
+                提示詞是給AI的指令，讓你獲得更好、更準確的結果。把它想像成釋放AI全部潛力的鑰匙 - 無論你在學習、工作或創作。
+                正確的提示詞能大幅提升你的效率，幫助你達到專業水準的輸出。
+            </p>
+            <a href="#" class="cta-button" onclick="alert('Redirecting to free course page...')">
+                Try Free Prompt Course 免費提示詞課程
+            </a>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search prompts by keyword... 搜尋提示詞" id="searchInput">
+            <button class="search-button" onclick="searchPrompts()">Search</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="categories-container">
+            <h2 class="section-title">Prompt Categories 提示詞分類</h2>
+            
+            <div class="categories-grid">
+                <!-- Learning Category -->
+                <div class="category-card" data-category="learning">
+                    <h3 class="category-title">
+                        <span class="category-emoji">📚</span>
+                        <span class="bilingual">Learning <span class="chinese">學習</span></span>
+                    </h3>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'learning', 1)">Level 1 (Free)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'learning', 2)">Level 2 (Register)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'learning', 3)">Level 3 (Premium)</button>
+                    </div>
+                    
+                    <div class="level-content active" id="learning-level-1">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Basic AI Explanation 基礎AI解釋</div>
+                            <div class="prompt-description">Get simple explanations of AI concepts in Cantonese</div>
+                            <div class="prompt-text">Please explain [AI concept] in simple Cantonese terms that a beginner can understand. Use everyday examples.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Study Schedule Creator 學習時間表</div>
+                            <div class="prompt-description">Create personalised study schedules</div>
+                            <div class="prompt-text">Create a weekly study schedule for [subject] with [hours per day] available time, focusing on [specific goals].</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Concept Simplifier 概念簡化器</div>
+                            <div class="prompt-description">Break down complex topics into digestible parts</div>
+                            <div class="prompt-text">Break down [complex topic] into 5 simple steps that a Hong Kong student can easily understand.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Practice Questions Generator 練習題生成器</div>
+                            <div class="prompt-description">Generate practice questions for any subject</div>
+                            <div class="prompt-text">Generate 10 practice questions for [subject/topic] at [difficulty level] with answers included.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Memory Technique Helper 記憶技巧助手</div>
+                            <div class="prompt-description">Create memory aids and mnemonics</div>
+                            <div class="prompt-text">Create memory techniques and mnemonics to help remember [information/facts] using Hong Kong cultural references.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="learning-level-2">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Advanced Study Planner 進階學習規劃</div>
+                            <div class="prompt-description">Create comprehensive study plans with milestones</div>
+                            <div class="prompt-text">Create a detailed 3-month study plan for [course/certification] including weekly milestones, assessment points, and revision schedules adapted for Hong Kong education system.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Research Assistant 研究助手</div>
+                            <div class="prompt-description">Help with academic research and citations</div>
+                            <div class="prompt-text">Help me research [topic] for academic purposes. Provide key points, recent developments, and suggest credible sources suitable for Hong Kong academic standards.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <!-- More Level 2 prompts... -->
+                        <p style="color: #999; text-align: center; margin-top: 20px;">
+                            <em>Register for free to access 8 more advanced prompts!</em>
+                        </p>
+                    </div>
+                    
+                    <div class="level-content" id="learning-level-3">
+                        <div class="subscription-teaser">
+                            <h3>🚀 Premium Learning Prompts</h3>
+                            <p>Access 1000+ weekly updated prompts including:</p>
+                            <ul style="text-align: left; margin: 15px 0;">
+                                <li>Advanced research methodologies</li>
+                                <li>AI-powered study optimisation</li>
+                                <li>Personalised curriculum design</li>
+                                <li>Professional skill development</li>
+                            </ul>
+                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
+                                Subscribe Now 立即訂閱
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketing Category -->
+                <div class="category-card" data-category="marketing">
+                    <h3 class="category-title">
+                        <span class="category-emoji">📈</span>
+                        <span class="bilingual">Marketing <span class="chinese">市場推廣</span></span>
+                    </h3>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'marketing', 1)">Level 1 (Free)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'marketing', 2)">Level 2 (Register)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'marketing', 3)">Level 3 (Premium)</button>
+                    </div>
+                    
+                    <div class="level-content active" id="marketing-level-1">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Social Media Caption 社交媒體標題</div>
+                            <div class="prompt-description">Create engaging social media posts for Hong Kong audience</div>
+                            <div class="prompt-text">Write an engaging Instagram caption for [product/service] targeting Hong Kong millennials. Include relevant hashtags and call-to-action in traditional Chinese.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Email Subject Lines 電郵主題</div>
+                            <div class="prompt-description">Generate compelling email subject lines</div>
+                            <div class="prompt-text">Generate 5 compelling email subject lines for [campaign/offer] that would appeal to Hong Kong consumers and increase open rates.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Product Description 產品描述</div>
+                            <div class="prompt-description">Write persuasive product descriptions</div>
+                            <div class="prompt-text">Write a persuasive product description for [product] highlighting benefits that matter to Hong Kong customers. Keep it under 150 words.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Customer Persona 客戶畫像</div>
+                            <div class="prompt-description">Define target customer profiles</div>
+                            <div class="prompt-text">Create a detailed customer persona for [business type] in Hong Kong including demographics, pain points, and buying behaviour.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Competitor Analysis 競爭對手分析</div>
+                            <div class="prompt-description">Analyse competitors in Hong Kong market</div>
+                            <div class="prompt-text">Analyse the marketing strategies of [competitor] in Hong Kong market. Identify their strengths, weaknesses, and opportunities for differentiation.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="marketing-level-2">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Campaign Strategy 活動策略</div>
+                            <div class="prompt-description">Develop comprehensive marketing campaigns</div>
+                            <div class="prompt-text">Develop a complete marketing campaign strategy for [product launch] in Hong Kong including timeline, channels, budget allocation, and success metrics.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <p style="color: #999; text-align: center; margin-top: 20px;">
+                            <em>Register for free to access 9 more marketing prompts!</em>
+                        </p>
+                    </div>
+                    
+                    <div class="level-content" id="marketing-level-3">
+                        <div class="subscription-teaser">
+                            <h3>💼 Premium Marketing Prompts</h3>
+                            <p>Unlock professional marketing arsenal with 1000+ prompts!</p>
+                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
+                                Subscribe Now 立即訂閱
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Category -->
+                <div class="category-card" data-category="creative">
+                    <h3 class="category-title">
+                        <span class="category-emoji">🎨</span>
+                        <span class="bilingual">Creative <span class="chinese">創意</span></span>
+                    </h3>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'creative', 1)">Level 1 (Free)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'creative', 2)">Level 2 (Register)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'creative', 3)">Level 3 (Premium)</button>
+                    </div>
+                    
+                    <div class="level-content active" id="creative-level-1">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Story Generator 故事生成器</div>
+                            <div class="prompt-description">Create engaging stories with Hong Kong setting</div>
+                            <div class="prompt-text">Write a short story set in Hong Kong featuring [character type] who discovers [mysterious element]. Include local landmarks and cultural references.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Creative Writing Ideas 創意寫作靈感</div>
+                            <div class="prompt-description">Generate unique writing prompts</div>
+                            <div class="prompt-text">Generate 10 creative writing prompts inspired by Hong Kong culture, history, and modern life suitable for [target audience].</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Design Brief Creator 設計簡介</div>
+                            <div class="prompt-description">Create detailed design briefs</div>
+                            <div class="prompt-text">Create a design brief for [project type] incorporating Hong Kong aesthetic elements and targeting [audience]. Include style references and technical requirements.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Content Ideas 內容創意</div>
+                            <div class="prompt-description">Brainstorm content for social media</div>
+                            <div class="prompt-text">Brainstorm 20 creative content ideas for [brand/topic] that would resonate with Hong Kong audience across different social media platforms.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Video Concept Creator 影片概念</div>
+                            <div class="prompt-description">Develop video concepts and scripts</div>
+                            <div class="prompt-text">Create a creative video concept for [purpose] featuring Hong Kong locations. Include script outline, visual style, and target emotions.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="creative-level-2">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Brand Storytelling 品牌故事</div>
+                            <div class="prompt-description">Craft compelling brand narratives</div>
+                            <div class="prompt-text">Develop a compelling brand story for [company] that connects with Hong Kong values and culture. Include origin story, mission, and emotional connection points.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <p style="color: #999; text-align: center; margin-top: 20px;">
+                            <em>Register for free to access 9 more creative prompts!</em>
+                        </p>
+                    </div>
+                    
+                    <div class="level-content" id="creative-level-3">
+                        <div class="subscription-teaser">
+                            <h3>🎭 Premium Creative Prompts</h3>
+                            <p>Unleash your creativity with professional-grade prompts!</p>
+                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
+                                Subscribe Now 立即訂閱
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student (Insurance & Financial Planning) -->
+                <div class="category-card" data-category="student">
+                    <h3 class="category-title">
+                        <span class="category-emoji">🎓</span>
+                        <span class="bilingual">Student (Insurance & Finance) <span class="chinese">學生 (保險及理財)</span></span>
+                    </h3>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'student', 1)">Level 1 (Free)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'student', 2)">Level 2 (Register)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'student', 3)">Level 3 (Premium)</button>
+                    </div>
+                    
+                    <div class="level-content active" id="student-level-1">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Budget Planner 預算規劃</div>
+                            <div class="prompt-description">Create student budget plans for Hong Kong</div>
+                            <div class="prompt-text">Create a monthly budget plan for a Hong Kong university student with [income amount] including essential expenses, savings goals, and emergency fund recommendations.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Insurance Basics 保險基礎</div>
+                            <div class="prompt-description">Explain insurance concepts simply</div>
+                            <div class="prompt-text">Explain [insurance type] in simple terms for Hong Kong students. Include why it's important, basic coverage, and typical costs for young adults.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Investment Basics 投資基礎</div>
+                            <div class="prompt-description">Understand basic investment concepts</div>
+                            <div class="prompt-text">Explain [investment concept] suitable for Hong Kong students with limited capital. Include risks, potential returns, and beginner-friendly options.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Saving Strategies 儲蓄策略</div>
+                            <div class="prompt-description">Develop effective saving habits</div>
+                            <div class="prompt-text">Suggest practical saving strategies for Hong Kong students earning [amount] per month. Include specific tips for reducing expenses and increasing savings rate.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Financial Goals 理財目標</div>
+                            <div class="prompt-description">Set and achieve financial milestones</div>
+                            <div class="prompt-text">Help me set realistic financial goals for [timeframe] as a Hong Kong student. Include short-term and long-term objectives with actionable steps.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="student-level-2">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Advanced Portfolio Planning 進階投資組合</div>
+                            <div class="prompt-description">Create diversified investment strategies</div>
+                            <div class="prompt-text">Design a beginner investment portfolio for Hong Kong students with [budget] considering local market conditions, risk tolerance, and education loan considerations.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <p style="color: #999; text-align: center; margin-top: 20px;">
+                            <em>Register for free to access 9 more financial planning prompts!</em>
+                        </p>
+                    </div>
+                    
+                    <div class="level-content" id="student-level-3">
+                        <div class="subscription-teaser">
+                            <h3>💰 Premium Financial Prompts</h3>
+                            <p>Master personal finance with expert-level guidance!</p>
+                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
+                                Subscribe Now 立即訂閱
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Category -->
+                <div class="category-card" data-category="business">
+                    <h3 class="category-title">
+                        <span class="category-emoji">💼</span>
+                        <span class="bilingual">Business <span class="chinese">商業</span></span>
+                    </h3>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'business', 1)">Level 1 (Free)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'business', 2)">Level 2 (Register)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'business', 3)">Level 3 (Premium)</button>
+                    </div>
+                    
+                    <div class="level-content active" id="business-level-1">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Business Plan Outline 商業計劃大綱</div>
+                            <div class="prompt-description">Create structured business plans</div>
+                            <div class="prompt-text">Create a business plan outline for [business idea] in Hong Kong market including market analysis, target customers, revenue model, and startup costs.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Meeting Minutes 會議記錄</div>
+                            <div class="prompt-description">Structure professional meeting records</div>
+                            <div class="prompt-text">Create professional meeting minutes template for [meeting type] including agenda items, action points, responsible parties, and deadlines.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Email Templates 電郵模板</div>
+                            <div class="prompt-description">Professional business communication</div>
+                            <div class="prompt-text">Write a professional email template for [purpose] suitable for Hong Kong business culture. Include appropriate tone and cultural considerations.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">SWOT Analysis SWOT分析</div>
+                            <div class="prompt-description">Analyse business strengths and opportunities</div>
+                            <div class="prompt-text">Conduct a SWOT analysis for [business/project] in Hong Kong market considering local economic conditions and competitive landscape.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Proposal Writing 提案撰寫</div>
+                            <div class="prompt-description">Create compelling business proposals</div>
+                            <div class="prompt-text">Write a business proposal for [project/service] targeting Hong Kong companies. Include executive summary, methodology, timeline, and pricing structure.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="business-level-2">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Strategic Planning 策略規劃</div>
+                            <div class="prompt-description">Develop comprehensive business strategies</div>
+                            <div class="prompt-text">Develop a 3-year strategic plan for [business type] in Hong Kong including market expansion, digital transformation, and competitive positioning strategies.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <p style="color: #999; text-align: center; margin-top: 20px;">
+                            <em>Register for free to access 9 more business prompts!</em>
+                        </p>
+                    </div>
+                    
+                    <div class="level-content" id="business-level-3">
+                        <div class="subscription-teaser">
+                            <h3>🚀 Premium Business Prompts</h3>
+                            <p>Scale your business with enterprise-level strategies!</p>
+                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
+                                Subscribe Now 立即訂閱
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Category -->
+                <div class="category-card" data-category="tech">
+                    <h3 class="category-title">
+                        <span class="category-emoji">💻</span>
+                        <span class="bilingual">Tech <span class="chinese">科技</span></span>
+                    </h3>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'tech', 1)">Level 1 (Free)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'tech', 2)">Level 2 (Register)</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'tech', 3)">Level 3 (Premium)</button>
+                    </div>
+                    
+                    <div class="level-content active" id="tech-level-1">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Code Explanation 程式碼解釋</div>
+                            <div class="prompt-description">Understand code in simple terms</div>
+                            <div class="prompt-text">Explain this [programming language] code in simple terms: [code snippet]. Break down what each part does and the overall purpose.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Bug Debugging 程式除錯</div>
+                            <div class="prompt-description">Find and fix code issues</div>
+                            <div class="prompt-text">Help me debug this [language] code that's giving [error message]. Explain the likely cause and provide a solution: [code]</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">Tech Tutorial Creator 技術教學</div>
+                            <div class="prompt-description">Create step-by-step tutorials</div>
+                            <div class="prompt-text">Create a beginner-friendly tutorial for [tech topic] suitable for Hong Kong learners. Include prerequisites, step-by-step instructions, and common pitfalls.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">API Documentation API文檔</div>
+                            <div class="prompt-description">Generate clear API documentation</div>
+                            <div class="prompt-text">Write clear API documentation for [endpoint/function] including parameters, response format, error codes, and usage examples.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title">System Architecture 系統架構</div>
+                            <div class="prompt-description">Design scalable system structures</div>
+                            <div class="prompt-text">Design a system architecture for [application type] that can handle [user volume] users. Include database design, server setup, and scalability considerations.</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="tech-level-2">
+                        <div class="prompt-item">
+                            <div class="prompt-title">Advanced Code Review 進階程式檢查</div>
+                            <div class="prompt-description">Comprehensive code analysis and optimization</div>
+                            <div class="prompt-text">Perform a comprehensive code review of this [language] code focusing on performance, security, maintainability, and best practices: [code]</div>
+                            <button class="copy-button" onclick="copyPrompt(this)">Copy</button>
+                        </div>
+                        <p style="color: #999; text-align: center; margin-top: 20px;">
+                            <em>Register for free to access 9 more tech prompts!</em>
+                        </p>
+                    </div>
+                    
+                    <div class="level-content" id="tech-level-3">
+                        <div class="subscription-teaser">
+                            <h3>⚡ Premium Tech Prompts</h3>
+                            <p>Access cutting-edge development techniques and solutions!</p>
+                            <button class="subscribe-button" onclick="alert('Redirecting to subscription page...')">
+                                Subscribe Now 立即訂閱
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section class="resources-section">
+        <div class="resources-container">
+            <h2 class="section-title">Learning Resources 學習資源</h2>
+            
+            <div class="resource-card">
+                <h3 class="resource-title">📚 Prompt Engineering Course</h3>
+                <p>Master the fundamentals of prompt engineering with our comprehensive course designed for Hong Kong learners.</p>
+                <a href="/courses/prompt-engineering-course/outline" class="resource-link">
+                    View Course Outline 查看課程大綱 →
+                </a>
+            </div>
+
+            <div class="faq-section">
+                <h3 class="resource-title">❓ Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What are the limitations of prompts? 提示詞有什麼限制？</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Prompts are limited by the AI model's training data and capabilities. They work best when specific and clear, but may not always produce perfect results. The quality depends on how well you structure your instructions and the context you provide.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How to use prompts with Grok 3? 如何在Grok 3中使用提示詞？</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Simply copy any prompt from our library and paste it into Grok 3's chat interface. Replace any bracketed placeholders [like this] with your specific information. For best results, be as specific as possible with your context and requirements.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Are prompts suitable for Hong Kong context? 提示詞適合香港環境嗎？</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! All our prompts are specifically adapted for Hong Kong users, including cultural references, local business practices, and traditional Chinese language considerations where relevant.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How often are prompts updated? 提示詞多久更新一次？</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Free prompts are updated monthly, while premium subscribers get access to 1000+ prompts that are updated weekly with the latest AI techniques and industry best practices.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I modify the prompts? 我可以修改提示詞嗎？</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! Our prompts are designed as templates. Feel free to modify, combine, or adapt them to better suit your specific needs and use cases.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section class="legal-section">
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> The effectiveness of prompts may vary depending on the AI model, context, and specific use case. 
+            Results are not guaranteed, and users should verify outputs for accuracy. This platform provides educational content only.
+            提示詞的效果可能因AI模型、語境和具體使用情況而異。我們不保證結果，用戶應驗證輸出的準確性。本平台僅提供教育內容。
+        </div>
+        
+        <div class="legal-links">
+            <a href="#" onclick="alert('Privacy Policy page would open here')">Privacy Policy 私隱政策</a>
+            <a href="#" onclick="alert('Terms of Service page would open here')">Terms of Service 服務條款</a>
+            <a href="#" onclick="alert('Contact page would open here')">Contact Us 聯絡我們</a>
+        </div>
+    </section>
+
+    <script>
+        // Level switching functionality
+        function switchLevel(button, category, level) {
+            // Remove active class from all tabs in this category
+            const categoryCard = button.closest('.category-card');
+            const allTabs = categoryCard.querySelectorAll('.level-tab');
+            const allContents = categoryCard.querySelectorAll('.level-content');
+            
+            allTabs.forEach(tab => tab.classList.remove('active'));
+            allContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            button.classList.add('active');
+            document.getElementById(`${category}-level-${level}`).classList.add('active');
+        }
+
+        // Copy prompt functionality
+        function copyPrompt(button) {
+            const promptText = button.previousElementSibling.textContent;
+            
+            // Create temporary textarea for copying
+            const textarea = document.createElement('textarea');
+            textarea.value = promptText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            // Visual feedback
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.style.background = '#4caf50';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '#ffcc00';
+            }, 2000);
+        }
+
+        // Search functionality
+        function searchPrompts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchTerm.trim() === '') {
+                alert('Please enter a search term 請輸入搜尋詞');
+                return;
+            }
+
+            const allPromptItems = document.querySelectorAll('.prompt-item');
+            let foundCount = 0;
+
+            allPromptItems.forEach(item => {
+                const title = item.querySelector('.prompt-title').textContent.toLowerCase();
+                const description = item.querySelector('.prompt-description').textContent.toLowerCase();
+                const text = item.querySelector('.prompt-text').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm) || text.includes(searchTerm)) {
+                    item.style.background = '#2a4a2a';
+                    item.style.border = '2px solid #4caf50';
+                    foundCount++;
+                } else {
+                    item.style.background = '#1a1a1a';
+                    item.style.border = '1px solid #444';
+                }
+            });
+
+            // Show search results
+            if (foundCount > 0) {
+                alert(`Found ${foundCount} prompts matching "${searchTerm}" 找到 ${foundCount} 個相關提示詞`);
+            } else {
+                alert(`No prompts found for "${searchTerm}" 找不到相關提示詞`);
+            }
+
+            // Clear highlights after 5 seconds
+            setTimeout(() => {
+                allPromptItems.forEach(item => {
+                    item.style.background = '#1a1a1a';
+                    item.style.border = '1px solid #444';
+                });
+            }, 5000);
+        }
+
+        // FAQ toggle functionality
+        function toggleFAQ(questionElement) {
+            const answer = questionElement.nextElementSibling;
+            const icon = questionElement.querySelector('span:last-child');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                    openAnswer.classList.remove('active');
+                    openAnswer.previousElementSibling.querySelector('span:last-child').textContent = '+';
+                });
+                
+                // Open clicked FAQ
+                answer.classList.add('active');
+                icon.textContent = '-';
+            }
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchPrompts();
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.category-card, .resource-card');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
