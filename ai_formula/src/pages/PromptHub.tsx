@@ -66,6 +66,41 @@ const PromptHub: React.FC = () => {
     '進階學習者': 'Advanced Learner'
   };
 
+  // Synonyms (EN <-> ZH‑HK) for search expansion
+  const searchSynonyms: Record<string, string[]> = {
+    'marketing': ['市場營銷', '行銷', '營銷', '社群經理', '品牌', '品牌策略師', '數字營銷', '內容創作者', '社群'],
+    'marketing professional': ['市場營銷', '行銷', '營銷', '品牌策略師', '社群經理'],
+    'student': ['學生', '學習者', '自學者', '考試', '考試準備'],
+    'business': ['商業', '商務', '企業', '商業專業人士', '策略顧問'],
+    'creative': ['創意', '設計', '設計師', '創意專業人士', '創作者', '品牌策略師'],
+    'insurance': ['保險', '保險及理財策劃業', '理財', '金融服務', '財務顧問'],
+    'parent': ['家長', '照顧者', '家庭'],
+    'freelancer': ['自由工作者', '個體戶', '自由職業'],
+    'startup': ['初創', '創業', '初創創業者', '創業者'],
+    'retiree': ['退休', '退休人士', '長者'],
+    'researcher': ['研究', '研究人員', '學者', '學術'],
+    'data analyst': ['數據分析', '數據分析師', '分析師'],
+    'brand strategist': ['品牌策略師', '品牌'],
+    'community manager': ['社群經理', '社群', '社群營運']
+  };
+
+  const normalize = (text: string): string => text.toLowerCase().trim();
+  const expandQuery = (query: string): string[] => {
+    const q = normalize(query);
+    if (!q) return [];
+    const tokens = new Set<string>([q]);
+    for (const [key, vals] of Object.entries(searchSynonyms)) {
+      const nk = normalize(key);
+      const matchedKey = nk.includes(q) || q.includes(nk);
+      const matchedVal = vals.some(v => normalize(v).includes(q) || q.includes(normalize(v)));
+      if (matchedKey || matchedVal) {
+        tokens.add(nk);
+        vals.forEach(v => tokens.add(normalize(v)));
+      }
+    }
+    return Array.from(tokens);
+  };
+
   // Build augmented tags (4–6) per prompt based on existing tags and category
   const buildAugmentedTags = (prompt: PromptCard): string[] => {
     const base = new Set<string>(prompt.userTags);
@@ -3347,10 +3382,19 @@ const PromptHub: React.FC = () => {
       (selectedUserRole === 'startup' && prompt.userTags.some(tag => tag.includes('初創創業者'))) ||
       (selectedUserRole === 'retiree' && prompt.userTags.some(tag => tag.includes('退休人士')));
     
-    const searchMatch = !searchTerm || 
-      (language === 'zh-HK' ? prompt.titleZh : prompt.titleEn).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (language === 'zh-HK' ? prompt.descriptionZh : prompt.descriptionEn).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (language === 'zh-HK' ? prompt.textZh : prompt.textEn).toLowerCase().includes(searchTerm.toLowerCase());
+    // 搜尋同時比對：標題、描述、正文，以及用戶標籤（含同義詞、跨中英）
+    const queries = expandQuery(searchTerm);
+    const haystack = [
+      (language === 'zh-HK' ? prompt.titleZh : prompt.titleEn),
+      (language === 'zh-HK' ? prompt.descriptionZh : prompt.descriptionEn),
+      (language === 'zh-HK' ? prompt.textZh : prompt.textEn),
+      // 原始 zh 標籤
+      ...buildAugmentedTags(prompt),
+      // 英文標籤映射
+      ...buildAugmentedTags(prompt).map(t => userTagTranslations[t] || t)
+    ].map(normalize);
+
+    const searchMatch = !searchTerm || queries.some(q => haystack.some(h => h.includes(q)));
     
     return categoryMatch && levelMatch && userRoleMatch && searchMatch;
   });
