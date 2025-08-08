@@ -56,8 +56,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       navigate('/courses/chatgpt-complete-course/outline');
     } else if (product.category === 'perplexity-complete-course') {
       navigate('/courses/perplexity-complete-course/outline');
-    } else if (product.category === 'prompt-engineering') {
-      navigate('/courses/prompt-engineering-outline');
+    } else if (product.category === 'prompt-engineering-expert-course') {
+      navigate('/courses/prompt-engineering-expert-course/outline');
+    } else if (product.category === 'prompt-engineering-course') {
+      navigate('/courses/prompt-engineering-course/outline');
     } else {
       // Default behavior for other courses
       navigate(`/courses/${product.category}`);
