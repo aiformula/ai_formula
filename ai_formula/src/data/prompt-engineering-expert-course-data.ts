@@ -106,6 +106,163 @@ export const promptEngineeringExpertCourseData: CourseData = {
           descriptionEn: 'Speed/cost/data/stability/knowledge update; hybrid strategy case (law firm).'
         }
       ]
+    },
+    {
+      id: 2,
+      title: '第二部分：核心提示技巧與最佳實踐 — 精準駕馭語言模型',
+      titleEn: 'Part 2: Core Prompting Techniques & Best Practices — Precisely Steering LLMs',
+      description: '把第一部分的「道」落地成可操作的「術」：零/單/少樣本、清晰指令、結構化輸出、角色扮演與參數控制。',
+      descriptionEn: 'Turn principles into practice: zero/one/few‑shot, clear instructions, structured outputs, persona prompting and parameter control.',
+      duration: '160 分鐘',
+      durationEn: '160 minutes',
+      lessons: [
+        {
+          id: 201,
+          title: '2.1 基礎提示法：零樣本、單樣本與少樣本',
+          titleEn: '2.1 Zero‑shot, One‑shot and Few‑shot Prompting',
+          duration: '35 分鐘',
+          durationEn: '35 minutes',
+          type: 'interactive',
+          description: '理解示範數量如何改變模型行為；用高質多樣的範例定義任務邊界。',
+          descriptionEn: 'Understand how number/quality of demonstrations shape behaviour; define task boundaries via diverse exemplars.',
+          image: '/images/courses/prompt-engineering/unit-images/shot-strategies.png',
+          imageAlt: '零/單/少樣本策略',
+          imageAltEn: 'Zero/One/Few‑shot strategies',
+          transcript: `核心觀念：LLM 是強大的模式學習者。與其長篇描述，不如直接示範。\n\n• 零樣本：純指令，適合簡單通用任務。\n• 單樣本：用一個例子「校準」格式與風格。\n• 少樣本：以多例沉浸式示範，明確規則、邊界與輸出樣態。\n\n情感分析範例：\n(零樣本) 指令：將下列句子分類為「正面/負面/中立」。句子：「這家餐廳的服務態度還有很大的進步空間。」→ 負面\n(單樣本) 先給「今天的陽光真好。」→ 正面，再給目標句 → 負面\n(少樣本) 擴展標籤為「非常滿意/基本滿意/中立/有點不滿/極度不滿」，用多例校準，目標句「特效還行吧。」→ 基本滿意。`,
+          transcriptEn: `Core idea: LLMs are pattern learners. Prefer showing over telling.\n\n• Zero‑shot: instruction only for simple, generic tasks.\n• One‑shot: one exemplar to calibrate format/tone.\n• Few‑shot: multiple diverse exemplars to define rules and task boundaries.\n\nSentiment examples: zero‑shot (negative), one‑shot (calibrates format), few‑shot (finer labels; "effects are okay" → mildly positive).`,
+          keyPoints: [
+            '示範數量與質量直接影響輸出品質',
+            '單樣本可快速校準輸出格式',
+            '少樣本用多樣例定義更細緻的標準'
+          ],
+          keyPointsEn: [
+            'Number/quality of exemplars drive output quality',
+            'One‑shot quickly calibrates output format',
+            'Few‑shot defines fine‑grained criteria via diverse examples'
+          ]
+        },
+        {
+          id: 202,
+          title: '2.2 清晰指令的黃金法則',
+          titleEn: '2.2 Golden Rules for Clear Instructions',
+          duration: '30 分鐘',
+          durationEn: '30 minutes',
+          type: 'interactive',
+          description: '以具體、正向、可執行的語言消除歧義；把複雜任務拆成可檢查的步驟。',
+          descriptionEn: 'Eliminate ambiguity with specific, positive, actionable language; decompose complex tasks into checkable steps.',
+          image: '/images/courses/prompt-engineering/unit-images/clarity.png',
+          imageAlt: '清晰指令原則',
+          imageAltEn: 'Clarity principles',
+          transcript: `法則一：具體、明確、直接。例：明確產品、結構、語氣與 CTA。\n法則二：用「要做什麼」取代「不要做什麼」。例：用「謙虛誠懇、讓大學生能懂」取代「不要太驕傲」。\n法則三：任務分解。將「找對手＋分析＋擬口號」切成三步鏈式執行。`,
+          transcriptEn: `Rule 1: Be specific and direct (product, structure, tone, CTA).\nRule 2: Prefer positive do‑instructions over negative don’ts.\nRule 3: Decompose into steps (list competitors → analyse pros/cons → craft differentiated slogan).`,
+          keyPoints: ['用正向指令降低歧義', '提供評估標準與交付格式', '鏈式任務更穩定可控'],
+          keyPointsEn: ['Use positive directives', 'Provide evaluation criteria and format', 'Chained subtasks improve stability']
+        },
+        {
+          id: 203,
+          title: '2.3 格式化與結構化：分隔符、標籤與範本',
+          titleEn: '2.3 Formatting & Structuring: Delimiters, Tags and Templates',
+          duration: '35 分鐘',
+          durationEn: '35 minutes',
+          type: 'interactive',
+          description: '用 Markdown/XML/JSON 等結構為模型提供「元信息」，提升理解與可控性。',
+          descriptionEn: 'Use Markdown/XML/JSON to convey meta‑information for better understanding and controllability.',
+          image: '/images/courses/prompt-engineering/unit-images/structure.png',
+          imageAlt: '結構化提示',
+          imageAltEn: 'Structured prompting',
+          transcript: `示例：\n• 分隔符：\n### 指令 ### / ### 上下文 ### / ### 問題 ### → 更清晰的訊號。\n• XML 標籤：<task>/<document>/<question> 明確責任段落。\n• 預填充：先輸出「這是您要求的 JSON：{」提高 JSON 成功率。`,
+          transcriptEn: `Examples:\n• Delimiters: headings for Instruction/Context/Question.\n• XML tags to scope responsibilities.\n• Prefill: start the JSON skeleton to increase valid JSON completion rates.`,
+          keyPoints: ['結構化等同於向模型加粗重點', '標籤可隔離來源與任務', '預填充可提升格式穩定性'],
+          keyPointsEn: ['Structure highlights intent', 'Tags isolate sources/tasks', 'Prefill boosts format stability']
+        },
+        {
+          id: 204,
+          title: '2.4 角色扮演：最大化情境相關性',
+          titleEn: '2.4 Persona Prompting: Maximising Context Relevance',
+          duration: '30 分鐘',
+          durationEn: '30 minutes',
+          type: 'interactive',
+          description: '用情境錨定激活特定知識子集；角色越具體，輸出越可控。',
+          descriptionEn: 'Use contextual anchoring to activate domain subsets; more specific persona → more controllable outputs.',
+          image: '/images/courses/prompt-engineering/unit-images/persona.png',
+          imageAlt: '角色扮演提示',
+          imageAltEn: 'Persona prompting',
+          transcript: `無角色→通用定義；老師→比喻增多；精準角色（例如「用樂高解釋區塊鏈給行銷人」）→ 高度貼合、語氣一致、可控性強。`,
+          transcriptEn: `No persona → generic; teacher → more analogies; precise persona (e.g., "explain blockchain with LEGO to marketers") → highly aligned and controllable.`,
+          keyPoints: ['角色=情境錨定', '指定受眾/語氣/比喻', '越具體越好'],
+          keyPointsEn: ['Persona = contextual anchoring', 'Specify audience/tone/metaphor', 'Specificity wins']
+        },
+        {
+          id: 205,
+          title: '2.5 參數控制：Temperature、Top_p、Stop、Penalty',
+          titleEn: '2.5 Parameter Control: Temperature, Top_p, Stop, Penalties',
+          duration: '30 分鐘',
+          durationEn: '30 minutes',
+          type: 'interactive',
+          description: '把「方向」與「方式」分離：提示定方向，參數控風險/多樣性/長度/重複度。',
+          descriptionEn: 'Separate direction vs style: prompts set direction; parameters control risk/diversity/length/repetition.',
+          image: '/images/courses/prompt-engineering/unit-images/parameters.png',
+          imageAlt: '生成參數',
+          imageAltEn: 'Generation parameters',
+          transcript: `• Temperature：創意旋鈕（低=穩定；高=發散）。\n• Top_p：核心採樣（候選池大小）。\n• Stop：遇到序列即停止。\n• Frequency/Presence penalty：抑制重複。\n示例：固定提示下，T=0.1 → 標準口號；T=1.2 → 具詩意創意。Stop=['4.'] 限制清單長度。`,
+          transcriptEn: `• Temperature: creativity knob (low=stable; high=diverse).\n• Top_p: nucleus sampling (candidate pool).\n• Stop: halt on sequence.\n• Frequency/Presence penalties: reduce repetition.\nExample: same prompt, T=0.1 → safe slogan; T=1.2 → poetic; Stop=['4.'] to cap list length.`,
+          keyPoints: ['提示定方向、參數定風格', '以實驗曲線找到任務最佳區間', '與產品環境一致化設定'],
+          keyPointsEn: ['Prompts set direction, params set style', 'Find task‑optimal ranges empirically', 'Align settings with production']
+        }
+      ],
+      quiz: {
+        title: '第二部分測驗：核心技巧與最佳實踐',
+        titleEn: 'Part 2 Quiz: Core Techniques & Best Practices',
+        description: '評估你對零/單/少樣本、清晰指令、結構化、角色與參數的掌握。',
+        descriptionEn: 'Assess mastery of shot strategies, clarity, structuring, persona and parameters.',
+        timeLimit: 20,
+        passingScore: 80,
+        questions: [
+          {
+            id: 2011,
+            question: '何時應優先使用「少樣本」？',
+            questionEn: 'When should you prefer few‑shot?',
+            type: 'single',
+            options: [
+              '任務極為簡單，無需示範',
+              '需要更細緻標準與固定格式的任務',
+              '只想提高隨機性',
+              '限制輸出長度'
+            ],
+            optionsEn: [
+              'Task is trivial; no demo needed',
+              'Tasks needing fine‑grained criteria and fixed formats',
+              'Only to increase randomness',
+              'To limit output length'
+            ],
+            correctAnswer: 1,
+            explanation: '少樣本可用多例定義規則與格式，明確任務邊界。',
+            explanationEn: 'Few‑shot defines rules and formats with multiple examples, clarifying boundaries.'
+          },
+          {
+            id: 2012,
+            question: '以下哪一項屬於「清晰指令」原則？',
+            questionEn: 'Which aligns with “clear instructions”?',
+            type: 'single',
+            options: ['多用否定式避免錯誤', '把複雜任務拆解為多步', '完全不指定輸出格式', '避免提供任何上下文'],
+            optionsEn: ['Use negatives extensively', 'Decompose complex tasks', 'Never specify output format', 'Avoid any context'],
+            correctAnswer: 1,
+            explanation: '將任務鏈式拆解能提升可控性與成功率。',
+            explanationEn: 'Chaining subtasks improves controllability and success.'
+          },
+          {
+            id: 2013,
+            question: 'Top_p 與 Temperature 的差異是？',
+            questionEn: 'Difference between Top_p and Temperature?',
+            type: 'single',
+            options: ['兩者完全相同', 'Top_p 定義候選池、Temperature 控制風險/發散', 'Top_p 只控制長度', 'Temperature 只限制重複'],
+            optionsEn: ['Identical', 'Top_p sets candidate pool; Temperature controls risk/diversity', 'Top_p controls length only', 'Temperature only reduces repetition'],
+            correctAnswer: 1,
+            explanation: 'Top_p 為核心採樣門檻；Temperature 為隨機性調節。',
+            explanationEn: 'Top_p is a nucleus threshold; Temperature adjusts randomness.'
+          }
+        ]
+      }
     }
   ],
 
