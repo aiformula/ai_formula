@@ -63,7 +63,28 @@ const PromptHub: React.FC = () => {
     '退休人士': 'Retirees',
     '研究人員': 'Researcher',
     '學者': 'Academic',
-    '進階學習者': 'Advanced Learner'
+    '進階學習者': 'Advanced Learner',
+    // extra tags produced by augmentation
+    '學習者': 'Learner',
+    '自學者': 'Self‑learner',
+    '老師': 'Teacher',
+    '專業人士': 'Professional',
+    '創意專業人士': 'Creative Professional',
+    '內容創作者': 'Content Creator',
+    '設計師': 'Designer',
+    '考試準備': 'Exam Prep',
+    '金融服務從業員': 'Financial Services Professional',
+    '客戶顧問': 'Client Advisor',
+    '銷售團隊': 'Sales Team',
+    '照顧者': 'Caregiver',
+    '家庭管理': 'Family Management',
+    '個體戶': 'Sole Proprietor',
+    '創業者': 'Entrepreneur',
+    '產品經理': 'Product Manager',
+    '增長營銷': 'Growth Marketing',
+    '長者': 'Senior',
+    '社區志工': 'Community Volunteer',
+    '社群經理': 'Community Manager'
   };
 
   // Synonyms (EN <-> ZH‑HK) for search expansion
@@ -81,7 +102,22 @@ const PromptHub: React.FC = () => {
     'researcher': ['研究', '研究人員', '學者', '學術'],
     'data analyst': ['數據分析', '數據分析師', '分析師'],
     'brand strategist': ['品牌策略師', '品牌'],
-    'community manager': ['社群經理', '社群', '社群營運']
+    'community manager': ['社群經理', '社群', '社群營運'],
+    // Chinese entries as keys (ensure reverse hits)
+    '學生': ['student', '學習者', '自學者', '考試', 'exam', '考試準備'],
+    '學習者': ['student', '自學者', 'learner', '考試準備'],
+    '自學者': ['student', 'learner', '學習者', '考試準備'],
+    '老師': ['teacher', 'educator', '講師', '導師'],
+    '市場營銷': ['marketing', '行銷', '營銷', '品牌', '品牌策略師', '社群經理', 'digital marketing'],
+    '保險及理財策劃業': ['insurance', 'financial planning', '金融服務', '理財', '財務顧問'],
+    '商業專業人士': ['business professional', 'professional', '專業人士', '策略顧問', 'manager'],
+    '創意專業人士': ['creative professional', '設計師', '內容創作者', 'creator', 'designer'],
+    '家長': ['parent', '照顧者', '家庭'],
+    '自由工作者': ['freelancer', 'consultant', '個體戶', '自由職業'],
+    '初創創業者': ['startup founder', 'entrepreneur', '創業者', '產品經理', 'growth'],
+    '退休人士': ['retiree', 'senior', '長者'],
+    '品牌策略師': ['brand strategist', '品牌', 'marketing'],
+    '社群經理': ['community manager', '社群', '社群營運']
   };
 
   const normalize = (text: string): string => text.toLowerCase().trim();
