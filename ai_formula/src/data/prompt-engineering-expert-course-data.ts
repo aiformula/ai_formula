@@ -4,7 +4,7 @@ export const promptEngineeringExpertCourseData: CourseData = {
   courseInfo: {
     badge: '付費・高階',
     badgeEn: 'Paid · Expert',
-    title: '精通提示工程：專家級應用的終極課程（擴展與詳解版）',
+    title: '精通提示工程：專家級應用的終極課程',
     titleEn: 'Prompt Engineering Mastery: Ultimate Expert Course (Expanded Edition)',
     subtitle: '以導演級心智模型構建系統級提示，掌握推理、安全與智能體工作流',
     subtitleEn: 'Build system‑level prompts with a director‑level mental model; master reasoning, safety and agentic workflows',
