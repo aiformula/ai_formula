@@ -239,6 +239,15 @@ function App() {
                   <Route path="/courses/prompt-engineering-course/theme/:themeId/quiz" element={<CourseQuizPage />} />
                   {/* 無效路由重定向 - 作為最後的保障 */}
                   <Route path="/courses/prompt-engineering-course/*" element={<Navigate to="/courses/prompt-engineering-course/outline" replace />} />
+
+                  {/* Prompt Engineering Expert Course - 使用模板系統 */}
+                  <Route path="/courses/prompt-engineering-expert-course" element={<Navigate to="/courses/prompt-engineering-expert-course/outline" replace />} />
+                  <Route path="/courses/prompt-engineering-expert-course/outline" element={<CourseOutlinePage />} />
+                  <Route path="/courses/prompt-engineering-expert-course/learning" element={<CourseLearningPage />} />
+                  <Route path="/courses/prompt-engineering-expert-course/theme/:themeId" element={<CourseThemePage />} />
+                  <Route path="/courses/prompt-engineering-expert-course/theme/:themeId/unit/:unitId" element={<CourseUnitPage />} />
+                  <Route path="/courses/prompt-engineering-expert-course/theme/:themeId/quiz" element={<CourseQuizPage />} />
+                  <Route path="/courses/prompt-engineering-expert-course/*" element={<Navigate to="/courses/prompt-engineering-expert-course/outline" replace />} />
                   
                   {/* Design System Demo */}
                   <Route path="/design-system" element={<DesignSystemDemo />} />

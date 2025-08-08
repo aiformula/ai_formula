@@ -222,6 +222,46 @@ export const digitalProducts: DigitalProduct[] = [
       "+3 更多項目"
     ]
   }
+  ,
+  {
+    id: 5,
+    title: "Prompt Engineering Mastery: Ultimate Expert Course (Expanded Edition)",
+    titleCht: "精通提示工程：專家級應用的終極課程（擴展與詳解版）",
+    description: "Expert-level, paid programme focusing on high‑stakes prompting systems, safety, governance and agent workflows.",
+    descriptionCht: "專為高階學員設計的付費課程，聚焦高強度提示系統、安全與治理、智能體工作流。",
+    duration: "10+ hours expert training",
+    durationCht: "10+ 小時",
+    downloads: 0,
+    rating: 5.0,
+    level: "Expert",
+    levelCht: "高階",
+    price: "$299",
+    originalPrice: "$399",
+    image: "🧠",
+    type: "AI Prompt Systems",
+    typeCht: "AI 提示系統",
+    category: "prompt-engineering-expert-course",
+    difficulty: "Advanced",
+    difficultyCht: "高階",
+    isFree: false,
+    themeColor: "#7c3aed",
+    newProduct: true,
+    featured: true,
+    bestseller: false,
+    hotSelling: false,
+    includes: [
+      "Expert foundations & mental models",
+      "Risk, safety and governance playbook",
+      "Agentic prompting + tool use",
+      "System prompts, evaluators and guardrails"
+    ],
+    includesCht: [
+      "專家級基礎與心智模型",
+      "風險、安全與治理實戰手冊",
+      "智能體提示＋工具使用",
+      "系統提示、評測與護欄設計"
+    ]
+  }
 ];
 
 // Learning Plans Data

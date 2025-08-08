@@ -5,11 +5,12 @@
  * @version 1.0.0
  */
 
-import { CourseConfig } from './types';
+import type { CourseConfig as TemplateCourseConfig } from './types';
 import { chatGPTCourseData } from '@/data/chatgpt-complete-course-data';
 import { perplexityCourseData } from '@/data/perplexity-complete-course-data';
 import { midjourneyCourseData } from '@/data/midjourney-course-data';
 import { promptEngineeringCourseData } from '@/data/prompt-engineering-course-data';
+import { promptEngineeringExpertCourseData } from '@/data/prompt-engineering-expert-course-data';
 import { useChatGPTProgress } from '@/hooks/useChatGPTProgress';
 import { usePerplexityProgress } from '@/hooks/usePerplexityProgress';
 import { useMidjourneyProgress } from '@/hooks/useMidjourneyProgress';
@@ -48,7 +49,8 @@ export interface CourseConfig {
   accentColor: string;
   baseRoute: string;
   dataSource: any;
-  progressHook: () => UnifiedProgressHook;
+  // 寬鬆處理各課程 Hook 差異，統一在模板內做適配
+  progressHook: () => any;
   cssPrefix: string;
 }
 
@@ -94,6 +96,17 @@ export const courseConfigs: Record<string, CourseConfig> = {
     progressHook: usePromptEngineeringProgress,
     cssPrefix: 'prompt-engineering'
   }
+  ,
+  'prompt-engineering-expert': {
+    courseId: 'prompt-engineering-expert',
+    courseName: 'Prompt Engineering Mastery: Expert Edition',
+    themeColor: '#7c3aed',
+    accentColor: '#f59e0b',
+    baseRoute: '/courses/prompt-engineering-expert-course',
+    dataSource: promptEngineeringExpertCourseData,
+    progressHook: usePromptEngineeringProgress,
+    cssPrefix: 'prompt-engineering-expert'
+  }
 };
 
 // 工具函數：根據 courseId 獲取配置
@@ -107,6 +120,7 @@ export const getCourseIdFromRoute = (route: string): string | null => {
   if (route.includes('perplexity-complete-course')) return 'perplexity';
   if (route.includes('midjourney-course')) return 'midjourney';
   if (route.includes('prompt-engineering-course')) return 'prompt-engineering';
+  if (route.includes('prompt-engineering-expert-course')) return 'prompt-engineering-expert';
   return null;
 };
 
