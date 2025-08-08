@@ -5,7 +5,7 @@ export const promptEngineeringExpertCourseData: CourseData = {
     badge: '付費・高階',
     badgeEn: 'Paid · Expert',
     title: '精通提示工程：專家級應用的終極課程',
-    titleEn: 'Prompt Engineering Mastery: Ultimate Expert Course (Expanded Edition)',
+    titleEn: 'Prompt Engineering Mastery: Ultimate Expert Course',
     subtitle: '以導演級心智模型構建系統級提示，掌握推理、安全與智能體工作流',
     subtitleEn: 'Build system‑level prompts with a director‑level mental model; master reasoning, safety and agentic workflows',
     description: '本課程面向高階用戶，從心智模型、系統提示、進階推理到治理與評測，完整打造「可控、可靠、可擴展」的企業級提示工程能力。',
@@ -63,7 +63,11 @@ export const promptEngineeringExpertCourseData: CourseData = {
           durationEn: '45 minutes',
           type: 'interactive',
           description: '把提示視為「設定系統初始條件」；從場記到導演的類比；示範初階 vs 工程化提示。',
-          descriptionEn: 'View prompts as initial condition setting; runner→director analogy; naïve vs engineered prompts.'
+          descriptionEn: 'View prompts as initial condition setting; runner→director analogy; naïve vs engineered prompts.',
+          image: '/images/courses/prompt-engineering/unit-images/foundations.png',
+          imageAlt: '提示工程基礎',
+          transcript: '',
+          keyPoints: []
         },
         {
           id: 102,
@@ -73,7 +77,11 @@ export const promptEngineeringExpertCourseData: CourseData = {
           durationEn: '40 minutes',
           type: 'interactive',
           description: '精準可控、釋放潛能、人機協作、倫理與護欄；防幻覺與引用要求範例。',
-          descriptionEn: 'Precision/control, potential, HCI, ethics/guardrails; anti‑hallucination with citation requirements.'
+          descriptionEn: 'Precision/control, potential, HCI, ethics/guardrails; anti‑hallucination with citation requirements.',
+          image: '/images/courses/prompt-engineering/unit-images/value-safety.png',
+          imageAlt: '價值與安全',
+          transcript: '',
+          keyPoints: []
         },
         {
           id: 103,
@@ -83,7 +91,11 @@ export const promptEngineeringExpertCourseData: CourseData = {
           durationEn: '20 minutes',
           type: 'interactive',
           description: 'Transformer、GPT‑3、CoT、ReAct/Agents 時軸與關鍵詞變遷。',
-          descriptionEn: 'Timeline of Transformer, GPT‑3, CoT, ReAct/Agents with interaction pattern keywords.'
+          descriptionEn: 'Timeline of Transformer, GPT‑3, CoT, ReAct/Agents with interaction pattern keywords.',
+          image: '/images/courses/prompt-engineering/unit-images/history.png',
+          imageAlt: '發展簡史',
+          transcript: '',
+          keyPoints: []
         },
         {
           id: 104,
@@ -93,7 +105,11 @@ export const promptEngineeringExpertCourseData: CourseData = {
           durationEn: '15 minutes',
           type: 'interactive',
           description: '以房屋比喻拆解提示食譜；逐步構建與對照示例。',
-          descriptionEn: 'House analogy; step‑by‑step recipe with contrasted examples.'
+          descriptionEn: 'House analogy; step‑by‑step recipe with contrasted examples.',
+          image: '/images/courses/prompt-engineering/unit-images/components.png',
+          imageAlt: '提示構成',
+          transcript: '',
+          keyPoints: []
         },
         {
           id: 105,
@@ -103,7 +119,11 @@ export const promptEngineeringExpertCourseData: CourseData = {
           durationEn: '20 minutes',
           type: 'interactive',
           description: '速度／成本／數據量／穩定性／知識更新；混合策略案例（律所）。',
-          descriptionEn: 'Speed/cost/data/stability/knowledge update; hybrid strategy case (law firm).'
+          descriptionEn: 'Speed/cost/data/stability/knowledge update; hybrid strategy case (law firm).',
+          image: '/images/courses/prompt-engineering/unit-images/prompt-vs-finetune.png',
+          imageAlt: '提示 vs 微調',
+          transcript: '',
+          keyPoints: []
         }
       ]
     },
