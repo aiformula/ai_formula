@@ -165,7 +165,8 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     title: isZhHK ? dataSource.courseInfo.title : (dataSource.courseInfo.titleEn || dataSource.courseInfo.title),
     subtitle: isZhHK ? dataSource.courseInfo.subtitle : (dataSource.courseInfo.subtitleEn || dataSource.courseInfo.subtitle),
     // Inject custom outline copy for this course if expert course
-    description: isZhHK && config.courseId === 'prompt-engineering-expert' ? (
+    description: config.courseId === 'prompt-engineering-expert' ? (
+      isZhHK ? (
       `你係咪覺得，同AI傾偈好似隔住一道牆？\n\n` +
       `你問佢問題，佢總係答埋啲行貨、空泛、唔到肉嘅答案？你睇住人哋用AI出神入化，自動寫報告、做分析、甚至寫埋Code，但自己就只可以叫佢講下笑話、寫下罐頭Email？\n\n` +
       `問題唔係AI唔夠勁，而係你未識得同佢溝通嘅真正語言。\n\n` +
@@ -173,6 +174,15 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
       `呢個課程唔係教你幾條簡單嘅「咒語」，而係由AI Formula 專家團隊為你打造一個完整嘅思維體系。我哋會帶你由零開始，深入理解大型語言模型嘅內在邏輯，再逐步解鎖由淺入深嘅提示策略。你將會學識點樣設計出結構嚴謹、能夠引導AI進行複雜推理同多步工作流嘅「系統級提示」。\n\n` +
       `學完之後，AI對你嚟講唔再係一個玩具，而係一個可以24小時待命、能力超強嘅專家團隊，隨時聽你調遣，解決你喺工作、學習同創作上最棘手嘅問題。\n\n` +
       `準備好掌握呢項定義未來十年嘅核心超能力未？`
+    ) : (
+      `Do you ever feel as if there’s a wall between you and AI?\n\n` +
+      `You ask a question and get generic, surface‑level answers. Others are automating reports, analysis and even code, whilst you’re left with canned emails and the odd joke.\n\n` +
+      `The issue isn’t that AI isn’t powerful – it’s that you’re not yet speaking its language.\n\n` +
+      `In this era, merely “using” AI is no longer an advantage. Being able to drive AI is. Prompt Engineering Mastery is your blueprint to transform from a casual user into a true conductor.\n\n` +
+      `This isn’t a collection of “magic prompts”. It’s a complete way of thinking. We’ll start from first principles, unpack how large language models actually work, then progressively unlock advanced prompting strategies. You’ll learn to design system‑level prompts that guide AI through complex reasoning and multi‑step workflows.\n\n` +
+      `After this course, AI won’t be a toy – it will be a 24/7 expert team at your command, ready to tackle your toughest problems at work, in study and in creative projects.\n\n` +
+      `Ready to master the core super‑skill of the next decade?`
+    )
     ) : undefined,
     instructor: isZhHK ? dataSource.courseInfo.instructor : (dataSource.courseInfo.instructorEn || dataSource.courseInfo.instructor),
     instructorTitle: isZhHK ? dataSource.courseInfo.instructorTitle : (dataSource.courseInfo.instructorTitleEn || dataSource.courseInfo.instructorTitle),

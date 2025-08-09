@@ -479,17 +479,32 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         }
                       </h2>
                     </div>
-                    <motion.p 
-                      className="text-gray-300 max-w-2xl mx-auto whitespace-pre-line"
+                    <motion.div 
+                      className="text-gray-300 max-w-2xl mx-auto text-left space-y-2"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.6 }}
                     >
-                      {isZhHK ? 
-                        "課程價值：\n- AI 核心技能：掌握工具核心功能與深度應用（核心技能）\n- 實戰案例分析：以真實案例學最佳實踐（實戰技巧）\n- 全方位應用：涵蓋工作/學習/創作等多領域（全面掌握）" :
-                        "Course value:\n- AI core skills: master core functions and advanced use\n- Practical case studies: learn best practices\n- Comprehensive applications: work/learning/creation"
-                      }
-                    </motion.p>
+                      {isZhHK ? (
+                        <>
+                          <div>課程價值：</div>
+                          <ul className="list-disc pl-5 space-y-1">
+                            <li>AI 核心技能：掌握工具核心功能與深度應用（核心技能）</li>
+                            <li>實戰案例分析：以真實案例學最佳實踐（實戰技巧）</li>
+                            <li>全方位應用：涵蓋工作/學習/創作等多領域（全面掌握）</li>
+                          </ul>
+                        </>
+                      ) : (
+                        <>
+                          <div>Course Value:</div>
+                          <ul className="list-disc pl-5 space-y-1">
+                            <li>AI core skills: master core functions and advanced applications (Core Skills)</li>
+                            <li>Practical case studies: learn best practices through real projects (Practical Techniques)</li>
+                            <li>Comprehensive applications: across work, learning and creative domains (Complete Mastery)</li>
+                          </ul>
+                        </>
+                      )}
+                    </motion.div>
                   </motion.div>
 
                   {/* 玻璃卡片網格 */}
