@@ -486,8 +486,8 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       transition={{ duration: 0.5, delay: 0.6 }}
                     >
                       {isZhHK ? 
-                        "課程價值：\n• AI 核心技能：掌握工具核心功能與深度應用（核心技能）\n• 實戰案例分析：以真實案例學最佳實踐（實戰技巧）\n• 全方位應用：涵蓋工作/學習/創作等多領域（全面掌握）" :
-                        "Course value:\n• AI core skills: master core functions and advanced use\n• Practical case studies: learn best practices\n• Comprehensive applications: work/learning/creation"
+                        "課程價值：\n- AI 核心技能：掌握工具核心功能與深度應用（核心技能）\n- 實戰案例分析：以真實案例學最佳實踐（實戰技巧）\n- 全方位應用：涵蓋工作/學習/創作等多領域（全面掌握）" :
+                        "Course value:\n- AI core skills: master core functions and advanced use\n- Practical case studies: learn best practices\n- Comprehensive applications: work/learning/creation"
                       }
                     </motion.p>
                   </motion.div>
