@@ -10,8 +10,54 @@ const sanitizeContent = (content: string): string => {
     .replace(/javascript:/gi, '');
 };
 
+// Minimal GitHub‑flavored Markdown table support
+const convertMarkdownTables = (raw: string): { content: string; tableMap: Record<string, string> } => {
+  const lines = raw.split(/\r?\n/);
+  const tableMap: Record<string, string> = {};
+  const rebuilt: string[] = [];
+  let i = 0;
+  let tableIndex = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (line.trim().startsWith('|')) {
+      const header = line;
+      const next = lines[i + 1] ?? '';
+      const isSeparator = /^\|\s*[:\-\s|]+\|$/.test(next.trim());
+      if (isSeparator) {
+        const rows: string[] = [];
+        let j = i + 2;
+        while (j < lines.length && lines[j].trim().startsWith('|')) {
+          rows.push(lines[j]);
+          j++;
+        }
+        const headerCells = header.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+        const bodyRows = rows.map(r => r.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim()));
+        const tableHtml = [
+          '<div class="overflow-x-auto my-4"><table class="w-full border-collapse text-left">',
+          '<thead><tr>',
+          ...headerCells.map(h => `<th class="border-b border-gray-700 px-3 py-2 font-semibold">${h}</th>`),
+          '</tr></thead>',
+          '<tbody>',
+          ...bodyRows.map(cols => ['<tr>', ...cols.map(c => `<td class="border-b border-gray-800 px-3 py-2 align-top">${c}</td>`), '</tr>'].join('')),
+          '</tbody></table></div>'
+        ].join('');
+        const token = `[[TABLE_BLOCK_${tableIndex}]]`;
+        tableMap[token] = tableHtml;
+        rebuilt.push(token);
+        tableIndex++;
+        i = j;
+        continue;
+      }
+    }
+    rebuilt.push(line);
+    i++;
+  }
+  return { content: rebuilt.join('\n'), tableMap };
+};
+
 const parseMarkdownToHTML = (content: string): string => {
-  return content
+  const { content: withTables, tableMap } = convertMarkdownTables(content);
+  let html = withTables
     // Headers
     .replace(/^#### (.+)$/gm, '<h4 class="text-lg font-semibold ai-text-success mt-6 mb-3">$1</h4>')
     .replace(/^### (.+)$/gm, '<h3 class="text-xl font-bold ai-text-info mt-8 mb-4">$1</h3>')
@@ -28,10 +74,16 @@ const parseMarkdownToHTML = (content: string): string => {
     .replace(/`([^`]+)`/g, '<code class="ai-bg-dark-medium ai-text-primary px-2 py-1 rounded text-sm font-mono">$1</code>')
     
     // List items
-    .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2 text-gray-200">??$1</li>')
+    .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2 text-gray-200">$1</li>')
     
     // Line breaks
     .replace(/\n/g, '<br>');
+
+  // Restore table tokens to actual HTML
+  Object.keys(tableMap).forEach(token => {
+    html = html.replace(token, tableMap[token]);
+  });
+  return html;
 };
 
 // Enhanced content renderer with proper styling

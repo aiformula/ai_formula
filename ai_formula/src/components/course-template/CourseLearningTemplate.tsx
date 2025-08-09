@@ -121,7 +121,10 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
     completedThemes: normalizedStats.completedThemes,
     learningStreak: 5,
     
-    themes: dataSource.courseModules.map((module: any) => ({
+    // Ensure themes appear in ascending order by id (e.g., Part 3 before Part 4)
+    themes: [...dataSource.courseModules]
+      .sort((a: any, b: any) => (a?.id ?? 0) - (b?.id ?? 0))
+      .map((module: any) => ({
       id: module.id,
       title: isZhHK ? module.title : (module.titleEn || module.title),
       description: isZhHK ? module.description : (module.descriptionEn || module.description),
