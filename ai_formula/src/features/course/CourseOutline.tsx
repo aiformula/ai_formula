@@ -656,8 +656,8 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
               {isZhHK ? "🎯 課程大綱" : "🎯 Course Modules"}
             </h3>
             
-            {/* 如果是免費課程且有模組數據，顯示詳細模組 */}
-            {isFree && courseModules.length > 0 ? (
+            {/* 有模組數據就顯示詳細課程大綱（不再只限免費課程） */}
+            {courseModules.length > 0 ? (
               <div className="space-y-4 mb-8">
                 {courseModules.map((module, index) => (
                   <Card key={module.id} className="bg-gray-800 border-gray-700">
@@ -708,9 +708,11 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                                     {isZhHK ? '預覽' : 'Preview'}
                                   </Badge>
                                 )}
-                                <Badge variant="outline" className="text-xs text-[#10a37f] border-[#10a37f]">
-                                  {isZhHK ? '免費' : 'Free'}
-                                </Badge>
+                                {isFree && (
+                                  <Badge variant="outline" className="text-xs text-[#10a37f] border-[#10a37f]">
+                                    {isZhHK ? '免費' : 'Free'}
+                                  </Badge>
+                                )}
                               </div>
                             </div>
                           ))}
