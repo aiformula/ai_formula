@@ -408,7 +408,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "語言" : "Language"}</span>
-                          <span className="text-white font-semibold">{isZhHK ? "繁體中文 / English" : "Traditional Chinese / English"}</span>
+                          <span className="text-white font-semibold">{isZhHK ? "繁體中文 / English (UK)" : "Traditional Chinese / English (UK)"}</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "費用" : "Price"}</span>
@@ -729,9 +729,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                   <Card key={index} className="bg-gray-800 border-gray-700 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0">
-                          {feature.icon}
-                        </div>
+                        {/* 刪除圖像部份：不再顯示 feature.icon */}
                         <div>
                           <h4 className="text-lg font-bold mb-2 text-white">{feature.title}</h4>
                           <p className="text-gray-300 mb-3">{feature.description}</p>
