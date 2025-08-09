@@ -207,6 +207,8 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
   const { language } = useLanguage();
   const navigate = useNavigate();
   const isZhHK = language === 'zh-HK';
+  // 用路由判斷是否為專家課程，方便做條件化渲染
+  const isExpertCourse = typeof window !== 'undefined' && window.location.pathname.includes('prompt-engineering-expert-course');
   const [activeTab, setActiveTab] = useState<string>('course-intro');
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
@@ -479,6 +481,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         }
                       </h2>
                     </div>
+                    {!isExpertCourse && (
                     <motion.div 
                       className="text-gray-300 max-w-2xl mx-auto text-left space-y-2"
                       initial={{ opacity: 0 }}
@@ -505,6 +508,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         </>
                       )}
                     </motion.div>
+                    )}
                   </motion.div>
 
                   {/* 玻璃卡片網格 */}
