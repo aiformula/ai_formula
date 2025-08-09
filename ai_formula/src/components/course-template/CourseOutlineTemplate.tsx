@@ -52,7 +52,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     {
       icon: <Clock className="h-6 w-6" />,
       label: isZhHK ? "小時精華內容" : "Hours of Premium Content",
-      value: `${dataSource.courseStats.totalHours}+`
+      value: config.courseId === 'prompt-engineering-expert' ? (isZhHK ? '12+' : '12+') : `${dataSource.courseStats.totalHours}+`
     },
     {
       icon: <BookOpen className="h-6 w-6" />,
@@ -67,7 +67,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     {
       icon: <Users className="h-6 w-6" />,
       label: isZhHK ? "學員學習" : "Students Enrolled",
-      value: `${dataSource.courseInfo.students}+`
+      value: `${dataSource.courseInfo.students || 0}+`
     }
   ];
 
@@ -164,6 +164,16 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     badge: isZhHK ? dataSource.courseInfo.badge : (dataSource.courseInfo.badgeEn || dataSource.courseInfo.badge),
     title: isZhHK ? dataSource.courseInfo.title : (dataSource.courseInfo.titleEn || dataSource.courseInfo.title),
     subtitle: isZhHK ? dataSource.courseInfo.subtitle : (dataSource.courseInfo.subtitleEn || dataSource.courseInfo.subtitle),
+    // Inject custom outline copy for this course if expert course
+    description: isZhHK && config.courseId === 'prompt-engineering-expert' ? (
+      `你係咪覺得，同AI傾偈好似隔住一道牆？\n\n` +
+      `你問佢問題，佢總係答埋啲行貨、空泛、唔到肉嘅答案？你睇住人哋用AI出神入化，自動寫報告、做分析、甚至寫埋Code，但自己就只可以叫佢講下笑話、寫下罐頭Email？\n\n` +
+      `問題唔係AI唔夠勁，而係你未識得同佢溝通嘅真正語言。\n\n` +
+      `呢個時代，識得用AI唔再係優勢，識得「驅動」AI先係。《精通提示工程：專家級應用的終極課程》就係你由一個普通AI用家，蛻變成為AI指揮家嘅終極秘笈。\n\n` +
+      `呢個課程唔係教你幾條簡單嘅「咒語」，而係由AI Formula 專家團隊為你打造一個完整嘅思維體系。我哋會帶你由零開始，深入理解大型語言模型嘅內在邏輯，再逐步解鎖由淺入深嘅提示策略。你將會學識點樣設計出結構嚴謹、能夠引導AI進行複雜推理同多步工作流嘅「系統級提示」。\n\n` +
+      `學完之後，AI對你嚟講唔再係一個玩具，而係一個可以24小時待命、能力超強嘅專家團隊，隨時聽你調遣，解決你喺工作、學習同創作上最棘手嘅問題。\n\n` +
+      `準備好掌握呢項定義未來十年嘅核心超能力未？`
+    ) : undefined,
     instructor: isZhHK ? dataSource.courseInfo.instructor : (dataSource.courseInfo.instructorEn || dataSource.courseInfo.instructor),
     instructorTitle: isZhHK ? dataSource.courseInfo.instructorTitle : (dataSource.courseInfo.instructorTitleEn || dataSource.courseInfo.instructorTitle),
     rating: dataSource.courseInfo.rating,
@@ -172,8 +182,10 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     lastUpdated: dataSource.courseInfo.lastUpdated
   };
 
-  // 轉換課程模組格式
-  const courseModules = dataSource.courseModules.map((module: any) => ({
+  // 轉換課程模組格式（確保按 id 排序）
+  const courseModules = [...dataSource.courseModules]
+    .sort((a: any, b: any) => (a?.id ?? 0) - (b?.id ?? 0))
+    .map((module: any) => ({
     id: module.id,
     title: isZhHK ? module.title : (module.titleEn || module.title),
     titleEn: module.titleEn,
@@ -198,12 +210,22 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     <CourseOutline
       courseInfo={dynamicCourseInfo}
       courseStats={courseStats}
-      courseInfoTags={[]}
+      courseInfoTags={[
+        { name: isZhHK ? '系統級提示範本' : 'System prompt templates', icon: <Target className="w-4 h-4" />, status: 'featured' },
+        { name: isZhHK ? '進階推理策略（CoT/ToT/ReAct）' : 'Advanced reasoning strategies', icon: <Brain className="w-4 h-4" />, status: 'featured' },
+        { name: isZhHK ? 'RAG 問答與智能體工作流' : 'RAG QA & agent workflows', icon: <Search className="w-4 h-4" />, status: 'featured' },
+        { name: isZhHK ? '安全護欄與評測' : 'Guardrails & evaluation', icon: <UserCheck className="w-4 h-4" />, status: 'featured' }
+      ]}
       availableCourses={[]}
       latestNews={undefined}
       pricingInfo={undefined}
       courseFeatures={getCourseFeatures()}
-      faqData={dataSource.faqData}
+      faqData={dataSource.faqData && dataSource.faqData.length > 0 ? dataSource.faqData : [
+        { question: isZhHK ? '我係AI新手，會唔會太難？' : 'I am new to AI. Is this too hard?', answer: isZhHK ? '唔會。課程由基礎開始，以大量比喻與實例逐步建立能力；適合新手至進階。' : 'No. We start from the basics with analogies and examples, suitable for beginners to advanced users.' },
+        { question: isZhHK ? '同免費教學有咩分別？' : 'How is this different from free tutorials?', answer: isZhHK ? '重點在於「系統級」方法：提示鏈、RAG、智能體與安全治理，提供可落地嘅專家級實戰。' : 'We focus on system-level methods: prompt chaining, RAG, agents and governance for production-ready practice.' },
+        { question: isZhHK ? '課程時長與模式？' : 'Duration and mode?', answer: isZhHK ? '10–12+ 小時精華內容，22+ 實戰單元；線上自學、可隨時重溫。' : '10–12+ hours of content in 22+ units; self-paced online with unlimited rewatch.' },
+        { question: isZhHK ? '完成後有咩得著？' : 'What will I achieve?', answer: isZhHK ? '由「使用者」進化成「駕馭者」，能設計 AI 解決方案，提升個人與團隊效能。' : 'Transform from user to driver, design AI solutions, and boost team productivity.' }
+      ]}
       targetAudience={targetAudience}
       courseModules={courseModules}
       isFree={dataSource.isFree}

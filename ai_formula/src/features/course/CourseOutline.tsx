@@ -370,6 +370,15 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                     </h2>
                   </div>
 
+                  {/* 課程介紹自定義（如有） */}
+                  {courseInfo.description && (
+                    <div className="mb-6">
+                      <p className="text-gray-300 whitespace-pre-line leading-relaxed">
+                        {courseInfo.description}
+                      </p>
+                    </div>
+                  )}
+
                   {/* 課程統計數據 */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                     {courseStats.map((stat, index) => (
@@ -391,7 +400,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "課程總長度" : "Total Duration"}</span>
-                          <span className="text-white font-semibold">{courseInfo.duration || "4.2 小時"}</span>
+                          <span className="text-white font-semibold">{courseInfo.duration || (isZhHK ? "12+ 小時" : "12+ hours")}</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "學習模式" : "Learning Mode"}</span>
@@ -399,13 +408,11 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "語言" : "Language"}</span>
-                          <span className="text-white font-semibold">{isZhHK ? "繁體中文" : "Traditional Chinese"}</span>
+                          <span className="text-white font-semibold">{isZhHK ? "繁體中文 / English" : "Traditional Chinese / English"}</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "費用" : "Price"}</span>
-                          <span className={`font-semibold ${instructorTheme.primary}`}>
-                            {isFree ? (isZhHK ? "完全免費" : "Completely Free") : (pricingInfo?.price || (isZhHK ? "請聯繫我們" : "Contact Us"))}
-                          </span>
+                          <span className={`font-semibold ${instructorTheme.primary}`}>{isFree ? (isZhHK ? "完全免費" : "Completely Free") : (isZhHK ? "HK$480" : "HK$480")}</span>
                         </div>
                         {courseInfo.lastUpdated && (
                           <div className="flex justify-between items-center">
@@ -473,14 +480,14 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       </h2>
                     </div>
                     <motion.p 
-                      className="text-gray-300 max-w-2xl mx-auto"
+                      className="text-gray-300 max-w-2xl mx-auto whitespace-pre-line"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.6 }}
                     >
                       {isZhHK ? 
-                        "專業設計的學習模組，從基礎到進階，全方位提升您的 AI 應用能力" :
-                        "Professionally designed learning modules, from basics to advanced, comprehensively enhancing your AI application capabilities"
+                        "課程價值：\n• AI 核心技能：掌握工具核心功能與深度應用（核心技能）\n• 實戰案例分析：以真實案例學最佳實踐（實戰技巧）\n• 全方位應用：涵蓋工作/學習/創作等多領域（全面掌握）" :
+                        "Course value:\n• AI core skills: master core functions and advanced use\n• Practical case studies: learn best practices\n• Comprehensive applications: work/learning/creation"
                       }
                     </motion.p>
                   </motion.div>
@@ -669,12 +676,8 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                               {index + 1}
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-white">
-                                {isZhHK ? module.title : (module.titleEn || module.title)}
-                              </h3>
-                              <p className="text-gray-400 mt-1">
-                                {isZhHK ? module.description : (module.descriptionEn || module.description)}
-                              </p>
+                              <h3 className="text-xl font-bold text-white">{module.title}</h3>
+                              <p className="text-gray-400 mt-1">{module.description}</p>
                             </div>
                           </div>
                           {openAccordion === module.id ? (
@@ -695,9 +698,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                                   {lesson.type === 'practice' && <Target className="h-4 w-4 text-white" />}
                                 </div>
                                 <div>
-                                  <p className="text-white font-medium">
-                                    {isZhHK ? lesson.title : (lesson.titleEn || lesson.title)}
-                                  </p>
+                                  <p className="text-white font-medium">{lesson.title}</p>
                                   <p className="text-gray-400 text-sm">{lesson.duration}</p>
                                 </div>
                               </div>
@@ -928,13 +929,11 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         (isZhHK ? "💎 課程包含" : "💎 Course Includes")
                       }
                     </div>
-                    <div className="space-y-2">
-                      {courseInfoTags.slice(0, 4).map((tag, index) => (
-                        <div key={index} className="flex items-center gap-2 text-sm text-gray-300">
-                          <CheckCircle className={`w-4 h-4 ${instructorTheme.primary}`} />
-                          <span>{tag.name}</span>
-                        </div>
-                      ))}
+                    <div className="space-y-2 text-sm text-gray-300">
+                      <div className="flex items-center gap-2"><CheckCircle className={`w-4 h-4 ${instructorTheme.primary}`} /><span>{isZhHK ? '系統級提示範本與模板庫' : 'System‑level prompt templates'}</span></div>
+                      <div className="flex items-center gap-2"><CheckCircle className={`w-4 h-4 ${instructorTheme.primary}`} /><span>{isZhHK ? 'CoT／自我一致性／ToT／ReAct 進階策略' : 'CoT/Self‑consistency/ToT/ReAct strategies'}</span></div>
+                      <div className="flex items-center gap-2"><CheckCircle className={`w-4 h-4 ${instructorTheme.primary}`} /><span>{isZhHK ? 'RAG 問答與智能體工作流實戰' : 'RAG QA and agent workflows'}</span></div>
+                      <div className="flex items-center gap-2"><CheckCircle className={`w-4 h-4 ${instructorTheme.primary}`} /><span>{isZhHK ? '安全護欄與評測清單' : 'Safety guardrails and evaluation checklists'}</span></div>
                     </div>
                   </div>
 
