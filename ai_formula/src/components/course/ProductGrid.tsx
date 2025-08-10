@@ -268,45 +268,53 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         {product.image}
                       </div>
                       <div className="grid grid-cols-1 gap-2 w-16">
-                        {/* 4格固定高度位置，確保卡片同一高度 */}
-                        <div>
-                          <Badge 
-                            className={`w-full h-6 items-center justify-center text-xs backdrop-blur-sm ${
-                              product.difficulty?.toLowerCase() === 'advanced' ? 'bg-red-600/90 text-white' :
-                              product.difficulty?.toLowerCase() === 'intermediate' ? 'bg-orange-600/90 text-white' :
-                              'bg-green-600/90 text-white'
+                        {/* 先放難度，然後把有的標籤緊貼往下排，最後用占位補足到4格 */}
+                        <div className="flex justify-end">
+                          <Badge
+                            className={`h-6 px-3 items-center justify-center text-[11px] rounded-full ${
+                              product.difficulty?.toLowerCase() === 'advanced'
+                                ? 'bg-red-600/90 text-white'
+                                : product.difficulty?.toLowerCase() === 'intermediate'
+                                ? 'bg-orange-600/90 text-white'
+                                : 'bg-green-600/90 text-white'
                             }`}
                           >
                             {isZhTW ? (product.difficultyCht || '中階') : (product.difficulty || 'Intermediate')}
                           </Badge>
                         </div>
-                        <div>
-                          {product.newProduct ? (
-                            <Badge className="w-full h-6 items-center justify-center bg-blue-600/90 text-white text-xs backdrop-blur-sm">
+
+                        {/* 依次渲染: 新品 → 熱銷 → 精選（只渲染存在嘅）*/}
+                        {product.newProduct && (
+                          <div className="flex justify-end">
+                            <Badge className="h-6 px-3 items-center justify-center bg-blue-600/90 text-white text-[11px] rounded-full">
                               {isZhTW ? '新品' : 'New'}
                             </Badge>
-                          ) : (
-                            <div className="h-6"></div>
-                          )}
-                        </div>
-                        <div>
-                          {product.bestseller ? (
-                            <Badge className="w-full h-6 items-center justify-center bg-purple-600/90 text-white text-xs backdrop-blur-sm">
+                          </div>
+                        )}
+
+                        {product.bestseller && (
+                          <div className="flex justify-end">
+                            <Badge className="h-6 px-3 items-center justify-center bg-purple-600/90 text-white text-[11px] rounded-full">
                               {isZhTW ? '熱銷' : 'Hot'}
                             </Badge>
-                          ) : (
-                            <div className="h-6"></div>
-                          )}
-                        </div>
-                        <div>
-                          {product.hotSelling ? (
-                            <Badge className="w-full h-6 items-center justify-center bg-yellow-600/90 text-white text-xs backdrop-blur-sm">
+                          </div>
+                        )}
+
+                        {product.hotSelling && (
+                          <div className="flex justify-end">
+                            <Badge className="h-6 px-3 items-center justify-center bg-yellow-600/90 text-white text-[11px] rounded-full">
                               {isZhTW ? '精選' : 'Featured'}
                             </Badge>
-                          ) : (
-                            <div className="h-6"></div>
-                          )}
-                        </div>
+                          </div>
+                        )}
+
+                        {/* 末尾補位，確保總高度一致（4格）*/}
+                        {Array.from({
+                          length:
+                            4 - (1 + (product.newProduct ? 1 : 0) + (product.bestseller ? 1 : 0) + (product.hotSelling ? 1 : 0)),
+                        }).map((_, i) => (
+                          <div key={`ph-${i}`} className="h-6" />
+                        ))}
                       </div>
                     </div>
                     <CardTitle className="text-xl mb-2 text-white drop-shadow-sm">
