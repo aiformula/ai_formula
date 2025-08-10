@@ -267,7 +267,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                       <div className="text-4xl drop-shadow-lg transition-transform duration-300 group-hover:scale-110" role="img" aria-label={`${product.type} icon`}>
                         {product.image}
                       </div>
-                      <div className="grid grid-cols-1 gap-2 w-16">
+                      <div className="grid grid-cols-1 grid-rows-4 auto-rows-[24px] gap-2 w-16 min-h-[120px]">
                         {/* 先放難度，然後把有的標籤緊貼往下排，最後用占位補足到4格 */}
                         <div className="flex justify-end">
                           <Badge
