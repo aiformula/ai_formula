@@ -267,32 +267,46 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                       <div className="text-4xl drop-shadow-lg transition-transform duration-300 group-hover:scale-110" role="img" aria-label={`${product.type} icon`}>
                         {product.image}
                       </div>
-                      <div className="flex flex-col gap-2">
-                        {/* 難度標籤 */}
-                        <Badge 
-                          className={`text-xs backdrop-blur-sm ${
-                            product.difficulty.toLowerCase() === 'advanced' ? 'bg-red-600/90 text-white' :
-                            product.difficulty.toLowerCase() === 'intermediate' ? 'bg-orange-600/90 text-white' :
-                            'bg-green-600/90 text-white'
-                          }`}
-                        >
-                          {isZhTW ? product.difficultyCht : product.difficulty}
-                        </Badge>
-                        {product.newProduct && (
-                          <Badge className="bg-blue-600/90 text-white text-xs backdrop-blur-sm">
-                            {isZhTW ? '新品' : 'New'}
+                      <div className="grid grid-cols-1 gap-2 w-16">
+                        {/* 4格固定高度位置，確保卡片同一高度 */}
+                        <div>
+                          <Badge 
+                            className={`w-full justify-center text-xs backdrop-blur-sm ${
+                              product.difficulty?.toLowerCase() === 'advanced' ? 'bg-red-600/90 text-white' :
+                              product.difficulty?.toLowerCase() === 'intermediate' ? 'bg-orange-600/90 text-white' :
+                              'bg-green-600/90 text-white'
+                            }`}
+                          >
+                            {isZhTW ? (product.difficultyCht || '中階') : (product.difficulty || 'Intermediate')}
                           </Badge>
-                        )}
-                        {product.bestseller && (
-                          <Badge className="bg-purple-600/90 text-white text-xs backdrop-blur-sm">
-                            {isZhTW ? '熱銷' : 'Hot'}
-                          </Badge>
-                        )}
-                        {product.hotSelling && (
-                          <Badge className="bg-yellow-600/90 text-white text-xs backdrop-blur-sm">
-                            {isZhTW ? '精選' : 'Featured'}
-                          </Badge>
-                        )}
+                        </div>
+                        <div>
+                          {product.newProduct ? (
+                            <Badge className="w-full justify-center bg-blue-600/90 text-white text-xs backdrop-blur-sm">
+                              {isZhTW ? '新品' : 'New'}
+                            </Badge>
+                          ) : (
+                            <div className="h-6"></div>
+                          )}
+                        </div>
+                        <div>
+                          {product.bestseller ? (
+                            <Badge className="w-full justify-center bg-purple-600/90 text-white text-xs backdrop-blur-sm">
+                              {isZhTW ? '熱銷' : 'Hot'}
+                            </Badge>
+                          ) : (
+                            <div className="h-6"></div>
+                          )}
+                        </div>
+                        <div>
+                          {product.hotSelling ? (
+                            <Badge className="w-full justify-center bg-yellow-600/90 text-white text-xs backdrop-blur-sm">
+                              {isZhTW ? '精選' : 'Featured'}
+                            </Badge>
+                          ) : (
+                            <div className="h-6"></div>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <CardTitle className="text-xl mb-2 text-white drop-shadow-sm">
