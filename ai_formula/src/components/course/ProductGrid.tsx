@@ -101,7 +101,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         </div>
 
         {/* Course Cards Grid - with mouse-following gradient effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
