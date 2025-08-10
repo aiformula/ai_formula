@@ -101,7 +101,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         </div>
 
         {/* Course Cards Grid - with mouse-following gradient effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -261,7 +261,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                 />
 
                 {/* Card Content - 最上層 z-20 確保文字唔受影響 */}
-                <div className="relative z-20">
+                <div className="relative z-20 h-full flex flex-col">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
                       <div className="text-4xl drop-shadow-lg transition-transform duration-300 group-hover:scale-110" role="img" aria-label={`${product.type} icon`}>
@@ -325,8 +325,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardContent>
-                    <div className="space-y-4">
+                  <CardContent className="h-full flex flex-col">
+                    <div className="flex flex-col space-y-4 h-full">
                       {/* Stats Row */}
                       <div className="flex items-center justify-between text-sm text-gray-200">
                         <div className="flex items-center gap-4">
@@ -370,7 +370,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                       </div>
 
                       {/* Pricing and CTA */}
-                      <div className="flex items-end justify-between pt-6">
+                      <div className="flex items-end justify-between pt-6 mt-auto">
                         <div className="flex flex-col gap-1">
                           {product.isFree ? (
                             <div className="text-3xl font-bold text-green-400 drop-shadow-sm">
