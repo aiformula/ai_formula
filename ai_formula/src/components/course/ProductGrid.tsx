@@ -271,7 +271,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         {/* 4格固定高度位置，確保卡片同一高度 */}
                         <div>
                           <Badge 
-                            className={`w-full justify-center text-xs backdrop-blur-sm ${
+                            className={`w-full h-6 items-center justify-center text-xs backdrop-blur-sm ${
                               product.difficulty?.toLowerCase() === 'advanced' ? 'bg-red-600/90 text-white' :
                               product.difficulty?.toLowerCase() === 'intermediate' ? 'bg-orange-600/90 text-white' :
                               'bg-green-600/90 text-white'
@@ -282,7 +282,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         </div>
                         <div>
                           {product.newProduct ? (
-                            <Badge className="w-full justify-center bg-blue-600/90 text-white text-xs backdrop-blur-sm">
+                            <Badge className="w-full h-6 items-center justify-center bg-blue-600/90 text-white text-xs backdrop-blur-sm">
                               {isZhTW ? '新品' : 'New'}
                             </Badge>
                           ) : (
@@ -291,7 +291,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         </div>
                         <div>
                           {product.bestseller ? (
-                            <Badge className="w-full justify-center bg-purple-600/90 text-white text-xs backdrop-blur-sm">
+                            <Badge className="w-full h-6 items-center justify-center bg-purple-600/90 text-white text-xs backdrop-blur-sm">
                               {isZhTW ? '熱銷' : 'Hot'}
                             </Badge>
                           ) : (
@@ -300,7 +300,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         </div>
                         <div>
                           {product.hotSelling ? (
-                            <Badge className="w-full justify-center bg-yellow-600/90 text-white text-xs backdrop-blur-sm">
+                            <Badge className="w-full h-6 items-center justify-center bg-yellow-600/90 text-white text-xs backdrop-blur-sm">
                               {isZhTW ? '精選' : 'Featured'}
                             </Badge>
                           ) : (
