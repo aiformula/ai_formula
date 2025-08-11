@@ -223,6 +223,193 @@ const PromptHub: React.FC = () => {
       userTags: ['學生'],
       featured: true
     },
+    // ——— Expert: Live Chat Support Integration Plan ———
+    {
+      id: 'live-chat-support-plan',
+      titleEn: 'Live Chat Support Integration (Numbered Plan + Dependency Grammar Scripts)',
+      titleZh: '即時客服整合方案（編號清單 + 依存語法話術）',
+      descriptionEn: 'A step‑by‑step plan covering widget placement, SLAs, KPIs and scripts built with dependency grammar.',
+      descriptionZh: '涵蓋元件擺放、SLA、KPI 與依存語法撰寫話術的逐步整合計畫。',
+      textEn: `Role: expert customer support strategist. Create a comprehensive plan to implement live chat for higher engagement and sales. Use a dependency grammar framework to craft professional chat scripts.
+
+#INFO
+Website: [INSERT WEBSITE URL]
+Business type: [DESCRIBE]
+Target audience: [DESCRIBE]
+Key products/services: [LIST]
+Existing support channels: [LIST]
+
+MOST IMPORTANT: Output as a numbered list (1., 2., 3., …). Use sub‑points (a, b, c) for details.
+
+Plan must include:
+1. Objectives & KPIs (a) engagement, (b) CSAT, (c) conversion uplift
+2. Widget Strategy (a) placement on pages, (b) trigger rules, (c) proactive vs. reactive
+3. Team & SLA (a) staffing model, (b) routing/priority, (c) response time targets
+4. Scripts (dependency grammar):
+   a) Greeting → Reason → Probe → Resolution → CTA
+   b) Objection handling: Concern → Evidence → Benefit → CTA
+   c) Escalation: Condition → Action → Confirmation → Follow‑up
+5. Knowledge Base & Macros (a) structure, (b) tagging, (c) update cadence
+6. Tech Implementation (a) vendor options, (b) data capture/consent, (c) CRM/GA integration
+7. Performance Tracking (a) dashboards, (b) A/B tests, (c) weekly review loop
+8. Rollout Roadmap (a) pilot, (b) training, (c) go‑live checklist`,
+      textZh: `角色：客服策略專家。為網站導入即時客服，並用「依存語法」撰寫專業對話話術。
+
+#關於我
+網站：[填寫]
+業務類型：[填寫]
+目標受眾：[填寫]
+核心產品/服務：[列出]
+現行客服管道：[列出]
+
+最重要：請以「編號清單」輸出（1., 2., 3.），細節使用 (a)(b)(c) 子項。
+
+內容必須包含：
+1. 目標與 KPI（a 互動、b 滿意度、c 轉換提升）
+2. 小工具策略（a 擺放頁面、b 觸發規則、c 主動/被動）
+3. 團隊與 SLA（a 編制、b 轉接與優先、c 回覆時限）
+4. 話術（依存語法）：
+   a 問候→理由→探詢→解法→CTA
+   b 反對處理：疑慮→證據→效益→CTA
+   c 升級轉接：條件→動作→確認→追蹤
+5. 知識庫與巨集（a 架構、b 標籤、c 更新頻率）
+6. 技術實作（a 供應商、b 資料/同意、c CRM/GA 串接）
+7. 成效追蹤（a 儀表板、b A/B、c 週檢視）
+8. 上線時程（a 試點、b 訓練、c 上線清單）`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['客服', '數字營銷專家', '產品經理']
+    },
+    // ——— Expert: CRO Strategy ———
+    {
+      id: 'cro-strategy-expert',
+      titleEn: 'CRO Strategy Blueprint (Headings + Bullet Actions)',
+      titleZh: 'CRO 轉換優化藍圖（標題 + 要點）',
+      descriptionEn: 'Data‑driven CRO plan focusing on UX, persuasive design and funnel optimisation.',
+      descriptionZh: '以數據驅動的 CRO 計畫，聚焦體驗、說服設計與漏斗優化。',
+      textEn: `Role: seasoned CRO specialist. Build a clear strategy to increase online sales.
+
+#INFO
+Business type: [INSERT]
+Current conversion rate: [INSERT]
+Target conversion rate: [INSERT]
+Primary product/service: [INSERT]
+Target audience: [INSERT]
+
+MOST IMPORTANT: Provide a structured document with main headings and sub‑headings; use bullet points for tactics.
+
+Sections:
+H1: Current State (analytics review, benchmarks)
+H1: Opportunities (speed, clarity, trust, friction removal)
+H1: Experiments (hypothesis, variant, metric, expected lift)
+H1: Implementation Plan (priorities, owners, timeline)
+H1: Measurement (dashboard, cadence, success criteria)`,
+      textZh: `角色：資深 CRO 專家。請產出清晰可執行的轉換優化策略。
+
+#資料
+業務型態：[填寫]
+目前轉換率：[填寫]
+目標轉換率：[填寫]
+主要產品/服務：[填寫]
+目標受眾：[填寫]
+
+最重要：以「主標題/小標題」結構輸出，策略與建議使用條列。內容包含：
+— 現況盤點（數據與對標）
+— 優化機會（速度、清晰度、信任、移除摩擦）
+— 實驗清單（假設、版本、指標、預期提升）
+— 落地計畫（優先級、責任人、時程）
+— 衡量方式（儀表板、節奏、成功標準）`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '產品經理']
+    },
+    // ——— Expert: CRM Dashboard Customisation ———
+    {
+      id: 'crm-dashboard-customisation',
+      titleEn: 'CRM Dashboard Customisation (Dynamic Markdown Table)',
+      titleZh: 'CRM 儀表板客製化（動態 Markdown 表格）',
+      descriptionEn: 'Guide users to tailor KPI dashboards: relevant metrics, visuals, layout, refresh and interactivity.',
+      descriptionZh: '指導使用者客製 KPI 儀表板：指標相關性、視覺化、版面、刷新與互動。',
+      textEn: `Role: CRM expert for dashboard customisation. Provide a full plan: metric selection, best visual type, colour scheme, layout, auto‑refresh and interactive elements.
+
+#ABOUT ME
+Specific metrics: [INSERT]
+Business type: [INSERT]
+Column count: [INSERT NUMBER]
+Column names: [INSERT AS A COMMA‑SEPARATED LIST]
+
+MOST IMPORTANT: Return a Markdown table using the provided number of columns and names. After the table, include bullet guidance on charts, colours, layout, auto‑refresh, and interactions (filters, drill‑downs, tooltips).`,
+      textZh: `角色：擅長儀表板客製化的 CRM 專家。請提供完整計畫：
+— 指標挑選與定義、最佳圖表型態、配色與版面
+— 自動資料刷新與互動元素（篩選、鑽取、提示）
+
+#關於我
+特定指標：[填寫]
+業務類型：[填寫]
+列數：[填寫]
+列名：[以逗號分隔]
+
+最重要：以 Markdown 表格輸出，欄數與欄名須符合使用者提供的設定；表格後以條列提供圖表/配色/版面/刷新/互動建議。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['CRM', '數據分析師', '產品經理']
+    },
+    // ——— Expert: Sales Funnel Analysis Table ———
+    {
+      id: 'sales-funnel-analysis-table',
+      titleEn: 'Sales Funnel Conversion Analysis (Table with Actions)',
+      titleZh: '銷售漏斗轉換分析（含行動建議表）',
+      descriptionEn: 'Analyse each funnel stage and provide specific, actionable recommendations in a table.',
+      descriptionZh: '逐一分析漏斗各階段，並以表格提供具體可行的建議。',
+      textEn: `Role: expert sales funnel analyst.
+
+#INFO
+Funnel stages: [INSERT]
+Industry: [INSERT]
+Target audience: [INSERT]
+Overall conversion: [INSERT]
+
+MOST IMPORTANT: Output a Markdown table with columns: Funnel Stage | Conversion Rate | Recommendations (concise, actionable).`,
+      textZh: `角色：銷售漏斗分析專家。
+
+#資訊
+漏斗階段：[填寫]
+產業：[填寫]
+目標受眾：[填寫]
+整體轉換率：[填寫]
+
+最重要：以 Markdown 表格輸出三欄：Funnel Stage｜Conversion Rate｜Recommendations（明確可行）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '策略顧問']
+    },
+    // ——— Expert: Market Personas for Sales Dept ———
+    {
+      id: 'market-personas-sales-table',
+      titleEn: 'Market Personas for Sales (Tabular Personas)',
+      titleZh: '銷售部門用客群人物誌（表格）',
+      descriptionEn: 'Create detailed, realistic personas with demographics, pain points, goals, buying behaviour.',
+      descriptionZh: '產出可行且貼近真實的客群人物誌，利於銷售使用。',
+      textEn: `Role: expert market analyst. Build personas for a sales department.
+
+#INFO
+Sales department: [INSERT]
+Company: [INSERT]
+Number of personas: [INSERT]
+
+MOST IMPORTANT: Provide a brief introduction, then a Markdown table with columns: Persona Name | Demographics | Pain Points | Goals | Buying Behavior.`,
+      textZh: `角色：市場分析專家。為銷售部門建立人物誌。
+
+#資料
+銷售部門：[填寫]
+公司：[填寫]
+所需人物誌數量：[填寫]
+
+最重要：先簡短說明每個人物誌對銷售的重要性，接著以 Markdown 表格輸出五欄：Persona Name｜Demographics｜Pain Points｜Goals｜Buying Behavior。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '銷售團隊']
+    },
     // ——— Expert: Affiliate Video Script (Dependency Grammar) ———
     {
       id: 'affiliate-video-script-dg',
