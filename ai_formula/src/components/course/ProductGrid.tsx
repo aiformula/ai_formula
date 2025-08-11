@@ -325,7 +325,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardContent className="relative h-full flex flex-col pb-24">
+                  <CardContent className="relative h-full flex flex-col pb-32">
                     <div className="flex flex-col space-y-4 h-full">
                       {/* Stats Row */}
                       <div className="flex items-center justify-between text-sm text-gray-200">
@@ -370,7 +370,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                       </div>
 
                       {/* footer fixed to bottom to guarantee alignment across cards */}
-                      <div className="absolute left-6 right-6 bottom-6 grid grid-cols-[1fr_auto] items-end gap-4">
+                      <div className="absolute left-6 right-6 bottom-8 grid grid-cols-[1fr_auto] items-end gap-4">
                         <div className="flex flex-col gap-1 leading-none">
                           {product.isFree ? (
                             <div className="text-3xl font-bold text-green-400 drop-shadow-sm leading-none">
