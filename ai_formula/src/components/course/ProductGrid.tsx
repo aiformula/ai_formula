@@ -372,7 +372,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                     </div>
 
                     {/* Footer: fixed row, never overlaps or disappears */}
-                    <div className="grid grid-cols-[1fr_auto] items-end gap-4 pt-6 shrink-0">
+                    <div className="mt-auto grid grid-cols-[1fr_auto] items-end gap-4 pt-6 shrink-0">
                         <div className="flex flex-col gap-1 leading-none">
                           {product.isFree ? (
                             <div className="text-3xl font-bold text-green-400 drop-shadow-sm leading-none">
