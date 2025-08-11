@@ -223,6 +223,153 @@ const PromptHub: React.FC = () => {
       userTags: ['學生'],
       featured: true
     },
+    // ——— Expert: Anchor Text Diversification Strategy ———
+    {
+      id: 'seo-anchor-diversity',
+      titleEn: 'Anchor Text Diversification Strategy (with Dependency Grammar Outreach)',
+      titleZh: '錨文本多樣化策略（含依存語法框架外聯話術）',
+      descriptionEn: 'Build a safe, diversified anchor profile to improve rankings while avoiding over‑optimization.',
+      descriptionZh: '在避免過度優化的前提下，多樣化錨文本以提升排名，並提供與站長溝通的依存語法框架話術。',
+      textEn: `Adopt the role of an SEO strategy expert. Optimize anchor text diversity to improve rankings while avoiding penalties.
+
+Deep breath and solve step‑by‑step. Deliver a structured plan with H1/H2 headings and bullet points:
+1) Current Distribution Analysis — how to export, segment (brand, URL, generic, topical partial match, exact match), and benchmark against competitors.
+2) Risk Assessment — identify over‑optimization (e.g., >X% exact), money‑page clustering, toxic anchors.
+3) Diversification Opportunities — what mixes to target by page type (home/category/article) and by funnel stage.
+4) Implementation Roadmap — cadence per week/month, sources (digital PR, guest posts, resource pages), anchor mapping per target URL.
+5) Outreach using a dependency‑grammar framework — provide message templates that map [Reason → Evidence → Request] with optional modifiers (deadline, incentive, mutual benefit).
+6) Monitoring — KPIs (visibility, referring domains, anchor distribution drift) and rollback rules.
+
+#MY INFO
+Target keyword: [INSERT]
+Niche: [INSERT]
+Current backlink profile: [INSERT]
+SEO goals: [INSERT]
+Competitors: [INSERT]
+
+IMPORTANT: Output with clear headings and bullets.`,
+      textZh: `扮演 SEO 策略專家，優化錨文本多樣性，避免過度優化處罰。請以「主標題/副標題 + 項目符號」的結構輸出：
+1）當前分佈分析——如何匯出與分組（品牌、URL、通用、主題相關部分匹配、精準匹配），並與競爭對手對標。
+2）風險評估——辨識過度優化（如精準匹配比例過高）、金錢頁集中、可疑錨文本。
+3）多樣化機會——按頁面類型（首頁/分類/文章）與漏斗階段規劃合適的錨文本比例與樣式。
+4）實施路線——每週/每月節奏、來源（數位公關、來稿、資源頁）、按 URL 建立錨文本映射表。
+5）依存語法框架外聯——提供【原因→證據→請求】可選修飾（時限/誘因/互利）的郵件模板。
+6）監控與回退——KPI（能見度、引用網域、錨文本漂移）與回退規則。
+
+#關於我的信息
+目標關鍵字：[填寫]
+網站利基：[填寫]
+目前反向連結配置：[填寫]
+SEO 目標：[填寫]
+競爭對手：[填寫]
+
+最重要：以結構化格式呈現，包含主標題/副標題與項目符號。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '策略顧問', '品牌策略師']
+    },
+    // ——— Expert: Site Architecture + Tech Audit with Table Output ———
+    {
+      id: 'seo-arch-audit-table',
+      titleEn: 'Comprehensive Site Architecture & Technical Audit (Table Output)',
+      titleZh: '網站架構深度體檢與技術 SEO 審核（表格輸出）',
+      descriptionEn: 'Crawl, diagnose and recommend fixes; return a Markdown table: URL | Issue | Recommendation.',
+      descriptionZh: '自動爬取並診斷，回傳 Markdown 表格：URL｜問題｜建議。',
+      textEn: `Adopt the role of an expert SEO analyst. Perform a full site architecture + technical SEO audit.
+
+Steps: crawl the site, review URL structure, internal linking, hierarchy, navigation, performance (Core Web Vitals), mobile responsiveness; detect duplicates, broken/orphan pages; check canonical, XML sitemaps, robots.txt; review headings/meta/title usage. Provide actionable fixes.
+
+#INFORMATION
+Website: [INSERT URL]
+Target audience: [INSERT]
+Primary keywords: [INSERT]
+Business type: [INSERT]
+Competitors: [INSERT]
+
+MOST IMPORTANT: Return a Markdown table with 3 columns: URL | Issue | Recommendation.`,
+      textZh: `請以資深 SEO 分析師身份，完成「網站架構 + 技術 SEO」全面審核：
+— 先爬站，檢查 URL 結構、內部連結、層級與導航
+— 速度與行動版（含 Core Web Vitals）
+— 重複內容、斷鏈、孤兒頁
+— Canonical、XML Sitemap、robots.txt
+— H 標題、Meta Description、Title 使用
+並逐項提出可執行的修正建議。
+
+請以 Markdown 表格輸出三欄：URL｜問題｜建議。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '網站管理員', '產品經理']
+    },
+    // ——— Expert: Competitor Backlink Analysis ———
+    {
+      id: 'seo-competitor-backlinks',
+      titleEn: 'Competitor Backlink Analysis (Opportunities Table)',
+      titleZh: '競爭對手反向連結分析（機會清單）',
+      descriptionEn: 'Identify quality backlink opportunities by dissecting competitors’ link profiles.',
+      descriptionZh: '拆解競爭對手連結檔案，輸出高價值可行的連結機會清單。',
+      textEn: `Act as an expert SEO analyst. Identify competitors, analyse their backlink profiles, score quality/relevance, and extract opportunities for our site.
+
+#INFORMATION
+My website: [INSERT]
+Industry niche: [INSERT]
+Top competitors: [LIST 3–5]
+Current backlink profile: [BRIEF]
+Link building goals: [DESCRIBE]
+
+MOST IMPORTANT: Return a Markdown table with columns: Competitor | Backlink URL | Opportunity (brief rationale).`,
+      textZh: `請以資深 SEO 分析師身份，完成競爭對手反向連結分析，評估連結品質與相關性，並找出我方可行機會。
+
+#我的資料：
+我的網站：[填寫]
+產業利基：[填寫]
+主要對手：[3–5 名]
+目前連結概況：[簡述]
+連結目標：[描述]
+
+最重要：以 Markdown 表格輸出三欄：Competitor｜Backlink URL｜Opportunity（簡要理由）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '策略顧問']
+    },
+    // ——— Expert: Infographic Link‑building Content ———
+    {
+      id: 'seo-infographic-linkbuilding',
+      titleEn: 'Infographic Link‑Building Content (Dependency Grammar Planning)',
+      titleZh: '資訊圖表鏈結誘因內容（依存語法規劃）',
+      descriptionEn: 'Research data, structure with dependency grammar, and design a share‑ready infographic outline.',
+      descriptionZh: '蒐集數據、用依存語法規劃內容邏輯，輸出可設計與分享的資訊圖表大綱。',
+      textEn: `Role: expert content strategist & visual designer.
+
+Steps: 1) Research relevant statistics for the niche. 2) Organise info with a dependency grammar framework for logical flow. 3) Propose a striking visual concept (color, layout, iconography). 4) Ensure web‑sharing/embedding optimisation.
+
+#INFO
+Niche: [INSERT]
+Target audience: [INSERT]
+Brand colors: [INSERT]
+Key statistics: [INSERT 3–5]
+Desired backlink sites: [INSERT 2–3]
+
+IMPORTANT: Output as a structured outline with clear section headings (Introduction, Key Statistics, Method, Conclusion, Embed Instructions) and bullet points.`,
+      textZh: `角色：資深內容策略師與視覺設計師。
+
+請依步驟完成：
+1）研究並彙整產業相關數據；
+2）以依存語法框架組織內容，確保敘事邏輯；
+3）提出具體的視覺概念（配色、版式、圖示）；
+4）優化網頁分享與嵌入（檔案尺寸、嵌入碼、Open Graph）。
+
+#我的資料：
+產業利基：[填寫]
+目標受眾：[填寫]
+品牌色彩：[填寫]
+關鍵統計：[3–5 項]
+期望連結網站：[2–3 個]
+
+最重要：以結構化大綱輸出（如：Introduction、Key Statistics、Conclusion、Embed），各節使用項目符號。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '內容創作者', '品牌策略師']
+    },
     // 專家級：SEO 高階提示組
     {
       id: 'seo-arch-blueprint',
