@@ -101,7 +101,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         </div>
 
         {/* Course Cards Grid - with mouse-following gradient effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch [grid-auto-rows:minmax(600px,1fr)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -112,7 +112,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               onClick={() => handleCourseClick(product)}
             >
               <Card 
-                className="relative h-full min-h-[600px] bg-black border-gray-800 hover:border-yellow-500 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-yellow-500/20"
+                className="relative h-[740px] bg-black border-gray-800 hover:border-yellow-500 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-yellow-500/20"
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const x = e.clientX - rect.left;
@@ -325,7 +325,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardContent className="h-full flex flex-col pb-6">
+                  <CardContent className="flex-1 flex flex-col pb-6">
                     <div className="flex flex-col space-y-4 h-full">
                       {/* Stats Row */}
                       <div className="flex items-center justify-between text-sm text-gray-200">
