@@ -326,7 +326,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                   </CardHeader>
                   
                   <CardContent className="flex-1 flex flex-col pb-6">
-                    <div className="flex flex-col space-y-4 h-full">
+                    <div className="flex-1 flex flex-col space-y-4">
                       {/* Stats Row */}
                       <div className="flex items-center justify-between text-sm text-gray-200">
                         <div className="flex items-center gap-4">
@@ -369,8 +369,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                         </ul>
                       </div>
 
-                      {/* Footer sits at the bottom via mt-auto to avoid overlay */}
-                      <div className="mt-auto grid grid-cols-[1fr_auto] items-end gap-4 pt-6">
+                    </div>
+
+                    {/* Footer: fixed row, never overlaps or disappears */}
+                    <div className="grid grid-cols-[1fr_auto] items-end gap-4 pt-6 shrink-0">
                         <div className="flex flex-col gap-1 leading-none">
                           {product.isFree ? (
                             <div className="text-3xl font-bold text-green-400 drop-shadow-sm leading-none">
@@ -392,7 +394,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                           {isZhTW ? '立即購買' : 'Buy Now'}
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
-                      </div>
+                    </div>
                     </div>
                   </CardContent>
                 </div>
