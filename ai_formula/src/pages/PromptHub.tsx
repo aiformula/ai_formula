@@ -223,6 +223,161 @@ const PromptHub: React.FC = () => {
       userTags: ['學生'],
       featured: true
     },
+    // 專家級：SEO 高階提示組
+    {
+      id: 'seo-arch-blueprint',
+      titleEn: 'SEO Site Architecture Blueprint',
+      titleZh: 'SEO 網站結構藍圖規劃師',
+      descriptionEn: 'From zero to launch: plan a scalable, SEO-friendly site map and navigation that converts.',
+      descriptionZh: '由零開始，規劃可擴展、SEO 友善、具高轉換潛力的網站架構與導航。',
+      textEn: `Act as a senior SEO strategist and information architect with 15 years of experience. My goal is to build a complete, scalable and SEO‑optimized site blueprint for a website: [describe your website type, e.g. an online yoga course platform for beginners].
+
+Please provide the following in a clear nested structure:
+- Core Pages (top navigation)
+- Main Category/Service Pages (with head term and user intent for each)
+- Content Hubs / Topic Clusters (3–5 core hubs, each with 5 long‑tail article ideas)
+- Internal Linking Strategy between core > category > articles
+- Required technical/legal pages (Privacy, T&C, FAQ, etc.)
+
+Inputs:
+- Core business/services: [list your main products/services]
+- Primary audience: [describe TA]
+- Main competitors: [2–3 URLs]
+- Business goals: [e.g. registrations, newsletter sign‑ups, brand authority]`,
+      textZh: `請你扮演一位擁有 15 年經驗的頂級 SEO 策略顧問與網站架構師。我的目標是為一個「[請描述你的網站類型，例如：專為初學者設計的線上瑜珈課程平台]」建立一個完整、具備高度擴展性且經過 SEO 優化的網站藍圖。
+
+請以清晰的層級結構（巢狀列表）提供：
+- 核心頁面（頂部導航列）
+- 主要分類/服務頁面（每頁附目標核心關鍵字 Head Term 與使用者意圖）
+- 內容中心/主題叢集（3–5 個核心主題；每個主題提供 5 個長尾關鍵字文章標題）
+- 內部連結策略（核心 > 分類 > 文章 之間如何互鏈）
+- 必要技術/法律頁面（隱私權、服務條款、FAQ 等）
+
+背景輸入：
+- 核心業務/服務： [請列出]
+- 主要目標受眾： [請描述]
+- 主要競爭對手： [2–3 個 URL]
+- 商業目標： [例如：提升註冊、訂閱、品牌權威]`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '品牌策略師', '策略顧問', '產品經理']
+    },
+    {
+      id: 'seo-tech-audit',
+      titleEn: 'Full Technical SEO Audit Framework',
+      titleZh: '全方位技術 SEO 審計框架',
+      descriptionEn: 'Generate a professional technical SEO audit with findings, impact and next steps.',
+      descriptionZh: '自動產生專業級技術 SEO 審計：列出問題、影響評級及後續步驟。',
+      textEn: `Act as a senior technical SEO analyst. Produce a complete technical SEO audit for: [paste your site URL].
+
+Return a Markdown table with columns: Issue, Findings/Status, Impact (High/Medium/Low), Recommended Next Steps.
+
+Cover these domains:
+1) Indexing & Crawlability (robots.txt, XML sitemaps, crawl budget, orphan pages)
+2) Site Speed & Core Web Vitals (LCP, INP/FID, CLS; heavy assets; uncompressed JS/CSS)
+3) Mobile‑Friendliness (RWD issues; UX like font size, tap targets)
+4) Structured Data (existing schemas, errors, new schema to add: FAQ/HowTo/Product etc.)
+5) Security (HTTPS, mixed content)
+6) Duplicate Content (URL parameters, www vs non‑www, canonical usage)
+
+Finish with a paragraph summarising the top 3 urgent issues to prioritise.`,
+      textZh: `請你扮演一位資深的技術 SEO 分析師。請為我的網站：[請貼上你的網站 URL] 產生完整的技術 SEO 審計。
+
+請以 Markdown 表格呈現，欄位包含：「檢測項目」、「狀態/發現」、「潛在影響評級（高/中/低）」、「建議的後續步驟」。
+
+審計範圍必須涵蓋：
+1）索引與爬取（robots.txt、XML sitemap、爬取預算、孤兒頁面）
+2）網站速度與 Core Web Vitals（LCP、INP/FID、CLS；過重資產；未壓縮 JS/CSS）
+3）行動裝置友善度（RWD 問題；字體太小/按鈕太近等 UX）
+4）結構化資料（已用 Schema 與錯誤；建議新增 FAQ/HowTo/Product 等）
+5）網站安全性（HTTPS、混合內容）
+6）重複內容（參數/雙版本問題；Canonical 使用是否正確）
+
+最後加上一段總結：目前最緊急、需優先處理的 3 個技術問題。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', 'SEO', '網站管理員', '產品經理']
+    },
+    {
+      id: 'seo-keyword-warfare',
+      titleEn: 'Keyword Warfare Plan',
+      titleZh: '關鍵字競爭作戰計畫',
+      descriptionEn: 'Deconstruct competitors, find gaps, and plan 6 months of attack topics.',
+      descriptionZh: '拆解對手策略、發掘機會缺口，並制定 6 個月攻擊主題路線。',
+      textEn: `Act as an elite competitive intelligence analyst for SEO.
+
+My site: [your URL]
+Core topic: [e.g. sustainable fashion]
+Main competitor: [competitor URL]
+
+Deliver:
+- Competitor Strategy Breakdown (core and long‑tail keywords; winning content types; unique angles/value props)
+- Opportunity Gaps (weak competitor pages; uncovered but relevant keywords; SERP features they ignore)
+- 20 Attack Opportunities (Markdown table: Proposed Title | Target Keyword | Est. Volume/Difficulty | Content Type)
+- 6‑Month Roadmap (prioritise low‑hanging fruit in first 2 months)`,
+      textZh: `請你扮演一位頂級競爭情報分析師（SEO 領域）。
+
+我的網站： [你的網站 URL]
+核心關鍵字主題： [例如：永續時尚]
+主要競爭對手： [對手 URL]
+
+請提供：
+- 對手策略拆解（核心/長尾關鍵字；哪些內容類型表現最好；獨特角度/主張）
+- 機會缺口（內容品質較弱的關鍵字；尚未覆蓋但高度相關的關鍵字；他們忽略的 SERP 功能）
+- 20 個可行攻擊機會（Markdown 表格：建議標題｜目標關鍵字｜預估量/難度｜內容類型）
+- 6 個月攻擊路線圖（前兩個月優先處理低垂果實）`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '策略顧問', '內容創作者', '品牌策略師']
+    },
+    {
+      id: 'lp-copy-conversion',
+      titleEn: 'Landing Page Copy Conversion Wizard',
+      titleZh: '登陸頁文案轉換魔法師',
+      descriptionEn: 'Interview first, then deliver a full CRO‑ready landing page copy framework.',
+      descriptionZh: '先訪談再輸出完整銷售頁文案，兼顧 SEO 與高轉換。',
+      textEn: `Act as a world‑class direct‑response copywriter and CRO expert.
+
+First, ask me a set of probing questions covering:
+- Product (core features and unique problem solved)
+- Audience (pain, desires, objections)
+- Positioning (how we differ)
+- Desired CTA
+
+Then write the full landing copy using this structure:
+- Headline
+- Sub‑headline (amplify pain)
+- Problem & Solution
+- Features → Benefits
+- Social Proof placeholders
+- Objection Handling
+- Clear CTA
+- Risk Reversal (e.g. 30‑day guarantee)
+
+Tone: [professional / empathetic / playful]. Target keyword: [your main keyword].`,
+      textZh: `請你扮演世界級直效行銷文案與轉換率優化（CRO）專家。
+
+第一步：先向我發問，徹底了解——
+- 產品/服務（核心功能、解決何種獨特問題）
+- 目標受眾（痛點、渴望、疑慮與反對意見）
+- 市場定位（我們與競品有何不同）
+- 期望行動（CTA）
+
+第二步：根據回答撰寫完整登陸頁文案，框架包含——
+- 主標題（Headline）
+- 副標題（加強痛點）
+- 問題與解決方案
+- 功能 → 效益（Features → Benefits）
+- 社會認同（預留見證/案例/媒體）
+- 反對意見處理
+- 明確 CTA
+- 風險逆轉（例如 30 天無效退款）
+
+語氣： [專業且權威 / 親切且具同理心 / 有趣且幽默]；主要關鍵字： [請填寫]。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '產品經理', 'UI/UX', '內容創作者']
+    },
     {
       id: 'student-brainstorm',
       titleEn: 'Creative Topic Generator',
