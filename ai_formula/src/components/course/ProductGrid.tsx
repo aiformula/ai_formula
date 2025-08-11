@@ -101,7 +101,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         </div>
 
         {/* Course Cards Grid - with mouse-following gradient effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -112,7 +112,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               onClick={() => handleCourseClick(product)}
             >
               <Card 
-                className="relative h-[740px] bg-black border-gray-800 hover:border-yellow-500 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-yellow-500/20"
+                className="relative h-full min-h-[740px] bg-black border-gray-800 hover:border-yellow-500 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-yellow-500/20"
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const x = e.clientX - rect.left;
