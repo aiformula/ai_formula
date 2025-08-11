@@ -223,6 +223,231 @@ const PromptHub: React.FC = () => {
       userTags: ['學生'],
       featured: true
     },
+    // ——— Expert: Strategic Sales Proposal & ROI Case ———
+    {
+      id: 'b2b-roi-proposal',
+      titleEn: 'Strategic Sales Proposal: ROI Business Case',
+      titleZh: '策略型銷售提案：ROI 投資回報商業論證',
+      descriptionEn: 'Translate features → benefits → financial outcomes; build 12‑month model with ROI%, Payback, NPV.',
+      descriptionZh: '由功能→效益→財務結果，建立 12 個月模型，輸出 ROI%、回本期與 NPV。',
+      textEn: `Role: expert B2B sales strategist & financial analyst. Create a formal proposal section titled "Your Investment & Projected Return".
+
+Sections:
+1) From Features to Financial Impact — for each feature: Feature → Client Benefit → Quantifiable Outcome (rev ↑, cost ↓, productivity ↑, risk ↓)
+2) 12‑Month ROI Projection — assumptions, benchmarks, model table (Months, Gains, Costs, Net). Produce ROI%, Payback (months), and NPV (state rate).
+3) Addressing Your Key Considerations — 2–3 objections with reframes to long‑term value.
+
+#INFO
+Product/Service: [INSERT]
+Target client: [INSERT]
+Industry: [INSERT]
+Key features: [LIST]
+Value proposition: [INSERT]
+Year‑1 TCO: [INSERT]
+Average client results: [INSERT]
+
+IMPORTANT: Use headings exactly: "From Features to Financial Impact", "12-Month ROI Projection", "Addressing Your Key Considerations". Use bullets and tables for numbers.`,
+      textZh: `角色：B2B 銷售策略與財務分析專家。請產出提案章節〈Your Investment & Projected Return〉。
+
+章節：
+1）From Features to Financial Impact：功能→客益→可量化結果（增收/降本/提效/降風險）
+2）12‑Month ROI Projection：載明假設與對標，提供模型表（月份/收益/成本/淨效益），計算 ROI%、回本月數、NPV（註明折現率）
+3）Addressing Your Key Considerations：挑選 2–3 個常見疑慮，以長期價值重述
+
+#資訊：
+產品/服務：[填寫]；目標客戶：[填寫]；產業：[填寫]
+關鍵功能：[列出]；價值主張：[填寫]；首年 TCO：[填寫]
+平均客戶成果：[填寫]
+
+最重要：使用上述三個固定標題；財務數據用表格與條列呈現。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '銷售團隊']
+    },
+    // ——— Expert: Data‑Driven Sales Territory Plan ———
+    {
+      id: 'sales-territory-plan',
+      titleEn: 'Data‑Driven Sales Territory Plan (Comprehensive Table)',
+      titleZh: '數據驅動銷售區域規劃（整合表）',
+      descriptionEn: 'Analyse potential, design balanced territories, assign reps, add rationale, strategies & KPIs in one table.',
+      descriptionZh: '分析市場潛力，設計均衡區域並指派業務，合併策略與 KPI 於單一表格。',
+      textEn: `Role: Director of Sales Operations. Build a data‑driven territory plan.
+
+Process: Initial Analysis → Territory Design & Allocation → Strategic Rationale → Key Strategies & KPIs → Consolidated Table (≥5 rows).
+
+#INFO
+Sales team & strengths: [INSERT]
+Number of Columns: [INSERT]
+Territory column title: [INSERT]
+Rep column title: [INSERT]
+Target Accounts column title: [INSERT]
+Revenue Goals column title: [INSERT]
+Additional columns (must include): Strategic Rationale, Key Strategies & KPIs
+
+IMPORTANT: Output a markdown table using the provided and new column titles with at least five sample rows illustrating the structure.`,
+      textZh: `角色：銷售運營總監。請輸出以數據為本的區域規劃。
+
+流程：初步分析 → 區域設計/分配 → 戰略理由 → 區域策略與 KPI → 單一整合表（≥5 列示例）。
+
+#資訊：
+銷售團隊與強項：[填寫]
+欄位數：[填寫]
+「區域名稱」欄標題：[填寫]
+「指派業務」欄標題：[填寫]
+「目標帳戶」欄標題：[填寫]
+「營收目標」欄標題：[填寫]
+新增欄：Strategic Rationale、Key Strategies & KPIs
+
+最重要：以 Markdown 表格輸出，欄名使用提供與新增標題，至少五列示例。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['銷售團隊', '策略顧問']
+    },
+    // ——— Expert: Team Skills Matrix & Development Plan ———
+    {
+      id: 'team-skills-matrix',
+      titleEn: 'Team Skills Matrix & Development Plan',
+      titleZh: '團隊技能矩陣與發展計畫',
+      descriptionEn: 'Define rubric, assess on 1–5 scale, comment strengths/gaps/opportunities, add team synthesis & recommendations.',
+      descriptionZh: '定義評分規準、逐人 1–5 評估並撰寫評語，最後提供團隊綜述與策略建議。',
+      textEn: `Role: HRBP & Talent Development specialist.
+
+Steps: 1) Define rating rubric (1–5) per skill; 2) Individual assessment table; 3) Qualitative comment (strengths, 1–2 dev areas, opportunity); 4) Team‑level synthesis; 5) Strategic recommendations (2–3 items).
+
+#INFO
+Team: [INSERT]
+Next‑year mandate: [INSERT]
+Number of skill categories: [INSERT]
+Skill categories: [INSERT]
+Members & background: [INSERT]
+
+IMPORTANT: Primary output is a markdown table; final column titled "Strengths, Development Areas & Opportunities". Follow with sections "Team-Level Synthesis" and "Strategic Recommendations".`,
+      textZh: `角色：HR 業務夥伴與人才發展專家。
+
+流程：
+1）定義 1–5 評分規準（各技能類別需具體描述）
+2）建立個人評估表
+3）撰寫評語（優勢、1–2 個待提升點、建議機會）
+4）團隊層級綜述
+5）管理者策略建議（2–3 點）
+
+#資訊：
+團隊名稱：[填寫]；明年任務：[填寫]
+技能類別數：[填寫]；技能類別：[填寫]
+成員與背景：[填寫]
+
+最重要：主輸出為 Markdown 表格，最後一欄名為「Strengths, Development Areas & Opportunities」，其後加入「Team-Level Synthesis」與「Strategic Recommendations」。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['人資', '團隊管理']
+    },
+    // ——— Expert: Investor‑Ready Business Plan ———
+    {
+      id: 'investor-business-plan',
+      titleEn: 'Investor‑Ready Business Plan (Numbered Sections)',
+      titleZh: '投資人就緒商業計畫（編號章節）',
+      descriptionEn: 'Produce a VC‑grade plan with market analysis, strategy, operations and 3‑year financials.',
+      descriptionZh: '輸出投資等級的商業計畫，含市場分析、策略、營運與三年財務。',
+      textEn: `Role: seasoned strategist & ex‑VC. Create a numbered plan with these sections: 1. Executive Summary, 2. Company Description, 3. Market Analysis (TAM/SAM/SOM, personas, SWOT, trends), 4. Products & Services (USP, lifecycle/IP), 5. Marketing & Sales, 6. Operations & Management, 7. Financial Projections (startup costs/allocation; 3‑yr P&L and Cash Flow; Break‑Even; assumptions), 8. Action Plan / Milestones (table timeline for year 1).
+
+#INFO
+Business type: [INSERT]
+Target market: [INSERT]
+USP: [INSERT]
+Investment sought: [INSERT]
+Launch timeline: [INSERT]
+
+IMPORTANT: Use numbered headings and bullets. Include tables for financials and a milestone timeline.`,
+      textZh: `角色：資深策略顧問與前風投。請以編號章節輸出完整計畫：
+1. Executive Summary
+2. Company Description
+3. Market Analysis（TAM/SAM/SOM、人物誌、SWOT、趨勢）
+4. Products & Services（USP、生命週期/IP）
+5. Marketing & Sales
+6. Operations & Management
+7. Financial Projections（啟動成本與資金配置；3 年損益/現金流；損益兩平；假設）
+8. Action Plan / Milestones（首年時程表）
+
+#資訊：業別/市場/USP/募資/時程
+
+最重要：每節用編號標題與項目符號；財務與里程碑請用表格呈現。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '創業者']
+    },
+    // ——— Expert: Workflow Automation Implementation Guide ———
+    {
+      id: 'workflow-automation-guide',
+      titleEn: 'Workflow Automation Implementation (Phased Project Plan)',
+      titleZh: '工作流程自動化導入指南（分階段專案計畫）',
+      descriptionEn: 'Six phases from discovery to optimisation; numbered steps with bulleted sub‑steps and visual aids.',
+      descriptionZh: '從盤點到優化共六階段；主步驟編號、子步驟條列，並附建議視覺化。',
+      textEn: `Role: workflow automation specialist & change consultant. Provide a phased guide with numbered steps and bulleted sub‑steps. End each phase with a Suggested Visual Aid.
+
+Phases: 1) Discovery & Process Mapping, 2) Solution Design & Tool Selection, 3) Implementation & Integration, 4) Testing & UAT, 5) Training, Rollout & Change, 6) Monitoring & Optimisation.
+
+#INFO
+Business type: [INSERT]
+Key processes: [LIST 2–3]
+Current challenges: [DESCRIBE]
+Desired outcomes: [DESCRIBE]
+Current tech stack: [DESCRIBE]
+
+IMPORTANT: Use numbered main steps with bulleted sub‑steps; include a Suggested Visual Aid per phase.`,
+      textZh: `角色：自動化與變革管理顧問。請以階段式專案方案輸出，每階段用編號主步驟與條列子步驟，結尾加入「建議視覺化」。
+
+階段：1 盤點/流程圖、2 解法設計/工具、3 導入與整合、4 測試/UAT、5 訓練與上線/變革、6 監控與優化。
+
+#資訊：業別、關鍵流程、當前痛點、期望成果、工具棧
+
+最重要：主步驟用編號、子步驟用項目符號；每階段附「建議視覺化」。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['產品經理', '策略顧問']
+    },
+    // ——— Expert: Strategic Content Ideation Matrix ———
+    {
+      id: 'content-ideation-matrix',
+      titleEn: 'Strategic Content Ideation Matrix (10+ Ideas Table)',
+      titleZh: '策略型內容創意矩陣（10+ 構想表）',
+      descriptionEn: 'Analyse brand & goals, produce topic clusters and 10+ detailed ideas mapped to funnel stages.',
+      descriptionZh: '分析品牌與目標，產出主題叢集與 10+ 條想法，對應漏斗階段。',
+      textEn: `Role: Content Strategist & SEO. Provide a markdown table with 6 columns: Topic Cluster | Specific Topic Idea | Target Audience Segment | Funnel Stage (ToFu/MoFu/BoFu) | Primary Keyword/Query | Recommended Content Format & Angle. Include ≥10 rows.
+
+#INFO: Topic/Niche, Business Type, Audience, Goals, Preferred Platforms.`,
+      textZh: `角色：內容策略與 SEO。請以 6 欄 Markdown 表格輸出：Topic Cluster｜Specific Topic Idea｜Target Audience Segment｜Funnel Stage（ToFu/MoFu/BoFu）｜Primary Keyword/Query｜Recommended Content Format & Angle，至少 10 列。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '內容創作者']
+    },
+    // ——— Expert: Advanced LinkedIn Networking & Outreach ———
+    {
+      id: 'linkedin-networking-campaign',
+      titleEn: 'Advanced LinkedIn Networking & Outreach Campaign',
+      titleZh: '進階 LinkedIn 拓展與外聯活動',
+      descriptionEn: 'Campaign‑style guide with numbered steps and multiple message templates per scenario.',
+      descriptionZh: '以活動式指南分步驟輸出，並提供多種情境訊息模板。',
+      textEn: `Role: LinkedIn networking expert & personal branding strategist.
+
+Provide a detailed bullet‑point plan organised by the numbered steps: 1) Profile Optimisation (headline formula, About: PAS, Featured), 2) Strategic Prospecting (tiers, warm‑up), 3) Personalised Connection Requests (Templates A/B/C), 4) Follow‑Up (non‑pitch), 5) Nurturing (periodic value; only later make relevant ask).
+
+#INFO: Target industry, background/years, career goals, value props (3–5), location.
+
+IMPORTANT: Output as detailed bullet list and include multiple templates for each message step.`,
+      textZh: `角色：LinkedIn 人脈與個人品牌顧問。請依步驟條列：
+1）個人檔案優化（標題公式、About：PAS 敘事、Featured）
+2）精準開發（分 Tier 暖場互動）
+3）個人化連線邀請（模板 A/B/C）
+4）接受後跟進（不推銷的價值訊息）
+5）長期培養（定期有價值訊息，時機成熟再提出相關請求）
+
+#資訊：目標產業、背景與年資、職涯目標、可提供價值（3–5）、所在地
+
+最重要：以詳細條列輸出，每一步提供多個訊息模板。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['個人品牌', '業務開發']
+    },
     // ——— Expert: Live Chat Support Integration Plan ———
     {
       id: 'live-chat-support-plan',
