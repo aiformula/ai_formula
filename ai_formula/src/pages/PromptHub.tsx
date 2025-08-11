@@ -223,6 +223,154 @@ const PromptHub: React.FC = () => {
       userTags: ['學生'],
       featured: true
     },
+    // ——— Expert: Affiliate Video Script (Dependency Grammar) ———
+    {
+      id: 'affiliate-video-script-dg',
+      titleEn: 'Affiliate Video Script (Dependency Grammar Framework)',
+      titleZh: '聯盟行銷影片腳本（依存語法框架）',
+      descriptionEn: 'Research TA, map benefits/USPs, script intro→body→CTA using a dependency grammar structure.',
+      descriptionZh: '研究受眾與產品賣點，依「依存語法」組織 Intro→Content→CTA 的完整影片腳本。',
+      textEn: `Adopt the role of an expert video script writer for affiliate marketing.
+
+Goal: create an engaging, persuasive script using a dependency grammar framework (Head → Dependents with clear relations: Reason, Evidence, Benefit, CTA modifiers).
+
+Deliver a SCRIPT with section headings:
+1) Research Summary (audience needs/pain points)
+2) Dependency Plan (root claim + dependents)
+3) Introduction (hook + purpose)
+4) Main Content (benefits, USPs, objections handling)
+5) CTAs (distributed)
+6) Conclusion (recap + final CTA)
+
+#ABOUT ME
+Topic: [INSERT TOPIC]
+Target audience: [INSERT TARGET AUDIENCE]
+Affiliate product/service: [INSERT]
+Key benefits: [INSERT]
+Desired action: [INSERT]
+
+IMPORTANT: Output in script format with headings (Introduction, Main Content, Conclusion) and explicitly show the dependency grammar links (e.g., Claim → Evidence → Benefit → CTA).`,
+      textZh: `請以「聯盟行銷影片腳本」專家的身份，使用依存語法（主幹主張 → 依屬元素：理由/證據/效益/CTA 修飾）來撰寫腳本。
+
+請輸出完整腳本並包含以下區塊：
+1）研究摘要（受眾需求/痛點）
+2）依存語法規劃（核心主張與依附關係）
+3）Introduction（開場鉤子 + 影片目的）
+4）Main Content（賣點、效益、反對意見處理）
+5）CTA（分散式呼籲）
+6）Conclusion（重點回顧 + 最終 CTA）
+
+#關於我：
+主題：[填寫]
+目標受眾：[填寫]
+聯盟產品/服務：[填寫]
+關鍵效益：[填寫]
+期望行動：[填寫]
+
+最重要：以腳本格式輸出，清楚標示各區段，並顯示依存語法的鏈接關係。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '內容創作者', '創意總監']
+    },
+    // ——— Expert: Social Captions with Dependency Grammar ———
+    {
+      id: 'social-captions-dg',
+      titleEn: 'Social Media Captions (Dependency Grammar + CTA + Hashtags)',
+      titleZh: '社群貼文文案（依存語法 + CTA + Hashtag）',
+      descriptionEn: 'Generate bullet‑point captions per platform with emojis, hashtags and grammar explanation.',
+      descriptionZh: '逐點產生各平台貼文文案，含表情符號/標籤與依存語法說明。',
+      textEn: `Role: expert social media marketer. Create engaging captions structured with a dependency grammar (Claim → Support → CTA; optional modifiers: Emotion, Social Proof, Scarcity).
+
+#INFO
+Platform: [INSERT]
+Product/Service: [INSERT]
+Target audience: [INSERT]
+Brand voice: [INSERT]
+USPs: [LIST]
+
+IMPORTANT: Return a bullet list. Each bullet = one caption with emojis/hashtags + a brief line explaining the dependency structure used.`,
+      textZh: `請以資深社群行銷人身份撰寫貼文文案，採依存語法結構（主張 → 支援 → CTA；可加情緒/社會證明/稀缺修飾）。
+
+#資訊：
+平台：[填寫]
+產品/服務：[填寫]
+目標受眾：[填寫]
+品牌語氣：[填寫]
+獨特賣點：[列出]
+
+最重要：以「清單項目」輸出，每一項為一段文案（含表情/Hashtag）並附一行說明使用的依存語法。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '品牌策略師', '內容創作者']
+    },
+    // ——— Expert: Automate YouTube Growth (Table) ———
+    {
+      id: 'youtube-growth-automation',
+      titleEn: 'Automated YouTube Growth Strategy (Tactics/Platforms/Metrics)',
+      titleZh: 'YouTube 自動化成長策略（戰術/平台/指標表）',
+      descriptionEn: 'A table of tactics, platforms and metrics to automate growth using content, social and tools.',
+      descriptionZh: '以表格輸出可自動化的成長策略：戰術、實施平台與成效指標。',
+      textEn: `Role: digital marketing strategist for YouTube growth. Build a comprehensive plan that leverages automation tools, optimisation, and cross‑platform promotion.
+
+#INFO
+Channel name: [INSERT]
+Content focus: [INSERT]
+Audience: [INSERT]
+Subscribers: [INSERT]
+Growth challenges: [INSERT]
+
+IMPORTANT: Present in a Markdown table: Tactics | Platforms | Metrics. Each row should provide an automatable approach with the tools/plugins or processes.`,
+      textZh: `請以「YouTube 成長」數位行銷策略師身份，規劃一套可自動化的成長方案（工具、優化、跨平台）。
+
+#資料：
+頻道名稱：[填寫]
+內容主題：[填寫]
+受眾族群：[填寫]
+訂閱數：[填寫]
+成長障礙：[填寫]
+
+最重要：以 Markdown 表格輸出三欄：Tactics｜Platforms｜Metrics；每列均需指出可自動化的作法（工具/流程）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數字營銷專家', '內容創作者']
+    },
+    // ——— Expert: Comparative Infographic Brief ———
+    {
+      id: 'comparative-infographic-brief',
+      titleEn: 'Comparative Infographic Brief (Two‑Product Comparison)',
+      titleZh: '雙產品對比資訊圖表設計簡報',
+      descriptionEn: 'Generate a detailed, designer‑ready brief of layout and content for a two‑product comparison.',
+      descriptionZh: '輸出設計師可直接使用的對比資訊圖表內容與版式說明。',
+      textEn: `Role: expert graphic designer. Produce a detailed description of the infographic layout and content.
+
+Steps: analyse product info; list features/benefits/drawbacks; organise bullets; propose visual layout (grid, iconography, imagery), contrasts (colors/typography), headings/sub‑headings, balance, and QA checklist.
+
+#INFO
+Product 1: [INSERT]
+Product 2: [INSERT]
+Target audience: [INSERT]
+Key comparison points: [UP TO 5]
+Color scheme: [INSERT]
+
+IMPORTANT: Output as a structured bullet list describing sections and layout decisions.`,
+      textZh: `角色：資深視覺設計師。請產出可「直接交付設計」的對比資訊圖表說明：
+— 內容：分析兩產品資訊，條列功能/效益/缺點，彙整比較重點；
+— 版式：建議佈局（欄數/節點/圖示/圖片）、配色對比與字體層級；
+— 結構：清楚的主標/小標、每節要點；
+— 品質：字體尺寸可讀性、資訊平衡、審核清單。
+
+#我的資料：
+產品 1：[填寫]
+產品 2：[填寫]
+目標受眾：[填寫]
+比較重點：[最多 5 項]
+偏好配色：[填寫]
+
+最重要：以條列方式，詳細描述各區段與版式安排。`,
+      category: 'creative',
+      level: 'expert',
+      userTags: ['創意總監', '內容創作者', '設計師']
+    },
     // ——— Expert: Anchor Text Diversification Strategy ———
     {
       id: 'seo-anchor-diversity',
