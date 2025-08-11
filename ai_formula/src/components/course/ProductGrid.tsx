@@ -395,7 +395,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                     </div>
-                    </div>
                   </CardContent>
                 </div>
               </Card>
