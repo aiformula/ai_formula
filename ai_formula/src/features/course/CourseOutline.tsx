@@ -435,12 +435,20 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       </h3>
                       <div className="space-y-3">
                         {courseInfoTags.map((tag, index) => (
-                          <div key={index} className="flex items-center gap-3">
-                            <div className={`${instructorTheme.primary}`}>{tag.icon}</div>
-                            <span className="text-gray-300">{tag.name}</span>
-                            {tag.status === 'featured' && (
-                              <Badge className={instructorTheme.secondary}>{isZhHK ? '特色' : 'Featured'}</Badge>
-                            )}
+                          <div key={index} className="flex items-start gap-3">
+                            <div className="mt-1">{tag.icon}</div>
+                            <div>
+                              <div className="text-gray-200 flex items-center gap-2">
+                                <span>{tag.name}</span>
+                                {tag.status === 'featured' && (
+                                  <Badge className={instructorTheme.secondary}>{isZhHK ? '特色' : 'Featured'}</Badge>
+                                )}
+                              </div>
+                              {/** 可選的簡短描述，增強「免費課程總覽」的右側文字量，等同 image 說明 **/}
+                              {(tag as any).description && (
+                                <p className="text-gray-400 text-sm leading-relaxed">{(tag as any).description}</p>
+                              )}
+                            </div>
                           </div>
                         ))}
                       </div>

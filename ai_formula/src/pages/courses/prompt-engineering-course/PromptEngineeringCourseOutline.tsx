@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import CourseOutline from '@/features/course/CourseOutline';
+import { Tag } from 'lucide-react';
 import { promptEngineeringCourseData } from '@/data/prompt-engineering-course-data';
 import { 
   Brain, 
@@ -142,11 +143,25 @@ const PromptEngineeringCourseOutline: React.FC = () => {
     }
   ];
 
-  // 課程標籤
+  // 課程標籤（加入圖示與精簡說明，供「免費課程總覽」右側展示）
+  const tagDescMapZh: Record<string, string> = {
+    '提示工程': '核心技巧與系統級提示範本',
+    'AI 溝通': '以結構化框架提升對答品質',
+    '人工智能': '理解模型運作與注意事項',
+    '實戰指南': '真實情境範例與落地教學'
+  };
+  const tagDescMapEn: Record<string, string> = {
+    'Prompt Engineering': 'Core tactics with system‑level templates',
+    'AI Communication': 'Structured frameworks for higher quality outputs',
+    'Artificial Intelligence': 'Model mechanics and caveats',
+    'Practical Guide': 'Real scenarios and hands‑on walkthroughs'
+  };
+
   const courseInfoTags = (isZhHK ? promptEngineeringCourseData.courseInfo.tags : promptEngineeringCourseData.courseInfo.tagsEn).map((tag, index) => ({
     id: index,
     name: tag,
-    icon: 'tag',
+    icon: <Tag className="w-4 h-4 text-gray-400" />,
+    description: (isZhHK ? tagDescMapZh[tag] : tagDescMapEn[tag]) || '',
     status: 'available' as const
   }));
 
