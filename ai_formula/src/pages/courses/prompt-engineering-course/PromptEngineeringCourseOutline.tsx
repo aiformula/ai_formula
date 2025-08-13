@@ -16,6 +16,8 @@ import {
   Zap,
   MessageSquare,
   Code,
+  Clock,
+  GraduationCap,
   Rocket
 } from 'lucide-react';
 
@@ -119,25 +121,26 @@ const PromptEngineeringCourseOutline: React.FC = () => {
     ]
   };
 
-  // 課程統計
+  // 課程統計（統一圖示風格）
+  const accent = '#9E768F';
   const courseStats = [
     {
-      icon: 'modules',
+      icon: React.createElement(BookOpen, { className: 'w-6 h-6', style: { color: accent } }),
       label: isZhHK ? '模組' : 'Modules',
       value: promptEngineeringCourseData.courseModules.length.toString()
     },
     {
-      icon: 'lessons',
+      icon: React.createElement(GraduationCap, { className: 'w-6 h-6', style: { color: accent } }),
       label: isZhHK ? '課程' : 'Lessons',
       value: promptEngineeringCourseData.courseInfo.totalLessons.toString()
     },
     {
-      icon: 'time',
+      icon: React.createElement(Clock, { className: 'w-6 h-6', style: { color: accent } }),
       label: isZhHK ? '時長' : 'Duration',
       value: `${promptEngineeringCourseData.courseInfo.totalHours}+ ${isZhHK ? '小時' : 'hours'}`
     },
     {
-      icon: 'level',
+      icon: React.createElement(TrendingUp, { className: 'w-6 h-6', style: { color: accent } }),
       label: isZhHK ? '難度' : 'Level',
       value: isZhHK ? '初級到進階' : 'Beginner to Advanced'
     }
