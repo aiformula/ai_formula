@@ -435,13 +435,8 @@ const FreeCourseOutlineTemplate: React.FC<FreeCourseOutlineTemplateProps> = ({
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-                  <div className={`w-32 h-32 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center flex-shrink-0`}>
-                    <div className="text-white text-center">
-                    {/* Removed letter avatar */}
-                    <div className="w-12 h-12" />
-                      <div className="text-sm opacity-90">導師</div>
-                    </div>
-                  </div>
+                  {/* Removed circular placeholder image */}
+                  <div className="hidden md:block w-0 h-0" />
                   <div className="flex-1 text-center md:text-left">
                     <h2 className="text-3xl font-bold text-white mb-2">{courseInfo.instructor}</h2>
                     <p className="text-xl text-gray-300 mb-4">{courseInfo.instructorTitle}</p>
@@ -484,9 +479,8 @@ const FreeCourseOutlineTemplate: React.FC<FreeCourseOutlineTemplateProps> = ({
                     }
                   </blockquote>
                   <div className="flex items-center gap-3 mt-6">
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                    {/* Removed letter avatar */}
-                    </div>
+                    {/* Removed quote avatar circle */}
+                    <div className="hidden" />
                     <div>
                       <div className="font-semibold text-white">{courseInfo.instructor}</div>
                       <div className="text-sm text-white/80">{courseInfo.instructorTitle}</div>

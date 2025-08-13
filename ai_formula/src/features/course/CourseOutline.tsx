@@ -875,7 +875,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   {/* Removed initial avatar to avoid showing a letter */}
-                  <div className="w-16 h-16 rounded-full bg-white/10" />
+                  {/* Remove placeholder circle entirely */}
                   <div>
                     <div className="text-sm opacity-90">
                       {isZhHK ? courseInfo.instructorTitle : (courseInfo.instructorTitleEn || courseInfo.instructorTitle)}
