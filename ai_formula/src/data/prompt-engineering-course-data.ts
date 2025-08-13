@@ -15,8 +15,26 @@ export const promptEngineeringCourseData: CourseData = {
     titleEn: 'Mastering Prompt Engineering: A Complete Practical Guide from Basics to Advanced',
     subtitle: '掌握與 AI 溝通的藝術：從零開始學習提示工程，釋放人工智能的全部潛能',
     subtitleEn: 'Master the Art of AI Communication: Learn prompt engineering from scratch and unlock the full potential of artificial intelligence',
-    description: '這是一門全面的提示工程課程，將複雜的 AI 溝通技巧拆解成清晰的步驟。無論您是初學者還是希望系統化提升技能，本課程都將幫助您有效地與 AI 模型溝通，獲得精準、高質量的輸出結果。',
-    descriptionEn: 'This comprehensive prompt engineering course breaks down complex AI communication techniques into clear steps. Whether you\'re a beginner or looking to systematically improve your skills, this course will help you communicate effectively with AI models and achieve precise, high-quality outputs.',
+    description: `這是一門為「想同 AI 傾得又快又準」而設計的完整免費課程。我們不止教你幾句常見提示，而是用系統化的方法，將複雜的 AI 溝通技巧拆解成一套可重複、可度量、可擴展的步驟。
+
+你會由淺入深掌握：
+- 如何把「功能」轉譯成 AI 聽得懂的「意圖」與「限制條件」
+- 用分隔符、標籤、範本建立結構化提示，讓輸出更穩定
+- 何時使用零樣本/單樣本/少樣本，引導格式與風格一致
+- 以思維鏈、自我一致性、思維樹、ReAct 等進階策略處理複雜任務
+- 把 RAG、流程自動化、智能體工作流接入真實場景，提升生產力
+
+無論你是新手，抑或已經在職場應用 AI，課程都會教你如何以最少嘗試、最短時間，獲得最貼近需求、可直接使用的高質量輸出。`,
+    descriptionEn: `This free, end‑to‑end course is designed for anyone who wants to communicate with AI quickly and precisely. Rather than teaching a handful of stock prompts, we take a systematic approach that turns complex AI communication into a repeatable, measurable and scalable process.
+
+You will progressively master how to:
+- Translate features or tasks into clear “intent + constraints” the model can follow
+- Use delimiters, tags and templates to build structured prompts for stable outputs
+- Decide when to apply zero/one/few‑shot to control format and tone
+- Apply advanced strategies such as Chain‑of‑Thought, Self‑Consistency, Tree‑of‑Thought and ReAct for complex reasoning
+- Plug in RAG, workflow automation and agentic patterns to real‑world scenarios
+
+Whether you are a beginner or already using AI at work, this course shows you how to achieve high‑quality, ready‑to‑use outputs with fewer trials and less time.`,
     instructor: 'AI Formula 團隊',
     instructorEn: 'AI Formula Team',
     instructorTitle: 'AI 應用專家',
