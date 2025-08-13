@@ -7,9 +7,11 @@
 
 import React from 'react';
 import CourseOutlineTemplate from '@/components/course-template/CourseOutlineTemplate';
+import { getCourseConfig } from '@/components/course-template/courseRegistry';
 
 const PerplexityCompleteCourseOutline: React.FC = () => {
-  return <CourseOutlineTemplate courseId="perplexity" />;
+  const config = getCourseConfig('perplexity');
+  return <CourseOutlineTemplate config={config} />;
 };
 
 export default PerplexityCompleteCourseOutline; 
