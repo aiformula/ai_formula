@@ -385,7 +385,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                           )}
                         </div>
                         <Button
-                          className="w-[110px] justify-center bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-4 py-3 text-base font-semibold rounded-xl backdrop-blur-sm shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 border border-yellow-400/20"
+                          className="inline-flex items-center justify-center w-[132px] h-11 whitespace-nowrap bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-4 text-base font-semibold rounded-xl backdrop-blur-sm shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 border border-yellow-400/20"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleCourseClick(product);
