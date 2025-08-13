@@ -437,7 +437,8 @@ const FreeCourseOutlineTemplate: React.FC<FreeCourseOutlineTemplateProps> = ({
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                   <div className={`w-32 h-32 rounded-full bg-gradient-to-br ${instructorTheme.gradient} flex items-center justify-center flex-shrink-0`}>
                     <div className="text-white text-center">
-                      <div className="text-4xl font-bold mb-1">{courseInfo.instructor.charAt(0)}</div>
+                    {/* Removed letter avatar */}
+                    <div className="w-12 h-12" />
                       <div className="text-sm opacity-90">導師</div>
                     </div>
                   </div>
@@ -484,7 +485,7 @@ const FreeCourseOutlineTemplate: React.FC<FreeCourseOutlineTemplateProps> = ({
                   </blockquote>
                   <div className="flex items-center gap-3 mt-6">
                     <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">{courseInfo.instructor.charAt(0)}</span>
+                    {/* Removed letter avatar */}
                     </div>
                     <div>
                       <div className="font-semibold text-white">{courseInfo.instructor}</div>
@@ -526,7 +527,7 @@ const FreeCourseOutlineTemplate: React.FC<FreeCourseOutlineTemplateProps> = ({
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">{courseInfo.instructor.charAt(0)}</span>
+                    {/* Removed letter avatar */}
                   </div>
                   <div>
                     <div className="text-sm opacity-90">{courseInfo.instructorTitle}</div>

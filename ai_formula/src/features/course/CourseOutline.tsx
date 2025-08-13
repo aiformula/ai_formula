@@ -874,9 +874,8 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
             <Card className={`bg-gradient-to-br ${instructorTheme.gradient} text-white mb-6`}>
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">{courseInfo.instructor.charAt(0)}</span>
-                  </div>
+                  {/* Removed initial avatar to avoid showing a letter */}
+                  <div className="w-16 h-16 rounded-full bg-white/10" />
                   <div>
                     <div className="text-sm opacity-90">
                       {isZhHK ? courseInfo.instructorTitle : (courseInfo.instructorTitleEn || courseInfo.instructorTitle)}
