@@ -5,11 +5,19 @@
  * @version 1.0.0
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { usePayment } from '@/contexts/PaymentContext';
+import { useCourseAccess } from '@/hooks/useCourseAccess';
 import CourseOutline from '@/features/course/CourseOutline';
 import { CourseConfig } from './types';
+import EnrollmentButton from '@/components/payment/EnrollmentButton';
+import Navigation from '@/components/Navigation';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import CountdownTimer from '@/components/ui/countdown-timer';
 import { 
   Clock, 
   BookOpen, 
@@ -32,7 +40,32 @@ interface CourseOutlineTemplateProps {
 const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config }) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
+  const { user } = useAuth();
+  const { checkAccessLevel } = useCourseAccess();
   const isZhHK = language === 'zh-HK';
+  const [hasAccess, setHasAccess] = useState(false);
+  const [accessLoading, setAccessLoading] = useState(false);
+  
+  // Check user's course access when component loads
+  useEffect(() => {
+    const checkAccess = async () => {
+      if (user && !dataSource.isFree) {
+        setAccessLoading(true);
+        try {
+          const accessResult = await checkAccessLevel(config.courseId);
+          setHasAccess(accessResult.hasAccess);
+          console.log('Course access check:', accessResult);
+        } catch (error) {
+          console.error('Error checking course access:', error);
+          setHasAccess(false);
+        } finally {
+          setAccessLoading(false);
+        }
+      }
+    };
+    
+    checkAccess();
+  }, [user, config.courseId, checkAccessLevel]);
   
   if (!config) {
     return (
@@ -225,9 +258,71 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     }))
   }));
 
+  // 動態定價配置
+  const getPricingInfo = () => {
+    const courseId = config.courseId;
+    let price = "480"; // 默認中階價格
+    let tier = "專業版";
+    
+    // 根據課程設定價格層級
+    if (courseId === 'chatgpt') {
+      price = "280";
+      tier = isZhHK ? "低階版" : "Basic";
+    } else if (courseId === 'perplexity') {
+      price = "480"; 
+      tier = isZhHK ? "中階版" : "Intermediate";
+    } else if (courseId === 'midjourney') {
+      price = "980";
+      tier = isZhHK ? "高階版" : "Advanced";
+    } else if (courseId === 'prompt-engineering-expert-course') {
+      price = "980";
+      tier = isZhHK ? "高階版" : "Advanced";
+    } else if (courseId === 'prompt-engineering') {
+      price = "980";
+      tier = isZhHK ? "高階版" : "Advanced";
+    }
+    
+    return {
+      series: tier,
+      price: price,
+      aiInOne: isZhHK ? `${tier}權限` : `${tier} Access`,
+      enterprise: isZhHK ? "聯繫我們了解更多" : "Contact us for more"
+    };
+  };
+
   // 處理開始學習按鈕點擊
   const handleStartLearning = () => {
-    navigate(`${baseRoute}/learning`);
+    console.log('CourseOutlineTemplate handleStartLearning clicked');
+    console.log('Course ID:', config.courseId);
+    console.log('Is Free:', dataSource.isFree);
+    console.log('User logged in:', !!user);
+    console.log('Has Access:', hasAccess);
+    
+    // For free courses, go directly to learning
+    if (dataSource.isFree) {
+      console.log('Navigating to learning page for free course');
+      navigate(`${baseRoute}/learning`);
+      return;
+    }
+    
+    // For paid courses, check login first
+    if (!user) {
+      console.log('User not logged in, redirecting to auth');
+      // Store the current path so we can redirect back after login
+      sessionStorage.setItem('intendedPath', window.location.pathname);
+      navigate('/auth');
+      return;
+    }
+    
+    // If user has access, go to learning page
+    if (hasAccess) {
+      console.log('User has access, navigating to learning page');
+      navigate(`${baseRoute}/learning`);
+    } else {
+      // If user doesn't have access, go to payment page
+      console.log('User needs to pay, redirecting to payment page');
+      navigate(`/payment/${config.courseId}`);
+    }
   };
 
   return (
@@ -242,7 +337,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
       ]}
       availableCourses={[]}
       latestNews={undefined}
-      pricingInfo={undefined}
+      pricingInfo={getPricingInfo()}
       courseFeatures={getCourseFeatures()}
       faqData={dataSource.faqData && dataSource.faqData.length > 0 ? dataSource.faqData : [
         { question: isZhHK ? '我係AI新手，會唔會太難？' : 'I am new to AI. Is this too hard?', answer: isZhHK ? '唔會。課程由基礎開始，以大量比喻與實例逐步建立能力；適合新手至進階。' : 'No. We start from the basics with analogies and examples, suitable for beginners to advanced users.' },
@@ -252,7 +347,9 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
       ]}
       targetAudience={targetAudience}
       courseModules={courseModules}
-      isFree={dataSource.isFree}
+      isFree={false}
+      hasAccess={hasAccess}
+      accessLoading={accessLoading}
       onStartLearning={handleStartLearning}
       onWhatsApp={undefined}
       learningPathExtended={false}

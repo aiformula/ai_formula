@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Users, Star } from 'lucide-react';
 import { ArrowRight, Play } from 'lucide-react';
+import CountdownTimer from './countdown-timer';
 
 // 課程標籤介面
 interface CourseTag {
@@ -189,24 +190,39 @@ const DynamicCourseCard: React.FC<CourseCardProps> = ({
               {/* 價格顯示 */}
               <div className="mb-4">
                 {isFree ? (
-                  <div className={`${textColors.primary} text-sm`}>免費</div>
+                  <div className={`text-2xl font-bold ${textColors.primary}`}>
+                    免費
+                  </div>
                 ) : (
-                  <div className="flex items-center gap-2">
-                    <div className={`text-2xl font-bold ${textColors.primary}`}>
-                      HK${price}
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <div className={`text-2xl font-bold ${textColors.primary}`}>
+                        HK${price}
+                      </div>
+                      <div className="text-sm text-gray-400 line-through">
+                        HK${Math.round(Number(price) * 2.1)}
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                          限時優惠 -{Math.round((1 - Number(price) / (Number(price) * 2.1)) * 100)}%
+                        </div>
+                      </div>
+                      <CountdownTimer size="sm" />
                     </div>
                   </div>
                 )}
               </div>
               
-              {/* 立即報名按鈕 - 橫跨整個寬度 */}
+              {/* 了解更多按鈕 - 橫跨整個寬度 */}
               <motion.button
-                className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full py-3 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
                 onClick={onStartCourse}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                立即報名
+                了解更多
                 <ArrowRight className="h-4 w-4" />
               </motion.button>
             </div>

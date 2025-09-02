@@ -454,7 +454,7 @@ const FeaturedCoursesSection: React.FC = () => {
                           }}
                           transition={{ duration: 2, repeat: Infinity }}
                         >
-                          免費
+                          HK$280
                         </motion.div>
                       </motion.div>
                       

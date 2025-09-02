@@ -36,8 +36,8 @@ const coursesData = [
       'AI Tools Integration Guide',
       '+4 More Items',
     ],
-    price: '免費',
-    priceEn: 'Free',
+    price: 'HK$280',
+    priceEn: 'HK$280',
   },
   {
     id: 'perplexity-complete-course',
@@ -67,8 +67,8 @@ const coursesData = [
       'AI Knowledge Management Guide',
       '+4 More Items',
     ],
-    price: '免費',
-    priceEn: 'Free',
+    price: 'HK$480',
+    priceEn: 'HK$480',
   },
   {
     id: 'midjourney-course',
@@ -98,8 +98,8 @@ const coursesData = [
       'Advanced Model Guide Technology Guide',
       '+4 More Items',
     ],
-    price: '免費',
-    priceEn: 'Free',
+    price: 'HK$980',
+    priceEn: 'HK$980',
   },
 ];
 

@@ -82,9 +82,10 @@ let supabase;
 try {
   supabase = createClient(finalUrl, finalKey, {
     auth: {
-      autoRefreshToken: false,
-      persistSession: false,
-      detectSessionInUrl: false
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: true,
+      flowType: 'pkce'
     },
     db: {
       schema: 'public'

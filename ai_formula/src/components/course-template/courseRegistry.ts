@@ -101,15 +101,15 @@ export const courseConfigs: Record<string, CourseConfig> = {
     cssPrefix: 'prompt-engineering'
   }
   ,
-  'prompt-engineering-expert': {
-    courseId: 'prompt-engineering-expert',
+  'prompt-engineering-expert-course': {
+    courseId: 'prompt-engineering-expert-course',
     courseName: 'Prompt Engineering Mastery: Expert Edition',
     themeColor: '#7c3aed',
     accentColor: '#f59e0b',
     baseRoute: '/courses/prompt-engineering-expert-course',
     dataSource: promptEngineeringExpertCourseData,
     progressHook: usePromptEngineeringProgress,
-    cssPrefix: 'prompt-engineering-expert'
+    cssPrefix: 'prompt-engineering-expert-course'
   }
   ,
   'claude': {
@@ -142,13 +142,17 @@ export const getCourseConfig = (courseId: string): CourseConfig | null => {
 
 // 工具函數：根據路由路徑獲取課程ID
 export const getCourseIdFromRoute = (route: string): string | null => {
+  console.log('Getting course ID from route:', route);
+  
   if (route.includes('chatgpt-complete-course')) return 'chatgpt';
   if (route.includes('perplexity-complete-course')) return 'perplexity';
   if (route.includes('midjourney-course')) return 'midjourney';
+  if (route.includes('prompt-engineering-expert-course')) return 'prompt-engineering-expert-course';
   if (route.includes('prompt-engineering-course')) return 'prompt-engineering';
-  if (route.includes('prompt-engineering-expert-course')) return 'prompt-engineering-expert';
   if (route.includes('claude-course')) return 'claude';
   if (route.includes('gemini-course')) return 'gemini';
+  
+  console.log('No matching course ID found for route:', route);
   return null;
 };
 

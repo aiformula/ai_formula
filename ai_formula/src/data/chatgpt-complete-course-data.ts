@@ -163,7 +163,7 @@ By the end, you won't just "ask questions"—you will "issue instructions", achi
   },
   courseModules,
   faqData,
-  isFree: true
+  isFree: false
 };
 
 export default chatGPTCourseData;

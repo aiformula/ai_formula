@@ -4209,5 +4209,5 @@ The answer engine revolution represents humanity's next step toward augmented in
       answerEn: 'The course contains over 8 hours of core content. Since it is an online self-study format, you can arrange your learning according to your own pace. For optimal results, we recommend investing 2-3 hours per week to complete the course within one month.'
     }
   ],
-  isFree: true
+  isFree: false
 };

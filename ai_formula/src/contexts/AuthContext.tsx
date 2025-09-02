@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
   user: User | null;
@@ -50,6 +51,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
+    // Check if we're being redirected to non-localhost during development
+    const currentHost = window.location.hostname;
+    const isDev = import.meta.env.DEV || import.meta.env.MODE === 'development';
+    
+    if (isDev && currentHost !== 'localhost' && currentHost !== '127.0.0.1') {
+      console.warn('Redirected to non-localhost during development!');
+      console.log('Current location:', window.location.href);
+      console.log('Attempting to redirect back to localhost...');
+      
+      // Force redirect back to localhost with current port
+      const currentPort = window.location.port || '8081';
+      const newUrl = window.location.href.replace(
+        `${window.location.protocol}//${currentHost}${window.location.port ? ':' + window.location.port : ''}`,
+        `http://localhost:${currentPort}`
+      );
+      
+      console.log('Redirecting to:', newUrl);
+      window.location.href = newUrl;
+      return;
+    }
+
     let mounted = true;
 
     // 獲取初始 session
@@ -79,10 +101,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // 監聽認證狀態變化
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('Auth state change:', event, session?.user?.email);
+        
         if (mounted) {
           setSession(session);
           setUser(session?.user ?? null);
           setLoading(false);
+          
+          // Handle successful login redirect
+          if (event === 'SIGNED_IN' && session?.user) {
+            console.log('User signed in successfully, handling redirect...');
+            
+            // Check if we're on the auth page
+            if (window.location.pathname === '/auth') {
+              // Get the intended destination from sessionStorage or default to home
+              const intendedPath = sessionStorage.getItem('intendedPath') || '/';
+              sessionStorage.removeItem('intendedPath');
+              
+              console.log('Redirecting to:', intendedPath);
+              
+              // Use setTimeout to ensure the auth state is fully updated
+              setTimeout(() => {
+                window.location.href = intendedPath;
+              }, 100);
+            }
+          }
         }
       }
     );
@@ -140,10 +183,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
     try {
+      // Force localhost for development - be more explicit
+      const currentHost = window.location.hostname;
+      const currentPort = window.location.port;
+      const isDev = import.meta.env.DEV || import.meta.env.MODE === 'development' || currentHost === 'localhost' || currentHost === '127.0.0.1';
+      
+      let redirectUrl;
+      if (isDev && (currentHost === 'localhost' || currentHost === '127.0.0.1')) {
+        // Force localhost with current port
+        redirectUrl = `http://localhost:${currentPort || '8081'}/auth`;
+      } else {
+        redirectUrl = `${window.location.origin}/auth`;
+      }
+      
+      console.log('Environment check:', {
+        currentHost,
+        currentPort,
+        isDev,
+        redirectUrl,
+        origin: window.location.origin
+      });
+      
       const result = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth`
+          redirectTo: redirectUrl
         }
       });
       return result;

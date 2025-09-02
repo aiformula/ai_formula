@@ -2641,5 +2641,5 @@ Optimisation strategies:
       answerEn: 'Yes, Midjourney currently requires a paid subscription to use. We will explain the differences between various subscription plans in detail in the course to help you choose the most suitable option.'
     }
   ],
-  isFree: true
+  isFree: false
 }; 

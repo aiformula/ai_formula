@@ -40,6 +40,7 @@ import { Progress } from '@/components/ui/progress';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { courseConfigs } from './courseRegistry';
+import CourseAccessGate from '@/components/course/CourseAccessGate';
 
 interface CourseLearningTemplateProps {
   courseId: string;
@@ -168,7 +169,8 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
     <div className="min-h-screen chatgpt-learning-page" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
+      <CourseAccessGate courseId={courseId}>
+        <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <motion.button
           className="breadcrumb-item mb-6 text-white/70 hover:text-white flex items-center space-x-2"
@@ -766,6 +768,7 @@ const CourseLearningTemplate: React.FC<CourseLearningTemplateProps> = ({ courseI
           </div>
         </div>
       </div>
+      </CourseAccessGate>
     </div>
   );
 };

@@ -104,8 +104,82 @@ const AudiencePathwaysSection = () => {
     }
   ];
 
+  const accessPasses = [
+    {
+      id: 4,
+      icon: <Rocket className="w-8 h-8" />,
+      emoji: "🚀",
+      title: isZhTW ? "全權限通行證 - 解鎖所有內容" : "All Access Pass - Unlock Everything",
+      description: isZhTW 
+        ? "獲得平台上所有課程的完整訪問權限，包括低階版、中階版和高階版的全部內容。"
+        : "Get complete access to all courses on the platform, including basic, intermediate, and advanced content.",
+      features: isZhTW ? [
+        "低階版課程完整訪問",
+        "中階版課程完整訪問", 
+        "高階版課程完整訪問",
+        "所有未來新課程"
+      ] : [
+        "Full access to basic courses",
+        "Full access to intermediate courses",
+        "Full access to advanced courses", 
+        "All future new courses"
+      ],
+      level: isZhTW ? "全權限" : "All Access",
+      duration: isZhTW ? "終身訪問" : "Lifetime Access",
+      price: "HK$1980",
+      originalPrice: "HK$4158",
+      gradient: "from-yellow-500 to-orange-600",
+      bgGradient: "from-yellow-500/10 to-orange-500/10",
+      borderColor: "border-yellow-500/50",
+      filterKey: "all-access",
+      isPurchasable: true
+    },
+    {
+      id: 5,
+      icon: <Zap className="w-8 h-8" />,
+      emoji: "⚡",
+      title: isZhTW ? "中階權限通行證 - 精選內容" : "Half Access Pass - Selected Content",
+      description: isZhTW 
+        ? "專注於中階課程內容，適合已有基礎知識，想要深入學習特定領域的學習者。"
+        : "Focus on intermediate content, perfect for learners with basic knowledge who want to dive deeper into specific areas.",
+      features: isZhTW ? [
+        "中階版課程完整訪問",
+        "精選實戰案例",
+        "進階技術指導",
+        "專業技能提升"
+      ] : [
+        "Full access to intermediate courses",
+        "Selected practical case studies",
+        "Advanced technical guidance", 
+        "Professional skill enhancement"
+      ],
+      level: isZhTW ? "中階權限" : "Half Access",
+      duration: isZhTW ? "中階內容訪問" : "Intermediate Content Access",
+      price: "HK$980",
+      originalPrice: "HK$2058",
+      gradient: "from-indigo-500 to-purple-600",
+      bgGradient: "from-indigo-500/10 to-purple-500/10",
+      borderColor: "border-indigo-500/50",
+      filterKey: "half-access",
+      isPurchasable: true
+    }
+  ];
+
   const handlePathwayClick = (filterKey: string) => {
-    // Navigate to courses page and apply the filter
+    // Handle special access types with purchase
+    if (filterKey === 'all-access') {
+      // Navigate to payment page for all-access
+      navigate('/payment/all-access');
+      return;
+    }
+    
+    if (filterKey === 'half-access') {
+      // Navigate to payment page for half-access
+      navigate('/payment/half-access');
+      return;
+    }
+    
+    // Navigate to courses page and apply the filter for regular pathways
     navigate('/courses');
     
     // Use a small delay to ensure the page loads before applying filter
@@ -162,8 +236,8 @@ const AudiencePathwaysSection = () => {
           </p>
         </motion.div>
 
-        {/* Pathway Cards */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mb-12">
+        {/* Learning Pathway Cards */}
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mb-16">
           {pathways.map((pathway, index) => (
             <motion.div
               key={pathway.id}
@@ -251,6 +325,125 @@ const AudiencePathwaysSection = () => {
                     >
                       {isZhTW ? '開始學習' : 'Start Learning'}
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Button>
+                  </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Access Passes Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300 bg-clip-text text-transparent">
+              {isZhTW ? '全權限通行證' : 'Access Passes'}
+            </span>
+          </h3>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            {isZhTW 
+              ? '一次購買，終身學習！選擇最適合你的權限等級，解鎖更多精彩內容。'
+              : 'Buy once, learn forever! Choose the access level that suits you best and unlock amazing content.'
+            }
+          </p>
+        </motion.div>
+
+        {/* Access Pass Cards */}
+        <div className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-8 max-w-4xl mx-auto mb-16">
+          {accessPasses.map((pass, index) => (
+            <motion.div
+              key={pass.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="group h-full"
+            >
+              <Card className={`relative h-full bg-gradient-to-br from-gray-900 to-black border ${pass.borderColor} transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl overflow-hidden`}>
+                <CardContent className="p-8 h-full flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      transition={{ duration: 0.3 }}
+                      className={`p-4 bg-gradient-to-br ${pass.bgGradient} rounded-xl border ${pass.borderColor}`}
+                    >
+                      {pass.icon}
+                    </motion.div>
+                    <span className="text-4xl">{pass.emoji}</span>
+                  </div>
+
+                  {/* Pass Info */}
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Badge className={`bg-gradient-to-r ${pass.gradient} text-white border-0`}>
+                        {pass.level}
+                      </Badge>
+                      <span className="text-sm text-gray-400 flex items-center gap-1">
+                        <Zap className="w-4 h-4" />
+                        {pass.duration}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-yellow-300 transition-colors duration-300 leading-tight">
+                      {pass.title}
+                    </h3>
+                    
+                    <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                      {pass.description}
+                    </p>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="mb-8">
+                    <h4 className="text-sm font-semibold text-yellow-300 mb-3 flex items-center gap-2">
+                      <Lightbulb className="w-4 h-4" />
+                      {isZhTW ? '包含內容' : 'Includes'}
+                    </h4>
+                    <ul className="space-y-2">
+                      {pass.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-sm text-gray-300">
+                          <div className={`w-2 h-2 bg-gradient-to-r ${pass.gradient} rounded-full flex-shrink-0`}></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Pricing Section */}
+                  <div className="mb-6 p-4 bg-black/30 rounded-lg border border-gray-700/50">
+                    <div className="text-center">
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                        <span className={`text-3xl font-bold bg-gradient-to-r ${pass.gradient} bg-clip-text text-transparent`}>
+                          {pass.price}
+                        </span>
+                        <span className="text-sm text-gray-400 line-through">
+                          {pass.originalPrice}
+                        </span>
+                      </div>
+                      <div className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold inline-block">
+                        限時優惠 52% OFF
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Purchase Button */}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button 
+                      onClick={() => handlePathwayClick(pass.filterKey)}
+                      className={`w-full bg-gradient-to-r ${pass.gradient} hover:shadow-lg hover:shadow-${pass.gradient.split('-')[1]}-500/25 text-white font-semibold py-4 text-lg transition-all duration-300 group border-0`}
+                    >
+                      {isZhTW ? '立即購買' : 'Buy Now'}
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
                   </motion.div>
                 </CardContent>

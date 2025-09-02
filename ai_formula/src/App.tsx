@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { PaymentProvider } from '@/contexts/PaymentContext';
 import { ViewCountProvider } from '@/contexts/ViewCountContext';
 import { Toaster } from '@/components/ui/toaster';
 import { SEOHead } from '@/components/SEO';
@@ -76,6 +77,10 @@ import DesignSystemDemo from '@/pages/DesignSystemDemo';
 // Legal Pages
 import TermsOfService from '@/pages/legal/TermsOfService';
 import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
+
+// Payment Pages
+import PaymentPage from '@/pages/payment/PaymentPage';
+import PaymentAdmin from '@/pages/admin/PaymentAdmin';
 
 import './App.css';
 import './styles/progress-styles.css'; // 新增：進度追蹤樣式
@@ -179,7 +184,8 @@ function App() {
     <ErrorBoundary>
       <LanguageProvider>
         <AuthProvider>
-          <ViewCountProvider>
+          <PaymentProvider>
+            <ViewCountProvider>
             <Router>
               {/* 🎯 重要：ScrollToTop 組件必須放在這裡，在 Router 內部但在 Routes 之前 */}
               <ScrollToTop />
@@ -289,6 +295,10 @@ function App() {
                   <Route path="/legal/terms-of-service" element={<TermsOfService />} />
                   <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
                   
+                  {/* Payment Routes */}
+                                          <Route path="/payment/:courseId" element={<PaymentPage />} />
+                        <Route path="/admin/payments" element={<PaymentAdmin />} />
+                  
                   {/* Generic course route - TEMPORARILY DISABLED to debug conflicts */}
                   {/* <Route path="/courses/:courseId" element={<CourseDetail />} /> */}
                   
@@ -299,7 +309,8 @@ function App() {
               </div>
             </Router>
           </ViewCountProvider>
-        </AuthProvider>
+        </PaymentProvider>
+      </AuthProvider>
       </LanguageProvider>
     </ErrorBoundary>
   );

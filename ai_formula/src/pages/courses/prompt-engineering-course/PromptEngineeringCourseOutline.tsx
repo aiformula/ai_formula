@@ -198,10 +198,10 @@ const PromptEngineeringCourseOutline: React.FC = () => {
 
   // 定價信息
   const pricingInfo = {
-    price: isZhHK ? "完全免費" : "Completely Free",
-    aiInOne: isZhHK ? "永久觀看權限" : "Lifetime Access",
-    series: isZhHK ? "免費版" : "Free Version",
-    enterprise: isZhHK ? "聯繫我們" : "Contact Us"
+    price: "HK$980",
+    aiInOne: isZhHK ? "高階版權限" : "Advanced Access",
+    series: isZhHK ? "高階版" : "Advanced",
+    enterprise: isZhHK ? "聯繫我們了解更多" : "Contact us for more"
   };
 
   return (
@@ -214,7 +214,7 @@ const PromptEngineeringCourseOutline: React.FC = () => {
       pricingInfo={pricingInfo}
       faqData={promptEngineeringCourseData.faqData}
       courseModules={adaptedCourseModules}
-      isFree={true}
+      isFree={false}
       onStartLearning={handleStartLearning}
       onWhatsApp={handleContactWhatsApp}
       learningPathExtended={true}

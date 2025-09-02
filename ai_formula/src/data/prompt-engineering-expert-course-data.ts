@@ -593,7 +593,8 @@ export const promptEngineeringExpertCourseData: CourseData = {
       question: '課程費用係幾多？點樣報名？',
       answer: '我哋提供個人同企業培訓方案。想了解更多課程費用同報名詳情，歡迎隨時聯絡我哋，或者可以透過 WhatsApp 直接查詢，我哋嘅專家團隊好樂意為你解答！'
     }
-  ]
+  ],
+  isFree: false
 };
 
 

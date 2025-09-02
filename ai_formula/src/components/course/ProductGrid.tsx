@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Star, TrendingUp, Users, Mail, Clock, Download, ArrowRight, CheckCircle, Award } from 'lucide-react';
+import CountdownTimer from '@/components/ui/countdown-timer';
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
@@ -72,7 +73,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         {/* Section Header - matching image design */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">
-            {isZhTW ? '精選免費課程' : 'Featured Free Courses'}
+            {isZhTW ? '精選課程' : 'Featured Courses'}
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             {isZhTW 
@@ -373,38 +374,48 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
                     </div>
 
-                    {/* Footer: fixed row, never overlaps or disappears */}
-                    <div className="mt-auto grid grid-cols-[1fr_auto] items-end gap-4 pt-6 shrink-0">
-                        <div className="flex flex-col gap-1 leading-none">
+                    {/* Learn More Button - moved above pricing */}
+                    <div className="mt-auto pt-4 shrink-0">
+                      <Button
+                        className="w-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-500/20"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCourseClick(product);
+                        }}
+                      >
+                        {isZhTW ? '了解更多' : 'Learn More'}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    {/* Footer: Pricing section */}
+                    <div className="pt-4 shrink-0">
+                        <div className="flex flex-col gap-1 leading-none text-center">
                           {product.isFree ? (
-                            <div className="text-3xl font-bold text-green-400 drop-shadow-sm leading-none">
-                              {isZhTW ? '免費' : 'Free'}
-                            </div>
-                          ) : (
                             <div className="text-3xl font-bold text-yellow-300 drop-shadow-sm leading-none">
                               {product.price}
                             </div>
+                          ) : (
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-center gap-2">
+                                <div className="text-3xl font-bold text-yellow-300 drop-shadow-sm leading-none">
+                                  {product.price}
+                                </div>
+                                {product.originalPrice && (
+                                  <div className="text-sm text-gray-400 line-through">
+                                    {product.originalPrice}
+                                  </div>
+                                )}
+                              </div>
+                              <div className="flex flex-col items-center gap-1">
+                                <div className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                  限時優惠 52% OFF
+                                </div>
+                                <CountdownTimer size="sm" className="justify-center" />
+                              </div>
+                            </div>
                           )}
                         </div>
-                        <Button
-                          className={`inline-flex items-center justify-center w-[150px] h-11 whitespace-nowrap text-white px-4 text-base font-semibold rounded-xl backdrop-blur-sm shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 border ${
-                            product.category === 'claude-course'
-                              ? 'border-[#f7b42c]/30'
-                              : 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 hover:shadow-yellow-500/25 border-yellow-400/20'
-                          }`}
-                          style={
-                            product.category === 'claude-course'
-                              ? { backgroundImage: 'linear-gradient(315deg, #f7b42c 0%, #fc575e 74%)' }
-                              : undefined
-                          }
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleCourseClick(product);
-                          }}
-                        >
-                          {isZhTW ? '立即購買' : 'Buy Now'}
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
                     </div>
                   </CardContent>
                 </div>

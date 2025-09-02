@@ -25,7 +25,7 @@ const CourseRecommendationSection: React.FC = () => {
       rating: '4.9/5',
       level: '適合所有級別',
       duration: '4 hours comprehensive training 小時',
-      price: '免費',
+      price: 'HK$280',
       themeColor: '#10a37f', // ChatGPT 綠色
       studentCount: 163
     },
@@ -35,7 +35,7 @@ const CourseRecommendationSection: React.FC = () => {
       rating: '4.8/5',
       level: '適合所有級別',
       duration: '8 hours comprehensive training 小時',
-      price: '免費',
+      price: 'HK$480',
       themeColor: '#1a1a1a', // Perplexity 黑色主題
       studentCount: 280
     },
@@ -45,7 +45,7 @@ const CourseRecommendationSection: React.FC = () => {
       rating: '4.8/5',
       level: '適合初學者',
       duration: '6 hours comprehensive training 小時',
-      price: '付費',
+      price: 'HK$980',
       themeColor: '#8A2BE2', // Midjourney 紫色
       studentCount: 150
     },
@@ -55,7 +55,7 @@ const CourseRecommendationSection: React.FC = () => {
       rating: '4.9/5',
       level: '適合開發者',
       duration: '8 hours comprehensive training 小時',
-      price: '免費',
+      price: 'HK$480',
       themeColor: '#FF6B35', // Claude 橙色
       studentCount: 95
     }
@@ -107,14 +107,14 @@ const CourseRecommendationSection: React.FC = () => {
                 duration={course.duration}
                 level={course.level}
                 rating={parseFloat(course.rating)}
-                price={course.price === '免費' ? 0 : 899}
-                isFree={course.price === '免費'}
+                price={course.price.includes('HK$') ? parseInt(course.price.replace('HK$', '')) : 0}
+                isFree={false}
                 themeColor={course.themeColor}
                 studentCount={course.studentCount}
                 tags={[
                   { 
-                    text: course.price === '免費' ? '免費' : '精選', 
-                    type: course.price === '免費' ? 'new' : 'featured' 
+                    text: '精選', 
+                    type: 'featured' 
                   },
                   { text: '熱門', type: 'hot' }
                 ]}

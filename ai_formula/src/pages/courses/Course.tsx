@@ -58,7 +58,7 @@ const sampleCourses: CourseData[] = [
     durationCht: "4 小時",
     level: "All Levels",
     levelCht: "適合所有級別",
-    price: "免費",
+    price: "HK$280",
     image: "💬",
     instructor: "AI Formula Team",
     instructorCht: "AI Formula 團隊",

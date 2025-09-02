@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getCourseIdFromRoute, getCourseConfig } from './courseRegistry';
+import { getCourseIdFromRoute, getCourseConfig, courseConfigs } from './courseRegistry';
 import CourseOutlineTemplate from './CourseOutlineTemplate';
 import CourseLearningTemplate from './CourseLearningTemplate';
 import CourseThemeTemplate from './CourseThemeTemplate';
@@ -23,12 +23,16 @@ const CourseRouter: React.FC<CourseRouterProps> = ({ page }) => {
   const currentPath = window.location.pathname;
   const courseId = getCourseIdFromRoute(currentPath);
   
+  console.log('CourseRouter Debug:', { currentPath, courseId, page });
+  
   if (!courseId) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Course Not Found</h1>
           <p className="text-gray-600">The requested course could not be found.</p>
+          <p className="text-gray-600">Current path: {currentPath}</p>
+          <p className="text-gray-600">Course ID: {courseId}</p>
         </div>
       </div>
     );
@@ -36,12 +40,17 @@ const CourseRouter: React.FC<CourseRouterProps> = ({ page }) => {
 
   const config = getCourseConfig(courseId);
   
+  console.log('Course config:', config);
+  
   if (!config) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Configuration Error</h1>
           <p className="text-gray-600">Course configuration is missing.</p>
+          <p className="text-gray-600">Current path: {currentPath}</p>
+          <p className="text-gray-600">Course ID: {courseId}</p>
+          <p className="text-gray-600">Available courses: {Object.keys(courseConfigs).join(', ')}</p>
         </div>
       </div>
     );

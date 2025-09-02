@@ -148,8 +148,10 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
 
   // 價格信息
   const pricingInfo = {
-    price: isZhHK ? "完全免費" : "Completely Free",
-    aiInOne: isZhHK ? "永久觀看權限" : "Lifetime Access"
+    price: "HK$280",
+    aiInOne: isZhHK ? "低階版權限" : "Basic Access",
+    series: isZhHK ? "低階版" : "Basic",
+    enterprise: isZhHK ? "聯繫我們了解更多" : "Contact us for more"
   };
 
   // 可選課程（相關推薦）
@@ -222,7 +224,7 @@ const ChatGPTCompleteCourseOutline: React.FC = () => {
 
   const adaptedPricingInfo = {
     ...pricingInfo,
-    series: '免費版',
+    series: '低階版',
     enterprise: '聯繫我們'
   };
 

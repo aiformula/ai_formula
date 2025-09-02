@@ -15,6 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { getRecentPosts } from '@/data/blog/blogPosts';
 import AnimatedFAQ from '@/components/AnimatedFAQ';
+import CountdownTimer from '@/components/ui/countdown-timer';
 import { 
   Brain, 
   Users, 
@@ -178,6 +179,10 @@ interface CourseOutlineProps {
   // 免費課程標識
   isFree: boolean;
   
+  // 課程存取狀態
+  hasAccess?: boolean;
+  accessLoading?: boolean;
+  
   // 事件處理
   onStartLearning: () => void;
   onWhatsApp?: () => void;
@@ -199,6 +204,8 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
   targetAudience,
   courseModules = [],
   isFree,
+  hasAccess = false,
+  accessLoading = false,
   onStartLearning,
   onWhatsApp,
   learningPathExtended = false,
@@ -403,7 +410,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                     </div>
                     <h2 className="text-2xl font-bold text-white">
                       {isFree ? 
-                        (isZhHK ? "免費課程總覽" : "Free Course Overview") :
+                        (isZhHK ? "課程總覽" : "Course Overview") :
                         (isZhHK ? "課程總覽" : "Course Overview")
                       }
                     </h2>
@@ -451,7 +458,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300">{isZhHK ? "費用" : "Price"}</span>
-                          <span className={`font-semibold ${instructorTheme.primary}`}>{isFree ? (isZhHK ? "完全免費" : "Completely Free") : (isZhHK ? "HK$480" : "HK$480")}</span>
+                          <span className={`font-semibold ${instructorTheme.primary}`}>{pricingInfo?.price || "HK$480"}</span>
                         </div>
                         {courseInfo.lastUpdated && (
                           <div className="flex justify-between items-center">
@@ -521,7 +528,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       </motion.div>
                       <h2 className="text-2xl font-bold text-white">
                         {isFree ? 
-                          (isZhHK ? "免費課程價值" : "Free Course Value") :
+                          (isZhHK ? "課程價值" : "Course Value") :
                           (isZhHK ? "課程價值" : "Course Value")
                         }
                       </h2>
@@ -830,13 +837,13 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                         </Badge>
                         {isFree && (
                           <Badge className={`${instructorTheme.secondary} text-white`}>
-                            {isZhHK ? "免費教育推廣者" : "Free Education Advocate"}
+                            {isZhHK ? "AI 教育專家" : "AI Education Expert"}
                           </Badge>
                         )}
                       </div>
                       <p className="text-gray-300 leading-relaxed">
                         {isZhHK 
-                          ? `擁有超過 8 年 AI 技術應用經驗，專精於 AI 工具在${isFree ? '基礎教育' : '商業'}的實務應用。曾協助超過 200 家企業導入 AI 自動化流程，學員遍佈全球，累計培養超過 3,000 名 AI 應用專才。${isFree ? '致力於推廣免費 AI 教育，讓更多人能夠掌握 AI 技能。' : '專注於企業級 AI 解決方案設計與實施。'}`
+                          ? `擁有超過 8 年 AI 技術應用經驗，專精於 AI 工具在商業的實務應用。曾協助超過 200 家企業導入 AI 自動化流程，學員遍佈全球，累計培養超過 3,000 名 AI 應用專才。專注於企業級 AI 解決方案設計與實施，致力於提供高品質且實用的AI教育課程。`
                           : `With over 8 years of AI technology application experience, specializing in practical AI tool applications in ${isFree ? 'basic education' : 'business'}. Has successfully helped over 200 companies implement AI automation processes, with students worldwide and over 3,000 AI application specialists trained. ${isFree ? 'Dedicated to promoting free AI education for everyone.' : 'Focusing on enterprise-level AI solution design and implementation.'}`
                         }
                       </p>
@@ -850,7 +857,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Heart className={`w-5 h-5 ${instructorTheme.primary}`} />
-                    {isFree ? (isZhHK ? "為什麼提供免費課程" : "Why Free Course") : (isZhHK ? "課程理念" : "Course Philosophy")}
+                    {isZhHK ? "課程理念" : "Course Philosophy"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -858,7 +865,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                     <blockquote className="text-white text-lg leading-relaxed italic">
                       {isFree ? (
                         isZhHK 
-                          ? "「我相信知識應該是人人都能獲得的。AI 技術正在改變世界，但不應該只是少數人的特權。通過這個免費課程，我希望能夠幫助更多人了解和掌握 AI 工具，讓科技真正為所有人服務。每個人都應該有機會學習和成長，不應該被經濟條件所限制。」"
+                          ? "「我相信優質的AI教育應該讓每個人都能負擔得起。通過系統化的課程設計和實戰案例，我希望能夠幫助更多人真正掌握AI工具的核心技能，在職場和生活中發揮AI的最大價值。每個人都應該有機會在AI時代中找到自己的位置。」"
                           : "\"I believe knowledge should be accessible to everyone. AI technology is changing the world, but it shouldn't be a privilege for just a few. Through this free course, I hope to help more people understand and master AI tools, making technology truly serve everyone. Everyone should have the opportunity to learn and grow, without being limited by economic conditions.\""
                       ) : (
                         isZhHK 
@@ -902,7 +909,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
     <div className="min-h-screen text-white hide-scrollbar course-outline-page" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8 page-content hide-scrollbar">
+      <div className="container mx-auto px-4 pt-24 pb-8 page-content hide-scrollbar">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-3 gap-8 mb-12 lg:items-start">
           {/* Left Sidebar */}
@@ -943,39 +950,116 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                     {isZhHK ? courseInfo.title : (courseInfo.titleEn || courseInfo.title)}
                   </div>
                   {courseInfo.rating && courseInfo.students && (
-                    <div className="flex items-center justify-center gap-2 mt-2">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-white font-semibold">{courseInfo.rating}</span>
-                      <span className="text-gray-400">
-                        ({courseInfo.students >= 300 ? '300+' : courseInfo.students} {isZhHK ? '學員' : 'students'})
-                      </span>
+                    <div className="flex items-center justify-center gap-3 mt-3">
+                      <div className="flex items-center gap-1 bg-yellow-500/20 px-3 py-1.5 rounded-full border border-yellow-400/30">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-yellow-300 font-bold">{courseInfo.rating}</span>
+                      </div>
+                      <div className="bg-blue-500/20 px-3 py-1.5 rounded-full border border-blue-400/30">
+                        <span className="text-blue-300 font-semibold">
+                          {courseInfo.students >= 300 ? '300+' : courseInfo.students} {isZhHK ? '學員' : 'students'}
+                        </span>
+                      </div>
                     </div>
                   )}
                 </div>
 
                 <div className="space-y-3">
-                  <div className={`text-center p-4 ${isFree ? 'bg-gray-700 border border-gray-600' : instructorTheme.secondary} rounded-lg`}>
-                    <div className="text-2xl font-bold text-white mb-1">
-                      {isFree ? (isZhHK ? "完全免費" : "Completely Free") : (pricingInfo?.price || (isZhHK ? "請聯繫我們" : "Contact Us"))}
+                  {/* Enhanced Discount Banner */}
+                  {!isFree && (
+                    <div className="relative overflow-hidden bg-gradient-to-br from-red-500 via-red-600 to-red-700 text-white p-6 rounded-xl shadow-2xl border border-red-400/30">
+                      {/* Background Pattern */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
+                      
+                      {/* Content */}
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-center gap-2 mb-3">
+                          <div className="bg-white text-red-600 text-sm px-3 py-1.5 rounded-full font-bold shadow-lg animate-bounce">
+                            🔥 限時優惠 52% OFF
+                          </div>
+                        </div>
+                        
+                        <div className="mb-3">
+                          <CountdownTimer size="md" className="justify-center" />
+                        </div>
+                        
+                        <div className="text-sm font-medium opacity-95 bg-white/10 rounded-lg px-3 py-2 backdrop-blur-sm">
+                          {isZhHK ? '⚡ 優惠即將結束，立即搶購！' : '⚡ Limited time offer, grab it now!'}
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-sm text-white/80">
-                      {isFree ? (isZhHK ? "永久觀看權限" : "Lifetime Access") : (pricingInfo?.aiInOne || (isZhHK ? "專業版權限" : "Professional Access"))}
+                  )}
+                  
+                  <div className={`text-center p-6 ${isFree ? 'bg-gradient-to-br from-gray-700 to-gray-800 border border-gray-600' : 'bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-600'} rounded-xl shadow-xl`}>
+                    <div className="space-y-3">
+                      {!isFree && (
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-center gap-3">
+                            <div className="text-4xl font-bold text-white">
+                              {pricingInfo?.price || (isZhHK ? "請聯繫我們" : "Contact Us")}
+                            </div>
+                            <div className="text-lg text-gray-400 line-through">
+                              HK${Math.round(Number(pricingInfo?.price?.replace('HK$', '') || 480) * 2.1)}
+                            </div>
+                          </div>
+                          <div className="inline-block bg-green-600 text-white text-sm px-3 py-1 rounded-full font-semibold">
+                            💰 節省 HK${Math.round(Number(pricingInfo?.price?.replace('HK$', '') || 480) * 1.1)}
+                          </div>
+                        </div>
+                      )}
+                      {isFree && (
+                        <div className="text-4xl font-bold text-yellow-300">
+                          {pricingInfo?.price || "HK$480"}
+                        </div>
+                      )}
+                      <div className="bg-white/10 rounded-lg px-4 py-2 backdrop-blur-sm">
+                        <div className="text-white font-medium">
+                          {pricingInfo?.aiInOne || (isZhHK ? "🎓 專業版權限" : "🎓 Professional Access")}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   <Button 
                     className={`w-full ${
-                      courseInfo?.title?.includes('Perplexity') 
-                        ? 'bg-[#1F1F1F] hover:bg-[#2A2A2A] text-white' // 只有 Perplexity 用暗黑主題
-                        : instructorTheme.secondary // ChatGPT 和其他課程用正常主題
-                    } text-white py-3 mb-4`}
+                      !hasAccess && !isFree 
+                        ? 'bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-2xl border-2 border-orange-400/50 hover:border-orange-300/70 transform hover:scale-[1.02] transition-all duration-300 animate-pulse hover:animate-none' 
+                        : courseInfo?.title?.includes('Perplexity') 
+                        ? 'bg-[#1F1F1F] hover:bg-[#2A2A2A] text-white' 
+                        : instructorTheme.secondary
+                    } text-white ${!hasAccess && !isFree ? 'py-6 text-xl font-bold min-h-[80px]' : 'py-3'} mb-4`}
                     onClick={onStartLearning}
+                    disabled={accessLoading}
                   >
-                    <PlayCircle className="w-4 h-4 mr-2" />
-                    {isFree ? 
-                      (isZhHK ? "立即開始免費學習" : "Start Free Learning Now") :
-                      (isZhHK ? "立即報名學習" : "Enroll Now")
-                    }
+                    {!hasAccess && !isFree ? (
+                      <>
+                        <div className="flex items-center justify-center gap-5 px-4">
+                          <div className="bg-white/30 p-3 rounded-full shadow-lg">
+                            <PlayCircle className="w-8 h-8" />
+                          </div>
+                          <div className="flex flex-col items-start">
+                            <div className="text-2xl font-bold tracking-wide">
+                              {isZhHK ? "立即購買課程" : "Buy Course Now"}
+                            </div>
+                            <div className="text-base opacity-90 font-medium mt-1">
+                              {isZhHK ? "🚀 解鎖完整內容" : "🚀 Unlock Full Content"}
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <PlayCircle className="w-4 h-4 mr-2" />
+                        {accessLoading ? (
+                          isZhHK ? "檢查權限中..." : "Checking Access..."
+                        ) : isFree ? 
+                          (isZhHK ? "立即購買課程" : "Buy Course Now") :
+                          hasAccess ? 
+                            (isZhHK ? "立即學習" : "Start Learning") :
+                            (isZhHK ? "立即報名學習" : "Enroll Now")
+                        }
+                      </>
+                    )}
                   </Button>
 
                   <Button variant="ghost" className={`w-full ${instructorTheme.accent} hover:bg-gray-700`} onClick={handleWhatsApp}>
@@ -988,7 +1072,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                   <div className="mt-4 pt-4 border-t border-gray-600">
                     <div className="text-sm font-semibold text-white mb-3">
                       {isFree ? 
-                        (isZhHK ? "🎁 免費課程包含" : "🎁 Free Course Includes") :
+                        (isZhHK ? "🎁 課程包含" : "🎁 Course Includes") :
                         (isZhHK ? "💎 課程包含" : "💎 Course Includes")
                       }
                     </div>
@@ -1074,7 +1158,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
                       ? 'bg-white/20 text-white' // Perplexity的"免費"標籤
                       : 'bg-white/20 text-white'  // 其他免費課程的"免費"標籤
                   }`}>
-                    {isZhHK ? '免費' : 'FREE'}
+                                          {pricingInfo?.series || (isZhHK ? '專業版' : 'PRO')}
                   </span>
                 )}
               </Badge>
