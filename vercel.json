@@ -1,8 +1,8 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "cd ai_formula && npm run build",
   "outputDirectory": "ai_formula/dist",
-  "installCommand": "npm run install:all",
-  "devCommand": "npm run dev",
+  "installCommand": "cd ai_formula && npm install",
+  "devCommand": "cd ai_formula && npm run dev",
   "framework": "vite",
   "regions": ["hkg1"],
   "cleanUrls": true,
