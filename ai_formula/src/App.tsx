@@ -230,6 +230,24 @@ function App() {
                   {/* 無效路由重定向 - 作為最後的保障 */}
                   <Route path="/courses/midjourney-course/*" element={<Navigate to="/courses/midjourney-course/outline" replace />} />
                   
+                  {/* Claude Course - using template system */}
+                  <Route path="/courses/claude-course" element={<Navigate to="/courses/claude-course/outline" replace />} />
+                  <Route path="/courses/claude-course/outline" element={<CourseOutlinePage />} />
+                  <Route path="/courses/claude-course/learning" element={<CourseLearningPage />} />
+                  <Route path="/courses/claude-course/theme/:themeId" element={<CourseThemePage />} />
+                  <Route path="/courses/claude-course/theme/:themeId/unit/:unitId" element={<CourseUnitPage />} />
+                  <Route path="/courses/claude-course/theme/:themeId/quiz" element={<CourseQuizPage />} />
+                  <Route path="/courses/claude-course/*" element={<Navigate to="/courses/claude-course/outline" replace />} />
+
+                  {/* Gemini Course - using template system */}
+                  <Route path="/courses/gemini-course" element={<Navigate to="/courses/gemini-course/outline" replace />} />
+                  <Route path="/courses/gemini-course/outline" element={<CourseOutlinePage />} />
+                  <Route path="/courses/gemini-course/learning" element={<CourseLearningPage />} />
+                  <Route path="/courses/gemini-course/theme/:themeId" element={<CourseThemePage />} />
+                  <Route path="/courses/gemini-course/theme/:themeId/unit/:unitId" element={<CourseUnitPage />} />
+                  <Route path="/courses/gemini-course/theme/:themeId/quiz" element={<CourseQuizPage />} />
+                  <Route path="/courses/gemini-course/*" element={<Navigate to="/courses/gemini-course/outline" replace />} />
+
                   {/* Prompt Engineering Course Routes - 使用模板系統 */}
                   <Route path="/courses/prompt-engineering-course" element={<Navigate to="/courses/prompt-engineering-course/outline" replace />} />
                   <Route path="/courses/prompt-engineering-course/outline" element={<PromptEngineeringCourseOutline />} />

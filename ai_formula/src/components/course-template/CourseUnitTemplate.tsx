@@ -364,7 +364,7 @@ const CourseUnitTemplate: React.FC<CourseUnitTemplateProps> = ({ courseId }) => 
                     </h3>
                     
                     {/* Unit Image - if available */}
-                    {currentUnit.image && (
+                    {currentUnit.image && !String(currentUnit.image).includes('placeholder') && (
                       <div className="mb-8">
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -616,7 +616,11 @@ const CourseUnitTemplate: React.FC<CourseUnitTemplateProps> = ({ courseId }) => 
                   <div className="flex justify-between">
                     <span className="text-gray-400">{isZhHK ? '單元類型' : 'Type'}</span>
                     <Badge variant="outline" className="text-gray-300 border-gray-600">
-                      {currentUnit.type === 'video' ? (isZhHK ? '影片' : 'Video') : (isZhHK ? '互動' : 'Interactive')}
+                      {currentUnit.type === 'video'
+                        ? (isZhHK ? '影片' : 'Video')
+                        : currentUnit.type === 'interactive'
+                          ? (isZhHK ? '互動' : 'Interactive')
+                          : (isZhHK ? '文字' : 'Text')}
                     </Badge>
                   </div>
                 </div>

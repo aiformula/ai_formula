@@ -189,6 +189,8 @@ export const useCourseData = (isZhHK: boolean) => {
         navigate('/courses/perplexity-complete-course');
       } else if (product.category === 'prompt-engineering-course') {
         navigate('/courses/prompt-engineering-course');
+      } else if (product.category === 'claude-course') {
+        navigate('/courses/claude-course');
       } else {
         navigate(`/course/${product.category}`);
       }

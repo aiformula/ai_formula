@@ -164,7 +164,7 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
     badge: isZhHK ? dataSource.courseInfo.badge : (dataSource.courseInfo.badgeEn || dataSource.courseInfo.badge),
     title: isZhHK ? dataSource.courseInfo.title : (dataSource.courseInfo.titleEn || dataSource.courseInfo.title),
     subtitle: isZhHK ? dataSource.courseInfo.subtitle : (dataSource.courseInfo.subtitleEn || dataSource.courseInfo.subtitle),
-    // Inject custom outline copy for this course if expert course
+    // Inject custom outline copy for expert or specific courses
     description: config.courseId === 'prompt-engineering-expert' ? (
       isZhHK ? (
       `你係咪覺得，同AI傾偈好似隔住一道牆？\n\n` +
@@ -183,7 +183,21 @@ const CourseOutlineTemplate: React.FC<CourseOutlineTemplateProps> = ({ config })
       `After this course, AI won’t be a toy – it will be a 24/7 expert team at your command, ready to tackle your toughest problems at work, in study and in creative projects.\n\n` +
       `Ready to master the core super‑skill of the next decade?`
     )
-    ) : undefined,
+    ) : (
+      config.courseId === 'perplexity' ? (
+        isZhHK ? (
+          `Perplexity 唔止係「搜尋引擎 + AI」，如果用得其法，佢可以成為你 24/7 嘅研究員、編輯同資料整理助手。\n\n` +
+          `課程會帶你由零開始：設定最佳工作環境、理解 Copilot 流程、熟練使用 Focus、Collections、Threads 同 Projects，逐步建立「可重用」嘅研究工作流。\n\n` +
+          `你會學到：\n- 精準提問 + 引文追蹤，快速搵可靠來源\n- 用 Collections 管理主題知識庫（整理文獻、標註、版本控制）\n- 以 Threads/Projects 做長期研究，保持上下文一致\n- 寫總結、生成圖表、做簡報：由搜尋 → 分析 → 產出一條龍\n\n` +
+          `完成之後，你可以用 Perplexity 進行深度研究（學術/市場/競品），亦可以落地到日常工作（準備會議、寫報告、寫方案），效率起碼快一倍。`
+        ) : (
+          `Perplexity is more than "search + AI". Used properly, it becomes your 24/7 researcher, editor and information curator.\n\n` +
+          `We start from scratch: set up the optimal workspace, understand the Copilot flow, and master Focus, Collections, Threads and Projects to build reusable research workflows.\n\n` +
+          `You will learn to:\n- Ask precisely and trace citations to find reliable sources fast\n- Use Collections to manage topic knowledge bases with notes and versioning\n- Run long‑form research with Threads/Projects to keep context consistent\n- Produce outputs end‑to‑end: summaries, charts and slides—from search → analysis → delivery\n\n` +
+          `By the end, you can run deep research and apply it to daily work—meeting prep, reports and proposals—at least twice as fast.`
+        )
+      ) : undefined
+    ),
     instructor: isZhHK ? dataSource.courseInfo.instructor : (dataSource.courseInfo.instructorEn || dataSource.courseInfo.instructor),
     instructorTitle: isZhHK ? dataSource.courseInfo.instructorTitle : (dataSource.courseInfo.instructorTitleEn || dataSource.courseInfo.instructorTitle),
     rating: dataSource.courseInfo.rating,

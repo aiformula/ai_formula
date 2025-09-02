@@ -4,8 +4,25 @@ export const perplexityCourseData = {
     badgeEn: 'Free Complete Course',
     title: 'Perplexity AI 終極大師課程',
     titleEn: 'Perplexity AI Ultimate Master Course',
-    subtitle: '從基礎概念到高階應用，全面掌握 Perplexity 的核心技能與實戰技巧，成為 AI 時代的數位專家。',
-    subtitleEn: 'From fundamental concepts to advanced applications, comprehensively master Perplexity\'s core skills and practical techniques to become a digital expert in the AI era.',
+    subtitle: '由入門到高階，將 Perplexity 變成你嘅全天候知識助理。',
+    description: `Perplexity 唔止係「搜尋引擎 + AI」，如果用得其法，佢可以成為你 24/7 嘅研究員、編輯同資料整理助手。呢個課程會帶你由零開始：設定最佳工作環境、理解 Copilot 流程、熟練使用 Focus、Collections、Threads 同 Projects，逐步建立「可重用」嘅研究工作流。
+
+你會學到：
+- 點樣用精準提問 + 引文追蹤，快速搵到可靠來源
+- 用 Collections 管理主題知識庫，整理文獻、標註同版本控制
+- 以 Threads/Projects 做長期研究，保持上下文一致
+- 寫總結、生成圖表、做簡報：由搜尋 → 分析 → 產出一條龍
+
+完成之後，你可以用 Perplexity 進行深度研究（學術/市場/競品），亦可以落地到日常工作：準備會議、寫報告、寫方案，效率起碼快一倍。`,
+    descriptionEn: `Perplexity is far more than "search + AI". Used properly, it becomes your 24/7 researcher, editor and information curator. This course starts from scratch: set up the optimal workspace, understand the Copilot flow, and master Focus, Collections, Threads and Projects to build reusable research workflows.
+
+You will learn to:
+- Ask precisely and trace citations to find reliable sources fast
+- Use Collections to manage topic knowledge bases with notes and versioning
+- Run long‑form research with Threads/Projects to keep context consistent
+- Produce outputs end‑to‑end: summaries, charts and slides—from search → analysis → delivery
+
+By the end, you can run deep research (academic/market/competitive) and apply it to daily work—meeting prep, reports and proposals—at least twice as fast.`,
     instructor: 'AI Formula 團隊',
     instructorEn: 'AI Formula Team',
     instructorTitle: 'AI 應用專家',

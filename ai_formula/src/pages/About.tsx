@@ -216,7 +216,7 @@ const About = () => {
     <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="relative z-10 pt-24 pb-20">
+      <div className="relative z-10 pt-32 md:pt-36 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Hero Section */}

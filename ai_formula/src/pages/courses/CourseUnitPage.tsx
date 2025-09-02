@@ -23,6 +23,10 @@ const CourseUnitPage: React.FC = () => {
     courseId = 'prompt-engineering';
   } else if (currentPath.includes('prompt-engineering-expert-course')) {
     courseId = 'prompt-engineering-expert';
+  } else if (currentPath.includes('claude-course')) {
+    courseId = 'claude';
+  } else if (currentPath.includes('gemini-course')) {
+    courseId = 'gemini';
   }
 
   if (!courseId) {

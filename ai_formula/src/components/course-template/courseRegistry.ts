@@ -11,10 +11,14 @@ import { perplexityCourseData } from '@/data/perplexity-complete-course-data';
 import { midjourneyCourseData } from '@/data/midjourney-course-data';
 import { promptEngineeringCourseData } from '@/data/prompt-engineering-course-data';
 import { promptEngineeringExpertCourseData } from '@/data/prompt-engineering-expert-course-data';
+import { claudeCourseData } from '@/data/claude-course-data';
+import { geminiCourseData } from '@/data/gemini-course-data';
 import { useChatGPTProgress } from '@/hooks/useChatGPTProgress';
 import { usePerplexityProgress } from '@/hooks/usePerplexityProgress';
 import { useMidjourneyProgress } from '@/hooks/useMidjourneyProgress';
 import { usePromptEngineeringProgress } from '@/hooks/usePromptEngineeringProgress';
+import { useClaudeProgress } from '@/hooks/useClaudeProgress';
+import { useGeminiProgress } from '@/hooks/useGeminiProgress';
 
 // 統一嘅進度統計接口
 export interface UnifiedProgressStats {
@@ -107,6 +111,28 @@ export const courseConfigs: Record<string, CourseConfig> = {
     progressHook: usePromptEngineeringProgress,
     cssPrefix: 'prompt-engineering-expert'
   }
+  ,
+  'claude': {
+    courseId: 'claude',
+    courseName: 'Claude Mastery Course',
+    themeColor: '#3b82f6',
+    accentColor: '#f59e0b',
+    baseRoute: '/courses/claude-course',
+    dataSource: claudeCourseData,
+    progressHook: useClaudeProgress,
+    cssPrefix: 'claude'
+  }
+  ,
+  'gemini': {
+    courseId: 'gemini',
+    courseName: 'Gemini Mastery Course',
+    themeColor: '#1a73e8',
+    accentColor: '#34a853',
+    baseRoute: '/courses/gemini-course',
+    dataSource: geminiCourseData,
+    progressHook: useGeminiProgress,
+    cssPrefix: 'gemini'
+  }
 };
 
 // 工具函數：根據 courseId 獲取配置
@@ -121,6 +147,8 @@ export const getCourseIdFromRoute = (route: string): string | null => {
   if (route.includes('midjourney-course')) return 'midjourney';
   if (route.includes('prompt-engineering-course')) return 'prompt-engineering';
   if (route.includes('prompt-engineering-expert-course')) return 'prompt-engineering-expert';
+  if (route.includes('claude-course')) return 'claude';
+  if (route.includes('gemini-course')) return 'gemini';
   return null;
 };
 

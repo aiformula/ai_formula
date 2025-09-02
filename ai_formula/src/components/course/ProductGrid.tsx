@@ -112,7 +112,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               onClick={() => handleCourseClick(product)}
             >
               <Card 
-                className="relative h-full min-h-[740px] bg-black border-gray-800 hover:border-yellow-500 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-yellow-500/20"
+                className={`relative h-full min-h-[740px] bg-black border-gray-800 transition-all duration-500 overflow-hidden hover:shadow-xl ${
+                  product.category === 'claude-course' ? 'hover:border-[$#f7b42c] hover:shadow-[rgba(247,180,44,0.2)]' : 'hover:border-yellow-500 hover:shadow-yellow-500/20'
+                }`}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const x = e.clientX - rect.left;
@@ -385,7 +387,16 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                           )}
                         </div>
                         <Button
-                          className="inline-flex items-center justify-center w-[150px] h-11 whitespace-nowrap bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-4 text-base font-semibold rounded-xl backdrop-blur-sm shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 border border-yellow-400/20"
+                          className={`inline-flex items-center justify-center w-[150px] h-11 whitespace-nowrap text-white px-4 text-base font-semibold rounded-xl backdrop-blur-sm shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 border ${
+                            product.category === 'claude-course'
+                              ? 'border-[#f7b42c]/30'
+                              : 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 hover:shadow-yellow-500/25 border-yellow-400/20'
+                          }`}
+                          style={
+                            product.category === 'claude-course'
+                              ? { backgroundImage: 'linear-gradient(315deg, #f7b42c 0%, #fc575e 74%)' }
+                              : undefined
+                          }
                           onClick={(e) => {
                             e.stopPropagation();
                             handleCourseClick(product);

@@ -1,11 +1,12 @@
 import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Clock, Trophy, Users2, Zap } from "lucide-react";
+import { ArrowRight, Brain, Clock, Trophy, Zap, Target } from "lucide-react";
 import { TeamMemberCard } from "@/components/ui";
 import { useNavigate } from "react-router-dom";
 
 const AboutCht = () => {
   const navigate = useNavigate();
+  const lang = 'cht' as const;
   
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -13,90 +14,116 @@ const AboutCht = () => {
     transition: { duration: 0.6 }
   };
 
-  const features = [
-    {
-      icon: (
-        <motion.div
-          className="inline-block w-6 h-6"
-          animate={{ 
-            y: [0, -8, 0],
-            rotateY: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 3, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            times: [0, 0.5, 1]
-          }}
-        >
-          <Clock className="w-6 h-6" />
-        </motion.div>
-      ),
-      title: "節省寶貴時間",
-      description: "特別設計的工具，幫助您精準地在任何平台上創造價值"
-    },
-    {
-      icon: (
-        <motion.div
-          className="inline-block w-6 h-6"
-          animate={{ 
-            scale: [1, 1.3, 1],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ 
-            duration: 2.5, 
-            repeat: Infinity, 
-            ease: "easeInOut"
-          }}
-        >
-          <Zap className="w-6 h-6" />
-        </motion.div>
-      ),
-      title: "自動化工作流程",
-      description: "學習使用各種AI工具，如大型語言模型和N8N自動化流程，令您的工作流程更上一層樓"
-    },
-    {
-      icon: (
-        <motion.div
-          className="inline-block w-6 h-6"
-          animate={{ 
-            rotateX: [0, 360],
-            filter: ["hue-rotate(0deg)", "hue-rotate(360deg)"]
-          }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity, 
-            ease: "linear"
-          }}
-        >
-          <Brain className="w-6 h-6" />
-        </motion.div>
-      ),
-      title: "智能學習系統",
-      description: "運用先進的人工智能技術，為您提供個性化的學習體驗和智能建議"
-    },
-    {
-      icon: (
-        <motion.div
-          className="inline-block w-6 h-6"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotateZ: [0, 10, -10, 0],
-            opacity: [0.8, 1, 0.8]
-          }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut"
-          }}
-        >
-          <Trophy className="w-6 h-6" />
-        </motion.div>
-      ),
-      title: "成果導向",
-      description: "專注於實際應用和成效，確保您學到的知識能夠直接應用到工作中"
-    }
-  ];
+  const features = {
+    cht: [
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ y: [0, -8, 0], rotateY: [0, 180, 360] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
+          >
+            <Clock className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "節省時間",
+        description: "快速掌握最前沿 AI 工具與知識，短時間內學以致用，提升效率"
+      },
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ scale: [1, 1.3, 1], rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Zap className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "自動化工作流程",
+        description: "以 LLM、n8n 等工具實現日常工作自動化，提升精確度與生產力"
+      },
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ rotateX: [0, 360], filter: ["hue-rotate(0deg)", "hue-rotate(360deg)"] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          >
+            <Target className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "專業課程",
+        description: "循序漸進的 AI 技術課程，從入門到進階，帶來實質增長"
+      },
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ scale: [1, 1.2, 1], rotateZ: [0, 10, -10, 0], opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Trophy className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "專業顧問服務",
+        description: "量身定制 AI 解決方案，推動企業營運與業務增長"
+      }
+    ],
+    en: [
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ y: [0, -8, 0], rotateY: [0, 180, 360] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
+          >
+            <Clock className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "Save Time",
+        description: "Master leading AI tools and knowledge quickly to apply them in the shortest time"
+      },
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ scale: [1, 1.3, 1], rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Zap className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "Automated Workflows",
+        description: "Implement everyday automation with LLMs and n8n to improve accuracy and productivity"
+      },
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ rotateX: [0, 360], filter: ["hue-rotate(0deg)", "hue-rotate(360deg)"] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          >
+            <Target className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "Professional Courses",
+        description: "Structured AI learning paths from beginner to advanced for measurable growth"
+      },
+      {
+        icon: (
+          <motion.div
+            className="inline-block w-6 h-6"
+            animate={{ scale: [1, 1.2, 1], rotateZ: [0, 10, -10, 0], opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Trophy className="w-6 h-6" />
+          </motion.div>
+        ),
+        title: "Consulting Services",
+        description: "Tailored AI solutions to drive operational excellence and growth"
+      }
+    ]
+  } as const;
 
   const teamMembers = [
     {
@@ -205,18 +232,139 @@ const AboutCht = () => {
     }
   ];
 
-  const stats = [
-    { number: "10,000+", label: "活躍用戶" },
-    { number: "50+", label: "專業課程" },
-    { number: "95%", label: "滿意度" },
-    { number: "24/7", label: "技術支援" }
-  ];
+  const stats = {
+    cht: [
+      { number: "10,000+", label: "活躍用戶" },
+      { number: "50+", label: "專業課程" },
+      { number: "95%", label: "滿意度" },
+      { number: "24/7", label: "技術支援" }
+    ],
+    en: [
+      { number: "10,000+", label: "Active users" },
+      { number: "50+", label: "Professional courses" },
+      { number: "95%", label: "Satisfaction" },
+      { number: "24/7", label: "Technical support" }
+    ]
+  } as const;
+
+  const text = {
+    cht: {
+      heroTitle: (
+        <>
+          關於 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600">AI Formula</span>
+        </>
+      ),
+      heroSubtitle:
+        "AI Formula 係一個專注於 AI 自動化教育同策略整合嘅專業平台，幫助個人、團隊同企業喺數碼轉型中實現最大化效益。",
+      missionTitle: "我們的使命",
+      missionBody:
+        "幫助學員將 AI 技術應用到現實世界，提升效率、創造競爭優勢並推動業務創新。無論你係提升個人技能、優化工作流程，定係令整個團隊自動化，AI Formula 都會係你可靠嘅合作夥伴。",
+      servicesTitle: "我們提供的服務",
+      services: [
+        {
+          title: "AI 趨勢與行業洞察",
+          items: [
+            "最新技術發展：提供前沿 AI 趨勢分析，幫你掌握行業脈搏",
+            "商業應用案例：深入剖析 AI 喺各行各業嘅應用",
+            "市場分析報告：按需求提供定制化報告，緊貼行業動態"
+          ]
+        },
+        {
+          title: "實用工具教學",
+          items: [
+            "精選 Midjourney、RunwayML、Google Veo 3、n8n 等工具",
+            "從 AI 設計到數據分析、自動化工作流，全面實戰"
+          ]
+        },
+        {
+          title: "專業 AI 課程",
+          items: [
+            "由基礎到進階，系統掌握 AI、機器學習、深度學習",
+            "為初學者與進階學員提供循序漸進學習路徑"
+          ]
+        },
+        {
+          title: "商業顧問服務",
+          items: [
+            "AI 系統整合：端到端方案，無縫落地",
+            "工作流程自動化：減少手動干預，提升生產力",
+            "客製化項目服務：按企業需求打造專屬方案"
+          ]
+        }
+      ],
+      achievementsTitle: "我們的成就",
+      teamTitle: "我們的專家團隊",
+      visionTitle: "我們的願景",
+      visionBody:
+        "成為全球領先嘅 AI 自動化教育平台，透過創新學習方式打破傳統框架，持續提升學員能力，適應未來職場需求，並引領行業革新。",
+      whyTitle: "為什麼選擇我們？",
+      ctaTitle: "準備好用 AI 改變你嘅未來了嗎？",
+      ctaBody:
+        "加入成千上萬已經掌握 AI 工具同自動化嘅學員，喺職涯同業務發展上搶佔先機。",
+      ctaBtn: "立即開始學習"
+    },
+    en: {
+      heroTitle: (
+        <>
+          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600">AI Formula</span>
+        </>
+      ),
+      heroSubtitle:
+        "AI Formula is a specialist platform for AI automation education and strategic integration, helping individuals, teams and businesses maximise outcomes in digital transformation.",
+      missionTitle: "Our Mission",
+      missionBody:
+        "To help learners apply AI in the real world to increase efficiency, create competitive advantage and drive innovation. Whether you are enhancing personal skills, optimising workflows, or automating a whole team, AI Formula is your trusted partner.",
+      servicesTitle: "What We Offer",
+      services: [
+        {
+          title: "AI Trends and Industry Insights",
+          items: [
+            "Latest developments: front-line AI trend analysis",
+            "Business use cases: how AI is applied across industries",
+            "Market analysis: tailored reports aligned to demand and progress"
+          ]
+        },
+        {
+          title: "Practical Tool Training",
+          items: [
+            "Curated tools: Midjourney, RunwayML, Google Veo 3, n8n and more",
+            "From AI-aided design to data analysis and automated workflows"
+          ]
+        },
+        {
+          title: "Professional AI Courses",
+          items: [
+            "From foundations to advanced: AI, machine learning and deep learning",
+            "Step-by-step learning paths for beginners and advanced learners"
+          ]
+        },
+        {
+          title: "Business Consulting",
+          items: [
+            "AI system integration: end‑to‑end solutions that land",
+            "Workflow automation: reduce manual effort and boost productivity",
+            "Custom projects: tailored solutions for data, operations and innovation"
+          ]
+        }
+      ],
+      achievementsTitle: "Our Achievements",
+      teamTitle: "Our Expert Team",
+      visionTitle: "Our Vision",
+      visionBody:
+        "To become the world’s leading AI automation education platform, breaking traditional learning models, continually elevating capability, and leading industry innovation.",
+      whyTitle: "Why Choose Us?",
+      ctaTitle: "Ready to transform your future with AI?",
+      ctaBody:
+        "Join thousands who already master AI tools and automation to accelerate careers and business growth.",
+      ctaBtn: "Start learning today"
+    }
+  } as const;
 
   return (
     <div className="min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#121212' }}>
       <Navigation />
       
-      <div className="relative z-10 pt-24 pb-20">
+      <div className="relative z-10 pt-32 md:pt-36 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Hero Section */}
@@ -226,24 +374,55 @@ const AboutCht = () => {
             animate="animate"
             variants={fadeIn}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              關於 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600">AI Formula</span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              我們是一個尖端的 AI 教育平台，致力於為個人和企業提供在 AI 驅動的未來中茁壯成長所需的知識和工具。
-            </p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">{text[lang].heroTitle}</h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">{text[lang].heroSubtitle}</p>
           </motion.div>
 
-          {/* Features Section */}
+          {/* Mission Section */}
+          <motion.section 
+            className="mb-16"
+            initial="initial"
+            animate="animate"
+            variants={fadeIn}
+          >
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-8 border border-gray-700">
+              <h2 className="text-3xl font-bold text-white text-center mb-6">{text[lang].missionTitle}</h2>
+              <p className="text-lg text-gray-300 text-center max-w-4xl mx-auto leading-relaxed">{text[lang].missionBody}</p>
+            </div>
+          </motion.section>
+
+          {/* Services Section */}
           <motion.section 
             className="mb-20"
             initial="initial"
             animate="animate"
             variants={fadeIn}
           >
-            <h2 className="text-3xl font-bold text-white text-center mb-12">為什麼選擇我們</h2>
+            <h2 className="text-3xl font-bold text-white text-center mb-12">{text[lang].servicesTitle}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {text[lang].services.map((svc, idx) => (
+                <div key={idx} className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
+                  <h3 className="text-xl font-semibold text-white mb-4">{svc.title}</h3>
+                  <ul className="list-disc list-inside text-gray-300 space-y-2">
+                    {svc.items.map((item, ii) => (
+                      <li key={ii}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Why Choose Us / Features Section */}
+          <motion.section 
+            className="mb-20"
+            initial="initial"
+            animate="animate"
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl font-bold text-white text-center mb-12">{text[lang].whyTitle}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
+              {features[lang].map((feature, index) => (
                 <motion.div
                   key={index}
                   className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700 text-center"
@@ -269,9 +448,9 @@ const AboutCht = () => {
             variants={fadeIn}
           >
             <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-8 border border-gray-700">
-              <h2 className="text-3xl font-bold text-white text-center mb-12">我們的成就</h2>
+              <h2 className="text-3xl font-bold text-white text-center mb-12">{text[lang].achievementsTitle}</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {stats.map((stat, index) => (
+                {stats[lang].map((stat, index) => (
                   <motion.div
                     key={index}
                     className="text-center"
@@ -294,13 +473,13 @@ const AboutCht = () => {
             animate="animate"
             variants={fadeIn}
           >
-            <h2 className="text-3xl font-bold text-white text-center mb-12">認識我們的專家團隊</h2>
+            <h2 className="text-3xl font-bold text-white text-center mb-12">{text[lang].teamTitle}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {teamMembers.map((member, index) => (
                 <TeamMemberCard
                   key={index}
                   {...member}
-                  isChineseVersion={true}
+                  isChineseVersion={lang === 'cht'}
                 />
               ))}
             </div>
@@ -314,11 +493,8 @@ const AboutCht = () => {
             variants={fadeIn}
           >
             <div className="bg-gradient-to-r from-yellow-400/10 to-orange-600/10 backdrop-blur-sm rounded-lg p-8 border border-yellow-400/20">
-              <h2 className="text-3xl font-bold text-white text-center mb-6">我們的願景</h2>
-              <p className="text-lg text-gray-300 text-center max-w-4xl mx-auto leading-relaxed">
-                民主化 AI 教育，讓每個人都能接觸尖端的人工智能技術。我們相信 AI 素養不僅是未來的技能，更是當今必備的能力。
-                我們的使命是在複雜的 AI 技術與實際應用之間架起橋樑。
-              </p>
+              <h2 className="text-3xl font-bold text-white text-center mb-6">{text[lang].visionTitle}</h2>
+              <p className="text-lg text-gray-300 text-center max-w-4xl mx-auto leading-relaxed">{text[lang].visionBody}</p>
             </div>
           </motion.section>
 
@@ -329,10 +505,8 @@ const AboutCht = () => {
             animate="animate"
             variants={fadeIn}
           >
-            <h2 className="text-3xl font-bold text-white mb-6">準備好用 AI 改變您的未來了嗎？</h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              加入數千名已經在掌握 AI 工具和自動化以加速職業和商業發展的學習者行列。
-            </p>
+            <h2 className="text-3xl font-bold text-white mb-6">{text[lang].ctaTitle}</h2>
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">{text[lang].ctaBody}</p>
             <motion.button
               className="bg-gradient-to-r from-yellow-400 to-orange-600 text-black font-semibold px-8 py-4 rounded-lg text-lg shadow-lg"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(245, 158, 11, 0.3)" }}
@@ -340,7 +514,7 @@ const AboutCht = () => {
               transition={{ duration: 0.2 }}
               onClick={() => navigate('/courses')}
             >
-              立即開始學習 <ArrowRight className="inline ml-2 w-5 h-5" />
+              {text[lang].ctaBtn} <ArrowRight className="inline ml-2 w-5 h-5" />
             </motion.button>
           </motion.section>
 

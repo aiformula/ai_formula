@@ -11,10 +11,26 @@ export const midjourneyCourseData: CourseData = {
   courseInfo: {
     title: 'Midjourney: The Definitive Guide from Beginner to Expert',
     titleEn: 'Midjourney: The Definitive Guide from Beginner to Expert',
-    subtitle: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
-    subtitleEn: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
-    description: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
-    descriptionEn: 'Transcend basic operations: from dual-platform features to advanced creative techniques, master the powerful tools of AI art creation',
+    subtitle: '由工具到創作思維，全面掌握 Midjourney 嘅專業級創作流程。',
+    subtitleEn: 'From tools to creative thinking—master professional Midjourney workflows.',
+    description: `唔想只係「出靚圖」，而係「出對嘅圖」？呢個課程會帶你建立專業級 Midjourney 工作流：由雙平台操作（網站 + Discord）、參數/進階語法、風格/角色一致性，到參考圖/種子/相機語言，逐步提升你嘅可控性同穩定度。
+
+你會學到：
+- 針對商業用途設計高命中率嘅提示（品牌風格、產品視覺、社交帖）
+- 建立角色一致性（表情/姿勢/服裝/光線）同系列延伸方法
+- 以構圖、鏡頭、光影語言控制畫面敘事
+- 一鍵批量輸出、Upscale、後期流程（含常用外掛/工具建議）
+
+完成之後，你唔只識「畫圖」，而係具備「導演級」視覺表達能力，令作品真正可以落地用於品牌、社交、電商同內容製作。`,
+    descriptionEn: `Don’t just create "beautiful" images—create the "right" images. This course builds a professional Midjourney workflow: dual‑platform operations (website + Discord), parameters/advanced syntax, style & character consistency, and the effective use of references/seeds/camera language to raise control and stability.
+
+You will learn to:
+- Craft high‑hit prompts for commercial use (brand style, product visuals, social posts)
+- Maintain character consistency (expression/pose/costume/lighting) with series extension
+- Control visual storytelling via composition, lens and lighting language
+- Batch output, upscale and post‑process efficiently (with recommended tools/plugins)
+
+By the end, you’ll gain a "director‑level" visual expression ability so your works are production‑ready for brand, social, e‑commerce and content use.`,
     duration: '7+ Hours',
     durationEn: '7+ Hours',
     level: 'beginner_to_advanced',

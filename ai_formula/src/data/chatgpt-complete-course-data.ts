@@ -132,8 +132,26 @@ export const chatGPTCourseData = {
     badgeEn: "Free Complete Course",
     title: "ChatGPT 完整教學實戰",
     titleEn: "ChatGPT Complete Practical Course",
-    subtitle: "從基礎概念到高級應用，全面掌握ChatGPT的核心技術與實戰技巧，成為AI時代的數位專家。",
-    subtitleEn: "From fundamental concepts to advanced applications, comprehensively master ChatGPT's core technologies and practical techniques to become a digital expert in the AI era.",
+    subtitle: "由零開始到進階應用，全面掌握 ChatGPT 核心技術與實戰技巧。",
+    subtitleEn: "From zero to advanced, master ChatGPT's core techniques with hands‑on practice.",
+    description: `想用 ChatGPT 做到又快又準，而唔係只係「整笑話、寫罐頭文案」？呢個免費課程由淺入深，教你點樣用結構化方法去同模型傾偈：由指令設計、系統提示、few‑shot 範例，到角色/語氣/格式控制，一步一步教你將「模糊要求」變成「可執行嘅清晰任務」。
+
+你會學到：
+- 建立可重用嘅提示範本（Email、會議記錄、報告摘要、研究大綱等）
+- 用 Chain‑of‑Thought、Self‑Consistency 等方法提升推理同準確度
+- 透過外掛/工具鏈接資料，做檔案分析、網頁擷取同自動化
+- 為唔同場景（商業、教育、創作、程式）設計高命中率工作流程
+
+完成之後，你唔只係識「問問題」，而係識「下指令」——用最短時間，攞到最貼近需求、可直接使用嘅輸出。`,
+    descriptionEn: `Want ChatGPT to be fast and precise—not just "funny lines and canned copy"? This free course takes a structured, hands‑on approach: from instruction design, system prompts and few‑shot examples to controlling role/tone/format, you will learn to turn vague requests into clear, executable tasks.
+
+You will learn to:
+- Build reusable prompt templates (emails, meeting notes, report summaries, research outlines)
+- Improve reasoning and accuracy with Chain‑of‑Thought and Self‑Consistency
+- Connect external tools/plugins for file analysis, web extraction and automation
+- Design high‑hit‑rate workflows for business, education, creativity and coding
+
+By the end, you won't just "ask questions"—you will "issue instructions", achieving ready‑to‑use outputs in the shortest time.`,
     instructor: "AI Formula Team",
     instructorEn: "AI Formula Team",
     instructorTitle: "AI 應用專家與提示工程師",

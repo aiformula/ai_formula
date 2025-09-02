@@ -262,6 +262,86 @@ export const digitalProducts: DigitalProduct[] = [
       "系統提示、評測與護欄設計"
     ]
   }
+  ,
+  {
+    id: 6,
+    title: "Claude Mastery: From Fundamentals to Advanced Practice",
+    titleCht: "Claude 全方位精通課程：從入門到專業應用",
+    description: "Learn Claude’s model family, web UI, files/vision/search and prompting essentials with responsible use.",
+    descriptionCht: "掌握 Claude 的模型家族、網頁介面、檔案/視覺/搜尋與提示工程精要，並建立負責任使用框架。",
+    duration: "6+ hours comprehensive training",
+    durationCht: "6+ 小時",
+    downloads: 0,
+    rating: 4.9,
+    level: "All Levels",
+    levelCht: "適合所有級別",
+    price: "免費",
+    originalPrice: "",
+    image: "🤖",
+    type: "AI Assistant",
+    typeCht: "AI 助手",
+    category: "claude-course",
+    difficulty: "Beginner",
+    difficultyCht: "低階",
+    isFree: true,
+    themeColor: "#3b82f6",
+    newProduct: true,
+    featured: true,
+    bestseller: false,
+    hotSelling: true,
+    includes: [
+      "6 Focused Lessons",
+      "Bilingual Quizzes (ZH + UK English)",
+      "Artifacts, Files & Vision Practice",
+      "+3 More Items"
+    ],
+    includesCht: [
+      "6 節精要課程",
+      "中英雙語測驗（繁中＋英式英語）",
+      "神器/檔案/視覺 實戰",
+      "+3 更多項目"
+    ]
+  }
+  ,
+  {
+    id: 7,
+    title: "Gemini Mastery: From Fundamentals to Expert",
+    titleCht: "Gemini 權威大師班：從入門到精通的全方位指南",
+    description: "Master Gemini’s multimodal capabilities, UI/ecosystem, prompting and responsible use.",
+    descriptionCht: "全面掌握 Gemini 的多模態能力、介面與生態、提示工程與負責任使用。",
+    duration: "6+ hours comprehensive training",
+    durationCht: "6+ 小時",
+    downloads: 0,
+    rating: 4.9,
+    level: "All Levels",
+    levelCht: "適合所有級別",
+    price: "免費",
+    originalPrice: "",
+    image: "🌟",
+    type: "Multimodal AI",
+    typeCht: "多模態 AI",
+    category: "gemini-course",
+    difficulty: "Beginner",
+    difficultyCht: "低階",
+    isFree: true,
+    themeColor: "#B0E0E6",
+    newProduct: true,
+    featured: true,
+    bestseller: false,
+    hotSelling: true,
+    includes: [
+      "6 Chapters + Quizzes",
+      "Workspace, Coding & Mobile Use",
+      "Multimodal (text/image/audio/video)",
+      "+3 More Items"
+    ],
+    includesCht: [
+      "6 章節＋測驗",
+      "Workspace/程式/行動端應用",
+      "多模態（文字/圖片/音訊/影片）",
+      "+3 更多項目"
+    ]
+  }
 ];
 
 // Learning Plans Data

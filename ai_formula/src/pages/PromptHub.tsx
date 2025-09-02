@@ -223,6 +223,404 @@ const PromptHub: React.FC = () => {
       userTags: ['學生'],
       featured: true
     },
+    // ——— Expert: Investment & Research Toolkit ———
+    {
+      id: 'dd-report-automation',
+      titleEn: 'Automated Due Diligence Report Generation',
+      titleZh: '自動化盡職調查報告生成',
+      descriptionEn: 'Use public sources to review a company and produce a concise DD report with risks/opportunities matrix.',
+      descriptionZh: '以公開資料快速審視公司，輸出含風險/機遇矩陣的精煉盡調報告。',
+      textEn: `Role: senior investment analyst.
+
+Task: Use only public information to conduct a rapid due‑diligence review for [Company].
+
+Sources to consider: company site/investor pages, press releases, earnings, regulators (SEC/UK Companies House), reputable news, industry reports.
+
+Output structure:
+- Company Overview (what they do, segments, geography)
+- Operating Findings (customers, product, operations, supply, unit economics if available)
+- Financial Findings (revenue growth, profitability, cash, leverage)
+- Legal/Regulatory Findings (litigation, compliance, sanctions)
+- Risk & Opportunity Matrix (2x2 with concise bullets)
+- Final Recommendation (1 paragraph, actions and watch‑outs)
+
+Cite sources inline with links.`,
+      textZh: `角色：資深投資分析師。
+
+任務：只使用公開資料，為「[公司名]」產出快速盡職調查報告。
+
+可參考來源：官網/投資人頁、新聞稿、業績發布、監管機構（SEC/Companies House 等）、主流媒體、行業報告。
+
+輸出結構：
+- 公司概覽（業務、分部、地理）
+- 營運發現（客戶/產品/供應/單位經濟）
+- 財務發現（增長、獲利、現金、槓桿）
+- 法規/法律發現（訴訟、合規、制裁）
+- 風險與機遇矩陣（2×2，精簡要點）
+- 結語建議（一段文字，行動與注意事項）
+
+於文內附來源連結。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '研究人員', '金融服務從業員']
+    },
+    {
+      id: 'deal-sourcing-public-data',
+      titleEn: 'Investment & Deal Sourcing from Public Data',
+      titleZh: '從公開數據中尋找投資與交易機會',
+      descriptionEn: 'Scan the web, industry DBs and recent news to source targets that fit a thesis; return a table with rationale.',
+      descriptionZh: '掃描網站、行業資料庫與最新新聞，尋找符合投資論點的標的，並以表格附理據。',
+      textEn: `Role: deal sourcing specialist.
+
+Thesis: [Insert investment thesis]
+Criteria: [Size/geo/vertical/traction]
+
+Deliverables:
+- A markdown table: Company | Fit Summary | Source | Rationale Snippet | Link
+- 5–15 rows minimum
+- Short closing paragraph on emerging themes
+
+Only use public, reputable sources and include links.`,
+      textZh: `角色：交易來源開發專家。
+
+投資論點：[填寫]
+篩選條件：[規模/地區/垂直/成效]
+
+輸出：
+- Markdown 表格：Company｜符合度摘要｜來源｜理據摘錄｜連結（至少 5–15 列）
+- 文末以短段落總結新興主題
+
+僅採用可信公開來源並附連結。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '研究人員']
+    },
+    {
+      id: 'esg-news-summarisation',
+      titleEn: 'ESG Analysis and News Summarisation',
+      titleZh: 'ESG 分析與新聞摘要',
+      descriptionEn: 'Summarise the latest 10 items about a company/topic; classify as Positive/Neutral/Negative and score risk.',
+      descriptionZh: '彙整最近 10 則相關新聞，判斷正/中/負面並給出 ESG 風險評分與總結。',
+      textEn: `Role: ESG analyst.
+
+Topic/Company: [Insert]
+
+Steps: collect 10 recent items → summarise each in 1–2 lines → tag impact (E/S/G) and sentiment (Positive/Neutral/Negative).
+
+Output:
+- Table: Date | Source | Headline | Summary | E/S/G Impact | Sentiment
+- Overall ESG Risk Score (1–5) with rationale
+- Consolidated Impact Summary (bullets)
+Provide links to sources.`,
+      textZh: `角色：ESG 分析師。
+
+主題/公司：[填寫]
+
+流程：收集最近 10 則新聞 → 每則 1–2 句摘要 → 標記影響面向（E/S/G）與情緒（正/中/負）。
+
+輸出：
+- 表格：日期｜來源｜標題｜摘要｜E/S/G 影響｜情緒
+- 整體 ESG 風險評分（1–5）與理據
+- 影響總結（條列）
+附上來源連結。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '金融服務從業員']
+    },
+    {
+      id: 'financials-summary-peer',
+      titleEn: 'Financial Statement Summary & Peer Comparison',
+      titleZh: '財務報表摘要與同業比較',
+      descriptionEn: 'Extract key metrics from attached [X periods] and compare with a peer set table.',
+      descriptionZh: '自 [X 期] 報告擷取關鍵指標，並與同業表格比較。',
+      textEn: `Role: equity research associate.
+
+Input: [Company], [Peer list], [X periods reports provided]
+
+Output:
+- Company Key Metrics Table (rev, gross margin, EBIT/EBITDA, NI, FCF, leverage)
+- Peer Comparison Table (metric columns; rank highlights)
+- Brief commentary (growth, profitability, leverage; 4–6 bullets)`,
+      textZh: `角色：股票研究助理。
+
+輸入：[公司名]、[同業名單]、[X 期報告（已提供）]
+
+輸出：
+- 公司關鍵指標表（營收、毛利、EBIT/EBITDA、淨利、FCF、槓桿）
+- 同業比較表（同欄位；標注排名亮點）
+- 簡短點評（成長/獲利/槓桿 4–6 點）`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '金融服務從業員']
+    },
+    {
+      id: 'sentiment-narrative-analysis',
+      titleEn: 'Sentiment and Narrative Analysis',
+      titleZh: '市場情緒與輿論分析',
+      descriptionEn: 'Analyse headlines, earnings transcripts and social posts to map sentiment shifts and narratives.',
+      descriptionZh: '分析新聞、法說會紀錄與社媒評論，梳理情緒變化與主流論述。',
+      textEn: `Role: market intelligence analyst.
+
+Topic/Company: [Insert]
+
+Deliverables:
+- Table: Source | Excerpt | Sentiment (‑2..+2) | Narrative Tag
+- Narrative Synthesis (dominant frames, shifts, contradictions)
+- Visual suggestion: timeline of sentiment/narratives
+Include links/quotes.`,
+      textZh: `角色：市場情報分析師。
+
+主題/公司：[填寫]
+
+輸出：
+- 表格：來源｜摘錄｜情緒（‑2..+2）｜論述標籤
+- 論述綜述（主導框架、變化、矛盾）
+- 視覺化建議：情緒/論述時間線
+附上連結/引文。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '研究人員']
+    },
+    {
+      id: 'investment-doc-review',
+      titleEn: 'Investment Document or Pitch Review',
+      titleZh: '投資文件或募投簡報審閱',
+      descriptionEn: 'Assess clarity, completeness and persuasiveness. Summarise risks and prioritised improvements.',
+      descriptionZh: '評估清晰度、完整性與說服力；總結風險並提出優先改進建議。',
+      textEn: `Role: venture & PE investment reviewer.
+Input: [Memo/Deck]
+Output: Executive Summary → Strengths → Key Risks (ranked) → Recommended Improvements (P1/P2/P3) → Open Questions.`,
+      textZh: `角色：創投/PE 投資審閱人。
+輸入：[備忘錄/簡報]
+輸出：執行摘要 → 優勢 → 主要風險（排序）→ 推薦改進（P1/P2/P3）→ 追問清單。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '研究人員']
+    },
+    {
+      id: 'industry-trend-snapshot',
+      titleEn: 'Industry and Trend Reports (Snapshot)',
+      titleZh: '行業與趨勢報告（快照）',
+      descriptionEn: 'Produce a concise snapshot: trends, competition, regulation and emerging tech with sources.',
+      descriptionZh: '輸出趨勢、競爭、監管與新技術的快照，附來源。',
+      textEn: `Role: industry analyst.
+Industry: [Insert]
+Sections: Key Trends | Competitive Landscape | Regulatory Changes | Emerging Tech | Key Players (table) | Sources.`,
+      textZh: `角色：行業分析師。
+行業：[填寫]
+章節：主要趨勢｜競爭格局｜監管變化｜新興技術｜主要參與者（表格）｜來源。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '策略顧問']
+    },
+    {
+      id: 'regulatory-policy-monitoring',
+      titleEn: 'Regulatory and Policy Update Monitoring',
+      titleZh: '監管與政策更新監控',
+      descriptionEn: 'Track the latest rules (e.g., SEC/FINRA/EU). Summarise changes and assess impact on an industry/company.',
+      descriptionZh: '追蹤最新規則（如 SEC/FINRA/EU），總結變化並評估對行業/公司的影響。',
+      textEn: `Role: regulatory analyst.
+Agency/Rule: [Insert]
+Output: Update Summary | Key Clauses | Effective Dates | Affected Areas | Impact on [Industry/Company] (bullets) | Sources.`,
+      textZh: `角色：監管分析師。
+機關/規範：[填寫]
+輸出：更新摘要｜關鍵條款｜生效日期｜受影響範圍｜對「[行業/公司]」之影響（條列）｜來源。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '金融服務從業員']
+    },
+    {
+      id: 'alternative-data-insights',
+      titleEn: 'Alternative Data Insights Extraction',
+      titleZh: '另類數據洞察提取',
+      descriptionEn: 'Analyse an attached dataset/article to surface non‑obvious signals and caveats.',
+      descriptionZh: '分析附檔數據或文章，找出不顯性的訊號並說明限制。',
+      textEn: `Role: data insights specialist.
+Input: [Dataset or article]
+Deliverables: Method (brief) | Signals & Interpretation | Caveats & Data Quality | Implications (bullets).`,
+      textZh: `角色：數據洞察專家。
+輸入：[數據集或文章]
+輸出：方法（簡述）｜訊號與解讀｜限制與數據品質｜含義（條列）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['數據分析師', '研究人員']
+    },
+    {
+      id: 'earnings-call-summary',
+      titleEn: 'Earnings Call & Conference Summaries',
+      titleZh: '業績發佈會與電話會議摘要',
+      descriptionEn: 'Read the transcript; extract themes, tone shifts, surprises and follow‑up questions; then one‑page report.',
+      descriptionZh: '閱讀逐字稿，萃取主題、語氣變化與意外；提出追問並整理成單頁報告。',
+      textEn: `Role: sell‑side analyst.
+Company: [Insert]
+Output: Key Themes | Tone & Guidance Shifts | Surprises | Follow‑Up Questions | One‑page Summary (sections+bullets).`,
+      textZh: `角色：賣方分析師。
+公司：[填寫]
+輸出：關鍵主題｜語氣/指引變化｜意外事項｜後續追問｜單頁摘要（章節＋條列）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '金融服務從業員']
+    },
+    {
+      id: 'competitive-intel-alerts',
+      titleEn: 'Competitive & Market Intelligence Alerts',
+      titleZh: '競爭與市場情報分析',
+      descriptionEn: 'Monitor competitor news, launches and filings; output concise daily digest.',
+      descriptionZh: '監控競品新聞、產品與監管文件；輸出精簡日報。',
+      textEn: `Role: competitive intelligence lead.
+Company: [Insert]
+Output: Daily Digest — Items (1‑line each with link) → Summary paragraph (strategy shifts, reactions, regulatory).`,
+      textZh: `角色：競爭情報負責人。
+公司：[填寫]
+輸出：每日摘要——逐項一行（含連結）→ 綜述段落（策略變化、市場反應、監管）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '研究人員']
+    },
+    {
+      id: 'investment-memo-draft',
+      titleEn: 'Drafting Investment Research Memos',
+      titleZh: '草擬投資研究備忘錄',
+      descriptionEn: 'Write a concise memo: overview, financial outlook, valuation and catalysts with citations.',
+      descriptionZh: '撰寫精煉備忘錄：業務概覽、財務前景、估值與催化劑，並引用來源。',
+      textEn: `Role: buy‑side analyst.
+Company: [Insert]
+Sections: Business Overview | Financial Outlook | Valuation (method & comps) | Key Catalysts | Sources (links).`,
+      textZh: `角色：買方分析師。
+公司：[填寫]
+章節：業務概覽｜財務前景｜估值（方法與同業）｜關鍵催化劑｜來源（連結）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '金融服務從業員']
+    },
+    {
+      id: 'theme-watchlist-automation',
+      titleEn: 'Automated Sector or Theme Watchlists',
+      titleZh: '自動化板塊或主題觀察名單',
+      descriptionEn: 'Create a 20‑company watchlist for a sector/theme; track price/news/ratings and summarise daily moves.',
+      descriptionZh: '建立含 20 家公司的觀察名單；追蹤股價/新聞/評級，並輸出每日重點。',
+      textEn: `Role: portfolio associate.
+Sector/Theme: [Insert]
+Outputs: Company list (20) | Tracking Table (Price Change, News Headline, Rating Change, Link) | Daily Summary paragraph.`,
+      textZh: `角色：投資組合助理。
+板塊/主題：[填寫]
+輸出：公司清單（20）｜追蹤表（股價變動、新聞標題、評級變化、連結）｜每日重點摘要段落。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員']
+    },
+    {
+      id: 'public-doc-red-flags',
+      titleEn: 'Identify Red Flags in Public Documents',
+      titleZh: '識別公開文件中的危險信號',
+      descriptionEn: 'Scan financials/press/filings to spot unusual language, accounting changes or inconsistencies with citations.',
+      descriptionZh: '掃描財報/新聞稿/證券文件，找出不尋常語言、會計變更或不一致，並引用來源。',
+      textEn: `Role: forensic analyst.
+Company: [Insert]
+Deliverable: Table — Document | Location/Page | Excerpt | Red‑Flag Type | Why it matters | Link.`,
+      textZh: `角色：鑑識分析師。
+公司：[填寫]
+輸出：表格——文件｜位置/頁碼｜摘錄｜紅旗類型｜原因｜連結。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員']
+    },
+    {
+      id: 'legal-reg-summary',
+      titleEn: 'Summarising Legal or Regulatory Documents',
+      titleZh: '總結法律或監管文件',
+      descriptionEn: 'Summarise key clauses and obligations; highlight operational/financial impact and key dates.',
+      descriptionZh: '總結關鍵條款與義務；標示對營運/財務之影響與重要日期。',
+      textEn: `Role: legal analyst.
+Document: [Insert]
+Output: Overview | Key Clauses & Obligations | Impact Areas | Key Dates & Actions (bullets).`,
+      textZh: `角色：法務分析師。
+文件：[填寫]
+輸出：概覽｜關鍵條款與義務｜影響範圍｜重要日期與行動（條列）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員']
+    },
+    {
+      id: 'investor-update-email',
+      titleEn: 'Drafting Professional Emails and Investor Updates',
+      titleZh: '草擬專業郵件與投資者更新',
+      descriptionEn: 'Announce an event (earnings, funding, acquisition) with a short performance recap and near‑term actions.',
+      descriptionZh: '宣佈事件（財報、融資、收購），附近期表現摘要與短期行動。',
+      textEn: `Role: IR communications lead.
+Event: [Insert]
+Email sections: Greeting | Announcement | Recent Performance (1 paragraph) | Near‑Term Plan (bullets) | Call‑to‑Action.`,
+      textZh: `角色：投資人關係（IR）。
+事件：[填寫]
+郵件結構：稱呼｜公告｜近期表現（一段）｜短期計劃（條列）｜行動呼籲。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['策略顧問', '研究人員']
+    },
+    {
+      id: 'early-trend-spotting',
+      titleEn: 'Spotting Early Trends in Social/News Media',
+      titleZh: '發現新興的社交/新聞媒體趨勢',
+      descriptionEn: 'Identify emerging narratives; support with quotes/indicators and explain potential investment implications.',
+      descriptionZh: '識別新興論述，提供引述與指標，並解釋投資含義。',
+      textEn: `Role: trend analyst.
+Topic/Industry: [Insert]
+Output: Trend Table (Trend | Evidence | Representative Quote | Indicator) + Commentary on implications.`,
+      textZh: `角色：趨勢分析師。
+主題/行業：[填寫]
+輸出：趨勢表（趨勢｜證據｜代表性引述｜指標）＋含義評論。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員']
+    },
+    {
+      id: 'watchlist-news-digest',
+      titleEn: 'Generate Portfolio Company/Watchlist News Digest',
+      titleZh: '生成投資組合/觀察名單新聞摘要',
+      descriptionEn: 'Daily digest for a list of companies with 1‑line items and an exec summary paragraph.',
+      descriptionZh: '為公司名單產生日報：每則一行，並附高階摘要段落。',
+      textEn: `Role: watchlist curator.
+Companies: [List]
+Output: Table — Company | Headline | 1‑Line Summary | Link; then Executive Summary paragraph of top developments.`,
+      textZh: `角色：觀察名單管理。
+公司清單：[列出]
+輸出：表格——公司｜標題｜一句摘要｜連結；之後附最重要發展之行政級摘要段落。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員']
+    },
+    {
+      id: 'training-resource-curation',
+      titleEn: 'Investment Training and Education Resource Curation',
+      titleZh: '整理投資培訓與教育資源',
+      descriptionEn: 'Curate a training outline with articles, cases, books and videos for junior analysts with reasons why.',
+      descriptionZh: '為初級分析師整理培訓大綱（文章/案例/書籍/影片），並說明選用理由。',
+      textEn: `Role: training lead.
+Topic: [Insert]
+Output: Outline (modules) + Resource Table (Title | Type | Why it helps junior analysts | Link).`,
+      textZh: `角色：培訓負責人。
+主題：[填寫]
+輸出：課綱（模組）＋資源表（標題｜類型｜對初級分析師的幫助｜連結）。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '學習者']
+    },
+    {
+      id: 'funding-investment-summaries',
+      titleEn: 'Funding and Investment Opportunity Summaries',
+      titleZh: '尋找資金與投資機會摘要',
+      descriptionEn: 'Summarise the past month of funding/M&A in a region/industry with values, investors and rationale.',
+      descriptionZh: '彙整過去一個月的融資與併購（地區/行業），含金額、投資者與策略理據。',
+      textEn: `Role: market transactions analyst.
+Scope: [Region/Industry]
+Output: Table — Company | Round/Deal | Value (if disclosed) | Lead Investors/Parties | Strategic Rationale | Link; then short thematic summary.`,
+      textZh: `角色：交易分析師。
+範圍：[地區/行業]
+輸出：表格——公司｜輪次/交易｜金額（如披露）｜主要投資者/交易方｜策略理據｜連結；最後以短段落總結主題。`,
+      category: 'workplace',
+      level: 'expert',
+      userTags: ['研究人員', '策略顧問']
+    },
     // ——— Expert: Strategic Sales Proposal & ROI Case ———
     {
       id: 'b2b-roi-proposal',

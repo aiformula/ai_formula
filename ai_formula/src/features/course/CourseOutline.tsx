@@ -264,6 +264,42 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
       };
     }
     
+    // Claude 課程檢測 - 橙紅主題
+    const isClaudeCourse =
+      (courseInfo?.title && courseInfo.title.includes('Claude')) ||
+      (courseInfo?.subtitle && courseInfo.subtitle.includes('Claude')) ||
+      (typeof window !== 'undefined' && window.location.pathname.includes('claude-course'));
+    
+    if (isClaudeCourse) {
+      return {
+        gradient: 'from-[#f7b42c] to-[#fc575e]',
+        gradientStyle: 'linear-gradient(315deg, #f7b42c 0%, #fc575e 74%)',
+        primary: 'text-[#f7b42c]',
+        secondary: 'bg-[#f7b42c] hover:bg-[#fc575e] border border-[#f7b42c]/60',
+        accent: 'text-[#f7b42c] border-[#f7b42c]',
+        badge: 'bg-[#f7b42c] text-black',
+        numberCircle: 'bg-[#f7b42c] text-black'
+      } as any;
+    }
+    
+    // Gemini 課程檢測 - 冰藍/鋼藍主題
+    const isGeminiCourse =
+      (courseInfo?.title && courseInfo.title.includes('Gemini')) ||
+      (courseInfo?.subtitle && courseInfo.subtitle.includes('Gemini')) ||
+      (typeof window !== 'undefined' && window.location.pathname.includes('gemini-course'));
+    
+    if (isGeminiCourse) {
+      return {
+        gradient: 'from-[#B0E0E6] to-[#4682B4]',
+        gradientStyle: 'linear-gradient(159deg, rgba(176,224,230,1) 0%, rgba(70,130,180,1) 100%)',
+        primary: 'text-[#B0E0E6]',
+        secondary: 'bg-[#B0E0E6] hover:bg-[#4682B4] border border-[#B0E0E6]/60',
+        accent: 'text-[#B0E0E6] border-[#B0E0E6]',
+        badge: 'bg-[#B0E0E6] text-black',
+        numberCircle: 'bg-[#B0E0E6] text-black'
+      } as any;
+    }
+    
     // Prompt Engineering 課程檢測 - 紫色主題
     const isPromptEngineeringCourse = 
       (courseInfo?.title && courseInfo.title.includes('提示工程')) ||
@@ -317,6 +353,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
   };
 
   const instructorTheme = getInstructorTheme();
+  const isGeminiCourse = typeof window !== 'undefined' && window.location.pathname.includes('gemini-course');
 
   // Tab定義
   const tabs = [
@@ -358,10 +395,10 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
             {/* Course Overview */}
             <div className="space-y-6">
               <Card className="bg-gray-800 border-gray-700 overflow-hidden">
-                <div className={`h-2 bg-gradient-to-r ${instructorTheme.gradient}`}></div>
+                <div className={`h-2`} style={{ backgroundImage: (instructorTheme as any).gradientStyle || undefined }}></div>
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className={`p-3 rounded-full bg-gradient-to-br ${instructorTheme.gradient}`}>
+                    <div className={`p-3 rounded-full`} style={{ backgroundImage: (instructorTheme as any).gradientStyle || undefined }}>
                       {isFree ? <Gift className="w-6 h-6 text-white" /> : <Star className="w-6 h-6 text-white" />}
                     </div>
                     <h2 className="text-2xl font-bold text-white">
@@ -458,7 +495,7 @@ const CourseOutline: React.FC<CourseOutlineProps> = ({
               </Card>
 
               {/* 課程價值展示 - 半透明玻璃設計 */}
-              {courseFeatures.length > 0 && (
+              {courseFeatures.length > 0 && !isGeminiCourse && (
                 <motion.div
                   className="space-y-6"
                   initial={{ opacity: 0, y: 30 }}
