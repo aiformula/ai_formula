@@ -1,0 +1,1332 @@
+<!-- Save this as prompt-hub.html and open it in a web browser (e.g., Chrome, Firefox) by double-clicking the file or dragging it into the browser. -->
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Hub - 提升你的AI技能！</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffcc00;
+            animation: fadeIn 0.8s ease-in-out;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .prompt-link {
+            background: linear-gradient(45deg, #ffcc00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        .prompt-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ffcc00;
+            background: rgba(255, 204, 0, 0.1);
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        .header-rest {
+            background: linear-gradient(45deg, #ffcc00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #ffcc00;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #ffcc00;
+            color: #ffcc00;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 204, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .lang-btn.active {
+            background: #ffcc00;
+            color: #000;
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out 0.2s both;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-title {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            margin-bottom: 30px;
+        }
+
+        .intro-description {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffcc00, #ffd700);
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 40px 20px;
+            background-color: #2a2a2a;
+            text-align: center;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-title {
+            font-size: 1.5rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #1a1a1a;
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-input:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 80px 20px;
+            background-color: #1a1a1a;
+        }
+
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--category-color);
+        }
+
+        .category-card.daily {
+            --category-color: #4A90E2;
+        }
+
+        .category-card.workplace {
+            --category-color: #7ED321;
+        }
+
+        .category-card.creative {
+            --category-color: #F5A623;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: #ffcc00;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-emoji {
+            font-size: 1.8rem;
+        }
+
+        .category-subtitle {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .level-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .level-tab {
+            flex: 1;
+            padding: 12px 8px;
+            background: transparent;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .level-tab.active {
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .level-tab:hover:not(.active) {
+            color: #ffcc00;
+            background: rgba(255, 204, 0, 0.1);
+        }
+
+        .level-content {
+            display: none;
+            min-height: 300px;
+        }
+
+        .level-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .prompt-item {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .prompt-item:hover {
+            border-color: #ffcc00;
+            box-shadow: 0 4px 12px rgba(255, 204, 0, 0.1);
+        }
+
+        .prompt-title {
+            font-weight: bold;
+            color: #ffcc00;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .prompt-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .prompt-text {
+            background: #0a0a0a;
+            padding: 12px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            border-left: 3px solid var(--category-color);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .copy-button {
+            background: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .copy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
+        }
+
+        .copy-button.copied {
+            background: #4caf50;
+            color: white;
+        }
+
+        .expert-teaser {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(255, 215, 0, 0.1));
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .expert-teaser h3 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .expert-teaser p {
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-button {
+            background: linear-gradient(135deg, #ffcc00, #ffd700);
+            color: #000;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        /* Learning Resources */
+        .resources-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+        }
+
+        .resources-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: #1a1a1a;
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .resource-title {
+            color: #ffcc00;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .resource-link {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: #ffd700;
+            text-decoration: underline;
+            transform: scale(1.02);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: #2a2a2a;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #ffcc00;
+        }
+
+        .faq-question {
+            background: #3a3a3a;
+            padding: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .faq-question:hover {
+            background: #4a4a4a;
+        }
+
+        .faq-icon {
+            color: #ffcc00;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #ddd;
+            background: #2a2a2a;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        /* Legal Section */
+        .legal-section {
+            padding: 40px 20px;
+            background-color: #0a0a0a;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+
+        .disclaimer {
+            color: #999;
+            font-size: 0.9rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #ffcc00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        /* No Results Message */
+        .no-results {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header .subtitle {
+                font-size: 1rem;
+            }
+
+            .intro-title {
+                font-size: 2rem;
+            }
+
+            .intro-description {
+                font-size: 1.1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .category-card {
+                padding: 20px;
+            }
+
+            .level-tabs {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .level-tab {
+                border-radius: 4px;
+                padding: 12px;
+            }
+
+            .legal-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-input {
+                font-size: 1rem;
+                padding: 12px 15px;
+            }
+
+            .prompt-link {
+                padding: 3px 8px;
+            }
+
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .highlight {
+            background-color: #ffcc00 !important;
+            color: #000 !important;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">EN</button>
+            <button class="lang-btn active" onclick="switchLanguage('zh-hk')" id="lang-zh-hk">繁</button>
+        </div>
+        
+        <h1>
+            <a href="#" class="prompt-link" onclick="showAlert('Homepage')">Prompt</a><span class="header-rest" data-en=" Hub - Enhance Your AI Skills!" data-zh-hk=" Hub - 提升你的AI技能！"> Hub - 提升你的AI技能！</span>
+        </h1>
+        <p class="subtitle" data-en="Master the art of AI communication with professional prompts" data-zh-hk="掌握AI溝通的藝術，使用專業提示詞">掌握AI溝通的藝術，使用專業提示詞</p>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+        <div class="intro-content">
+            <h2 class="intro-title" data-en="What is a Prompt?" data-zh-hk="什麼是提示詞？">什麼是提示詞？</h2>
+            <p class="intro-description" data-en="A prompt is a set of instructions given to AI to get better, more accurate results. Think of it as the key to unlocking AI's full potential - whether you're learning, working, or creating. Proper prompts can boost your efficiency dramatically and help you achieve professional-quality outputs." data-zh-hk="提示詞是給AI的指令，讓你獲得更好、更準確的結果。把它想像成解鎖AI全部潛能的鑰匙 - 無論你是在學習、工作或創作。正確的提示詞能大幅提升你的效率，幫助你達到專業水準的輸出。">
+                提示詞是給AI的指令，讓你獲得更好、更準確的結果。把它想像成解鎖AI全部潛能的鑰匙 - 無論你是在學習、工作或創作。正確的提示詞能大幅提升你的效率，幫助你達到專業水準的輸出。
+            </p>
+            <a href="#" class="cta-button" onclick="showAlert('Free Course')" data-en="Try Free Prompt Course" data-zh-hk="免費提示詞課程">
+                免費提示詞課程
+            </a>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <h3 class="search-title" data-en="🔍 Search Prompts" data-zh-hk="🔍 搜尋提示詞">🔍 搜尋提示詞</h3>
+            <input type="text" class="search-input" id="searchInput" oninput="searchPrompts()" data-en-placeholder="e.g.: write email, create story, analyze data..." data-zh-hk-placeholder="例如：寫電郵、創作故事、分析數據..." placeholder="例如：寫電郵、創作故事、分析數據...">
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="categories-container">
+            <h2 class="section-title" data-en="Three Main Categories" data-zh-hk="三大分類">三大分類</h2>
+            
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Daily Learning Category -->
+                <div class="category-card daily" data-category="daily">
+                    <h3 class="category-title">
+                        <span class="category-emoji">📚</span>
+                        <span data-en="Daily Learning" data-zh-hk="日常學習">日常學習</span>
+                    </h3>
+                    <p class="category-subtitle" data-en="For students and lifelong learners" data-zh-hk="適合學生和終身學習者">適合學生和終身學習者</p>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'daily', 'beginner')" data-en="Beginner" data-zh-hk="入門">入門</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'daily', 'intermediate')" data-en="Intermediate" data-zh-hk="進階">進階</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'daily', 'expert')" data-en="Expert" data-zh-hk="專家">專家</button>
+                    </div>
+                    
+                    <div class="level-content active" id="daily-beginner">
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Explain AI Basics" data-zh-hk="解釋AI基礎">解釋AI基礎</div>
+                            <div class="prompt-description" data-en="Get simple AI explanations for beginners" data-zh-hk="為初學者提供簡單的AI解釋">為初學者提供簡單的AI解釋</div>
+                            <div class="prompt-text" data-en="Please explain [AI concept] in simple terms that a beginner can understand. Use everyday examples to illustrate the concepts." data-zh-hk="請用簡單嘅廣東話解釋 [AI概念]，令初學者都明白。用日常生活嘅例子嚟說明。">請用簡單嘅廣東話解釋 [AI概念]，令初學者都明白。用日常生活嘅例子嚟說明。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Create Study Notes" data-zh-hk="製作學習筆記">製作學習筆記</div>
+                            <div class="prompt-description" data-en="Generate organized study notes for any topic" data-zh-hk="為任何主題生成有組織的學習筆記">為任何主題生成有組織的學習筆記</div>
+                            <div class="prompt-text" data-en="Help me organize study notes about [topic], including key points, examples and practice questions." data-zh-hk="幫我整理關於 [主題] 嘅學習筆記，包括要點、例子同練習題。">幫我整理關於 [主題] 嘅學習筆記，包括要點、例子同練習題。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Simplify Complex Topics" data-zh-hk="簡化複雜主題">簡化複雜主題</div>
+                            <div class="prompt-description" data-en="Break down difficult subjects into easy steps" data-zh-hk="將困難主題分解為簡單步驟">將困難主題分解為簡單步驟</div>
+                            <div class="prompt-text" data-en="Break down [complex concept] into 5 simple steps, explained in a way that students can easily understand." data-zh-hk="將 [複雜概念] 分解成5個簡單步驟，用學生容易明白嘅方式解釋。">將 [複雜概念] 分解成5個簡單步驟，用學生容易明白嘅方式解釋。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Create Study Schedule" data-zh-hk="製作溫習時間表">製作溫習時間表</div>
+                            <div class="prompt-description" data-en="Plan effective study schedules for exams" data-zh-hk="為考試制定有效的溫習計劃">為考試制定有效的溫習計劃</div>
+                            <div class="prompt-text" data-en="Create a [duration] study plan for [subject], with [available hours] hours daily, focusing on preparing for [exam type]." data-zh-hk="為 [科目] 制定一個 [時間長度] 嘅溫習計劃，每日 [可用時間] 小時，重點準備 [考試類型]。">為 [科目] 制定一個 [時間長度] 嘅溫習計劃，每日 [可用時間] 小時，重點準備 [考試類型]。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Memory Techniques" data-zh-hk="記憶技巧">記憶技巧</div>
+                            <div class="prompt-description" data-en="Create memory aids and mnemonics" data-zh-hk="創造記憶輔助工具和助記符">創造記憶輔助工具和助記符</div>
+                            <div class="prompt-text" data-en="Create memory techniques for [information to remember], using local cultural references and landmarks to make memories more vivid." data-zh-hk="為 [要記住嘅資料] 創造記憶技巧，用本地文化參考同地標令記憶更深刻。">為 [要記住嘅資料] 創造記憶技巧，用本地文化參考同地標令記憶更深刻。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="daily-intermediate">
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Research Assistant" data-zh-hk="研究助手">研究助手</div>
+                            <div class="prompt-description" data-en="Conduct comprehensive research on academic topics" data-zh-hk="對學術主題進行全面研究">對學術主題進行全面研究</div>
+                            <div class="prompt-text" data-en="Help me research [academic topic] in depth, providing latest developments, key viewpoints and reliable sources." data-zh-hk="幫我深入研究 [學術主題]，提供最新發展、關鍵觀點同可靠資料來源。">幫我深入研究 [學術主題]，提供最新發展、關鍵觀點同可靠資料來源。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Essay Structure Planner" data-zh-hk="論文結構規劃">論文結構規劃</div>
+                            <div class="prompt-description" data-en="Plan well-structured academic essays" data-zh-hk="規劃結構良好的學術論文">規劃結構良好的學術論文</div>
+                            <div class="prompt-text" data-en="Create a detailed outline for a [word count] word essay on [essay topic], including introduction, arguments, evidence and conclusion." data-zh-hk="為關於 [論文題目] 嘅 [字數] 字論文制定詳細大綱，包括引言、論點、論證同結論。">為關於 [論文題目] 嘅 [字數] 字論文制定詳細大綱，包括引言、論點、論證同結論。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Critical Thinking" data-zh-hk="批判性思考">批判性思考</div>
+                            <div class="prompt-description" data-en="Develop analytical and critical thinking skills" data-zh-hk="培養分析和批判思維技能">培養分析和批判思維技能</div>
+                            <div class="prompt-text" data-en="Analyze [issue/viewpoint] from different angles, presenting supporting and opposing arguments to develop critical thinking skills." data-zh-hk="分析 [議題/觀點] 嘅不同角度，提出支持同反對論據，培養批判性思考能力。">分析 [議題/觀點] 嘅不同角度，提出支持同反對論據，培養批判性思考能力。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Learning Strategy" data-zh-hk="學習策略">學習策略</div>
+                            <div class="prompt-description" data-en="Optimize personal learning methods" data-zh-hk="優化個人學習方法">優化個人學習方法</div>
+                            <div class="prompt-text" data-en="Based on my learning style [learning characteristics], recommend the most effective learning methods and strategies for [subject]." data-zh-hk="根據我嘅學習風格 [學習特點]，為 [科目] 推薦最有效嘅學習方法同策略。">根據我嘅學習風格 [學習特點]，為 [科目] 推薦最有效嘅學習方法同策略。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Exam Strategy" data-zh-hk="考試策略">考試策略</div>
+                            <div class="prompt-description" data-en="Develop effective exam preparation strategies" data-zh-hk="制定有效的考試準備策略">制定有效的考試準備策略</div>
+                            <div class="prompt-text" data-en="Develop exam strategies for [exam type], including time allocation, answering techniques and mental preparation." data-zh-hk="為 [考試類型] 制定應試策略，包括時間分配、答題技巧同心理準備。">為 [考試類型] 制定應試策略，包括時間分配、答題技巧同心理準備。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="daily-expert">
+                        <div class="expert-teaser">
+                            <h3 data-en="🎓 Expert Learning Prompts" data-zh-hk="🎓 專家級學習Prompt">🎓 專家級學習Prompt</h3>
+                            <p data-en="Unlock 1000+ weekly updated professional learning prompts, including:" data-zh-hk="解鎖1000+個每週更新嘅專業學習提示詞，包括：">解鎖1000+個每週更新嘅專業學習提示詞，包括：</p>
+                            <ul style="text-align: left; margin: 15px 0; color: #ddd;">
+                                <li data-en="Advanced research methodologies" data-zh-hk="高級研究方法論">高級研究方法論</li>
+                                <li data-en="AI-assisted learning optimization" data-zh-hk="AI輔助學習優化">AI輔助學習優化</li>
+                                <li data-en="Personalized course design" data-zh-hk="個人化課程設計">個人化課程設計</li>
+                                <li data-en="Professional skill development guidance" data-zh-hk="專業技能發展指導">專業技能發展指導</li>
+                                <li data-en="Advanced academic writing techniques" data-zh-hk="學術寫作進階技巧">學術寫作進階技巧</li>
+                            </ul>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')" data-en="Subscribe Expert" data-zh-hk="訂閱專家Prompt">
+                                訂閱專家Prompt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workplace Use Category -->
+                <div class="category-card workplace" data-category="workplace">
+                    <h3 class="category-title">
+                        <span class="category-emoji">💼</span>
+                        <span data-en="Workplace Use" data-zh-hk="職場應用">職場應用</span>
+                    </h3>
+                    <p class="category-subtitle" data-en="For professionals and business applications" data-zh-hk="適合職場人士和商業應用">適合職場人士和商業應用</p>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'workplace', 'beginner')" data-en="Beginner" data-zh-hk="入門">入門</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'workplace', 'intermediate')" data-en="Intermediate" data-zh-hk="進階">進階</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'workplace', 'expert')" data-en="Expert" data-zh-hk="專家">專家</button>
+                    </div>
+                    
+                    <div class="level-content active" id="workplace-beginner">
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Write Professional Email" data-zh-hk="撰寫專業電郵">撰寫專業電郵</div>
+                            <div class="prompt-description" data-en="Compose professional emails for workplace" data-zh-hk="為職場撰寫專業電子郵件">為職場撰寫專業電子郵件</div>
+                            <div class="prompt-text" data-en="Help me write a formal email about [topic] to [recipient], with a professional but friendly tone, suitable for business culture." data-zh-hk="幫我寫一封關於 [主題] 嘅正式電郵畀 [收件人]，語調要專業但友善，適合商業文化。">幫我寫一封關於 [主題] 嘅正式電郵畀 [收件人]，語調要專業但友善，適合商業文化。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Meeting Minutes" data-zh-hk="會議記錄">會議記錄</div>
+                            <div class="prompt-description" data-en="Create organized meeting summaries" data-zh-hk="創建有組織的會議摘要">創建有組織的會議摘要</div>
+                            <div class="prompt-text" data-en="Organize the following meeting content into professional meeting minutes: [meeting content], including key points, decisions and follow-up actions." data-zh-hk="將以下會議內容整理成專業嘅會議記錄：[會議內容]，包括要點、決定同跟進事項。">將以下會議內容整理成專業嘅會議記錄：[會議內容]，包括要點、決定同跟進事項。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Business Report Writing" data-zh-hk="商業報告撰寫">商業報告撰寫</div>
+                            <div class="prompt-description" data-en="Write clear and concise business reports" data-zh-hk="撰寫清晰簡潔的商業報告">撰寫清晰簡潔的商業報告</div>
+                            <div class="prompt-text" data-en="Write a concise work report for [project/topic], including current status, issues, recommendations and next steps." data-zh-hk="為 [項目/主題] 撰寫簡潔嘅工作報告，包括現狀、問題、建議同下一步行動。">為 [項目/主題] 撰寫簡潔嘅工作報告，包括現狀、問題、建議同下一步行動。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Customer Response" data-zh-hk="客戶回覆">客戶回覆</div>
+                            <div class="prompt-description" data-en="Handle customer inquiries professionally" data-zh-hk="專業處理客戶查詢">專業處理客戶查詢</div>
+                            <div class="prompt-text" data-en="Create a professional response template for [customer inquiry type], with a polite and helpful tone." data-zh-hk="為 [客戶查詢類型] 制定專業嘅回覆模板，語調要有禮貌同有幫助。">為 [客戶查詢類型] 制定專業嘅回覆模板，語調要有禮貌同有幫助。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Task Prioritization" data-zh-hk="任務優先排序">任務優先排序</div>
+                            <div class="prompt-description" data-en="Organize and prioritize work tasks" data-zh-hk="組織和優先排序工作任務">組織和優先排序工作任務</div>
+                            <div class="prompt-text" data-en="Help me prioritize the following tasks [task list] by importance and urgency, and suggest time allocation." data-zh-hk="幫我將以下任務 [任務清單] 按重要性同緊急性排序，並建議時間分配。">幫我將以下任務 [任務清單] 按重要性同緊急性排序，並建議時間分配。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="workplace-intermediate">
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Sales Report Analysis" data-zh-hk="銷售報告分析">銷售報告分析</div>
+                            <div class="prompt-description" data-en="Extract insights from sales data" data-zh-hk="從銷售數據中提取洞察">從銷售數據中提取洞察</div>
+                            <div class="prompt-text" data-en="Analyze the following sales data [data], identify trends, issues and improvement opportunities, provide actionable recommendations." data-zh-hk="分析以下銷售數據 [數據]，識別趨勢、問題同改善機會，提供可行嘅建議。">分析以下銷售數據 [數據]，識別趨勢、問題同改善機會，提供可行嘅建議。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Project Planning" data-zh-hk="項目規劃">項目規劃</div>
+                            <div class="prompt-description" data-en="Create comprehensive project plans" data-zh-hk="創建全面的項目計劃">創建全面的項目計劃</div>
+                            <div class="prompt-text" data-en="Create a detailed plan for [project name], including timeline, resource allocation, risk assessment and success metrics." data-zh-hk="為 [項目名稱] 制定詳細計劃，包括時間表、資源分配、風險評估同成功指標。">為 [項目名稱] 制定詳細計劃，包括時間表、資源分配、風險評估同成功指標。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Competitor Analysis" data-zh-hk="競爭對手分析">競爭對手分析</div>
+                            <div class="prompt-description" data-en="Analyze market competition" data-zh-hk="分析市場競爭">分析市場競爭</div>
+                            <div class="prompt-text" data-en="Analyze [competitor] strategies, strengths, weaknesses and our differentiation opportunities in the market." data-zh-hk="分析 [競爭對手] 嘅策略、優勢、弱點同我哋嘅差異化機會。">分析 [競爭對手] 嘅策略、優勢、弱點同我哋嘅差異化機會。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Performance Review" data-zh-hk="績效評估">績效評估</div>
+                            <div class="prompt-description" data-en="Conduct fair performance evaluations" data-zh-hk="進行公平的績效評估">進行公平的績效評估</div>
+                            <div class="prompt-text" data-en="Create a performance evaluation framework for [employee position], including assessment criteria, improvement suggestions and development plans." data-zh-hk="為 [員工職位] 制定績效評估框架，包括評估標準、改善建議同發展計劃。">為 [員工職位] 制定績效評估框架，包括評估標準、改善建議同發展計劃。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Business Proposal" data-zh-hk="商業提案">商業提案</div>
+                            <div class="prompt-description" data-en="Write compelling business proposals" data-zh-hk="撰寫引人注目的商業提案">撰寫引人注目的商業提案</div>
+                            <div class="prompt-text" data-en="Write a business proposal for [project/service], targeting [client type], including value proposition, execution plan and budget." data-zh-hk="為 [項目/服務] 撰寫商業提案，目標客戶係 [客戶類型]，包括價值主張、執行方案同預算。">為 [項目/服務] 撰寫商業提案，目標客戶係 [客戶類型]，包括價值主張、執行方案同預算。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="workplace-expert">
+                        <div class="expert-teaser">
+                            <h3 data-en="💼 Expert Workplace Prompts" data-zh-hk="💼 專家級職場Prompt">💼 專家級職場Prompt</h3>
+                            <p data-en="Unlock 1000+ weekly updated professional workplace prompts, including:" data-zh-hk="解鎖1000+個每週更新嘅專業職場提示詞，包括：">解鎖1000+個每週更新嘅專業職場提示詞，包括：</p>
+                            <ul style="text-align: left; margin: 15px 0; color: #ddd;">
+                                <li data-en="Advanced business strategy development" data-zh-hk="高級商業策略制定">高級商業策略制定</li>
+                                <li data-en="Market expansion planning" data-zh-hk="市場擴展規劃">市場擴展規劃</li>
+                                <li data-en="Digital transformation guidance" data-zh-hk="數字化轉型指導">數字化轉型指導</li>
+                                <li data-en="Leadership development frameworks" data-zh-hk="領導力發展框架">領導力發展框架</li>
+                                <li data-en="Operational excellence strategies" data-zh-hk="營運卓越化策略">營運卓越化策略</li>
+                            </ul>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')" data-en="Subscribe Expert" data-zh-hk="訂閱專家Prompt">
+                                訂閱專家Prompt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Living Category -->
+                <div class="category-card creative" data-category="creative">
+                    <h3 class="category-title">
+                        <span class="category-emoji">🎨</span>
+                        <span data-en="Creative Living" data-zh-hk="創意生活">創意生活</span>
+                    </h3>
+                    <p class="category-subtitle" data-en="For creators and designers" data-zh-hk="適合創作者和設計師">適合創作者和設計師</p>
+                    
+                    <div class="level-tabs">
+                        <button class="level-tab active" onclick="switchLevel(this, 'creative', 'beginner')" data-en="Beginner" data-zh-hk="入門">入門</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'creative', 'intermediate')" data-en="Intermediate" data-zh-hk="進階">進階</button>
+                        <button class="level-tab" onclick="switchLevel(this, 'creative', 'expert')" data-en="Expert" data-zh-hk="專家">專家</button>
+                    </div>
+                    
+                    <div class="level-content active" id="creative-beginner">
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Creative Storytelling" data-zh-hk="創意故事創作">創意故事創作</div>
+                            <div class="prompt-description" data-en="Create engaging stories with local setting" data-zh-hk="創作具有本地背景的吸引人故事">創作具有本地背景的吸引人故事</div>
+                            <div class="prompt-text" data-en="Write a short story about [theme] set in Hong Kong, incorporating local cultural elements." data-zh-hk="用廣東話寫一個關於 [主題] 嘅短故事，背景設喺香港，包含本地文化元素。">用廣東話寫一個關於 [主題] 嘅短故事，背景設喺香港，包含本地文化元素。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Social Media Content" data-zh-hk="社交媒體內容">社交媒體內容</div>
+                            <div class="prompt-description" data-en="Create engaging social media posts" data-zh-hk="創作吸引人的社交媒體帖子">創作吸引人的社交媒體帖子</div>
+                            <div class="prompt-text" data-en="Create an Instagram post for [brand/theme], targeting young people, with creativity and appeal." data-zh-hk="為 [品牌/主題] 創作 Instagram 貼文，目標係年輕人，要有創意同吸引力。">為 [品牌/主題] 創作 Instagram 貼文，目標係年輕人，要有創意同吸引力。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Creative Writing Ideas" data-zh-hk="創意寫作點子">創意寫作點子</div>
+                            <div class="prompt-description" data-en="Generate unique writing prompts" data-zh-hk="生成獨特的寫作靈感">生成獨特的寫作靈感</div>
+                            <div class="prompt-text" data-en="Give me 10 creative writing topics set in Hong Kong, suitable for [target audience]." data-zh-hk="畀我10個以香港為背景嘅創意寫作題材，適合 [目標讀者]。">畀我10個以香港為背景嘅創意寫作題材，適合 [目標讀者]。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Design Concepts" data-zh-hk="設計概念">設計概念</div>
+                            <div class="prompt-description" data-en="Develop basic design ideas" data-zh-hk="開發基本設計理念">開發基本設計理念</div>
+                            <div class="prompt-text" data-en="Design concept for [project type], style should be [design style], targeting [user group]." data-zh-hk="為 [項目類型] 設計概念，風格要 [設計風格]，目標用戶係 [用戶群體]。">為 [項目類型] 設計概念，風格要 [設計風格]，目標用戶係 [用戶群體]。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Content Planning" data-zh-hk="內容企劃">內容企劃</div>
+                            <div class="prompt-description" data-en="Plan content series and themes" data-zh-hk="規劃內容系列和主題">規劃內容系列和主題</div>
+                            <div class="prompt-text" data-en="Plan a month's content for [platform], theme is [content theme], 3-4 posts per week." data-zh-hk="為 [平台] 策劃一個月嘅內容企劃，主題係 [內容主題]，每週3-4篇。">為 [平台] 策劃一個月嘅內容企劃，主題係 [內容主題]，每週3-4篇。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="creative-intermediate">
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Advertising Copy" data-zh-hk="廣告文案">廣告文案</div>
+                            <div class="prompt-description" data-en="Create compelling advertising copy" data-zh-hk="創作引人注目的廣告文案">創作引人注目的廣告文案</div>
+                            <div class="prompt-text" data-en="Design advertising copy for [product/service], targeting [target group], highlighting [selling points]." data-zh-hk="為 [產品/服務] 設計廣告文案，目標係 [目標群體]，要突出 [賣點]。">為 [產品/服務] 設計廣告文案，目標係 [目標群體]，要突出 [賣點]。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Brand Storytelling" data-zh-hk="品牌故事">品牌故事</div>
+                            <div class="prompt-description" data-en="Craft compelling brand narratives" data-zh-hk="打造引人入勝的品牌敘事">打造引人入勝的品牌敘事</div>
+                            <div class="prompt-text" data-en="Create brand story for [brand], connecting local culture and values, including origin, mission and emotional connection." data-zh-hk="為 [品牌] 創作品牌故事，連結本地文化同價值觀，包括起源、使命同情感聯繫。">為 [品牌] 創作品牌故事，連結本地文化同價值觀，包括起源、使命同情感聯繫。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Video Script" data-zh-hk="影片腳本">影片腳本</div>
+                            <div class="prompt-description" data-en="Write engaging video scripts" data-zh-hk="撰寫吸引人的影片腳本">撰寫吸引人的影片腳本</div>
+                            <div class="prompt-text" data-en="Write a [length] video script for [video purpose], set in Hong Kong, including dialogue, visuals and emotional settings." data-zh-hk="為 [影片目的] 寫一個 [長度] 嘅影片腳本，以香港為背景，包括對白、畫面同情感設定。">為 [影片目的] 寫一個 [長度] 嘅影片腳本，以香港為背景，包括對白、畫面同情感設定。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Creative Project Proposal" data-zh-hk="創意項目提案">創意項目提案</div>
+                            <div class="prompt-description" data-en="Develop creative project proposals" data-zh-hk="開發創意項目提案">開發創意項目提案</div>
+                            <div class="prompt-text" data-en="Create complete proposal for [creative project], including concept, execution method, timeline and budget." data-zh-hk="為 [創意項目] 制定完整企劃，包括概念、執行方法、時間表同預算。">為 [創意項目] 制定完整企劃，包括概念、執行方法、時間表同預算。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                        <div class="prompt-item">
+                            <div class="prompt-title" data-en="Multimedia Strategy" data-zh-hk="多媒體策略">多媒體策略</div>
+                            <div class="prompt-description" data-en="Plan cross-platform content strategies" data-zh-hk="規劃跨平台內容策略">規劃跨平台內容策略</div>
+                            <div class="prompt-text" data-en="Create cross-platform content strategy for [brand/theme], covering text, images, videos and interactive elements." data-zh-hk="為 [品牌/主題] 制定跨平台內容策略，涵蓋文字、圖像、影片同互動元素。">為 [品牌/主題] 制定跨平台內容策略，涵蓋文字、圖像、影片同互動元素。</div>
+                            <button class="copy-button" onclick="copyPrompt(this)" data-en="Copy" data-zh-hk="複製">複製</button>
+                        </div>
+                    </div>
+                    
+                    <div class="level-content" id="creative-expert">
+                        <div class="expert-teaser">
+                            <h3 data-en="🎨 Expert Creative Prompts" data-zh-hk="🎨 專家級創意Prompt">🎨 專家級創意Prompt</h3>
+                            <p data-en="Unlock 1000+ weekly updated professional creative prompts, including:" data-zh-hk="解鎖1000+個每週更新嘅專業創意提示詞，包括：">解鎖1000+個每週更新嘅專業創意提示詞，包括：</p>
+                            <ul style="text-align: left; margin: 15px 0; color: #ddd;">
+                                <li data-en="Advanced narrative techniques" data-zh-hk="高級敘事技巧">高級敘事技巧</li>
+                                <li data-en="Multi-platform content strategies" data-zh-hk="多平台內容策略">多平台內容策略</li>
+                                <li data-en="Creative direction frameworks" data-zh-hk="創意指導框架">創意指導框架</li>
+                                <li data-en="Visual storytelling methods" data-zh-hk="視覺故事講述法">視覺故事講述法</li>
+                                <li data-en="Interactive content design" data-zh-hk="互動內容設計">互動內容設計</li>
+                            </ul>
+                            <button class="subscribe-button" onclick="showAlert('Subscription')" data-en="Subscribe Expert" data-zh-hk="訂閱專家Prompt">
+                                訂閱專家Prompt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults">
+                <h3 data-en="🔍 No Prompts Found" data-zh-hk="🔍 找不到相關Prompt">🔍 找不到相關Prompt</h3>
+                <p data-en="Try different keywords or browse different categories" data-zh-hk="試試其他關鍵字，或者瀏覽不同分類">試試其他關鍵字，或者瀏覽不同分類</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section class="resources-section">
+        <div class="resources-container">
+            <h2 class="section-title" data-en="Learning Resources" data-zh-hk="學習資源">學習資源</h2>
+            
+            <div class="resource-card">
+                <h3 class="resource-title" data-en="📚 Prompt Engineering Course" data-zh-hk="📚 提示詞工程課程">📚 提示詞工程課程</h3>
+                <p data-en="Master the fundamentals of prompt engineering with our comprehensive course designed for Hong Kong learners." data-zh-hk="學習提示詞工程的基礎知識，專為香港學習者設計的全面課程。">學習提示詞工程的基礎知識，專為香港學習者設計的全面課程。</p>
+                <a href="/courses/prompt-engineering-course/outline" class="resource-link" data-en="View Course Outline →" data-zh-hk="查看課程大綱 →">
+                    查看課程大綱 →
+                </a>
+            </div>
+
+            <div class="faq-section">
+                <h3 class="resource-title" data-en="❓ Frequently Asked Questions" data-zh-hk="❓ 常見問題">❓ 常見問題</h3>
+                
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span data-en="What are the limitations of prompts?" data-zh-hk="提示詞有什麼限制？">提示詞有什麼限制？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-en="Prompts are limited by the AI model's training data and capabilities. They work best when specific and clear, but may not always produce perfect results. The quality depends on how well you structure your instructions and the context you provide." data-zh-hk="提示詞受AI模型的訓練數據和能力限制。它們在具體和清晰時效果最好，但可能不總是產生完美的結果。質量取決於你如何結構化指令和提供的上下文。">提示詞受AI模型的訓練數據和能力限制。它們在具體和清晰時效果最好，但可能不總是產生完美的結果。質量取決於你如何結構化指令和提供的上下文。</span>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span data-en="How to use prompts with Grok 3?" data-zh-hk="如何在Grok 3中使用提示詞？">如何在Grok 3中使用提示詞？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-en="Simply copy any prompt from our library and paste it into Grok 3's chat interface. Replace any bracketed placeholders [like this] with your specific information. For best results, be as specific as possible with your context and requirements." data-zh-hk="只需從我們的庫中複製任何提示詞並粘貼到Grok 3的聊天界面中。用你的具體信息替換任何方括號佔位符[like this]。為了獲得最佳結果，請盡可能具體地提供上下文和要求。">只需從我們的庫中複製任何提示詞並粘貼到Grok 3的聊天界面中。用你的具體信息替換任何方括號佔位符[like this]。為了獲得最佳結果，請盡可能具體地提供上下文和要求。</span>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span data-en="Are prompts suitable for Hong Kong context?" data-zh-hk="提示詞適合香港環境嗎？">提示詞適合香港環境嗎？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-en="Yes! All our prompts are specifically adapted for Hong Kong users, including cultural references, local business practices, and traditional Chinese language considerations where relevant." data-zh-hk="是的！我們所有的提示詞都專門為香港用戶調整，包括文化參考、本地商業實踐和相關的繁體中文語言考慮。">是的！我們所有的提示詞都專門為香港用戶調整，包括文化參考、本地商業實踐和相關的繁體中文語言考慮。</span>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span data-en="How often are prompts updated?" data-zh-hk="提示詞多久更新一次？">提示詞多久更新一次？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-en="Free prompts are updated monthly, while expert subscribers get access to 1000+ prompts that are updated weekly with the latest AI techniques and industry best practices." data-zh-hk="免費提示詞每月更新，而專家訂閱者可以訪問1000+個每週更新的提示詞，包含最新的AI技術和行業最佳實踐。">免費提示詞每月更新，而專家訂閱者可以訪問1000+個每週更新的提示詞，包含最新的AI技術和行業最佳實踐。</span>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span data-en="Can I modify the prompts?" data-zh-hk="我可以修改提示詞嗎？">我可以修改提示詞嗎？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-en="Absolutely! Our prompts are designed as templates. Feel free to modify, combine, or adapt them to better suit your specific needs and use cases." data-zh-hk="當然可以！我們的提示詞設計為模板。請隨時修改、組合或調整它們，以更好地滿足你的具體需求和使用情況。">當然可以！我們的提示詞設計為模板。請隨時修改、組合或調整它們，以更好地滿足你的具體需求和使用情況。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section class="legal-section">
+        <div class="disclaimer">
+            <span data-en="Disclaimer: The effectiveness of prompts may vary depending on the AI model, context, and specific use case. Results are not guaranteed, and users should verify outputs for accuracy. This platform provides educational content only." data-zh-hk="免責聲明：提示詞的效果可能因AI模型、語境和具體使用情況而異。我們不保證結果，用戶應驗證輸出的準確性。本平台僅提供教育內容。">
+                免責聲明：提示詞的效果可能因AI模型、語境和具體使用情況而異。我們不保證結果，用戶應驗證輸出的準確性。本平台僅提供教育內容。
+            </span>
+        </div>
+        
+        <div class="legal-links">
+            <a href="#" onclick="showAlert('Privacy Policy')" data-en="Privacy Policy" data-zh-hk="私隱政策">私隱政策</a>
+            <a href="#" onclick="showAlert('Terms of Service')" data-en="Terms of Service" data-zh-hk="服務條款">服務條款</a>
+            <a href="#" onclick="showAlert('Contact Us')" data-en="Contact Us" data-zh-hk="聯絡我們">聯絡我們</a>
+        </div>
+    </section>
+
+    <script>
+        // Current language state - Default to Chinese
+        let currentLanguage = 'zh-hk';
+
+        // Language switching functionality
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`lang-${lang}`).classList.add('active');
+            
+            // Update all elements with language attributes
+            document.querySelectorAll('[data-en][data-zh-hk]').forEach(element => {
+                if (lang === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                } else {
+                    element.textContent = element.getAttribute('data-zh-hk');
+                }
+            });
+            
+            // Update placeholder for search input
+            const searchInput = document.getElementById('searchInput');
+            if (lang === 'en') {
+                searchInput.placeholder = searchInput.getAttribute('data-en-placeholder') || 'e.g.: write email, create story, analyze data...';
+            } else {
+                searchInput.placeholder = searchInput.getAttribute('data-zh-hk-placeholder') || '例如：寫電郵、創作故事、分析數據...';
+            }
+            
+            // Store language preference
+            localStorage.setItem('promptHubLanguage', lang);
+            
+            console.log(`Language switched to: ${lang === 'en' ? 'English' : 'Traditional Chinese'}`);
+        }
+
+        // Load saved language preference
+        function loadLanguagePreference() {
+            const savedLang = localStorage.getItem('promptHubLanguage') || 'zh-hk';
+            switchLanguage(savedLang);
+        }
+
+        // Alert function for placeholder links
+        function showAlert(page) {
+            if (currentLanguage === 'en') {
+                alert("Redirecting to " + page + "...");
+            } else {
+                alert("正在前往" + page + "頁...");
+            }
+        }
+
+        // Level switching functionality
+        function switchLevel(button, category, level) {
+            const categoryCard = button.closest('.category-card');
+            const allTabs = categoryCard.querySelectorAll('.level-tab');
+            const allContents = categoryCard.querySelectorAll('.level-content');
+            
+            allTabs.forEach(tab => tab.classList.remove('active'));
+            allContents.forEach(content => content.classList.remove('active'));
+            
+            button.classList.add('active');
+            document.getElementById(`${category}-${level}`).classList.add('active');
+        }
+
+        // Copy prompt functionality
+        function copyPrompt(button) {
+            const promptText = button.previousElementSibling.textContent;
+            
+            // Create temporary textarea for copying
+            const textarea = document.createElement('textarea');
+            textarea.value = promptText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                
+                // Visual feedback
+                const originalText = button.textContent;
+                
+                if (currentLanguage === 'en') {
+                    button.textContent = 'Copied!';
+                } else {
+                    button.textContent = '已複製!';
+                }
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+                
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert('Copy failed. Please select and copy manually.');
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Search functionality with real-time filtering
+        function searchPrompts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const categoriesGrid = document.getElementById('categoriesGrid');
+            const categoryCards = categoriesGrid.querySelectorAll('.category-card');
+            const noResults = document.getElementById('noResults');
+            
+            let hasResults = false;
+
+            if (searchTerm === '') {
+                // Show all categories if search is empty
+                categoryCards.forEach(card => {
+                    card.style.display = 'block';
+                    // Clear any previous highlights
+                    clearHighlights(card);
+                });
+                noResults.classList.remove('show');
+                return;
+            }
+
+            categoryCards.forEach(card => {
+                let cardHasMatch = false;
+                
+                // Clear previous highlights
+                clearHighlights(card);
+                
+                // Search in category title
+                const categoryTitle = card.querySelector('.category-title').textContent.toLowerCase();
+                if (categoryTitle.includes(searchTerm)) {
+                    cardHasMatch = true;
+                }
+                
+                // Search in prompts
+                const promptItems = card.querySelectorAll('.prompt-item');
+                promptItems.forEach(item => {
+                    const title = item.querySelector('.prompt-title').textContent.toLowerCase();
+                    const description = item.querySelector('.prompt-description').textContent.toLowerCase();
+                    const text = item.querySelector('.prompt-text').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm) || text.includes(searchTerm)) {
+                        cardHasMatch = true;
+                        
+                        // Highlight the search term
+                        highlightSearchTerm(item, searchTerm);
+                        
+                        // Show the first level that contains matching prompts
+                        const levelContent = item.closest('.level-content');
+                        if (levelContent && !levelContent.classList.contains('active')) {
+                            // Switch to the level containing the match
+                            const levelId = levelContent.id;
+                            const level = levelId.split('-').pop();
+                            const category = levelId.split('-')[0];
+                            
+                            // Find and click the corresponding tab
+                            const tabs = card.querySelectorAll('.level-tab');
+                            tabs.forEach((tab, index) => {
+                                tab.classList.remove('active');
+                                if ((level === 'beginner' && index === 0) || 
+                                    (level === 'intermediate' && index === 1) || 
+                                    (level === 'expert' && index === 2)) {
+                                    tab.classList.add('active');
+                                }
+                            });
+                            
+                            // Show the correct level content
+                            card.querySelectorAll('.level-content').forEach(content => {
+                                content.classList.remove('active');
+                            });
+                            levelContent.classList.add('active');
+                        }
+                    }
+                });
+                
+                if (cardHasMatch) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            if (hasResults) {
+                noResults.classList.remove('show');
+            } else {
+                noResults.classList.add('show');
+            }
+        }
+
+        // Helper function to highlight search terms
+        function highlightSearchTerm(item, searchTerm) {
+            const textElements = item.querySelectorAll('.prompt-title, .prompt-description, .prompt-text');
+            textElements.forEach(el => {
+                const originalText = el.textContent;
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                const highlightedText = originalText.replace(regex, '<span class="highlight">$1</span>');
+                el.innerHTML = highlightedText;
+            });
+        }
+
+        // Helper function to clear highlights
+        function clearHighlights(card) {
+            const highlightedElements = card.querySelectorAll('.prompt-title, .prompt-description, .prompt-text');
+            highlightedElements.forEach(el => {
+                el.innerHTML = el.textContent;
+            });
+        }
+
+        // FAQ toggle functionality
+        function toggleFAQ(faqItem) {
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = faqItem.querySelector('.faq-icon');
+            
+            if (faqItem.classList.contains('active')) {
+                faqItem.classList.remove('active');
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item.active').forEach(openItem => {
+                    openItem.classList.remove('active');
+                    openItem.querySelector('.faq-answer').classList.remove('active');
+                    openItem.querySelector('.faq-icon').textContent = '+';
+                });
+                
+                // Open clicked FAQ
+                faqItem.classList.add('active');
+                answer.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Fixed zh-HK default Prompt Hub page loaded successfully!');
+            
+            // Load language preference after DOM is ready
+            loadLanguagePreference();
+            
+            // Test the Prompt link
+            const promptLink = document.querySelector('.prompt-link');
+            if (promptLink) {
+                console.log('✅ Prompt link found and ready to test!');
+            }
+            
+            // Test all interactive elements
+            const copyButtons = document.querySelectorAll('.copy-button');
+            const levelTabs = document.querySelectorAll('.level-tab');
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            console.log(`Found ${copyButtons.length} copy buttons`);
+            console.log(`Found ${levelTabs.length} level tabs`);
+            console.log(`Found ${faqItems.length} FAQ items`);
+            console.log('🌐 Fixed: Page now defaults to zh-HK with all content in Chinese!');
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            console.log('Page fully loaded and visible!');
+            console.log('🎯 Default language: 繁體中文 (zh-HK)');
+        });
+    </script>
+</body>
+</html>

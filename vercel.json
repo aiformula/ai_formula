@@ -1,0 +1,16 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "ai_formula/dist",
+  "installCommand": "npm run install:all",
+  "devCommand": "npm run dev",
+  "framework": "vite",
+  "regions": ["hkg1"],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+} 

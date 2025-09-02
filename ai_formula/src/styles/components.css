@@ -1,0 +1,353 @@
+/* ====================================
+   AI FORMULA COMPONENT STYLES
+   專門為各種組件設計的樣式
+   ==================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ COURSE COMPONENTS ============ */
+@layer components {
+  /* Course Card */
+  .course-card {
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-white/10 transition-all duration-200 cursor-pointer p-6;
+  }
+  
+  .course-card-header {
+    @apply flex items-start justify-between mb-4;
+  }
+  
+  .course-card-title {
+    @apply text-xl font-semibold text-gray-900 mb-2;
+  }
+  
+  .course-card-description {
+    @apply text-gray-600 text-sm leading-relaxed mb-4;
+  }
+  
+  .course-card-footer {
+    @apply flex items-center justify-between pt-4 border-t border-gray-100;
+  }
+  
+  /* Unit Card */
+  .unit-card {
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-white/10 transition-all duration-200 p-4 mb-4;
+  }
+  
+  .unit-card-completed {
+    @apply border-green-200 bg-green-50;
+  }
+  
+  .unit-card-current {
+    @apply border-blue-200 bg-blue-50;
+  }
+  
+  /* Learning Progress */
+  .learning-progress-container {
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-white/10;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .learning-progress-header {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  .learning-progress-title {
+    @apply text-lg font-semibold text-white;
+  }
+  
+  .learning-progress-percentage {
+    @apply text-2xl font-bold;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Skills Radar */
+  .skills-radar-container {
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-white/10;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .skills-radar-title {
+    @apply text-lg font-semibold text-white mb-4;
+  }
+  
+  .skill-item {
+    @apply flex items-center justify-between py-3 border-b border-white/10 last:border-b-0;
+  }
+  
+  .skill-name {
+    @apply text-sm font-medium text-white/80;
+  }
+  
+  .skill-progress {
+    @apply flex-1 mx-3;
+  }
+  
+  .skill-percentage {
+    @apply text-sm font-semibold text-gray-900 min-w-[3rem] text-right;
+  }
+}
+
+/* ============ NAVIGATION COMPONENTS ============ */
+@layer components {
+  /* Enhanced Breadcrumb Navigation */
+  .breadcrumb {
+    @apply flex items-center space-x-3 text-sm mb-8 p-4 bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-700/30;
+  }
+  
+  .breadcrumb-item {
+    @apply text-gray-300 hover:text-white transition-colors duration-300 cursor-pointer font-medium;
+  }
+  
+  .breadcrumb-item:hover {
+    @apply text-blue-400;
+  }
+  
+  .breadcrumb-separator {
+    @apply text-gray-500 font-normal;
+  }
+  
+  .breadcrumb-current {
+    @apply text-white font-semibold bg-gray-700/50 px-3 py-1 rounded-lg;
+  }
+  
+  /* Enhanced Unit Navigation */
+  .unit-navigation {
+    @apply flex items-center justify-between py-8 px-6 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-700/30 mt-8;
+  }
+  
+  .unit-nav-button {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-gray-700/60 border border-gray-600/50 text-white rounded-lg transition-all duration-200 hover:bg-gray-600/70 hover:border-gray-500/70;
+  }
+  
+  .unit-nav-button-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 font-medium;
+  }
+  
+  /* Navigation Button with Context */
+  .nav-button-with-context {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 p-4;
+    min-width: 160px;
+  }
+  
+  .nav-button-with-context .nav-label-context {
+    @apply text-left;
+  }
+}
+
+/* ============ CONTENT COMPONENTS ============ */
+@layer components {
+  /* Content Section */
+  .content-section {
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-white/10 mb-6;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .content-section-header {
+    @apply flex items-center mb-6;
+  }
+  
+  .content-section-title {
+    @apply text-2xl font-semibold text-white;
+  }
+  
+  .content-section-subtitle {
+    @apply text-white/70 mt-2;
+  }
+  
+  /* Video Container */
+  .video-container {
+    @apply relative w-full bg-black rounded-lg overflow-hidden mb-6;
+    aspect-ratio: 16/9;
+  }
+  
+  .video-placeholder {
+    @apply absolute inset-0 flex items-center justify-center bg-gray-800;
+  }
+  
+  .video-play-button {
+    @apply w-16 h-16 bg-gray-700/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-200 border border-white/20;
+  }
+  
+  /* Key Points */
+  .key-points-container {
+    @apply bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl p-6 border border-blue-500/20;
+  }
+  
+  .key-points-title {
+    @apply text-lg font-semibold text-gray-900 mb-4 flex items-center;
+  }
+  
+  .key-points-list {
+    @apply space-y-3;
+  }
+  
+  .key-point-item {
+    @apply flex items-start space-x-3;
+  }
+  
+  .key-point-icon {
+    @apply w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0;
+  }
+  
+  .key-point-text {
+    @apply text-gray-700;
+  }
+}
+
+/* ============ SIDEBAR COMPONENTS ============ */
+@layer components {
+  /* Sidebar Container */
+  .sidebar-container {
+    @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .sidebar-header {
+    @apply px-6 py-4 bg-gray-700/30 border-b border-white/10;
+  }
+  
+  .sidebar-title {
+    @apply text-lg font-semibold text-white;
+  }
+  
+  .sidebar-content {
+    @apply p-6;
+  }
+  
+  /* Notes Section */
+  .notes-container {
+    @apply sidebar-container;
+  }
+  
+  .notes-textarea {
+    @apply w-full h-32 p-3 bg-gray-700/50 border border-gray-600/50 rounded-lg resize-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent text-white placeholder-gray-400;
+  }
+  
+  .notes-save-button {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200 mt-3 w-full;
+  }
+}
+
+/* ============ QUIZ COMPONENTS ============ */
+@layer components {
+  /* Quiz Container */
+  .quiz-container {
+    @apply content-section;
+  }
+  
+  .quiz-header {
+    @apply text-center mb-8;
+  }
+  
+  .quiz-title {
+    @apply text-2xl font-bold text-white mb-2;
+  }
+  
+  .quiz-description {
+    @apply text-white/70;
+  }
+  
+  /* Quiz Question */
+  .quiz-question {
+    @apply bg-gray-700/30 rounded-lg p-6 mb-6;
+  }
+  
+  .quiz-question-text {
+    @apply text-lg font-medium text-white mb-4;
+  }
+  
+  .quiz-options {
+    @apply space-y-3;
+  }
+  
+  .quiz-option {
+    @apply p-4 border-2 border-gray-600/50 bg-gray-800/30 rounded-lg cursor-pointer transition-all duration-200 hover:border-blue-400/50 hover:bg-blue-500/10 text-white;
+  }
+  
+  .quiz-option-selected {
+    @apply border-blue-500 bg-blue-500/20;
+  }
+  
+  .quiz-option-correct {
+    @apply border-green-500 bg-green-500/20;
+  }
+  
+  .quiz-option-incorrect {
+    @apply border-red-500 bg-red-500/20;
+  }
+}
+
+/* ============ ACHIEVEMENT COMPONENTS ============ */
+@layer components {
+  /* Achievement Badge */
+  .achievement-badge {
+    @apply inline-flex items-center px-4 py-2 rounded-full text-sm font-medium;
+  }
+  
+  .achievement-badge-gold {
+    @apply achievement-badge;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #8B4513;
+  }
+  
+  .achievement-badge-silver {
+    @apply achievement-badge;
+    background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
+    color: #4A4A4A;
+  }
+  
+  .achievement-badge-bronze {
+    @apply achievement-badge;
+    background: linear-gradient(135deg, #CD7F32 0%, #A0522D 100%);
+    color: white;
+  }
+  
+  /* Learning Streak */
+  .learning-streak {
+    @apply flex items-center space-x-2 bg-orange-50 px-4 py-2 rounded-lg border border-orange-200;
+  }
+  
+  .learning-streak-icon {
+    @apply w-5 h-5 text-orange-500;
+  }
+  
+  .learning-streak-text {
+    @apply text-sm font-medium text-orange-700;
+  }
+}
+
+/* ============ ANIMATION UTILITIES ============ */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

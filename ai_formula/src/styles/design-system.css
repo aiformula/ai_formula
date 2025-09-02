@@ -1,0 +1,771 @@
+/* ====================================
+   AI FORMULA DESIGN SYSTEM
+   統一的設計系統 - 所有UI元素的基礎
+   ==================================== */
+
+/* 🎯 引入統一空間與尺寸系統 */
+@import url('./unified-spacing-system.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ COLOR SYSTEM ============ */
+@layer base {
+  :root {
+    /* === 📊 DASHBOARD DESIGN SYSTEM === */
+    /* Primary Action Colors - 主要操作色系統 */
+    --primary-action: #16A34A;        /* 綠色 - 主要成功操作 */
+    --primary-action-hover: #15803D;  /* 深綠色 - hover狀態 */
+    --primary-action-light: #22C55E;  /* 亮綠色 - 輔助 */
+    
+    /* Secondary Action Colors - 次要操作色系統 */
+    --secondary-action: rgba(255, 255, 255, 0.1);     /* 半透明白色 - ghost按鈕 */
+    --secondary-action-hover: rgba(255, 255, 255, 0.2); /* hover狀態 */
+    --secondary-action-border: rgba(255, 255, 255, 0.3); /* 邊框色 */
+    --secondary-action-text: rgba(255, 255, 255, 0.7);   /* 文字色 */
+    
+    /* Text Color Hierarchy - 文字顏色層級 */
+    --text-primary: #FFFFFF;           /* 純白 - 最重要的文字 */
+    --text-secondary: rgba(255, 255, 255, 0.8);  /* 80%白 - 次要文字 */
+    --text-tertiary: rgba(255, 255, 255, 0.6);   /* 60%白 - 第三級文字 */
+    --text-quaternary: rgba(255, 255, 255, 0.4); /* 40%白 - 最不重要文字 */
+    
+    /* Data Display Colors - 數據顯示專用色 */
+    --data-primary: #FFFFFF;           /* 主要數據 - 純白 */
+    --data-highlight: #22C55E;         /* 突出數據 - 綠色 */
+    --data-warning: #F59E0B;           /* 警告數據 - 橙色 */
+    --data-info: #3B82F6;              /* 資訊數據 - 藍色 */
+    
+    /* Status Colors - 狀態色系統 */
+    --status-success: #22C55E;         /* 成功/完成 */
+    --status-warning: #F59E0B;         /* 警告/進行中 */
+    --status-info: #F59E0B;            /* 資訊/開始 */
+    --status-neutral: rgba(255, 255, 255, 0.6); /* 中性狀態 */
+
+    /* Legacy Brand Colors */
+    --ai-formula-primary: #FFD600;
+    --ai-formula-primary-hover: #EAB308;
+    --ai-formula-secondary: #FFA500;
+    
+    /* Primary Color Variants */
+    --ai-formula-primary-light: rgba(255, 214, 0, 0.1);
+    --ai-formula-primary-medium: rgba(255, 214, 0, 0.2);
+    --ai-formula-primary-strong: rgba(255, 214, 0, 0.35);
+    
+    /* Dark Theme Colors */
+    --ai-formula-dark: #121212;
+    --ai-formula-dark-light: #161616;
+    --ai-formula-dark-medium: #1c1c1c;
+    --ai-formula-dark-card: #202020;
+
+    /* Accent Colors */
+    --ai-formula-accent-blue: #3B82F6;
+    --ai-formula-accent-purple: #8B5CF6;
+    --ai-formula-accent-pink: #EC4899;
+    --ai-formula-accent-cyan: #06B6D4;
+
+    /* Status Colors */
+    --ai-formula-success: #10B981;
+    --ai-formula-warning: #F59E0B;
+    --ai-formula-error: #EF4444;
+    --ai-formula-info: #60A5FA;
+
+    /* Gray Scale */
+    --ai-formula-gray-50: #F9FAFB;
+    --ai-formula-gray-100: #F3F4F6;
+    --ai-formula-gray-200: #E5E7EB;
+    --ai-formula-gray-300: #D1D5DB;
+    --ai-formula-gray-400: #9CA3AF;
+    --ai-formula-gray-500: #6B7280;
+    --ai-formula-gray-600: #4B5563;
+    --ai-formula-gray-700: #374151;
+    --ai-formula-gray-800: #1F2937;
+    --ai-formula-gray-900: #111827;
+
+    /* === 📝 ENHANCED TYPOGRAPHY HIERARCHY === */
+    /* Professional Typography Scale - 專業字體排印系統 (優化版) */
+    
+    /* H1 - 頁面主標題 (例如："ChatGPT 完整教學實戰課程") */
+    --font-h1-size: 1.56rem;        /* 25px (強化 +8%) */
+    --font-h1-weight: 800;          /* Extra Bold (提升從 700) */
+    --font-h1-line-height: 1.3;     /* 緊湊行高 */
+    --font-h1-color: var(--text-primary);
+    
+    /* H2 - 區塊標題 (例如："課程模塊"、"技能發展路線") */
+    --font-h2-size: 1.44rem;        /* 23px (提升從 21px) */
+    --font-h2-weight: 700;          /* Bold (提升從 600) */
+    --font-h2-line-height: 1.4;     /* 更緊湊 */
+    --font-h2-color: var(--text-primary);
+    
+    /* === 🎓 COURSE-SPECIFIC TYPOGRAPHY === */
+    /* Theme Title - 課程主題標題 (例如："第1大主題 - 解構 ChatGPT") */
+    --font-theme-title-size: 1.25rem;    /* 20px (新增層級) */
+    --font-theme-title-weight: 700;      /* Bold (重要性突出) */
+    --font-theme-title-line-height: 1.4;
+    --font-theme-title-color: var(--text-primary);
+    
+    /* Unit Title - 單元標題 (例如："1.1 歡迎來到 AI 新紀元") */
+    --font-unit-title-size: 1.08rem;     /* 17px (新增層級) */
+    --font-unit-title-weight: 600;       /* Semi-bold (提升從 400) */
+    --font-unit-title-line-height: 1.5;
+    --font-unit-title-color: var(--text-primary);
+    
+    /* H3 - 一般卡片標題 (例如：其他區塊標題) */
+    --font-h3-size: 1.15rem;        /* 18px (保持) */
+    --font-h3-weight: 600;          /* Semi-bold (保持) */
+    --font-h3-line-height: 1.5;     
+    --font-h3-color: var(--text-primary);
+    
+    /* Data Display - 數據顯示 (例如："100%"、"31分鐘") */
+    --font-data-size: 1.88rem;      /* 30px (提升從 28px) */
+    --font-data-weight: 800;        /* Extra Bold (提升從 700) */
+    --font-data-line-height: 1.1;   /* 更緊湊突出 */
+    --font-data-color: var(--data-primary);
+    
+    /* Status Text - 狀態文字 (例如："🎉 恭喜！課程完成！") */
+    --font-status-size: 1.32rem;    /* 21px (輕微提升) */
+    --font-status-weight: 600;      /* Semi-bold (提升從 500) */
+    --font-status-line-height: 1.4; 
+    --font-status-color: var(--text-primary);
+    
+    /* Body Text - 內文/描述 (關鍵改善) */
+    --font-body-size: 1.06rem;      /* 17px (提升從 16px) */
+    --font-body-weight: 500;        /* Medium (提升從 400) - 關鍵改善 */
+    --font-body-line-height: 1.5;   
+    --font-body-color: var(--text-secondary);
+    
+    /* Label Text - 標籤文字 (例如："已完成"、"學習總時長") */
+    --font-label-size: 0.88rem;     /* 14px (輕微提升) */
+    --font-label-weight: 600;       /* Semi-bold (提升從 500) */
+    --font-label-line-height: 1.3;  /* 更緊湊 */
+    --font-label-color: var(--text-tertiary);
+    --font-label-transform: uppercase;
+    --font-label-spacing: 0.08em;   /* 增加字母間距 */
+    
+    /* Caption Text - 次要資訊 (例如："50分鐘 • 進行中") */
+    --font-caption-size: 0.88rem;   /* 14px (保持較小) */
+    --font-caption-weight: 400;     /* Normal (保持對比) */
+    --font-caption-line-height: 1.4; 
+    --font-caption-color: var(--text-quaternary);
+
+    /* Legacy Typography Scale (+15% 易讀性提升) */
+    --font-size-xs: 0.86rem;        /* 14px (+15%) */
+    --font-size-sm: 1.01rem;        /* 16px (+15%) */
+    --font-size-base: 1.15rem;      /* 18px (+15%) */
+    --font-size-lg: 1.29rem;        /* 21px (+15%) */
+    --font-size-xl: 1.44rem;        /* 23px (+15%) */
+    --font-size-2xl: 1.73rem;       /* 28px (+15%) */
+    --font-size-3xl: 2.16rem;       /* 35px (+15%) */
+    --font-size-4xl: 2.59rem;       /* 41px (+15%) */
+    --font-size-5xl: 3.45rem;       /* 55px (+15%) */
+    
+    /* Spacing Scale */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  }
+}
+
+/* ============ 學習平台組件系統 ============ */
+@layer components {
+  /* 🎨 基礎按鈕系統 */
+  .btn-ai-base {
+    @apply inline-flex items-center justify-center gap-2 font-medium duration-200 rounded-ai-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 transform transition-all;
+  }
+  
+  .btn-ai-primary {
+    @apply btn-ai-base bg-learning-500 hover:bg-learning-600 text-white shadow-ai-sm hover:shadow-ai-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-ai-sm;
+  }
+  
+  .btn-ai-success {
+    @apply btn-ai-base bg-completed-500 hover:bg-completed-600 text-white shadow-ai-sm hover:shadow-ai-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-ai-sm hover:scale-105 active:scale-100;
+  }
+  
+  .btn-ai-secondary {
+    @apply btn-ai-base bg-gray-700/60 hover:bg-gray-600/70 text-gray-300 hover:text-white border border-gray-600/50 hover:border-gray-500/60 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* 🎨 卡片系統 */
+  .card-ai-base {
+    @apply bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-ai-md duration-200 transition-all;
+  }
+  
+  .card-ai-elevated {
+    @apply card-ai-base shadow-ai-md hover:shadow-ai-lg hover:-translate-y-1 hover:border-white/20;
+  }
+  
+  .card-ai-interactive {
+    @apply card-ai-elevated cursor-pointer hover:border-white/20 hover:bg-gray-800/70 active:translate-y-0 active:shadow-ai-md;
+  }
+
+  /* 🎨 學習狀態指示器 - 增強版 */
+  .status-learning {
+    @apply bg-learning-100 text-learning-600 border border-learning-200 rounded-ai-sm px-2 py-1 transition-all duration-200 hover:bg-learning-200 hover:border-learning-300;
+  }
+  
+  .status-completed {
+    @apply bg-completed-100 text-completed-600 border border-completed-200 rounded-ai-sm px-2 py-1 transition-all duration-200 hover:bg-completed-200 hover:border-completed-300 hover:scale-105;
+  }
+  
+  .status-important {
+    @apply bg-important-100 text-important-600 border border-important-200 rounded-ai-sm px-2 py-1 transition-all duration-200 hover:bg-important-200 hover:border-important-300 animate-pulse;
+  }
+
+  /* 🎨 智能Header組件 */
+  .header-ai-smart {
+    @apply sticky top-0 z-20 bg-gray-900/95 backdrop-blur-lg border-b border-gray-700/30 rounded-b-ai-lg shadow-ai-lg;
+  }
+
+  /* 🎨 進度條系統 - 增強版 */
+  .progress-ai-base {
+    @apply w-full bg-gray-700 rounded-full overflow-hidden relative;
+  }
+  
+  .progress-ai-sm {
+    @apply progress-ai-base h-2;
+  }
+  
+  .progress-ai-md {
+    @apply progress-ai-base h-3;
+  }
+  
+  .progress-ai-lg {
+    @apply progress-ai-base h-4;
+  }
+
+  /* 進度條填充動畫 */
+  .progress-ai-fill {
+    @apply h-full rounded-full transition-all duration-700 ease-out relative overflow-hidden;
+  }
+
+  .progress-ai-fill::after {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-progress-shimmer;
+  }
+
+  /* 🎨 微交互增強組件 */
+  .hover-lift {
+    @apply transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .click-scale {
+    @apply transition-transform duration-150 active:scale-95;
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-learning-400/60 focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+
+  .smooth-appear {
+    @apply opacity-0 translate-y-4 transition-all duration-300 ease-out;
+  }
+
+  .smooth-appear.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* 🎨 輸入框系統 - 增強版 */
+  .input-ai-base {
+    @apply w-full px-3 py-2 bg-gray-700/50 border border-gray-600/50 rounded-ai-md text-white placeholder-gray-400 duration-150 focus:border-learning-500 focus:ring-2 focus:ring-learning-200 focus:bg-gray-700/70 transition-all;
+  }
+
+  /* 🎨 動畫工具類 */
+  .animate-learning-active {
+    @apply animate-learning-pulse;
+  }
+  
+  .animate-completion {
+    @apply animate-completion-bounce;
+  }
+  
+  .animate-slide-in {
+    @apply animate-slide-in-right;
+  }
+
+  /* ============ 響應式容器系統 ============ */
+  /* 主要內容容器 - 1440px 最大寬度，解決寬螢幕內容拉伸問題 */
+  .ai-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 1.5rem;  /* 24px */
+    padding-right: 1.5rem; /* 24px */
+  }
+  
+  /* 覆蓋 Tailwind 的 container 類別，統一最大寬度 */
+  .container {
+    max-width: 1440px !important;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  /* 統一常用的最大寬度類別 */
+  .max-w-6xl,
+  .max-w-7xl {
+    max-width: 1440px !important;
+  }
+  
+  /* ============ 設計系統工具類 ============ */
+  /* === 🎨 按鈕系統 - BUTTON SYSTEM === */
+  
+  /* Primary Action Button - 主要操作按鈕 */
+  .btn-primary-action {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-lg px-6 py-3 
+           transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+    background-color: var(--primary-action);
+    color: var(--text-primary);
+    border: none;
+  }
+  
+  .btn-primary-action:hover {
+    background-color: var(--primary-action-hover);
+    transform: translateY(-2px);
+  }
+  
+  /* Secondary Action Button - 次要操作按鈕 (Ghost Style) */
+  .btn-secondary-action {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-lg px-4 py-2 
+           transition-all duration-200 hover:shadow-md
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+    background-color: var(--secondary-action);
+    color: var(--secondary-action-text);
+    border: 1px solid var(--secondary-action-border);
+    font-size: var(--font-body-size);
+  }
+  
+  .btn-secondary-action:hover {
+    background-color: var(--secondary-action-hover);
+    color: var(--text-secondary);
+    border-color: var(--secondary-action-border);
+  }
+  
+  /* === 📝 增強字體層級類 - ENHANCED TYPOGRAPHY CLASSES === */
+  
+  /* H1 - 頁面主標題 */
+  .text-h1 {
+    font-size: var(--font-h1-size);
+    font-weight: var(--font-h1-weight);
+    line-height: var(--font-h1-line-height);
+    color: var(--font-h1-color);
+  }
+  
+  /* H2 - 區塊標題 */
+  .text-h2 {
+    font-size: var(--font-h2-size);
+    font-weight: var(--font-h2-weight);
+    line-height: var(--font-h2-line-height);
+    color: var(--font-h2-color);
+  }
+  
+  /* === 🎓 課程專用字體類 - COURSE-SPECIFIC CLASSES === */
+  
+  /* Theme Title - 課程主題標題 */
+  .text-theme-title {
+    font-size: var(--font-theme-title-size);
+    font-weight: var(--font-theme-title-weight);
+    line-height: var(--font-theme-title-line-height);
+    color: var(--font-theme-title-color);
+  }
+  
+  /* Unit Title - 單元標題 (關鍵改善) */
+  .text-unit-title {
+    font-size: var(--font-unit-title-size);
+    font-weight: var(--font-unit-title-weight);
+    line-height: var(--font-unit-title-line-height);
+    color: var(--font-unit-title-color);
+  }
+  
+  /* H3 - 一般卡片標題 */
+  .text-h3 {
+    font-size: var(--font-h3-size);
+    font-weight: var(--font-h3-weight);
+    line-height: var(--font-h3-line-height);
+    color: var(--font-h3-color);
+  }
+  
+  /* Data Display - 數據顯示 (增強版) */
+  .text-data {
+    font-size: var(--font-data-size);
+    font-weight: var(--font-data-weight);
+    line-height: var(--font-data-line-height);
+    color: var(--font-data-color);
+    white-space: nowrap; /* 防止數據換行，確保如「40分鐘」、「33%」保持在同一行 */
+  }
+  
+  /* Status Text - 狀態文字 (增強版) */
+  .text-status {
+    font-size: var(--font-status-size);
+    font-weight: var(--font-status-weight);
+    line-height: var(--font-status-line-height);
+    color: var(--font-status-color);
+  }
+  
+  /* Body Text - 內文/描述 (關鍵改善: 500字重) */
+  .text-body {
+    font-size: var(--font-body-size);
+    font-weight: var(--font-body-weight);
+    line-height: var(--font-body-line-height);
+    color: var(--font-body-color);
+  }
+  
+  /* Label Text - 標籤文字 (增強版) */
+  .text-label {
+    font-size: var(--font-label-size);
+    font-weight: var(--font-label-weight);
+    line-height: var(--font-label-line-height);
+    color: var(--font-label-color);
+    text-transform: var(--font-label-transform);
+    letter-spacing: var(--font-label-spacing);
+  }
+  
+  /* Caption Text - 次要資訊 */
+  .text-caption {
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-caption-weight);
+    line-height: var(--font-caption-line-height);
+    color: var(--font-caption-color);
+  }
+  
+  /* === 🎯 狀態指示器 - STATUS INDICATORS === */
+  
+  .status-success {
+    color: var(--status-success);
+  }
+  
+  .status-warning {
+    color: var(--status-warning);
+  }
+  
+  .status-info {
+    color: var(--status-info);
+  }
+  
+  .status-neutral {
+    color: var(--status-neutral);
+  }
+
+  /* ============ 頁面特定容器系統 ============ */
+  /* ChatGPT 完整課程系列 - 最佳體驗：在 1920px 寬螢幕上會有更好的內容展示效果 */
+  .chatgpt-learning-page .ai-container,
+  .chatgpt-learning-page .container,
+  .chatgpt-learning-page .max-w-6xl,
+  .chatgpt-learning-page .max-w-7xl,
+  .chatgpt-unit-page .ai-container,
+  .chatgpt-unit-page .container,
+  .chatgpt-unit-page .max-w-6xl,
+  .chatgpt-unit-page .max-w-7xl,
+  .chatgpt-quiz-page .ai-container,
+  .chatgpt-quiz-page .container,
+  .chatgpt-quiz-page .max-w-6xl,
+  .chatgpt-quiz-page .max-w-7xl,
+  .chatgpt-theme-page .ai-container,
+  .chatgpt-theme-page .container,
+  .chatgpt-theme-page .max-w-6xl,
+  .chatgpt-theme-page .max-w-7xl {
+    max-width: 1536px !important;
+  }
+  
+  /* 響應式 padding 調整 */
+  @media (max-width: 640px) {
+    .ai-container,
+    .container {
+      padding-left: 1rem;   /* 16px 在小螢幕 */
+      padding-right: 1rem;  /* 16px 在小螢幕 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .ai-container,
+    .container {
+      padding-left: 2rem;   /* 32px 在大螢幕 */
+      padding-right: 2rem;  /* 32px 在大螢幕 */
+    }
+  }
+
+  /* ♿ 無障礙訪問增強 */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .focus-visible-enhanced {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-learning-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-learning-600 focus:text-white focus:rounded-md focus:shadow-lg;
+  }
+
+  /* 高對比度模式支持 */
+  @media (prefers-contrast: high) {
+    .btn-ai-primary {
+      @apply border-2 border-white;
+    }
+    
+    .card-ai-base {
+      @apply border-2 border-gray-400;
+    }
+    
+    .status-learning,
+    .status-completed,
+    .status-important {
+      @apply border-2;
+    }
+  }
+
+  /* 減少動畫模式支持 */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-ai-base,
+    .card-ai-base,
+    .hover-lift,
+    .click-scale {
+      @apply transition-none;
+    }
+    
+    .animate-learning-active,
+    .animate-completion,
+    .animate-slide-in {
+      @apply animate-none;
+    }
+  }
+
+  /* === 🎯 數據統計卡片修正 - 防止圖示和標題換行 === */
+  /* 方法A: 防止標題文字換行 (推薦方案) */
+  .stat-card-header {
+    @apply flex items-center justify-center;
+    white-space: nowrap; /* 關鍵：防止文字換行 */
+    min-width: 0; /* 防止flex shrink問題 */
+  }
+  
+  .stat-card-title {
+    white-space: nowrap; /* 確保標題文字不換行 */
+    overflow: hidden; /* 如果真的太長，隱藏而不是換行 */
+    text-overflow: ellipsis; /* 顯示...省略號 */
+    flex-shrink: 0; /* 防止被壓縮 */
+  }
+  
+  /* 方法B: 替代方案 - 如果需要更多控制 */
+  .stat-card-icon-text-container {
+    @apply flex items-center;
+    flex-wrap: nowrap; /* 防止換行 */
+    min-width: 0;
+  }
+  
+  .stat-card-icon-text-container .lucide {
+    flex-shrink: 0; /* 圖示不會被壓縮 */
+  }
+  
+  .stat-card-icon-text-container span {
+    white-space: nowrap; /* 文字不換行 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 鍵盤導航增強 */
+  .keyboard-focusable {
+    @apply focus-visible-enhanced tabindex-0;
+  }
+
+  .keyboard-nav-container {
+    @apply focus-within:ring-2 focus-within:ring-learning-400/30 focus-within:ring-offset-1;
+  }
+
+  /* 🚀 性能優化 */
+  .performance-optimized {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .gpu-accelerated {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+
+  /* 內容渲染優化 */
+  .content-optimized {
+    contain: layout style paint;
+  }
+
+  /* 動畫性能優化 */
+  .motion-safe:motion-reduce {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* 滾動性能優化 */
+  .scroll-optimized {
+    @apply overflow-auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* 圖像和媒體優化 */
+  .media-optimized {
+    @apply object-cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* 🎨 響應式佈局系統 */
+  .layout-learning-main {
+    @apply grid gap-6 lg:gap-8;
+    grid-template-columns: 1fr;
+  }
+
+  .layout-learning-main.desktop {
+    @apply lg:grid-cols-10;
+  }
+
+  .layout-main-content {
+    @apply lg:col-span-7 space-y-6 lg:space-y-8;
+  }
+
+  .layout-sidebar-content {
+    @apply lg:col-span-3 space-y-4 lg:space-y-6;
+  }
+
+  /* 🎨 移動端智能Header */
+  .header-ai-mobile {
+    @apply flex flex-col space-y-3 p-4;
+  }
+  
+  .header-ai-mobile .header-row {
+    @apply flex items-center justify-between;
+  }
+  
+  .header-ai-mobile .header-progress {
+    @apply flex items-center justify-center space-x-4;
+  }
+
+  /* 🎨 響應式容器 */
+  .container-responsive {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 🎨 移動端優化按鈕 */
+  .btn-mobile-full {
+    @apply w-full sm:w-auto;
+  }
+  
+  .btn-mobile-compact {
+    @apply px-3 py-2 text-sm sm:px-4 sm:py-2 sm:text-base;
+  }
+
+  /* 🎨 響應式卡片 */
+  .card-responsive {
+    @apply p-4 lg:p-6;
+  }
+
+  /* 🎨 響應式文字 */
+  .text-responsive-title {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+  
+  .text-responsive-body {
+    @apply text-base sm:text-lg;
+  }
+  
+  .text-responsive-small {
+    @apply text-sm lg:text-base;
+  }
+} 
+
+/* 🎨 AI Formula 統一設計系統 / Unified Design System */
+
+/* === 核心設計原則 / Core Design Principles === */
+:root {
+  /* 間距系統 / Spacing System - 8px Grid */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  
+  /* 圓角系統 / Border Radius System */
+  --radius-sm: 8px;   /* 按鈕、標籤 */
+  --radius-md: 12px;  /* 卡片、輸入框 */
+  --radius-lg: 16px;  /* 大區塊 */
+  --radius-xl: 20px;  /* 最大容器 */
+  
+  /* 過渡系統 / Transition System */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 200ms ease-out;
+  --transition-slow: 300ms ease-out;
+  --transition-extra-slow: 500ms ease-out;
+  
+  /* 導航系統 / Navigation System */
+  --nav-height-mobile: 80px;   /* 移動端導航高度 */
+  --nav-height-desktop: 96px;  /* 桌面端導航高度 */
+  --nav-spacing-mobile: 96px;  /* 移動端內容頂部間距 */
+  --nav-spacing-desktop: 128px; /* 桌面端內容頂部間距 */
+}
+
+/* === 導航間距標準化 / Navigation Spacing Standardization === */
+
+/* 🎯 標準頁面導航間距 - 修復頭部重疊問題 */
+.page-content-with-nav {
+  @apply pt-24 md:pt-32; /* 移動端96px，桌面端128px */
+}
+
+/* Hero sections that need more space */
+.hero-section-with-nav {
+  @apply pt-32 md:pt-40; /* 移動端128px，桌面端160px */
+}
+
+/* Minimal spacing for overlay content */
+.overlay-content-with-nav {
+  @apply pt-20 md:pt-24; /* 移動端80px，桌面端96px */
+}
+
+/* Modal and auth pages that center content */
+.centered-content-with-nav {
+  @apply pt-24 md:pt-32 pb-12; /* 確保上下都有足夠空間 */
+}
+
+/* === 響應式導航工具類 / Responsive Navigation Utilities === */
+
+/* 確保內容不被固定導航遮擋 */
+.nav-safe-area {
+  min-height: calc(100vh - var(--nav-height-mobile));
+}
+
+@media (min-width: 768px) {
+  .nav-safe-area {
+    min-height: calc(100vh - var(--nav-height-desktop));
+  }
+}
+
+/* 滾動時保持適當間距 */
+.scroll-padding-nav {
+  scroll-padding-top: var(--nav-spacing-mobile);
+}
+
+@media (min-width: 768px) {
+  .scroll-padding-nav {
+    scroll-padding-top: var(--nav-spacing-desktop);
+  }
+}
+
+/* === 語義化色彩系統 / Semantic Color System === */ 

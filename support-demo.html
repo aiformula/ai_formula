@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技術支援 | AI Formula</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 背景效果 */
+        .background {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, #000 50%, rgba(247, 147, 26, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(247, 147, 26, 0.05) 0%, transparent 50%);
+        }
+
+        /* 動態背景網格 */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(251, 191, 36, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(251, 191, 36, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 10s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 標題區域 */
+        .hero {
+            text-align: center;
+            padding: 100px 0 80px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: bold;
+            background: linear-gradient(135deg, #FBBF24, #F59E0B, #F97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: scaleIn 0.8s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #D1D5DB;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        /* 支援選項卡片 */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(20,20,20,0.9) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        .support-card:nth-child(1) { animation-delay: 0.2s; }
+        .support-card:nth-child(2) { animation-delay: 0.4s; }
+        .support-card:nth-child(3) { animation-delay: 0.6s; }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(247, 147, 26, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .support-card:hover::before {
+            opacity: 1;
+        }
+
+        .support-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(251, 191, 36, 0.6);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+        }
+
+        .support-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #FBBF24, #F97316);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .support-card:hover .support-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .support-card h3 {
+            font-size: 1.5rem;
+            color: #FBBF24;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .support-card:hover h3 {
+            color: #F59E0B;
+        }
+
+        .support-card p {
+            color: #D1D5DB;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .support-card:hover p {
+            color: #fff;
+        }
+
+        .arrow-icon {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: #FBBF24;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .support-card:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* 承諾區域 */
+        .promise {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(247, 147, 26, 0.1));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            animation: fadeInScale 0.8s ease-out 0.8s both;
+        }
+
+        .promise-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: #FBBF24;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .promise h3 {
+            font-size: 1.8rem;
+            color: #FBBF24;
+            margin-bottom: 1rem;
+        }
+
+        .promise p {
+            font-size: 1.1rem;
+            color: #D1D5DB;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 浮動支援按鈕 */
+        .floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FBBF24, #F97316);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #000;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: floatingPulse 3s infinite;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
+        }
+
+        /* 彈出框 */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(0, 0, 0, 0.95));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: slideInModal 0.4s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #9CA3AF;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #FBBF24, #F97316);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.5rem;
+        }
+
+        .modal h3 {
+            color: #FBBF24;
+            font-size: 1.3rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .modal-btn {
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .modal-btn:hover {
+            background: rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+            transform: translateX(5px);
+        }
+
+        .modal-btn-icon {
+            color: #FBBF24;
+            font-size: 1.2rem;
+        }
+
+        /* 動畫 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes floatingPulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+            }
+            25% {
+                transform: scale(1.05) rotate(5deg);
+            }
+            50% {
+                transform: scale(1.02) rotate(-3deg);
+                box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4);
+            }
+            75% {
+                transform: scale(1.05) rotate(3deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes slideInModal {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .support-card {
+                padding: 2rem;
+            }
+
+            .promise {
+                padding: 2rem;
+            }
+
+            .floating-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+
+        /* 隱藏元素 */
+        .hidden {
+            display: none !important;
+        }
+
+        .show {
+            display: flex !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景效果 -->
+    <div class="background"></div>
+    <div class="grid-bg"></div>
+
+    <!-- 主要內容 -->
+    <div class="container">
+        <!-- 標題區域 -->
+        <section class="hero">
+            <h1>技術支援</h1>
+            <p>喺學習AI嘅路上，遇到技術問題？唔使擔心！我哋嘅專業技術支援團隊隨時幫到你！</p>
+        </section>
+
+        <!-- 支援選項 -->
+        <section class="support-grid">
+            <!-- 電郵支援 -->
+            <div class="support-card" onclick="openEmail()">
+                <div class="support-icon">✉️</div>
+                <h3>電郵支援</h3>
+                <p>有問題？寄電郵到 support@aiformula.com，我哋會喺24小時內回覆你！</p>
+                <div class="arrow-icon">→</div>
+            </div>
+
+            <!-- 常見問題 -->
+            <div class="support-card" onclick="openFAQ()">
+                <div class="support-icon">❓</div>
+                <h3>常見問題</h3>
+                <p>唔知點樣登入、睇課程或者上載作業？去我哋嘅FAQ頁面搵答案！</p>
+                <div class="arrow-icon">→</div>
+            </div>
+
+            <!-- 緊急支援 -->
+            <div class="support-card" onclick="openHotline()">
+                <div class="support-icon">📞</div>
+                <h3>緊急支援</h3>
+                <p>有緊急問題？即刻打熱線 +852 1234 5678，我哋24/7為你服務！</p>
+                <div class="arrow-icon">→</div>
+            </div>
+        </section>
+
+        <!-- 承諾區域 -->
+        <section class="promise">
+            <div class="promise-icon">✓</div>
+            <h3>我哋嘅承諾</h3>
+            <p>我哋承諾畀你一個順暢嘅學習體驗，有咩問題隨時搵我哋！</p>
+        </section>
+    </div>
+
+    <!-- 浮動支援按鈕 -->
+    <button class="floating-btn" onclick="openModal()">⚙️</button>
+
+    <!-- 彈出框 -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <div class="modal-icon">⚙️</div>
+                <h3>快速支援</h3>
+            </div>
+            <div class="modal-actions">
+                <a href="mailto:support@aiformula.com" class="modal-btn">
+                    <span class="modal-btn-icon">✉️</span>
+                    <span>發送電郵</span>
+                </a>
+                <a href="tel:+85212345678" class="modal-btn">
+                    <span class="modal-btn-icon">📞</span>
+                    <span>致電熱線</span>
+                </a>
+                <a href="#faq" class="modal-btn" onclick="openFAQ()">
+                    <span class="modal-btn-icon">❓</span>
+                    <span>查看FAQ</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 功能函數
+        function openEmail() {
+            showNotification('正在開啟電郵客戶端...', 'success');
+            setTimeout(() => {
+                window.open('mailto:support@aiformula.com', '_blank');
+            }, 500);
+        }
+
+        function openFAQ() {
+            showNotification('正在跳轉到FAQ頁面...', 'info');
+            // 這裡可以導航到實際的FAQ頁面
+            // window.location.href = '/faq';
+            setTimeout(() => {
+                alert('FAQ頁面功能演示\n\n常見問題包括：\n• 點樣註冊賬戶？\n• 點樣開始學習課程？\n• 課程係免費嘅嗎？\n• 忘記咗密碼點算？\n• 點樣聯絡技術支援？');
+            }, 500);
+        }
+
+        function openHotline() {
+            showNotification('正在撥打支援熱線...', 'warning');
+            setTimeout(() => {
+                window.open('tel:+85212345678', '_self');
+            }, 500);
+        }
+
+        function openModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('hidden');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 通知系統
+        function showNotification(message, type = 'info') {
+            // 創建通知元素
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #10B981, #059669)' : 
+                             type === 'warning' ? 'linear-gradient(135deg, #F59E0B, #D97706)' : 
+                             'linear-gradient(135deg, #3B82F6, #2563EB)'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                z-index: 3000;
+                animation: slideInRight 0.4s ease;
+                font-weight: 500;
+                backdrop-filter: blur(10px);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // 3秒後移除通知
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 400);
+            }, 3000);
+        }
+
+        // 添加通知動畫CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 頁面載入時的歡迎效果
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                showNotification('歡迎來到AI Formula技術支援中心！', 'success');
+            }, 1000);
+        });
+
+        // 鍵盤快捷鍵支援
+        document.addEventListener('keydown', function(e) {
+            // 按ESC關閉彈出框
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+            // 按F1開啟FAQ
+            if (e.key === 'F1') {
+                e.preventDefault();
+                openFAQ();
+            }
+        });
+
+        // 滑鼠右鍵菜單（可選）
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showNotification('使用浮動按鈕或點擊卡片來獲取支援！', 'info');
+        });
+    </script>
+</body>
+</html> 

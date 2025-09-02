@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hailuo AI Video</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Card Box Container */
+        .card-container {
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            background-color: #1a1a1a;
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(255, 204, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Image Box - Fixed 350px height (70% of 500px) */
+        .image-box {
+            position: relative;
+            height: 350px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Hailuo AI Logo and Content */
+        .logo-container {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .logo::after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ffcc00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.5;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Page Indicator */
+        .page-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 25px;
+            height: 25px;
+            background-color: #ffcc00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: #000;
+            z-index: 10;
+        }
+
+        /* Button Area - Flexible height within 150px (30% of 500px) */
+        .button-area {
+            height: 150px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 10px;
+            background-color: #1a1a1a;
+            position: relative;
+        }
+
+        /* Button Container with relative positioning and group hover effect */
+        .button-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .button-area:hover .button-container {
+            opacity: 1;
+        }
+
+        /* Navigation Buttons - w-12 h-10 equivalent (48px x 40px) */
+        .nav-button {
+            width: 48px;
+            height: 40px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease-in-out, buttonPulse 2s infinite;
+        }
+
+        /* Previous Button - Active Yellow */
+        .nav-button.prev {
+            background: linear-gradient(135deg, #ffcc00, #ffd700);
+            border: 2px solid #ffcc00;
+            color: #000;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-button.prev:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ffcc00;
+        }
+
+        /* Next Button - Disabled Gray */
+        .nav-button.next {
+            background-color: #666;
+            opacity: 0.6;
+            color: #999;
+            cursor: not-allowed;
+            border: 2px solid #666;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-effect 0.6s linear;
+            pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .card-container {
+                max-width: 100%;
+                margin: 10px;
+                height: 400px;
+            }
+
+            .image-box {
+                height: 250px;
+            }
+
+            .button-area {
+                height: 150px;
+                padding-top: 10px;
+            }
+
+            .button-container {
+                gap: 5px;
+            }
+            
+            .button-area:hover .button-container {
+                opacity: 1;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .page-indicator {
+                width: 25px;
+                height: 25px;
+                font-size: 10px;
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card-container {
+                height: 350px;
+            }
+
+            .image-box {
+                height: 200px;
+            }
+
+            .button-area {
+                height: 150px;
+            }
+
+            .nav-button {
+                width: 45px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- Image Box (Fixed 350px - 70% height) -->
+        <div class="image-box">
+            <!-- Page Indicator -->
+            <div class="page-indicator">1/2</div>
+            
+            <!-- Content -->
+            <div class="logo-container">
+                <div class="logo"></div>
+                <div class="title">Hailuo AI</div>
+                <div class="subtitle">Databricks AI - 大數據AI平台</div>
+                <div class="description">統一的大數據和機器學習平台，支援企業級AI應用開發。</div>
+            </div>
+        </div>
+
+        <!-- Button Area (Fixed 150px - 30% height) -->
+        <div class="button-area">
+            <div class="button-container">
+                <button class="nav-button prev" id="prevBtn">
+                    ←
+                </button>
+                <button class="nav-button next" id="nextBtn">
+                    →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ripple Effect Function
+        function createRipple(event, button) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            button.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Button Event Listeners
+        document.getElementById('prevBtn').addEventListener('click', function(e) {
+            createRipple(e, this);
+            
+            // Add your navigation logic here
+            console.log('Previous page clicked');
+            
+            // Example: You can change page indicator or content
+            // updatePageContent(1);
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', function(e) {
+            // Since this button is disabled, prevent default action
+            e.preventDefault();
+            console.log('Next button is disabled');
+        });
+
+        // Optional: Function to update page content
+        function updatePageContent(pageNumber) {
+            const indicator = document.querySelector('.page-indicator');
+            indicator.textContent = pageNumber + '/2';
+            
+            // You can add logic here to change the content based on page number
+            if (pageNumber === 1) {
+                // Update content for page 1
+                document.querySelector('.title').textContent = 'Hailuo AI';
+                document.querySelector('.subtitle').textContent = 'AI Video Generation Platform';
+            } else {
+                // Update content for page 2
+                document.querySelector('.title').textContent = 'Hailuo AI';
+                document.querySelector('.subtitle').textContent = 'Databricks AI - 大數據AI平台';
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Hailuo AI Video page loaded successfully');
+            
+            // Add any initialization logic here
+            // For example, you could load content based on URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page') || 2;
+            
+            // Update page indicator if needed  
+            if (page == 1) {
+                document.querySelector('.page-indicator').textContent = '1/2';
+            } else {
+                document.querySelector('.page-indicator').textContent = '2/2';
+            }
+        });
+
+        // Optional: Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                document.getElementById('prevBtn').click();
+            } else if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) {
+                document.getElementById('nextBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+/* 
+ * AI 商業自動化課程 - 進度追蹤樣式
+ * 專門為課程進度系統設計的 CSS 樣式
+ */
+
+/* ===== 完成狀態樣式 ===== */
+
+/* 已完成的單元卡片 */
+.unit-card.is-completed {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: 2px solid #34d399 !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+.unit-card.is-completed:hover {
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4) !important;
+  transform: scale(1.03);
+}
+
+/* 已完成單元的標題 */
+.unit-card.is-completed .unit-title {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* 已完成單元的描述 */
+.unit-card.is-completed .unit-description {
+  color: #d1fae5 !important;
+}
+
+/* 完成標記圖標 */
+.completion-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* ===== 進度條樣式 ===== */
+
+/* 主進度條容器 */
+.progress-container {
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 12px;
+  padding: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+/* 進度條填充 */
+.progress-fill {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 200% 200%;
+  animation: progressGradient 3s ease-in-out infinite;
+  height: 8px;
+  border-radius: 8px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progressShine 2s infinite;
+}
+
+@keyframes progressGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes progressShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ===== 按鈕樣式增強 ===== */
+
+/* 完成按鈕 */
+.btn-complete {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-complete:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-complete:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* 已完成按鈕（禁用狀態） */
+.btn-completed {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  border: none;
+  color: #d1d5db;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ===== 主題卡片樣式 ===== */
+
+/* 已完成的主題 */
+.theme-card.is-completed {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+  border: 2px solid rgba(52, 211, 153, 0.5);
+}
+
+.theme-card.is-completed .theme-title {
+  color: #10b981;
+}
+
+/* 當前學習的主題 */
+.theme-card.is-current {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  border: 2px solid rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* ===== 統計數據樣式 ===== */
+
+/* 進度統計卡片 */
+.progress-stats {
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.progress-stats .stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.progress-stats .stat-item:last-child {
+  border-bottom: none;
+}
+
+.progress-stats .stat-value {
+  font-weight: 600;
+  color: #10b981;
+}
+
+/* ===== 動畫效果 ===== */
+
+/* 完成動畫 */
+@keyframes completeAnimation {
+  0% {
+    transform: scale(1);
+    background: rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    background: rgba(16, 185, 129, 0.2);
+  }
+  100% {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+  }
+}
+
+/* 應用完成動畫 */
+.unit-card.just-completed {
+  animation: completeAnimation 0.8s ease-in-out;
+}
+
+/* 溫和呼吸燈效果（用於當前學習項目） */
+@keyframes gentle-breathing {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    opacity: 0.9;
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    opacity: 1;
+  }
+}
+
+/* 溫和狀態指示器呼吸效果 */
+@keyframes status-breathing {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.current-learning-item {
+  animation: gentle-breathing 4s ease-in-out infinite;
+}
+
+/* 為進行中狀態添加溫和呼吸效果 */
+.unit-card.is-current .status-indicator,
+.unit-card.is-current [class*="進行中"],
+.unit-card.is-current [class*="current"] {
+  animation: status-breathing 3s ease-in-out infinite;
+}
+
+/* 全局覆蓋：讓所有 pulse 動畫更溫和 */
+.animate-pulse {
+  animation: gentle-breathing 4s ease-in-out infinite !important;
+}
+
+/* 專門為狀態徽章設計的溫和動畫 */
+.status-badge-breathing {
+  animation: status-breathing 3.5s ease-in-out infinite;
+}
+
+/* ===== 響應式設計 ===== */
+
+@media (max-width: 768px) {
+  .unit-card.is-completed {
+    transform: scale(1.01);
+  }
+  
+  .unit-card.is-completed:hover {
+    transform: scale(1.02);
+  }
+  
+  .completion-badge {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  
+  .btn-complete,
+  .btn-completed {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+} 
+
+/* ===== 主進度條樣式（AIBusinessAutomationLearning專用） ===== */
+
+/* 標準進度條容器 */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+/* 大型進度條容器 */
+.progress-bar-large {
+  width: 100%;
+  height: 16px;
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  position: relative;
+}
+
+/* 進度條填充 */
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #fcd34d);
+  background-size: 200% 200%;
+  animation: progressGradient 3s ease-in-out infinite;
+  border-radius: inherit;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  /* 確保寬度正確計算 */
+  min-width: 0%;
+  max-width: 100%;
+}
+
+/* 進度條光澤效果 */
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progressShine 2s infinite;
+}
+
+/* 100% 完成時的特殊樣式 */
+.progress-bar-fill[style*="100%"] {
+  background: linear-gradient(90deg, #10b981, #059669);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+}
+
+/* 進度條調試模式 - 開發環境顯示邊框 */
+.progress-bar.debug {
+  border: 2px solid #ef4444;
+}
+
+.progress-bar.debug .progress-bar-fill {
+  border: 1px solid #22c55e;
+}
+
+/* 響應式進度條 */
+@media (max-width: 768px) {
+  .progress-bar {
+    height: 10px;
+  }
+  
+  .progress-bar-large {
+    height: 14px;
+  }
+} 
+
+/* ===== ChatGPT Learning 頁面專用樣式 ===== */
+
+/* 頁面基礎樣式 */
+.chatgpt-learning-page {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* 返回按鈕 */
+.breadcrumb-item {
+  @apply text-white/70 hover:text-white transition-all duration-200;
+}
+
+/* 標題樣式 */
+.text-h1 {
+  @apply text-2xl font-bold text-white;
+}
+
+.text-status {
+  @apply text-gray-300 text-sm;
+}
+
+.text-body {
+  @apply text-gray-400 text-sm;
+}
+
+/* 統計卡片樣式 */
+.stat-card-header {
+  @apply flex items-center justify-center text-gray-400 text-xs font-medium mb-1;
+}
+
+.text-stat-label {
+  @apply text-xs font-medium;
+}
+
+.text-stat-value {
+  @apply text-xl font-bold text-white;
+}
+
+.text-stat-sublabel {
+  @apply text-xs text-gray-500;
+}
+
+/* 按鈕樣式 */
+.cta-button {
+  @apply w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+}
+
+.secondary-button {
+  @apply w-full border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 py-3 px-6 rounded-lg transition-all duration-200;
+}
+
+/* 進度條樣式 */
+.progress-bar {
+  @apply h-2 bg-gray-700 rounded-full overflow-hidden;
+}
+
+.progress-bar .progress-fill {
+  @apply bg-yellow-500 h-full rounded-full;
+}
+
+.text-progress-label {
+  @apply text-sm text-gray-300;
+}
+
+.text-progress-value {
+  @apply text-sm text-white font-medium;
+}
+
+/* 章節標題 */
+.section-header {
+  @apply flex items-center;
+}
+
+.section-title {
+  @apply text-xl font-bold text-white;
+}
+
+/* 課程主題卡片 */
+.course-theme-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl backdrop-blur-sm;
+}
+
+.theme-header {
+  @apply p-6;
+}
+
+.theme-number {
+  @apply w-12 h-12 bg-gray-700 text-white rounded-full flex items-center justify-center font-bold text-lg;
+}
+
+.theme-title {
+  @apply text-lg font-semibold text-white mb-1;
+}
+
+.theme-description {
+  @apply text-gray-400 text-sm;
+}
+
+.theme-progress-container {
+  @apply flex items-center space-x-3;
+}
+
+.theme-progress-text {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.theme-chevron {
+  @apply w-5 h-5 text-gray-400 transition-transform duration-200;
+}
+
+.theme-chevron.expanded {
+  @apply rotate-180;
+}
+
+/* 主題內容 */
+.theme-content {
+  @apply border-t border-gray-700 px-6 pb-6;
+}
+
+.theme-progress-bar {
+  @apply pt-4;
+}
+
+.progress-label-row {
+  @apply flex items-center justify-between mb-2;
+}
+
+.progress-main-label {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.progress-fraction {
+  @apply text-xs text-gray-500;
+}
+
+.progress-bar-green {
+  @apply h-2 bg-gray-700 rounded-full overflow-hidden;
+}
+
+.progress-bar-green .progress-fill {
+  @apply bg-green-500 h-full rounded-full;
+}
+
+/* 單元網格 - 修正為列表格式 */
+.units-grid {
+  @apply space-y-2;
+}
+
+.lesson-item {
+  @apply block;
+}
+
+.lesson-completed {
+  @apply border-green-400/30 bg-green-400/5;
+}
+
+.lesson-current {
+  @apply border-gray-500/50 bg-gray-800/50;
+}
+
+.lesson-todo {
+  @apply border-gray-600/30 bg-gray-700/20;
+}
+
+.lesson-locked {
+  @apply border-gray-600 bg-gray-800/30 opacity-60;
+}
+
+/* 單元卡片 */
+.unit-card {
+  @apply bg-gray-900/50 border border-gray-600 rounded-lg p-4 flex items-center space-x-3 cursor-pointer transition-all duration-200 hover:bg-gray-800/50 hover:border-gray-500;
+}
+
+.unit-card.completed {
+  @apply bg-green-900/20 border-green-600;
+}
+
+.unit-card.current {
+  @apply bg-blue-900/20 border-blue-600;
+}
+
+.unit-card.locked {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.unit-number {
+  @apply w-8 h-8 bg-gray-700 text-white rounded-full flex items-center justify-center text-xs font-medium;
+}
+
+.unit-content {
+  @apply flex-1 min-w-0;
+}
+
+.unit-title {
+  @apply text-sm font-medium text-white mb-1 truncate;
+}
+
+.unit-meta {
+  @apply flex items-center space-x-2 text-xs text-gray-400;
+}
+
+/* 右側邊欄 */
+.achievement-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm;
+}
+
+.achievement-header {
+  @apply flex items-center mb-4;
+}
+
+.achievement-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.achievement-grid {
+  @apply space-y-4;
+}
+
+.achievement-item {
+  @apply flex items-center space-x-3;
+}
+
+.achievement-icon {
+  @apply w-12 h-12 rounded-full flex items-center justify-center;
+}
+
+.achievement-icon.gold {
+  @apply bg-yellow-500/20 text-yellow-500;
+}
+
+.achievement-icon.silver {
+  @apply bg-gray-500/20 text-gray-400;
+}
+
+.achievement-info {
+  @apply flex-1;
+}
+
+.achievement-name {
+  @apply text-sm font-medium text-white;
+}
+
+.achievement-desc {
+  @apply text-xs text-gray-400;
+}
+
+/* 技能卡片 */
+.skills-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm;
+}
+
+.skills-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.skills-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.skills-percentage {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.skills-list {
+  @apply space-y-3;
+}
+
+.skill-item {
+  @apply space-y-2;
+}
+
+.skill-info {
+  @apply flex items-center justify-between;
+}
+
+.skill-name {
+  @apply text-sm text-gray-300;
+}
+
+.skill-level {
+  @apply text-xs text-gray-500;
+}
+
+.skill-progress {
+  @apply h-1.5 bg-gray-700 rounded-full overflow-hidden;
+}
+
+.skill-progress .progress-fill {
+  @apply bg-green-500 h-full rounded-full;
+}
+
+/* 學習助手卡片 */
+.assistant-card {
+  @apply bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm;
+}
+
+.assistant-header {
+  @apply flex items-center mb-4;
+}
+
+.assistant-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.assistant-content {
+  @apply space-y-3;
+}
+
+.assistant-text {
+  @apply text-sm text-gray-300 leading-relaxed;
+} 

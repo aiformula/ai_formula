@@ -1,0 +1,3000 @@
+/* Import AI FORMULA Design System */
+@import './styles/design-system.css';
+@import './styles/components.css';
+
+/* Additional global styles and utilities */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 45 93% 47%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* AI Formula 專用顏色系統 */
+    --ai-formula-primary: #FFD600;
+    --ai-formula-primary-hover: #EAB308;
+    --ai-formula-secondary: #FFA500;
+    --ai-formula-primary-light: rgba(255, 214, 0, 0.1);
+    --ai-formula-primary-medium: rgba(255, 214, 0, 0.2);
+    --ai-formula-primary-strong: rgba(255, 214, 0, 0.35);
+    
+    --ai-formula-dark: #121212;
+    --ai-formula-dark-light: #161616;
+    --ai-formula-dark-medium: #1c1c1c;
+    --ai-formula-dark-card: #202020;
+    
+    --ai-formula-accent-blue: #3B82F6;
+    --ai-formula-accent-purple: #8B5CF6;
+    --ai-formula-accent-pink: #EC4899;
+    --ai-formula-accent-cyan: #06B6D4;
+    
+    --ai-formula-success: #10B981;
+    --ai-formula-warning: #F59E0B;
+    --ai-formula-error: #EF4444;
+    --ai-formula-info: #60A5FA;
+    --ai-formula-accent: #EC4899;
+    
+    --ai-formula-gray-50: #F9FAFB;
+    --ai-formula-gray-100: #F3F4F6;
+    --ai-formula-gray-200: #E5E7EB;
+    --ai-formula-gray-300: #D1D5DB;
+    --ai-formula-gray-400: #9CA3AF;
+    --ai-formula-gray-500: #6B7280;
+    --ai-formula-gray-600: #4B5563;
+    --ai-formula-gray-700: #374151;
+    --ai-formula-gray-800: #1F2937;
+    --ai-formula-gray-900: #111827;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 45 93% 47%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* AI Formula 設計系統工具類 */
+@layer utilities {
+  .ai-bg-primary {
+    background-color: var(--ai-formula-primary);
+  }
+  
+  .ai-bg-primary-hover {
+    background-color: var(--ai-formula-primary-hover);
+  }
+  
+  .ai-bg-secondary {
+    background-color: var(--ai-formula-secondary);
+  }
+  
+  .ai-bg-accent {
+    background-color: var(--ai-formula-accent);
+  }
+  
+  .ai-bg-success {
+    background-color: var(--ai-formula-success);
+  }
+  
+  .ai-bg-info {
+    background-color: var(--ai-formula-info);
+  }
+  
+  .ai-bg-warning {
+    background-color: var(--ai-formula-warning);
+  }
+  
+  .ai-bg-error {
+    background-color: var(--ai-formula-error);
+  }
+  
+  .ai-bg-dark {
+    background-color: var(--ai-formula-dark);
+  }
+  
+  .ai-bg-dark-light {
+    background-color: var(--ai-formula-dark-light);
+  }
+  
+  .ai-bg-dark-medium {
+    background-color: var(--ai-formula-dark-medium);
+  }
+  
+  .ai-bg-dark-card {
+    background-color: var(--ai-formula-dark-card);
+  }
+  
+  .ai-text-primary {
+    color: var(--ai-formula-primary);
+  }
+  
+  .ai-text-secondary {
+    color: var(--ai-formula-secondary);
+  }
+  
+  .ai-text-accent {
+    color: var(--ai-formula-accent);
+  }
+  
+  .ai-text-success {
+    color: var(--ai-formula-success);
+  }
+  
+  .ai-text-info {
+    color: var(--ai-formula-info);
+  }
+  
+  .ai-text-warning {
+    color: var(--ai-formula-warning);
+  }
+  
+  .ai-text-error {
+    color: var(--ai-formula-error);
+  }
+  
+  .ai-border-primary {
+    border-color: var(--ai-formula-primary);
+  }
+  
+  .ai-border-secondary {
+    border-color: var(--ai-formula-secondary);
+  }
+  
+  .ai-border-accent {
+    border-color: var(--ai-formula-accent);
+  }
+  
+  .ai-border-gray {
+    border-color: var(--ai-formula-gray-600);
+  }
+  
+  .ai-shadow-primary {
+    box-shadow: 0 0 20px 5px var(--ai-formula-primary-light);
+  }
+  
+  .ai-shadow-primary-hover {
+    box-shadow: 0 20px 25px -5px var(--ai-formula-primary-medium), 
+                0 10px 10px -5px var(--ai-formula-primary-light);
+  }
+  .ai-bg-gradient-dark { background: linear-gradient(to bottom right, var(--ai-formula-dark), var(--ai-formula-dark-medium), var(--ai-formula-dark)); }
+  
+  /* Line clamp utilities for text truncation */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* AI Formula 課程內容專用樣式 */
+@layer utilities {
+  /* Midjourney 增強內容樣式 */
+  .midjourney-enhanced-content h1 {
+    font-size: 2.5rem !important;
+    color: var(--ai-formula-primary) !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    border-bottom: 3px solid var(--ai-formula-primary) !important;
+    padding-bottom: 0.75rem !important;
+    text-align: center !important;
+  }
+  
+  .midjourney-enhanced-content h2 {
+    font-size: 2.25rem !important;
+    color: var(--ai-formula-primary) !important;
+    margin-top: 2.5rem !important;
+    margin-bottom: 1.25rem !important;
+    border-bottom: 2px solid var(--ai-formula-primary) !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  .midjourney-enhanced-content h3 {
+    font-size: 1.75rem !important;
+    color: var(--ai-formula-info) !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    font-weight: 700 !important;
+  }
+  
+  .midjourney-enhanced-content h4 {
+    font-size: 1.35rem !important;
+    color: var(--ai-formula-success) !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+    font-weight: 600 !important;
+  }
+  
+  .midjourney-enhanced-content strong {
+    color: var(--ai-formula-accent) !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+  }
+  
+  .midjourney-enhanced-content code {
+    background-color: var(--ai-formula-dark-medium) !important;
+    padding: 0.4rem 0.7rem !important;
+    border-radius: 0.5rem !important;
+    color: var(--ai-formula-primary) !important;
+    font-size: 0.95rem !important;
+    border: 1px solid var(--ai-formula-gray-600) !important;
+  }
+  
+  .midjourney-enhanced-content pre {
+    background-color: var(--ai-formula-dark) !important;
+    border: 2px solid var(--ai-formula-gray-600) !important;
+    border-radius: 0.75rem !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+    overflow-x: auto !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+  
+  .midjourney-enhanced-content pre code {
+    background-color: transparent !important;
+    padding: 0 !important;
+    color: var(--ai-formula-success) !important;
+    border: none !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* 課程內容標題樣式 */
+  .course-section-title {
+    font-size: 1.75rem;
+    color: var(--ai-formula-info);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .course-subsection-title {
+    color: var(--ai-formula-accent);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  /* 代碼塊樣式 */
+  .course-code-block {
+    background-color: var(--ai-formula-dark-medium);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    color: var(--ai-formula-success);
+    border: 1px solid var(--ai-formula-gray-600);
+  }
+  
+  /* 圖片容器樣式 */
+  .course-image-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  
+  .course-image {
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    border: 2px solid var(--ai-formula-gray-600);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .course-image:hover {
+    transform: scale(1.05);
+    border-color: var(--ai-formula-info);
+  }
+  
+  .course-image-caption {
+    color: var(--ai-formula-info);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  /* 視頻容器樣式 */
+  .course-video-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  
+  .course-video {
+    width: 100%;
+    max-width: 31.25rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--ai-formula-gray-600);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* 響應式設計 */
+  @media (max-width: 768px) {
+    .midjourney-enhanced-content pre {
+      padding: 1rem !important;
+      font-size: 0.85rem !important;
+    }
+    
+    .midjourney-enhanced-content pre code {
+      font-size: 0.8rem !important;
+    }
+    
+    .course-section-title {
+      font-size: 1.5rem;
+    }
+    
+    .course-subsection-title {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+/* 背景水印樣式 - 沉浸式品牌氛圍 */
+@layer utilities {
+  .background-watermark {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .background-watermark h1 {
+    color: rgba(255, 255, 255, 0.06);
+    font-size: 10vw;
+    font-weight: 700;
+    line-height: 1.0;
+    text-transform: uppercase;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.05em;
+    
+    /* 技術感 Monospace 字體 */
+    font-family: 'Source Code Pro', 'IBM Plex Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    
+    /* 極簡背景漸變 - 更微妙 */
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.08) 0%, 
+      rgba(255, 214, 0, 0.03) 40%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* 非常微妙的陰影 */
+    text-shadow: 
+      0 0 30px rgba(255, 255, 255, 0.02),
+      0 0 60px rgba(255, 214, 0, 0.01);
+    
+    /* 優化的呼吸感動畫 */
+    animation: subtleBreathing 8s ease-in-out infinite alternate;
+  }
+  
+  @keyframes subtleBreathing {
+    0% {
+      opacity: 0.6;
+      text-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.02),
+        0 0 60px rgba(255, 214, 0, 0.01);
+    }
+    100% {
+      opacity: 1;
+      text-shadow: 
+        0 0 35px rgba(255, 255, 255, 0.025),
+        0 0 70px rgba(255, 214, 0, 0.015);
+    }
+  }
+  
+  /* 平板適配 (768px - 1200px) */
+  @media (max-width: 1200px) and (min-width: 768px) {
+    .background-watermark {
+      left: 5%;
+      top: 45%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 12vw;
+      color: rgba(255, 255, 255, 0.04);
+    }
+  }
+  
+  /* 手機適配 (最佳體驗) */
+  @media (max-width: 767px) {
+    .background-watermark {
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 20vw;
+      color: rgba(255, 255, 255, 0.03);
+      line-height: 0.9;
+      letter-spacing: 0.1em;
+      margin-bottom: -0.2em;
+      animation: mobileSubtleBreathing 10s ease-in-out infinite alternate;
+    }
+  }
+  
+  /* 手機專用呼吸動畫 */
+  @keyframes mobileSubtleBreathing {
+    0% {
+      opacity: 0.4;
+      text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.01),
+        0 0 40px rgba(255, 214, 0, 0.005);
+    }
+    100% {
+      opacity: 0.8;
+      text-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.015),
+        0 0 50px rgba(255, 214, 0, 0.008);
+    }
+  }
+  
+  /* 超大螢幕優化 */
+  @media (min-width: 1400px) {
+    .background-watermark {
+      left: 15%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 8vw;
+    }
+  }
+  
+  /* 超寬螢幕 (21:9 等) */
+  @media (min-width: 1600px) {
+    .background-watermark {
+      left: 20%;
+    }
+    
+    .background-watermark h1 {
+      font-size: 7vw;
+    }
+  }
+}
+
+/* ================================= */
+/* 🔧 課程頁面 Tab 內容完整顯示修復 */
+/* ================================= */
+
+/* 1️⃣ 修復 Tab 內容容器高度限制問題 */
+.course-outline-page .flex-1[class*="min-h-"],
+.course-outline-page [class*="min-h-"][class*="max-h-"],
+.course-outline-page [class*="max-h-"][class*="overflow-y-auto"] {
+  /* 移除所有高度限制，讓內容自然撐開 */
+  min-height: auto !important;
+  max-height: none !important;
+  height: auto !important;
+  
+  /* 移除局部滾動，讓整頁可以滾動 */
+  overflow-y: visible !important;
+  overflow: visible !important;
+}
+
+/* 2️⃣ 特定針對 Tab Content 容器 */
+.course-outline-page div[class*="flex-1"][class*="min-h-[700px]"],
+.course-outline-page div[class*="flex-1"][class*="min-h-[500px]"] {
+  /* Tab 內容區域完全自適應 */
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+  flex: 1 1 auto !important;
+  
+  /* 移除內部滾動 */
+  overflow: visible !important;
+  overflow-y: visible !important;
+  overflow-x: hidden !important; /* 保持橫向不溢出 */
+}
+
+/* 3️⃣ Tab Panel 內容區域自適應 */
+.course-outline-page .tab-content,
+.course-outline-page .tab-panel,
+.course-outline-page [data-tab-content],
+.course-outline-page [role="tabpanel"] {
+  /* Tab 面板內容完全展開 */
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 確保內容可以自然流動 */
+  display: block !important;
+  flex: none !important;
+}
+
+/* 4️⃣ Tab 切換內容區域優化 */
+.course-outline-page .space-y-8,
+.course-outline-page .space-y-6,
+.course-outline-page .space-y-4 {
+  /* 內容間距區域自適應 */
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* 5️⃣ 課程模組 Accordion 展開優化 */
+.course-outline-page .accordion,
+.course-outline-page .accordion-content,
+.course-outline-page [class*="CardContent"] {
+  /* Accordion 內容完全展開 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 保持動畫效果但不截斷內容 */
+  transition: all 0.3s ease !important;
+}
+
+/* 6️⃣ FAQ 區域展開優化 */
+.course-outline-page .faq-content,
+.course-outline-page .faq-item,
+.course-outline-page .collapse-content {
+  /* FAQ 內容完全可見 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+/* 7️⃣ 修復可能的截斷文字內容 */
+.course-outline-page .text-content,
+.course-outline-page .description,
+.course-outline-page .content-area,
+.course-outline-page p,
+.course-outline-page li,
+.course-outline-page .prose {
+  /* 文字內容完整顯示 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  display: block !important;
+  
+  /* 保持良好的可讀性 */
+  line-height: 1.6 !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* 8️⃣ 隱藏內部滾動條，讓頁面統一滾動 */
+.course-outline-page .hide-scrollbar,
+.course-outline-page [class*="scrollbar-"],
+.course-outline-page .overflow-y-auto {
+  /* 移除所有內部滾動條 */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  overflow: visible !important;
+}
+
+.course-outline-page .hide-scrollbar::-webkit-scrollbar,
+.course-outline-page [class*="scrollbar-"]::-webkit-scrollbar,
+.course-outline-page .overflow-y-auto::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* 9️⃣ 確保 Tab 導航區域不受影響 */
+.course-outline-page .tab-navigation,
+.course-outline-page .tab-buttons,
+.course-outline-page [role="tablist"] {
+  /* Tab 導航保持原有樣式 */
+  height: auto !important;
+  min-height: auto !important;
+  overflow: visible !important;
+  flex-shrink: 0 !important;
+}
+
+/* 🔟 響應式優化 - 移動端特別處理 */
+@media (max-width: 768px) {
+  .course-outline-page .lg\\:col-span-2 {
+    /* 移動端主內容區域完全自適應 */
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .course-outline-page .flex.flex-col {
+    /* 移動端縱向布局自適應 */
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-outline-page div[class*="min-h-"] {
+    /* 小屏幕完全移除最小高度限制 */
+    min-height: 0 !important;
+  }
+}
+
+/* 1️⃣1️⃣ 特殊案例：課程介紹內容 */
+.course-outline-page [data-tab="course-intro"] .content,
+.course-outline-page [data-tab="learning-content"] .content,
+.course-outline-page [data-tab="faq"] .content {
+  /* 特定 Tab 內容完全展開 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: 2rem !important; /* 底部留空間 */
+}
+
+/* 1️⃣2️⃣ 確保卡片內容在 Tab 中完整顯示 */
+.course-outline-page .tab-content .card,
+.course-outline-page .tab-content [class*="Card"],
+.course-outline-page [role="tabpanel"] .card,
+.course-outline-page [role="tabpanel"] [class*="Card"] {
+  /* Tab 內的卡片完全展開 */
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* 1️⃣3️⃣ 修復任何內聯樣式設定的高度限制 */
+.course-outline-page [style*="max-height"],
+.course-outline-page [style*="min-height"],
+.course-outline-page [style*="overflow: hidden"] {
+  /* 強制覆蓋內聯樣式 */
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* 1️⃣4️⃣ 確保整體頁面布局穩定 */
+.course-outline-page {
+  /* 頁面整體自適應 */
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+.course-outline-page .container,
+.course-outline-page .max-w-7xl {
+  /* 主容器自適應 */
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
+/* ================================== */
+/* 🔧 AI 工具頁面篩選器 UX 改善方案 */
+/* ================================== */
+
+/* 1️⃣ 移除篩選器的 Sticky 定位，讓其自然滾動 */
+.tools-page .sticky[class*="top-8"] {
+  /* 移除 sticky 定位，改為 relative */
+  position: relative !important;
+  top: 0 !important;
+  
+  /* 保持基本佈局結構 */
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* 2️⃣ 篩選器容器自適應優化 */
+.tools-page [class*="lg:grid"][class*="lg:grid-cols"] {
+  /* 左右欄位自然滾動 */
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* 3️⃣ 左側篩選器欄位完全自適應 */
+.tools-page [class*="hidden"][class*="lg:block"] {
+  /* 左側篩選器自然跟隨頁面滾動 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* 4️⃣ 篩選器內容區域展開優化 */
+.tools-page .space-y-8 {
+  /* 篩選器內部間距區域自適應 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 移除任何可能的內部滾動 */
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+
+/* 5️⃣ 工具類型和用戶角色區塊展開 */
+.tools-page .space-y-3 {
+  /* 篩選選項區域完全展開 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 確保所有選項都可見 */
+  display: block !important;
+}
+
+/* 6️⃣ 展開/收起內容優化 - 修復版，排除工具卡片 */
+.tools-page .expandable-content,
+.tools-page [data-expandable],
+.tools-page .space-y-8 .overflow-hidden,
+.tools-page .space-y-3 .overflow-hidden {
+  /* 展開內容完全可見 - 只針對篩選器區域 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 保持動畫效果但不截斷內容 */
+  transition: all 0.3s ease !important;
+}
+
+/* 🔧 修復工具卡片圖片顯示問題 */
+.tools-page .tool-card,
+.tools-page [class*="Card"].group,
+.tools-page [data-testid="tool-card"] {
+  /* 確保工具卡片容器的 overflow 正常工作 */
+  overflow: hidden !important;
+}
+
+.tools-page .tool-card img,
+.tools-page [class*="Card"] img,
+.tools-page img[alt*="tool"],
+.tools-page img[src*="tool"] {
+  /* 確保工具圖片正常顯示 */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  
+  /* 保持圖片的響應式和容器適配 */
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* 🔧 工具卡片圖片容器修復 */
+.tools-page [class*="relative"][class*="w-full"][class*="h-48"] {
+  /* 工具卡片圖片容器保持固定高度和裁剪 */
+  height: 12rem !important; /* h-48 = 192px = 12rem */
+  overflow: hidden !important;
+  position: relative !important;
+  display: block !important;
+}
+
+.tools-page [class*="relative"][class*="w-full"][class*="h-48"] img {
+  /* 圖片容器內的圖片正常顯示 */
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  padding: 1rem !important; /* p-4 = 1rem */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 🔧 排除工具卡片不受通用 overflow 規則影響 */
+.tools-page [class*="Card"][class*="group"]:not(.filter-card):not(.sidebar-card) {
+  /* 工具卡片保持原有的 overflow 行為 */
+  overflow: hidden !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.tools-page [class*="Card"][class*="group"] .relative.w-full {
+  /* 工具卡片內的圖片容器保持 overflow hidden */
+  overflow: hidden !important;
+}
+
+/* 🔧 工具卡片圖片加載失敗時的備用方案 */
+.tools-page img[src*="tool"]:not([src]),
+.tools-page img[alt*="tool"]:not([src]) {
+  /* 圖片加載失敗時顯示灰色背景 */
+  background-color: #374151 !important; /* gray-700 */
+  display: block !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* 🔧 確保圖片不會被其他規則意外隱藏 */
+.tools-page img[src]:not([src=""]) {
+  /* 有效圖片源的圖片強制顯示 */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100% !important;
+}
+
+/* ================================== */
+/* 🎯 AI 工具卡片按鈕統一設計系統 */
+/* ================================== */
+
+/* 統一所有工具卡片按鈕的樣式 */
+.tools-page .tool-card button,
+.tools-page [class*="Card"] button[class*="bg-gradient-to-r"] {
+  /* 固定按鈕尺寸和佈局 */
+  min-width: 180px !important;
+  width: 100% !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+  
+  /* 統一內容佈局 */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  
+  /* 統一文字樣式 */
+  font-size: 0.875rem !important; /* text-sm */
+  font-weight: 600 !important; /* font-semibold */
+  letter-spacing: 0.025em !important; /* tracking-wide */
+  line-height: 1.2 !important;
+  
+  /* 防止文字換行 */
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  
+  /* 統一內邊距 */
+  padding: 0.75rem 1rem !important; /* py-3 px-4 */
+  
+  /* 響應式觸控面積 */
+  touch-action: manipulation !important;
+  user-select: none !important;
+}
+
+/* 按鈕內的圖標統一 */
+.tools-page .tool-card button svg,
+.tools-page [class*="Card"] button[class*="bg-gradient-to-r"] svg {
+  width: 1rem !important; /* w-4 */
+  height: 1rem !important; /* h-4 */
+  flex-shrink: 0 !important;
+  color: inherit !important;
+}
+
+/* 按鈕內的文字容器 */
+.tools-page .tool-card button span,
+.tools-page [class*="Card"] button[class*="bg-gradient-to-r"] span {
+  font-weight: 500 !important; /* font-medium */
+  letter-spacing: 0.025em !important; /* tracking-wide */
+  flex-shrink: 1 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 響應式按鈕調整 */
+@media (max-width: 768px) {
+  .tools-page .tool-card button,
+  .tools-page [class*="Card"] button[class*="bg-gradient-to-r"] {
+    min-width: 150px !important;
+    font-size: 0.8125rem !important; /* 稍微縮小移動端字體 */
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-page .tool-card button,
+  .tools-page [class*="Card"] button[class*="bg-gradient-to-r"] {
+    min-width: 140px !important;
+    padding: 0.625rem 0.875rem !important; /* 稍微減少移動端內邊距 */
+  }
+}
+
+/* 7️⃣ 預設展開所有篩選選項 */
+.tools-page .motion-div[style*="height: 0"],
+.tools-page .motion-div[style*="opacity: 0"] {
+  /* 強制展開所有摺疊內容 */
+  height: auto !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  transform: none !important;
+}
+
+/* 8️⃣ 篩選按鈕區域自適應 */
+.tools-page .filter-button,
+.tools-page button[class*="flex items-center"],
+.tools-page button[class*="justify-between"] {
+  /* 篩選按鈕自然佈局 */
+  height: auto !important;
+  min-height: 44px !important; /* 保持觸控友好的最小高度 */
+  overflow: visible !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+/* 9️⃣ 移除雙重滾動條問題 */
+.tools-page .overflow-y-auto,
+.tools-page .overflow-auto,
+.tools-page .scroll,
+.tools-page [class*="scrollbar-"] {
+  /* 移除所有內部滾動，讓頁面統一滾動 */
+  overflow: visible !important;
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  
+  /* 隱藏滾動條 */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.tools-page .overflow-y-auto::-webkit-scrollbar,
+.tools-page .overflow-auto::-webkit-scrollbar,
+.tools-page [class*="scrollbar-"]::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* 🔟 右側工具卡片區域優化 */
+.tools-page [class*="grid"][class*="md:grid-cols-2"] {
+  /* 右側工具網格自適應 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 確保卡片正常顯示 */
+  min-height: 0 !important;
+}
+
+/* 1️⃣1️⃣ 移動端篩選器優化 */
+@media (max-width: 1023px) {
+  .tools-page [class*="lg:hidden"] {
+    /* 移動端篩選器完全展開 */
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin-bottom: 3rem !important;
+  }
+  
+  .tools-page [class*="lg:hidden"] .space-y-8 {
+    /* 移動端篩選器內容自適應 */
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* 1️⃣2️⃣ 動畫內容強制顯示 */
+.tools-page .animate-slideDown,
+.tools-page .animate-slideUp,
+.tools-page [class*="animate-"] {
+  /* 動畫內容完全可見 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 1️⃣3️⃣ Framer Motion 組件內容展開 */
+.tools-page .motion-div,
+.tools-page [data-framer-motion] {
+  /* Motion 組件內容完全展開 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 移除可能的高度限制 */
+  min-height: 0 !important;
+}
+
+/* 1️⃣4️⃣ 特殊情況：工具數量統計 */
+.tools-page .tool-count,
+.tools-page .count-badge,
+.tools-page .badge {
+  /* 確保數量顯示不被截斷 */
+  height: auto !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+
+/* 1️⃣5️⃣ 篩選器標題和分隔線 */
+.tools-page .filter-header,
+.tools-page h2,
+.tools-page h3 {
+  /* 篩選器標題完整顯示 */
+  height: auto !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  line-height: 1.4 !important;
+}
+
+/* 1️⃣6️⃣ 整體頁面滾動優化 */
+.tools-page {
+  /* 頁面整體自然滾動 */
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  
+  /* 確保頁面內容可以完整顯示 */
+  position: relative !important;
+}
+
+/* 1️⃣7️⃣ 容器寬度和間距優化 */
+.tools-page .container,
+.tools-page .max-w-7xl {
+  /* 主容器自適應 */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  
+  /* 保持響應式間距 */
+  padding-left: clamp(1rem, 4vw, 2rem) !important;
+  padding-right: clamp(1rem, 4vw, 2rem) !important;
+}
+
+/* 1️⃣8️⃣ 修復任何內聯樣式造成的限制 - 排除工具卡片 */
+.tools-page [style*="height"]:not([class*="Card"]):not([data-testid="tool-card"]),
+.tools-page [style*="max-height"]:not([class*="Card"]):not([data-testid="tool-card"]) {
+  /* 強制覆蓋內聯樣式，但排除工具卡片 */
+  height: auto !important;
+  max-height: none !important;
+}
+
+.tools-page [style*="overflow: hidden"]:not([class*="Card"]):not([data-testid="tool-card"]):not([class*="relative"]) {
+  /* 強制覆蓋內聯 overflow 樣式，但排除工具卡片和圖片容器 */
+  overflow: visible !important;
+}
+
+/* 1️⃣9️⃣ 響應式斷點優化 */
+@media (min-width: 1024px) {
+  .tools-page [class*="lg:grid-cols"] {
+    /* 桌面端兩欄佈局自適應 */
+    align-items: start !important; /* 頂部對齊 */
+    height: auto !important;
+  }
+}
+
+/* 2️⃣0️⃣ 預設展開所有摺疊區域 */
+.tools-page .collapsed,
+.tools-page .hidden-content,
+.tools-page [data-collapsed="true"] {
+  /* 預設展開所有可摺疊內容 */
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ================================== */
+/* 🎯 Liquid Glass AI Tool Cards Design System */
+/* ================================== */
+
+/* 🔮 Main Liquid Glass Card */
+.liquid-glass-card {
+  /* Glassmorphic Background */
+  background: linear-gradient(135deg, 
+    rgba(30, 41, 59, 0.4) 0%,
+    rgba(51, 65, 85, 0.3) 50%,
+    rgba(30, 41, 59, 0.5) 100%);
+  
+  /* Advanced Backdrop Blur */
+  backdrop-filter: blur(20px) saturate(1.2) brightness(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) brightness(1.1);
+  
+  /* Liquid Border Radius */
+  border-radius: 24px;
+  
+  /* Glassmorphic Border */
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  
+  /* Multi-layer Shadow System */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(59, 130, 246, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Smooth Transitions */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 3D Transform */
+  transform: translateZ(0);
+  will-change: transform, box-shadow, border-color;
+  
+  /* Overflow for clean edges */
+  overflow: hidden;
+  
+  /* Add subtle texture */
+  position: relative;
+}
+
+/* ✨ Liquid Glass Card Texture Overlay */
+.liquid-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent 100%);
+  opacity: 0.6;
+}
+
+/* 🌟 Enhanced Hover Effects for Cards */
+.liquid-glass-card:hover {
+  /* Enhanced Glow */
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(59, 130, 246, 0.2),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  
+  /* Subtle Lift */
+  transform: translateY(-4px) translateZ(0);
+  
+  /* Enhanced Border */
+  border-color: rgba(59, 130, 246, 0.3);
+  
+  /* Brighter Background */
+  background: linear-gradient(135deg, 
+    rgba(30, 41, 59, 0.5) 0%,
+    rgba(51, 65, 85, 0.4) 50%,
+    rgba(30, 41, 59, 0.6) 100%);
+}
+
+/* 🌟 Staggered Animation for Cards */
+.liquid-glass-card:nth-child(1) { animation-delay: 0.1s; }
+.liquid-glass-card:nth-child(2) { animation-delay: 0.2s; }
+.liquid-glass-card:nth-child(3) { animation-delay: 0.3s; }
+.liquid-glass-card:nth-child(4) { animation-delay: 0.4s; }
+.liquid-glass-card:nth-child(5) { animation-delay: 0.5s; }
+.liquid-glass-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* 🎯 Liquid Glass Button */
+.liquid-glass-button {
+  /* Button Structure */
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  
+  /* Glassmorphic Background */
+  background: linear-gradient(135deg,
+    rgba(59, 130, 246, 0.15) 0%,
+    rgba(147, 51, 234, 0.1) 50%,
+    rgba(59, 130, 246, 0.15) 100%);
+  
+  /* Advanced Backdrop Effects */
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  
+  /* Smooth Border Radius */
+  border-radius: 16px;
+  
+  /* Subtle Border */
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  
+  /* Multi-layer Shadows */
+  box-shadow: 
+    0 4px 16px rgba(59, 130, 246, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Smooth Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Cursor & Interaction */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  
+  /* Prevent default button styles */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Enhanced positioning for glow effect */
+  overflow: hidden;
+}
+
+/* ✨ Button Inner Glow Animation */
+.liquid-glass-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.liquid-glass-button:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* 🌟 Button Hover & Active States */
+.liquid-glass-button:hover {
+  /* Enhanced Background */
+  background: linear-gradient(135deg,
+    rgba(59, 130, 246, 0.25) 0%,
+    rgba(147, 51, 234, 0.2) 50%,
+    rgba(59, 130, 246, 0.25) 100%);
+  
+  /* Glowing Effect */
+  box-shadow: 
+    0 8px 32px rgba(59, 130, 246, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(59, 130, 246, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  
+  /* Subtle Scale */
+  transform: translateY(-1px) scale(1.02);
+  
+  /* Enhanced Border */
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.liquid-glass-button:active {
+  /* Press Effect */
+  transform: translateY(0) scale(0.98);
+  
+  /* Dimmed Glow */
+  box-shadow: 
+    0 2px 8px rgba(59, 130, 246, 0.2),
+    inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 🏷️ Glass Tags/Badges */
+.glass-tag {
+  /* Enhanced Backdrop */
+  backdrop-filter: blur(12px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.3) !important;
+  
+  /* Refined Shadows */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+  
+  /* Smooth Interaction */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-tag:hover {
+  /* Subtle Glow on Hover */
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 📱 Responsive Adjustments */
+@media (max-width: 768px) {
+  .liquid-glass-card {
+    border-radius: 20px;
+    backdrop-filter: blur(16px) saturate(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  }
+  
+  .liquid-glass-button {
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  }
+  
+  .glass-tag {
+    backdrop-filter: blur(10px) saturate(1.2) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(1.2) !important;
+  }
+}
+
+/* 🎯 Enhanced Grid Layout for Consistent Card Heights */
+.tools-page .grid {
+  /* Ensure all grid items have equal heights */
+  align-items: stretch !important;
+}
+
+.tools-page .grid > * {
+  /* Force all direct grid children to full height */
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 🌈 Enhanced Tag Color System for Glass Effect */
+.glass-tag.bg-blue-500\/20 {
+  background: rgba(59, 130, 246, 0.15) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  color: rgb(147, 197, 253) !important;
+}
+
+.glass-tag.bg-purple-500\/20 {
+  background: rgba(147, 51, 234, 0.15) !important;
+  border-color: rgba(147, 51, 234, 0.3) !important;
+  color: rgb(196, 181, 253) !important;
+}
+
+.glass-tag.bg-green-500\/20 {
+  background: rgba(34, 197, 94, 0.15) !important;
+  border-color: rgba(34, 197, 94, 0.3) !important;
+  color: rgb(134, 239, 172) !important;
+}
+
+.glass-tag.bg-yellow-500\/20 {
+  background: rgba(234, 179, 8, 0.15) !important;
+  border-color: rgba(234, 179, 8, 0.3) !important;
+  color: rgb(253, 224, 71) !important;
+}
+
+.glass-tag.bg-red-500\/20 {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  color: rgb(252, 165, 165) !important;
+}
+
+.glass-tag.bg-pink-500\/20 {
+  background: rgba(236, 72, 153, 0.15) !important;
+  border-color: rgba(236, 72, 153, 0.3) !important;
+  color: rgb(251, 182, 206) !important;
+}
+
+.glass-tag.bg-indigo-500\/20 {
+  background: rgba(99, 102, 241, 0.15) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+  color: rgb(165, 180, 252) !important;
+}
+
+.glass-tag.bg-cyan-500\/20 {
+  background: rgba(6, 182, 212, 0.15) !important;
+  border-color: rgba(6, 182, 212, 0.3) !important;
+  color: rgb(103, 232, 249) !important;
+}
+
+.glass-tag.bg-orange-500\/20 {
+  background: rgba(249, 115, 22, 0.15) !important;
+  border-color: rgba(249, 115, 22, 0.3) !important;
+  color: rgb(251, 191, 36) !important;
+}
+
+.glass-tag.bg-emerald-500\/20 {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: rgb(110, 231, 183) !important;
+}
+
+/* ================================== */
+/* 🎯 Yellow Liquid Glass AI Tool Cards Design System */
+/* ================================== */
+
+/* 🔮 Yellow Theme Liquid Glass Card */
+.liquid-glass-card-yellow {
+  /* Glassmorphic Background with Yellow Tint */
+  background: linear-gradient(135deg, 
+    rgba(45, 35, 15, 0.4) 0%,
+    rgba(65, 45, 20, 0.3) 50%,
+    rgba(45, 35, 15, 0.5) 100%);
+  
+  /* Advanced Backdrop Blur */
+  backdrop-filter: blur(20px) saturate(1.2) brightness(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) brightness(1.1);
+  
+  /* Liquid Border Radius */
+  border-radius: 24px;
+  
+  /* Golden Glassmorphic Border */
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  
+  /* Multi-layer Shadow System with Golden Tint */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(251, 191, 36, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Smooth Transitions */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 3D Transform */
+  transform: translateZ(0);
+  will-change: transform, box-shadow, border-color;
+  
+  /* Overflow for clean edges */
+  overflow: hidden;
+  
+  /* Add subtle texture */
+  position: relative;
+  
+  /* Fixed consistent height for all cards */
+  height: 580px;
+}
+
+/* ✨ Yellow Liquid Glass Card Texture Overlay */
+.liquid-glass-card-yellow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(251, 191, 36, 0.1) 20%,
+    rgba(251, 191, 36, 0.2) 50%,
+    rgba(251, 191, 36, 0.1) 80%,
+    transparent 100%);
+  opacity: 0.6;
+}
+
+/* 🌟 Enhanced Hover Effects for Yellow Cards */
+.liquid-glass-card-yellow:hover {
+  /* Enhanced Golden Glow */
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(251, 191, 36, 0.2),
+    0 0 0 1px rgba(251, 191, 36, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  
+  /* Subtle Lift */
+  transform: translateY(-4px) translateZ(0);
+  
+  /* Enhanced Golden Border */
+  border-color: rgba(251, 191, 36, 0.3);
+  
+  /* Brighter Background */
+  background: linear-gradient(135deg, 
+    rgba(45, 35, 15, 0.5) 0%,
+    rgba(65, 45, 20, 0.4) 50%,
+    rgba(45, 35, 15, 0.6) 100%);
+}
+
+/* 🎯 Yellow Liquid Glass Button */
+.liquid-glass-button-yellow {
+  /* Button Structure */
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  
+  /* Golden Glassmorphic Background */
+  background: linear-gradient(135deg,
+    rgba(255, 217, 90, 0.15) 0%,
+    rgba(255, 140, 0, 0.1) 50%,
+    rgba(255, 217, 90, 0.15) 100%);
+  
+  /* Advanced Backdrop Effects */
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  
+  /* Smooth Border Radius */
+  border-radius: 16px;
+  
+  /* Golden Border */
+  border: 1px solid rgba(255, 217, 90, 0.2);
+  
+  /* Multi-layer Golden Shadows */
+  box-shadow: 
+    0 4px 16px rgba(255, 217, 90, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Smooth Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Cursor & Interaction */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  
+  /* Prevent default button styles */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Enhanced positioning for glow effect */
+  overflow: hidden;
+}
+
+/* ✨ Yellow Button Inner Glow Animation */
+.liquid-glass-button-yellow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 217, 90, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.liquid-glass-button-yellow:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* 🌟 Yellow Button Hover & Active States */
+.liquid-glass-button-yellow:hover {
+  /* Enhanced Golden Background */
+  background: linear-gradient(135deg,
+    rgba(255, 217, 90, 0.25) 0%,
+    rgba(255, 140, 0, 0.2) 50%,
+    rgba(255, 217, 90, 0.25) 100%);
+  
+  /* Golden Glowing Effect */
+  box-shadow: 
+    0 8px 32px rgba(255, 217, 90, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 217, 90, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  
+  /* Subtle Scale */
+  transform: translateY(-1px) scale(1.02);
+  
+  /* Enhanced Golden Border */
+  border-color: rgba(255, 217, 90, 0.4);
+}
+
+.liquid-glass-button-yellow:active {
+  /* Press Effect */
+  transform: translateY(0) scale(0.98);
+  
+  /* Dimmed Golden Glow */
+  box-shadow: 
+    0 2px 8px rgba(255, 217, 90, 0.2),
+    inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 🎯 Enhanced 3-Column Grid Layout */
+.tools-page .grid-3-cols {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)) !important;
+  gap: 2rem !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+}
+
+/* 📱 Responsive 3-Column System */
+@media (max-width: 640px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .liquid-glass-card-yellow {
+    height: 520px;
+    border-radius: 20px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1200px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  
+  .liquid-glass-card-yellow {
+    height: 550px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+  
+  .liquid-glass-card-yellow {
+    height: 580px;
+  }
+}
+
+/* ================================== */
+/* 🎯 Dark Gold High Contrast AI Tool Cards Design System */
+/* ================================== */
+
+/* 🔮 Dark Gold Theme Liquid Glass Card */
+.liquid-glass-card-dark-gold {
+  /* Deep Dark Background with Subtle Texture */
+  background: linear-gradient(135deg, 
+    rgba(13, 13, 13, 0.95) 0%,
+    rgba(18, 18, 18, 0.9) 50%,
+    rgba(13, 13, 13, 0.95) 100%);
+  
+  /* Advanced Backdrop Blur for Glass Effect */
+  backdrop-filter: blur(20px) saturate(1.1) brightness(0.9);
+  -webkit-backdrop-filter: blur(20px) saturate(1.1) brightness(0.9);
+  
+  /* Liquid Border Radius */
+  border-radius: 24px;
+  
+  /* Subtle Golden Border */
+  border: 1px solid rgba(251, 191, 36, 0.08);
+  
+  /* Deep Shadow System with Golden Accent */
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(251, 191, 36, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.02);
+  
+  /* Smooth Transitions */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 3D Transform */
+  transform: translateZ(0);
+  will-change: transform, box-shadow, border-color;
+  
+  /* Overflow for clean edges */
+  overflow: hidden;
+  
+  /* Add subtle texture */
+  position: relative;
+  
+  /* Fixed consistent height for all cards */
+  height: 580px;
+}
+
+/* ✨ Dark Gold Card Texture Overlay */
+.liquid-glass-card-dark-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(251, 191, 36, 0.05) 20%,
+    rgba(251, 191, 36, 0.1) 50%,
+    rgba(251, 191, 36, 0.05) 80%,
+    transparent 100%);
+  opacity: 0.8;
+}
+
+/* 🌟 Enhanced Hover Effects for Dark Gold Cards */
+.liquid-glass-card-dark-gold:hover {
+  /* Enhanced Deep Shadow with Golden Accent */
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(251, 191, 36, 0.15),
+    0 2px 8px rgba(251, 191, 36, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Subtle Lift */
+  transform: translateY(-6px) translateZ(0);
+  
+  /* Enhanced Golden Border */
+  border-color: rgba(251, 191, 36, 0.2);
+  
+  /* Slightly Brighter Background */
+  background: linear-gradient(135deg, 
+    rgba(18, 18, 18, 0.95) 0%,
+    rgba(25, 25, 25, 0.9) 50%,
+    rgba(18, 18, 18, 0.95) 100%);
+}
+
+/* 🎯 Dark Gold Liquid Glass Button */
+.liquid-glass-button-dark-gold {
+  /* Button Structure */
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  
+  /* Dark Glassmorphic Background with Golden Accent */
+  background: linear-gradient(135deg,
+    rgba(13, 13, 13, 0.8) 0%,
+    rgba(25, 25, 25, 0.6) 50%,
+    rgba(13, 13, 13, 0.8) 100%);
+  
+  /* Advanced Backdrop Effects */
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  
+  /* Smooth Border Radius */
+  border-radius: 16px;
+  
+  /* Subtle Golden Border */
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  
+  /* Deep Shadows with Golden Accent */
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(251, 191, 36, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.03);
+  
+  /* Smooth Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Cursor & Interaction */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  
+  /* Prevent default button styles */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Enhanced positioning for glow effect */
+  overflow: hidden;
+}
+
+/* ✨ Dark Gold Button Inner Glow Animation */
+.liquid-glass-button-dark-gold::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.liquid-glass-button-dark-gold:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* 🌟 Dark Gold Button Hover & Active States */
+.liquid-glass-button-dark-gold:hover {
+  /* Enhanced Dark Background with Golden Accent */
+  background: linear-gradient(135deg,
+    rgba(25, 25, 25, 0.9) 0%,
+    rgba(35, 35, 35, 0.7) 50%,
+    rgba(25, 25, 25, 0.9) 100%);
+  
+  /* Golden Glowing Effect */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(251, 191, 36, 0.3),
+    0 2px 8px rgba(251, 191, 36, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Subtle Scale */
+  transform: translateY(-1px) scale(1.02);
+  
+  /* Enhanced Golden Border */
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.liquid-glass-button-dark-gold:active {
+  /* Press Effect */
+  transform: translateY(0) scale(0.98);
+  
+  /* Dimmed Glow */
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(251, 191, 36, 0.1),
+    inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 🎯 Enhanced 3-Column Grid Layout for Dark Theme */
+.tools-page .grid-3-cols {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)) !important;
+  gap: 2rem !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+}
+
+/* 📱 Responsive 3-Column System with Dark Theme */
+@media (max-width: 640px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .liquid-glass-card-dark-gold {
+    height: 520px;
+    border-radius: 20px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      0 1px 3px rgba(251, 191, 36, 0.05);
+  }
+  
+  .liquid-glass-button-dark-gold {
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1200px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  
+  .liquid-glass-card-dark-gold {
+    height: 550px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+  
+  .liquid-glass-card-dark-gold {
+    height: 580px;
+  }
+}
+
+/* ================================== */
+/* 🎯 Pure Black & Golden High Contrast Design System */
+/* ================================== */
+
+/* 🔮 Pure Black Theme Liquid Glass Card */
+.liquid-glass-card-pure-black {
+  /* Pure Black Background */
+  background: #000000;
+  
+  /* Minimal Backdrop Blur for Glass Effect */
+  backdrop-filter: blur(8px) saturate(1.0);
+  -webkit-backdrop-filter: blur(8px) saturate(1.0);
+  
+  /* Liquid Border Radius */
+  border-radius: 24px;
+  
+  /* Subtle Border */
+  border: 1px solid rgba(64, 64, 64, 0.1);
+  
+  /* Deep Shadow System */
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.8),
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.02);
+  
+  /* Smooth Transitions */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 3D Transform */
+  transform: translateZ(0);
+  will-change: transform, box-shadow, border-color;
+  
+  /* Overflow for clean edges */
+  overflow: hidden;
+  
+  /* Add subtle texture */
+  position: relative;
+  
+  /* Fixed consistent height for all cards */
+  height: 580px;
+}
+
+/* ✨ Pure Black Card Texture Overlay */
+.liquid-glass-card-pure-black::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 20%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.03) 80%,
+    transparent 100%);
+  opacity: 0.6;
+}
+
+/* 🌟 Enhanced Hover Effects for Pure Black Cards */
+.liquid-glass-card-pure-black:hover {
+  /* Enhanced Deep Shadow */
+  box-shadow: 
+    0 24px 64px rgba(0, 0, 0, 0.9),
+    0 12px 32px rgba(0, 0, 0, 0.7),
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 217, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  
+  /* Subtle Lift */
+  transform: translateY(-8px) translateZ(0);
+  
+  /* Enhanced Border */
+  border-color: rgba(255, 217, 0, 0.15);
+  
+  /* Maintain Pure Black Background */
+  background: #000000;
+}
+
+/* 🎯 Golden Liquid Glass Button */
+.liquid-glass-button-golden {
+  /* Button Structure */
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  
+  /* Golden Gradient Background */
+  background: linear-gradient(135deg, #FFD95B 0%, #FFB347 100%);
+  
+  /* Smooth Border Radius */
+  border-radius: 16px;
+  
+  /* No Border for Clean Golden Look */
+  border: none;
+  
+  /* Golden Glow Shadow */
+  box-shadow: 0px 4px 16px rgba(255, 217, 0, 0.35);
+  
+  /* Smooth Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Cursor & Interaction */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  
+  /* Prevent default button styles */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Enhanced positioning for glow effect */
+  overflow: hidden;
+}
+
+/* ✨ Golden Button Inner Glow Animation */
+.liquid-glass-button-golden::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.liquid-glass-button-golden:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* 🌟 Golden Button Hover & Active States */
+.liquid-glass-button-golden:hover {
+  /* Enhanced Golden Background */
+  background: linear-gradient(135deg, #FFE066 0%, #FFC55C 100%);
+  
+  /* Enhanced Golden Glow */
+  box-shadow: 
+    0px 6px 24px rgba(255, 217, 0, 0.45),
+    0px 2px 8px rgba(255, 217, 0, 0.3),
+    0 0 0 1px rgba(255, 217, 0, 0.2);
+  
+  /* Subtle Scale */
+  transform: translateY(-1px) scale(1.02);
+}
+
+.liquid-glass-button-golden:active {
+  /* Press Effect */
+  transform: translateY(0) scale(0.98);
+  
+  /* Dimmed Glow */
+  box-shadow: 
+    0px 2px 8px rgba(255, 217, 0, 0.25),
+    inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 🎯 Enhanced 3-Column Grid Layout for Pure Black Theme */
+.tools-page .grid-3-cols {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)) !important;
+  gap: 2rem !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+}
+
+/* 📱 Responsive 3-Column System with Pure Black Theme */
+@media (max-width: 640px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .liquid-glass-card-pure-black {
+    height: 520px;
+    border-radius: 20px;
+    box-shadow: 
+      0 12px 36px rgba(0, 0, 0, 0.7),
+      0 4px 12px rgba(0, 0, 0, 0.5),
+      0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .liquid-glass-button-golden {
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    box-shadow: 0px 3px 12px rgba(255, 217, 0, 0.3);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1200px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  
+  .liquid-glass-card-pure-black {
+    height: 550px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .tools-page .grid-3-cols {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+  
+  .liquid-glass-card-pure-black {
+    height: 580px;
+  }
+}
+
+/* 🎯 Neon Border Golden Button */
+.neon-border-button-golden {
+  /* Button Structure */
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  
+  /* Liquid Glass Background Effect */
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  
+  /* Smooth Border Radius - Glass Feeling */
+  border-radius: 12px;
+  
+  /* 2px Golden Neon Glowing Border */
+  border: 2px solid #FFD700;
+  
+  /* Enhanced Neon Glow Effect with Glass Shadow */
+  box-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.4),
+    0 0 20px rgba(255, 215, 0, 0.2),
+    0 0 30px rgba(255, 215, 0, 0.1),
+    inset 0 0 10px rgba(255, 215, 0, 0.1),
+    0 4px 15px rgba(0, 0, 0, 0.2);
+  
+  /* Smooth Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Cursor & Interaction */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  
+  /* Prevent default button styles */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Text and Icon Colors */
+  color: #FFD700;
+  
+  /* Glass Button Floating Effect */
+  transform: translateZ(0);
+  will-change: transform, box-shadow, background;
+}
+
+/* Glass Texture Overlay */
+.neon-border-button-golden::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 215, 0, 0.03) 50%,
+    rgba(255, 255, 255, 0.02) 75%,
+    rgba(255, 215, 0, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 🌟 Enhanced Glass Neon Button Hover & Active States */
+.neon-border-button-golden:hover {
+  /* Enhanced Glass Background */
+  background: rgba(255, 215, 0, 0.08);
+  backdrop-filter: blur(12px) saturate(200%) brightness(110%);
+  -webkit-backdrop-filter: blur(12px) saturate(200%) brightness(110%);
+  
+  /* Enhanced Golden Neon Glow with Glass Elevation */
+  box-shadow: 
+    0 0 15px rgba(255, 215, 0, 0.6),
+    0 0 30px rgba(255, 215, 0, 0.3),
+    0 0 45px rgba(255, 215, 0, 0.15),
+    0 0 60px rgba(255, 215, 0, 0.08),
+    inset 0 0 15px rgba(255, 215, 0, 0.15),
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 15px 35px rgba(255, 215, 0, 0.1);
+  
+  /* Glass Floating Effect */
+  transform: translateY(-2px) translateZ(0) scale(1.02);
+  
+  /* Enhanced Border Glow */
+  border-color: #FFD700;
+}
+
+.neon-border-button-golden:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 215, 0, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    rgba(255, 215, 0, 0.12) 100%
+  );
+}
+
+.neon-border-button-golden:active {
+  /* Press Effect with Glass Feel */
+  transform: translateY(-1px) translateZ(0) scale(0.98);
+  
+  /* Compressed Glass Glow */
+  box-shadow: 
+    0 0 8px rgba(255, 215, 0, 0.5),
+    0 0 15px rgba(255, 215, 0, 0.25),
+    0 0 25px rgba(255, 215, 0, 0.12),
+    inset 0 0 12px rgba(255, 215, 0, 0.12),
+    0 4px 15px rgba(0, 0, 0, 0.25);
+    
+  /* Slightly dimmed glass */
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+}
+
+/* 🎯 Glass Neon Button Text and Icon Styling */
+.neon-border-button-golden * {
+  color: #FFD700 !important;
+  position: relative;
+  z-index: 2;
+}
+
+.neon-border-button-golden:hover * {
+  color: #FFD700 !important;
+  text-shadow: 
+    0 0 8px rgba(255, 215, 0, 0.8),
+    0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+/* 📱 Responsive Glass Neon Button */
+@media (max-width: 640px) {
+  .neon-border-button-golden {
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    
+    /* Reduced effects for mobile performance */
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+    
+    box-shadow: 
+      0 0 8px rgba(255, 215, 0, 0.3),
+      0 0 15px rgba(255, 215, 0, 0.15),
+      0 0 25px rgba(255, 215, 0, 0.08),
+      inset 0 0 8px rgba(255, 215, 0, 0.08),
+      0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .neon-border-button-golden:hover {
+    backdrop-filter: blur(10px) saturate(180%) brightness(105%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%) brightness(105%);
+    
+    box-shadow: 
+      0 0 12px rgba(255, 215, 0, 0.5),
+      0 0 25px rgba(255, 215, 0, 0.2),
+      0 0 35px rgba(255, 215, 0, 0.12),
+      inset 0 0 12px rgba(255, 215, 0, 0.12),
+      0 6px 20px rgba(0, 0, 0, 0.25),
+      0 10px 25px rgba(255, 215, 0, 0.08);
+  }
+  
+  .neon-border-button-golden::before {
+    border-radius: 8px;
+  }
+}
+
+/* 🎭 Glass Button Animation Performance Optimization */
+.neon-border-button-golden {
+  /* GPU acceleration for smooth glass effects */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* 🌟 Additional Glass Reflection Effect (Optional Enhancement) */
+.neon-border-button-golden::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.neon-border-button-golden:hover::after {
+  opacity: 0.8;
+}
+
+/* =======================================================
+   CUSTOM SCROLLBAR STYLES - Mobile Filter Drawer
+   ======================================================= */
+
+/* 自定義 scrollbar 樣式 - 黑金主題 */
+.custom-scrollbar {
+  /* Firefox 瀏覽器 */
+  scrollbar-width: thin;
+  scrollbar-color: #facc15 rgba(255, 255, 255, 0.1);
+}
+
+/* WebKit 瀏覽器 (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  margin: 4px 0; /* 上下留出間距，避免與邊框重疊 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #facc15;
+  border-radius: 6px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #eab308;
+  opacity: 1;
+  transform: scaleX(1.2);
+}
+
+/* 滾動條角落 */
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 響應式處理 - 移動端優化 */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #facc15;
+    border-radius: 4px;
+    opacity: 0.6;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:active {
+    background: #eab308;
+    opacity: 0.9;
+  }
+}
+
+/* 觸摸設備優化 */
+@media (hover: none) and (pointer: coarse) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(250, 204, 21, 0.8);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+}
+
+/* 高對比度模式支持 */
+@media (prefers-contrast: high) {
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #fbbf24;
+    border: 1px solid #92400e;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* 減動畫偏好設置支持 */
+@media (prefers-reduced-motion: reduce) {
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    transition: none;
+  }
+}
+
+/* Custom scrollbar for .custom-scrollbar elements */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.8);
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.6) rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive scrollbar adjustments */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* AI Course Card Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Perplexity Course Specific Overrides */
+.perplexity-tab-active {
+  background-color: #374151 !important; /* gray-700 */
+  color: white !important;
+}
+
+.perplexity-tab-active:hover {
+  background-color: #1f2937 !important; /* gray-800 */
+}
+
+.perplexity-button {
+  background-color: #374151 !important; /* gray-700 */
+  color: white !important;
+}
+
+.perplexity-button:hover {
+  background-color: #1f2937 !important; /* gray-800 */
+}
+
+/* Force override any conflicting styles */
+[data-perplexity="true"] .bg-green-500,
+[data-perplexity="true"] .bg-green-600,
+[data-perplexity="true"] .bg-green-700 {
+  background-color: #374151 !important;
+}
+
+[data-perplexity="true"] .hover\\:bg-green-500:hover,
+[data-perplexity="true"] .hover\\:bg-green-600:hover,
+[data-perplexity="true"] .hover\\:bg-green-700:hover {
+  background-color: #1f2937 !important;
+}
+
+/* Custom scrollbar for .custom-scrollbar elements */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.8);
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.6) rgba(0, 0, 0, 0.1);
+}
+
+/* Hide scrollbar for textarea in course request form */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Responsive scrollbar adjustments */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 專業級按鈕動畫效果 */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3), 0 0 20px rgba(255, 204, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 204, 0, 0.4), 0 0 30px rgba(255, 204, 0, 0.2);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 粒子動畫背景 */
+@keyframes float-particles {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* 按鈕懸停發光效果增強 */
+.media-carousel-button:hover {
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 升級版專業級按鈕動畫效果 */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4), 0 0 30px rgba(255, 204, 0, 0.2);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(255, 204, 0, 0.6), 0 0 50px rgba(255, 204, 0, 0.4);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 滑動提示動畫 */
+@keyframes slide-hint {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(5px);
+    opacity: 1;
+  }
+}
+
+/* 載入淡入動畫 */
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 粒子浮動動畫 */
+@keyframes float-particles {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-8px) rotate(120deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-4px) rotate(240deg);
+    opacity: 1;
+  }
+}
+
+/* 3D 懸停效果增強 */
+.media-carousel-button {
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.media-carousel-button:hover:not(:disabled) {
+  filter: brightness(1.15) drop-shadow(0 0 15px rgba(255, 204, 0, 0.6));
+  animation: slide-hint 1.5s infinite;
+}
+
+/* 載入動畫應用 */
+.media-carousel-container {
+  animation: fade-scale-in 0.8s ease-out;
+}
+
+/* 禁用狀態樣式 */
+.media-carousel-button:disabled {
+  filter: grayscale(100%) brightness(0.7);
+  cursor: not-allowed;
+  animation: none !important;
+}
+
+/* 圓形進度指示器動畫 */
+.progress-indicator {
+  animation: fade-scale-in 1s ease-out 0.5s both;
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 精緻版按鈕動畫效果 */
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-indicator {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 升級版專業級按鈕動畫效果 */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4), 0 0 30px rgba(255, 204, 0, 0.2);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(255, 204, 0, 0.6), 0 0 50px rgba(255, 204, 0, 0.4);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 滑動提示動畫 */
+@keyframes slide-hint {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(5px);
+    opacity: 1;
+  }
+}
+
+/* 載入淡入動畫 */
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 粒子浮動動畫 */
+@keyframes float-particles {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-8px) rotate(120deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-4px) rotate(240deg);
+    opacity: 1;
+  }
+}
+
+/* 精緻按鈕樣式 */
+.media-carousel-button {
+  transform-style: preserve-3d;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.media-carousel-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+/* 載入動畫應用 */
+.media-carousel-container {
+  animation: fade-scale-in 0.8s ease-out;
+}
+
+/* 禁用狀態樣式 */
+.media-carousel-button:disabled {
+  filter: grayscale(100%) brightness(0.7);
+  cursor: not-allowed;
+  animation: none !important;
+}
+
+/* Hide scrollbar for specific elements */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Roboto 字體導入 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* 精確的黃色脈動動畫 */
+@keyframes pulse-yellow {
+  0%, 100% {
+    box-shadow: 0 0 10px #ffcc00;
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 15px #ffcc00, 0 0 25px rgba(255, 204, 0, 0.5);
+    filter: brightness(1.1);
+  }
+}
+
+/* 滑動提示線條動畫 */
+@keyframes slide-hint-left {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(-8px);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-hint-right {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+
+/* 精緻版按鈕動畫效果 */
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(10px) translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+@keyframes fade-in-indicator {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 波紋效果 */
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 載入淡入動畫 */
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 精緻按鈕樣式 */
+.media-carousel-button {
+  transform-style: preserve-3d;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.media-carousel-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+/* 載入動畫應用 */
+.media-carousel-container {
+  animation: fade-scale-in 0.8s ease-out;
+}
+
+/* 禁用狀態樣式 */
+.media-carousel-button:disabled {
+  filter: grayscale(100%) brightness(0.7);
+  cursor: not-allowed;
+  animation: none !important;
+}
